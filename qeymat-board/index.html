@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>قیمت برد — Qeymat Board</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --panel:#ffffff; --panel-2:#fafbfc; --line:#e3e6ea;
+    --ink:#14181d; --ink-2:#5b6572; --ink-3:#8b95a2;
+    --up:#0f9d58; --up-soft:rgba(15,157,88,.12);
+    --down:#e02f43; --down-soft:rgba(224,47,67,.12);
+    --flat:#8b95a2; --accent:#3563e9; --accent-soft:rgba(53,99,233,.12);
+    --radius:14px; --shadow:0 1px 2px rgba(16,24,40,.06), 0 4px 16px rgba(16,24,40,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1116; --panel:#161b22; --panel-2:#1b212a; --line:#262d38;
+      --ink:#e8ecf1; --ink-2:#9aa5b3; --ink-3:#6d7885;
+      --up:#3fd07f; --up-soft:rgba(63,208,127,.14);
+      --down:#ff6b7d; --down-soft:rgba(255,107,125,.14);
+      --flat:#6d7885; --accent:#6b8dff; --accent-soft:rgba(107,141,255,.16);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1116; --panel:#161b22; --panel-2:#1b212a; --line:#262d38;
+    --ink:#e8ecf1; --ink-2:#9aa5b3; --ink-3:#6d7885;
+    --up:#3fd07f; --up-soft:rgba(63,208,127,.14);
+    --down:#ff6b7d; --down-soft:rgba(255,107,125,.14);
+    --flat:#6d7885; --accent:#6b8dff; --accent-soft:rgba(107,141,255,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Vazirmatn","Segoe UI",Tahoma,"Iranian Sans",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-size:15px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:22px 20px 64px}
+
+  /* ---------- header ---------- */
+  header.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .brand{display:flex;align-items:baseline;gap:10px;margin-inline-end:auto}
+  .brand h1{font-size:21px;margin:0;letter-spacing:-.01em}
+  .brand .sub{color:var(--ink-3);font-size:12.5px}
+  .stamp{
+    display:flex;align-items:center;gap:7px;color:var(--ink-2);font-size:12.5px;
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--flat);flex:none}
+  .dot.live{background:var(--up);box-shadow:0 0 0 0 var(--up-soft);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--up-soft)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+  button,select,input{font:inherit;color:inherit}
+  .btn{
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:7px 12px;cursor:pointer;transition:.15s border-color,.15s background;
+    display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent)}
+  .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  .btn.icon{padding:7px 10px}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:11px 13px;margin-bottom:16px;box-shadow:var(--shadow);
+  }
+  .search{position:relative;flex:1 1 220px;min-width:180px}
+  .search input{
+    width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;
+    padding:8px 34px 8px 12px;outline:none;
+  }
+  html[dir="ltr"] .search input{padding:8px 12px 8px 34px}
+  .search input:focus{border-color:var(--accent)}
+  .search .mag{position:absolute;inset-inline-end:11px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none;font-size:13px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;cursor:pointer;font-size:13.5px;transition:.15s;
+  }
+  .chip:hover{border-color:var(--accent)}
+  .chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  select.sort{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:13px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 15px 8px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    transition:.15s border-color,.15s transform;
+  }
+  .card:hover{border-color:var(--ink-3)}
+  .card.dragging{opacity:.4}
+  .card.drop-target{border-color:var(--accent);border-style:dashed}
+  .card .row1{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px}
+  .card .title{font-weight:600;font-size:15px;line-height:1.3}
+  .card .badge{
+    display:inline-block;margin-top:4px;font-size:11px;color:var(--ink-3);
+    background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+  }
+  .card .remove{
+    margin-inline-start:auto;background:none;border:0;color:var(--ink-3);cursor:pointer;
+    font-size:19px;line-height:1;padding:2px 5px;border-radius:7px;opacity:0;transition:.15s;
+  }
+  .card:hover .remove,.card .remove:focus{opacity:1}
+  .card .remove:hover{color:var(--down);background:var(--down-soft)}
+  .price{display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+  .price .num{font-size:25px;font-weight:700;letter-spacing:-.02em}
+  .price .unit{font-size:12.5px;color:var(--ink-3)}
+  .delta{
+    display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:13px;
+    border-radius:8px;padding:2px 8px;font-variant-numeric:tabular-nums;
+  }
+  .delta.up{color:var(--up);background:var(--up-soft)}
+  .delta.down{color:var(--down);background:var(--down-soft)}
+  .delta.flat{color:var(--flat);background:var(--panel-2)}
+  .delta .abs{opacity:.75;font-size:12px}
+  .spark{display:block;width:100%;height:54px;margin-top:6px;overflow:visible}
+  .flash{animation:flash .7s ease-out}
+  @keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
+
+  /* ---------- add panel / empty ---------- */
+  .adder{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .adder summary{cursor:pointer;padding:13px 15px;font-weight:600;list-style:none;display:flex;align-items:center;gap:8px}
+  .adder summary::-webkit-details-marker{display:none}
+  .adder summary::after{content:"+";margin-inline-start:auto;color:var(--ink-3);font-size:18px}
+  .adder[open] summary::after{content:"–"}
+  .adder .body{padding:0 15px 15px;display:flex;gap:8px;flex-wrap:wrap}
+  .add-btn{
+    background:var(--panel-2);border:1px dashed var(--line);border-radius:10px;
+    padding:8px 13px;cursor:pointer;font-size:13.5px;transition:.15s;
+  }
+  .add-btn:hover{border-color:var(--accent);color:var(--accent);border-style:solid}
+  .allin{color:var(--ink-3);font-size:13.5px;padding:6px 2px}
+  .empty{
+    grid-column:1/-1;text-align:center;padding:52px 20px;color:var(--ink-3);
+    border:1px dashed var(--line);border-radius:var(--radius);
+  }
+  footer.tip{margin-top:26px;color:var(--ink-3);font-size:12.5px;text-align:center}
+  kbd{
+    background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;
+    border-radius:5px;padding:1px 6px;font-family:inherit;font-size:11.5px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <h1 id="ttl">قیمت برد</h1>
+      <span class="sub" id="sub">Qeymat Board</span>
+    </div>
+    <div class="stamp"><span class="dot" id="dot"></span><span id="stamp" aria-live="polite">—</span></div>
+    <button class="btn" id="refresh" title="R">↻ <span data-i="refresh">بروزرسانی</span></button>
+    <button class="btn" id="auto"><span data-i="auto">خودکار</span></button>
+    <button class="btn icon" id="lang" title="fa / en">FA</button>
+    <button class="btn icon" id="theme" title="theme">◐</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search">
+      <input id="q" type="search" autocomplete="off" placeholder="جستجو…">
+      <span class="mag">⌕</span>
+    </label>
+    <div class="chips" id="chips"></div>
+    <select class="sort" id="sort"></select>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <details class="adder" id="adder">
+    <summary data-i="addTitle">افزودن به لیست</summary>
+    <div class="body" id="addBody"></div>
+  </details>
+
+  <footer class="tip">
+    <span data-i="tip">کارت‌ها را بکشید تا مرتب شوند</span> ·
+    <kbd>/</kbd> <span data-i="tipSearch">جستجو</span> ·
+    <kbd>R</kbd> <span data-i="tipRefresh">بروزرسانی</span>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   CATALOG — every asset the board knows about.
+   unit: 'toman' (Iranian toman) or 'usd'
+   vol:  per-tick volatility used by the simulated data source
+   ============================================================ */
+const CATALOG = [
+  { id:'usd',      group:'currency', unit:'toman', seed:      89500, vol:0.0035, fa:'دلار آمریکا',        en:'US Dollar'       },
+  { id:'eur',      group:'currency', unit:'toman', seed:      97200, vol:0.0035, fa:'یورو',               en:'Euro'            },
+  { id:'gbp',      group:'currency', unit:'toman', seed:     113400, vol:0.0040, fa:'پوند انگلیس',        en:'British Pound'   },
+  { id:'aed',      group:'currency', unit:'toman', seed:      24400, vol:0.0035, fa:'درهم امارات',        en:'UAE Dirham'      },
+  { id:'try',      group:'currency', unit:'toman', seed:       2620, vol:0.0060, fa:'لیر ترکیه',          en:'Turkish Lira'    },
+  { id:'gold18',   group:'gold',     unit:'toman', seed:    4120000, vol:0.0045, fa:'طلای ۱۸ عیار (گرم)', en:'Gold 18k (gram)' },
+  { id:'coin',     group:'gold',     unit:'toman', seed:   48500000, vol:0.0060, fa:'سکه امامی',          en:'Emami Coin'      },
+  { id:'halfcoin', group:'gold',     unit:'toman', seed:   26800000, vol:0.0060, fa:'نیم سکه',            en:'Half Coin'       },
+  { id:'ounce',    group:'gold',     unit:'usd',   seed:       3310, vol:0.0050, fa:'انس جهانی طلا',      en:'Gold Ounce'      },
+  { id:'btc',      group:'crypto',   unit:'usd',   seed:     104500, vol:0.0150, fa:'بیت‌کوین',            en:'Bitcoin'         },
+  { id:'eth',      group:'crypto',   unit:'usd',   seed:       3450, vol:0.0180, fa:'اتریوم',             en:'Ethereum'        },
+  { id:'usdt',     group:'crypto',   unit:'toman', seed:      89900, vol:0.0025, fa:'تتر',                en:'Tether'          },
+];
+const byId = Object.fromEntries(CATALOG.map(a => [a.id, a]));
+const HISTORY_LEN = 40;
+
+/* ============================================================
+   i18n
+   ============================================================ */
+const T = {
+  fa:{
+    brand:'قیمت برد', sub:'Qeymat Board', refresh:'بروزرسانی', auto:'خودکار',
+    search:'جستجو…', addTitle:'افزودن به لیست', allin:'همه‌ی موارد در لیست هستند',
+    empty:'لیست خالی است — از پایین چیزی اضافه کنید',
+    tip:'کارت‌ها را بکشید تا مرتب شوند', tipSearch:'جستجو', tipRefresh:'بروزرسانی',
+    groups:{ all:'همه', currency:'ارز', gold:'طلا و سکه', crypto:'رمزارز' },
+    sorts:{ custom:'ترتیب دلخواه', name:'نام', changeDesc:'بیشترین رشد', changeAsc:'بیشترین افت' },
+    units:{ toman:'تومان', usd:'دلار' }, pct:'٪',
+    updated:'آخرین بروزرسانی', never:'هنوز بروزرسانی نشده', remove:'حذف',
+  },
+  en:{
+    brand:'Qeymat Board', sub:'قیمت برد', refresh:'Refresh', auto:'Auto',
+    search:'Search…', addTitle:'Add to watchlist', allin:'Everything is on the board',
+    empty:'Watchlist is empty — add something below',
+    tip:'Drag cards to reorder', tipSearch:'search', tipRefresh:'refresh',
+    groups:{ all:'All', currency:'Currency', gold:'Gold & Coin', crypto:'Crypto' },
+    sorts:{ custom:'Custom order', name:'Name', changeDesc:'Top gainers', changeAsc:'Top losers' },
+    units:{ toman:'Toman', usd:'USD' }, pct:'%',
+    updated:'Updated', never:'not updated yet', remove:'Remove',
+  }
+};
+const t = () => T[state.prefs.lang];
+
+/* ============================================================
+   DATA SOURCE
+   ------------------------------------------------------------
+   Everything below the board talks to exactly one function:
+   fetchRates(ids) -> Promise<{ [id]: { price:number, ts:number } }>
+
+   Swap `activeSource` for a real API and the whole UI follows.
+   A live example is at the bottom of this block.
+   ============================================================ */
+
+// Box–Muller: normally distributed noise, so the walk looks like a market.
+function gauss(){
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+// Random walk from the last known price, with a gentle pull back toward seed
+// so a board left open all afternoon does not drift into fantasy numbers.
+const simulatedSource = {
+  id: 'simulated',
+  async fetch(ids){
+    const out = {};
+    const now = Date.now();
+    for (const id of ids){
+      const asset = byId[id];
+      if (!asset) continue;
+      const last = state.prices[id]?.price ?? asset.seed;
+      const drift = (asset.seed - last) / asset.seed * 0.05;   // mean reversion
+      const next = last * (1 + gauss() * asset.vol + drift);
+      out[id] = { price: Math.max(next, asset.seed * 0.2), ts: now };
+    }
+    return out;
+  }
+};
+
+let activeSource = simulatedSource;
+
+/*  --- Live source, ready to switch on -------------------------------
+    Point this at whatever API you end up using for Qeymat.online, then
+    set `activeSource = liveSource`. Nothing else in this file changes.
+
+    const liveSource = {
+      id: 'live',
+      async fetch(ids){
+        const res  = await fetch('https://your-api.example/prices?ids=' + ids.join(','));
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();          // e.g. { usd: 89500, btc: 104500 }
+        const now  = Date.now();
+        return Object.fromEntries(
+          ids.filter(id => data[id] != null)
+             .map(id => [id, { price: Number(data[id]), ts: now }])
+        );
+      }
+    };
+
+    Opening this file straight from disk means file:// — a browser will
+    block a cross-origin fetch from there. Serve the folder instead:
+        npx serve .        (or)     python -m http.server 8000
+    and the API needs to send Access-Control-Allow-Origin.
+    ------------------------------------------------------------------- */
+
+async function fetchRates(ids){
+  return activeSource.fetch(ids);
+}
+
+/* ============================================================
+   STATE + PERSISTENCE
+   ============================================================ */
+const KEY = 'qeymat.v1';
+const DEFAULTS = {
+  watchlist: ['usd','gold18','coin','btc','eur','usdt'],
+  prices: {},
+  history: {},
+  prefs: { lang:'fa', theme:'auto', auto:true, group:'all', sort:'custom', query:'' },
+  updatedAt: null,
+};
+
+let state = load();
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return structuredClone(DEFAULTS);
+    const saved = JSON.parse(raw);
+    return {
+      ...structuredClone(DEFAULTS),
+      ...saved,
+      prefs: { ...DEFAULTS.prefs, ...(saved.prefs || {}) },
+      // drop anything no longer in the catalog
+      watchlist: (saved.watchlist || DEFAULTS.watchlist).filter(id => byId[id]),
+    };
+  }catch{
+    return structuredClone(DEFAULTS);
+  }
+}
+
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch{ /* private mode / quota — the board still works, it just forgets */ }
+}
+
+// First run (or a newly added asset): invent a plausible past so the
+// sparkline has something to draw before the first tick lands.
+function seedHistory(id){
+  const asset = byId[id];
+  const series = [];
+  let p = asset.seed;
+  for (let i = 0; i < HISTORY_LEN; i++){
+    p = p * (1 + gauss() * asset.vol);
+    series.push(p);
+  }
+  state.history[id] = series;
+  state.prices[id]  = { price: series[series.length - 1], ts: Date.now() };
+  // "open" anchors the day-change figure
+  state.prices[id].open = series[0];
+}
+
+function ensureSeeded(){
+  for (const id of state.watchlist){
+    if (!state.history[id] || !state.prices[id]) seedHistory(id);
+    if (state.prices[id].open == null) state.prices[id].open = state.history[id][0];
+  }
+}
+
+/* ============================================================
+   FORMATTING
+   ============================================================ */
+const locale = () => (state.prefs.lang === 'fa' ? 'fa-IR' : 'en-US');
+
+function fmtPrice(n, unit){
+  const frac = (unit === 'usd' && Math.abs(n) < 1000) ? 2 : 0;
+  return new Intl.NumberFormat(locale(), { maximumFractionDigits:frac, minimumFractionDigits:frac }).format(n);
+}
+function fmtPct(n){
+  return new Intl.NumberFormat(locale(), { maximumFractionDigits:2, minimumFractionDigits:2 }).format(Math.abs(n));
+}
+function fmtTime(ts){
+  return new Intl.DateTimeFormat(locale(), { hour:'2-digit', minute:'2-digit', second:'2-digit' }).format(new Date(ts));
+}
+
+/* ============================================================
+   SPARKLINE
+   ============================================================ */
+const SPARK_W = 240, SPARK_H = 54;
+
+function sparkPaths(values){
+  if (!values || values.length < 2) return { line:'', area:'' };
+  const pad = 3;
+  const min = Math.min(...values), max = Math.max(...values);
+  const span = (max - min) || Math.abs(max) * 0.001 || 1;
+  const step = (SPARK_W - pad * 2) / (values.length - 1);
+  const pts = values.map((v, i) => [
+    pad + i * step,
+    pad + (SPARK_H - pad * 2) * (1 - (v - min) / span)
+  ]);
+  const line = pts.map(([x,y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const area = `${line} L${pts[pts.length-1][0].toFixed(1)},${SPARK_H} L${pts[0][0].toFixed(1)},${SPARK_H} Z`;
+  return { line, area };
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const el = {
+  grid:    document.getElementById('grid'),
+  chips:   document.getElementById('chips'),
+  sort:    document.getElementById('sort'),
+  q:       document.getElementById('q'),
+  stamp:   document.getElementById('stamp'),
+  dot:     document.getElementById('dot'),
+  addBody: document.getElementById('addBody'),
+  adder:   document.getElementById('adder'),
+  auto:    document.getElementById('auto'),
+  lang:    document.getElementById('lang'),
+  theme:   document.getElementById('theme'),
+  refresh: document.getElementById('refresh'),
+  ttl:     document.getElementById('ttl'),
+  sub:     document.getElementById('sub'),
+};
+
+const name  = a => a[state.prefs.lang];
+const delta = id => {
+  const p = state.prices[id];
+  if (!p || !p.open) return { pct:0, abs:0 };
+  return { pct:(p.price - p.open) / p.open * 100, abs:p.price - p.open };
+};
+
+function visibleIds(){
+  const { group, query } = state.prefs;
+  const needle = query.trim().toLowerCase();
+  let ids = state.watchlist.filter(id => {
+    const a = byId[id];
+    if (group !== 'all' && a.group !== group) return false;
+    if (!needle) return true;
+    return (a.fa + ' ' + a.en + ' ' + a.id).toLowerCase().includes(needle);
+  });
+  const s = state.prefs.sort;
+  if (s === 'name')       ids = [...ids].sort((x,y) => name(byId[x]).localeCompare(name(byId[y]), locale()));
+  if (s === 'changeDesc') ids = [...ids].sort((x,y) => delta(y).pct - delta(x).pct);
+  if (s === 'changeAsc')  ids = [...ids].sort((x,y) => delta(x).pct - delta(y).pct);
+  return ids;
+}
+
+function cardHTML(id){
+  const a = byId[id];
+  const p = state.prices[id];
+  const d = delta(id);
+  const dir = d.pct > 0.001 ? 'up' : d.pct < -0.001 ? 'down' : 'flat';
+  const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '■';
+  const stroke = dir === 'up' ? 'var(--up)' : dir === 'down' ? 'var(--down)' : 'var(--flat)';
+  const { line, area } = sparkPaths(state.history[id]);
+  const gid = 'g_' + id;
+  const draggable = state.prefs.sort === 'custom';
+
+  return `
+  <article class="card" data-id="${id}" ${draggable ? 'draggable="true"' : ''}>
+    <div class="row1">
+      <div>
+        <div class="title">${name(a)}</div>
+        <span class="badge">${t().groups[a.group]}</span>
+      </div>
+      <button class="remove" data-remove="${id}" title="${t().remove}" aria-label="${t().remove} ${name(a)}">×</button>
+    </div>
+    <div class="price">
+      <span class="num" data-num="${id}">${fmtPrice(p.price, a.unit)}</span>
+      <span class="unit">${t().units[a.unit]}</span>
+    </div>
+    <div class="delta ${dir}">
+      <span>${arrow} ${fmtPct(d.pct)}${t().pct}</span>
+      <span class="abs">${d.abs >= 0 ? '+' : '−'}${fmtPrice(Math.abs(d.abs), a.unit)}</span>
+    </div>
+    <svg class="spark" viewBox="0 0 ${SPARK_W} ${SPARK_H}" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="${stroke}" stop-opacity=".26"/>
+          <stop offset="100%" stop-color="${stroke}" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="${area}" fill="url(#${gid})"/>
+      <path d="${line}" fill="none" stroke="${stroke}" stroke-width="1.8"
+            stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
+  </article>`;
+}
+
+function renderGrid(){
+  const ids = visibleIds();
+  el.grid.innerHTML = ids.length
+    ? ids.map(cardHTML).join('')
+    : `<div class="empty">${t().empty}</div>`;
+}
+
+function renderAdder(){
+  const missing = CATALOG.filter(a => !state.watchlist.includes(a.id));
+  el.addBody.innerHTML = missing.length
+    ? missing.map(a => `<button class="add-btn" data-add="${a.id}">+ ${name(a)}</button>`).join('')
+    : `<span class="allin">${t().allin}</span>`;
+}
+
+function renderChrome(){
+  const p = state.prefs, L = t();
+  document.documentElement.lang = p.lang;
+  document.documentElement.dir  = p.lang === 'fa' ? 'rtl' : 'ltr';
+  document.documentElement.setAttribute('data-theme', p.theme);
+  document.title = `${L.brand} — ${L.sub}`;
+
+  el.ttl.textContent = L.brand;
+  el.sub.textContent = L.sub;
+  el.lang.textContent = p.lang === 'fa' ? 'FA' : 'EN';
+  el.theme.textContent = p.theme === 'light' ? '☀' : p.theme === 'dark' ? '☾' : '◐';
+  el.q.placeholder = L.search;
+  el.q.value = p.query;
+  el.auto.classList.toggle('on', p.auto);
+  el.dot.classList.toggle('live', p.auto);
+  document.querySelectorAll('[data-i]').forEach(n => { n.textContent = L[n.dataset.i]; });
+
+  el.chips.innerHTML = ['all','currency','gold','crypto']
+    .map(g => `<button class="chip ${g === p.group ? 'on' : ''}" data-group="${g}">${L.groups[g]}</button>`)
+    .join('');
+
+  el.sort.innerHTML = ['custom','name','changeDesc','changeAsc']
+    .map(s => `<option value="${s}" ${s === p.sort ? 'selected' : ''}>${L.sorts[s]}</option>`)
+    .join('');
+
+  el.stamp.textContent = state.updatedAt
+    ? `${L.updated} ${fmtTime(state.updatedAt)}`
+    : L.never;
+}
+
+function renderAll(){ renderChrome(); renderGrid(); renderAdder(); }
+
+/* ============================================================
+   TICK
+   ============================================================ */
+let busy = false;
+
+async function tick(flash = false){
+  if (busy || state.watchlist.length === 0) return;
+  busy = true;
+  el.refresh.disabled = true;
+  try{
+    const quotes = await fetchRates(state.watchlist);
+    for (const [id, q] of Object.entries(quotes)){
+      if (!byId[id]) continue;
+      const prev = state.prices[id];
+      state.prices[id] = { price:q.price, ts:q.ts, open: prev?.open ?? q.price };
+      const h = state.history[id] || [];
+      h.push(q.price);
+      while (h.length > HISTORY_LEN) h.shift();
+      state.history[id] = h;
+    }
+    state.updatedAt = Date.now();
+    save();
+    renderChrome();
+    renderGrid();
+    if (flash) el.grid.querySelectorAll('.card').forEach(c => {
+      c.classList.remove('flash');
+      void c.offsetWidth;          // restart the animation
+      c.classList.add('flash');
+    });
+  }catch(err){
+    console.error('fetchRates failed:', err);
+    el.stamp.textContent = (state.prefs.lang === 'fa' ? 'خطا در دریافت قیمت' : 'price fetch failed');
+  }finally{
+    busy = false;
+    el.refresh.disabled = false;
+  }
+}
+
+let timer = null;
+function syncTimer(){
+  clearInterval(timer);
+  if (state.prefs.auto) timer = setInterval(() => tick(false), 5000);
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+el.refresh.addEventListener('click', () => tick(true));
+
+el.auto.addEventListener('click', () => {
+  state.prefs.auto = !state.prefs.auto;
+  save(); renderChrome(); syncTimer();
+});
+
+el.lang.addEventListener('click', () => {
+  state.prefs.lang = state.prefs.lang === 'fa' ? 'en' : 'fa';
+  save(); renderAll();
+});
+
+el.theme.addEventListener('click', () => {
+  const order = ['auto','light','dark'];
+  state.prefs.theme = order[(order.indexOf(state.prefs.theme) + 1) % order.length];
+  save(); renderChrome();
+});
+
+el.q.addEventListener('input', e => {
+  state.prefs.query = e.target.value;
+  save(); renderGrid();
+});
+
+el.chips.addEventListener('click', e => {
+  const b = e.target.closest('[data-group]');
+  if (!b) return;
+  state.prefs.group = b.dataset.group;
+  save(); renderChrome(); renderGrid();
+});
+
+el.sort.addEventListener('change', e => {
+  state.prefs.sort = e.target.value;
+  save(); renderGrid();
+});
+
+el.grid.addEventListener('click', e => {
+  const b = e.target.closest('[data-remove]');
+  if (!b) return;
+  state.watchlist = state.watchlist.filter(id => id !== b.dataset.remove);
+  save(); renderGrid(); renderAdder();
+});
+
+el.addBody.addEventListener('click', e => {
+  const b = e.target.closest('[data-add]');
+  if (!b) return;
+  const id = b.dataset.add;
+  state.watchlist.push(id);
+  seedHistory(id);
+  save(); renderGrid(); renderAdder();
+});
+
+// --- drag to reorder (custom sort only) ---
+let dragId = null;
+
+el.grid.addEventListener('dragstart', e => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  dragId = card.dataset.id;
+  card.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', dragId);
+});
+
+el.grid.addEventListener('dragover', e => {
+  const card = e.target.closest('.card');
+  if (!card || !dragId || card.dataset.id === dragId) return;
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  el.grid.querySelectorAll('.drop-target').forEach(c => c.classList.remove('drop-target'));
+  card.classList.add('drop-target');
+});
+
+el.grid.addEventListener('drop', e => {
+  const card = e.target.closest('.card');
+  if (!card || !dragId) return;
+  e.preventDefault();
+  const from = state.watchlist.indexOf(dragId);
+  const to   = state.watchlist.indexOf(card.dataset.id);
+  if (from > -1 && to > -1){
+    state.watchlist.splice(to, 0, state.watchlist.splice(from, 1)[0]);
+    save();
+  }
+  dragId = null;
+  renderGrid();
+});
+
+el.grid.addEventListener('dragend', () => {
+  dragId = null;
+  el.grid.querySelectorAll('.dragging,.drop-target').forEach(c => c.classList.remove('dragging','drop-target'));
+});
+
+document.addEventListener('keydown', e => {
+  const typing = ['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName);
+  if (e.key === '/' && !typing){ e.preventDefault(); el.q.focus(); el.q.select(); }
+  if ((e.key === 'r' || e.key === 'R') && !typing && !e.metaKey && !e.ctrlKey){ e.preventDefault(); tick(true); }
+  if (e.key === 'Escape' && e.target === el.q){ state.prefs.query = ''; save(); renderChrome(); renderGrid(); el.q.blur(); }
+});
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+ensureSeeded();
+save();
+renderAll();
+syncTimer();
+tick(false);
+</script>
+</body>
+</html>
