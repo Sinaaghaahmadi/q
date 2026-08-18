@@ -1,14 +1,16 @@
-# Qeymat Board — قیمت برد
+# قیمت — Qeymat
+
+The price board (`qeymat-board/`).
 
 A single-file price watchlist. Open `index.html` in a browser — no build step, no
 install, no server. Works offline.
 
-![Qeymat Board](preview.png)
+![Qeymat](preview.png)
 
 ## What it does
 
-- **Watchlist** of currencies, gold/coin, and crypto. Add and remove assets, drag
-  cards to reorder.
+- **Watchlist** of currencies, gold/coin, and crypto. Add and remove assets, and
+  reorder them — by dragging with a mouse, or with the ↑ ↓ buttons on each card.
 - **Live prices** with a day-change figure (percent and absolute) and a 40-point
   sparkline per asset, coloured by direction.
 - **Auto-refresh** every 5 seconds, toggleable, plus a manual refresh.
@@ -21,6 +23,14 @@ install, no server. Works offline.
 
 Keyboard: <kbd>/</kbd> focuses search, <kbd>R</kbd> refreshes, <kbd>Esc</kbd>
 clears the search box.
+
+### Touch
+
+Controls that reveal on hover are unreachable on a touch screen, and HTML5 drag
+never fires there. So under `@media (hover: none)` the card controls are always
+visible at 40×40 tap targets, reordering moves to explicit ↑ ↓ buttons, and the
+footer shows the touch hint instead of the keyboard one. Verified at 390×664
+with no horizontal overflow.
 
 ## Where the prices come from
 

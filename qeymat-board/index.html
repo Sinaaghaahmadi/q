@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>قیمت برد — Qeymat Board</title>
+<title>قیمت — Qeymat</title>
 <style>
   :root{
     --bg:#f4f5f7; --panel:#ffffff; --panel-2:#fafbfc; --line:#e3e6ea;
@@ -104,12 +104,29 @@
     display:inline-block;margin-top:4px;font-size:11px;color:var(--ink-3);
     background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
   }
-  .card .remove{
-    margin-inline-start:auto;background:none;border:0;color:var(--ink-3);cursor:pointer;
-    font-size:19px;line-height:1;padding:2px 5px;border-radius:7px;opacity:0;transition:.15s;
+  .card .ctl{margin-inline-start:auto;display:flex;align-items:center;gap:2px}
+  .card .ctl button{
+    background:none;border:0;color:var(--ink-3);cursor:pointer;line-height:1;
+    border-radius:7px;transition:.15s;opacity:0;
   }
-  .card:hover .remove,.card .remove:focus{opacity:1}
+  .card .remove{font-size:19px;padding:2px 5px}
+  .card .mv{display:none;font-size:14px;padding:4px 6px}
+  .card:hover .ctl button,.card .ctl button:focus-visible{opacity:1}
   .card .remove:hover{color:var(--down);background:var(--down-soft)}
+  .card .mv:hover{color:var(--accent);background:var(--accent-soft)}
+
+  /* Touch / no-hover pointers: hover-revealed controls are unreachable, and
+     HTML5 drag never fires — so show the controls and offer ↑ ↓ instead. */
+  @media (hover: none){
+    .card .ctl button{opacity:.6}
+    .card .ctl button:active{opacity:1}
+    .card.reorderable .mv{display:inline-flex}
+    .card .ctl button{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+    .card .mv{min-width:40px}
+    .btn,.chip{min-height:40px}
+    .desktop-only{display:none}
+  }
+  @media (hover: hover){ .touch-only{display:none} }
   .price{display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
   .price .num{font-size:25px;font-weight:700;letter-spacing:-.02em}
   .price .unit{font-size:12.5px;color:var(--ink-3)}
@@ -154,8 +171,8 @@
 
   <header class="top">
     <div class="brand">
-      <h1 id="ttl">قیمت برد</h1>
-      <span class="sub" id="sub">Qeymat Board</span>
+      <h1 id="ttl">قیمت</h1>
+      <span class="sub" id="sub">Qeymat</span>
     </div>
     <div class="stamp"><span class="dot" id="dot"></span><span id="stamp" aria-live="polite">—</span></div>
     <button class="btn" id="refresh" title="R">↻ <span data-i="refresh">بروزرسانی</span></button>
@@ -181,9 +198,12 @@
   </details>
 
   <footer class="tip">
-    <span data-i="tip">کارت‌ها را بکشید تا مرتب شوند</span> ·
-    <kbd>/</kbd> <span data-i="tipSearch">جستجو</span> ·
-    <kbd>R</kbd> <span data-i="tipRefresh">بروزرسانی</span>
+    <span class="desktop-only">
+      <span data-i="tip">کارت‌ها را بکشید تا مرتب شوند</span> ·
+      <kbd>/</kbd> <span data-i="tipSearch">جستجو</span> ·
+      <kbd>R</kbd> <span data-i="tipRefresh">بروزرسانی</span>
+    </span>
+    <span class="touch-only" data-i="tipTouch">با دکمه‌های ↑ ↓ روی هر کارت ترتیب را تغییر دهید</span>
   </footer>
 </div>
 
@@ -217,20 +237,24 @@ const HISTORY_LEN = 40;
    ============================================================ */
 const T = {
   fa:{
-    brand:'قیمت برد', sub:'Qeymat Board', refresh:'بروزرسانی', auto:'خودکار',
+    brand:'قیمت', sub:'Qeymat', refresh:'بروزرسانی', auto:'خودکار',
     search:'جستجو…', addTitle:'افزودن به لیست', allin:'همه‌ی موارد در لیست هستند',
     empty:'لیست خالی است — از پایین چیزی اضافه کنید',
     tip:'کارت‌ها را بکشید تا مرتب شوند', tipSearch:'جستجو', tipRefresh:'بروزرسانی',
+    tipTouch:'با دکمه‌های ↑ ↓ روی هر کارت ترتیب را تغییر دهید',
+    moveUp:'انتقال به بالا', moveDown:'انتقال به پایین',
     groups:{ all:'همه', currency:'ارز', gold:'طلا و سکه', crypto:'رمزارز' },
     sorts:{ custom:'ترتیب دلخواه', name:'نام', changeDesc:'بیشترین رشد', changeAsc:'بیشترین افت' },
     units:{ toman:'تومان', usd:'دلار' }, pct:'٪',
     updated:'آخرین بروزرسانی', never:'هنوز بروزرسانی نشده', remove:'حذف',
   },
   en:{
-    brand:'Qeymat Board', sub:'قیمت برد', refresh:'Refresh', auto:'Auto',
+    brand:'Qeymat', sub:'قیمت', refresh:'Refresh', auto:'Auto',
     search:'Search…', addTitle:'Add to watchlist', allin:'Everything is on the board',
     empty:'Watchlist is empty — add something below',
     tip:'Drag cards to reorder', tipSearch:'search', tipRefresh:'refresh',
+    tipTouch:'Use the ↑ ↓ buttons on each card to reorder',
+    moveUp:'Move up', moveDown:'Move down',
     groups:{ all:'All', currency:'Currency', gold:'Gold & Coin', crypto:'Crypto' },
     sorts:{ custom:'Custom order', name:'Name', changeDesc:'Top gainers', changeAsc:'Top losers' },
     units:{ toman:'Toman', usd:'USD' }, pct:'%',
@@ -456,13 +480,17 @@ function cardHTML(id){
   const draggable = state.prefs.sort === 'custom';
 
   return `
-  <article class="card" data-id="${id}" ${draggable ? 'draggable="true"' : ''}>
+  <article class="card${draggable ? ' reorderable' : ''}" data-id="${id}" ${draggable ? 'draggable="true"' : ''}>
     <div class="row1">
       <div>
         <div class="title">${name(a)}</div>
         <span class="badge">${t().groups[a.group]}</span>
       </div>
-      <button class="remove" data-remove="${id}" title="${t().remove}" aria-label="${t().remove} ${name(a)}">×</button>
+      <div class="ctl">
+        <button class="mv" data-move="${id}|-1" title="${t().moveUp}" aria-label="${t().moveUp} ${name(a)}">↑</button>
+        <button class="mv" data-move="${id}|1"  title="${t().moveDown}" aria-label="${t().moveDown} ${name(a)}">↓</button>
+        <button class="remove" data-remove="${id}" title="${t().remove}" aria-label="${t().remove} ${name(a)}">×</button>
+      </div>
     </div>
     <div class="price">
       <span class="num" data-num="${id}">${fmtPrice(p.price, a.unit)}</span>
@@ -615,10 +643,23 @@ el.sort.addEventListener('change', e => {
 });
 
 el.grid.addEventListener('click', e => {
-  const b = e.target.closest('[data-remove]');
-  if (!b) return;
-  state.watchlist = state.watchlist.filter(id => id !== b.dataset.remove);
-  save(); renderGrid(); renderAdder();
+  const rm = e.target.closest('[data-remove]');
+  if (rm){
+    state.watchlist = state.watchlist.filter(id => id !== rm.dataset.remove);
+    save(); renderGrid(); renderAdder();
+    return;
+  }
+  // ↑ / ↓ reorder — the touch-reachable equivalent of dragging a card
+  const mv = e.target.closest('[data-move]');
+  if (mv){
+    const [id, step] = mv.dataset.move.split('|');
+    const from = state.watchlist.indexOf(id);
+    const to   = from + Number(step);
+    if (from > -1 && to >= 0 && to < state.watchlist.length){
+      state.watchlist.splice(to, 0, state.watchlist.splice(from, 1)[0]);
+      save(); renderGrid();
+    }
+  }
 });
 
 el.addBody.addEventListener('click', e => {
