@@ -62,6 +62,36 @@ Two things to know when you switch:
 - The API has to send `Access-Control-Allow-Origin`, or you will need a small
   proxy in front of it.
 
+## Matching another surface
+
+All of the board's visual identity lives in one `:root` block at the top of the
+stylesheet, marked `BRAND`. Nothing else in the file hardcodes a colour, radius,
+or font. The "soft" tints used by chips, focus rings, and the change badges are
+mixed from the base colours with `color-mix()`, so changing `--brand-accent`
+moves every interactive state with it — there is no second place to edit.
+
+To match a surface you can open in a browser (the Qeymat admin panel, say):
+
+1. Open that page, logged in, on the screen whose look you want.
+2. DevTools → Console. If it refuses the paste, type `allow pasting` first.
+3. Paste `tools/extract-theme.js` and press Enter.
+4. Copy the `:root` block it prints into `index.html`, replacing the BRAND block.
+5. Switch that page to its other theme and repeat — each run fills in one half
+   (light writes `--brand-*`, dark writes `--brand-*-dk`).
+
+The script only reads `getComputedStyle` and stylesheet variables. It sends
+nothing anywhere, modifies nothing, and reads no page content, cookies, or form
+values.
+
+If the panel already declares its own custom properties, they are printed under
+`customProps` — those are the real design tokens and beat every heuristic in the
+script. Use them first and let the sampled values fill the gaps.
+
+**How well it works:** run against this board, it recovers all 18 of the board's
+own token values exactly, in both themes. It is still a heuristic on a page it
+has never seen — check the `accent` against `accentRunners` before trusting it,
+since a page with one large saturated banner can outweigh a small primary button.
+
 ## Adding an asset
 
 One entry in the `CATALOG` array at the top of the script:
@@ -81,7 +111,8 @@ It shows up under "Add to watchlist" immediately.
 
 ```
 qeymat-board/
-  index.html    the whole app — markup, styles, logic
-  preview.png   screenshot used above
+  index.html              the whole app — markup, styles, logic
+  tools/extract-theme.js  reads design tokens off a live page
+  preview.png             screenshot used above
   README.md
 ```

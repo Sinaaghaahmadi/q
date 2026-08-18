@@ -5,39 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>قیمت — Qeymat</title>
 <style>
+  /* ══════════════════════════════════════════════════════════════════
+     BRAND
+     This is the only block to edit when matching another surface (e.g.
+     the Qeymat admin panel). Everything below derives from it — the
+     "soft" tints are mixed from the base colours, so changing --brand-
+     accent also moves every chip, focus ring and hover state with it.
+     `tools/extract-theme.js` prints these values from a live page.
+     ══════════════════════════════════════════════════════════════════ */
   :root{
-    --bg:#f4f5f7; --panel:#ffffff; --panel-2:#fafbfc; --line:#e3e6ea;
-    --ink:#14181d; --ink-2:#5b6572; --ink-3:#8b95a2;
-    --up:#0f9d58; --up-soft:rgba(15,157,88,.12);
-    --down:#e02f43; --down-soft:rgba(224,47,67,.12);
-    --flat:#8b95a2; --accent:#3563e9; --accent-soft:rgba(53,99,233,.12);
-    --radius:14px; --shadow:0 1px 2px rgba(16,24,40,.06), 0 4px 16px rgba(16,24,40,.05);
+    --brand-font:"Vazirmatn","Segoe UI",Tahoma,"Iranian Sans",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --brand-size:15px;
+
+    --brand-accent:#3563e9;   --brand-accent-dk:#6b8dff;   /* primary / interactive */
+    --brand-up:#0f9d58;       --brand-up-dk:#3fd07f;       /* price rising  */
+    --brand-down:#e02f43;     --brand-down-dk:#ff6b7d;     /* price falling */
+
+    --brand-radius:14px;      /* cards, panels   */
+    --brand-radius-sm:10px;   /* buttons, inputs */
+    --brand-radius-pill:999px;/* chips           */
+
+    /* surfaces — light */
+    --brand-bg:#f4f5f7;    --brand-panel:#ffffff;  --brand-panel-2:#fafbfc; --brand-line:#e3e6ea;
+    --brand-ink:#14181d;   --brand-ink-2:#5b6572;  --brand-ink-3:#8b95a2;
+    /* surfaces — dark */
+    --brand-bg-dk:#0e1116; --brand-panel-dk:#161b22; --brand-panel-2-dk:#1b212a; --brand-line-dk:#262d38;
+    --brand-ink-dk:#e8ecf1;--brand-ink-2-dk:#9aa5b3; --brand-ink-3-dk:#6d7885;
+
+    --brand-shadow:0 1px 2px rgba(16,24,40,.06), 0 4px 16px rgba(16,24,40,.05);
+    --brand-shadow-dk:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
   }
+
+  /* ---- semantic tokens: light (the default) ---- */
+  :root{
+    --bg:var(--brand-bg); --panel:var(--brand-panel); --panel-2:var(--brand-panel-2); --line:var(--brand-line);
+    --ink:var(--brand-ink); --ink-2:var(--brand-ink-2); --ink-3:var(--brand-ink-3);
+    --up:var(--brand-up); --down:var(--brand-down); --accent:var(--brand-accent);
+    --flat:var(--brand-ink-3);
+    --soft:12%;
+    --up-soft:color-mix(in srgb, var(--up) var(--soft), transparent);
+    --down-soft:color-mix(in srgb, var(--down) var(--soft), transparent);
+    --accent-soft:color-mix(in srgb, var(--accent) var(--soft), transparent);
+    --radius:var(--brand-radius);
+    --shadow:var(--brand-shadow);
+  }
+
+  /* ---- dark: surfaces and hues swap, the soft tints re-mix themselves ---- */
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0e1116; --panel:#161b22; --panel-2:#1b212a; --line:#262d38;
-      --ink:#e8ecf1; --ink-2:#9aa5b3; --ink-3:#6d7885;
-      --up:#3fd07f; --up-soft:rgba(63,208,127,.14);
-      --down:#ff6b7d; --down-soft:rgba(255,107,125,.14);
-      --flat:#6d7885; --accent:#6b8dff; --accent-soft:rgba(107,141,255,.16);
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+      --bg:var(--brand-bg-dk); --panel:var(--brand-panel-dk); --panel-2:var(--brand-panel-2-dk); --line:var(--brand-line-dk);
+      --ink:var(--brand-ink-dk); --ink-2:var(--brand-ink-2-dk); --ink-3:var(--brand-ink-3-dk);
+      --up:var(--brand-up-dk); --down:var(--brand-down-dk); --accent:var(--brand-accent-dk);
+      --flat:var(--brand-ink-3-dk);
+      --soft:15%;
+      --shadow:var(--brand-shadow-dk);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0e1116; --panel:#161b22; --panel-2:#1b212a; --line:#262d38;
-    --ink:#e8ecf1; --ink-2:#9aa5b3; --ink-3:#6d7885;
-    --up:#3fd07f; --up-soft:rgba(63,208,127,.14);
-    --down:#ff6b7d; --down-soft:rgba(255,107,125,.14);
-    --flat:#6d7885; --accent:#6b8dff; --accent-soft:rgba(107,141,255,.16);
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    --bg:var(--brand-bg-dk); --panel:var(--brand-panel-dk); --panel-2:var(--brand-panel-2-dk); --line:var(--brand-line-dk);
+    --ink:var(--brand-ink-dk); --ink-2:var(--brand-ink-2-dk); --ink-3:var(--brand-ink-3-dk);
+    --up:var(--brand-up-dk); --down:var(--brand-down-dk); --accent:var(--brand-accent-dk);
+    --flat:var(--brand-ink-3-dk);
+    --soft:15%;
+    --shadow:var(--brand-shadow-dk);
   }
 
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
     background:var(--bg); color:var(--ink);
-    font-family:"Vazirmatn","Segoe UI",Tahoma,"Iranian Sans",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    font-size:15px; line-height:1.5;
+    font-family:var(--brand-font);
+    font-size:var(--brand-size); line-height:1.5;
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1180px;margin:0 auto;padding:22px 20px 64px}
@@ -49,7 +87,7 @@
   .brand .sub{color:var(--ink-3);font-size:12.5px}
   .stamp{
     display:flex;align-items:center;gap:7px;color:var(--ink-2);font-size:12.5px;
-    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--brand-radius-pill);padding:5px 11px;
   }
   .dot{width:7px;height:7px;border-radius:50%;background:var(--flat);flex:none}
   .dot.live{background:var(--up);box-shadow:0 0 0 0 var(--up-soft);animation:pulse 2.4s ease-out infinite}
@@ -57,7 +95,7 @@
 
   button,select,input{font:inherit;color:inherit}
   .btn{
-    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--brand-radius-sm);
     padding:7px 12px;cursor:pointer;transition:.15s border-color,.15s background;
     display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
   }
@@ -73,7 +111,7 @@
   }
   .search{position:relative;flex:1 1 220px;min-width:180px}
   .search input{
-    width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;
+    width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:var(--brand-radius-sm);
     padding:8px 34px 8px 12px;outline:none;
   }
   html[dir="ltr"] .search input{padding:8px 12px 8px 34px}
@@ -81,12 +119,12 @@
   .search .mag{position:absolute;inset-inline-end:11px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none;font-size:13px}
   .chips{display:flex;gap:6px;flex-wrap:wrap}
   .chip{
-    background:var(--panel-2);border:1px solid var(--line);border-radius:999px;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:var(--brand-radius-pill);
     padding:6px 13px;cursor:pointer;font-size:13.5px;transition:.15s;
   }
   .chip:hover{border-color:var(--accent)}
   .chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-  select.sort{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+  select.sort{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--brand-radius-sm);padding:8px 10px;cursor:pointer}
 
   /* ---------- grid ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:13px}
@@ -150,7 +188,7 @@
   .adder[open] summary::after{content:"–"}
   .adder .body{padding:0 15px 15px;display:flex;gap:8px;flex-wrap:wrap}
   .add-btn{
-    background:var(--panel-2);border:1px dashed var(--line);border-radius:10px;
+    background:var(--panel-2);border:1px dashed var(--line);border-radius:var(--brand-radius-sm);
     padding:8px 13px;cursor:pointer;font-size:13.5px;transition:.15s;
   }
   .add-btn:hover{border-color:var(--accent);color:var(--accent);border-style:solid}
