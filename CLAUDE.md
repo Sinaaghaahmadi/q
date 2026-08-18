@@ -58,6 +58,11 @@ The block is not specific to this project's server — it covers Iranian hosting
 generally. Credentials do not fix it; there is no route. Do not try to work
 around it.
 
+A second constraint, learned 2026-08-18: the session's git proxy only accepts
+pushes to the designated branch. Tag refs are rejected ("remote end hung up" /
+"Everything up-to-date", ls-remote shows nothing). Record versions in-repo and
+let the owner create tags after merge.
+
 What follows from that:
 
 - The live API cannot be called, inspected, or tested from a session. Write

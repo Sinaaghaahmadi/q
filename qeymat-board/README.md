@@ -1,5 +1,7 @@
 # قیمت — Qeymat
 
+Version **0.1.0** (`qeymat-board-v0.1.0`).
+
 The price board (`qeymat-board/`).
 
 A single-file price watchlist. Open `index.html` in a browser — no build step, no
