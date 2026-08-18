@@ -8,8 +8,23 @@ fix the file in the same PR.
 ## What is in this repo right now
 
 `q` currently holds one thing: `qeymat-board/`, a self-contained single-file
-price board (see its own README). Everything else described below lives
-elsewhere and has not been pushed here yet.
+price board (see its own README).
+
+## The other repositories
+
+The rest of the product lives in four sibling repos, all private. Attach them
+with `add_repo` when the task touches them:
+
+| repo | stack |
+|---|---|
+| `Sinaaghaahmadi/qeymat-api` | Cloudflare Workers + D1 + Drizzle; also a VPS deploy path under `deploy/vps` |
+| `Sinaaghaahmadi/qeymat-admin` | Next.js |
+| `Sinaaghaahmadi/qeymat-web` | Next.js |
+| `Sinaaghaahmadi/qeymat-android` | Gradle / Android |
+
+Each carries its own `CLAUDE.md` and a `handoff/` directory. They were pushed
+sanitized — a scan of every commit in all four found no `.env`, keystore,
+private key, credentialed connection string, or vendor API key.
 
 ## The wider product
 
@@ -87,10 +102,38 @@ The owner cares about visual quality and holds it high. Specifically:
   price source currently is — say so prominently rather than letting it read as
   finished.
 
+## The market API contract
+
+Established from `qeymat-api/worker/index.ts` and `worker/market-feed.ts`:
+
+```
+GET {base}/v1/market?symbols=fiat-usd,gold-18     header: X-API-Key: qey_live_...
+GET {base}/v1/quotes/{id}
+GET {base}/v1/history
+
+200 -> { status: "live" | "partial" | "cached", generatedAt, quotes: LiveQuote[],
+         directCount, derivedCount }
+LiveQuote = { id, price, change, low?, high?, updatedAt?, source,
+              derived?, marketMode?, estimated? }
+error -> { error: { code, message } }
+```
+
+`/api/market`, `/api/history`, `/api/spread` are the internal, unkeyed
+equivalents. Keys are `qey_live_` + 24 chars, sent as `X-API-Key` or
+`Authorization: Bearer`; the worker sends CORS headers allowing both.
+
+Everything is priced in **toman** except `gold-ounce`, which is USD. Crypto is
+toman too — it comes from Nobitex TMN pairs, not Binance USD pairs. Getting this
+wrong silently produces prices off by ~90,000x.
+
+`change` is the day change in percent and is supplied by the API; do not derive
+one when it is present, or Qeymat surfaces will disagree with each other.
+
 ## Open questions
 
 - Where does the rest of the codebase live, and which repos should be attached?
   As of 2026-08-18 the only repo reachable from a session is `Sinaaghaahmadi/q`.
-- What is the API contract for prices? Needed before the board can go live.
+- Has anyone made a real call against `/v1/market` in production? The board's
+  client is verified against a local mock only.
 - Does the admin panel declare CSS custom properties? If so those are the real
   design tokens and beat anything sampled.

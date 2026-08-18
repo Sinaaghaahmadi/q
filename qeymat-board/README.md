@@ -34,33 +34,66 @@ with no horizontal overflow.
 
 ## Where the prices come from
 
-Out of the box the board runs on a **simulated** source: a random walk seeded from
-plausible starting values, with mean reversion so it does not drift somewhere
-silly if you leave the tab open. That is what makes the file work with no network.
+The board speaks the real `qeymat-api` contract:
 
-Every price in the UI arrives through one function:
+```
+GET {base}/v1/market?symbols=fiat-usd,gold-18
+header: X-API-Key: qey_live_...
 
-```js
-fetchRates(ids) -> Promise<{ [id]: { price: number, ts: number } }>
+200 -> { status: "live" | "partial" | "cached",
+         generatedAt: ISO8601,
+         quotes: [{ id, price, change, low?, high?, updatedAt?,
+                    source, derived?, marketMode?, estimated? }],
+         directCount, derivedCount }
 ```
 
-To go live, fill in the `liveSource` block near the top of the script (it is
-already written out as a comment) and change one line:
+Configure it by setting `window.QEYMAT_API` before the script runs, or by
+editing the defaults in the `API` object:
 
-```js
-let activeSource = liveSource;   // was: simulatedSource
+```html
+<script>window.QEYMAT_API = { base:'https://api.qeymat.online', key:'qey_live_…' }</script>
 ```
 
-Nothing else in the file needs to change — rendering, history, persistence, and
-the day-change maths all sit behind that one call.
+**An API key present means the live feed; absent means the simulation.** That
+is the only switch — there is no code edit involved.
 
-Two things to know when you switch:
+The simulation is a mean-reverting random walk, which is what lets the file run
+with no network at all. It is never allowed to pass as real: the header carries
+a badge reading live / partial / cached / simulated / error, and anything other
+than `live` is coloured as a warning.
+
+Day change comes from the API's own `change` field, so the board shows the same
+figure as every other Qeymat surface. Only the simulation derives a change from
+a session open.
+
+Two things to know when pointing it at production:
 
 - Opening the file directly gives you a `file://` origin, and browsers block
   cross-origin requests from there. Serve the folder instead:
   `npx serve .` or `python -m http.server 8000`.
-- The API has to send `Access-Control-Allow-Origin`, or you will need a small
-  proxy in front of it.
+- The worker already sends `Access-Control-Allow-Headers: X-API-Key,
+  Authorization, Content-Type`, so a browser call works once the origin is
+  allowed.
+
+**Not verified against production.** The client was tested against a local mock
+built from `qeymat-api/worker/index.ts` and `market-feed.ts` — live, partial,
+cached, upstream 502, invalid key, unreachable host, and a trailing slash in
+`base` all behave correctly. That verifies this client, not the deployment.
+Iranian hosts are unreachable from a Claude Code session, so the first real call
+has to be made from your browser.
+
+## Symbols
+
+Ids are the API's own, so no translation layer exists to drift:
+
+| group | ids |
+|---|---|
+| currency | `fiat-usd` `fiat-eur` `fiat-gbp` `fiat-aed` `fiat-try` `fiat-cad` `fiat-chf` `fiat-cny` `fiat-jpy` `fiat-aud` `fiat-kwd` `fiat-sar` |
+| gold & coin | `gold-18` `gold-mesghal` `gold-ounce` `coin-emami` `coin-bahar` `coin-half` `coin-quarter` `coin-gram` |
+| crypto | `crypto-btc` `crypto-eth` `crypto-usdt` `crypto-bnb` `crypto-sol` `crypto-xrp` `crypto-doge` `crypto-ada` |
+
+Everything is priced in toman except `gold-ounce`, which the API quotes in USD —
+crypto included, since those come from Nobitex TMN pairs rather than Binance.
 
 ## Matching another surface
 
@@ -97,9 +130,12 @@ since a page with one large saturated banner can outweigh a small primary button
 One entry in the `CATALOG` array at the top of the script:
 
 ```js
-{ id:'cad', group:'currency', unit:'toman', seed:65000, vol:0.004,
-  fa:'دلار کانادا', en:'Canadian Dollar' },
+{ id:'fiat-nok', group:'currency', unit:'toman', seed:8200, vol:0.004,
+  fa:'کرون نروژ', en:'Norwegian Krone' },
 ```
+
+The `id` must match an id the API actually serves, or the quote simply never
+arrives.
 
 - `unit` — `'toman'` or `'usd'`, controls the suffix and decimal places
 - `seed` — starting price, and the anchor the simulation reverts toward

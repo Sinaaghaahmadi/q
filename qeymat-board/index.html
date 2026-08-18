@@ -90,6 +90,12 @@
     background:var(--panel);border:1px solid var(--line);border-radius:var(--brand-radius-pill);padding:5px 11px;
   }
   .dot{width:7px;height:7px;border-radius:50%;background:var(--flat);flex:none}
+  .feed{
+    font-size:11.5px;border-radius:6px;padding:1px 7px;border:1px solid var(--line);
+    color:var(--ink-3);background:var(--panel-2);
+  }
+  .feed.live{color:var(--up);border-color:transparent;background:var(--up-soft)}
+  .feed.simulated,.feed.cached,.feed.partial{color:var(--down);border-color:transparent;background:var(--down-soft)}
   .dot.live{background:var(--up);box-shadow:0 0 0 0 var(--up-soft);animation:pulse 2.4s ease-out infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 var(--up-soft)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
@@ -212,7 +218,7 @@
       <h1 id="ttl">قیمت</h1>
       <span class="sub" id="sub">Qeymat</span>
     </div>
-    <div class="stamp"><span class="dot" id="dot"></span><span id="stamp" aria-live="polite">—</span></div>
+    <div class="stamp"><span class="dot" id="dot"></span><span id="stamp" aria-live="polite">—</span><span class="feed" id="feed"></span></div>
     <button class="btn" id="refresh" title="R">↻ <span data-i="refresh">بروزرسانی</span></button>
     <button class="btn" id="auto"><span data-i="auto">خودکار</span></button>
     <button class="btn icon" id="lang" title="fa / en">FA</button>
@@ -254,18 +260,37 @@
    vol:  per-tick volatility used by the simulated data source
    ============================================================ */
 const CATALOG = [
-  { id:'usd',      group:'currency', unit:'toman', seed:      89500, vol:0.0035, fa:'دلار آمریکا',        en:'US Dollar'       },
-  { id:'eur',      group:'currency', unit:'toman', seed:      97200, vol:0.0035, fa:'یورو',               en:'Euro'            },
-  { id:'gbp',      group:'currency', unit:'toman', seed:     113400, vol:0.0040, fa:'پوند انگلیس',        en:'British Pound'   },
-  { id:'aed',      group:'currency', unit:'toman', seed:      24400, vol:0.0035, fa:'درهم امارات',        en:'UAE Dirham'      },
-  { id:'try',      group:'currency', unit:'toman', seed:       2620, vol:0.0060, fa:'لیر ترکیه',          en:'Turkish Lira'    },
-  { id:'gold18',   group:'gold',     unit:'toman', seed:    4120000, vol:0.0045, fa:'طلای ۱۸ عیار (گرم)', en:'Gold 18k (gram)' },
-  { id:'coin',     group:'gold',     unit:'toman', seed:   48500000, vol:0.0060, fa:'سکه امامی',          en:'Emami Coin'      },
-  { id:'halfcoin', group:'gold',     unit:'toman', seed:   26800000, vol:0.0060, fa:'نیم سکه',            en:'Half Coin'       },
-  { id:'ounce',    group:'gold',     unit:'usd',   seed:       3310, vol:0.0050, fa:'انس جهانی طلا',      en:'Gold Ounce'      },
-  { id:'btc',      group:'crypto',   unit:'usd',   seed:     104500, vol:0.0150, fa:'بیت‌کوین',            en:'Bitcoin'         },
-  { id:'eth',      group:'crypto',   unit:'usd',   seed:       3450, vol:0.0180, fa:'اتریوم',             en:'Ethereum'        },
-  { id:'usdt',     group:'crypto',   unit:'toman', seed:      89900, vol:0.0025, fa:'تتر',                en:'Tether'          },
+  // Currencies — all toman
+  { id:'fiat-usd',      group:'currency', unit:'toman', seed:      89500, vol:0.0035, fa:'دلار آمریکا',        en:'US Dollar'       },
+  { id:'fiat-eur',      group:'currency', unit:'toman', seed:      97200, vol:0.0035, fa:'یورو',               en:'Euro'            },
+  { id:'fiat-gbp',      group:'currency', unit:'toman', seed:     113400, vol:0.0040, fa:'پوند انگلیس',        en:'British Pound'   },
+  { id:'fiat-aed',      group:'currency', unit:'toman', seed:      24400, vol:0.0035, fa:'درهم امارات',        en:'UAE Dirham'      },
+  { id:'fiat-try',      group:'currency', unit:'toman', seed:       2620, vol:0.0060, fa:'لیر ترکیه',          en:'Turkish Lira'    },
+  { id:'fiat-cad',      group:'currency', unit:'toman', seed:      64800, vol:0.0040, fa:'دلار کانادا',        en:'Canadian Dollar' },
+  { id:'fiat-chf',      group:'currency', unit:'toman', seed:     104500, vol:0.0040, fa:'فرانک سوئیس',        en:'Swiss Franc'     },
+  { id:'fiat-cny',      group:'currency', unit:'toman', seed:      12400, vol:0.0035, fa:'یوان چین',           en:'Chinese Yuan'    },
+  { id:'fiat-jpy',      group:'currency', unit:'toman', seed:        590, vol:0.0040, fa:'ین ژاپن',            en:'Japanese Yen'    },
+  { id:'fiat-aud',      group:'currency', unit:'toman', seed:      58600, vol:0.0040, fa:'دلار استرالیا',      en:'Australian Dollar'},
+  { id:'fiat-kwd',      group:'currency', unit:'toman', seed:     292000, vol:0.0040, fa:'دینار کویت',         en:'Kuwaiti Dinar'   },
+  { id:'fiat-sar',      group:'currency', unit:'toman', seed:      23900, vol:0.0035, fa:'ریال عربستان',       en:'Saudi Riyal'     },
+  // Gold and coin — toman, except the global ounce which the API quotes in USD
+  { id:'gold-18',       group:'gold',     unit:'toman', seed:    4120000, vol:0.0045, fa:'طلای ۱۸ عیار (گرم)', en:'Gold 18k (gram)' },
+  { id:'gold-mesghal',  group:'gold',     unit:'toman', seed:   17850000, vol:0.0045, fa:'مثقال طلا',          en:'Mesghal'         },
+  { id:'gold-ounce',    group:'gold',     unit:'usd',   seed:       3310, vol:0.0050, fa:'انس جهانی طلا',      en:'Gold Ounce'      },
+  { id:'coin-emami',    group:'gold',     unit:'toman', seed:   48500000, vol:0.0060, fa:'سکه امامی',          en:'Emami Coin'      },
+  { id:'coin-bahar',    group:'gold',     unit:'toman', seed:   46200000, vol:0.0060, fa:'سکه بهار آزادی',     en:'Bahar Azadi Coin'},
+  { id:'coin-half',     group:'gold',     unit:'toman', seed:   26800000, vol:0.0060, fa:'نیم سکه',            en:'Half Coin'       },
+  { id:'coin-quarter',  group:'gold',     unit:'toman', seed:   16400000, vol:0.0065, fa:'ربع سکه',            en:'Quarter Coin'    },
+  { id:'coin-gram',     group:'gold',     unit:'toman', seed:    8900000, vol:0.0065, fa:'سکه گرمی',           en:'Gram Coin'       },
+  // Crypto — the API prices these from Nobitex TMN pairs, so toman, not USD
+  { id:'crypto-btc',    group:'crypto',   unit:'toman', seed: 9350000000, vol:0.0150, fa:'بیت‌کوین',           en:'Bitcoin'         },
+  { id:'crypto-eth',    group:'crypto',   unit:'toman', seed:  308000000, vol:0.0180, fa:'اتریوم',             en:'Ethereum'        },
+  { id:'crypto-usdt',   group:'crypto',   unit:'toman', seed:      89900, vol:0.0025, fa:'تتر',                en:'Tether'          },
+  { id:'crypto-bnb',    group:'crypto',   unit:'toman', seed:   57200000, vol:0.0180, fa:'بایننس کوین',        en:'BNB'             },
+  { id:'crypto-sol',    group:'crypto',   unit:'toman', seed:   17600000, vol:0.0220, fa:'سولانا',             en:'Solana'          },
+  { id:'crypto-xrp',    group:'crypto',   unit:'toman', seed:     215000, vol:0.0200, fa:'ریپل',               en:'XRP'             },
+  { id:'crypto-doge',   group:'crypto',   unit:'toman', seed:      28500, vol:0.0250, fa:'دوج کوین',           en:'Dogecoin'        },
+  { id:'crypto-ada',    group:'crypto',   unit:'toman', seed:      78000, vol:0.0220, fa:'کاردانو',            en:'Cardano'         },
 ];
 const byId = Object.fromEntries(CATALOG.map(a => [a.id, a]));
 const HISTORY_LEN = 40;
@@ -285,6 +310,7 @@ const T = {
     sorts:{ custom:'ترتیب دلخواه', name:'نام', changeDesc:'بیشترین رشد', changeAsc:'بیشترین افت' },
     units:{ toman:'تومان', usd:'دلار' }, pct:'٪',
     updated:'آخرین بروزرسانی', never:'هنوز بروزرسانی نشده', remove:'حذف',
+    feed:{ live:'زنده', partial:'ناقص', cached:'ذخیره‌شده', simulated:'شبیه‌سازی', error:'خطا' },
   },
   en:{
     brand:'Qeymat', sub:'قیمت', refresh:'Refresh', auto:'Auto',
@@ -297,6 +323,7 @@ const T = {
     sorts:{ custom:'Custom order', name:'Name', changeDesc:'Top gainers', changeAsc:'Top losers' },
     units:{ toman:'Toman', usd:'USD' }, pct:'%',
     updated:'Updated', never:'not updated yet', remove:'Remove',
+    feed:{ live:'live', partial:'partial', cached:'cached', simulated:'simulated', error:'error' },
   }
 };
 const t = () => T[state.prefs.lang];
@@ -305,10 +332,13 @@ const t = () => T[state.prefs.lang];
    DATA SOURCE
    ------------------------------------------------------------
    Everything below the board talks to exactly one function:
-   fetchRates(ids) -> Promise<{ [id]: { price:number, ts:number } }>
 
-   Swap `activeSource` for a real API and the whole UI follows.
-   A live example is at the bottom of this block.
+     fetchRates(ids) -> Promise<{ [id]: {
+       price: number, ts: number, change?: number, estimated?: boolean } }>
+
+   Two implementations satisfy it: `liveSource`, which speaks the real
+   qeymat-api contract, and `simulatedSource`, which keeps the file working
+   with no network. Which one runs depends on whether an API key is present.
    ============================================================ */
 
 // Box–Muller: normally distributed noise, so the walk looks like a market.
@@ -338,31 +368,74 @@ const simulatedSource = {
   }
 };
 
-let activeSource = simulatedSource;
+/* ---------------------------------------------------------------------------
+   Live source — speaks the real qeymat-api contract.
 
-/*  --- Live source, ready to switch on -------------------------------
-    Point this at whatever API you end up using for Qeymat.online, then
-    set `activeSource = liveSource`. Nothing else in this file changes.
+     GET {base}/v1/market?symbols=fiat-usd,gold-18
+     header: X-API-Key: qey_live_...
 
-    const liveSource = {
-      id: 'live',
-      async fetch(ids){
-        const res  = await fetch('https://your-api.example/prices?ids=' + ids.join(','));
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();          // e.g. { usd: 89500, btc: 104500 }
-        const now  = Date.now();
-        return Object.fromEntries(
-          ids.filter(id => data[id] != null)
-             .map(id => [id, { price: Number(data[id]), ts: now }])
-        );
-      }
-    };
+     200 -> { status: "live" | "partial" | "cached",
+              generatedAt: ISO8601,
+              quotes: [{ id, price, change, low?, high?, updatedAt?,
+                         source, derived?, marketMode?, estimated? }],
+              directCount, derivedCount }
 
-    Opening this file straight from disk means file:// — a browser will
-    block a cross-origin fetch from there. Serve the folder instead:
-        npx serve .        (or)     python -m http.server 8000
-    and the API needs to send Access-Control-Allow-Origin.
-    ------------------------------------------------------------------- */
+   `change` is the day change in percent and comes from the API, so the board
+   uses it directly rather than deriving one from a synthetic session open.
+   `status` is surfaced in the header — a cached or partial feed should look
+   different from a live one rather than quietly passing as current.
+
+   Configure by setting QEYMAT_API on window before this script, or by editing
+   the defaults. An empty key leaves the board on the simulated source.
+   --------------------------------------------------------------------------- */
+const API = Object.assign({
+  base: 'https://api.qeymat.online',
+  key: '',
+  timeoutMs: 8000,
+}, window.QEYMAT_API || {});
+// A base configured with a trailing slash would build `//v1/market`, which the
+// worker answers with a 404 `not_found` — a confusing failure for a one-character
+// config mistake.
+API.base = String(API.base).replace(/\/+$/, '');
+
+const liveSource = {
+  id: 'live',
+  async fetch(ids){
+    const url = `${API.base}/v1/market?symbols=${encodeURIComponent(ids.join(','))}`;
+    const ctl = AbortSignal.timeout ? AbortSignal.timeout(API.timeoutMs) : undefined;
+    const res = await fetch(url, {
+      headers: { 'X-API-Key': API.key, 'accept': 'application/json' },
+      signal: ctl,
+    });
+
+    if (!res.ok){
+      // The API returns { error: { code, message } } on failure — surface the
+      // code, since "missing_api_key" and "symbol_not_found" need different fixes.
+      let code = `http_${res.status}`;
+      try { code = (await res.json())?.error?.code || code; } catch {}
+      throw new Error(code);
+    }
+
+    const payload = await res.json();
+    const out = {};
+    for (const q of payload.quotes || []){
+      if (!byId[q.id] || typeof q.price !== 'number') continue;
+      out[q.id] = {
+        price: q.price,
+        ts: q.updatedAt ? Date.parse(q.updatedAt) : Date.parse(payload.generatedAt) || Date.now(),
+        change: typeof q.change === 'number' ? q.change : undefined,
+        estimated: q.estimated === true || q.derived === true,
+      };
+    }
+    feedStatus = { mode: payload.status || 'live', at: Date.parse(payload.generatedAt) || Date.now() };
+    return out;
+  }
+};
+
+// Which source is live is a data question, not a code edit: a key present means
+// the real API, absent means the simulation.
+let feedStatus = { mode: 'simulated', at: null };
+let activeSource = API.key ? liveSource : simulatedSource;
 
 async function fetchRates(ids){
   return activeSource.fetch(ids);
@@ -373,7 +446,7 @@ async function fetchRates(ids){
    ============================================================ */
 const KEY = 'qeymat.v1';
 const DEFAULTS = {
-  watchlist: ['usd','gold18','coin','btc','eur','usdt'],
+  watchlist: ['fiat-usd','gold-18','coin-emami','crypto-btc','fiat-eur','crypto-usdt'],
   prices: {},
   history: {},
   prefs: { lang:'fa', theme:'auto', auto:true, group:'all', sort:'custom', query:'' },
@@ -472,6 +545,7 @@ const el = {
   sort:    document.getElementById('sort'),
   q:       document.getElementById('q'),
   stamp:   document.getElementById('stamp'),
+  feed:    document.getElementById('feed'),
   dot:     document.getElementById('dot'),
   addBody: document.getElementById('addBody'),
   adder:   document.getElementById('adder'),
@@ -484,9 +558,17 @@ const el = {
 };
 
 const name  = a => a[state.prefs.lang];
+// The live API reports the day change itself; only the simulation has to
+// derive one from a session open. Trusting the API's figure keeps the board
+// consistent with every other Qeymat surface showing the same number.
 const delta = id => {
   const p = state.prices[id];
-  if (!p || !p.open) return { pct:0, abs:0 };
+  if (!p) return { pct:0, abs:0 };
+  if (typeof p.change === 'number'){
+    const prev = p.price / (1 + p.change / 100);
+    return { pct:p.change, abs:p.price - prev };
+  }
+  if (!p.open) return { pct:0, abs:0 };
   return { pct:(p.price - p.open) / p.open * 100, abs:p.price - p.open };
 };
 
@@ -594,6 +676,11 @@ function renderChrome(){
   el.stamp.textContent = state.updatedAt
     ? `${L.updated} ${fmtTime(state.updatedAt)}`
     : L.never;
+
+  // Anything that is not a live feed says so plainly — simulated numbers must
+  // never be mistaken for the real market.
+  el.feed.textContent = L.feed[feedStatus.mode] || feedStatus.mode;
+  el.feed.className = 'feed ' + feedStatus.mode;
 }
 
 function renderAll(){ renderChrome(); renderGrid(); renderAdder(); }
@@ -612,7 +699,10 @@ async function tick(flash = false){
     for (const [id, q] of Object.entries(quotes)){
       if (!byId[id]) continue;
       const prev = state.prices[id];
-      state.prices[id] = { price:q.price, ts:q.ts, open: prev?.open ?? q.price };
+      state.prices[id] = {
+        price:q.price, ts:q.ts, open: prev?.open ?? q.price,
+        change:q.change, estimated:q.estimated,
+      };
       const h = state.history[id] || [];
       h.push(q.price);
       while (h.length > HISTORY_LEN) h.shift();
@@ -629,7 +719,9 @@ async function tick(flash = false){
     });
   }catch(err){
     console.error('fetchRates failed:', err);
-    el.stamp.textContent = (state.prefs.lang === 'fa' ? 'خطا در دریافت قیمت' : 'price fetch failed');
+    feedStatus = { mode:'error', at:Date.now() };
+    renderChrome();
+    el.stamp.textContent = (state.prefs.lang === 'fa' ? `خطا: ${err.message}` : `fetch failed: ${err.message}`);
   }finally{
     busy = false;
     el.refresh.disabled = false;
