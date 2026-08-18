@@ -129,11 +129,29 @@ wrong silently produces prices off by ~90,000x.
 `change` is the day change in percent and is supplied by the API; do not derive
 one when it is present, or Qeymat surfaces will disagree with each other.
 
+## Design tokens
+
+The admin panel's `app/globals.css` is the source of truth. It declares
+`--background --surface --surface-soft --border --text --text-secondary
+--text-muted --accent --accent-soft --positive --negative --shadow` on `:root`,
+with the dark palette under `:root[data-theme="dark"]`. The identity is green
+(`#286c4a` light, `#71c897` dark), the typeface is Vazirmatn, card radius is
+13px and control radius 10px.
+
+`qeymat-board` mirrors these one-to-one and asserts equality in
+`tools/verify-theme.mjs`. If you change either side, run it.
+
+Known issue, not yet fixed anywhere: `--text-muted` is below AA contrast on the
+card surface — 2.66:1 in light, 4.09:1 in dark, where 4.5 is required for
+normal text. `#737773` (light) and `#7e847e` (dark) are the smallest changes in
+the same hue that pass. This affects the panel itself, not just the board.
+
 ## Open questions
 
 - Where does the rest of the codebase live, and which repos should be attached?
   As of 2026-08-18 the only repo reachable from a session is `Sinaaghaahmadi/q`.
 - Has anyone made a real call against `/v1/market` in production? The board's
   client is verified against a local mock only.
-- Does the admin panel declare CSS custom properties? If so those are the real
-  design tokens and beat anything sampled.
+- `--text-muted` fails WCAG AA on the card surface (2.66:1 light, 4.09:1 dark,
+  against 4.5 required). It is the admin panel's own token, so the board
+  inherits the problem rather than causing it. See the design-tokens note below.

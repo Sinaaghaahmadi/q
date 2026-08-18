@@ -14,26 +14,32 @@
      `tools/extract-theme.js` prints these values from a live page.
      ══════════════════════════════════════════════════════════════════ */
   :root{
-    --brand-font:"Vazirmatn","Segoe UI",Tahoma,"Iranian Sans",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    /* Values below are the Qeymat admin panel's own tokens, read from
+       qeymat-admin/app/globals.css. The panel names them --background,
+       --surface, --surface-soft, --border, --text, --text-secondary,
+       --text-muted, --accent, --positive, --negative, --shadow; the mapping to
+       the names used here is one-to-one. Keep them in step. */
+    --brand-font:"Vazirmatn",-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,system-ui,sans-serif;
     --brand-size:15px;
 
-    --brand-accent:#3563e9;   --brand-accent-dk:#6b8dff;   /* primary / interactive */
-    --brand-up:#0f9d58;       --brand-up-dk:#3fd07f;       /* price rising  */
-    --brand-down:#e02f43;     --brand-down-dk:#ff6b7d;     /* price falling */
+    --brand-accent:#286c4a;        --brand-accent-dk:#71c897;    /* --accent      */
+    --brand-accent-soft:#e4f1e9;   --brand-accent-soft-dk:#1c3427;/* --accent-soft */
+    --brand-up:#25805a;            --brand-up-dk:#72cc99;        /* --positive    */
+    --brand-down:#b84f5a;          --brand-down-dk:#ef7e89;      /* --negative    */
 
-    --brand-radius:14px;      /* cards, panels   */
+    --brand-radius:13px;      /* cards, panels   */
     --brand-radius-sm:10px;   /* buttons, inputs */
-    --brand-radius-pill:999px;/* chips           */
+    --brand-radius-pill:99px; /* chips           */
 
     /* surfaces — light */
-    --brand-bg:#f4f5f7;    --brand-panel:#ffffff;  --brand-panel-2:#fafbfc; --brand-line:#e3e6ea;
-    --brand-ink:#14181d;   --brand-ink-2:#5b6572;  --brand-ink-3:#8b95a2;
+    --brand-bg:#f5f6f2;    --brand-panel:#ffffff;    --brand-panel-2:#eef0eb; --brand-line:#e2e5df;
+    --brand-ink:#151916;   --brand-ink-2:#6e746e;    --brand-ink-3:#9ba09a;
     /* surfaces — dark */
-    --brand-bg-dk:#0e1116; --brand-panel-dk:#161b22; --brand-panel-2-dk:#1b212a; --brand-line-dk:#262d38;
-    --brand-ink-dk:#e8ecf1;--brand-ink-2-dk:#9aa5b3; --brand-ink-3-dk:#6d7885;
+    --brand-bg-dk:#0f1210; --brand-panel-dk:#181c19; --brand-panel-2-dk:#222723; --brand-line-dk:#2d332e;
+    --brand-ink-dk:#f2f4ef;--brand-ink-2-dk:#a5aba4; --brand-ink-3-dk:#777d77;
 
-    --brand-shadow:0 1px 2px rgba(16,24,40,.06), 0 4px 16px rgba(16,24,40,.05);
-    --brand-shadow-dk:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    --brand-shadow:0 12px 34px rgba(24,31,26,.06);
+    --brand-shadow-dk:0 16px 42px rgba(0,0,0,.2);
   }
 
   /* ---- semantic tokens: light (the default) ---- */
@@ -45,7 +51,7 @@
     --soft:12%;
     --up-soft:color-mix(in srgb, var(--up) var(--soft), transparent);
     --down-soft:color-mix(in srgb, var(--down) var(--soft), transparent);
-    --accent-soft:color-mix(in srgb, var(--accent) var(--soft), transparent);
+    --accent-soft:var(--brand-accent-soft);
     --radius:var(--brand-radius);
     --shadow:var(--brand-shadow);
   }
@@ -58,6 +64,7 @@
       --up:var(--brand-up-dk); --down:var(--brand-down-dk); --accent:var(--brand-accent-dk);
       --flat:var(--brand-ink-3-dk);
       --soft:15%;
+      --accent-soft:var(--brand-accent-soft-dk);
       --shadow:var(--brand-shadow-dk);
     }
   }
@@ -67,6 +74,7 @@
     --up:var(--brand-up-dk); --down:var(--brand-down-dk); --accent:var(--brand-accent-dk);
     --flat:var(--brand-ink-3-dk);
     --soft:15%;
+    --accent-soft:var(--brand-accent-soft-dk);
     --shadow:var(--brand-shadow-dk);
   }
 
