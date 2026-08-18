@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="qeymat-board-version" content="0.1.0">
+<title>قیمت — Qeymat</title>
+<style>
+  /* ══════════════════════════════════════════════════════════════════
+     BRAND
+     This is the only block to edit when matching another surface (e.g.
+     the Qeymat admin panel). Everything below derives from it — the
+     "soft" tints are mixed from the base colours, so changing --brand-
+     accent also moves every chip, focus ring and hover state with it.
+     `tools/extract-theme.js` prints these values from a live page.
+     ══════════════════════════════════════════════════════════════════ */
+  :root{
+    /* Values below are the Qeymat admin panel's own tokens, read from
+       qeymat-admin/app/globals.css. The panel names them --background,
+       --surface, --surface-soft, --border, --text, --text-secondary,
+       --text-muted, --accent, --positive, --negative, --shadow; the mapping to
+       the names used here is one-to-one. Keep them in step. */
+    --brand-font:"Vazirmatn",-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,system-ui,sans-serif;
+    --brand-size:15px;
+
+    --brand-accent:#286c4a;        --brand-accent-dk:#71c897;    /* --accent      */
+    --brand-accent-soft:#e4f1e9;   --brand-accent-soft-dk:#1c3427;/* --accent-soft */
+    --brand-up:#25805a;            --brand-up-dk:#72cc99;        /* --positive    */
+    --brand-down:#b84f5a;          --brand-down-dk:#ef7e89;      /* --negative    */
+
+    --brand-radius:13px;      /* cards, panels   */
+    --brand-radius-sm:10px;   /* buttons, inputs */
+    --brand-radius-pill:99px; /* chips           */
+
+    /* surfaces — light */
+    --brand-bg:#f5f6f2;    --brand-panel:#ffffff;    --brand-panel-2:#eef0eb; --brand-line:#e2e5df;
+    --brand-ink:#151916;   --brand-ink-2:#6e746e;    --brand-ink-3:#9ba09a;
+    /* surfaces — dark */
+    --brand-bg-dk:#0f1210; --brand-panel-dk:#181c19; --brand-panel-2-dk:#222723; --brand-line-dk:#2d332e;
+    --brand-ink-dk:#f2f4ef;--brand-ink-2-dk:#a5aba4; --brand-ink-3-dk:#777d77;
+
+    --brand-shadow:0 12px 34px rgba(24,31,26,.06);
+    --brand-shadow-dk:0 16px 42px rgba(0,0,0,.2);
+  }
+
+  /* ---- semantic tokens: light (the default) ---- */
+  :root{
+    --bg:var(--brand-bg); --panel:var(--brand-panel); --panel-2:var(--brand-panel-2); --line:var(--brand-line);
+    --ink:var(--brand-ink); --ink-2:var(--brand-ink-2); --ink-3:var(--brand-ink-3);
+    --up:var(--brand-up); --down:var(--brand-down); --accent:var(--brand-accent);
+    --flat:var(--brand-ink-3);
+    --soft:12%;
+    --up-soft:color-mix(in srgb, var(--up) var(--soft), transparent);
+    --down-soft:color-mix(in srgb, var(--down) var(--soft), transparent);
+    --accent-soft:var(--brand-accent-soft);
+    --radius:var(--brand-radius);
+    --shadow:var(--brand-shadow);
+  }
+
+  /* ---- dark: surfaces and hues swap, the soft tints re-mix themselves ---- */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:var(--brand-bg-dk); --panel:var(--brand-panel-dk); --panel-2:var(--brand-panel-2-dk); --line:var(--brand-line-dk);
+      --ink:var(--brand-ink-dk); --ink-2:var(--brand-ink-2-dk); --ink-3:var(--brand-ink-3-dk);
+      --up:var(--brand-up-dk); --down:var(--brand-down-dk); --accent:var(--brand-accent-dk);
+      --flat:var(--brand-ink-3-dk);
+      --soft:15%;
+      --accent-soft:var(--brand-accent-soft-dk);
+      --shadow:var(--brand-shadow-dk);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:var(--brand-bg-dk); --panel:var(--brand-panel-dk); --panel-2:var(--brand-panel-2-dk); --line:var(--brand-line-dk);
+    --ink:var(--brand-ink-dk); --ink-2:var(--brand-ink-2-dk); --ink-3:var(--brand-ink-3-dk);
+    --up:var(--brand-up-dk); --down:var(--brand-down-dk); --accent:var(--brand-accent-dk);
+    --flat:var(--brand-ink-3-dk);
+    --soft:15%;
+    --accent-soft:var(--brand-accent-soft-dk);
+    --shadow:var(--brand-shadow-dk);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:var(--brand-font);
+    font-size:var(--brand-size); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:22px 20px 64px}
+
+  /* ---------- header ---------- */
+  header.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .brand{display:flex;align-items:baseline;gap:10px;margin-inline-end:auto}
+  .brand h1{font-size:21px;margin:0;letter-spacing:-.01em}
+  .brand .sub{color:var(--ink-3);font-size:12.5px}
+  .stamp{
+    display:flex;align-items:center;gap:7px;color:var(--ink-2);font-size:12.5px;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--brand-radius-pill);padding:5px 11px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--flat);flex:none}
+  .feed{
+    font-size:11.5px;border-radius:6px;padding:1px 7px;border:1px solid var(--line);
+    color:var(--ink-3);background:var(--panel-2);
+  }
+  .feed.live{color:var(--up);border-color:transparent;background:var(--up-soft)}
+  .feed.simulated,.feed.cached,.feed.partial{color:var(--down);border-color:transparent;background:var(--down-soft)}
+  .dot.live{background:var(--up);box-shadow:0 0 0 0 var(--up-soft);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--up-soft)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+  button,select,input{font:inherit;color:inherit}
+  .btn{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--brand-radius-sm);
+    padding:7px 12px;cursor:pointer;transition:.15s border-color,.15s background;
+    display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent)}
+  .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  .btn.icon{padding:7px 10px}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:11px 13px;margin-bottom:16px;box-shadow:var(--shadow);
+  }
+  .search{position:relative;flex:1 1 220px;min-width:180px}
+  .search input{
+    width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:var(--brand-radius-sm);
+    padding:8px 34px 8px 12px;outline:none;
+  }
+  html[dir="ltr"] .search input{padding:8px 12px 8px 34px}
+  .search input:focus{border-color:var(--accent)}
+  .search .mag{position:absolute;inset-inline-end:11px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none;font-size:13px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:var(--brand-radius-pill);
+    padding:6px 13px;cursor:pointer;font-size:13.5px;transition:.15s;
+  }
+  .chip:hover{border-color:var(--accent)}
+  .chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  select.sort{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--brand-radius-sm);padding:8px 10px;cursor:pointer}
+
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:13px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 15px 8px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    transition:.15s border-color,.15s transform;
+  }
+  .card:hover{border-color:var(--ink-3)}
+  .card.dragging{opacity:.4}
+  .card.drop-target{border-color:var(--accent);border-style:dashed}
+  .card .row1{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px}
+  .card .title{font-weight:600;font-size:15px;line-height:1.3}
+  .card .badge{
+    display:inline-block;margin-top:4px;font-size:11px;color:var(--ink-3);
+    background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+  }
+  .card .ctl{margin-inline-start:auto;display:flex;align-items:center;gap:2px}
+  .card .ctl button{
+    background:none;border:0;color:var(--ink-3);cursor:pointer;line-height:1;
+    border-radius:7px;transition:.15s;opacity:0;
+  }
+  .card .remove{font-size:19px;padding:2px 5px}
+  .card .mv{display:none;font-size:14px;padding:4px 6px}
+  .card:hover .ctl button,.card .ctl button:focus-visible{opacity:1}
+  .card .remove:hover{color:var(--down);background:var(--down-soft)}
+  .card .mv:hover{color:var(--accent);background:var(--accent-soft)}
+
+  /* Touch / no-hover pointers: hover-revealed controls are unreachable, and
+     HTML5 drag never fires — so show the controls and offer ↑ ↓ instead. */
+  @media (hover: none){
+    .card .ctl button{opacity:.6}
+    .card .ctl button:active{opacity:1}
+    .card.reorderable .mv{display:inline-flex}
+    .card .ctl button{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+    .card .mv{min-width:40px}
+    .btn,.chip{min-height:40px}
+    select.sort,.add-btn{min-height:40px}
+    .desktop-only{display:none}
+  }
+  @media (hover: hover){ .touch-only{display:none} }
+  .price{display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+  .price .num{font-size:25px;font-weight:700;letter-spacing:-.02em}
+  .price .unit{font-size:12.5px;color:var(--ink-3)}
+  .delta{
+    display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:13px;
+    border-radius:8px;padding:2px 8px;font-variant-numeric:tabular-nums;
+  }
+  .delta.up{color:var(--up);background:var(--up-soft)}
+  .delta.down{color:var(--down);background:var(--down-soft)}
+  .delta.flat{color:var(--flat);background:var(--panel-2)}
+  .delta .abs{opacity:.75;font-size:12px}
+  .delta .est{opacity:.8;font-size:11px;border-inline-start:1px solid currentColor;padding-inline-start:6px}
+  .spark{display:block;width:100%;height:54px;margin-top:6px;overflow:visible}
+  .flash{animation:flash .7s ease-out}
+  @keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
+
+  /* ---------- add panel / empty ---------- */
+  .adder{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .adder summary{cursor:pointer;padding:13px 15px;font-weight:600;list-style:none;display:flex;align-items:center;gap:8px}
+  .adder summary::-webkit-details-marker{display:none}
+  .adder summary::after{content:"+";margin-inline-start:auto;color:var(--ink-3);font-size:18px}
+  .adder[open] summary::after{content:"–"}
+  .adder .body{padding:0 15px 15px;display:flex;gap:8px;flex-wrap:wrap}
+  .add-btn{
+    background:var(--panel-2);border:1px dashed var(--line);border-radius:var(--brand-radius-sm);
+    padding:8px 13px;cursor:pointer;font-size:13.5px;transition:.15s;
+  }
+  .add-btn:hover{border-color:var(--accent);color:var(--accent);border-style:solid}
+  .allin{color:var(--ink-3);font-size:13.5px;padding:6px 2px}
+  .empty{
+    grid-column:1/-1;text-align:center;padding:52px 20px;color:var(--ink-3);
+    border:1px dashed var(--line);border-radius:var(--radius);
+  }
+  footer.tip{margin-top:26px;color:var(--ink-3);font-size:12.5px;text-align:center}
+  kbd{
+    background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;
+    border-radius:5px;padding:1px 6px;font-family:inherit;font-size:11.5px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <h1 id="ttl">قیمت</h1>
+      <span class="sub" id="sub">Qeymat</span>
+    </div>
+    <div class="stamp"><span class="dot" id="dot"></span><span id="stamp" aria-live="polite">—</span><span class="feed" id="feed"></span></div>
+    <button class="btn" id="refresh" title="R">↻ <span data-i="refresh">بروزرسانی</span></button>
+    <button class="btn" id="auto"><span data-i="auto">خودکار</span></button>
+    <button class="btn icon" id="lang" title="fa / en">FA</button>
+    <button class="btn icon" id="theme" title="theme">◐</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search">
+      <input id="q" type="search" autocomplete="off" placeholder="جستجو…">
+      <span class="mag">⌕</span>
+    </label>
+    <div class="chips" id="chips"></div>
+    <select class="sort" id="sort"></select>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <details class="adder" id="adder">
+    <summary data-i="addTitle">افزودن به لیست</summary>
+    <div class="body" id="addBody"></div>
+  </details>
+
+  <footer class="tip">
+    <span class="desktop-only">
+      <span data-i="tip">کارت‌ها را بکشید تا مرتب شوند</span> ·
+      <kbd>/</kbd> <span data-i="tipSearch">جستجو</span> ·
+      <kbd>R</kbd> <span data-i="tipRefresh">بروزرسانی</span>
+    </span>
+    <span class="touch-only" data-i="tipTouch">با دکمه‌های ↑ ↓ روی هر کارت ترتیب را تغییر دهید</span>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   CATALOG — every asset the board knows about.
+   unit: 'toman' (Iranian toman) or 'usd'
+   vol:  per-tick volatility used by the simulated data source
+   ============================================================ */
+const CATALOG = [
+  // Currencies — all toman
+  { id:'fiat-usd',      group:'currency', unit:'toman', seed:      89500, vol:0.0035, fa:'دلار آمریکا',        en:'US Dollar'       },
+  { id:'fiat-eur',      group:'currency', unit:'toman', seed:      97200, vol:0.0035, fa:'یورو',               en:'Euro'            },
+  { id:'fiat-gbp',      group:'currency', unit:'toman', seed:     113400, vol:0.0040, fa:'پوند انگلیس',        en:'British Pound'   },
+  { id:'fiat-aed',      group:'currency', unit:'toman', seed:      24400, vol:0.0035, fa:'درهم امارات',        en:'UAE Dirham'      },
+  { id:'fiat-try',      group:'currency', unit:'toman', seed:       2620, vol:0.0060, fa:'لیر ترکیه',          en:'Turkish Lira'    },
+  { id:'fiat-cad',      group:'currency', unit:'toman', seed:      64800, vol:0.0040, fa:'دلار کانادا',        en:'Canadian Dollar' },
+  { id:'fiat-chf',      group:'currency', unit:'toman', seed:     104500, vol:0.0040, fa:'فرانک سوئیس',        en:'Swiss Franc'     },
+  { id:'fiat-cny',      group:'currency', unit:'toman', seed:      12400, vol:0.0035, fa:'یوان چین',           en:'Chinese Yuan'    },
+  { id:'fiat-jpy',      group:'currency', unit:'toman', seed:        590, vol:0.0040, fa:'ین ژاپن',            en:'Japanese Yen'    },
+  { id:'fiat-aud',      group:'currency', unit:'toman', seed:      58600, vol:0.0040, fa:'دلار استرالیا',      en:'Australian Dollar'},
+  { id:'fiat-kwd',      group:'currency', unit:'toman', seed:     292000, vol:0.0040, fa:'دینار کویت',         en:'Kuwaiti Dinar'   },
+  { id:'fiat-sar',      group:'currency', unit:'toman', seed:      23900, vol:0.0035, fa:'ریال عربستان',       en:'Saudi Riyal'     },
+  // Gold and coin — toman, except the global ounce which the API quotes in USD
+  { id:'gold-18',       group:'gold',     unit:'toman', seed:    4120000, vol:0.0045, fa:'طلای ۱۸ عیار (گرم)', en:'Gold 18k (gram)' },
+  { id:'gold-mesghal',  group:'gold',     unit:'toman', seed:   17850000, vol:0.0045, fa:'مثقال طلا',          en:'Mesghal'         },
+  { id:'gold-ounce',    group:'gold',     unit:'usd',   seed:       3310, vol:0.0050, fa:'انس جهانی طلا',      en:'Gold Ounce'      },
+  { id:'coin-emami',    group:'gold',     unit:'toman', seed:   48500000, vol:0.0060, fa:'سکه امامی',          en:'Emami Coin'      },
+  { id:'coin-bahar',    group:'gold',     unit:'toman', seed:   46200000, vol:0.0060, fa:'سکه بهار آزادی',     en:'Bahar Azadi Coin'},
+  { id:'coin-half',     group:'gold',     unit:'toman', seed:   26800000, vol:0.0060, fa:'نیم سکه',            en:'Half Coin'       },
+  { id:'coin-quarter',  group:'gold',     unit:'toman', seed:   16400000, vol:0.0065, fa:'ربع سکه',            en:'Quarter Coin'    },
+  { id:'coin-gram',     group:'gold',     unit:'toman', seed:    8900000, vol:0.0065, fa:'سکه گرمی',           en:'Gram Coin'       },
+  // Crypto — the API prices these from Nobitex TMN pairs, so toman, not USD
+  { id:'crypto-btc',    group:'crypto',   unit:'toman', seed: 9350000000, vol:0.0150, fa:'بیت‌کوین',           en:'Bitcoin'         },
+  { id:'crypto-eth',    group:'crypto',   unit:'toman', seed:  308000000, vol:0.0180, fa:'اتریوم',             en:'Ethereum'        },
+  { id:'crypto-usdt',   group:'crypto',   unit:'toman', seed:      89900, vol:0.0025, fa:'تتر',                en:'Tether'          },
+  { id:'crypto-bnb',    group:'crypto',   unit:'toman', seed:   57200000, vol:0.0180, fa:'بایننس کوین',        en:'BNB'             },
+  { id:'crypto-sol',    group:'crypto',   unit:'toman', seed:   17600000, vol:0.0220, fa:'سولانا',             en:'Solana'          },
+  { id:'crypto-xrp',    group:'crypto',   unit:'toman', seed:     215000, vol:0.0200, fa:'ریپل',               en:'XRP'             },
+  { id:'crypto-doge',   group:'crypto',   unit:'toman', seed:      28500, vol:0.0250, fa:'دوج کوین',           en:'Dogecoin'        },
+  { id:'crypto-ada',    group:'crypto',   unit:'toman', seed:      78000, vol:0.0220, fa:'کاردانو',            en:'Cardano'         },
+];
+const byId = Object.fromEntries(CATALOG.map(a => [a.id, a]));
+const HISTORY_LEN = 40;
+
+/* ============================================================
+   i18n
+   ============================================================ */
+const T = {
+  fa:{
+    brand:'قیمت', sub:'Qeymat', refresh:'بروزرسانی', auto:'خودکار',
+    search:'جستجو…', addTitle:'افزودن به لیست', allin:'همه‌ی موارد در لیست هستند',
+    empty:'لیست خالی است — از پایین چیزی اضافه کنید',
+    tip:'کارت‌ها را بکشید تا مرتب شوند', tipSearch:'جستجو', tipRefresh:'بروزرسانی',
+    tipTouch:'با دکمه‌های ↑ ↓ روی هر کارت ترتیب را تغییر دهید',
+    moveUp:'انتقال به بالا', moveDown:'انتقال به پایین',
+    groups:{ all:'همه', currency:'ارز', gold:'طلا و سکه', crypto:'رمزارز' },
+    sorts:{ custom:'ترتیب دلخواه', name:'نام', changeDesc:'بیشترین رشد', changeAsc:'بیشترین افت' },
+    units:{ toman:'تومان', usd:'دلار' }, pct:'٪',
+    updated:'آخرین بروزرسانی', never:'هنوز بروزرسانی نشده', remove:'حذف',
+    feed:{ live:'زنده', partial:'ناقص', cached:'ذخیره‌شده', simulated:'شبیه‌سازی', error:'خطا' },
+    estimated:'تخمینی',
+  },
+  en:{
+    brand:'Qeymat', sub:'قیمت', refresh:'Refresh', auto:'Auto',
+    search:'Search…', addTitle:'Add to watchlist', allin:'Everything is on the board',
+    empty:'Watchlist is empty — add something below',
+    tip:'Drag cards to reorder', tipSearch:'search', tipRefresh:'refresh',
+    tipTouch:'Use the ↑ ↓ buttons on each card to reorder',
+    moveUp:'Move up', moveDown:'Move down',
+    groups:{ all:'All', currency:'Currency', gold:'Gold & Coin', crypto:'Crypto' },
+    sorts:{ custom:'Custom order', name:'Name', changeDesc:'Top gainers', changeAsc:'Top losers' },
+    units:{ toman:'Toman', usd:'USD' }, pct:'%',
+    updated:'Updated', never:'not updated yet', remove:'Remove',
+    feed:{ live:'live', partial:'partial', cached:'cached', simulated:'simulated', error:'error' },
+    estimated:'est.',
+  }
+};
+const t = () => T[state.prefs.lang];
+
+/* ============================================================
+   DATA SOURCE
+   ------------------------------------------------------------
+   Everything below the board talks to exactly one function:
+
+     fetchRates(ids) -> Promise<{ [id]: {
+       price: number, ts: number, change?: number, estimated?: boolean } }>
+
+   Two implementations satisfy it: `liveSource`, which speaks the real
+   qeymat-api contract, and `simulatedSource`, which keeps the file working
+   with no network. Which one runs depends on whether an API key is present.
+   ============================================================ */
+
+// Box–Muller: normally distributed noise, so the walk looks like a market.
+function gauss(){
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+// Random walk from the last known price, with a gentle pull back toward seed
+// so a board left open all afternoon does not drift into fantasy numbers.
+const simulatedSource = {
+  id: 'simulated',
+  async fetch(ids){
+    const out = {};
+    const now = Date.now();
+    for (const id of ids){
+      const asset = byId[id];
+      if (!asset) continue;
+      const last = state.prices[id]?.price ?? asset.seed;
+      const drift = (asset.seed - last) / asset.seed * 0.05;   // mean reversion
+      const next = last * (1 + gauss() * asset.vol + drift);
+      out[id] = { price: Math.max(next, asset.seed * 0.2), ts: now };
+    }
+    return out;
+  }
+};
+
+/* ---------------------------------------------------------------------------
+   Live source — speaks the real qeymat-api contract.
+
+     GET {base}/v1/market?symbols=fiat-usd,gold-18
+     header: X-API-Key: qey_live_...
+
+     200 -> { status: "live" | "partial" | "cached",
+              generatedAt: ISO8601,
+              quotes: [{ id, price, change, low?, high?, updatedAt?,
+                         source, derived?, marketMode?, estimated? }],
+              directCount, derivedCount }
+
+   `change` is the day change in percent and comes from the API, so the board
+   uses it directly rather than deriving one from a synthetic session open.
+   `status` is surfaced in the header — a cached or partial feed should look
+   different from a live one rather than quietly passing as current.
+
+   Configure by setting QEYMAT_API on window before this script, or by editing
+   the defaults. An empty key leaves the board on the simulated source.
+   --------------------------------------------------------------------------- */
+const API = Object.assign({
+  base: 'https://api.qeymat.online',
+  key: '',
+  timeoutMs: 8000,
+}, window.QEYMAT_API || {});
+// A base configured with a trailing slash would build `//v1/market`, which the
+// worker answers with a 404 `not_found` — a confusing failure for a one-character
+// config mistake.
+API.base = String(API.base).replace(/\/+$/, '');
+
+const liveSource = {
+  id: 'live',
+  async fetch(ids){
+    const url = `${API.base}/v1/market?symbols=${encodeURIComponent(ids.join(','))}`;
+    const ctl = AbortSignal.timeout ? AbortSignal.timeout(API.timeoutMs) : undefined;
+    const res = await fetch(url, {
+      headers: { 'X-API-Key': API.key, 'accept': 'application/json' },
+      signal: ctl,
+    });
+
+    if (!res.ok){
+      // The API returns { error: { code, message } } on failure — surface the
+      // code, since "missing_api_key" and "symbol_not_found" need different fixes.
+      let code = `http_${res.status}`;
+      try { code = (await res.json())?.error?.code || code; } catch {}
+      throw new Error(code);
+    }
+
+    const payload = await res.json();
+    const out = {};
+    for (const q of payload.quotes || []){
+      if (!byId[q.id] || typeof q.price !== 'number') continue;
+      out[q.id] = {
+        price: q.price,
+        ts: q.updatedAt ? Date.parse(q.updatedAt) : Date.parse(payload.generatedAt) || Date.now(),
+        change: typeof q.change === 'number' ? q.change : undefined,
+        estimated: q.estimated === true || q.derived === true,
+      };
+    }
+    feedStatus = { mode: payload.status || 'live', at: Date.parse(payload.generatedAt) || Date.now() };
+    return out;
+  }
+};
+
+// Which source is live is a data question, not a code edit: a key present means
+// the real API, absent means the simulation.
+// Before the first live response, what is on screen is whatever localStorage
+// held — which is exactly what "cached" means. Never claim live untested.
+let feedStatus = { mode: API.key ? 'cached' : 'simulated', at: null };
+let activeSource = API.key ? liveSource : simulatedSource;
+
+async function fetchRates(ids){
+  return activeSource.fetch(ids);
+}
+
+/* ============================================================
+   STATE + PERSISTENCE
+   ============================================================ */
+const KEY = 'qeymat.v1';
+const DEFAULTS = {
+  watchlist: ['fiat-usd','gold-18','coin-emami','crypto-btc','fiat-eur','crypto-usdt'],
+  prices: {},
+  history: {},
+  prefs: { lang:'fa', theme:'auto', auto:true, group:'all', sort:'custom', query:'' },
+  updatedAt: null,
+};
+
+let state = load();
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return structuredClone(DEFAULTS);
+    const saved = JSON.parse(raw);
+    return {
+      ...structuredClone(DEFAULTS),
+      ...saved,
+      prefs: { ...DEFAULTS.prefs, ...(saved.prefs || {}) },
+      // drop anything no longer in the catalog
+      watchlist: (saved.watchlist || DEFAULTS.watchlist).filter(id => byId[id]),
+    };
+  }catch{
+    return structuredClone(DEFAULTS);
+  }
+}
+
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch{ /* private mode / quota — the board still works, it just forgets */ }
+}
+
+// First run (or a newly added asset): invent a plausible past so the
+// sparkline has something to draw before the first tick lands.
+function seedHistory(id){
+  const asset = byId[id];
+  const series = [];
+  let p = asset.seed;
+  for (let i = 0; i < HISTORY_LEN; i++){
+    p = p * (1 + gauss() * asset.vol);
+    series.push(p);
+  }
+  state.history[id] = series;
+  state.prices[id]  = { price: series[series.length - 1], ts: Date.now() };
+  // "open" anchors the day-change figure
+  state.prices[id].open = series[0];
+}
+
+function ensureSeeded(){
+  for (const id of state.watchlist){
+    if (!state.history[id] || !state.prices[id]){
+      // Fabricated numbers are only ever acceptable from the simulation. In
+      // live mode a card with no data yet shows a placeholder until the
+      // first quote lands, rather than an invented price.
+      if (activeSource === simulatedSource) seedHistory(id);
+      else state.history[id] = state.history[id] || [];
+    }
+    const p = state.prices[id];
+    if (p && p.open == null) p.open = (state.history[id] || [])[0];
+  }
+}
+
+/* ============================================================
+   FORMATTING
+   ============================================================ */
+const locale = () => (state.prefs.lang === 'fa' ? 'fa-IR' : 'en-US');
+
+function fmtPrice(n, unit){
+  const frac = (unit === 'usd' && Math.abs(n) < 1000) ? 2 : 0;
+  return new Intl.NumberFormat(locale(), { maximumFractionDigits:frac, minimumFractionDigits:frac }).format(n);
+}
+function fmtPct(n){
+  return new Intl.NumberFormat(locale(), { maximumFractionDigits:2, minimumFractionDigits:2 }).format(Math.abs(n));
+}
+function fmtTime(ts){
+  return new Intl.DateTimeFormat(locale(), { hour:'2-digit', minute:'2-digit', second:'2-digit' }).format(new Date(ts));
+}
+
+/* ============================================================
+   SPARKLINE
+   ============================================================ */
+const SPARK_W = 240, SPARK_H = 54;
+
+function sparkPaths(values){
+  if (!values || values.length < 2) return { line:'', area:'' };
+  const pad = 3;
+  const min = Math.min(...values), max = Math.max(...values);
+  const span = (max - min) || Math.abs(max) * 0.001 || 1;
+  const step = (SPARK_W - pad * 2) / (values.length - 1);
+  const pts = values.map((v, i) => [
+    pad + i * step,
+    pad + (SPARK_H - pad * 2) * (1 - (v - min) / span)
+  ]);
+  const line = pts.map(([x,y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const area = `${line} L${pts[pts.length-1][0].toFixed(1)},${SPARK_H} L${pts[0][0].toFixed(1)},${SPARK_H} Z`;
+  return { line, area };
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const el = {
+  grid:    document.getElementById('grid'),
+  chips:   document.getElementById('chips'),
+  sort:    document.getElementById('sort'),
+  q:       document.getElementById('q'),
+  stamp:   document.getElementById('stamp'),
+  feed:    document.getElementById('feed'),
+  dot:     document.getElementById('dot'),
+  addBody: document.getElementById('addBody'),
+  adder:   document.getElementById('adder'),
+  auto:    document.getElementById('auto'),
+  lang:    document.getElementById('lang'),
+  theme:   document.getElementById('theme'),
+  refresh: document.getElementById('refresh'),
+  ttl:     document.getElementById('ttl'),
+  sub:     document.getElementById('sub'),
+};
+
+const name  = a => a[state.prefs.lang];
+// The live API reports the day change itself; only the simulation has to
+// derive one from a session open. Trusting the API's figure keeps the board
+// consistent with every other Qeymat surface showing the same number.
+const delta = id => {
+  const p = state.prices[id];
+  if (!p) return { pct:0, abs:0 };
+  if (typeof p.change === 'number'){
+    const prev = p.price / (1 + p.change / 100);
+    return { pct:p.change, abs:p.price - prev };
+  }
+  if (!p.open) return { pct:0, abs:0 };
+  return { pct:(p.price - p.open) / p.open * 100, abs:p.price - p.open };
+};
+
+function visibleIds(){
+  const { group, query } = state.prefs;
+  const needle = query.trim().toLowerCase();
+  let ids = state.watchlist.filter(id => {
+    const a = byId[id];
+    if (group !== 'all' && a.group !== group) return false;
+    if (!needle) return true;
+    return (a.fa + ' ' + a.en + ' ' + a.id).toLowerCase().includes(needle);
+  });
+  const s = state.prefs.sort;
+  if (s === 'name')       ids = [...ids].sort((x,y) => name(byId[x]).localeCompare(name(byId[y]), locale()));
+  if (s === 'changeDesc') ids = [...ids].sort((x,y) => delta(y).pct - delta(x).pct);
+  if (s === 'changeAsc')  ids = [...ids].sort((x,y) => delta(x).pct - delta(y).pct);
+  return ids;
+}
+
+function cardHTML(id){
+  const a = byId[id];
+  const p = state.prices[id];
+  const has = !!p;
+  const d = delta(id);
+  const dir = !has ? 'flat' : d.pct > 0.001 ? 'up' : d.pct < -0.001 ? 'down' : 'flat';
+  const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '■';
+  const stroke = dir === 'up' ? 'var(--up)' : dir === 'down' ? 'var(--down)' : 'var(--flat)';
+  const { line, area } = sparkPaths(state.history[id]);
+  const gid = 'g_' + id;
+  const draggable = state.prefs.sort === 'custom';
+
+  return `
+  <article class="card${draggable ? ' reorderable' : ''}" data-id="${id}" ${draggable ? 'draggable="true"' : ''}>
+    <div class="row1">
+      <div>
+        <div class="title">${name(a)}</div>
+        <span class="badge">${t().groups[a.group]}</span>
+      </div>
+      <div class="ctl">
+        <button class="mv" data-move="${id}|-1" title="${t().moveUp}" aria-label="${t().moveUp} ${name(a)}">↑</button>
+        <button class="mv" data-move="${id}|1"  title="${t().moveDown}" aria-label="${t().moveDown} ${name(a)}">↓</button>
+        <button class="remove" data-remove="${id}" title="${t().remove}" aria-label="${t().remove} ${name(a)}">×</button>
+      </div>
+    </div>
+    <div class="price">
+      <span class="num" data-num="${id}">${has ? fmtPrice(p.price, a.unit) : '—'}</span>
+      <span class="unit">${t().units[a.unit]}</span>
+    </div>
+    <div class="delta ${dir}">
+      <span>${has ? `${arrow} ${fmtPct(d.pct)}${t().pct}` : '…'}</span>
+      <span class="abs">${has ? `${d.abs >= 0 ? '+' : '−'}${fmtPrice(Math.abs(d.abs), a.unit)}` : ''}</span>
+      <span class="est" ${has && p.estimated ? '' : 'hidden'}>${t().estimated}</span>
+    </div>
+    <svg class="spark" viewBox="0 0 ${SPARK_W} ${SPARK_H}" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="${stroke}" stop-opacity=".26"/>
+          <stop offset="100%" stop-color="${stroke}" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="${area}" fill="url(#${gid})"/>
+      <path d="${line}" fill="none" stroke="${stroke}" stroke-width="1.8"
+            stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
+  </article>`;
+}
+
+function renderGrid(){
+  const ids = visibleIds();
+  el.grid.innerHTML = ids.length
+    ? ids.map(cardHTML).join('')
+    : `<div class="empty">${t().empty}</div>`;
+}
+
+function renderAdder(){
+  const missing = CATALOG.filter(a => !state.watchlist.includes(a.id));
+  el.addBody.innerHTML = missing.length
+    ? missing.map(a => `<button class="add-btn" data-add="${a.id}">+ ${name(a)}</button>`).join('')
+    : `<span class="allin">${t().allin}</span>`;
+}
+
+function renderChrome(){
+  const p = state.prefs, L = t();
+  document.documentElement.lang = p.lang;
+  document.documentElement.dir  = p.lang === 'fa' ? 'rtl' : 'ltr';
+  document.documentElement.setAttribute('data-theme', p.theme);
+  document.title = `${L.brand} — ${L.sub}`;
+
+  el.ttl.textContent = L.brand;
+  el.sub.textContent = L.sub;
+  el.lang.textContent = p.lang === 'fa' ? 'FA' : 'EN';
+  el.theme.textContent = p.theme === 'light' ? '☀' : p.theme === 'dark' ? '☾' : '◐';
+  el.q.placeholder = L.search;
+  if (document.activeElement !== el.q && el.q.value !== p.query) el.q.value = p.query;
+  el.auto.classList.toggle('on', p.auto);
+  el.dot.classList.toggle('live', p.auto);
+  document.querySelectorAll('[data-i]').forEach(n => { n.textContent = L[n.dataset.i]; });
+
+  el.chips.innerHTML = ['all','currency','gold','crypto']
+    .map(g => `<button class="chip ${g === p.group ? 'on' : ''}" data-group="${g}">${L.groups[g]}</button>`)
+    .join('');
+
+  el.sort.innerHTML = ['custom','name','changeDesc','changeAsc']
+    .map(s => `<option value="${s}" ${s === p.sort ? 'selected' : ''}>${L.sorts[s]}</option>`)
+    .join('');
+
+  el.stamp.textContent = state.updatedAt
+    ? `${L.updated} ${fmtTime(state.updatedAt)}`
+    : L.never;
+
+  // Anything that is not a live feed says so plainly — simulated numbers must
+  // never be mistaken for the real market.
+  el.feed.textContent = L.feed[feedStatus.mode] || feedStatus.mode;
+  el.feed.className = 'feed ' + feedStatus.mode;
+  el.feed.title = feedStatus.at ? `${L.updated} ${fmtTime(feedStatus.at)}` : '';
+}
+
+function renderAll(){ renderChrome(); renderGrid(); renderAdder(); }
+
+// A tick must not rebuild the DOM: innerHTML replacement cancels an
+// in-progress drag and throws away keyboard focus every 5 seconds. Patch the
+// existing cards instead, and fall back to a full render only when the set or
+// order of visible cards actually changed — never mid-drag.
+function updateGrid(){
+  const ids = visibleIds();
+  const cards = [...el.grid.querySelectorAll('.card')];
+  if (cards.length !== ids.length || cards.some((c, i) => c.dataset.id !== ids[i])){
+    if (dragId) return;
+    renderGrid();
+    return;
+  }
+  for (const c of cards){
+    const id = c.dataset.id;
+    const a = byId[id], p = state.prices[id];
+    if (!p) continue;
+    const d = delta(id);
+    const dir = d.pct > 0.001 ? 'up' : d.pct < -0.001 ? 'down' : 'flat';
+    const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '■';
+    const stroke = dir === 'up' ? 'var(--up)' : dir === 'down' ? 'var(--down)' : 'var(--flat)';
+    c.querySelector('.num').textContent = fmtPrice(p.price, a.unit);
+    const dl = c.querySelector('.delta');
+    dl.className = 'delta ' + dir;
+    dl.children[0].textContent = `${arrow} ${fmtPct(d.pct)}${t().pct}`;
+    dl.querySelector('.abs').textContent = `${d.abs >= 0 ? '+' : '−'}${fmtPrice(Math.abs(d.abs), a.unit)}`;
+    dl.querySelector('.est').hidden = !p.estimated;
+    const { line, area } = sparkPaths(state.history[id]);
+    const paths = c.querySelectorAll('.spark path');
+    paths[0].setAttribute('d', area);
+    paths[1].setAttribute('d', line);
+    paths[1].setAttribute('stroke', stroke);
+    c.querySelectorAll('.spark stop').forEach(st => st.setAttribute('stop-color', stroke));
+  }
+}
+
+/* ============================================================
+   TICK
+   ============================================================ */
+let busy = false;
+
+async function tick(flash = false){
+  if (busy || state.watchlist.length === 0) return;
+  busy = true;
+  el.refresh.disabled = true;
+  try{
+    const quotes = await fetchRates(state.watchlist);
+    for (const [id, q] of Object.entries(quotes)){
+      if (!byId[id]) continue;
+      const prev = state.prices[id];
+      state.prices[id] = {
+        price:q.price, ts:q.ts, open: prev?.open ?? q.price,
+        change:q.change, estimated:q.estimated,
+      };
+      const h = state.history[id] || [];
+      h.push(q.price);
+      while (h.length > HISTORY_LEN) h.shift();
+      state.history[id] = h;
+    }
+    state.updatedAt = Date.now();
+    save();
+    renderChrome();
+    updateGrid();
+    if (flash) el.grid.querySelectorAll('.card').forEach(c => {
+      c.classList.remove('flash');
+      void c.offsetWidth;          // restart the animation
+      c.classList.add('flash');
+    });
+  }catch(err){
+    console.error('fetchRates failed:', err);
+    feedStatus = { mode:'error', at:Date.now() };
+    renderChrome();
+    el.stamp.textContent = (state.prefs.lang === 'fa' ? `خطا: ${err.message}` : `fetch failed: ${err.message}`);
+  }finally{
+    busy = false;
+    el.refresh.disabled = false;
+  }
+}
+
+let timer = null;
+function syncTimer(){
+  clearInterval(timer);
+  if (state.prefs.auto) timer = setInterval(() => tick(false), 5000);
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+el.refresh.addEventListener('click', () => tick(true));
+
+el.auto.addEventListener('click', () => {
+  state.prefs.auto = !state.prefs.auto;
+  save(); renderChrome(); syncTimer();
+});
+
+el.lang.addEventListener('click', () => {
+  state.prefs.lang = state.prefs.lang === 'fa' ? 'en' : 'fa';
+  save(); renderAll();
+});
+
+el.theme.addEventListener('click', () => {
+  const order = ['auto','light','dark'];
+  state.prefs.theme = order[(order.indexOf(state.prefs.theme) + 1) % order.length];
+  save(); renderChrome();
+});
+
+el.q.addEventListener('input', e => {
+  state.prefs.query = e.target.value;
+  save(); renderGrid();
+});
+
+el.chips.addEventListener('click', e => {
+  const b = e.target.closest('[data-group]');
+  if (!b) return;
+  state.prefs.group = b.dataset.group;
+  save(); renderChrome(); renderGrid();
+});
+
+el.sort.addEventListener('change', e => {
+  state.prefs.sort = e.target.value;
+  save(); renderGrid();
+});
+
+el.grid.addEventListener('click', e => {
+  const rm = e.target.closest('[data-remove]');
+  if (rm){
+    state.watchlist = state.watchlist.filter(id => id !== rm.dataset.remove);
+    save(); renderGrid(); renderAdder();
+    return;
+  }
+  // ↑ / ↓ reorder — the touch-reachable equivalent of dragging a card.
+  // Movement is relative to the VISIBLE neighbours: with a filter or search
+  // active, stepping by raw watchlist index would silently shuffle hidden
+  // cards while the tap looked dead.
+  const mv = e.target.closest('[data-move]');
+  if (mv){
+    const [id, step] = mv.dataset.move.split('|');
+    const vis = visibleIds();
+    const vi = vis.indexOf(id);
+    const ti = vi + Number(step);
+    if (vi > -1 && ti >= 0 && ti < vis.length){
+      const from = state.watchlist.indexOf(id);
+      const to   = state.watchlist.indexOf(vis[ti]);
+      state.watchlist.splice(to, 0, state.watchlist.splice(from, 1)[0]);
+      save(); renderGrid();
+    }
+  }
+});
+
+el.addBody.addEventListener('click', e => {
+  const b = e.target.closest('[data-add]');
+  if (!b) return;
+  const id = b.dataset.add;
+  state.watchlist.push(id);
+  // A re-added asset keeps the real data it already has. A brand-new one is
+  // seeded only by the simulation; the live feed gets a placeholder card and
+  // an immediate fetch instead of an invented price under a "live" badge.
+  if (!state.prices[id] || !state.history[id]){
+    if (activeSource === simulatedSource) seedHistory(id);
+    else state.history[id] = state.history[id] || [];
+  }
+  save(); renderGrid(); renderAdder();
+  if (activeSource !== simulatedSource) tick(false);
+});
+
+// --- drag to reorder (custom sort only) ---
+let dragId = null;
+
+el.grid.addEventListener('dragstart', e => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  dragId = card.dataset.id;
+  card.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', dragId);
+});
+
+el.grid.addEventListener('dragover', e => {
+  const card = e.target.closest('.card');
+  if (!card || !dragId || card.dataset.id === dragId) return;
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  el.grid.querySelectorAll('.drop-target').forEach(c => c.classList.remove('drop-target'));
+  card.classList.add('drop-target');
+});
+
+el.grid.addEventListener('drop', e => {
+  const card = e.target.closest('.card');
+  if (!card || !dragId) return;
+  e.preventDefault();
+  const from = state.watchlist.indexOf(dragId);
+  const to   = state.watchlist.indexOf(card.dataset.id);
+  if (from > -1 && to > -1){
+    state.watchlist.splice(to, 0, state.watchlist.splice(from, 1)[0]);
+    save();
+  }
+  dragId = null;
+  renderGrid();
+});
+
+el.grid.addEventListener('dragend', () => {
+  dragId = null;
+  el.grid.querySelectorAll('.dragging,.drop-target').forEach(c => c.classList.remove('dragging','drop-target'));
+});
+
+document.addEventListener('keydown', e => {
+  const typing = ['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName);
+  // Match on e.code as well as e.key: on the fa-IR layout the R key produces
+  // 'ق' and the slash key another character entirely, so key-only matching
+  // makes both advertised shortcuts dead for the primary audience.
+  if ((e.key === '/' || e.code === 'Slash') && !typing){ e.preventDefault(); el.q.focus(); el.q.select(); }
+  if ((e.code === 'KeyR' || e.key === 'r' || e.key === 'R') && !typing && !e.metaKey && !e.ctrlKey){ e.preventDefault(); tick(true); }
+  if (e.key === 'Escape' && e.target === el.q){ state.prefs.query = ''; save(); renderChrome(); renderGrid(); el.q.blur(); }
+});
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+ensureSeeded();
+save();
+renderAll();
+syncTimer();
+tick(false);
+</script>
+</body>
+</html>
