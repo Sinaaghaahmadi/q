@@ -156,6 +156,7 @@ It shows up under "Add to watchlist" immediately.
 ```
 qeymat-board/
   index.html              the whole app — markup, styles, logic
+  tools/verify-theme.mjs  asserts the board's tokens equal the admin panel's
   tools/extract-theme.js  reads design tokens off a live page
   preview.png             screenshot used above
   README.md

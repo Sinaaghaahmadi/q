@@ -1,4 +1,8 @@
 import { chromium } from 'playwright';
+
+// Resolve the board relative to this script so the check runs from any
+// checkout, not just the container it was written in.
+const INDEX_URL = new URL('../index.html', import.meta.url).href;
 const ADMIN = {
   light:{ background:'#f5f6f2', surface:'#ffffff', 'surface-soft':'#eef0eb', border:'#e2e5df',
           text:'#151916', 'text-secondary':'#6e746e', 'text-muted':'#9ba09a',
@@ -16,7 +20,7 @@ let fail = 0;
 for (const scheme of ['light','dark']){
   const ctx = await b.newContext({ viewport:{width:1240,height:800}, colorScheme:scheme });
   const p = await ctx.newPage();
-  await p.goto('file:///home/user/q/qeymat-board/index.html');
+  await p.goto(INDEX_URL);
   await p.waitForSelector('.card');
   const got = await p.evaluate(vars => {
     const cs = getComputedStyle(document.documentElement);
@@ -39,3 +43,6 @@ for (const scheme of ['light','dark']){
 }
 console.log(fail ? `\n${fail} MISMATCH` : '\nall tokens match the admin panel');
 await b.close();
+// Without a non-zero exit a scripted or CI run of this "assertion" can never
+// fail, which defeats its purpose.
+process.exitCode = fail ? 1 : 0;

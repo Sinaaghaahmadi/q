@@ -176,6 +176,7 @@
     .card .ctl button{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}
     .card .mv{min-width:40px}
     .btn,.chip{min-height:40px}
+    select.sort,.add-btn{min-height:40px}
     .desktop-only{display:none}
   }
   @media (hover: hover){ .touch-only{display:none} }
@@ -190,6 +191,7 @@
   .delta.down{color:var(--down);background:var(--down-soft)}
   .delta.flat{color:var(--flat);background:var(--panel-2)}
   .delta .abs{opacity:.75;font-size:12px}
+  .delta .est{opacity:.8;font-size:11px;border-inline-start:1px solid currentColor;padding-inline-start:6px}
   .spark{display:block;width:100%;height:54px;margin-top:6px;overflow:visible}
   .flash{animation:flash .7s ease-out}
   @keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
@@ -319,6 +321,7 @@ const T = {
     units:{ toman:'تومان', usd:'دلار' }, pct:'٪',
     updated:'آخرین بروزرسانی', never:'هنوز بروزرسانی نشده', remove:'حذف',
     feed:{ live:'زنده', partial:'ناقص', cached:'ذخیره‌شده', simulated:'شبیه‌سازی', error:'خطا' },
+    estimated:'تخمینی',
   },
   en:{
     brand:'Qeymat', sub:'قیمت', refresh:'Refresh', auto:'Auto',
@@ -332,6 +335,7 @@ const T = {
     units:{ toman:'Toman', usd:'USD' }, pct:'%',
     updated:'Updated', never:'not updated yet', remove:'Remove',
     feed:{ live:'live', partial:'partial', cached:'cached', simulated:'simulated', error:'error' },
+    estimated:'est.',
   }
 };
 const t = () => T[state.prefs.lang];
@@ -442,7 +446,9 @@ const liveSource = {
 
 // Which source is live is a data question, not a code edit: a key present means
 // the real API, absent means the simulation.
-let feedStatus = { mode: 'simulated', at: null };
+// Before the first live response, what is on screen is whatever localStorage
+// held — which is exactly what "cached" means. Never claim live untested.
+let feedStatus = { mode: API.key ? 'cached' : 'simulated', at: null };
 let activeSource = API.key ? liveSource : simulatedSource;
 
 async function fetchRates(ids){
@@ -503,8 +509,15 @@ function seedHistory(id){
 
 function ensureSeeded(){
   for (const id of state.watchlist){
-    if (!state.history[id] || !state.prices[id]) seedHistory(id);
-    if (state.prices[id].open == null) state.prices[id].open = state.history[id][0];
+    if (!state.history[id] || !state.prices[id]){
+      // Fabricated numbers are only ever acceptable from the simulation. In
+      // live mode a card with no data yet shows a placeholder until the
+      // first quote lands, rather than an invented price.
+      if (activeSource === simulatedSource) seedHistory(id);
+      else state.history[id] = state.history[id] || [];
+    }
+    const p = state.prices[id];
+    if (p && p.open == null) p.open = (state.history[id] || [])[0];
   }
 }
 
@@ -599,8 +612,9 @@ function visibleIds(){
 function cardHTML(id){
   const a = byId[id];
   const p = state.prices[id];
+  const has = !!p;
   const d = delta(id);
-  const dir = d.pct > 0.001 ? 'up' : d.pct < -0.001 ? 'down' : 'flat';
+  const dir = !has ? 'flat' : d.pct > 0.001 ? 'up' : d.pct < -0.001 ? 'down' : 'flat';
   const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '■';
   const stroke = dir === 'up' ? 'var(--up)' : dir === 'down' ? 'var(--down)' : 'var(--flat)';
   const { line, area } = sparkPaths(state.history[id]);
@@ -621,12 +635,13 @@ function cardHTML(id){
       </div>
     </div>
     <div class="price">
-      <span class="num" data-num="${id}">${fmtPrice(p.price, a.unit)}</span>
+      <span class="num" data-num="${id}">${has ? fmtPrice(p.price, a.unit) : '—'}</span>
       <span class="unit">${t().units[a.unit]}</span>
     </div>
     <div class="delta ${dir}">
-      <span>${arrow} ${fmtPct(d.pct)}${t().pct}</span>
-      <span class="abs">${d.abs >= 0 ? '+' : '−'}${fmtPrice(Math.abs(d.abs), a.unit)}</span>
+      <span>${has ? `${arrow} ${fmtPct(d.pct)}${t().pct}` : '…'}</span>
+      <span class="abs">${has ? `${d.abs >= 0 ? '+' : '−'}${fmtPrice(Math.abs(d.abs), a.unit)}` : ''}</span>
+      <span class="est" ${has && p.estimated ? '' : 'hidden'}>${t().estimated}</span>
     </div>
     <svg class="spark" viewBox="0 0 ${SPARK_W} ${SPARK_H}" preserveAspectRatio="none" aria-hidden="true">
       <defs>
@@ -668,7 +683,7 @@ function renderChrome(){
   el.lang.textContent = p.lang === 'fa' ? 'FA' : 'EN';
   el.theme.textContent = p.theme === 'light' ? '☀' : p.theme === 'dark' ? '☾' : '◐';
   el.q.placeholder = L.search;
-  el.q.value = p.query;
+  if (document.activeElement !== el.q && el.q.value !== p.query) el.q.value = p.query;
   el.auto.classList.toggle('on', p.auto);
   el.dot.classList.toggle('live', p.auto);
   document.querySelectorAll('[data-i]').forEach(n => { n.textContent = L[n.dataset.i]; });
@@ -689,9 +704,45 @@ function renderChrome(){
   // never be mistaken for the real market.
   el.feed.textContent = L.feed[feedStatus.mode] || feedStatus.mode;
   el.feed.className = 'feed ' + feedStatus.mode;
+  el.feed.title = feedStatus.at ? `${L.updated} ${fmtTime(feedStatus.at)}` : '';
 }
 
 function renderAll(){ renderChrome(); renderGrid(); renderAdder(); }
+
+// A tick must not rebuild the DOM: innerHTML replacement cancels an
+// in-progress drag and throws away keyboard focus every 5 seconds. Patch the
+// existing cards instead, and fall back to a full render only when the set or
+// order of visible cards actually changed — never mid-drag.
+function updateGrid(){
+  const ids = visibleIds();
+  const cards = [...el.grid.querySelectorAll('.card')];
+  if (cards.length !== ids.length || cards.some((c, i) => c.dataset.id !== ids[i])){
+    if (dragId) return;
+    renderGrid();
+    return;
+  }
+  for (const c of cards){
+    const id = c.dataset.id;
+    const a = byId[id], p = state.prices[id];
+    if (!p) continue;
+    const d = delta(id);
+    const dir = d.pct > 0.001 ? 'up' : d.pct < -0.001 ? 'down' : 'flat';
+    const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '■';
+    const stroke = dir === 'up' ? 'var(--up)' : dir === 'down' ? 'var(--down)' : 'var(--flat)';
+    c.querySelector('.num').textContent = fmtPrice(p.price, a.unit);
+    const dl = c.querySelector('.delta');
+    dl.className = 'delta ' + dir;
+    dl.children[0].textContent = `${arrow} ${fmtPct(d.pct)}${t().pct}`;
+    dl.querySelector('.abs').textContent = `${d.abs >= 0 ? '+' : '−'}${fmtPrice(Math.abs(d.abs), a.unit)}`;
+    dl.querySelector('.est').hidden = !p.estimated;
+    const { line, area } = sparkPaths(state.history[id]);
+    const paths = c.querySelectorAll('.spark path');
+    paths[0].setAttribute('d', area);
+    paths[1].setAttribute('d', line);
+    paths[1].setAttribute('stroke', stroke);
+    c.querySelectorAll('.spark stop').forEach(st => st.setAttribute('stop-color', stroke));
+  }
+}
 
 /* ============================================================
    TICK
@@ -719,7 +770,7 @@ async function tick(flash = false){
     state.updatedAt = Date.now();
     save();
     renderChrome();
-    renderGrid();
+    updateGrid();
     if (flash) el.grid.querySelectorAll('.card').forEach(c => {
       c.classList.remove('flash');
       void c.offsetWidth;          // restart the animation
@@ -787,13 +838,19 @@ el.grid.addEventListener('click', e => {
     save(); renderGrid(); renderAdder();
     return;
   }
-  // ↑ / ↓ reorder — the touch-reachable equivalent of dragging a card
+  // ↑ / ↓ reorder — the touch-reachable equivalent of dragging a card.
+  // Movement is relative to the VISIBLE neighbours: with a filter or search
+  // active, stepping by raw watchlist index would silently shuffle hidden
+  // cards while the tap looked dead.
   const mv = e.target.closest('[data-move]');
   if (mv){
     const [id, step] = mv.dataset.move.split('|');
-    const from = state.watchlist.indexOf(id);
-    const to   = from + Number(step);
-    if (from > -1 && to >= 0 && to < state.watchlist.length){
+    const vis = visibleIds();
+    const vi = vis.indexOf(id);
+    const ti = vi + Number(step);
+    if (vi > -1 && ti >= 0 && ti < vis.length){
+      const from = state.watchlist.indexOf(id);
+      const to   = state.watchlist.indexOf(vis[ti]);
       state.watchlist.splice(to, 0, state.watchlist.splice(from, 1)[0]);
       save(); renderGrid();
     }
@@ -805,8 +862,15 @@ el.addBody.addEventListener('click', e => {
   if (!b) return;
   const id = b.dataset.add;
   state.watchlist.push(id);
-  seedHistory(id);
+  // A re-added asset keeps the real data it already has. A brand-new one is
+  // seeded only by the simulation; the live feed gets a placeholder card and
+  // an immediate fetch instead of an invented price under a "live" badge.
+  if (!state.prices[id] || !state.history[id]){
+    if (activeSource === simulatedSource) seedHistory(id);
+    else state.history[id] = state.history[id] || [];
+  }
   save(); renderGrid(); renderAdder();
+  if (activeSource !== simulatedSource) tick(false);
 });
 
 // --- drag to reorder (custom sort only) ---
@@ -851,8 +915,11 @@ el.grid.addEventListener('dragend', () => {
 
 document.addEventListener('keydown', e => {
   const typing = ['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName);
-  if (e.key === '/' && !typing){ e.preventDefault(); el.q.focus(); el.q.select(); }
-  if ((e.key === 'r' || e.key === 'R') && !typing && !e.metaKey && !e.ctrlKey){ e.preventDefault(); tick(true); }
+  // Match on e.code as well as e.key: on the fa-IR layout the R key produces
+  // 'ق' and the slash key another character entirely, so key-only matching
+  // makes both advertised shortcuts dead for the primary audience.
+  if ((e.key === '/' || e.code === 'Slash') && !typing){ e.preventDefault(); el.q.focus(); el.q.select(); }
+  if ((e.code === 'KeyR' || e.key === 'r' || e.key === 'R') && !typing && !e.metaKey && !e.ctrlKey){ e.preventDefault(); tick(true); }
   if (e.key === 'Escape' && e.target === el.q){ state.prefs.query = ''; save(); renderChrome(); renderGrid(); el.q.blur(); }
 });
 
