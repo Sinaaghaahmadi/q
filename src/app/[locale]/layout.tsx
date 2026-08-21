@@ -9,6 +9,7 @@ import { Header } from "@/components/layout/header";
 import { Providers } from "@/components/layout/providers";
 import { TabBar } from "@/components/layout/tabbar";
 import { localeDir, routing, type Locale } from "@/i18n/routing";
+import { appOrigin } from "@/lib/app-url";
 import { getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
 import "@/styles/globals.css";
 
@@ -39,7 +40,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "meta" });
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+    metadataBase: new URL(appOrigin()),
     title: {
       default: t("title"),
       template: `%s · ${t("brand")}`,

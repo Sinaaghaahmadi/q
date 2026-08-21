@@ -48,6 +48,22 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  /**
+   * Inline the publishable Supabase values at build time.
+   *
+   * Next loads `.env.production` when it builds, but hosts that bundle the
+   * server as functions — Vercel among them — do not carry the file into the
+   * runtime, so `process.env` came up empty there and the server decided
+   * Supabase was unconfigured while the browser, which has these inlined
+   * already, thought otherwise. Baking them in costs nothing: `NEXT_PUBLIC_`
+   * values are build-time constants in the client bundle regardless, so a
+   * change always meant a rebuild. A real environment variable still wins —
+   * Next never overwrites an entry that is already set in `process.env`.
+   */
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL: supabaseUrl ?? "",
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
