@@ -32,6 +32,8 @@ pnpm seed:demo                  # inspect the seeded dataset
 pnpm brand:assets               # regenerate logo suite / 3D coins / OG images
 ```
 
+**Live: <https://asaex.vercel.app>** — every push to the branch deploys on its own.
+
 ## The surfaces
 
 | Route           | What's there today                                                                   |

@@ -34,7 +34,11 @@ Production: `pnpm build && pnpm start`. Env vars documented in `.env.example`.
 ```bash
 pnpm build && pnpm start &
 pnpm exec tsx scripts/capture-screens.mts   # → artifacts/screens/*.png
+OUT_DIR=/tmp/shots pnpm exec tsx scripts/capture-screens.mts   # elsewhere
 ```
+
+`BASE_URL` can point at a deployment, but not from inside the agent sandbox:
+its egress proxy resets Chromium's connections even where curl succeeds.
 
 ## Checks
 
@@ -130,7 +134,7 @@ repository. Without it the Vercel API refuses to create the project:
 GitHub integration first.
 ```
 
-The app is installed and the Vercel project exists:
+The app is installed, the project is linked, and the site is live:
 
 |            |                                                              |
 | ---------- | ------------------------------------------------------------ |
@@ -148,9 +152,18 @@ is that same team. It is why the project's own creation call reported that it
 "could not verify" the git link: the verification read hit the same 404, not a
 real linking failure.
 
-Set `NEXT_PUBLIC_APP_URL` to the deployment's own origin once it exists —
-`metadataBase` falls back to `http://localhost:3000`, which makes OG image URLs
-in the page head absolute against the wrong host.
+`NEXT_PUBLIC_APP_URL` is optional: `appOrigin()` falls back to Vercel's own
+`VERCEL_PROJECT_PRODUCTION_URL`, then `VERCEL_URL`, so metadata is absolute
+against the right host with no dashboard step. Set it once a custom domain
+exists.
+
+The two publishable Supabase values are **inlined at build time** by
+`next.config.ts`. Hosts that bundle the server as functions do not carry
+`.env.production` into the runtime, so without that the server decides Supabase
+is unconfigured while the browser — which has them inlined already — thinks
+otherwise, and every auth-gated page renders its "not connected" state instead
+of redirecting to sign-in. A real environment variable still wins: Next never
+overwrites an entry already present in `process.env`.
 
 Two Supabase settings need the deployed origin as well: **Authentication → URL
 Configuration → Site URL**, and the redirect allow-list that
