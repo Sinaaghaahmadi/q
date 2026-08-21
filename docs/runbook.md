@@ -122,12 +122,13 @@ what is in the repo:
 
 `.env.production` is committed and carries the publishable Supabase URL and key,
 so a fresh deploy comes up wired to the live database with no dashboard step.
-Real environment variables override it, which is how the production host and any
-server-only secret (`KAVENEGAR_API_KEY`, `RESEND_API_KEY`) get set later.
+Real environment variables override it, which is how any server-only secret
+(`KAVENEGAR_API_KEY`, `RESEND_API_KEY`) gets set later.
 
 **Linking the repository requires the Vercel GitHub App**, installed once by the
 account owner at <https://github.com/apps/vercel> with access granted to this
-repository. Without it the Vercel API refuses to create the project:
+repository. It is installed now; without it the Vercel API refuses to create the
+project at all:
 
 ```
 400 bad_request — To link a GitHub repository, you need to install the
@@ -138,6 +139,7 @@ The app is installed, the project is linked, and the site is live:
 
 |            |                                                              |
 | ---------- | ------------------------------------------------------------ |
+| Live       | <https://asaex.vercel.app>                                   |
 | Project    | `asaex` (`prj_oT3pmwzeRFdeWni010ObvELPcasU`)                 |
 | Team       | `sinaaghaahmadis-projects` (`team_FtgssC1GVPrfrGWw6rAgmBm2`) |
 | Repository | `Sinaaghaahmadi/q`                                           |
