@@ -1,7 +1,11 @@
 /**
  * Capture review screenshots (§22.4: /_design in Persian dark + English light,
  * plus the Phase-1 front door). Requires a running server:
- *   pnpm build && pnpm start   (or BASE_URL=… to point elsewhere)
+ *   pnpm build && pnpm start   (or BASE_URL=… to point at a deployment)
+ * Output directory follows OUT_DIR when set.
+ *
+ * BASE_URL can point at a deployment, but not from inside the agent sandbox:
+ * its egress proxy resets Chromium's connections even though curl succeeds.
  * Output: artifacts/screens/*.png
  */
 import { existsSync, mkdirSync } from "node:fs";
@@ -9,7 +13,7 @@ import { resolve } from "node:path";
 import { chromium, type Browser } from "@playwright/test";
 
 const BASE = process.env.BASE_URL ?? "http://localhost:3000";
-const OUT = resolve(import.meta.dirname, "../artifacts/screens");
+const OUT = process.env.OUT_DIR ?? resolve(import.meta.dirname, "../artifacts/screens");
 mkdirSync(OUT, { recursive: true });
 
 const executablePath = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium";
@@ -97,8 +101,12 @@ async function capture(browser: Browser, shot: Shot) {
     deviceScaleFactor: 2,
   });
   const page = await context.newPage();
-  await page.goto(`${BASE}${shot.path}`, { waitUntil: "networkidle" });
-  await page.waitForTimeout(shot.settleMs ?? 1200);
+  // Not `networkidle`: the rate views poll /api/rates on a timer, so against a
+  // deployed site the network never goes quiet and the wait times out. Load,
+  // then give the fonts and the entry animations a fixed moment to settle.
+  await page.goto(`${BASE}${shot.path}`, { waitUntil: "load" });
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(shot.settleMs ?? 1800);
   await page.screenshot({ path: resolve(OUT, `${shot.name}.png`), fullPage: shot.fullPage });
   await context.close();
   console.log(`✓ ${shot.name}`);
