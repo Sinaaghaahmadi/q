@@ -87,7 +87,14 @@ export function DrawPath({
         reduce
           ? undefined
           : loop
-            ? { duration, delay, ease: EASE_IN, repeat: Infinity, repeatType: "reverse", repeatDelay: 0.4 }
+            ? {
+                duration,
+                delay,
+                ease: EASE_IN,
+                repeat: Infinity,
+                repeatType: "reverse",
+                repeatDelay: 0.4,
+              }
             : { duration, delay, ease: EASE_IN }
       }
     />
@@ -183,10 +190,8 @@ export function SceneCoin({
   glyph?: string;
   tone?: "brand" | "gold" | "silver";
 }) {
-  const face =
-    tone === "gold" ? "#e8c169" : tone === "silver" ? "#d8dfe6" : "var(--brand-600)";
-  const edge =
-    tone === "gold" ? "#b8891f" : tone === "silver" ? "#9aa7b3" : "var(--brand-700)";
+  const face = tone === "gold" ? "#e8c169" : tone === "silver" ? "#d8dfe6" : "var(--brand-600)";
+  const edge = tone === "gold" ? "#b8891f" : tone === "silver" ? "#9aa7b3" : "var(--brand-700)";
   return (
     <g>
       <ellipse cx={cx} cy={cy + r * 0.16} rx={r} ry={r * 0.94} fill={edge} />

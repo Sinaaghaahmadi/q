@@ -158,7 +158,10 @@ export type Database = {
       profiles: Table<Profile>;
       memberships: Table<Membership>;
       kyc_submissions: Table<KycSubmission, "user_id">;
-      kyc_documents: Table<KycDocument, "submission_id" | "kind" | "storage_path" | "mime" | "sha256">;
+      kyc_documents: Table<
+        KycDocument,
+        "submission_id" | "kind" | "storage_path" | "mime" | "sha256"
+      >;
       beneficiary_accounts: Table<
         BeneficiaryAccount,
         "user_id" | "nickname" | "currency" | "country" | "kind" | "holder_name"

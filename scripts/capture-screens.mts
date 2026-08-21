@@ -66,6 +66,28 @@ const SHOTS: Shot[] = [
     viewport: { width: 390, height: 844 },
     fullPage: true,
   },
+  {
+    name: "signin-fa-dark-mobile",
+    path: "/signin",
+    scheme: "dark",
+    viewport: { width: 390, height: 844 },
+    fullPage: true,
+    settleMs: 1600,
+  },
+  {
+    name: "signin-en-light-desktop",
+    path: "/en/signin",
+    scheme: "light",
+    viewport: { width: 1280, height: 900 },
+    settleMs: 1600,
+  },
+  {
+    name: "scenes-fa-dark",
+    path: "/_design#scenes",
+    scheme: "dark",
+    viewport: { width: 1280, height: 1400 },
+    settleMs: 2400,
+  },
 ];
 
 async function capture(browser: Browser, shot: Shot) {

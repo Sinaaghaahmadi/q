@@ -113,7 +113,11 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
 
   const identifierValid =
     channel === "phone"
-      ? /^\d{10,13}$/.test(toLatinDigits(phone).replace(/^\+?98/, "").replace(/^0/, ""))
+      ? /^\d{10,13}$/.test(
+          toLatinDigits(phone)
+            .replace(/^\+?98/, "")
+            .replace(/^0/, ""),
+        )
       : /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
 
   return (
@@ -136,7 +140,13 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
         </AnimatePresence>
 
         <h1 className="mt-4 text-xl font-bold">
-          {step === "code" ? t("codeTitle") : step === "sent" ? t("sentTitle") : step === "done" ? t("doneTitle") : t("title")}
+          {step === "code"
+            ? t("codeTitle")
+            : step === "sent"
+              ? t("sentTitle")
+              : step === "done"
+                ? t("doneTitle")
+                : t("title")}
         </h1>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-600">
           {step === "code"

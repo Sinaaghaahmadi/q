@@ -101,7 +101,10 @@ export function AccountsManager({ initial }: { initial: BeneficiaryAccount[] }) 
                     </Badge>
                   </div>
 
-                  <p className="num truncate rounded-lg bg-canvas px-3 py-2 font-mono text-xs" dir="ltr">
+                  <p
+                    className="num truncate rounded-lg bg-canvas px-3 py-2 font-mono text-xs"
+                    dir="ltr"
+                  >
                     {maskIdentifier(account)}
                   </p>
 
@@ -136,7 +139,11 @@ export function AccountsManager({ initial }: { initial: BeneficiaryAccount[] }) 
 
 function maskIdentifier(account: BeneficiaryAccount): string {
   const value =
-    account.details.sheba ?? account.details.card ?? account.details.iban ?? account.details.swift ?? "";
+    account.details.sheba ??
+    account.details.card ??
+    account.details.iban ??
+    account.details.swift ??
+    "";
   if (value.length <= 8) return value;
   return `${value.slice(0, 4)} •••• ${value.slice(-4)}`;
 }
@@ -177,9 +184,9 @@ function AddAccountDialog({
     return { valid: /^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/.test(normalized.toUpperCase()) } as const;
   }, [kind, normalized]);
 
-  const bankId =
-    kind === "card" && validation && "bankId" in validation ? validation.bankId : null;
-  const valid = Boolean(validation?.valid) && nickname.trim().length > 1 && holder.trim().length > 2;
+  const bankId = kind === "card" && validation && "bankId" in validation ? validation.bankId : null;
+  const valid =
+    Boolean(validation?.valid) && nickname.trim().length > 1 && holder.trim().length > 2;
 
   async function save() {
     setBusy(true);
@@ -196,7 +203,11 @@ function AddAccountDialog({
 
       const details: Record<string, string> =
         kind === "sheba"
-          ? { sheba: normalized.toUpperCase().startsWith("IR") ? normalized.toUpperCase() : `IR${normalized}` }
+          ? {
+              sheba: normalized.toUpperCase().startsWith("IR")
+                ? normalized.toUpperCase()
+                : `IR${normalized}`,
+            }
           : kind === "card"
             ? { card: normalized.replace(/\s/g, "") }
             : kind === "iban"

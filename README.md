@@ -6,11 +6,13 @@ A currency-exchange & remittance marketplace between licensed exchange
 offices: customer PWA + exchange-office panel + super-admin panel, one
 codebase, one design system, bilingual (fa-IR RTL / en LTR) from line one.
 
-> **Status: Phase 0 (foundation) + Phase 1 front door delivered.**
-> Live tgju.org rates, inline converter, full rate board with history,
-> transfer quote with rate-lock preview, the `/_design` system route, PWA
-> shell, complete Supabase schema (migrations, unapplied), CI. Roadmap: §20
-> of the master prompt; decisions in `docs/decisions/`.
+> **Status: Phases 0–2 delivered.**
+> Live tgju.org rates, inline converter, full rate board with history, and a
+> transfer quote with rate-lock preview (Phase 1); one-time-code sign-in, the
+> KYC wizard, destination-account management, the profile surface and the
+> four-eyes admin review queue, all on a live Supabase project in the EU with
+> RLS enforced (Phase 2). Roadmap: §20 of the master prompt; decisions in
+> `docs/decisions/`.
 
 ## Quick start (under ten minutes)
 
@@ -20,8 +22,9 @@ pnpm install
 pnpm dev                   # http://localhost:3000 — live tgju data
 ```
 
-No env vars are required for the demo. `cp .env.example .env.local` and fill
-in as services come online. Useful modes:
+`.env.production` carries the publishable Supabase configuration, so a clone
+builds and runs against the live project with no setup. `cp .env.example
+.env.local` to point somewhere else or to add gateway credentials. Useful modes:
 
 ```bash
 RATES_DEMO_MODE=true pnpm dev   # deterministic seeded data, fully offline (§17.21)
@@ -37,6 +40,11 @@ pnpm brand:assets               # regenerate logo suite / 3D coins / OG images
 | `/rates`        | All 19 pairs vs IRT: search, favorites, sparklines, 30/90/180d history, detail sheet |
 | `/transfer/new` | Wise-style itemized quote, 15-min rate-lock countdown, "why this rate?" layers       |
 | `/_design`      | The design system: tokens, type, components, validators, 3D coins, charts, motion    |
+| `/signin`       | One-time-code sign-in by mobile or email, rate-limited server-side                   |
+| `/verify`       | Four-step KYC wizard: details → document → live photo → review                       |
+| `/accounts`     | Destination accounts with live Sheba / card / IBAN / SWIFT validation                |
+| `/profile`      | Verification status, security, referral code, sign-in history                        |
+| `/admin/kyc`    | Compliance review queue with signed-URL document viewer and four-eyes approval       |
 | `/legal/*`      | Terms · Privacy · AML · Fees · SLA · Complaints — bilingual drafts                   |
 | `/en/…`         | Everything above in English/LTR                                                      |
 

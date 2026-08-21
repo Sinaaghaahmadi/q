@@ -38,14 +38,48 @@ pnpm exec tsx scripts/capture-screens.mts   # → artifacts/screens/*.png
 `pnpm test:e2e` (Playwright smoke, fa/en; uses demo mode). CI runs all of
 them on every PR.
 
-## Supabase (from Phase 2)
+## Turning on real SMS
+
+1. Set `KAVENEGAR_API_KEY` (and `KAVENEGAR_SENDER` if you use a dedicated
+   line) on the app, and `SMS_PROVIDER=kavenegar`.
+2. Register the OTP pattern with the gateway and put its name in
+   `SMS_OTP_PATTERN` on both the app and the `send-sms-hook` Edge Function —
+   Iranian gateways reject free-text one-time codes.
+3. In Supabase → Authentication → Hooks, enable **Send SMS** and point it at
+   the `send-sms-hook` function; copy the generated secret into the function's
+   `SEND_SMS_HOOK_SECRET`.
+4. Verify with a real number: `/api/auth/otp` should return `{"sent":true}`
+   instead of `sms_channel_unavailable`.
+
+Until step 3 the phone path reports `sms_channel_unavailable` and the UI says
+so plainly; email sign-in works throughout.
+
+## Promoting a KYC reviewer
+
+Reviewers are `memberships` rows, not a flag on the profile:
+
+```sql
+insert into public.memberships (user_id, role, scope_type)
+values ('<auth-user-uuid>', 'platform_compliance', 'platform');
+```
+
+Four-eyes is enforced in the database, so a queue needs **two** such people —
+`kyc_decide` refuses an approval from whoever recorded the recommendation.
+
+## Supabase (live)
 
 Migrations in `supabase/migrations` are the §11 schema with RLS, the order
-state machine (`assert_transition`), append-only guards, and the balanced-
-ledger trigger. Apply with `supabase db reset` on a local stack; pgTAP
-skeleton in `supabase/tests/rls.sql` runs via `supabase test db`.
-**They have not yet been applied to a hosted project** — do that at the start
-of Phase 2 and wire `NEXT_PUBLIC_SUPABASE_*`.
+state machine (`assert_transition`), append-only guards, the balanced-ledger
+trigger, and the Phase-2 additions (auth wiring, private KYC storage, OTP rate
+limiting, four-eyes review). **All of them are applied** to the EU project
+behind `NEXT_PUBLIC_SUPABASE_URL`. Apply locally with `supabase db reset`;
+the pgTAP skeleton in `supabase/tests/rls.sql` runs via `supabase test db`.
+
+Re-run the security linter after any schema change — it caught every finding
+migration 0007 fixes.
+
+The app holds **no service-role key** (ADR 0010): privileged work goes through
+`SECURITY DEFINER` functions that check the caller's role themselves.
 
 ## Onboarding an exchange office (target flow, Phase 4)
 

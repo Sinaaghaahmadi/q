@@ -105,11 +105,7 @@ export async function prepareDocument(
   else if (metrics.sharpness < SHARPNESS_FLOOR) verdict = "blurry";
 
   const blob = await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (b) => (b ? resolve(b) : reject(new Error("encode failed"))),
-      "image/jpeg",
-      0.88,
-    );
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("encode failed"))), "image/jpeg", 0.88);
   });
 
   return { blob, preview: canvas.toDataURL("image/jpeg", 0.6), quality: { ...metrics, verdict } };

@@ -84,7 +84,8 @@ export function KycWizard({
   const [submitted, setSubmitted] = React.useState(initialStatus === "pending");
 
   const isIranian = identity.nationality === "IR";
-  const nationalCodeValid = !isIranian || validateNationalCode(toLatinDigits(identity.nationalCode));
+  const nationalCodeValid =
+    !isIranian || validateNationalCode(toLatinDigits(identity.nationalCode));
 
   const identityComplete =
     identity.fullNameFa.trim().length > 2 &&
@@ -410,7 +411,11 @@ export function KycWizard({
               ) : (
                 <div className="space-y-3 text-start">
                   <SummaryRow label={t("fields.nameFa")} value={identity.fullNameFa} />
-                  <SummaryRow label={t("fields.nameLatin")} value={identity.fullNameLatin} dir="ltr" />
+                  <SummaryRow
+                    label={t("fields.nameLatin")}
+                    value={identity.fullNameLatin}
+                    dir="ltr"
+                  />
                   {isIranian ? (
                     <SummaryRow
                       label={t("fields.nationalCode")}

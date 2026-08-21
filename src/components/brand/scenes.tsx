@@ -40,7 +40,16 @@ export function OtpScene({ size, className, label }: SceneProps) {
     <Scene size={size} className={className} label={label}>
       {/* handset */}
       <Rise delay={0.05}>
-        <rect x="40" y="26" width="40" height="66" rx="9" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
+        <rect
+          x="40"
+          y="26"
+          width="40"
+          height="66"
+          rx="9"
+          fill="var(--surface)"
+          stroke={LINE}
+          strokeWidth="3"
+        />
         <rect x="53" y="31" width="14" height="3" rx="1.5" fill={LINE} />
       </Rise>
 
@@ -83,7 +92,16 @@ export function IdentityScene({ size, className, label }: SceneProps) {
   return (
     <Scene size={size} className={className} label={label}>
       <Rise delay={0.05}>
-        <rect x="24" y="34" width="72" height="50" rx="10" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
+        <rect
+          x="24"
+          y="34"
+          width="72"
+          height="50"
+          rx="10"
+          fill="var(--surface)"
+          stroke={LINE}
+          strokeWidth="3"
+        />
       </Rise>
       <Rise delay={0.2}>
         <circle cx="43" cy="53" r="9" fill="var(--brand-50)" stroke={BRAND} strokeWidth="2.5" />
@@ -95,7 +113,14 @@ export function IdentityScene({ size, className, label }: SceneProps) {
       <DrawPath d="M34 72h52" delay={0.75} duration={0.5} width={3} color={LINE} />
       <Rise delay={1}>
         <circle cx="86" cy="72" r="7" fill={BRAND} />
-        <path d="M83 72l2.2 2.4 4-4.6" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path
+          d="M83 72l2.2 2.4 4-4.6"
+          stroke="#fff"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
       </Rise>
     </Scene>
   );
@@ -107,7 +132,16 @@ export function DocumentScene({ size, className, label }: SceneProps) {
   return (
     <Scene size={size} className={className} label={label}>
       <Rise delay={0.05}>
-        <rect x="34" y="26" width="52" height="66" rx="8" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
+        <rect
+          x="34"
+          y="26"
+          width="52"
+          height="66"
+          rx="8"
+          fill="var(--surface)"
+          stroke={LINE}
+          strokeWidth="3"
+        />
         <rect x="43" y="38" width="20" height="16" rx="4" fill="var(--brand-50)" />
         <circle cx="53" cy="45" r="4" fill={BRAND} opacity="0.55" />
       </Rise>
@@ -120,7 +154,12 @@ export function DocumentScene({ size, className, label }: SceneProps) {
         <motion.g
           initial={{ y: -34, opacity: 0 }}
           animate={{ y: [-34, 34, -34], opacity: [0, 1, 1, 0] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", times: [0, 0.45, 0.55, 1] }}
+          transition={{
+            duration: 2.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            times: [0, 0.45, 0.55, 1],
+          }}
         >
           <rect x="34" y="58" width="52" height="2.5" rx="1.25" fill={BRAND} />
           <rect x="34" y="52" width="52" height="8" fill={BRAND} opacity="0.12" />
@@ -154,10 +193,24 @@ export function LivenessScene({ size, className, label }: SceneProps) {
   return (
     <Scene size={size} className={className} label={label}>
       <Rise delay={0.05}>
-        <ellipse cx="60" cy="56" rx="24" ry="30" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
+        <ellipse
+          cx="60"
+          cy="56"
+          rx="24"
+          ry="30"
+          fill="var(--surface)"
+          stroke={LINE}
+          strokeWidth="3"
+        />
         <circle cx="52" cy="52" r="2.6" fill={INK} />
         <circle cx="68" cy="52" r="2.6" fill={INK} />
-        <path d="M53 66a9 9 0 0 0 14 0" stroke={INK} strokeWidth="2.6" strokeLinecap="round" fill="none" />
+        <path
+          d="M53 66a9 9 0 0 0 14 0"
+          stroke={INK}
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          fill="none"
+        />
       </Rise>
 
       {/* tracking ring sweeping around the face */}
@@ -180,14 +233,39 @@ export function LivenessScene({ size, className, label }: SceneProps) {
           />
         </motion.g>
       ) : (
-        <ellipse cx="60" cy="56" rx="31" ry="37" fill="none" stroke={BRAND} strokeWidth="3" strokeDasharray="30 180" />
+        <ellipse
+          cx="60"
+          cy="56"
+          rx="31"
+          ry="37"
+          fill="none"
+          stroke={BRAND}
+          strokeWidth="3"
+          strokeDasharray="30 180"
+        />
       )}
 
-      <ellipse cx="60" cy="56" rx="31" ry="37" fill="none" stroke={LINE} strokeWidth="2" strokeDasharray="4 7" />
+      <ellipse
+        cx="60"
+        cy="56"
+        rx="31"
+        ry="37"
+        fill="none"
+        stroke={LINE}
+        strokeWidth="2"
+        strokeDasharray="4 7"
+      />
 
       {/* head-turn hint */}
       <Rise delay={0.7}>
-        <path d="M88 100h-14M78 96l-4 4 4 4" stroke={BRAND} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path
+          d="M88 100h-14M78 96l-4 4 4 4"
+          stroke={BRAND}
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
       </Rise>
     </Scene>
   );
@@ -204,7 +282,14 @@ export function ReviewScene({ size, className, label }: SceneProps) {
       </Orbit>
       <Breathe seconds={3}>
         <circle cx="60" cy="58" r="22" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
-        <path d="M60 46v13l8 5" stroke={BRAND} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path
+          d="M60 46v13l8 5"
+          stroke={BRAND}
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
       </Breathe>
     </Scene>
   );
@@ -255,10 +340,28 @@ export function AccountsScene({ size, className, label }: SceneProps) {
   return (
     <Scene size={size} className={className} label={label}>
       <Rise delay={0.15}>
-        <rect x="26" y="40" width="60" height="38" rx="8" fill="var(--brand-50)" stroke={LINE} strokeWidth="2.5" />
+        <rect
+          x="26"
+          y="40"
+          width="60"
+          height="38"
+          rx="8"
+          fill="var(--brand-50)"
+          stroke={LINE}
+          strokeWidth="2.5"
+        />
       </Rise>
       <Rise delay={0.05}>
-        <rect x="34" y="50" width="60" height="38" rx="8" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
+        <rect
+          x="34"
+          y="50"
+          width="60"
+          height="38"
+          rx="8"
+          fill="var(--surface)"
+          stroke={LINE}
+          strokeWidth="3"
+        />
         <rect x="34" y="59" width="60" height="7" fill={BRAND} opacity="0.85" />
         <rect x="41" y="73" width="22" height="4" rx="2" fill={LINE} />
         <rect x="68" y="73" width="12" height="4" rx="2" fill={LINE} />
@@ -285,7 +388,13 @@ export function SecurityScene({ size, className, label }: SceneProps) {
       </Rise>
       <Rise delay={0.3}>
         <rect x="49" y="55" width="22" height="17" rx="4" fill={BRAND} />
-        <path d="M53 55v-5a7 7 0 0 1 14 0v5" stroke={BRAND} strokeWidth="3" strokeLinecap="round" fill="none" />
+        <path
+          d="M53 55v-5a7 7 0 0 1 14 0v5"
+          stroke={BRAND}
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
+        />
         <circle cx="60" cy="63" r="2.6" fill="#fff" />
       </Rise>
     </Scene>
@@ -298,9 +407,34 @@ export function MatchingScene({ size, className, label }: SceneProps) {
     <Scene size={size} className={className} label={label}>
       <Rise delay={0.05}>
         <path d="M36 54h48v34H36z" fill="var(--surface)" stroke={LINE} strokeWidth="3" />
-        <path d="M30 54l30-18 30 18" stroke={BRAND} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <rect x="46" y="64" width="10" height="10" rx="2" fill="var(--brand-50)" stroke={LINE} strokeWidth="2" />
-        <rect x="64" y="64" width="10" height="10" rx="2" fill="var(--brand-50)" stroke={LINE} strokeWidth="2" />
+        <path
+          d="M30 54l30-18 30 18"
+          stroke={BRAND}
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+        <rect
+          x="46"
+          y="64"
+          width="10"
+          height="10"
+          rx="2"
+          fill="var(--brand-50)"
+          stroke={LINE}
+          strokeWidth="2"
+        />
+        <rect
+          x="64"
+          y="64"
+          width="10"
+          height="10"
+          rx="2"
+          fill="var(--brand-50)"
+          stroke={LINE}
+          strokeWidth="2"
+        />
         <rect x="54" y="78" width="12" height="10" rx="2" fill={BRAND} opacity="0.8" />
       </Rise>
       <Orbit seconds={7} origin="60 60">

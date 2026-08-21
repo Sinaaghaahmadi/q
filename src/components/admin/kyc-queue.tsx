@@ -143,7 +143,10 @@ function ReviewDialog({
     setUrls((prev) => ({ ...prev, [doc.id]: payload.url }));
   }
 
-  async function act(kind: "recommend" | "decide", decision: "approved" | "rejected" | "more_info_needed") {
+  async function act(
+    kind: "recommend" | "decide",
+    decision: "approved" | "rejected" | "more_info_needed",
+  ) {
     if (!row) return;
     setBusy(true);
     setError(null);
@@ -300,7 +303,10 @@ function ReviewDialog({
             <div className="flex flex-wrap gap-2">
               {!awaitingSecond ? (
                 <>
-                  <Button disabled={!allChecked || busy} onClick={() => act("recommend", "approved")}>
+                  <Button
+                    disabled={!allChecked || busy}
+                    onClick={() => act("recommend", "approved")}
+                  >
                     {t("recommendApprove")}
                   </Button>
                   <Button
