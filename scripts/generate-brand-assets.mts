@@ -123,7 +123,9 @@ async function renderRasters() {
   const html = `<!doctype html><html><head><meta charset="utf-8"><style>
     @font-face{font-family:Vazirmatn;src:url("file://${FONT_PATH}") format("woff2");font-weight:100 900}
     *{margin:0;box-sizing:border-box} body{background:transparent;font-family:Vazirmatn,sans-serif}
-    .row{display:flex;flex-wrap:wrap;gap:8px;padding:8px}
+    /* shrink-to-fit: without this each wrapper stretches to the tallest
+       sibling in the row and the element screenshot inherits that height */
+    .row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px;padding:8px}
   </style></head><body>
     <div class="row">
       <div id="icon-192">${iconComposition(192, {})}</div>
@@ -143,12 +145,23 @@ async function renderRasters() {
     return await el.screenshot({ omitBackground: true, type: "png" });
   }
 
-  writeFileSync(resolve(BRAND_DIR, "icon-192.png"), await shot("icon-192"));
-  writeFileSync(resolve(BRAND_DIR, "icon-512.png"), await shot("icon-512"));
-  writeFileSync(resolve(BRAND_DIR, "maskable-512.png"), await shot("maskable-512"));
-  writeFileSync(resolve(BRAND_DIR, "apple-touch-icon.png"), await shot("apple-180"));
-  writeFileSync(resolve(BRAND_DIR, "og-image-fa.png"), await shot("og-fa"));
-  writeFileSync(resolve(BRAND_DIR, "og-image-en.png"), await shot("og-en"));
+  /**
+   * The brand rasters are flat gradients over a handful of hues, so a palette
+   * PNG reproduces them at roughly a tenth of the truecolor size — worth doing
+   * for assets the service worker precaches on every install.
+   */
+  async function shotOptimised(id: string): Promise<Buffer> {
+    return await sharp(await shot(id))
+      .png({ palette: true, quality: 90, effort: 10 })
+      .toBuffer();
+  }
+
+  writeFileSync(resolve(BRAND_DIR, "icon-192.png"), await shotOptimised("icon-192"));
+  writeFileSync(resolve(BRAND_DIR, "icon-512.png"), await shotOptimised("icon-512"));
+  writeFileSync(resolve(BRAND_DIR, "maskable-512.png"), await shotOptimised("maskable-512"));
+  writeFileSync(resolve(BRAND_DIR, "apple-touch-icon.png"), await shotOptimised("apple-180"));
+  writeFileSync(resolve(BRAND_DIR, "og-image-fa.png"), await shotOptimised("og-fa"));
+  writeFileSync(resolve(BRAND_DIR, "og-image-en.png"), await shotOptimised("og-en"));
 
   for (const code of CURRENCY_CODES) {
     const png = await shot(`coin-${code}`);
