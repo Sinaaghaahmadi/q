@@ -22,8 +22,12 @@ Production: `pnpm build && pnpm start`. Env vars documented in `.env.example`.
 
 - Regenerate the logo suite / coins / OG images: `pnpm brand:assets`
   (headless Chromium; set `CHROMIUM_PATH` if not at the default).
-- Fonts are committed woff2 (Vazirmatn/Inter variable) in `src/fonts`,
-  sourced from the `vazirmatn` and `@fontsource-variable/inter` packages.
+- Fonts live in `src/fonts` as woff2 (Vazirmatn/Inter variable). `pnpm build`
+  runs `scripts/sync-fonts.mjs` first, which restores them byte-for-byte from
+  the `vazirmatn` and `@fontsource-variable/inter` packages when absent, so a
+  checkout without them still builds.
+- The rasters are palette PNGs: flat brand gradients quantise with no visible
+  banding, and the set is 96 kB rather than 841 kB.
 
 ## Screenshots for review
 
@@ -34,9 +38,14 @@ pnpm exec tsx scripts/capture-screens.mts   # → artifacts/screens/*.png
 
 ## Checks
 
-`pnpm lint` · `pnpm typecheck` · `pnpm test` (validators, money, pricing) ·
-`pnpm test:e2e` (Playwright smoke, fa/en; uses demo mode). CI runs all of
-them on every PR.
+`pnpm lint` · `pnpm typecheck` · `pnpm test` (validators, money, pricing,
+Jalali, phone) · `pnpm test:e2e` (Playwright smoke, fa/en; uses demo mode). CI
+runs all of them on every PR.
+
+The smoke suite pins the CSP: the browser talks to Supabase directly for RLS
+reads, KYC uploads and signed document URLs, so `connect-src`/`img-src` have to
+name the project origin. A policy of `'self'` alone breaks authenticated flows
+in production only, which is exactly the failure a test has to catch.
 
 ## Turning on real SMS
 
@@ -94,6 +103,45 @@ branding → activate. Until then: insert into `exchange_offices` +
 2. Check SLA state and the office's working hours.
 3. Force-transition only via `assert_transition` with a reason — never a raw
    `UPDATE`; the ledger is corrected by compensating entries.
+
+## Deploying to Vercel
+
+The project is a stock Next.js app — Vercel needs no build configuration beyond
+what is in the repo:
+
+| Setting   | Value                                                           |
+| --------- | --------------------------------------------------------------- |
+| Framework | Next.js (auto-detected)                                         |
+| Install   | `pnpm install` (`packageManager` pins pnpm 10)                  |
+| Build     | `pnpm build` — runs `scripts/sync-fonts.mjs`, then `next build` |
+| Node      | 20+ (`engines.node`)                                            |
+
+`.env.production` is committed and carries the publishable Supabase URL and key,
+so a fresh deploy comes up wired to the live database with no dashboard step.
+Real environment variables override it, which is how the production host and any
+server-only secret (`KAVENEGAR_API_KEY`, `RESEND_API_KEY`) get set later.
+
+**Linking the repository requires the Vercel GitHub App**, installed once by the
+account owner at <https://github.com/apps/vercel> with access granted to this
+repository. Without it the Vercel API refuses to create the project:
+
+```
+400 bad_request — To link a GitHub repository, you need to install the
+GitHub integration first.
+```
+
+After installing it, create the project against `Sinaaghaahmadi/q`; every push
+to the branch then deploys on its own, and merges to the default branch go to
+production.
+
+Set `NEXT_PUBLIC_APP_URL` to the deployment's own origin once it exists —
+`metadataBase` falls back to `http://localhost:3000`, which makes OG image URLs
+in the page head absolute against the wrong host.
+
+Two Supabase settings need the deployed origin as well: **Authentication → URL
+Configuration → Site URL**, and the redirect allow-list that
+`/[locale]/auth/callback` returns to. Until they are set, a magic link opens
+against localhost.
 
 ## Key rotation
 
