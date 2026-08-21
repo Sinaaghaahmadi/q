@@ -49,3 +49,33 @@ test("rates API returns a snapshot", async ({ request }) => {
   const body = (await res.json()) as { rates: Record<string, { mid: number }> };
   expect(body.rates["USD"]?.mid).toBeGreaterThan(0);
 });
+
+test("CSP allowlists the Supabase origin the browser actually calls (§15)", async ({ request }) => {
+  // The KYC wizard uploads to Storage, the accounts manager and review queue
+  // read through RLS, and reviewers render signed document URLs — all straight
+  // from the browser. A `connect-src 'self'` policy silently breaks every one
+  // of them, and only in production, so pin it here. The exact host depends on
+  // which project the server was built against, so match the shape instead of
+  // re-deriving it: this process does not see the server's env.
+  const response = await request.get("/fa");
+  const csp = response.headers()["content-security-policy"] ?? "";
+
+  const directive = (name: string) =>
+    csp
+      .split(";")
+      .map((part) => part.trim())
+      .find((part) => part.startsWith(`${name} `))
+      ?.slice(name.length + 1)
+      .split(/\s+/) ?? [];
+
+  const connect = directive("connect-src");
+  expect(connect).toContain("'self'");
+  expect(connect.some((src) => /^https:\/\/[\w*.-]+\.supabase\.co$/.test(src))).toBe(true);
+  expect(connect.some((src) => /^wss:\/\/[\w*.-]+\.supabase\.co$/.test(src))).toBe(true);
+
+  const img = directive("img-src");
+  expect(img).toEqual(expect.arrayContaining(["'self'", "data:", "blob:"]));
+  expect(img.some((src) => /^https:\/\/[\w*.-]+\.supabase\.co$/.test(src))).toBe(true);
+
+  expect(csp).toContain("frame-ancestors 'none'");
+});

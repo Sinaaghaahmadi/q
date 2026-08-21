@@ -12,13 +12,23 @@ const withSerwist = withSerwistInit({
 
 // Financial-grade headers (§15). CSP uses 'unsafe-inline' for Next.js bootstrap
 // scripts until nonce-based CSP lands (tracked in docs/decisions/0007).
+//
+// The browser talks to Supabase directly for RLS-guarded reads, KYC uploads and
+// session refresh, and renders short-lived signed document URLs from Storage —
+// so the project origin has to be allowlisted explicitly. When the URL is not
+// set (CI, a fresh clone) we fall back to the provider-wide wildcard rather
+// than silently shipping a policy that blocks every authenticated request.
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseOrigin = supabaseUrl ? new URL(supabaseUrl).origin : "https://*.supabase.co";
+const supabaseSocket = supabaseOrigin.replace(/^https:/, "wss:");
+
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob: ${supabaseOrigin}`,
   "font-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self' ${supabaseOrigin} ${supabaseSocket}`,
   "manifest-src 'self'",
   "worker-src 'self'",
   "frame-ancestors 'none'",
