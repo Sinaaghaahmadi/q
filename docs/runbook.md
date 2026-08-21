@@ -130,9 +130,23 @@ repository. Without it the Vercel API refuses to create the project:
 GitHub integration first.
 ```
 
-After installing it, create the project against `Sinaaghaahmadi/q`; every push
-to the branch then deploys on its own, and merges to the default branch go to
-production.
+The app is installed and the Vercel project exists:
+
+|            |                                                              |
+| ---------- | ------------------------------------------------------------ |
+| Project    | `asaex` (`prj_oT3pmwzeRFdeWni010ObvELPcasU`)                 |
+| Team       | `sinaaghaahmadis-projects` (`team_FtgssC1GVPrfrGWw6rAgmBm2`) |
+| Repository | `Sinaaghaahmadi/q`                                           |
+
+Every push to the linked branch deploys on its own; merges to the default
+branch go to production.
+
+One quirk worth writing down: the Vercel API answers reads for this project
+only when the scope is given as the **username** (`sinaaghaahmadi`), not as the
+team id or team slug — both of those 404 even though the project's `accountId`
+is that same team. It is why the project's own creation call reported that it
+"could not verify" the git link: the verification read hit the same 404, not a
+real linking failure.
 
 Set `NEXT_PUBLIC_APP_URL` to the deployment's own origin once it exists —
 `metadataBase` falls back to `http://localhost:3000`, which makes OG image URLs
