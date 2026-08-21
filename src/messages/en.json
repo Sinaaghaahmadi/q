@@ -1,0 +1,384 @@
+{
+  "meta": {
+    "brand": "Asaex",
+    "title": "Asaex — Currency, made effortless",
+    "description": "A remittance marketplace between licensed exchange offices. Live rates, transparent fees, supervised settlement — usually within one business day."
+  },
+  "theme": {
+    "label": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "label": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "primary": "Primary navigation",
+    "rates": "Rates",
+    "transfer": "Transfer",
+    "orders": "Orders",
+    "profile": "Profile",
+    "startTransfer": "Start a transfer"
+  },
+  "footer": {
+    "brand": "Asaex",
+    "tagline": "Currency, made effortless. You submit a transfer request, a licensed exchange office executes it, and every step runs under platform supervision.",
+    "compliance": "Asaex is a remittance marketplace between licensed exchange offices; it is not a custodial wallet or a securities venue and holds no deposits.",
+    "product": "Product",
+    "legal": "Legal",
+    "designSystem": "Design system",
+    "copyright": "© 2026 Asaex — All rights reserved.",
+    "buildTag": "Demo build · Phase 0–1"
+  },
+  "legal": {
+    "version": "Version {version}",
+    "updated": "Last updated: {date}",
+    "titles": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "aml": "AML Policy",
+      "fees": "Fee Schedule",
+      "sla": "SLA & Refunds",
+      "complaints": "Complaints Procedure"
+    }
+  },
+  "common": {
+    "phase2": "Arrives in Phase 2"
+  },
+  "rates": {
+    "status": {
+      "loading": "Fetching rates…",
+      "live": "Live rate",
+      "updated": "Updated {ago}",
+      "degraded": "Rate delayed — primary source unavailable",
+      "demo": "Demo data"
+    }
+  },
+  "currencies": {
+    "IRT": "Iranian Toman",
+    "USD": "US Dollar",
+    "EUR": "Euro",
+    "GBP": "British Pound",
+    "AED": "UAE Dirham",
+    "TRY": "Turkish Lira",
+    "IQD": "Iraqi Dinar",
+    "AZN": "Azerbaijani Manat",
+    "AMD": "Armenian Dram",
+    "GEL": "Georgian Lari",
+    "RUB": "Russian Ruble",
+    "AFN": "Afghan Afghani",
+    "PKR": "Pakistani Rupee",
+    "TMT": "Turkmen Manat",
+    "OMR": "Omani Rial",
+    "KWD": "Kuwaiti Dinar",
+    "QAR": "Qatari Riyal",
+    "SAR": "Saudi Riyal",
+    "CAD": "Canadian Dollar",
+    "CNY": "Chinese Yuan"
+  },
+  "converter": {
+    "title": "Quick convert",
+    "youSend": "You send",
+    "recipientGets": "Recipient gets",
+    "swap": "Swap currencies",
+    "fromCurrency": "Source currency",
+    "toCurrency": "Destination currency",
+    "pickCurrency": "Pick a currency",
+    "searchCurrency": "Search name or code…",
+    "popular": "Popular",
+    "all": "All currencies",
+    "noResults": "No currency matches that search.",
+    "unitRate": "1 {from} ≈ {rate} {toUnit}",
+    "toman": "Toman",
+    "midRateNote": "Mid-market rate; the final rate and fees are itemized when you submit a transfer.",
+    "cta": "Continue to transfer"
+  },
+  "home": {
+    "metaTitle": "Live rates & transfers",
+    "stripTitle": "Live rates — main corridors",
+    "allRates": "All rates",
+    "hero": {
+      "title": "Currency, made effortless",
+      "subtitle": "Submit a transfer request; a licensed exchange office executes it while every step — from the Toman deposit to the foreign receipt — runs under platform supervision. Usually within one business day.",
+      "chips": {
+        "sla": "Target: one business day",
+        "supervised": "Two-sided supervised settlement",
+        "kycOnce": "Verify once, ever"
+      },
+      "ctaPrimary": "Start a transfer",
+      "ctaSecondary": "See rates"
+    },
+    "how": {
+      "title": "How a transfer works",
+      "subtitle": "Three clear steps; at each one you know what just happened and what comes next.",
+      "steps": {
+        "1": {
+          "title": "Submit & lock the rate",
+          "body": "Set the amount and destination account; the rate locks for 15 minutes and eligible exchange offices see your request."
+        },
+        "2": {
+          "title": "Office accepts, Toman funds",
+          "body": "An office claims the request and chat opens. The Toman leg is funded inside the platform's supervised flow and confirmed by both sides."
+        },
+        "3": {
+          "title": "Foreign leg & release",
+          "body": "The office executes the foreign transfer and uploads proof; once receipt is confirmed, the Toman releases and your receipt is issued."
+        }
+      }
+    },
+    "trust": {
+      "title": "Why Asaex?",
+      "subtitle": "No hidden numbers: base rate, spread, and fees are itemized before you confirm.",
+      "counter": "{count} transfers completed this week",
+      "items": {
+        "licensed": {
+          "title": "Licensed offices only",
+          "body": "Every office shows its license number and public profile, with tracked performance — speed and ratings."
+        },
+        "rateLock": {
+          "title": "15-minute rate lock",
+          "body": "A confirmed rate holds until the countdown ends; after that it changes only with your re-acceptance."
+        },
+        "sla": {
+          "title": "A clear time commitment",
+          "body": "The target is one business day, the contractual cap three; delays are chased automatically."
+        },
+        "chat": {
+          "title": "Talk before it's binding",
+          "body": "Chat with the office from the review stage — before anything is final."
+        }
+      }
+    }
+  },
+  "ratesPage": {
+    "metaTitle": "Live currency rates",
+    "title": "Rates",
+    "subtitle": "Live prices in Toman, 24h change, and the 30-day trend — source: open market (tgju).",
+    "search": "Search currencies…",
+    "noResults": "No currency matches that search.",
+    "favorite": "Add {currency} to favorites",
+    "unfavorite": "Remove {currency} from favorites",
+    "range30": "30d",
+    "range90": "90d",
+    "range180": "180d",
+    "alertCta": "Price alert",
+    "alertTitle": "Price alerts",
+    "alertBody": "Once accounts arrive you can set a threshold per currency and get notified by SMS, email, or app push.",
+    "high24h": "24h high",
+    "low24h": "24h low"
+  },
+  "transfer": {
+    "metaTitle": "New transfer",
+    "title": "Transfer quote",
+    "subtitle": "Every price component, before you confirm — no hidden costs.",
+    "toman": "Toman",
+    "lockActive": "Your rate is locked",
+    "lockExpired": "The rate lock expired",
+    "lockNote": "A confirmed rate stays valid for 15 minutes. If it expires, one tap gets a fresh quote and shows the delta clearly.",
+    "requote": "Get a fresh rate",
+    "youSend": "You send",
+    "rateUsed": "Rate used",
+    "rateValue": "{rate} Toman per {code}",
+    "whyThisRate": "Why this rate?",
+    "platformFee": "Platform fee",
+    "officeFee": "Exchange office fee",
+    "recipientGets": "Recipient gets",
+    "savings": "Compared to the typical street spread, about {amount} Toman stays with you.",
+    "confirmCta": "Confirm & continue",
+    "back": "Back",
+    "slaNote": "Timing: usually completed within one business day; the contractual cap is three business days, counted on the Iranian and destination-country business calendars.",
+    "whyBody": "The base (mid-market) rate is {rate} Toman per {code}. These spread layers apply on top:",
+    "gateTitle": "An account is needed to submit",
+    "gateBody": "Verification happens once, ever; afterwards you only manage your source and destination accounts. Sign-in and KYC arrive in Phase 2.",
+    "gatePhase": "Phase 2 — sign-in & KYC"
+  },
+  "pricing": {
+    "total": "Total spread",
+    "layers": {
+      "platform_floor": "Platform floor",
+      "corridor_default": "Corridor default",
+      "office_markup": "Office markup",
+      "tier_discount": "Tier discount",
+      "promo": "Promo code"
+    }
+  },
+  "orders": {
+    "metaTitle": "Orders",
+    "emptyTitle": "No orders yet",
+    "emptyBody": "After your first transfer, each order's live timeline — with its SLA countdown and office chat — appears right here.",
+    "phase": "Order timeline arrives in Phase 3",
+    "cta": "Start a transfer"
+  },
+  "profile": {
+    "metaTitle": "Profile",
+    "emptyTitle": "Your account",
+    "emptyBody": "SMS one-time-code sign-in, one-time KYC, bank account management, and security settings (2FA) arrive in Phase 2.",
+    "phase": "Arrives in Phase 2",
+    "cta": "Back to home"
+  },
+  "offline": {
+    "metaTitle": "Offline",
+    "title": "You're offline",
+    "body": "The cached app shell is available and the last fetched rates are shown with their timestamp. Everything refreshes automatically once you reconnect.",
+    "cta": "Try again"
+  },
+  "notFound": {
+    "title": "That page doesn't exist",
+    "body": "Check the address or start from home; if the app itself brought you here, we'd love to hear about it via support.",
+    "cta": "Back to home"
+  },
+  "design": {
+    "metaTitle": "Design system",
+    "badge": "Phase 0 — Foundation",
+    "title": "The Asaex design system",
+    "intro": "Every token, component, and motion references this page — in both languages and both themes. It is how the three product surfaces (customer PWA, office panel, admin panel) stay coherent.",
+    "tocLabel": "Sections",
+    "sections": {
+      "brand": "Brand & logo",
+      "colors": "Colors",
+      "type": "Typography",
+      "layout": "Spacing, radius, elevation",
+      "components": "Components",
+      "validation": "Financial validation",
+      "coins": "3D currency icons",
+      "charts": "Charts",
+      "motion": "Motion"
+    },
+    "brand": {
+      "description": "The Asaex mark builds the letter A from two crossing currency flows — reading at once as an A, the exchange arrow-pair (⇄), and flowing water.",
+      "markSizes": "Legible from a 16px favicon up to a building sign",
+      "lockup": "Wordmark lockup — in Persian the mark sits on the right",
+      "mono": "Single-color version for stamps, receipts, and brand surfaces",
+      "rules": {
+        "clearspace": "Clear space: the mark's counter height, on all four sides",
+        "minsize": "Minimum size: 16px digital / 8mm print",
+        "never": "Never: stretch, rotate, add drop shadows, or recolor outside the palette",
+        "rtl": "Not mirrored in RTL; the lockup order places the mark"
+      }
+    },
+    "colors": {
+      "description": "One deep green accent — trust plus Persian visual heritage, deliberately away from every fintech's blue.",
+      "note": "Up/down colors are never the only signal; an arrow glyph and an explicit +/− always ride along (a color-vision accessibility requirement).",
+      "use": {
+        "brand600": "Primary accent, CTAs, active states",
+        "brand700": "Hover / press",
+        "brand50": "Tinted surfaces, selected rows",
+        "ink900": "Primary text",
+        "ink600": "Secondary text",
+        "ink300": "Borders, dividers",
+        "surface": "Cards",
+        "canvas": "Page background",
+        "up": "Rate increase",
+        "down": "Rate decrease",
+        "warn": "Pending / attention",
+        "info": "Informational"
+      }
+    },
+    "type": {
+      "description": "Persian in Vazirmatn (1.75 leading), English in Inter (1.6). Display numerals are Persian in fa; inputs and identifiers stay Latin, and every figure is tabular.",
+      "sample": "Currency, made effortless — آسا",
+      "numeralsFa": "Persian display numerals + tabular figures",
+      "numeralsEn": "Latin numerals in English contexts"
+    },
+    "layout": {
+      "description": "Spacing only from the 4/8/12/16/24/32/48/64 scale; radii 8/12/16/24; exactly three soft elevation levels.",
+      "spacing": "Spacing scale (px)",
+      "radius": "Corner radii (px)",
+      "elevation": "Three elevation levels"
+    },
+    "components": {
+      "description": "Interface primitives: buttons, status badges, inputs, and loading skeletons — with touch targets of at least 44px.",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "soft": "Soft",
+      "ghost": "Ghost",
+      "destructive": "Destructive",
+      "disabled": "Disabled",
+      "badgeBrand": "Brand",
+      "badgeUp": "▲ +0.42%",
+      "badgeDown": "▼ −0.85%",
+      "badgeWarn": "Pending",
+      "badgeInfo": "Info",
+      "badgeNeutral": "Neutral",
+      "inputPlaceholder": "A regular input…",
+      "inputInvalid": "Invalid input"
+    },
+    "validation": {
+      "description": "Validation is real, not cosmetic: Sheba via mod-97, cards via Luhn with BIN→bank lookup, and the national code via its check digit.",
+      "sheba": {
+        "label": "Sheba (IBAN)",
+        "hint": "IR + 24 digits; spaces allowed",
+        "ok": "Valid Sheba",
+        "err": {
+          "format": "That's not a Sheba format — it starts with IR followed by digits only.",
+          "length": "A Sheba needs exactly 24 digits after IR.",
+          "checksum": "The Sheba check digits don't match — re-check the number."
+        }
+      },
+      "card": {
+        "label": "Card number",
+        "hint": "16 digits; the bank is detected from the first six",
+        "ok": "Valid card number",
+        "okBank": "Valid card — {bank}",
+        "err": {
+          "format": "A card number is exactly 16 digits.",
+          "checksum": "The card checksum fails — one digit is off."
+        }
+      },
+      "nid": {
+        "label": "National code",
+        "hint": "10 digits with a check digit",
+        "ok": "Valid national code",
+        "err": "Invalid national code — re-check the digits."
+      },
+      "banks": {
+        "melli": "Bank Melli",
+        "sepah": "Bank Sepah",
+        "mellat": "Bank Mellat",
+        "tejarat": "Tejarat Bank",
+        "saderat": "Bank Saderat",
+        "keshavarzi": "Keshavarzi Bank",
+        "maskan": "Bank Maskan",
+        "refah": "Refah Bank",
+        "parsian": "Parsian Bank",
+        "pasargad": "Bank Pasargad",
+        "saman": "Saman Bank",
+        "eghtesadNovin": "EN Bank",
+        "ansar": "Ansar Bank",
+        "postbank": "Post Bank",
+        "ayandeh": "Ayandeh Bank",
+        "shahr": "Shahr Bank",
+        "day": "Day Bank",
+        "sina": "Sina Bank",
+        "sarmayeh": "Sarmayeh Bank",
+        "tosee": "Tose'e Ta'avon Bank"
+      }
+    },
+    "coins": {
+      "description": "Twenty currencies, one lighting rig: 45° camera, top-left key light, soft contact shadow, and the currency glyph embossed on the face.",
+      "rule": "The boundary rule: 3D icons are for currencies and product concepts; functional micro-UI (chevrons, close, search) stays a clean 2px line set — 3D at 16px is noise, not polish."
+    },
+    "charts": {
+      "description": "Single series, 2px line, recessive grid, crosshair with tooltip. Value text always wears ink tokens, never the series color; the time axis stays left-to-right in both locales.",
+      "history": "90-day history with crosshair",
+      "sparkUp": "Sparkline, positive trend",
+      "sparkDown": "Sparkline, negative trend",
+      "note": "Direction always pairs an arrow + sign so color is never the only signal."
+    },
+    "motion": {
+      "description": "Motion is a product feature here, not decoration: 150–350ms for feedback, 600–1200ms for narrative moments; transform and opacity only.",
+      "rules": "Under the OS \"reduce motion\" setting everything collapses to static, and no animation ever blocks interaction or delays a money action.",
+      "logoDraw": "Logo draw on launch (700ms)",
+      "replay": "Replay",
+      "swap": "Converter spring swap",
+      "digitRoll": "Digit roll on rate ticks",
+      "tick": "Simulate a rate tick",
+      "countdown": "Rate-lock countdown ring",
+      "countdownNote": "Below 60s it turns amber and pulses",
+      "skeleton": "Loading skeleton (1.6s shimmer)",
+      "skeletonNote": "Matched to the final layout so layout shift stays at zero"
+    }
+  }
+}

@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens (§2.3) — single source of truth ─────────────────────────── */
+:root {
+  --brand-600: #0b6e4f;
+  --brand-700: #095a41;
+  --brand-50: #e8f5f0;
+  --ink-900: #0a0f14;
+  --ink-600: #4a5560;
+  --ink-300: #c9d1d8;
+  --surface: #ffffff;
+  --canvas: #f6f8f9;
+  --up: #128c5a;
+  --down: #c0392b;
+  --warn: #b7791f;
+  --info: #1d6fa5;
+
+  --font-app: var(--font-inter), var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark {
+  --brand-600: #12a272;
+  --brand-700: #0e8a61;
+  --brand-50: #0c1f19;
+  --ink-900: #f2f5f7;
+  --ink-600: #a7b2bc;
+  --ink-300: #3a444e;
+  --surface: #0f1418;
+  --canvas: #0a0e11;
+  --up: #25b07a;
+  --down: #e5675a;
+  --warn: #e0a33e;
+  --info: #4ba3dc;
+}
+
+html[lang="fa"] {
+  --font-app: var(--font-vazirmatn), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-brand-50: var(--brand-50);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-ink-900: var(--ink-900);
+  --color-ink-600: var(--ink-600);
+  --color-ink-300: var(--ink-300);
+  --color-surface: var(--surface);
+  --color-canvas: var(--canvas);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-warn: var(--warn);
+  --color-info: var(--info);
+
+  --font-sans: var(--font-app);
+
+  /* Elevation (§2.5): exactly three levels, soft and low-opacity */
+  --shadow-e1: 0 1px 2px rgb(10 15 20 / 0.06);
+  --shadow-e2: 0 4px 12px rgb(10 15 20 / 0.08);
+  --shadow-e3: 0 12px 32px rgb(10 15 20 / 0.1);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink-900);
+    font-family: var(--font-app);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Persian needs more leading than Latin (§2.4) */
+  html[lang="fa"] body {
+    line-height: 1.75;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--brand-600) 24%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: color-mix(in srgb, var(--ink-600) 70%, transparent);
+  }
+}
+
+@layer components {
+  /* Skeleton shimmer (§13): 1.6s period, transform-only animation */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background-color: color-mix(in srgb, var(--ink-300) 32%, transparent);
+  }
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--surface) 65%, transparent),
+      transparent
+    );
+    animation: skeleton-sweep 1.6s infinite;
+  }
+
+  /* Rate figures are the hero (§2.4) */
+  .rate-hero {
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes skeleton-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@utility pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Everything collapses to instant/static under prefers-reduced-motion (§13) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

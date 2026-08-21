@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+public/sw.js
+pnpm-lock.yaml
+*.woff2
+supabase/migrations/*.sql
