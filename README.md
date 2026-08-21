@@ -51,7 +51,7 @@ pnpm brand:assets               # regenerate logo suite / 3D coins / OG images
 ## Checks
 
 ```bash
-pnpm lint && pnpm typecheck && pnpm test   # eslint · tsc strict · vitest (validators, money, pricing)
+pnpm lint && pnpm typecheck && pnpm test   # eslint · tsc strict · vitest (validators, money, pricing, jalali, phone)
 pnpm test:e2e                              # Playwright smoke: fa/en, RTL, /_design, quote, API
 pnpm exec tsx scripts/capture-screens.mts  # review screenshots → artifacts/screens
 ```
@@ -63,7 +63,21 @@ mode so it never depends on upstream sources.
 
 Next.js 15 (App Router/RSC) · TypeScript strict · Tailwind v4 · Radix ·
 Framer Motion · TanStack Query · Zod · next-intl · Serwist PWA · Supabase
-(schema ready in `supabase/migrations`) · Vitest · Playwright.
+(Postgres + RLS + Auth + Storage, migrations in `supabase/migrations`, all
+applied to the live EU project) · Vitest · Playwright.
+
+The app holds **no service-role key**: it runs on the publishable key under Row
+Level Security, and privileged work goes through `SECURITY DEFINER` functions
+that check the caller's role themselves (`docs/decisions/0010`).
+
+## Deploying
+
+`pnpm build` is all a host needs — it restores the webfonts, then runs
+`next build`. `.env.production` carries the publishable Supabase URL and key so
+a fresh deploy comes up wired to the database; real environment variables
+override it. See `docs/runbook.md` for the Vercel specifics, including the one
+prerequisite: the Vercel GitHub App has to be installed on the account before a
+repository can be linked.
 
 ## Docs
 
