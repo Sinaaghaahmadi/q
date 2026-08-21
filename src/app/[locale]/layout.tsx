@@ -9,6 +9,7 @@ import { Header } from "@/components/layout/header";
 import { Providers } from "@/components/layout/providers";
 import { TabBar } from "@/components/layout/tabbar";
 import { localeDir, routing, type Locale } from "@/i18n/routing";
+import { getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
 import "@/styles/globals.css";
 
 const vazirmatn = localFont({
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const dir = localeDir[locale as Locale];
+  const session = isSupabaseConfigured() ? await getSessionProfile() : null;
 
   return (
     <html
@@ -109,7 +111,7 @@ export default async function LocaleLayout({
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider>
           <Providers>
-            <Header />
+            <Header signedIn={Boolean(session?.user)} />
             <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-24 sm:px-6 md:pb-10">
               {children}
             </main>

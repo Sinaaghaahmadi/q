@@ -20,7 +20,10 @@
     "transfer": "Transfer",
     "orders": "Orders",
     "profile": "Profile",
-    "startTransfer": "Start a transfer"
+    "startTransfer": "Start a transfer",
+    "accounts": "Accounts",
+    "signin": "Sign in",
+    "verify": "Verify"
   },
   "footer": {
     "brand": "Asaex",
@@ -30,7 +33,8 @@
     "legal": "Legal",
     "designSystem": "Design system",
     "copyright": "© 2026 Asaex — All rights reserved.",
-    "buildTag": "Demo build · Phase 0–1"
+    "buildTag": "Demo build · Phase 0–1",
+    "account": "Account"
   },
   "legal": {
     "version": "Version {version}",
@@ -192,7 +196,8 @@
     "whyBody": "The base (mid-market) rate is {rate} Toman per {code}. These spread layers apply on top:",
     "gateTitle": "An account is needed to submit",
     "gateBody": "Verification happens once, ever; afterwards you only manage your source and destination accounts. Sign-in and KYC arrive in Phase 2.",
-    "gatePhase": "Phase 2 — sign-in & KYC"
+    "gatePhase": "Phase 2 — sign-in & KYC",
+    "gateCta": "Sign in & verify"
   },
   "pricing": {
     "total": "Total spread",
@@ -216,7 +221,48 @@
     "emptyTitle": "Your account",
     "emptyBody": "SMS one-time-code sign-in, one-time KYC, bank account management, and security settings (2FA) arrive in Phase 2.",
     "phase": "Arrives in Phase 2",
-    "cta": "Back to home"
+    "cta": "Back to home",
+    "title": "Your account",
+    "subtitle": "Verification status, security, and your devices.",
+    "unnamed": "Unnamed",
+    "kyc": {
+      "unverified": "Not verified",
+      "pending": "Under review",
+      "approved": "Verified",
+      "rejected": "Rejected",
+      "more_info_needed": "More info needed"
+    },
+    "kycBody": {
+      "unverified": "Submitting a transfer needs a one-time verification. It takes under five minutes.",
+      "pending": "Your documents are queued for review — usually under one business day.",
+      "approved": "Your identity is verified. From here you only manage destination accounts.",
+      "rejected": "Your submission was rejected. The reason is in the message we sent; you can re-apply.",
+      "more_info_needed": "We need a little more information or a clearer document to finish the review."
+    },
+    "startKyc": "Start verification",
+    "security": {
+      "title": "Account security",
+      "body": "Sign-in is protected by a one-time code. Authenticator-app 2FA lands in the next step.",
+      "otpOn": "One-time-code sign-in",
+      "totpSoon": "2FA soon"
+    },
+    "referral": {
+      "title": "Your referral code",
+      "body": "Share it and earn a reward after your friend's first completed transfer.",
+      "copied": "Copied"
+    },
+    "devices": {
+      "title": "Sign-in activity",
+      "body": "The most recent sign-ins and sign-outs on your account.",
+      "none": "No activity recorded yet.",
+      "kind": {
+        "sign_in": "Signed in",
+        "sign_out": "Signed out",
+        "revoked": "Session revoked"
+      }
+    },
+    "goAccounts": "Manage accounts",
+    "signOut": "Sign out"
   },
   "offline": {
     "metaTitle": "Offline",
@@ -244,7 +290,8 @@
       "validation": "Financial validation",
       "coins": "3D currency icons",
       "charts": "Charts",
-      "motion": "Motion"
+      "motion": "Motion",
+      "scenes": "Animated illustration"
     },
     "brand": {
       "description": "The Asaex mark builds the letter A from two crossing currency flows — reading at once as an A, the exchange arrow-pair (⇄), and flowing water.",
@@ -379,6 +426,274 @@
       "countdownNote": "Below 60s it turns amber and pulses",
       "skeleton": "Loading skeleton (1.6s shimmer)",
       "skeletonNote": "Matched to the final layout so layout shift stays at zero"
+    },
+    "scenes": {
+      "description": "Every scene is built on one rig: the brand-tinted disc, the contact shadow, and the same stroke weight and coin silhouette as the logo and currency icons. SVG + Framer Motion, a few KB each, fully static under the OS reduce-motion setting.",
+      "replay": "Replay all",
+      "items": {
+        "otp": "Receiving a one-time code",
+        "identity": "Filling in details",
+        "document": "Document scan & stamp",
+        "liveness": "Live photo",
+        "review": "Under review",
+        "success": "Completed",
+        "accounts": "Saved accounts",
+        "security": "Account security",
+        "matching": "Matching an office",
+        "ordersEmpty": "No orders"
+      }
+    }
+  },
+  "auth": {
+    "metaTitle": "Sign in",
+    "title": "Sign in to Asaex",
+    "body": "Enter your mobile number and we'll text you a one-time code. If you don't have an account yet, this creates one.",
+    "codeTitle": "Enter your one-time code",
+    "codeBody": "We texted a six-digit code to {phone}. It's valid for two minutes.",
+    "sentTitle": "Sign-in link sent",
+    "sentBody": "We sent a sign-in link to {email}. Open it and you're in.",
+    "doneTitle": "Welcome",
+    "doneBody": "Taking you to the next step…",
+    "channel": {
+      "phone": "Mobile",
+      "email": "Email"
+    },
+    "phoneLabel": "Mobile number",
+    "phoneHint": "Start with 09, or write it as +98.",
+    "emailHint": "Email sign-in is available for customers outside Iran and for testing.",
+    "emailLabel": "Email address",
+    "sending": "Sending…",
+    "cta": "Continue",
+    "legalNote": "By continuing you accept Asaex's Terms of Service and Privacy Policy.",
+    "codeLabel": "One-time code",
+    "verifying": "Checking…",
+    "verifyCta": "Verify & sign in",
+    "changeNumber": "Change number",
+    "resendIn": "Resend in {clock}",
+    "resend": "Send a new code",
+    "checkInbox": "Check your inbox",
+    "changeEmail": "Change email",
+    "scene": {
+      "otp": "Receiving a one-time code",
+      "done": "Signed in"
+    },
+    "errors": {
+      "rateLimited": "That's a lot of requests. Try again in about {minutes} minutes.",
+      "smsUnavailable": "SMS delivery isn't live on this environment yet. Sign in by email for now — mobile sign-in switches on the moment the gateway is connected.",
+      "invalidPhone": "That mobile number doesn't look right — enter an 11-digit Iranian number.",
+      "authUnavailable": "Sign-in isn't configured on this environment.",
+      "sendFailed": "The code didn't send. Try again in a moment.",
+      "network": "Couldn't reach us. Check your connection and try again.",
+      "invalidCode": "That code is wrong or has expired — request a fresh one."
+    }
+  },
+  "kyc": {
+    "metaTitle": "Verification",
+    "unavailableTitle": "Verification isn't live on this environment",
+    "unavailableBody": "This preview isn't connected to a database. On a connected environment the wizard opens right here.",
+    "backHome": "Back to home",
+    "steps": {
+      "identity": {
+        "rail": "Identity",
+        "title": "Your details",
+        "body": "We collect this once. After approval you only ever manage your destination accounts."
+      },
+      "document": {
+        "rail": "Document",
+        "title": "Identity document",
+        "body": "Photograph your national ID or passport in even light with no glare. Image quality is checked right here."
+      },
+      "liveness": {
+        "rail": "Selfie",
+        "title": "Live photo",
+        "body": "Take a simple selfie so we can confirm the document is yours."
+      },
+      "review": {
+        "rail": "Review",
+        "title": "Review & submit",
+        "body": "Check everything once before you send it.",
+        "pending": "Your documents are in and queued for review. It usually takes under one business day.",
+        "badge": "Under review",
+        "next": "We'll tell you the outcome by SMS and in-app. If a document is unreadable, we'll say exactly which one and why."
+      }
+    },
+    "fields": {
+      "nameFa": "Full name (Persian)",
+      "nameFaPlaceholder": "علی رضایی",
+      "nameLatin": "Name in Latin script",
+      "nationality": "Nationality",
+      "iranian": "Iranian",
+      "other": "Non-Iranian",
+      "nationalCode": "National code",
+      "nationalCodeHint": "10 digits, exactly as printed on your national ID card.",
+      "nationalCodeInvalid": "Invalid national code — the check digit doesn't match the rest.",
+      "dob": "Date of birth",
+      "dobHint": "Enter it in the Jalali calendar; the record also keeps the Gregorian date.",
+      "year": "Year",
+      "month": "Month",
+      "day": "Day",
+      "city": "City",
+      "cityPlaceholder": "Tehran",
+      "postalCode": "Postal code",
+      "address": "Address",
+      "addressPlaceholder": "Street, alley, number, unit"
+    },
+    "doc": {
+      "nationalId": "National ID card",
+      "passport": "Passport",
+      "passportPage": "Passport data page",
+      "front": "Front",
+      "back": "Back",
+      "label": "Document type",
+      "hint": "Fit the whole document in frame, with no glare and no finger over the text.",
+      "privacy": "Documents live in encrypted private storage; only the compliance team sees them, through a short-lived link, with every view written to the audit log."
+    },
+    "liveness": {
+      "label": "Selfie",
+      "hint": "Your whole face in frame, facing the light.",
+      "tip1": "Remove sunglasses, masks and hats.",
+      "tip2": "Keep the background plain and free of harsh light.",
+      "tip3": "If you're holding the document, keep its text readable."
+    },
+    "upload": {
+      "choose": "Choose or take a photo",
+      "ok": "Looks good",
+      "retake": "Retake",
+      "readFailed": "We couldn't read that file — choose a JPG or PNG image.",
+      "verdict": {
+        "blurry": "The photo is out of focus. Hold the camera still and try again.",
+        "glare": "There's glare across the document. Shift the angle slightly.",
+        "dark": "The photo is too dark. Try again somewhere brighter.",
+        "small": "The resolution is too low. Move closer and shoot at higher quality."
+      }
+    },
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit for review",
+    "submitting": "Sending…",
+    "errors": {
+      "signedOut": "Your session ended. Please sign in again.",
+      "submitFailed": "We couldn't file that submission. Try again in a moment.",
+      "uploadFailed": "The document upload didn't finish. Check your connection and try again.",
+      "network": "Couldn't reach us. Try again."
+    }
+  },
+  "accounts": {
+    "metaTitle": "My accounts",
+    "title": "Source & destination accounts",
+    "subtitle": "The accounts you use to send and receive. Validation here is real, not cosmetic.",
+    "add": "Add account",
+    "addFirst": "Add your first account",
+    "emptyTitle": "No accounts saved yet",
+    "emptyBody": "Add a Sheba, card, or international account and you'll simply pick it when you start a transfer.",
+    "unavailableTitle": "Account management isn't live on this environment",
+    "unavailableBody": "This preview isn't connected to a database.",
+    "backHome": "Back to home",
+    "thirdParty": "Third party",
+    "ownAccount": "Mine",
+    "archive": "Archive",
+    "kind": {
+      "sheba": "Sheba",
+      "card": "Card",
+      "iban": "IBAN",
+      "swift": "SWIFT",
+      "cash_pickup": "Cash pickup"
+    },
+    "addTitle": "Add an account",
+    "addBody": "Pick the account type and enter its identifier — we check it as you type.",
+    "identifier": {
+      "sheba": "Sheba number",
+      "card": "Card number",
+      "iban": "IBAN",
+      "swift": "SWIFT / BIC code"
+    },
+    "hint": {
+      "sheba": "IR followed by 24 digits; spaces are fine.",
+      "card": "The 16 digits on the card; the bank is detected automatically.",
+      "iban": "The destination country's IBAN, starting with its two-letter code.",
+      "swift": "8 or 11 characters, e.g. BKMTIRTH."
+    },
+    "invalid": {
+      "sheba": "Invalid Sheba — the check digits don't match.",
+      "card": "Invalid card number — one digit is off.",
+      "iban": "Invalid IBAN — the length or check digits are wrong.",
+      "swift": "Invalid SWIFT code — 8 or 11 Latin characters are required."
+    },
+    "valid": "Account identifier is valid",
+    "validBank": "Valid — {bank}",
+    "bankName": "Bank name",
+    "bankPlaceholder": "Destination bank",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "e.g. Tuition account",
+    "holder": "Account holder",
+    "holderPlaceholder": "Exactly as the bank has it",
+    "currency": "Account currency",
+    "thirdPartyLabel": "This account isn't mine",
+    "thirdPartyHint": "Third-party transfers need an explicit declaration and compliance approval.",
+    "save": "Save account",
+    "saving": "Saving…",
+    "errors": {
+      "signedOut": "Your session ended. Please sign in again.",
+      "saveFailed": "We couldn't save that account. Try again.",
+      "network": "Couldn't reach us. Try again."
+    }
+  },
+  "adminKyc": {
+    "metaTitle": "KYC review",
+    "title": "KYC review queue",
+    "subtitle": "Every case needs two signatures: one reviewer recommends, a second approves. Nobody can approve their own recommendation.",
+    "emptyTitle": "The queue is empty",
+    "emptyBody": "Nothing is waiting for review.",
+    "unavailableTitle": "This section isn't live on the current environment",
+    "unavailableBody": "This preview isn't connected to a database.",
+    "forbiddenTitle": "You don't have access",
+    "forbiddenBody": "KYC review is open to compliance and platform-admin roles only.",
+    "backHome": "Back to home",
+    "unnamed": "Unnamed",
+    "documentCount": "{count} documents",
+    "awaitingYou": "Awaiting your approval",
+    "awaitingOther": "Awaiting a second reviewer",
+    "needsFirst": "Needs a first review",
+    "review": "Review",
+    "documents": "Documents",
+    "documentsNote": "Each view uses a 60-second signed link and is written to the audit log; your reviewer id is stamped on the image.",
+    "openDocument": "Open",
+    "docKind": {
+      "national_id": "National ID",
+      "passport": "Passport",
+      "selfie": "Selfie",
+      "proof_of_address": "Proof of address"
+    },
+    "checklist": "Review checklist",
+    "checks": {
+      "legible": "All text on the document is legible.",
+      "nameMatch": "The name on the document matches the declared name.",
+      "notExpired": "The document is still within its validity date.",
+      "selfieMatch": "The selfie matches the photo on the document.",
+      "noTamper": "No sign of tampering or editing."
+    },
+    "reason": "Decision note",
+    "reasonPlaceholder": "For a rejection or an information request, write a clear reason — this exact text is shown to the customer.",
+    "fourEyesTitle": "Four-eyes approval",
+    "fourEyesFirst": "You are the first reviewer. Your recommendation is recorded and the case goes to another reviewer for the final decision.",
+    "fourEyesSecond": "The first reviewer has recorded their recommendation. The final decision is yours.",
+    "fourEyesOwn": "You made the recommendation on this case; the final approval has to come from a different reviewer.",
+    "recommendApprove": "Recommend approval",
+    "recommendMoreInfo": "Request more information",
+    "recommendReject": "Recommend rejection",
+    "approve": "Approve",
+    "reject": "Reject",
+    "fields": {
+      "nameLatin": "Latin name",
+      "nationalCode": "National code",
+      "dob": "Date of birth",
+      "nationality": "Nationality"
+    },
+    "errors": {
+      "documentDenied": "You aren't permitted to view this document.",
+      "fourEyes": "Four-eyes: the reviewer who recommended cannot also approve.",
+      "actionFailed": "We couldn't record that decision. Try again.",
+      "network": "Couldn't reach us. Try again."
     }
   }
 }

@@ -1,8 +1,8 @@
-import { UserRound } from "lucide-react";
+import { Wallet } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
-import { ProfileView } from "@/components/auth/profile-view";
+import { AccountsManager } from "@/components/accounts/accounts-manager";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
@@ -15,46 +15,42 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "profile" });
+  const t = await getTranslations({ locale, namespace: "accounts" });
   return { title: t("metaTitle") };
 }
 
-export default async function ProfilePage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function AccountsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("profile");
+  const t = await getTranslations("accounts");
 
   if (!isSupabaseConfigured()) {
     return (
       <EmptyState
-        icon={UserRound}
-        title={t("emptyTitle")}
-        description={t("emptyBody")}
-        phaseLabel={t("phase")}
-        ctaLabel={t("cta")}
+        icon={Wallet}
+        title={t("unavailableTitle")}
+        description={t("unavailableBody")}
+        ctaLabel={t("backHome")}
       />
     );
   }
 
   const session = await getSessionProfile();
   if (!session?.user) {
-    redirect({ href: "/signin?next=/profile", locale });
+    redirect({ href: "/signin?next=/accounts", locale });
   }
 
   const supabase = await createClient();
-  const { data: events } = await supabase
-    .from("login_events")
+  const { data } = await supabase
+    .from("beneficiary_accounts")
     .select("*")
-    .order("created_at", { ascending: false })
-    .limit(10);
+    .is("archived_at", null)
+    .is("deleted_at", null)
+    .order("created_at", { ascending: false });
 
   return (
     <div className="py-4">
-      <ProfileView
-        profile={session?.profile ?? null}
-        email={session?.user.email ?? null}
-        events={events ?? []}
-      />
+      <AccountsManager initial={data ?? []} />
     </div>
   );
 }

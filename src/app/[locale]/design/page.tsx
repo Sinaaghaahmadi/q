@@ -5,6 +5,7 @@ import { CoinIcon } from "@/components/brand/coin";
 import { LogoLockup, LogoMark } from "@/components/brand/logo";
 import { ChartsDemo } from "@/components/design/charts-demo";
 import { MotionLab } from "@/components/design/motion-lab";
+import { ScenesDemo } from "@/components/design/scenes-demo";
 import { ValidationDemo } from "@/components/design/validation-demo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -59,6 +60,7 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
     "components",
     "validation",
     "coins",
+    "scenes",
     "charts",
     "motion",
   ] as const;
@@ -271,6 +273,11 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
           </div>
         </Card>
         <p className="text-xs leading-relaxed text-ink-600">{t("coins.rule")}</p>
+      </Section>
+
+      {/* ── Animated illustration ─────────────────────────────────────────── */}
+      <Section id="scenes" title={t("sections.scenes")} description={t("scenes.description")}>
+        <ScenesDemo />
       </Section>
 
       {/* ── Charts ────────────────────────────────────────────────────────── */}

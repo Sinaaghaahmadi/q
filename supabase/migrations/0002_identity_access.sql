@@ -38,6 +38,30 @@ create table public.memberships (
   unique (user_id, role, scope_type, scope_id)
 );
 
+-- Role helpers (§5). They live here, not in 0001, because a SQL-language
+-- function body is validated at creation time and these read `memberships`.
+create or replace function public.has_role(roles public.app_role[], scope_kind text default null, scope uuid default null)
+returns boolean language sql stable security definer set search_path = public as $$
+  select exists (
+    select 1 from public.memberships m
+    where m.user_id = auth.uid()
+      and m.deleted_at is null
+      and m.role = any (roles)
+      and (scope_kind is null or m.scope_type = scope_kind)
+      and (scope is null or m.scope_id = scope)
+  );
+$$;
+
+create or replace function public.is_platform_staff()
+returns boolean language sql stable as $$
+  select public.has_role(array['platform_support','platform_compliance','platform_admin','platform_superadmin']::public.app_role[]);
+$$;
+
+create or replace function public.is_office_member(office uuid)
+returns boolean language sql stable as $$
+  select public.has_role(array['office_viewer','office_operator','office_finance','office_owner']::public.app_role[], 'office', office);
+$$;
+
 create table public.kyc_submissions (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references public.profiles (id),

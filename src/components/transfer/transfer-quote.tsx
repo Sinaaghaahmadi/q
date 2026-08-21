@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { RateStatus } from "@/components/rates/rate-status";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CountdownRing } from "@/components/ui/countdown-ring";
@@ -207,9 +206,9 @@ export function TransferQuote({ quote, from, to, snapshot }: TransferQuoteProps)
           <DialogDescription className="mt-2 text-sm leading-relaxed text-ink-600">
             {t("gateBody")}
           </DialogDescription>
-          <Badge variant="info" className="mt-4 self-start">
-            {t("gatePhase")}
-          </Badge>
+          <Button asChild size="lg" className="mt-5 w-full">
+            <Link href={{ pathname: "/signin", query: { next: "/verify" } }}>{t("gateCta")}</Link>
+          </Button>
         </DialogContent>
       </Dialog>
     </div>

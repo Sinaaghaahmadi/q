@@ -15,7 +15,7 @@ const NAV_ITEMS = [
   { href: "/orders", key: "orders" },
 ] as const;
 
-export function Header() {
+export function Header({ signedIn = false }: { signedIn?: boolean }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
 
@@ -46,9 +46,15 @@ export function Header() {
         <div className="ms-auto flex items-center gap-1.5">
           <LocaleSwitcher />
           <ThemeToggle />
-          <Button asChild size="sm" className="hidden md:inline-flex">
-            <Link href="/transfer/new">{t("startTransfer")}</Link>
-          </Button>
+          {signedIn ? (
+            <Button asChild size="sm" variant="secondary" className="hidden md:inline-flex">
+              <Link href="/profile">{t("profile")}</Link>
+            </Button>
+          ) : (
+            <Button asChild size="sm" className="hidden md:inline-flex">
+              <Link href="/signin">{t("signin")}</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
