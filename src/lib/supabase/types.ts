@@ -420,6 +420,90 @@ export type Referral = {
   created_at: string;
 };
 
+export type CmsContent = {
+  id: string;
+  key: string;
+  locale: string;
+  type: "page" | "faq" | "banner" | "announcement";
+  title: string;
+  body: string;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type NotificationTemplate = {
+  id: string;
+  key: string;
+  locale: string;
+  channel: "inapp" | "push" | "sms" | "email";
+  subject: string | null;
+  body: string;
+  variables: Json;
+  updated_by: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type BusinessCalendarDay = {
+  id: string;
+  country: string;
+  date: string;
+  is_holiday: boolean;
+  half_day: boolean;
+  name: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type RateSource = {
+  id: string;
+  name: string;
+  kind: "tgju" | "frankfurter" | "manual" | "demo";
+  config: Json;
+  active: boolean;
+  last_ok_at: string | null;
+  last_error: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LedgerAccount = {
+  id: string;
+  owner_type: "platform" | "office" | "customer" | "suspense";
+  owner_id: string | null;
+  currency: string;
+  code: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type SanctionsHit = {
+  id: string;
+  user_id: string;
+  list: string;
+  match_score: string;
+  payload: Json;
+  resolved_by: string | null;
+  resolution: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type PlatformSetting = {
+  key: string;
+  value: Json;
+  updated_by: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 /** Row + the Insert/Update shapes PostgREST accepts for it. */
 type Table<Row, Required extends keyof Row = never> = {
   Row: Row;
@@ -480,6 +564,13 @@ export type Database = {
       reputation: Table<Reputation, "user_id">;
       currencies: Table<Currency, "code" | "decimals">;
       referrals: Table<Referral, "referrer_id" | "referee_id" | "code">;
+      cms_content: Table<CmsContent, "key" | "locale" | "type" | "title" | "body">;
+      notification_templates: Table<NotificationTemplate, "key" | "locale" | "channel" | "body">;
+      business_calendar: Table<BusinessCalendarDay, "country" | "date">;
+      rate_sources: Table<RateSource>;
+      ledger_accounts: Table<LedgerAccount>;
+      sanctions_hits: Table<SanctionsHit>;
+      settings: Table<PlatformSetting, "key" | "value">;
     };
     Views: Record<string, never>;
     Functions: {
