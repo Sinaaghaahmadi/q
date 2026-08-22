@@ -1,8 +1,21 @@
 import { ReceiptText } from "lucide-react";
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { CoinIcon } from "@/components/brand/coin";
+import { OrdersEmptyScene } from "@/components/brand/scenes";
 import { EmptyState } from "@/components/layout/empty-state";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Link, redirect } from "@/i18n/navigation";
+import { formatAmount, formatDate, type AppLocale } from "@/lib/money/format";
+import { fromMinor } from "@/lib/money/minor";
+import { stateTone } from "@/lib/orders/flow";
+import type { CurrencyCode } from "@/lib/rates/catalog";
+import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -18,15 +31,95 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("orders");
+  const appLocale = (await getLocale()) as AppLocale;
+
+  if (!isSupabaseConfigured()) {
+    return (
+      <EmptyState
+        icon={ReceiptText}
+        title={t("emptyTitle")}
+        description={t("emptyBody")}
+        phaseLabel={t("phase")}
+        ctaLabel={t("cta")}
+        ctaHref="/transfer/new"
+      />
+    );
+  }
+
+  const session = await getSessionProfile();
+  if (!session?.user) {
+    redirect({ href: "/signin?next=/orders", locale });
+  }
+
+  const supabase = await createClient();
+  // RLS decides the rows: a customer's own, an office's claimed ones, or all
+  // of them for platform staff. The query is the same either way.
+  const { data: orders } = await supabase
+    .from("orders")
+    .select("*")
+    .is("deleted_at", null)
+    .order("created_at", { ascending: false })
+    .limit(50);
+
+  if (!orders || orders.length === 0) {
+    return (
+      <div className="mx-auto flex max-w-md flex-col items-center py-16 text-center">
+        <OrdersEmptyScene size={150} label={t("emptyTitle")} />
+        <h1 className="mt-6 text-xl font-bold">{t("emptyTitle")}</h1>
+        <p className="mt-2 text-sm leading-relaxed text-ink-600">{t("emptyBody")}</p>
+        <Button asChild className="mt-6">
+          <Link href="/transfer/new">{t("cta")}</Link>
+        </Button>
+      </div>
+    );
+  }
 
   return (
-    <EmptyState
-      icon={ReceiptText}
-      title={t("emptyTitle")}
-      description={t("emptyBody")}
-      phaseLabel={t("phase")}
-      ctaLabel={t("cta")}
-      ctaHref="/transfer/new"
-    />
+    <div className="space-y-5 py-4">
+      <div>
+        <h1 className="text-2xl font-bold">{t("title")}</h1>
+        <p className="mt-1 text-sm text-ink-600">{t("subtitle")}</p>
+      </div>
+
+      <div className="grid gap-3">
+        {orders.map((order) => (
+          <Link key={order.id} href={`/orders/${order.id}`}>
+            <Card className="flex flex-wrap items-center gap-4 p-4 transition-shadow hover:shadow-e2">
+              <CoinIcon code={order.send_currency as CurrencyCode} size={38} />
+              <div className="min-w-0 flex-1">
+                <p className="num font-mono text-sm font-semibold" dir="ltr">
+                  {order.public_ref}
+                </p>
+                <p className="num mt-0.5 text-xs text-ink-600">
+                  {formatDate(order.created_at, appLocale, { dateStyle: "medium" })}
+                </p>
+              </div>
+              <div className="text-end">
+                <p className="num text-sm font-semibold">
+                  {formatAmount(
+                    fromMinor(order.send_amount_minor, order.send_currency as CurrencyCode),
+                    order.send_currency as CurrencyCode,
+                    appLocale,
+                  )}{" "}
+                  <span className="text-xs font-normal text-ink-600" dir="ltr">
+                    {order.send_currency}
+                  </span>
+                </p>
+                <p className="num mt-0.5 text-xs text-ink-600">
+                  →{" "}
+                  {formatAmount(
+                    fromMinor(order.receive_amount_minor, order.receive_currency as CurrencyCode),
+                    order.receive_currency as CurrencyCode,
+                    appLocale,
+                  )}{" "}
+                  <span dir="ltr">{order.receive_currency}</span>
+                </p>
+              </div>
+              <Badge variant={stateTone(order.state)}>{t(`state.${order.state}`)}</Badge>
+            </Card>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

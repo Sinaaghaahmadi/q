@@ -79,3 +79,16 @@ test("CSP allowlists the Supabase origin the browser actually calls (§15)", asy
 
   expect(csp).toContain("frame-ancestors 'none'");
 });
+
+test("every authenticated route redirects a signed-out visitor to sign-in", async ({ page }) => {
+  // This is the shape the Vercel deployment got wrong: with no Supabase values
+  // at runtime the server decided auth was unconfigured and rendered the pages
+  // instead of gating them. A 200 here means the gate is open.
+  for (const path of ["/orders", "/profile", "/verify", "/accounts", "/admin/kyc"]) {
+    const response = await page.goto(path);
+    expect(response?.status(), `${path} should not render for a stranger`).toBe(200);
+    await expect(page, `${path} should land on sign-in`).toHaveURL(
+      new RegExp(`/signin\\?next=${path.replace(/\//g, "\\/")}`),
+    );
+  }
+});

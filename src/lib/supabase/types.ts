@@ -138,6 +138,108 @@ export type LegalAcceptance = {
   ip: string | null;
 };
 
+export type OrderState =
+  | "draft"
+  | "submitted"
+  | "matching"
+  | "office_review"
+  | "accepted"
+  | "awaiting_irt_funding"
+  | "irt_funded"
+  | "foreign_leg_pending"
+  | "foreign_leg_sent"
+  | "recipient_confirmed"
+  | "irt_released"
+  | "completed"
+  | "on_hold"
+  | "info_needed"
+  | "disputed"
+  | "cancelled"
+  | "refunded"
+  | "expired"
+  | "sla_breached";
+
+/** The party a caller is, relative to one order. Null means "not a party". */
+export type OrderActorRole = "customer" | "office" | "platform";
+
+export type Order = {
+  id: string;
+  public_ref: string;
+  customer_id: string;
+  office_id: string | null;
+  corridor: string;
+  send_currency: string;
+  send_amount_minor: number;
+  receive_currency: string;
+  receive_amount_minor: number;
+  locked_rate: string;
+  rate_locked_at: string;
+  rate_expires_at: string;
+  platform_fee_minor: number;
+  office_fee_minor: number;
+  spread_breakdown: Json;
+  source_account_id: string | null;
+  destination_account_id: string | null;
+  state: OrderState;
+  state_since: string;
+  due_at: string | null;
+  sla_target_at: string | null;
+  version: number;
+  purpose_of_transfer: string | null;
+  notes: string | null;
+  cancelled_reason: string | null;
+  origin: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type OrderEvent = {
+  id: string;
+  order_id: string;
+  from_state: OrderState | null;
+  to_state: OrderState;
+  actor_id: string | null;
+  actor_role: string | null;
+  reason: string | null;
+  attachment_path: string | null;
+  meta: Json;
+  created_at: string;
+};
+
+export type OrderDocumentKind = "irt_receipt" | "swift_mt103" | "foreign_receipt" | "invoice";
+
+export type OrderDocument = {
+  id: string;
+  order_id: string;
+  kind: OrderDocumentKind;
+  storage_path: string;
+  uploaded_by: string | null;
+  verified_by: string | null;
+  verified_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type ExchangeOffice = {
+  id: string;
+  slug: string;
+  legal_name_fa: string;
+  legal_name_en: string;
+  license_no: string;
+  country: string;
+  city: string | null;
+  status: "draft" | "active" | "suspended" | "archived";
+  branding: Json;
+  contact: Json;
+  working_hours: Json;
+  corridors: Json;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
 /** Row + the Insert/Update shapes PostgREST accepts for it. */
 type Table<Row, Required extends keyof Row = never> = {
   Row: Row;
@@ -169,6 +271,21 @@ export type Database = {
       login_events: Table<LoginEvent, "user_id" | "kind">;
       audit_log: Table<AuditLogEntry, "action" | "entity_type">;
       legal_acceptances: Table<LegalAcceptance, "user_id" | "document" | "version">;
+      orders: Table<
+        Order,
+        | "customer_id"
+        | "corridor"
+        | "send_currency"
+        | "send_amount_minor"
+        | "receive_currency"
+        | "receive_amount_minor"
+        | "locked_rate"
+        | "rate_locked_at"
+        | "rate_expires_at"
+      >;
+      order_events: Table<OrderEvent>;
+      order_documents: Table<OrderDocument, "order_id" | "kind" | "storage_path">;
+      exchange_offices: Table<ExchangeOffice>;
     };
     Views: Record<string, never>;
     Functions: {
@@ -184,8 +301,24 @@ export type Database = {
         Args: { p_submission: string; p_decision: KycStatus; p_reason?: string | null };
         Returns: undefined;
       };
+      order_advance: {
+        Args: { p_order: string; p_to: OrderState; p_reason?: string | null };
+        Returns: OrderState;
+      };
+      order_claim: {
+        Args: { p_order: string; p_office: string };
+        Returns: OrderState;
+      };
+      order_actor_role: {
+        Args: { p_order: string };
+        Returns: OrderActorRole | null;
+      };
+      allowed_transitions: {
+        Args: { s: OrderState };
+        Returns: OrderState[];
+      };
     };
-    Enums: { app_role: AppRole; kyc_status: KycStatus };
+    Enums: { app_role: AppRole; kyc_status: KycStatus; order_state: OrderState };
     CompositeTypes: Record<string, never>;
   };
 };
