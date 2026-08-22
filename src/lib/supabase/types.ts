@@ -316,6 +316,47 @@ export type LedgerEntry = {
   created_at: string;
 };
 
+export type ConversationKind = "order" | "p2p" | "support";
+export type SupportSegment = "customer" | "p2p" | "office";
+
+export type Conversation = {
+  id: string;
+  kind: ConversationKind;
+  subject_id: string | null;
+  segment: SupportSegment | null;
+  status: "open" | "pending" | "resolved" | "archived";
+  assigned_to: string | null;
+  last_message_at: string | null;
+  sla_due_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type ConversationParticipant = {
+  id: string;
+  conversation_id: string;
+  user_id: string;
+  role: string;
+  last_read_at: string | null;
+  muted: boolean;
+  created_at: string;
+  deleted_at: string | null;
+};
+
+export type Message = {
+  id: string;
+  conversation_id: string;
+  sender_id: string | null;
+  body: string | null;
+  attachments: Json;
+  is_internal_note: boolean;
+  /** Soft compliance signals from `message_flags` — never a block (§10). */
+  flags: Json;
+  revision_of: string | null;
+  created_at: string;
+};
+
 /** Row + the Insert/Update shapes PostgREST accepts for it. */
 type Table<Row, Required extends keyof Row = never> = {
   Row: Row;
@@ -368,6 +409,9 @@ export type Database = {
       impersonations: Table<Impersonation>;
       feature_flags: Table<FeatureFlag, "key">;
       ledger_entries: Table<LedgerEntry>;
+      conversations: Table<Conversation, "kind">;
+      conversation_participants: Table<ConversationParticipant, "conversation_id" | "user_id">;
+      messages: Table<Message, "conversation_id">;
     };
     Views: Record<string, never>;
     Functions: {
@@ -434,6 +478,26 @@ export type Database = {
       office_defaults: {
         Args: Record<string, never>;
         Returns: Json;
+      };
+      conversation_for_order: {
+        Args: { p_order: string };
+        Returns: string;
+      };
+      conversation_for_support: {
+        Args: Record<string, never>;
+        Returns: string;
+      };
+      message_send: {
+        Args: { p_conversation: string; p_body: string; p_internal?: boolean };
+        Returns: string;
+      };
+      conversation_mark_read: {
+        Args: { p_conversation: string };
+        Returns: undefined;
+      };
+      support_set_state: {
+        Args: { p_conversation: string; p_status?: string | null; p_assign?: boolean };
+        Returns: undefined;
       };
     };
     Enums: { app_role: AppRole; kyc_status: KycStatus; order_state: OrderState };

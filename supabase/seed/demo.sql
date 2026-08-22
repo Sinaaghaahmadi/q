@@ -221,3 +221,89 @@ begin
     (select count(*) from public.orders),
     (select count(*) from public.ledger_entries);
 end $$;
+
+-- ── Conversations (§10) ─────────────────────────────────────────────────────
+-- A negotiate-then-transact exchange on the live order, an internal note the
+-- customer cannot see, a message that trips the off-platform flag, and one
+-- thread in each of the three support queues — so /admin/support has all three
+-- populated rather than two empty tabs.
+
+do $$
+declare
+  v_op   uuid := '00000000-0000-4000-8000-0000000000f1';
+  v_c2   uuid := '00000000-0000-4000-8000-000000000c02';
+  v_c3   uuid := '00000000-0000-4000-8000-000000000c03';
+  v_admin uuid := '00000000-0000-4000-8000-00000000ad01';
+  v_ord  uuid;
+  v_conv uuid;
+  v_sup  uuid;
+begin
+  if exists (select 1 from public.conversations where kind = 'order') then
+    raise notice 'demo conversations already present; nothing to do';
+    return;
+  end if;
+
+  select id into v_ord from public.orders where state = 'foreign_leg_sent' limit 1;
+  if v_ord is null then return; end if;
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_c2, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  v_conv := public.conversation_for_order(v_ord);
+  perform public.message_send(v_conv, 'سلام. حواله ارزی امروز ارسال شد؟ گیرنده پرسیده.');
+  execute 'reset role';
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_op, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  perform public.message_send(v_conv,
+    'سلام. بله، سوئیفت امروز صبح ارسال شد. معمولاً یک روز کاری تا نشستن در حساب گیرنده طول می‌کشد.');
+  perform public.message_send(v_conv,
+    'بانک کارگزار امروز کند است — اگر تا فردا ننشست پیگیری شود.', true);
+  execute 'reset role';
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_c2, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  -- Trips `off_platform` and `contact`, and is left visible on purpose: the
+  -- flag is a signal for compliance, never a block on the conversation.
+  perform public.message_send(v_conv,
+    'اگر دیر شد می‌شود کارت به کارت مستقیم تسویه کنیم؟ تلگرام من 09121234567');
+  v_sup := public.conversation_for_support();
+  perform public.message_send(v_sup,
+    'سلام، رسید واریز تومانی من ثبت شده اما وضعیت سفارش عوض نشده.');
+  execute 'reset role';
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_op, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  perform public.message_send(public.conversation_for_support(),
+    'درخواست افزایش سقف روزانه کریدور یورو داریم. مدارک آماده است.');
+  execute 'reset role';
+
+  -- The segment is derived, never chosen, so a P2P trader is only in the P2P
+  -- queue if they actually have an offer. Give Nadia one *before* she writes,
+  -- rather than reclassifying her thread afterwards — the second would be the
+  -- platform lying to its own queue.
+  insert into public.p2p_offers (user_id, side, have_currency, want_currency,
+    amount_minor, rate_mode, rate_value, terms, status)
+  values (v_c3, 'have', 'TRY', 'IRT', 500000, 'market_offset', 0.5,
+    'Istanbul, cash pickup, weekdays', 'open');
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_c3, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  perform public.message_send(public.conversation_for_support(),
+    'How do I list an offer on the P2P board?');
+  execute 'reset role';
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_admin, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  perform public.support_set_state(v_sup, null, true);
+  execute 'reset role';
+
+  raise notice 'demo conversations seeded: % threads, % messages',
+    (select count(*) from public.conversations),
+    (select count(*) from public.messages);
+end $$;

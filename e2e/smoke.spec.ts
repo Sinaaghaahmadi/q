@@ -90,12 +90,14 @@ test("every authenticated route redirects a signed-out visitor to sign-in", asyn
     "/verify",
     "/accounts",
     "/office",
+    "/support",
     "/admin",
     "/admin/kyc",
     "/admin/exchanges",
     "/admin/orders",
     "/admin/audit",
     "/admin/settings",
+    "/admin/support",
   ]) {
     const response = await page.goto(path);
     expect(response?.status(), `${path} should not render for a stranger`).toBe(200);

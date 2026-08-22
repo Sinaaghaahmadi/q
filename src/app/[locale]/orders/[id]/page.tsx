@@ -4,6 +4,7 @@ import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { EmptyState } from "@/components/layout/empty-state";
+import { OrderChat } from "@/components/chat/order-chat";
 import { OrderActions } from "@/components/orders/order-actions";
 import { OrderTimeline } from "@/components/orders/order-timeline";
 import { Badge } from "@/components/ui/badge";
@@ -134,6 +135,14 @@ export default async function OrderDetailPage({
         <h2 className="text-sm font-semibold">{t("actions")}</h2>
         <OrderActions orderId={order.id} state={order.state} role={role ?? null} />
       </Card>
+
+      <OrderChat
+        orderId={order.id}
+        state={order.state}
+        role={role ?? null}
+        viewerId={session!.user.id}
+        locale={locale}
+      />
 
       <Card className="space-y-4 p-5">
         <h2 className="text-sm font-semibold">{t("timeline")}</h2>

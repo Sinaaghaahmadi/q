@@ -25,7 +25,8 @@
     "signin": "Sign in",
     "verify": "Verify",
     "office": "Office",
-    "admin": "Admin"
+    "admin": "Admin",
+    "support": "Support"
   },
   "footer": {
     "brand": "Asaex",
@@ -849,7 +850,8 @@
       "orders": "Orders",
       "kyc": "Identity",
       "settings": "Settings",
-      "audit": "Audit"
+      "audit": "Audit",
+      "support": "Support"
     },
     "unavailableTitle": "Not available in this environment",
     "unavailableBody": "This preview is not connected to a database.",
@@ -1032,6 +1034,62 @@
       "saveFailed": "Could not save. Try again.",
       "template": "Default office template",
       "templateBody": "Every new office starts from these values; differences are shown on that office's own page."
+    },
+    "support": {
+      "metaTitle": "Support inbox",
+      "title": "Support",
+      "subtitle": "Three separate queues: customers, P2P traders, exchange offices. Each with its own clock.",
+      "segment": {
+        "customer": "Customers",
+        "p2p": "P2P traders",
+        "office": "Exchange offices"
+      },
+      "status": {
+        "open": "Open",
+        "pending": "Pending",
+        "resolved": "Resolved",
+        "archived": "Archived"
+      },
+      "emptyQueue": "This queue is empty.",
+      "pickThread": "Pick a conversation from the list.",
+      "noMessages": "No messages",
+      "assignToMe": "Assign to me",
+      "assignedToYou": "Assigned to you",
+      "assigned": "Assigned",
+      "resolve": "Resolve"
     }
+  },
+  "chat": {
+    "orderTitle": "Conversation with the office",
+    "orderBody": "Ask before you commit. You and the exchange office both see this conversation.",
+    "notYet": "Until an office picks the order up there is nobody on the other side.",
+    "unavailable": "This conversation is not available.",
+    "empty": "Nothing has been said yet.",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "sending": "Sending…",
+    "someone": "Someone",
+    "system": "System",
+    "internalNote": "Internal note — the customer does not see this",
+    "asInternalNote": "As an internal note",
+    "offPlatformWarning": "Settlement always happens inside the platform; paying outside it loses the ledger and the dispute process.",
+    "flag": {
+      "off_platform": "Suggests settling off-platform",
+      "account_number": "Account number in the text",
+      "contact": "Contact details in the text"
+    },
+    "errors": {
+      "tooLong": "That message is longer than allowed.",
+      "notParticipant": "You are not part of this conversation.",
+      "failed": "Could not send. Try again."
+    }
+  },
+  "support": {
+    "metaTitle": "Support",
+    "title": "Support",
+    "subtitle": "Your message goes straight to the support queue. We answer within one business day.",
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "This preview is not connected to a database.",
+    "backHome": "Back to home"
   }
 }

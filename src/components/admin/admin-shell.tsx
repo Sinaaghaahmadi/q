@@ -2,6 +2,7 @@ import {
   Building2,
   FileClock,
   LayoutDashboard,
+  LifeBuoy,
   Receipt,
   ShieldCheck,
   SlidersHorizontal,
@@ -18,6 +19,7 @@ const SECTIONS = [
   { href: "/admin/exchanges", key: "exchanges", icon: Building2, need: "office.configure" },
   { href: "/admin/orders", key: "orders", icon: Receipt, need: "platform.oversee" },
   { href: "/admin/kyc", key: "kyc", icon: ShieldCheck, need: "kyc.review" },
+  { href: "/admin/support", key: "support", icon: LifeBuoy, need: "platform.oversee" },
   { href: "/admin/settings", key: "settings", icon: SlidersHorizontal, need: "platform.config" },
   { href: "/admin/audit", key: "audit", icon: FileClock, need: "platform.audit" },
 ] as const satisfies readonly {

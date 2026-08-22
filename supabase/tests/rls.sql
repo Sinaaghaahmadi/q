@@ -3,7 +3,7 @@
 -- do, and what the database refuses even when the caller is an administrator.
 
 begin;
-select plan(17);
+select plan(19);
 
 -- ── Policies and RLS ────────────────────────────────────────────────────────
 select policies_are(
@@ -123,6 +123,28 @@ select is_empty(
      where r->>'corridor' is null or (r->>'spread_bps')::int is null$$,
   'every corridor in the office template carries a spread'
 );
+
+-- ── A policy that compares an alias to itself (§15) ─────────────────────────
+-- 0005 wrote `where p.conversation_id = id` inside a subquery over
+-- `conversation_participants`, which has its own `id`. Postgres bound the
+-- unqualified name to the *inner* table and stored `p.conversation_id = p.id` —
+-- a foreign key compared to its own primary key, false for every row. The
+-- policy silently reduced to `is_platform_staff()` and every conversation was
+-- invisible to the people in it, which nothing noticed until Phase 5 gave them
+-- a reader. Self-comparison is never what a policy means.
+select is_empty(
+  $$select c.relname || '.' || p.polname
+      from pg_policy p join pg_class c on c.oid = p.polrelid
+      join pg_namespace n on n.oid = c.relnamespace
+     where n.nspname = 'public'
+       and (coalesce(pg_get_expr(p.polqual, p.polrelid), '') || ' ' ||
+            coalesce(pg_get_expr(p.polwithcheck, p.polrelid), ''))
+           ~ '\(([a-z_]+)\.([a-z_]+) = \1\.([a-z_]+)\)'$$,
+  'no policy compares a table alias to itself'
+);
+
+-- ── Conversations (§10) ─────────────────────────────────────────────────────
+select ok(row_security_active('public.conversations'), 'RLS is active on conversations');
 
 select * from finish();
 rollback;

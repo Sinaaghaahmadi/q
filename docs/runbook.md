@@ -203,8 +203,10 @@ Applies `supabase/seed/demo.sql`: two offices (one live, one draft), a
 compliance reviewer, three verified customers with destination accounts, and
 five orders spread across the state machine — including one refunded through
 the administrator's override, so the compensating entries are visible in the
-ledger. Idempotent; it does nothing if the demo offices already exist. Every
-person, licence and account in it is fictional.
+ledger. It also seeds conversations: a negotiate-then-transact exchange on the
+live order with an internal note and one flagged message, plus a thread in each
+of the three support queues. Idempotent; it does nothing if the demo offices
+already exist. Every person, licence and account in it is fictional.
 
 The same file is the Phase-4 acceptance run: it provisions through
 `admin_create_office` and drives every order through `order_advance`,
