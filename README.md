@@ -32,7 +32,9 @@ pnpm seed:demo                  # inspect the seeded dataset
 pnpm brand:assets               # regenerate logo suite / 3D coins / OG images
 ```
 
-**Live: <https://asaex.vercel.app>** — every push to the branch deploys on its own.
+**Live:** <https://asaex-git-claude-happy-bohr-4ibs9c-sinaaghaahmadis-projects.vercel.app>
+— the current branch. <https://asaex.vercel.app> is the production alias and
+tracks the default branch, so it only catches up when this PR merges.
 
 ## The surfaces
 

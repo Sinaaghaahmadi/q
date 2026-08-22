@@ -184,15 +184,30 @@ GitHub integration first.
 
 The app is installed, the project is linked, and the site is live:
 
-|            |                                                              |
-| ---------- | ------------------------------------------------------------ |
-| Live       | <https://asaex.vercel.app>                                   |
-| Project    | `asaex` (`prj_oT3pmwzeRFdeWni010ObvELPcasU`)                 |
-| Team       | `sinaaghaahmadis-projects` (`team_FtgssC1GVPrfrGWw6rAgmBm2`) |
-| Repository | `Sinaaghaahmadi/q`                                           |
+|                   |                                                                                  |
+| ----------------- | -------------------------------------------------------------------------------- |
+| Live (branch)     | <https://asaex-git-claude-happy-bohr-4ibs9c-sinaaghaahmadis-projects.vercel.app> |
+| Live (production) | <https://asaex.vercel.app> — tracks the default branch                           |
+| Project           | `asaex` (`prj_oT3pmwzeRFdeWni010ObvELPcasU`)                                     |
+| Team              | `sinaaghaahmadis-projects` (`team_FtgssC1GVPrfrGWw6rAgmBm2`)                     |
+| Repository        | `Sinaaghaahmadi/q`                                                               |
 
-Every push to the linked branch deploys on its own; merges to the default
-branch go to production.
+Every push to the linked branch deploys on its own — but as a _preview_. Only
+the project's production branch (the repository default) publishes to
+`asaex.vercel.app`, so while work sits on a feature branch the production alias
+keeps serving whatever was there before, and the branch alias is the one that is
+current. `list_deployments` makes it plain: exactly one deployment carries
+`target: "production"`.
+
+Two ways to tell them apart without guessing, both of which caught this:
+
+```bash
+# The branch alias resolves og:image against its own host; a stale production
+# build still resolves it against localhost.
+curl -s https://asaex.vercel.app/ | grep -o 'og:image" content="[^"]*"'
+```
+
+Merging the pull request is what moves production forward.
 
 One quirk worth writing down: the Vercel API answers reads for this project
 only when the scope is given as the **username** (`sinaaghaahmadi`), not as the
