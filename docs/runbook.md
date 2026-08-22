@@ -67,6 +67,46 @@ in production only, which is exactly the failure a test has to catch.
 Until step 3 the phone path reports `sms_channel_unavailable` and the UI says
 so plainly; email sign-in works throughout.
 
+## Bootstrapping the first account
+
+Nothing works from a cold start: the first person to sign in is an unverified
+customer, and KYC approval needs _two_ reviewers. Sign in once at
+<https://asaex.vercel.app/signin> — by email, since the SMS gateway is not wired
+yet — then, in the Supabase SQL editor:
+
+```sql
+-- Give yourself every platform role, so /admin/kyc and the platform
+-- transitions open up.
+insert into public.memberships (user_id, role, scope_type)
+select id, r, 'platform'
+from auth.users, unnest(array[
+  'platform_support','platform_compliance','platform_admin','platform_superadmin'
+]::public.app_role[]) r
+where email = 'you@example.com';
+
+-- Approve your own identity so orders can be submitted. This is the one step
+-- that deliberately cannot be done through the UI: kyc_decide enforces
+-- four-eyes and refuses to let one person do both halves.
+update public.profiles set kyc_status = 'approved'
+where id = (select id from auth.users where email = 'you@example.com');
+```
+
+To exercise the office side as well, create an office and join it:
+
+```sql
+insert into public.exchange_offices (slug, legal_name_fa, legal_name_en, license_no, status)
+values ('demo', 'صرافی نمونه', 'Demo Exchange', 'DEMO-1', 'active');
+
+insert into public.memberships (user_id, role, scope_type, scope_id)
+select u.id, 'office_owner', 'office', e.id
+from auth.users u, public.exchange_offices e
+where u.email = 'you@example.com' and e.slug = 'demo';
+```
+
+One account holding both sides is fine for a walkthrough and wrong for
+production — `order_actor_role` resolves platform staff first, so you will act
+as the platform on every order rather than as the customer or the office.
+
 ## Promoting a KYC reviewer
 
 Reviewers are `memberships` rows, not a flag on the profile:
