@@ -2,7 +2,7 @@
   "name": "asaex",
   "version": "0.1.0",
   "private": true,
-  "description": "Asaex (\u0635\u0631\u0627\u0641\u06cc \u0622\u0633\u0627) \u2014 currency exchange & remittance marketplace. Customer PWA + Exchange-Office Panel + Super-Admin Panel.",
+  "description": "Asaex (صرافی آسا) — currency exchange & remittance marketplace. Customer PWA + Exchange-Office Panel + Super-Admin Panel.",
   "engines": {
     "node": ">=20.9"
   },
@@ -46,6 +46,7 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",

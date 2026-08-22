@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Segmented } from "@/components/ui/segmented";
 import { useRouter } from "@/i18n/navigation";
 import { toLatinDigits, toPersianDigits, type AppLocale } from "@/lib/money/format";
 import { cn } from "@/lib/utils";
@@ -161,18 +161,32 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
 
       {step === "identify" ? (
         <div className="mt-6 space-y-4">
-          <Tabs value={channel} onValueChange={(v) => setChannel(v as Channel)}>
-            <TabsList className="w-full">
-              <TabsTrigger value="phone" className="flex-1 gap-1.5">
-                <Smartphone className="size-4" />
-                {t("channel.phone")}
-              </TabsTrigger>
-              <TabsTrigger value="email" className="flex-1 gap-1.5">
-                <Mail className="size-4" />
-                {t("channel.email")}
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <Segmented<Channel>
+            className="w-full"
+            label={t("channelLabel")}
+            value={channel}
+            onChange={setChannel}
+            options={[
+              {
+                value: "phone",
+                label: (
+                  <>
+                    <Smartphone className="size-4" aria-hidden />
+                    {t("channel.phone")}
+                  </>
+                ),
+              },
+              {
+                value: "email",
+                label: (
+                  <>
+                    <Mail className="size-4" aria-hidden />
+                    {t("channel.email")}
+                  </>
+                ),
+              },
+            ]}
+          />
 
           {channel === "phone" ? (
             <div>

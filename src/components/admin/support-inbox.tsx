@@ -64,12 +64,12 @@ export function SupportInbox({
             aria-current={s.key === activeSegment ? "page" : undefined}
             className={`flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
               s.key === activeSegment
-                ? "bg-brand-600 text-white"
+                ? "bg-brand-solid text-white"
                 : "bg-ink-300/25 text-ink-600 hover:text-ink-900"
             }`}
           >
             {t(`segment.${s.key}`)}
-            <span className="tabular-nums opacity-70">{s.count}</span>
+            <span className="tabular-nums">{s.count}</span>
           </Link>
         ))}
       </div>

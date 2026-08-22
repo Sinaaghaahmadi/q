@@ -18,6 +18,19 @@
   --warn: #b7791f;
   --info: #1d6fa5;
 
+  /* A solid accent that carries white text at 4.5:1. `--brand-600` cannot do
+     both jobs in dark mode: light enough to read *as* text on the canvas is
+     too light to sit *under* white text (§17.19). */
+  --brand-solid: #0b6e4f;
+  --danger-solid: #c0392b;
+  /* Status colours darkened for small text on their own 12% tint. The base
+     tokens stay as they are — they are correct for chart strokes and arrows,
+     where 3:1 is the bar. */
+  --up-ink: #0f7a4e;
+  --down-ink: #a92e22;
+  --warn-ink: #8a5810;
+  --info-ink: #175a86;
+
   --font-app: var(--font-inter), var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -34,6 +47,17 @@
   --down: #e5675a;
   --warn: #e0a33e;
   --info: #4ba3dc;
+
+  --brand-solid: #0d7d59;
+  /* The dark-theme `--down` is tuned to read *as* text on a dark canvas, which
+     leaves it too light to sit under white. A destructive button gets its own. */
+  --danger-solid: #b5453a;
+  /* On a dark surface the base status colours already clear 4.5:1 on their own
+     tint, so the ink tokens collapse onto them. */
+  --up-ink: var(--up);
+  --down-ink: var(--down);
+  --warn-ink: var(--warn);
+  --info-ink: var(--info);
 }
 
 html[lang="fa"] {
@@ -53,6 +77,12 @@ html[lang="fa"] {
   --color-down: var(--down);
   --color-warn: var(--warn);
   --color-info: var(--info);
+  --color-brand-solid: var(--brand-solid);
+  --color-danger-solid: var(--danger-solid);
+  --color-up-ink: var(--up-ink);
+  --color-down-ink: var(--down-ink);
+  --color-warn-ink: var(--warn-ink);
+  --color-info-ink: var(--info-ink);
 
   --font-sans: var(--font-app);
 

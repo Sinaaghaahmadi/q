@@ -408,6 +408,16 @@ export type Reputation = {
 
 export type Currency = { code: string; decimals: number; created_at: string };
 
+export type Referral = {
+  id: string;
+  referrer_id: string;
+  referee_id: string;
+  code: string;
+  /** Set when the referee's first order completes (§17.9), never on signup. */
+  rewarded_at: string | null;
+  created_at: string;
+};
+
 /** Row + the Insert/Update shapes PostgREST accepts for it. */
 type Table<Row, Required extends keyof Row = never> = {
   Row: Row;
@@ -467,6 +477,7 @@ export type Database = {
       p2p_trades: Table<P2pTrade>;
       reputation: Table<Reputation, "user_id">;
       currencies: Table<Currency, "code" | "decimals">;
+      referrals: Table<Referral, "referrer_id" | "referee_id" | "code">;
     };
     Views: Record<string, never>;
     Functions: {
@@ -581,6 +592,22 @@ export type Database = {
       conversation_for_trade: {
         Args: { p_trade: string };
         Returns: string;
+      };
+      order_public_status: {
+        Args: { p_ref: string };
+        Returns: Json;
+      };
+      customer_tier: {
+        Args: { p_user?: string | null };
+        Returns: Json;
+      };
+      customer_tiers: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      referral_claim: {
+        Args: { p_code: string };
+        Returns: boolean;
       };
     };
     Enums: { app_role: AppRole; kyc_status: KycStatus; order_state: OrderState };

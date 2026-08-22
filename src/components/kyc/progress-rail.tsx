@@ -32,7 +32,7 @@ export function ProgressRail({
               <span
                 className={cn(
                   "flex size-7 shrink-0 items-center justify-center rounded-full border-2 text-xs font-semibold transition-colors",
-                  done && "border-brand-600 bg-brand-600 text-white",
+                  done && "border-brand-600 bg-brand-solid text-white",
                   active && "border-brand-600 bg-brand-50 text-brand-700 dark:text-brand-600",
                   !done && !active && "border-ink-300 text-ink-600",
                 )}

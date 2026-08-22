@@ -28,7 +28,7 @@ export function ChartsDemo() {
           <p className="text-sm font-medium text-ink-600">{t("history")}</p>
           <ChangeChip pct={1.24} locale={locale} />
         </div>
-        <HistoryChart points={series} height={200} />
+        <HistoryChart points={series} height={200} code="USD" />
       </Card>
       <Card className="space-y-5 p-5">
         <div>

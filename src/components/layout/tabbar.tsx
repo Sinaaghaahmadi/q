@@ -50,7 +50,7 @@ export function TabBar() {
           <Link
             href="/transfer/new"
             aria-label={t("startTransfer")}
-            className="-mt-7 flex size-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-e2 transition-transform hover:bg-brand-700 active:scale-95"
+            className="-mt-7 flex size-14 items-center justify-center rounded-full bg-brand-solid text-white shadow-e2 transition-transform hover:bg-brand-700 active:scale-95"
           >
             <ArrowLeftRight className="size-6" />
           </Link>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { ProfileView } from "@/components/auth/profile-view";
+import { TierAndReferral } from "@/components/auth/tier-referral";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
@@ -42,18 +43,27 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
   }
 
   const supabase = await createClient();
-  const { data: events } = await supabase
-    .from("login_events")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(10);
+  const [{ data: events }, { data: tier }, { data: referrals }] = await Promise.all([
+    supabase.from("login_events").select("*").order("created_at", { ascending: false }).limit(10),
+    supabase.rpc("customer_tier", {}),
+    supabase.from("referrals").select("*"),
+  ]);
+
+  const mine = (referrals ?? []).filter((r) => r.referrer_id === session!.user.id);
 
   return (
-    <div className="py-4">
+    <div className="space-y-5 py-4">
       <ProfileView
         profile={session?.profile ?? null}
         email={session?.user.email ?? null}
         events={events ?? []}
+      />
+      <TierAndReferral
+        tier={tier ?? null}
+        referralCode={session?.profile?.referral_code ?? null}
+        invited={mine.length}
+        rewarded={mine.filter((r) => r.rewarded_at !== null).length}
+        alreadyReferred={(referrals ?? []).some((r) => r.referee_id === session!.user.id)}
       />
     </div>
   );

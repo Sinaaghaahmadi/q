@@ -94,11 +94,15 @@ export function OfferBoard({
                           </span>
                         </p>
                       </div>
-                      <Badge variant="brand">
-                        {formatNumber(Number(offer.rate_value), locale, {
-                          maximumFractionDigits: 0,
+                      {/* One label, at full strength: dimming the unit to 70%
+                          dropped it under 4.5:1 in both themes (§17.19). */}
+                      <Badge variant="brand" className="whitespace-nowrap">
+                        {t("rateBadge", {
+                          rate: formatNumber(Number(offer.rate_value), locale, {
+                            maximumFractionDigits: 0,
+                          }),
+                          code: foreign,
                         })}
-                        <span className="opacity-70">{t("perUnit", { code: foreign })}</span>
                       </Badge>
                     </div>
 
@@ -160,7 +164,7 @@ function FilterChip({
       onClick={onClick}
       aria-pressed={active}
       className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-        active ? "bg-brand-600 text-white" : "bg-ink-300/25 text-ink-600 hover:text-ink-900"
+        active ? "bg-brand-solid text-white" : "bg-ink-300/25 text-ink-600 hover:text-ink-900"
       }`}
     >
       {label}

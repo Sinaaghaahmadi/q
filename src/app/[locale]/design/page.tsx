@@ -100,9 +100,11 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
             <LogoLockup size={32} />
             <p className="text-xs text-ink-600">{t("brand.lockup")}</p>
           </Card>
-          <div className="flex flex-col items-center justify-center gap-5 rounded-2xl bg-brand-600 p-8 text-white shadow-e1">
+          <div className="flex flex-col items-center justify-center gap-5 rounded-2xl bg-brand-solid p-8 text-white shadow-e1">
             <LogoMark size={48} />
-            <p className="text-xs text-white/80">{t("brand.mono")}</p>
+            {/* Full-strength white: a caption at 80% opacity on the accent drops
+                below 4.5:1 in dark mode, and a label is text like any other. */}
+            <p className="text-xs text-white">{t("brand.mono")}</p>
           </div>
         </div>
         <ul className="grid gap-2 text-sm text-ink-600 sm:grid-cols-2">

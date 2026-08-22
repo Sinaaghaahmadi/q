@@ -175,7 +175,8 @@
     "alertTitle": "Price alerts",
     "alertBody": "Once accounts arrive you can set a threshold per currency and get notified by SMS, email, or app push.",
     "high24h": "24h high",
-    "low24h": "24h low"
+    "low24h": "24h low",
+    "chartSummary": "{code} over the last {days} days, from {from} to {to} Toman."
   },
   "transfer": {
     "metaTitle": "New transfer",
@@ -384,7 +385,29 @@
       }
     },
     "goAccounts": "Manage accounts",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "rewards": {
+      "tierTitle": "Your tier",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum"
+      },
+      "feeIs": "Platform fee {bps}%",
+      "toNext": "{amount} Toman more to reach {tier}",
+      "topTier": "You are at the top tier.",
+      "volume": "Completed volume: {amount} Toman",
+      "referralTitle": "Invite a friend",
+      "referralBody": "The reward lands when your friend's first transfer completes — not when they sign up.",
+      "copy": "Copy",
+      "copied": "Copied",
+      "invitedCount": "{invited} invited · {rewarded} rewarded",
+      "haveACode": "Have a code?",
+      "apply": "Apply",
+      "claimOk": "Code applied.",
+      "claimRefused": "That code was not accepted — you may already have one, or already completed a transfer."
+    }
   },
   "offline": {
     "metaTitle": "Offline",
@@ -607,7 +630,8 @@
       "sendFailed": "The code didn't send. Try again in a moment.",
       "network": "Couldn't reach us. Check your connection and try again.",
       "invalidCode": "That code is wrong or has expired — request a fresh one."
-    }
+    },
+    "channelLabel": "Sign-in method"
   },
   "kyc": {
     "metaTitle": "Verification",
@@ -1227,6 +1251,35 @@
       "raiseDispute": "Raise a dispute",
       "reasonRequired": "A written reason of at least 8 characters is required.",
       "failed": "Could not complete. Try again."
+    },
+    "rateBadge": "{rate} per {code}"
+  },
+  "track": {
+    "metaTitle": "Tracking {ref}",
+    "arriving": "Arriving for the recipient",
+    "milestone": {
+      "accepted": "The exchange office accepted it",
+      "funded": "Toman is held by the office",
+      "sent": "The foreign transfer was sent",
+      "done": "Receipt confirmed and settled"
+    },
+    "handledBy": "Handled by {office}.",
+    "dueBy": "Committed by {date}",
+    "privacyNote": "This page shows status only — no names, no account numbers, no fees.",
+    "cta": "Want to send one yourself?",
+    "ctaLink": "See Asaex",
+    "notFoundTitle": "No such transfer",
+    "notFoundBody": "Check the reference; it looks like ASA-XXXXXX.",
+    "throttledTitle": "Try again shortly",
+    "throttledBody": "There are a lot of tracking requests right now.",
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "This preview is not connected to a database.",
+    "backHome": "Back to home",
+    "share": {
+      "title": "Tracking for the recipient",
+      "body": "Send this link to whoever is receiving. They see the status without an account, and it carries nobody's name or account number.",
+      "copy": "Copy",
+      "copied": "Copied"
     }
   }
 }

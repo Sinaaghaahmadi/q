@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { formatDate, formatRate, type AppLocale } from "@/lib/money/format";
 import type { HistoryPoint } from "@/lib/rates/types";
@@ -10,6 +10,8 @@ interface HistoryChartProps {
   points: HistoryPoint[];
   height?: number;
   className?: string;
+  /** Currency code, so the chart can describe itself to a screen reader. */
+  code?: string;
 }
 
 const W = 560;
@@ -21,8 +23,9 @@ const PAD_Y = 12;
  * crosshair + tooltip on hover, min/max in muted ink. Value text always wears
  * ink tokens, never the series color. Time flows left→right in both locales.
  */
-export function HistoryChart({ points, height = 220, className }: HistoryChartProps) {
+export function HistoryChart({ points, height = 220, className, code }: HistoryChartProps) {
   const locale = useLocale() as AppLocale;
+  const t = useTranslations("ratesPage");
   const id = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const [hover, setHover] = React.useState<number | null>(null);
   const svgRef = React.useRef<SVGSVGElement>(null);
@@ -63,6 +66,12 @@ export function HistoryChart({ points, height = 220, className }: HistoryChartPr
         onPointerMove={onMove}
         onPointerLeave={() => setHover(null)}
         role="img"
+        aria-label={t("chartSummary", {
+          code: code ?? "",
+          days: points.length,
+          from: formatRate(first?.c ?? 0, locale),
+          to: formatRate(last?.c ?? 0, locale),
+        })}
       >
         <defs>
           <linearGradient id={`hc-${id}`} x1="0" y1="0" x2="0" y2="1">

@@ -123,7 +123,7 @@ export function Conversation({
                     message.is_internal_note
                       ? "border border-warn/40 bg-warn/10"
                       : mine
-                        ? "bg-brand-600 text-white"
+                        ? "bg-brand-solid text-white"
                         : "bg-ink-300/25"
                   }`}
                 >

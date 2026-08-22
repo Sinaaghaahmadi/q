@@ -210,7 +210,7 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
               </div>
 
               {detailPoints.length > 1 ? (
-                <HistoryChart points={detailPoints} />
+                <HistoryChart points={detailPoints} code={detail ?? undefined} />
               ) : (
                 <Skeleton className="h-52 w-full" />
               )}

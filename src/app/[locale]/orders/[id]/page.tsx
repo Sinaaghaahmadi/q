@@ -5,6 +5,7 @@ import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OrderChat } from "@/components/chat/order-chat";
+import { ShareStatus } from "@/components/orders/share-status";
 import { OrderActions } from "@/components/orders/order-actions";
 import { OrderTimeline } from "@/components/orders/order-timeline";
 import { Badge } from "@/components/ui/badge";
@@ -135,6 +136,8 @@ export default async function OrderDetailPage({
         <h2 className="text-sm font-semibold">{t("actions")}</h2>
         <OrderActions orderId={order.id} state={order.state} role={role ?? null} />
       </Card>
+
+      <ShareStatus publicRef={order.public_ref} />
 
       <OrderChat
         orderId={order.id}

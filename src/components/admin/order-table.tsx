@@ -234,7 +234,7 @@ function FilterChip({ href, label, active }: { href: string; label: string; acti
       href={href}
       aria-current={active ? "page" : undefined}
       className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-        active ? "bg-brand-600 text-white" : "bg-ink-300/25 text-ink-600 hover:text-ink-900"
+        active ? "bg-brand-solid text-white" : "bg-ink-300/25 text-ink-600 hover:text-ink-900"
       }`}
     >
       {label}

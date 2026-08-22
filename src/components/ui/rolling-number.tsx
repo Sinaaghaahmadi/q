@@ -34,7 +34,12 @@ export function RollingNumber({ value, className, direction }: RollingNumberProp
   }
 
   return (
-    <span className={cn("num inline-flex overflow-hidden", className)} dir="ltr" aria-label={value}>
+    <span className={cn("num inline-flex overflow-hidden", className)} dir="ltr">
+      {/* A screen reader should hear the figure once, not a stream of digits.
+          `aria-label` on a bare span is prohibited (it has no role to name), so
+          the readable copy is a visually-hidden sibling and the odometer itself
+          is hidden from the tree. */}
+      <span className="sr-only">{value}</span>
       {chars.map((ch, i) => {
         const changed = prev[i] !== ch;
         return (
