@@ -88,8 +88,15 @@ limiting, four-eyes review). **All of them are applied** to the EU project
 behind `NEXT_PUBLIC_SUPABASE_URL`. Apply locally with `supabase db reset`;
 the pgTAP skeleton in `supabase/tests/rls.sql` runs via `supabase test db`.
 
-Re-run the security linter after any schema change — it caught every finding
-migration 0007 fixes.
+Re-run the security linter after any schema change, and believe it when it
+repeats itself: it kept flagging functions that migration 0007 had "revoked",
+and it was right — a `revoke ... from anon, authenticated` never removes the
+`PUBLIC` grant Postgres creates with every function, so nothing changed until
+0011 revoked from `PUBLIC` (ADR 0015). Assert the effective privilege with
+`has_function_privilege`, not the ACL text; `supabase/tests/rls.sql` does.
+
+Any migration that adds a function must revoke it from `PUBLIC` too — new
+functions arrive with that grant.
 
 The app holds **no service-role key** (ADR 0010): privileged work goes through
 `SECURITY DEFINER` functions that check the caller's role themselves.
