@@ -196,6 +196,8 @@ export type Order = {
 
 export type OrderEvent = {
   id: string;
+  /** Insertion order. created_at is the transaction clock and repeats. */
+  seq: number;
   order_id: string;
   from_state: OrderState | null;
   to_state: OrderState;

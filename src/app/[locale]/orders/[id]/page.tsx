@@ -62,7 +62,10 @@ export default async function OrderDetailPage({
   }
 
   const [{ data: events }, { data: role }, { data: office }] = await Promise.all([
-    supabase.from("order_events").select("*").eq("order_id", id).order("created_at"),
+    // Insertion order, not created_at: events written in one transaction
+    // share a timestamp (submitting also routes), and a timeline that can
+    // render them backwards is worse than no timeline.
+    supabase.from("order_events").select("*").eq("order_id", id).order("seq"),
     supabase.rpc("order_actor_role", { p_order: id }),
     order.office_id
       ? supabase.from("exchange_offices").select("*").eq("id", order.office_id).maybeSingle()
