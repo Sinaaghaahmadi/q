@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Mail, Smartphone } from "lucide-react";
+import { ArrowRight, Mail, ShieldCheck, Smartphone } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { OtpScene, SuccessScene } from "@/components/brand/scenes";
@@ -15,7 +15,7 @@ import { useRouter } from "@/i18n/navigation";
 import { toLatinDigits, toPersianDigits, type AppLocale } from "@/lib/money/format";
 import { cn } from "@/lib/utils";
 
-type Channel = "phone" | "email";
+type Channel = "phone" | "email" | "staff";
 type Step = "identify" | "code" | "sent" | "done";
 
 const CODE_LENGTH = 6;
@@ -32,6 +32,7 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
   const [phone, setPhone] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [code, setCode] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [busy, setBusy] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [cooldown, setCooldown] = React.useState(0);
@@ -85,6 +86,36 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
     }
   }
 
+  /** Staff only — the route refuses anyone without a `memberships` row. */
+  async function submitPassword() {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/auth/password", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
+      const payload = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setError(
+          payload.error === "not_staff"
+            ? t("errors.notStaff")
+            : payload.error === "auth_unavailable"
+              ? t("errors.authUnavailable")
+              : t("errors.invalidCredentials"),
+        );
+        return;
+      }
+      setStep("done");
+      setTimeout(() => router.push(nextPath), 900);
+    } catch {
+      setError(t("errors.network"));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function submitCode() {
     setBusy(true);
     setError(null);
@@ -111,6 +142,7 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
   const ss = String(cooldown % 60).padStart(2, "0");
   const clock = locale === "fa" ? toPersianDigits(`${mm}:${ss}`) : `${mm}:${ss}`;
 
+  const emailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
   const identifierValid =
     channel === "phone"
       ? /^\d{10,13}$/.test(
@@ -118,7 +150,9 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
             .replace(/^\+?98/, "")
             .replace(/^0/, ""),
         )
-      : /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
+      : channel === "staff"
+        ? emailValid && password.length >= 8
+        : emailValid;
 
   return (
     <Card className="mx-auto w-full max-w-md overflow-hidden p-6 shadow-e2 sm:p-8">
@@ -185,6 +219,15 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
                   </>
                 ),
               },
+              {
+                value: "staff",
+                label: (
+                  <>
+                    <ShieldCheck className="size-4" aria-hidden />
+                    {t("channel.staff")}
+                  </>
+                ),
+              },
             ]}
           />
 
@@ -206,21 +249,45 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
               <p className="mt-1.5 text-xs text-ink-600">{t("phoneHint")}</p>
             </div>
           ) : (
-            <div>
-              <label htmlFor="signin-email" className="text-sm font-medium">
-                {t("emailLabel")}
-              </label>
-              <Input
-                id="signin-email"
-                dir="ltr"
-                type="email"
-                autoComplete="email"
-                placeholder="you@example.com"
-                className="mt-2 text-start"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <p className="mt-1.5 text-xs text-ink-600">{t("emailHint")}</p>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="signin-email" className="text-sm font-medium">
+                  {t("emailLabel")}
+                </label>
+                <Input
+                  id="signin-email"
+                  dir="ltr"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className="mt-2 text-start"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <p className="mt-1.5 text-xs text-ink-600">
+                  {channel === "staff" ? t("staffHint") : t("emailHint")}
+                </p>
+              </div>
+
+              {channel === "staff" ? (
+                <div>
+                  <label htmlFor="signin-password" className="text-sm font-medium">
+                    {t("passwordLabel")}
+                  </label>
+                  <Input
+                    id="signin-password"
+                    dir="ltr"
+                    type="password"
+                    autoComplete="current-password"
+                    className="mt-2 text-start"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && identifierValid && !busy) void submitPassword();
+                    }}
+                  />
+                </div>
+              ) : null}
             </div>
           )}
 
@@ -230,9 +297,9 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
             size="lg"
             className="w-full"
             disabled={!identifierValid || busy}
-            onClick={requestCode}
+            onClick={channel === "staff" ? submitPassword : requestCode}
           >
-            {busy ? t("sending") : t("cta")}
+            {busy ? t("sending") : channel === "staff" ? t("staffCta") : t("cta")}
             <ArrowRight className="size-4 rtl:-scale-x-100" />
           </Button>
           <p className="text-center text-xs leading-relaxed text-ink-600">{t("legalNote")}</p>

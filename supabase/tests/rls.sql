@@ -3,7 +3,7 @@
 -- do, and what the database refuses even when the caller is an administrator.
 
 begin;
-select plan(23);
+select plan(24);
 
 -- ── Policies and RLS ────────────────────────────────────────────────────────
 select policies_are(
@@ -170,6 +170,25 @@ select is_empty(
                         'RUB','AFN','PKR','TMT','OMR','KWD','QAR','SAR','CAD','CNY'])
     except select code from public.currencies$$,
   'every catalog currency has a scale'
+);
+
+-- ── Seeding auth.users by hand (§17.21) ─────────────────────────────────────
+-- GoTrue scans these columns into Go strings, so one NULL breaks *every* auth
+-- request with "Database error querying schema" — not just that user's. Writing
+-- `auth.users` directly is the only way to seed without a service-role key
+-- (ADR 0010), and this is the price of it. The demo seed writes '' explicitly;
+-- this catches anyone who forgets.
+select is_empty(
+  $$select u.email::text from auth.users u
+     where u.confirmation_token is null
+        or u.recovery_token is null
+        or u.email_change is null
+        or u.email_change_token_new is null
+        or u.email_change_token_current is null
+        or u.phone_change is null
+        or u.phone_change_token is null
+        or u.reauthentication_token is null$$,
+  'no auth.users row has a NULL token column'
 );
 
 select * from finish();

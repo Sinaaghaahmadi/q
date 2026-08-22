@@ -48,22 +48,34 @@ begin
   end if;
 
   -- ── People ────────────────────────────────────────────────────────────────
+  -- The token columns must be '' and never NULL. GoTrue scans them into Go
+  -- strings, so a single NULL makes *every* auth request fail with "Database
+  -- error querying schema" — not just this user's. Writing `auth.users`
+  -- directly is the only way to seed without a service-role key, and this is
+  -- the price of it.
   insert into auth.users (
     instance_id, id, aud, role, email, phone, encrypted_password,
     email_confirmed_at, phone_confirmed_at, raw_app_meta_data, raw_user_meta_data,
+    confirmation_token, recovery_token, email_change, email_change_token_new,
+    email_change_token_current, phone_change, phone_change_token, reauthentication_token,
     created_at, updated_at
   )
   select '00000000-0000-0000-0000-000000000000', u.id, 'authenticated', 'authenticated',
-         u.email, u.phone, '', now(), now(),
-         '{"provider":"email","providers":["email"]}'::jsonb, '{}'::jsonb, now(), now()
+         u.email, u.phone,
+         -- Staff sign in with a password; customers never do (§ /api/auth/password).
+         case when u.staff then crypt('AsaDemo!1404', gen_salt('bf')) else '' end,
+         now(), now(),
+         '{"provider":"email","providers":["email"]}'::jsonb, '{}'::jsonb,
+         '', '', '', '', '', '', '', '',
+         now(), now()
   from (values
-    (v_admin,      'admin@asaex.demo',      '+989120000001'),
-    (v_compliance, 'compliance@asaex.demo', '+989120000002'),
-    (v_operator,   'operator@asaex.demo',   '+989120000003'),
-    (v_c1,         'sara@asaex.demo',       '+989120000101'),
-    (v_c2,         'omid@asaex.demo',       '+989120000102'),
-    (v_c3,         'nadia@asaex.demo',      '+989120000103')
-  ) as u(id, email, phone)
+    (v_admin,      'admin@asaex.demo',      '+989120000001', true),
+    (v_compliance, 'compliance@asaex.demo', '+989120000002', true),
+    (v_operator,   'operator@asaex.demo',   '+989120000003', true),
+    (v_c1,         'sara@asaex.demo',       '+989120000101', false),
+    (v_c2,         'omid@asaex.demo',       '+989120000102', false),
+    (v_c3,         'nadia@asaex.demo',      '+989120000103', false)
+  ) as u(id, email, phone, staff)
   on conflict (id) do nothing;
 
   update public.profiles p set
@@ -125,7 +137,8 @@ begin
 
   execute 'reset role';
   insert into public.memberships (user_id, role, scope_type, scope_id, created_by)
-  values (v_operator, 'office_owner', 'office', v_office, v_admin)
+  select v_operator, r, 'office', v_office, v_admin
+    from unnest(array['office_owner','office_operator','office_finance']::public.app_role[]) r
   on conflict do nothing;
 
   -- ── Destination accounts ──────────────────────────────────────────────────

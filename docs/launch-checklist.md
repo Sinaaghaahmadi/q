@@ -7,7 +7,11 @@ blocks what, not by effort. Everything unticked is deliberately unticked — see
 ## Blocking — do not go live without these
 
 - [ ] **TOTP 2FA for every staff account** (§15). Platform and office roles can
-      move money and currently sign in exactly like a customer.
+      move money and currently sign in with email and password alone.
+- [ ] **Rotate the demo staff passwords.** `AsaDemo!1404` is in the repository,
+      in `docs/runbook.md` and in `supabase/seed/demo.sql`. Every account in
+      `*@asaex.demo` must be removed or re-credentialled before the project
+      takes real traffic.
 - [ ] **An independent penetration test.** The review in
       `docs/security-review.md` is white-box, by the author of the code.
 - [ ] **Sanctions screening wired.** `sanctions_hits` is a table with nothing

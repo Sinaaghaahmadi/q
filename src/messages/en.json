@@ -606,7 +606,8 @@
     "doneBody": "Taking you to the next step…",
     "channel": {
       "phone": "Mobile",
-      "email": "Email"
+      "email": "Email",
+      "staff": "Staff"
     },
     "phoneLabel": "Mobile number",
     "phoneHint": "Start with 09, or write it as +98.",
@@ -634,9 +635,14 @@
       "authUnavailable": "Sign-in isn't configured on this environment.",
       "sendFailed": "The code didn't send. Try again in a moment.",
       "network": "Couldn't reach us. Check your connection and try again.",
-      "invalidCode": "That code is wrong or has expired — request a fresh one."
+      "invalidCode": "That code is wrong or has expired — request a fresh one.",
+      "notStaff": "That account has no panel access.",
+      "invalidCredentials": "That email and password do not match."
     },
-    "channelLabel": "Sign-in method"
+    "channelLabel": "Sign-in method",
+    "staffHint": "Your work address at the platform or the exchange office.",
+    "passwordLabel": "Password",
+    "staffCta": "Open the panel"
   },
   "kyc": {
     "metaTitle": "Verification",

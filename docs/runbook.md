@@ -67,6 +67,30 @@ in production only, which is exactly the failure a test has to catch.
 Until step 3 the phone path reports `sms_channel_unavailable` and the UI says
 so plainly; email sign-in works throughout.
 
+## Signing in to the panels
+
+Staff — platform and exchange-office alike — sign in with **email and password**
+on the `کارکنان` / `Staff` tab of `/signin`. Customers never do: they get a
+one-time code, because a remittance app has no business asking someone to invent
+a password. `/api/auth/password` refuses any account without a `memberships`
+row, so the channel cannot become a general customer login by accident.
+
+The demo accounts, all with the password `AsaDemo!1404`:
+
+| Account                 | Opens        | Roles                                                               |
+| ----------------------- | ------------ | ------------------------------------------------------------------- |
+| `admin@asaex.demo`      | `/admin`     | `platform_admin`, `platform_superadmin`                             |
+| `compliance@asaex.demo` | `/admin/kyc` | `platform_compliance`                                               |
+| `operator@asaex.demo`   | `/office`    | `office_owner`, `office_operator`, `office_finance` at `asa-tehran` |
+
+**These are demo credentials and must be rotated before production** — they are
+in this file, in the repository, and in the seed. `docs/launch-checklist.md`
+blocks go-live on rotating them and on adding TOTP (§15).
+
+Supabase's built-in mailer is rate-limited to a couple of messages an hour, so
+the email one-time code is not a reliable way in during a demo. That is the
+whole reason the password channel exists.
+
 ## Bootstrapping the first account
 
 Nothing works from a cold start: the first person to sign in is an unverified
