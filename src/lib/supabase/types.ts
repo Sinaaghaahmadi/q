@@ -611,6 +611,10 @@ export type Database = {
         Args: Record<string, never>;
         Returns: Json;
       };
+      office_step: {
+        Args: { p_order: string; p_step: string; p_reason?: string | null };
+        Returns: OrderState;
+      };
       referral_claim: {
         Args: { p_code: string };
         Returns: boolean;

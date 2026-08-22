@@ -888,7 +888,12 @@
       "settings": "Settings",
       "audit": "Audit",
       "support": "Support",
-      "p2p": "P2P"
+      "p2p": "P2P",
+      "users": "Customers",
+      "compliance": "Compliance",
+      "finance": "Finance",
+      "rates": "Rates",
+      "content": "Content"
     },
     "unavailableTitle": "Not available in this environment",
     "unavailableBody": "This preview is not connected to a database.",
@@ -1118,6 +1123,13 @@
         "cancelled": "Cancelled",
         "removed": "Removed"
       }
+    },
+    "group": {
+      "overview": "Overview",
+      "operations": "Operations",
+      "people": "People & compliance",
+      "money": "Money",
+      "platform": "Platform"
     }
   },
   "chat": {
@@ -1292,5 +1304,73 @@
       "copy": "Copy",
       "copied": "Copied"
     }
+  },
+  "officePanel": {
+    "metaTitle": "Today's work",
+    "title": "Today's work",
+    "subtitle": "One card, one job. Press the green button to do the next step.",
+    "navLabel": "Office sections",
+    "nav": {
+      "today": "Today",
+      "requests": "Requests",
+      "chat": "Messages",
+      "accounts": "Accounts",
+      "liquidity": "Balances",
+      "rates": "Rates",
+      "customers": "Customers",
+      "team": "Team",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "status": {
+      "draft": "Not live yet",
+      "active": "Active",
+      "suspended": "Suspended",
+      "archived": "Archived"
+    },
+    "unknownOffice": "Exchange office",
+    "allClear": "Nothing left to do",
+    "allClearBody": "Any new request will appear here.",
+    "aCustomer": "a customer",
+    "beat": "Step {n} of 4",
+    "working": "One moment…",
+    "sendTo": "Send this amount to",
+    "copy": "Copy",
+    "somethingWrong": "Something wrong?",
+    "whatIsWrong": "What has gone wrong?",
+    "notePlaceholder": "e.g. the payment receipt is not legible",
+    "askCustomer": "Ask the customer",
+    "pause": "Pause it for now",
+    "nevermind": "Never mind",
+    "waitingTitle": "Waiting on others — nothing to do",
+    "waiting": {
+      "recipient": "Waiting for the recipient to confirm",
+      "customer": "Waiting for the customer",
+      "platform": "With the platform"
+    },
+    "act": {
+      "claim": "I'll take this one",
+      "accept": "I accept",
+      "money_in": "The Toman arrived",
+      "sent": "I've sent the currency",
+      "settle": "Settled"
+    },
+    "line": {
+      "claim": "New request from {name}",
+      "accept": "{name} is waiting on your answer",
+      "money_in": "This should arrive in your account — from {name}",
+      "sent": "Send this to {name}",
+      "settle": "The recipient confirmed; close it out"
+    },
+    "errors": {
+      "alreadyClaimed": "Another office took this one first.",
+      "needNote": "Write a short note.",
+      "failed": "That did not go through. Press again."
+    },
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "This preview is not connected to a database.",
+    "notAMemberTitle": "You are not part of an exchange office",
+    "notAMemberBody": "If you should have office access, contact support.",
+    "backHome": "Back to home"
   }
 }
