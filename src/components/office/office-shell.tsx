@@ -69,11 +69,9 @@ export async function OfficeShell({
         <ul className="flex min-w-max gap-1 rounded-2xl bg-ink-300/25 p-1">
           {SECTIONS.map((section) => (
             <li key={section.href}>
-              <OfficeNavLink
-                href={section.href}
-                icon={section.icon}
-                label={t(`nav.${section.key}`)}
-              />
+              <OfficeNavLink href={section.href} label={t(`nav.${section.key}`)}>
+                <section.icon className="size-4 shrink-0" aria-hidden />
+              </OfficeNavLink>
             </li>
           ))}
         </ul>

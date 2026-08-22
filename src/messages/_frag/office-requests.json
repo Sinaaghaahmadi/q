@@ -1,0 +1,121 @@
+{
+  "namespace": "officePanel",
+  "fa": {
+    "requests": {
+      "metaTitle": "درخواست‌ها",
+      "title": "درخواست‌ها",
+      "subtitle": "درخواست‌های بی‌صاحب و کارهای در جریان این صرافی، در یک فهرست.",
+      "scopeLabel": "کدام درخواست‌ها",
+      "scope": {
+        "all": "همه",
+        "action": "منتظر اقدام شما"
+      },
+      "corridorLabel": "مسیر",
+      "allCorridors": "همهٔ مسیرها",
+      "col": {
+        "corridor": "مسیر",
+        "amount": "مبلغ",
+        "customer": "مشتری",
+        "waiting": "در انتظار",
+        "action": "اقدام"
+      },
+      "unnamed": "بدون نام",
+      "claim": "برمی‌دارم",
+      "working": "کمی صبر کنید…",
+      "empty": "درخواستی در جریان نیست.",
+      "emptyFiltered": "با این فیلترها چیزی پیدا نشد.",
+      "errors": {
+        "alreadyClaimed": "صرافی دیگری زودتر این درخواست را برداشت. فهرست به‌روز شد.",
+        "inactive": "این صرافی فعال نیست؛ فعلاً نمی‌توانید درخواستی بردارید.",
+        "failed": "انجام نشد. دوباره بزنید."
+      }
+    },
+    "customers": {
+      "metaTitle": "مشتریان",
+      "title": "مشتریان",
+      "subtitle": "کسانی که با این صرافی معامله کرده‌اند.",
+      "searchLabel": "جست‌وجوی مشتری",
+      "searchPlaceholder": "نام مشتری",
+      "col": {
+        "name": "نام",
+        "orders": "سفارش‌ها",
+        "volume": "مجموع",
+        "last": "آخرین سفارش",
+        "kyc": "احراز هویت"
+      },
+      "toman": "تومان",
+      "unnamed": "بدون نام",
+      "volumeHint": "مجموع، فقط سفارش‌های تکمیل‌شده را می‌شمارد.",
+      "privacy": "از هر مشتری تنها نام و وضعیت احراز هویت در دسترس صرافی است.",
+      "empty": "هنوز مشتری‌ای ندارید.",
+      "emptyFiltered": "مشتری‌ای با این نام پیدا نشد.",
+      "kyc": {
+        "unverified": "احراز نشده",
+        "pending": "در انتظار بررسی",
+        "approved": "تأییدشده",
+        "rejected": "رد شده",
+        "more_info_needed": "نیازمند اطلاعات بیشتر",
+        "unknown": "نامشخص"
+      }
+    }
+  },
+  "en": {
+    "requests": {
+      "metaTitle": "Requests",
+      "title": "Requests",
+      "subtitle": "Unclaimed requests and this office's work in progress, in one list.",
+      "scopeLabel": "Which requests",
+      "scope": {
+        "all": "All",
+        "action": "Needs your action"
+      },
+      "corridorLabel": "Corridor",
+      "allCorridors": "All corridors",
+      "col": {
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "customer": "Customer",
+        "waiting": "Waiting",
+        "action": "Action"
+      },
+      "unnamed": "No name",
+      "claim": "Claim",
+      "working": "One moment…",
+      "empty": "Nothing is in progress.",
+      "emptyFiltered": "Nothing matches these filters.",
+      "errors": {
+        "alreadyClaimed": "Another office claimed this one first. The list has been refreshed.",
+        "inactive": "This office is not active, so it cannot claim requests right now.",
+        "failed": "That did not go through. Try again."
+      }
+    },
+    "customers": {
+      "metaTitle": "Customers",
+      "title": "Customers",
+      "subtitle": "People who have transacted with this office.",
+      "searchLabel": "Search customers",
+      "searchPlaceholder": "Customer name",
+      "col": {
+        "name": "Name",
+        "orders": "Orders",
+        "volume": "Total",
+        "last": "Last order",
+        "kyc": "Verification"
+      },
+      "toman": "Toman",
+      "unnamed": "No name",
+      "volumeHint": "The total counts completed orders only.",
+      "privacy": "An office sees a customer's name and verification state, nothing further.",
+      "empty": "No customers yet.",
+      "emptyFiltered": "No customer matches that name.",
+      "kyc": {
+        "unverified": "Unverified",
+        "pending": "In review",
+        "approved": "Verified",
+        "rejected": "Rejected",
+        "more_info_needed": "More information needed",
+        "unknown": "Unknown"
+      }
+    }
+  }
+}

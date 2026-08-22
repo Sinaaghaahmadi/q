@@ -1,0 +1,207 @@
+{
+  "namespace": "officePanel.config",
+  "fa": {
+    "rates": {
+      "metaTitle": "مسیرها و اسپرد",
+      "title": "مسیرها و اسپرد",
+      "subtitle": "برای هر مسیر، اسپرد و کف و سقف مبلغ و ساعت پایان پذیرش را اینجا تعیین می‌کنید.",
+      "readOnly": "تغییر مسیرها از عهدهٔ مالک صرافی برمی‌آید. این صفحه برای شما فقط خواندنی است.",
+      "templateNote": "پیش‌فرض پلتفرم برای هر مسیر یک اسپرد دارد. هر جا عدد شما با آن یکی نباشد، «بازنویسی‌شده» می‌بینید — همان چیزی که پلتفرم هم می‌بیند.",
+      "listTitle": "مسیرهای این صرافی",
+      "empty": "هنوز مسیری تعریف نشده است. از پایین یکی اضافه کنید.",
+      "spreadLabel": "اسپرد",
+      "spreadMeans": "{bps} یعنی {pct}٪",
+      "spreadHint": "اسپرد بر حسب صدم درصد نوشته می‌شود؛ هر ۱۰۰ واحد یک درصد است.",
+      "templateSpread": "پیش‌فرض پلتفرم: {bps}",
+      "minLabel": "کمترین مبلغ",
+      "maxLabel": "بیشترین مبلغ",
+      "amountHint": "به {code}. خالی یعنی محدودیتی نیست.",
+      "onFile": "ثبت‌شده: {amount} {code}",
+      "noLimit": "ثبت‌شده: بدون محدودیت",
+      "cutoffLabel": "ساعت پایان پذیرش",
+      "cutoffHint": "بعد از این ساعت، درخواست تازهٔ این مسیر به شما ارجاع نمی‌شود.",
+      "activeLabel": "فعال",
+      "activeHint": "مسیر غیرفعال درخواست تازه نمی‌گیرد؛ سفارش‌های باز سر جای خود می‌مانند.",
+      "badge": {
+        "same": "برابر پیش‌فرض",
+        "overridden": "بازنویسی‌شده",
+        "custom": "خارج از قالب",
+        "inactive": "غیرفعال"
+      },
+      "addTitle": "افزودن مسیر",
+      "addCurrency": "ارز",
+      "addHint": "یک سمت مسیر همیشه تومان است.",
+      "add": "ثبت مسیر",
+      "save": "ذخیره",
+      "saved": "ذخیره شد.",
+      "working": "کمی صبر کنید…",
+      "errors": {
+        "spreadRange": "اسپرد باید عددی درست بین ۰ تا ۲۰۰۰ باشد.",
+        "amountInvalid": "مبلغ را با رقم بنویسید.",
+        "amountOrder": "کمترین مبلغ نمی‌تواند از بیشترین مبلغ بزرگ‌تر باشد.",
+        "duplicate": "این مسیر از قبل تعریف شده است.",
+        "forbidden": "این تغییر ثبت نشد؛ نوشتن روی مسیرها فقط از مالک صرافی پذیرفته می‌شود.",
+        "saveFailed": "ذخیره نشد. دوباره بزنید."
+      }
+    },
+    "settings": {
+      "metaTitle": "تنظیم‌های صرافی",
+      "title": "تنظیم‌های صرافی",
+      "subtitle": "ساعت کار، پذیرش خودکار و راه‌های اطلاع‌رسانی.",
+      "lockedTitle": "این سه تنظیم را صرافی نمی‌نویسد",
+      "lockedBody": "نوشتن روی مشخصات صرافی فقط از پلتفرم پذیرفته می‌شود. مقدار فعلی را اینجا می‌بینید و می‌توانید تغییر دلخواه را برای پشتیبانی بفرستید.",
+      "supportCta": "پیام به پشتیبانی",
+      "hours": {
+        "title": "ساعت کار",
+        "body": "ساعت‌ها به وقت {tz} است.",
+        "bodyUnknown": "منطقهٔ زمانی روی این صرافی ثبت نشده است؛ ساعت‌ها به وقت محل صرافی خوانده می‌شود.",
+        "open": "شروع",
+        "close": "پایان",
+        "closedLabel": "تعطیل",
+        "day": {
+          "sat": "شنبه",
+          "sun": "یک‌شنبه",
+          "mon": "دوشنبه",
+          "tue": "سه‌شنبه",
+          "wed": "چهارشنبه",
+          "thu": "پنج‌شنبه",
+          "fri": "جمعه"
+        }
+      },
+      "auto": {
+        "title": "پذیرش خودکار",
+        "body": "با روشن بودن این گزینه، درخواست‌های کوچک‌تر از سقف زیر بدون تأیید دستی پذیرفته می‌شوند.",
+        "enabledLabel": "پذیرش خودکار",
+        "enabledHint": "خاموش یعنی هر درخواست را خودتان تأیید می‌کنید.",
+        "maxLabel": "سقف پذیرش خودکار",
+        "maxHint": "به تومان. خالی یعنی سقفی ثبت نشده و پذیرش خودکار عمل نمی‌کند.",
+        "onFile": "ثبت‌شده: {amount} تومان",
+        "noLimit": "ثبت‌شده: بدون سقف"
+      },
+      "notify": {
+        "title": "راه‌های اطلاع‌رسانی",
+        "body": "خبر درخواست تازه و پیام مشتری به این نشانی‌ها می‌رسد.",
+        "phone": "شمارهٔ تماس",
+        "phonePlaceholder": "+۹۸۲۱۸۸۰۰۱۱۲۲",
+        "email": "ایمیل",
+        "emailPlaceholder": "office@example.com",
+        "smsLabel": "پیامک",
+        "smsHint": "خبر درخواست تازه با پیامک به همان شماره.",
+        "emailLabel": "ایمیل",
+        "emailHint": "خلاصهٔ کارهای باز، یک بار در روز."
+      },
+      "save": "ذخیره",
+      "saved": "ذخیره شد.",
+      "working": "کمی صبر کنید…",
+      "errors": {
+        "timeOrder": "ساعت پایان باید بعد از ساعت شروع باشد.",
+        "timeMissing": "برای روزی که تعطیل نیست، شروع و پایان را بنویسید.",
+        "amountInvalid": "سقف را با رقم بنویسید.",
+        "forbidden": "ثبت نشد؛ نوشتن روی مشخصات صرافی فقط از پلتفرم پذیرفته می‌شود. تغییر را برای پشتیبانی بفرستید.",
+        "saveFailed": "ذخیره نشد. دوباره بزنید."
+      }
+    }
+  },
+  "en": {
+    "rates": {
+      "metaTitle": "Corridors and spread",
+      "title": "Corridors and spread",
+      "subtitle": "Per corridor: the spread, the smallest and largest amount you take, and the daily cut-off.",
+      "readOnly": "Changing corridors needs the owner role at this office. This page is read-only for you.",
+      "templateNote": "The platform template carries a spread for each corridor. Wherever your number differs you see \"Overridden\" — the same diff the platform sees.",
+      "listTitle": "This office's corridors",
+      "empty": "No corridor has been defined yet. Add one below.",
+      "spreadLabel": "Spread",
+      "spreadMeans": "{bps} means {pct}%",
+      "spreadHint": "Spread is written in hundredths of a percent; every 100 units is one percent.",
+      "templateSpread": "Platform default: {bps}",
+      "minLabel": "Smallest amount",
+      "maxLabel": "Largest amount",
+      "amountHint": "In {code}. Empty means no limit.",
+      "onFile": "On file: {amount} {code}",
+      "noLimit": "On file: no limit",
+      "cutoffLabel": "Daily cut-off",
+      "cutoffHint": "After this time, no new request on this corridor is routed to you.",
+      "activeLabel": "Active",
+      "activeHint": "An inactive corridor takes no new request; open orders stay where they are.",
+      "badge": {
+        "same": "Same as default",
+        "overridden": "Overridden",
+        "custom": "Not in template",
+        "inactive": "Inactive"
+      },
+      "addTitle": "Add a corridor",
+      "addCurrency": "Currency",
+      "addHint": "One leg of a corridor is always Toman.",
+      "add": "Add corridor",
+      "save": "Save",
+      "saved": "Saved.",
+      "working": "One moment…",
+      "errors": {
+        "spreadRange": "The spread must be a whole number between 0 and 2000.",
+        "amountInvalid": "Write the amount in digits.",
+        "amountOrder": "The smallest amount cannot be larger than the largest.",
+        "duplicate": "That corridor is already defined.",
+        "forbidden": "Not saved: only the office owner may write corridors.",
+        "saveFailed": "Not saved. Try again."
+      }
+    },
+    "settings": {
+      "metaTitle": "Office settings",
+      "title": "Office settings",
+      "subtitle": "Working hours, auto-accept, and where notices are sent.",
+      "lockedTitle": "The office does not write these three settings",
+      "lockedBody": "Writes to the office record are accepted from the platform only. You can read the current values here and send the change you want to support.",
+      "supportCta": "Message support",
+      "hours": {
+        "title": "Working hours",
+        "body": "Times are in {tz}.",
+        "bodyUnknown": "No time zone is recorded on this office; times are read as local to the office.",
+        "open": "Opens",
+        "close": "Closes",
+        "closedLabel": "Closed",
+        "day": {
+          "sat": "Saturday",
+          "sun": "Sunday",
+          "mon": "Monday",
+          "tue": "Tuesday",
+          "wed": "Wednesday",
+          "thu": "Thursday",
+          "fri": "Friday"
+        }
+      },
+      "auto": {
+        "title": "Auto-accept",
+        "body": "With this on, requests under the ceiling below are accepted without a manual decision.",
+        "enabledLabel": "Auto-accept",
+        "enabledHint": "Off means you accept every request yourself.",
+        "maxLabel": "Auto-accept ceiling",
+        "maxHint": "In Toman. Empty means no ceiling is recorded and auto-accept does nothing.",
+        "onFile": "On file: {amount} IRT",
+        "noLimit": "On file: no ceiling"
+      },
+      "notify": {
+        "title": "Where notices go",
+        "body": "New requests and customer messages are announced to these.",
+        "phone": "Phone",
+        "phonePlaceholder": "+982188001122",
+        "email": "Email",
+        "emailPlaceholder": "office@example.com",
+        "smsLabel": "SMS",
+        "smsHint": "New request announced by SMS to that number.",
+        "emailLabel": "Email",
+        "emailHint": "A summary of open work, once a day."
+      },
+      "save": "Save",
+      "saved": "Saved.",
+      "working": "One moment…",
+      "errors": {
+        "timeOrder": "The closing time has to be after the opening time.",
+        "timeMissing": "Write both times for a day that is not closed.",
+        "amountInvalid": "Write the ceiling in digits.",
+        "forbidden": "Not saved: writes to the office record are accepted from the platform only. Send the change to support.",
+        "saveFailed": "Not saved. Try again."
+      }
+    }
+  }
+}

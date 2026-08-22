@@ -1371,6 +1371,323 @@
     "unavailableBody": "This preview is not connected to a database.",
     "notAMemberTitle": "You are not part of an exchange office",
     "notAMemberBody": "If you should have office access, contact support.",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "money": {
+      "accounts": {
+        "metaTitle": "Settlement accounts",
+        "title": "Settlement accounts",
+        "subtitle": "The accounts your customers pay into.",
+        "noPublicTitle": "No public IRT account",
+        "noPublicBody": "Until at least one IRT account is both public and active, the office cannot go live and no work is routed to it.",
+        "noDeleteNote": "Accounts are never deleted; the record of past payments has to stay. Deactivate an account you no longer want.",
+        "readOnly": "Changing accounts needs the finance or owner role at this office.",
+        "empty": "No account has been added yet.",
+        "listTitle": "Accounts on file",
+        "addTitle": "Add an account",
+        "currency": "Currency",
+        "kindLabel": "Account type",
+        "kind": {
+          "iban": "Sheba or IBAN",
+          "card": "Card",
+          "swift": "SWIFT",
+          "cash": "Cash"
+        },
+        "number": "Account number",
+        "placeholder": {
+          "iban": "IR06 0120 0000 0000 1234 5678 90",
+          "card": "6037 9911 2345 6789",
+          "swift": "BKMTIRTH",
+          "cash": "Counter or branch name"
+        },
+        "label": "Account name",
+        "labelPlaceholder": "e.g. Bank Mellat, central branch",
+        "publicLabel": "Show to customers",
+        "publicHint": "Customers see this number as a payment target.",
+        "activeLabel": "Active",
+        "activeHint": "An inactive account is not used on new orders.",
+        "add": "Add account",
+        "save": "Save",
+        "saved": "Saved.",
+        "working": "One moment…",
+        "badge": {
+          "public": "Public",
+          "internal": "Internal",
+          "inactive": "Inactive"
+        },
+        "errors": {
+          "numberRequired": "Write the account number.",
+          "forbidden": "You may not change this account.",
+          "saveFailed": "Not saved. Try again."
+        }
+      },
+      "liquidity": {
+        "metaTitle": "Liquidity",
+        "title": "Liquidity",
+        "subtitle": "Balance per currency, and this office's position in the ledger.",
+        "holding": "Settlement money stays in platform holding until it is withdrawn. What you see here is your share of it, not money already sitting in the office's bank account.",
+        "readOnly": "This page is read-only; balances move as orders are recorded.",
+        "available": "Available",
+        "reserved": "Reserved",
+        "reservedHint": "Held against open orders.",
+        "position": "Ledger position",
+        "positionHint": "Debits minus credits.",
+        "code": {
+          "irt_fees": "Fees",
+          "irt_settlement": "Settlement"
+        },
+        "noPosition": "Nothing recorded in the ledger.",
+        "empty": "No balance has been recorded yet."
+      }
+    },
+    "config": {
+      "rates": {
+        "metaTitle": "Corridors and spread",
+        "title": "Corridors and spread",
+        "subtitle": "Per corridor: the spread, the smallest and largest amount you take, and the daily cut-off.",
+        "readOnly": "Changing corridors needs the owner role at this office. This page is read-only for you.",
+        "templateNote": "The platform template carries a spread for each corridor. Wherever your number differs you see \"Overridden\" — the same diff the platform sees.",
+        "listTitle": "This office's corridors",
+        "empty": "No corridor has been defined yet. Add one below.",
+        "spreadLabel": "Spread",
+        "spreadMeans": "{bps} means {pct}%",
+        "spreadHint": "Spread is written in hundredths of a percent; every 100 units is one percent.",
+        "templateSpread": "Platform default: {bps}",
+        "minLabel": "Smallest amount",
+        "maxLabel": "Largest amount",
+        "amountHint": "In {code}. Empty means no limit.",
+        "onFile": "On file: {amount} {code}",
+        "noLimit": "On file: no limit",
+        "cutoffLabel": "Daily cut-off",
+        "cutoffHint": "After this time, no new request on this corridor is routed to you.",
+        "activeLabel": "Active",
+        "activeHint": "An inactive corridor takes no new request; open orders stay where they are.",
+        "badge": {
+          "same": "Same as default",
+          "overridden": "Overridden",
+          "custom": "Not in template",
+          "inactive": "Inactive"
+        },
+        "addTitle": "Add a corridor",
+        "addCurrency": "Currency",
+        "addHint": "One leg of a corridor is always Toman.",
+        "add": "Add corridor",
+        "save": "Save",
+        "saved": "Saved.",
+        "working": "One moment…",
+        "errors": {
+          "spreadRange": "The spread must be a whole number between 0 and 2000.",
+          "amountInvalid": "Write the amount in digits.",
+          "amountOrder": "The smallest amount cannot be larger than the largest.",
+          "duplicate": "That corridor is already defined.",
+          "forbidden": "Not saved: only the office owner may write corridors.",
+          "saveFailed": "Not saved. Try again."
+        }
+      },
+      "settings": {
+        "metaTitle": "Office settings",
+        "title": "Office settings",
+        "subtitle": "Working hours, auto-accept, and where notices are sent.",
+        "lockedTitle": "The office does not write these three settings",
+        "lockedBody": "Writes to the office record are accepted from the platform only. You can read the current values here and send the change you want to support.",
+        "supportCta": "Message support",
+        "hours": {
+          "title": "Working hours",
+          "body": "Times are in {tz}.",
+          "bodyUnknown": "No time zone is recorded on this office; times are read as local to the office.",
+          "open": "Opens",
+          "close": "Closes",
+          "closedLabel": "Closed",
+          "day": {
+            "sat": "Saturday",
+            "sun": "Sunday",
+            "mon": "Monday",
+            "tue": "Tuesday",
+            "wed": "Wednesday",
+            "thu": "Thursday",
+            "fri": "Friday"
+          }
+        },
+        "auto": {
+          "title": "Auto-accept",
+          "body": "With this on, requests under the ceiling below are accepted without a manual decision.",
+          "enabledLabel": "Auto-accept",
+          "enabledHint": "Off means you accept every request yourself.",
+          "maxLabel": "Auto-accept ceiling",
+          "maxHint": "In Toman. Empty means no ceiling is recorded and auto-accept does nothing.",
+          "onFile": "On file: {amount} IRT",
+          "noLimit": "On file: no ceiling"
+        },
+        "notify": {
+          "title": "Where notices go",
+          "body": "New requests and customer messages are announced to these.",
+          "phone": "Phone",
+          "phonePlaceholder": "+982188001122",
+          "email": "Email",
+          "emailPlaceholder": "office@example.com",
+          "smsLabel": "SMS",
+          "smsHint": "New request announced by SMS to that number.",
+          "emailLabel": "Email",
+          "emailHint": "A summary of open work, once a day."
+        },
+        "save": "Save",
+        "saved": "Saved.",
+        "working": "One moment…",
+        "errors": {
+          "timeOrder": "The closing time has to be after the opening time.",
+          "timeMissing": "Write both times for a day that is not closed.",
+          "amountInvalid": "Write the ceiling in digits.",
+          "forbidden": "Not saved: writes to the office record are accepted from the platform only. Send the change to support.",
+          "saveFailed": "Not saved. Try again."
+        }
+      }
+    },
+    "requests": {
+      "metaTitle": "Requests",
+      "title": "Requests",
+      "subtitle": "Unclaimed requests and this office's work in progress, in one list.",
+      "scopeLabel": "Which requests",
+      "scope": {
+        "all": "All",
+        "action": "Needs your action"
+      },
+      "corridorLabel": "Corridor",
+      "allCorridors": "All corridors",
+      "col": {
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "customer": "Customer",
+        "waiting": "Waiting",
+        "action": "Action"
+      },
+      "unnamed": "No name",
+      "claim": "Claim",
+      "working": "One moment…",
+      "empty": "Nothing is in progress.",
+      "emptyFiltered": "Nothing matches these filters.",
+      "errors": {
+        "alreadyClaimed": "Another office claimed this one first. The list has been refreshed.",
+        "inactive": "This office is not active, so it cannot claim requests right now.",
+        "failed": "That did not go through. Try again."
+      }
+    },
+    "customers": {
+      "metaTitle": "Customers",
+      "title": "Customers",
+      "subtitle": "People who have transacted with this office.",
+      "searchLabel": "Search customers",
+      "searchPlaceholder": "Customer name",
+      "col": {
+        "name": "Name",
+        "orders": "Orders",
+        "volume": "Total",
+        "last": "Last order",
+        "kyc": "Verification"
+      },
+      "toman": "Toman",
+      "unnamed": "No name",
+      "volumeHint": "The total counts completed orders only.",
+      "privacy": "An office sees a customer's name and verification state, nothing further.",
+      "empty": "No customers yet.",
+      "emptyFiltered": "No customer matches that name.",
+      "kyc": {
+        "unverified": "Unverified",
+        "pending": "In review",
+        "approved": "Verified",
+        "rejected": "Rejected",
+        "more_info_needed": "More information needed",
+        "unknown": "Unknown"
+      }
+    },
+    "team": {
+      "metaTitle": "Team",
+      "title": "Team",
+      "subtitle": "The people who can open this office's panel.",
+      "col": {
+        "person": "Person",
+        "role": "Role",
+        "since": "Since",
+        "action": "Action"
+      },
+      "role": {
+        "office_viewer": "Viewer",
+        "office_operator": "Operator",
+        "office_finance": "Finance",
+        "office_owner": "Owner"
+      },
+      "roleMeaning": {
+        "office_viewer": "Reads the panel and changes nothing.",
+        "office_operator": "Works the day's orders.",
+        "office_finance": "The day's orders, plus accounts and balances.",
+        "office_owner": "Everything, including this page."
+      },
+      "you": "You",
+      "unnamed": "No name",
+      "nameNote": "A name appears only where the platform lets you read that profile; everyone else is listed by user id.",
+      "empty": "No seats have been granted at this office yet.",
+      "readOnly": "Only the office owner can change who has access.",
+      "addTitle": "Add a colleague",
+      "addBody": "They must already have an Asaex account. Nothing is emailed from here — ask them for their user id and paste it in.",
+      "userIdLabel": "User id",
+      "roleLabel": "Role",
+      "grant": "Grant access",
+      "revoke": "Revoke access",
+      "revokeConfirm": "Revoke this access?",
+      "revokeYes": "Yes, revoke",
+      "cancel": "Never mind",
+      "working": "One moment…",
+      "granted": "Access granted.",
+      "revoked": "Access revoked.",
+      "errors": {
+        "badId": "That is not a user id. It has to be the whole id.",
+        "noSuchUser": "No Asaex account has that id.",
+        "forbidden": "Only the office owner can do this.",
+        "failed": "That did not go through. Try again."
+      }
+    },
+    "reports": {
+      "metaTitle": "Reports",
+      "title": "Reports",
+      "subtitle": "This office's volume and performance over the last six months.",
+      "empty": "This office has no orders from the last six months.",
+      "stat": {
+        "orders": "Orders",
+        "volume": "Toman volume",
+        "completion": "Average completion time",
+        "sla": "Delivered before the deadline"
+      },
+      "toman": "Toman",
+      "hours": "{value} hours",
+      "minutes": "{value} minutes",
+      "noData": "No data yet",
+      "volumeTitle": "Monthly volume",
+      "volumeHint": "Volume counts completed orders only; the order count is every order raised that month.",
+      "chartLabel": "Bar chart of Toman volume by month, {from} to {to}. Highest month {peak} at {max} Toman.",
+      "monthOrders": "{count} orders",
+      "corridorTitle": "Corridors",
+      "corridorHint": "Each corridor's share of this period's orders.",
+      "completionHint": "From an order's first event to the moment it completed, across {count} completed orders.",
+      "slaHint": "The share of completed orders closed before their deadline, across {count} orders that had one.",
+      "noCompleted": "Nothing has completed yet.",
+      "noSla": "No deadline was recorded for this period's orders."
+    },
+    "chat": {
+      "metaTitle": "Messages",
+      "title": "Messages",
+      "subtitle": "The conversations on this office's orders, and your own threads with Asaex support.",
+      "sectionOrders": "Orders",
+      "sectionSupport": "Asaex support",
+      "supportThread": "Support thread",
+      "pickThread": "Pick a conversation from the list.",
+      "empty": "No conversations yet.",
+      "noMessages": "No messages",
+      "unknownOrder": "Order",
+      "notesHint": "An internal note is never shown to the customer — only this office and the platform see it.",
+      "status": {
+        "open": "Open",
+        "pending": "Pending",
+        "resolved": "Closed",
+        "archived": "Archived"
+      }
+    }
   }
 }

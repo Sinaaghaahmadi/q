@@ -21,7 +21,8 @@
     "brand:assets": "tsx scripts/generate-brand-assets.mts",
     "seed:demo": "tsx scripts/seed-demo.mts",
     "prepare": "husky || true",
-    "budget": "node scripts/check-budget.mjs"
+    "budget": "node scripts/check-budget.mjs",
+    "messages:merge": "node scripts/merge-messages.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",

@@ -126,11 +126,9 @@ export async function AdminShell({
                   <ul className="flex gap-1 lg:flex-col">
                     {group.items.map((item) => (
                       <li key={item.href}>
-                        <AdminNavLink
-                          href={item.href}
-                          icon={item.icon}
-                          label={t(`nav.${item.key}`)}
-                        />
+                        <AdminNavLink href={item.href} label={t(`nav.${item.key}`)}>
+                          <item.icon className="size-4 shrink-0" aria-hidden />
+                        </AdminNavLink>
                       </li>
                     ))}
                   </ul>

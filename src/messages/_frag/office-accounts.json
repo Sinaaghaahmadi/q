@@ -1,0 +1,137 @@
+{
+  "namespace": "officePanel.money",
+  "fa": {
+    "accounts": {
+      "metaTitle": "حساب‌های صرافی",
+      "title": "حساب‌های صرافی",
+      "subtitle": "حساب‌هایی که مشتری پول را به آن‌ها واریز می‌کند.",
+      "noPublicTitle": "حساب تومانی عمومی ندارید",
+      "noPublicBody": "تا وقتی دست‌کم یک حساب تومانی هم عمومی و هم فعال نباشد، صرافی فعال نمی‌شود و کاری به شما ارجاع نمی‌شود.",
+      "noDeleteNote": "حساب پاک نمی‌شود؛ سابقهٔ واریزهای گذشته باید بماند. حسابی را که دیگر نمی‌خواهید غیرفعال کنید.",
+      "readOnly": "برای تغییر حساب‌ها نقش مالی یا مالک صرافی لازم است.",
+      "empty": "هنوز حسابی ثبت نشده است.",
+      "listTitle": "حساب‌های ثبت‌شده",
+      "addTitle": "افزودن حساب",
+      "currency": "ارز",
+      "kindLabel": "نوع حساب",
+      "kind": {
+        "iban": "شبا یا آیبان",
+        "card": "کارت",
+        "swift": "سوئیفت",
+        "cash": "نقدی"
+      },
+      "number": "شمارهٔ حساب",
+      "placeholder": {
+        "iban": "IR06 0120 0000 0000 1234 5678 90",
+        "card": "6037 9911 2345 6789",
+        "swift": "BKMTIRTH",
+        "cash": "نام باجه یا شعبه"
+      },
+      "label": "نام حساب",
+      "labelPlaceholder": "مثلاً حساب بانک ملت، شعبهٔ مرکزی",
+      "publicLabel": "نمایش به مشتری",
+      "publicHint": "مشتری این شماره را برای واریز می‌بیند.",
+      "activeLabel": "فعال",
+      "activeHint": "حساب غیرفعال در سفارش تازه استفاده نمی‌شود.",
+      "add": "ثبت حساب",
+      "save": "ذخیره",
+      "saved": "ذخیره شد.",
+      "working": "کمی صبر کنید…",
+      "badge": {
+        "public": "عمومی",
+        "internal": "داخلی",
+        "inactive": "غیرفعال"
+      },
+      "errors": {
+        "numberRequired": "شمارهٔ حساب را بنویسید.",
+        "forbidden": "اجازهٔ تغییر این حساب را ندارید.",
+        "saveFailed": "ذخیره نشد. دوباره بزنید."
+      }
+    },
+    "liquidity": {
+      "metaTitle": "موجودی",
+      "title": "موجودی",
+      "subtitle": "موجودی هر ارز و وضعیت حساب دفتری این صرافی.",
+      "holding": "پول تسویه تا زمان برداشت نزد پلتفرم می‌ماند. آنچه اینجا می‌بینید سهم شماست، نه پولی که در حساب بانکی صرافی نشسته باشد.",
+      "readOnly": "این صفحه فقط برای دیدن است؛ موجودی با ثبت سفارش‌ها تغییر می‌کند.",
+      "available": "قابل استفاده",
+      "reserved": "رزروشده",
+      "reservedHint": "درگیر سفارش‌های باز.",
+      "position": "حساب دفتری",
+      "positionHint": "بدهکار منهای بستانکار.",
+      "code": {
+        "irt_fees": "کارمزد",
+        "irt_settlement": "تسویه"
+      },
+      "noPosition": "ثبتی در دفتر نیست.",
+      "empty": "هنوز موجودی‌ای ثبت نشده است."
+    }
+  },
+  "en": {
+    "accounts": {
+      "metaTitle": "Settlement accounts",
+      "title": "Settlement accounts",
+      "subtitle": "The accounts your customers pay into.",
+      "noPublicTitle": "No public IRT account",
+      "noPublicBody": "Until at least one IRT account is both public and active, the office cannot go live and no work is routed to it.",
+      "noDeleteNote": "Accounts are never deleted; the record of past payments has to stay. Deactivate an account you no longer want.",
+      "readOnly": "Changing accounts needs the finance or owner role at this office.",
+      "empty": "No account has been added yet.",
+      "listTitle": "Accounts on file",
+      "addTitle": "Add an account",
+      "currency": "Currency",
+      "kindLabel": "Account type",
+      "kind": {
+        "iban": "Sheba or IBAN",
+        "card": "Card",
+        "swift": "SWIFT",
+        "cash": "Cash"
+      },
+      "number": "Account number",
+      "placeholder": {
+        "iban": "IR06 0120 0000 0000 1234 5678 90",
+        "card": "6037 9911 2345 6789",
+        "swift": "BKMTIRTH",
+        "cash": "Counter or branch name"
+      },
+      "label": "Account name",
+      "labelPlaceholder": "e.g. Bank Mellat, central branch",
+      "publicLabel": "Show to customers",
+      "publicHint": "Customers see this number as a payment target.",
+      "activeLabel": "Active",
+      "activeHint": "An inactive account is not used on new orders.",
+      "add": "Add account",
+      "save": "Save",
+      "saved": "Saved.",
+      "working": "One moment…",
+      "badge": {
+        "public": "Public",
+        "internal": "Internal",
+        "inactive": "Inactive"
+      },
+      "errors": {
+        "numberRequired": "Write the account number.",
+        "forbidden": "You may not change this account.",
+        "saveFailed": "Not saved. Try again."
+      }
+    },
+    "liquidity": {
+      "metaTitle": "Liquidity",
+      "title": "Liquidity",
+      "subtitle": "Balance per currency, and this office's position in the ledger.",
+      "holding": "Settlement money stays in platform holding until it is withdrawn. What you see here is your share of it, not money already sitting in the office's bank account.",
+      "readOnly": "This page is read-only; balances move as orders are recorded.",
+      "available": "Available",
+      "reserved": "Reserved",
+      "reservedHint": "Held against open orders.",
+      "position": "Ledger position",
+      "positionHint": "Debits minus credits.",
+      "code": {
+        "irt_fees": "Fees",
+        "irt_settlement": "Settlement"
+      },
+      "noPosition": "Nothing recorded in the ledger.",
+      "empty": "No balance has been recorded yet."
+    }
+  }
+}

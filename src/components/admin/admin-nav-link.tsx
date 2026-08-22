@@ -1,18 +1,23 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
 import * as React from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 
-/** One nav pill. Client-side only so it can know which section it is in. */
+/**
+ * The icon arrives as an already-rendered element in `children`, never as a
+ * component in a prop: a lucide icon is a function, and a function cannot cross
+ * the server/client boundary — React refuses to serialize it and the whole page
+ * 500s. Elements serialize fine, so the server renders the icon and this only
+ * decides whether the row looks active.
+ */
 export function AdminNavLink({
   href,
-  icon: Icon,
   label,
+  children,
 }: {
   href: string;
-  icon: LucideIcon;
   label: string;
+  children: React.ReactNode;
 }) {
   const pathname = usePathname();
   const active = href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
@@ -25,7 +30,7 @@ export function AdminNavLink({
         active ? "bg-surface text-brand-700 shadow-sm" : "text-ink-600 hover:text-ink-900"
       }`}
     >
-      <Icon className="size-4 shrink-0" aria-hidden />
+      {children}
       {label}
     </Link>
   );

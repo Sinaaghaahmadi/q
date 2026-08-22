@@ -6,10 +6,23 @@ import * as React from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
-/** Bottom tab bar (§4.1): Home · Rates · Transfer (center FAB) · Orders · Profile. */
+/**
+ * Bottom tab bar (§4.1): Home · Rates · Transfer (center FAB) · Orders · Profile.
+ *
+ * The customer PWA's chrome, and only the customer's. It used to float over the
+ * staff panels too, covering whichever action happened to be at the bottom of
+ * the screen — an exchange-office operator does not need a "start a transfer"
+ * button, and certainly not one sitting on top of the button they do need.
+ */
+const STAFF_PREFIXES = ["/office", "/admin"];
+
 export function TabBar() {
   const t = useTranslations("nav");
   const pathname = usePathname();
+
+  if (STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))) {
+    return null;
+  }
 
   const side = [
     { href: "/", key: "home", icon: House },

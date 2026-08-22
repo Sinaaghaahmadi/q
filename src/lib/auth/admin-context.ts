@@ -21,7 +21,13 @@ export async function getAdminContext(): Promise<AdminContext | null> {
   if (!session?.user) return null;
 
   const supabase = await createClient();
-  const { data: impersonation } = await supabase.rpc("active_impersonation");
+  const { data: row } = await supabase.rpc("active_impersonation");
+
+  // A SQL function returning a composite hands back a row of nulls rather than
+  // null when it matches nothing, and an object of nulls is perfectly truthy —
+  // which rendered the "you are acting as an office" banner over an admin who
+  // was not. The id is the honest test.
+  const impersonation = row && row.id ? row : null;
 
   let impersonatedOffice: AdminContext["impersonatedOffice"] = null;
   if (impersonation) {
