@@ -188,6 +188,9 @@ export type Order = {
   purpose_of_transfer: string | null;
   notes: string | null;
   cancelled_reason: string | null;
+  /** True when the order carries a P2P trade rather than a brokered transfer (§9). */
+  is_p2p: boolean;
+  p2p_trade_id: string | null;
   origin: string;
   created_at: string;
   updated_at: string;
@@ -357,6 +360,54 @@ export type Message = {
   created_at: string;
 };
 
+export type P2pOffer = {
+  id: string;
+  user_id: string;
+  side: "have" | "want";
+  have_currency: string;
+  want_currency: string;
+  amount_minor: number;
+  min_slice_minor: number | null;
+  max_slice_minor: number | null;
+  rate_mode: "fixed" | "market_offset";
+  rate_value: string;
+  terms: string | null;
+  expires_at: string | null;
+  status: "open" | "paused" | "filled" | "cancelled" | "removed";
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type P2pTrade = {
+  id: string;
+  offer_id: string;
+  taker_id: string;
+  maker_id: string;
+  amount_minor: number;
+  agreed_rate: string;
+  escrow_office_id: string | null;
+  state: string;
+  order_id: string | null;
+  dispute_id: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type Reputation = {
+  user_id: string;
+  trades_completed: number;
+  completion_rate: string;
+  avg_release_seconds: number | null;
+  rating_avg: string | null;
+  badges: Json;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Currency = { code: string; decimals: number; created_at: string };
+
 /** Row + the Insert/Update shapes PostgREST accepts for it. */
 type Table<Row, Required extends keyof Row = never> = {
   Row: Row;
@@ -412,6 +463,10 @@ export type Database = {
       conversations: Table<Conversation, "kind">;
       conversation_participants: Table<ConversationParticipant, "conversation_id" | "user_id">;
       messages: Table<Message, "conversation_id">;
+      p2p_offers: Table<P2pOffer>;
+      p2p_trades: Table<P2pTrade>;
+      reputation: Table<Reputation, "user_id">;
+      currencies: Table<Currency, "code" | "decimals">;
     };
     Views: Record<string, never>;
     Functions: {
@@ -498,6 +553,34 @@ export type Database = {
       support_set_state: {
         Args: { p_conversation: string; p_status?: string | null; p_assign?: boolean };
         Returns: undefined;
+      };
+      p2p_offer_publish: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      p2p_offer_close: {
+        Args: { p_offer: string; p_reason?: string | null };
+        Returns: undefined;
+      };
+      p2p_trade_take: {
+        Args: { p_offer: string; p_amount_minor: number; p_agreed_rate: number };
+        Returns: string;
+      };
+      p2p_trade_dispute: {
+        Args: { p_trade: string; p_reason: string };
+        Returns: undefined;
+      };
+      p2p_rate: {
+        Args: { p_trade: string; p_score: number; p_comment?: string | null };
+        Returns: undefined;
+      };
+      p2p_limits: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      conversation_for_trade: {
+        Args: { p_trade: string };
+        Returns: string;
       };
     };
     Enums: { app_role: AppRole; kyc_status: KycStatus; order_state: OrderState };

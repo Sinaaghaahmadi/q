@@ -3,7 +3,7 @@
 -- do, and what the database refuses even when the caller is an administrator.
 
 begin;
-select plan(19);
+select plan(23);
 
 -- ── Policies and RLS ────────────────────────────────────────────────────────
 select policies_are(
@@ -145,6 +145,32 @@ select is_empty(
 
 -- ── Conversations (§10) ─────────────────────────────────────────────────────
 select ok(row_security_active('public.conversations'), 'RLS is active on conversations');
+
+-- ── P2P (§9) ────────────────────────────────────────────────────────────────
+select ok(row_security_active('public.p2p_offers'), 'RLS is active on p2p_offers');
+select ok(row_security_active('public.p2p_trades'), 'RLS is active on p2p_trades');
+
+-- Publishing and taking are functions, so nothing writes these tables directly.
+-- A stray INSERT policy would be a way past the identity check, the corridor
+-- rule and every limit in §9 at once.
+select is_empty(
+  $$select c.relname || '.' || p.polname
+      from pg_policy p join pg_class c on c.oid = p.polrelid
+      join pg_namespace n on n.oid = c.relnamespace
+     where n.nspname = 'public'
+       and c.relname in ('p2p_offers','p2p_trades','conversations','conversation_participants')
+       and p.polcmd in ('a', '*')$$,
+  'no client-writable INSERT policy on the offer, trade or conversation tables'
+);
+
+-- Every currency the client catalog knows has a scale in the database, or
+-- `convert_minor` would raise on a corridor the board happily offers.
+select is_empty(
+  $$select unnest(array['IRT','USD','EUR','GBP','AED','TRY','IQD','AZN','AMD','GEL',
+                        'RUB','AFN','PKR','TMT','OMR','KWD','QAR','SAR','CAD','CNY'])
+    except select code from public.currencies$$,
+  'every catalog currency has a scale'
+);
 
 select * from finish();
 rollback;

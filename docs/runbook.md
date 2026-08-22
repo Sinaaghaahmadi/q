@@ -193,6 +193,26 @@ own; **End session** closes it early. Everything done while impersonating still
 records your own user id — the office is the scope, never the identity — and
 both the start and the end land in the audit log.
 
+## P2P limits
+
+Ceilings and cooldowns live in `settings.p2p_limits` and are read by
+`p2p_limits()`, so raising them is a row edit rather than a deploy:
+
+```sql
+update public.settings
+   set value = jsonb_set(value, '{tier_max_irt,1}', '2000000000')
+ where key = 'p2p_limits';
+```
+
+`tier_max_irt` is keyed by `profiles.risk_tier`; the default caps tier 0 at 200
+million Toman per trade. Both sides of a trade are checked, so a low-tier taker
+cannot be used to move a high-tier maker's money.
+
+An offer with no active office covering its corridor cannot be taken at all —
+`p2p_route_escrow` returns nothing and the take is refused with "no active
+exchange office covers …". That is the intended failure: there is nobody to
+hold the Toman.
+
 ## Demo data
 
 ```bash
@@ -205,7 +225,9 @@ five orders spread across the state machine — including one refunded through
 the administrator's override, so the compensating entries are visible in the
 ledger. It also seeds conversations: a negotiate-then-transact exchange on the
 live order with an internal note and one flagged message, plus a thread in each
-of the three support queues. Idempotent; it does nothing if the demo offices
+of the three support queues, and two P2P offers with one taken trade — which
+routes a real order to the escrow office, so `/p2p`, `/p2p/[id]` and a trade
+workspace all have content. Idempotent; it does nothing if the demo offices
 already exist. Every person, licence and account in it is fictional.
 
 The same file is the Phase-4 acceptance run: it provisions through

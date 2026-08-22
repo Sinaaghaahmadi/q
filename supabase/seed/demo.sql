@@ -231,12 +231,15 @@ end $$;
 do $$
 declare
   v_op   uuid := '00000000-0000-4000-8000-0000000000f1';
+  v_c1   uuid := '00000000-0000-4000-8000-000000000c01';
   v_c2   uuid := '00000000-0000-4000-8000-000000000c02';
   v_c3   uuid := '00000000-0000-4000-8000-000000000c03';
   v_admin uuid := '00000000-0000-4000-8000-00000000ad01';
   v_ord  uuid;
   v_conv uuid;
   v_sup  uuid;
+  v_offer uuid;
+  v_trade uuid;
 begin
   if exists (select 1 from public.conversations where kind = 'order') then
     raise notice 'demo conversations already present; nothing to do';
@@ -284,15 +287,17 @@ begin
   -- The segment is derived, never chosen, so a P2P trader is only in the P2P
   -- queue if they actually have an offer. Give Nadia one *before* she writes,
   -- rather than reclassifying her thread afterwards — the second would be the
-  -- platform lying to its own queue.
-  insert into public.p2p_offers (user_id, side, have_currency, want_currency,
-    amount_minor, rate_mode, rate_value, terms, status)
-  values (v_c3, 'have', 'TRY', 'IRT', 500000, 'market_offset', 0.5,
-    'Istanbul, cash pickup, weekdays', 'open');
-
+  -- platform lying to its own queue. It goes through `p2p_offer_publish` like
+  -- any other offer, so the seed exercises the real path.
   perform set_config('request.jwt.claims',
     json_build_object('sub', v_c3, 'role', 'authenticated')::text, true);
   execute 'set local role authenticated';
+  perform public.p2p_offer_publish(jsonb_build_object(
+    'have_currency', 'TRY', 'want_currency', 'IRT',
+    -- 30,000 TRY at 5,500 is 165M Toman, inside the tier-0 ceiling of 200M.
+    'amount_minor', 3000000, 'min_slice_minor', 100000,
+    'rate_mode', 'fixed', 'rate_value', 5500,
+    'terms', 'Istanbul, cash pickup, weekdays'));
   perform public.message_send(public.conversation_for_support(),
     'How do I list an offer on the P2P board?');
   execute 'reset role';
@@ -301,6 +306,26 @@ begin
     json_build_object('sub', v_admin, 'role', 'authenticated')::text, true);
   execute 'set local role authenticated';
   perform public.support_set_state(v_sup, null, true);
+  execute 'reset role';
+
+  -- Sara offers euros; Omid takes a slice, which routes a real order to the
+  -- escrow office and gives /p2p/trades/[id] something to show.
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_c1, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  v_offer := public.p2p_offer_publish(jsonb_build_object(
+    'have_currency', 'EUR', 'want_currency', 'IRT',
+    'amount_minor', 80000, 'min_slice_minor', 10000,
+    'rate_mode', 'fixed', 'rate_value', 204600,
+    'terms', 'Frankfurt SEPA, same business day'));
+  execute 'reset role';
+
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_c2, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+  v_trade := public.p2p_trade_take(v_offer, 40000, 204600);
+  perform public.message_send(public.conversation_for_trade(v_trade),
+    'سلام. تومان را همین امروز واریز می‌کنم.');
   execute 'reset role';
 
   raise notice 'demo conversations seeded: % threads, % messages',
