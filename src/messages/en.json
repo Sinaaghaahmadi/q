@@ -23,7 +23,8 @@
     "startTransfer": "Start a transfer",
     "accounts": "Accounts",
     "signin": "Sign in",
-    "verify": "Verify"
+    "verify": "Verify",
+    "office": "Office"
   },
   "footer": {
     "brand": "Asaex",
@@ -194,10 +195,35 @@
     "back": "Back",
     "slaNote": "Timing: usually completed within one business day; the contractual cap is three business days, counted on the Iranian and destination-country business calendars.",
     "whyBody": "The base (mid-market) rate is {rate} Toman per {code}. These spread layers apply on top:",
-    "gateTitle": "An account is needed to submit",
-    "gateBody": "Verification happens once, ever; afterwards you only manage your source and destination accounts. Sign-in and KYC arrive in Phase 2.",
-    "gatePhase": "Phase 2 — sign-in & KYC",
-    "gateCta": "Sign in & verify"
+    "creating": "Creating the order…",
+    "destination": "Destination account",
+    "createErrors": {
+      "signedOut": "Your session ended. Please sign in again.",
+      "failed": "The order could not be created. Try again.",
+      "network": "Couldn't reach us. Try again."
+    },
+    "gate": {
+      "anonymous": {
+        "title": "Sign in to submit",
+        "body": "Sign in by mobile or email. If you don't have an account yet, this creates one.",
+        "cta": "Sign in"
+      },
+      "unverified": {
+        "title": "Verification is needed first",
+        "body": "Verification happens once, ever, and takes under five minutes. After that, submitting a transfer is uninterrupted.",
+        "cta": "Start verification"
+      },
+      "no_accounts": {
+        "title": "No destination account yet",
+        "body": "You have no saved account for this currency. Add one and you'll simply pick it when you submit.",
+        "cta": "Add an account"
+      },
+      "ready": {
+        "title": "Ready to submit",
+        "body": "Everything is in place.",
+        "cta": "Continue"
+      }
+    }
   },
   "pricing": {
     "total": "Total spread",
@@ -786,6 +812,28 @@
       "documentDenied": "You aren't permitted to view this document.",
       "fourEyes": "Four-eyes: the reviewer who recommended cannot also approve.",
       "actionFailed": "We couldn't record that decision. Try again.",
+      "network": "Couldn't reach us. Try again."
+    }
+  },
+  "office": {
+    "metaTitle": "Office panel",
+    "title": "Office panel",
+    "subtitle": "{office} — open requests, and the orders you hold.",
+    "pool": "Unclaimed requests",
+    "poolEmpty": "No open requests right now.",
+    "mine": "This office's orders",
+    "mineEmpty": "You haven't claimed anything yet.",
+    "claim": "Claim",
+    "claiming": "Claiming…",
+    "unavailableTitle": "The office panel isn't live on this environment",
+    "unavailableBody": "This preview isn't connected to a database.",
+    "notAMemberTitle": "You're not a member of any office",
+    "notAMemberBody": "This section is for staff of licensed exchange offices. If you should have access, ask the office owner to add you.",
+    "backHome": "Back to home",
+    "errors": {
+      "alreadyClaimed": "Another office claimed this request first.",
+      "officeInactive": "That office isn't active.",
+      "claimFailed": "The request could not be claimed.",
       "network": "Couldn't reach us. Try again."
     }
   }

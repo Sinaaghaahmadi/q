@@ -12,10 +12,15 @@
 export type SpreadLayerKey =
   "platform_floor" | "corridor_default" | "office_markup" | "tier_discount" | "promo";
 
-export interface SpreadLayer {
+/**
+ * A type alias, not an interface, so it satisfies `Json` when a quote's layers
+ * are stored on an order: only anonymous object types get the implicit index
+ * signature that check needs (the same trap as ADR 0014).
+ */
+export type SpreadLayer = {
   key: SpreadLayerKey;
   bps: number;
-}
+};
 
 export const DEMO_SPREAD_LAYERS: SpreadLayer[] = [
   { key: "platform_floor", bps: 20 },

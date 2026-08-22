@@ -15,7 +15,13 @@ const NAV_ITEMS = [
   { href: "/orders", key: "orders" },
 ] as const;
 
-export function Header({ signedIn = false }: { signedIn?: boolean }) {
+export function Header({
+  signedIn = false,
+  officeMember = false,
+}: {
+  signedIn?: boolean;
+  officeMember?: boolean;
+}) {
   const t = useTranslations("nav");
   const pathname = usePathname();
 
@@ -27,7 +33,11 @@ export function Header({ signedIn = false }: { signedIn?: boolean }) {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label={t("primary")}>
-          {NAV_ITEMS.map((item) => (
+          {[
+            ...NAV_ITEMS,
+            // Only staff have a panel, so only staff see the way to it.
+            ...(officeMember ? [{ href: "/office", key: "office" } as const] : []),
+          ].map((item) => (
             <Link
               key={item.href}
               href={item.href}

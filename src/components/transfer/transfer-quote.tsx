@@ -21,19 +21,27 @@ import {
 import type { CurrencyCode } from "@/lib/rates/catalog";
 import type { QuoteResult } from "@/lib/rates/pricing";
 import type { RatesSnapshot } from "@/lib/rates/types";
+import { toMinor } from "@/lib/money/minor";
+import { createClient } from "@/lib/supabase/client";
+import type { BeneficiaryAccount } from "@/lib/supabase/types";
 
 const LOCK_SECONDS = 15 * 60;
 /** Typical street-exchange spread used for the honest savings comparison (§17.11). */
 const STREET_SPREAD_BPS = 180;
+
+/** How far this visitor has got towards being able to submit. */
+export type TransferGate = "anonymous" | "unverified" | "no_accounts" | "ready";
 
 interface TransferQuoteProps {
   quote: QuoteResult;
   from: CurrencyCode;
   to: CurrencyCode;
   snapshot: RatesSnapshot;
+  gate: TransferGate;
+  accounts: BeneficiaryAccount[];
 }
 
-export function TransferQuote({ quote, from, to, snapshot }: TransferQuoteProps) {
+export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: TransferQuoteProps) {
   const t = useTranslations("transfer");
   const tPricing = useTranslations("pricing");
   const locale = useLocale() as AppLocale;
@@ -42,6 +50,75 @@ export function TransferQuote({ quote, from, to, snapshot }: TransferQuoteProps)
   const [remaining, setRemaining] = React.useState(LOCK_SECONDS);
   const [whyOpen, setWhyOpen] = React.useState(false);
   const [gateOpen, setGateOpen] = React.useState(false);
+  const [destination, setDestination] = React.useState(accounts[0]?.id ?? "");
+  const [creating, setCreating] = React.useState(false);
+  const [createError, setCreateError] = React.useState<string | null>(null);
+
+  /**
+   * Creates the draft and submits it in one go.
+   *
+   * The draft is inserted directly — RLS allows a customer to create one of
+   * their own and nothing else — and every state change after that goes through
+   * `order_advance`, which re-derives the actor and re-checks the rules. The
+   * lock carried onto the order is what is *left* of the countdown, not a fresh
+   * fifteen minutes: silently extending a rate the customer already watched
+   * expire would be the dishonest version.
+   */
+  async function submitOrder() {
+    setCreating(true);
+    setCreateError(null);
+    try {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        setCreateError(t("createErrors.signedOut"));
+        return;
+      }
+
+      const { data: created, error: insertError } = await supabase
+        .from("orders")
+        .insert({
+          customer_id: user.id,
+          corridor: `${from}-${to}`,
+          send_currency: from,
+          send_amount_minor: toMinor(quote.sendAmount, from),
+          receive_currency: to,
+          receive_amount_minor: toMinor(quote.receiveAmount, to),
+          locked_rate: String(quote.customerRateToman),
+          rate_locked_at: new Date().toISOString(),
+          rate_expires_at: new Date(Date.now() + remaining * 1000).toISOString(),
+          platform_fee_minor: toMinor(quote.platformFeeToman, "IRT"),
+          office_fee_minor: toMinor(quote.officeFeeToman, "IRT"),
+          spread_breakdown: quote.layers,
+          destination_account_id: destination,
+          state: "draft",
+        })
+        .select("id")
+        .single();
+
+      if (insertError || !created) {
+        setCreateError(t("createErrors.failed"));
+        return;
+      }
+
+      const { error: rpcError } = await supabase.rpc("order_advance", {
+        p_order: created.id,
+        p_to: "submitted",
+      });
+      if (rpcError) {
+        // The draft exists either way, so send them to it rather than losing it.
+        router.push(`/orders/${created.id}`);
+        return;
+      }
+      router.push(`/orders/${created.id}`);
+    } catch {
+      setCreateError(t("createErrors.network"));
+    } finally {
+      setCreating(false);
+    }
+  }
 
   React.useEffect(() => {
     const id = setInterval(() => setRemaining((r) => Math.max(0, r - 1)), 1000);
@@ -162,10 +239,42 @@ export function TransferQuote({ quote, from, to, snapshot }: TransferQuoteProps)
         </p>
       ) : null}
 
+      {gate === "ready" ? (
+        <Card className="space-y-3 p-5">
+          <label htmlFor="destination" className="text-sm font-semibold">
+            {t("destination")}
+          </label>
+          <select
+            id="destination"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            className="h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
+          >
+            {accounts.map((account) => (
+              <option key={account.id} value={account.id}>
+                {account.nickname} — {account.holder_name}
+              </option>
+            ))}
+          </select>
+          {createError ? <p className="text-sm text-down">{createError}</p> : null}
+        </Card>
+      ) : null}
+
       <div className="flex flex-col gap-3 sm:flex-row">
-        <Button size="lg" className="flex-1" disabled={expired} onClick={() => setGateOpen(true)}>
-          {t("confirmCta")}
-        </Button>
+        {gate === "ready" ? (
+          <Button
+            size="lg"
+            className="flex-1"
+            disabled={expired || creating || !destination}
+            onClick={submitOrder}
+          >
+            {creating ? t("creating") : t("confirmCta")}
+          </Button>
+        ) : (
+          <Button size="lg" className="flex-1" disabled={expired} onClick={() => setGateOpen(true)}>
+            {t("confirmCta")}
+          </Button>
+        )}
         <Button asChild size="lg" variant="secondary">
           <Link href="/">{t("back")}</Link>
         </Button>
@@ -202,12 +311,22 @@ export function TransferQuote({ quote, from, to, snapshot }: TransferQuoteProps)
       {/* Auth gate — honest phase framing (§18) */}
       <Dialog open={gateOpen} onOpenChange={setGateOpen}>
         <DialogContent className="p-6">
-          <DialogTitle className="text-base font-semibold">{t("gateTitle")}</DialogTitle>
+          <DialogTitle className="text-base font-semibold">{t(`gate.${gate}.title`)}</DialogTitle>
           <DialogDescription className="mt-2 text-sm leading-relaxed text-ink-600">
-            {t("gateBody")}
+            {t(`gate.${gate}.body`)}
           </DialogDescription>
           <Button asChild size="lg" className="mt-5 w-full">
-            <Link href={{ pathname: "/signin", query: { next: "/verify" } }}>{t("gateCta")}</Link>
+            <Link
+              href={
+                gate === "anonymous"
+                  ? { pathname: "/signin", query: { next: "/verify" } }
+                  : gate === "unverified"
+                    ? "/verify"
+                    : "/accounts"
+              }
+            >
+              {t(`gate.${gate}.cta`)}
+            </Link>
           </Button>
         </DialogContent>
       </Dialog>

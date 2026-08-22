@@ -84,7 +84,7 @@ test("every authenticated route redirects a signed-out visitor to sign-in", asyn
   // This is the shape the Vercel deployment got wrong: with no Supabase values
   // at runtime the server decided auth was unconfigured and rendered the pages
   // instead of gating them. A 200 here means the gate is open.
-  for (const path of ["/orders", "/profile", "/verify", "/accounts", "/admin/kyc"]) {
+  for (const path of ["/orders", "/profile", "/verify", "/accounts", "/admin/kyc", "/office"]) {
     const response = await page.goto(path);
     expect(response?.status(), `${path} should not render for a stranger`).toBe(200);
     await expect(page, `${path} should land on sign-in`).toHaveURL(

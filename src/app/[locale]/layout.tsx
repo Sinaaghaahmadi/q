@@ -112,7 +112,10 @@ export default async function LocaleLayout({
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider>
           <Providers>
-            <Header signedIn={Boolean(session?.user)} />
+            <Header
+              signedIn={Boolean(session?.user)}
+              officeMember={Boolean(session?.memberships.some((m) => m.scope_type === "office"))}
+            />
             <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-24 sm:px-6 md:pb-10">
               {children}
             </main>
