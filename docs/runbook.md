@@ -70,42 +70,54 @@ so plainly; email sign-in works throughout.
 ## Bootstrapping the first account
 
 Nothing works from a cold start: the first person to sign in is an unverified
-customer, and KYC approval needs _two_ reviewers. Sign in once at
-<https://asaex.vercel.app/signin> — by email, since the SMS gateway is not wired
-yet — then, in the Supabase SQL editor:
+customer with no roles, and KYC approval needs _two_ reviewers. Sign in once at
+the deployment's `/signin` — by email, since the SMS gateway is not wired yet —
+then run this once in the Supabase SQL editor, with your own address in the two
+places it appears.
+
+The seeded demo accounts (`admin@asaex.demo` and the rest) cannot be signed in
+to: they have no password and their domain receives no mail. They exist to give
+the screens data, not to be logged into. This snippet puts _your_ account in
+their place.
 
 ```sql
--- Give yourself every platform role, so /admin/kyc and the platform
--- transitions open up.
+-- 1. Every platform role, so /admin and its sections open up.
 insert into public.memberships (user_id, role, scope_type)
 select id, r, 'platform'
 from auth.users, unnest(array[
   'platform_support','platform_compliance','platform_admin','platform_superadmin'
 ]::public.app_role[]) r
-where email = 'you@example.com';
+where email = 'you@example.com'
+on conflict do nothing;
 
--- Approve your own identity so orders can be submitted. This is the one step
--- that deliberately cannot be done through the UI: kyc_decide enforces
--- four-eyes and refuses to let one person do both halves.
+-- 2. A seat at the seeded Tehran office, so /office has an inbox too.
+insert into public.memberships (user_id, role, scope_type, scope_id)
+select u.id, 'office_owner', 'office', e.id
+from auth.users u, public.exchange_offices e
+where u.email = 'you@example.com' and e.slug = 'asa-tehran'
+on conflict do nothing;
+
+-- 3. Approve your own identity so you can submit an order. This is the one
+--    step that deliberately cannot be done through the UI: kyc_decide enforces
+--    four-eyes and refuses to let one person do both halves.
 update public.profiles set kyc_status = 'approved'
 where id = (select id from auth.users where email = 'you@example.com');
 ```
 
-To exercise the office side as well, create an office and join it:
-
-```sql
-insert into public.exchange_offices (slug, legal_name_fa, legal_name_en, license_no, status)
-values ('demo', 'صرافی نمونه', 'Demo Exchange', 'DEMO-1', 'active');
-
-insert into public.memberships (user_id, role, scope_type, scope_id)
-select u.id, 'office_owner', 'office', e.id
-from auth.users u, public.exchange_offices e
-where u.email = 'you@example.com' and e.slug = 'demo';
-```
+If the demo data is not there yet, run `pnpm seed:demo` first (see **Demo
+data** below) or drop step 2.
 
 One account holding both sides is fine for a walkthrough and wrong for
-production — `order_actor_role` resolves platform staff first, so you will act
-as the platform on every order rather than as the customer or the office.
+production — `order_actor_role` resolves platform staff before office
+membership, so on any order you will act as the platform, whose matrix is
+deliberately narrow: it can route, ask for information, dispute and reverse,
+but it cannot move a settlement leg. The one exception is an active
+impersonation, which answers ahead of everything (0015): while standing in for
+an office you act with that office's matrix, on that office's orders, and the
+event still records your own user id.
+
+So to walk the office side properly, use `/admin/exchanges/{id}` → **Act as
+this office** rather than granting yourself an office seat.
 
 ## Promoting a KYC reviewer
 

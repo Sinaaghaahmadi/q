@@ -59,6 +59,19 @@ when a policy is added. Actions taken while impersonating still record the
 administrator's own `auth.uid()`: the office is the scope, never the identity.
 Starting a session is restricted to `platform_superadmin`, which is who §5 names.
 
+That last claim was not true when 0014 landed, and the gap is worth recording.
+`order_actor_role` tests platform staff before office membership, so an
+impersonating superadmin — platform staff by definition — resolved as
+`platform` and got the platform matrix, which deliberately has no
+`accepted → awaiting_irt_funding` and no `foreign_leg_pending →
+foreign_leg_sent`. They could read the office's workspace and press nothing in
+it. 0015 makes an active impersonation of _this order's office_ answer first.
+Nothing widens: the office matrix still cannot confirm receipt on the
+customer's behalf, and `order_force_transition` never consulted
+`order_actor_role` at all. The lesson generalises — opening the _data_ to an
+impersonating caller and opening the _actions_ are two different changes, and
+the first one reads like both.
+
 **Configuration.** Office provisioning and status changes go through SECURITY
 DEFINER functions, but ordinary per-office edits — a spread, an account — write
 straight to their tables under the FOR ALL policies that already existed. What
