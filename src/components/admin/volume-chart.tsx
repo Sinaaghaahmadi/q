@@ -1,0 +1,180 @@
+import { useLocale, useTranslations } from "next-intl";
+import * as React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatAmount, formatDate, formatNumber, type AppLocale } from "@/lib/money/format";
+import { fromMinor } from "@/lib/money/minor";
+
+/** One month of the chart. `start` is that bucket's own first day. */
+export type MonthBar = { start: string; volumeMinor: number; settled: number };
+
+export type CorridorSlice = { corridor: string; volumeMinor: number };
+
+const W = 560;
+const H = 170;
+const PAD_Y = 12;
+
+/**
+ * Twelve months of settled Toman volume (§4.3).
+ *
+ * The last column is the month in progress, so it is drawn faded: a
+ * half-finished month rendered like the eleven complete ones next to it reads
+ * as a collapse in volume, and that is the one misreading this chart could
+ * cause that actually costs somebody a decision.
+ */
+export function VolumeChart({ months }: { months: MonthBar[] }) {
+  const t = useTranslations("admin.dashboard");
+  const locale = useLocale() as AppLocale;
+
+  const monthLabel = (start: string) => formatDate(start, locale, { month: "short" });
+  const toman = (minor: number) => formatAmount(fromMinor(minor, "IRT"), "IRT", locale);
+
+  const peak = months.reduce(
+    (best, month) => (month.volumeMinor > best.volumeMinor ? month : best),
+    months[0] ?? { start: new Date().toISOString(), volumeMinor: 0, settled: 0 },
+  );
+  const max = peak.volumeMinor;
+  const first = months[0];
+  const last = months[months.length - 1];
+
+  // Twelve bars of zero height are not a chart, and the label that goes with
+  // them would read a peak month out to a screen reader that never happened.
+  if (max === 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>{t("volumeTitle")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-ink-600">{t("noVolume")}</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{t("volumeTitle")}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {/* Time reads left→right in both locales, as it does on the rate chart. */}
+        <div dir="ltr">
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            className="h-auto w-full"
+            role="img"
+            aria-label={t("chartLabel", {
+              from: first ? monthLabel(first.start) : "",
+              to: last ? monthLabel(last.start) : "",
+              peak: monthLabel(peak.start),
+              max: toman(max),
+            })}
+          >
+            {[0.25, 0.5, 0.75].map((f) => (
+              <line
+                key={f}
+                x1={0}
+                x2={W}
+                y1={PAD_Y + (H - PAD_Y * 2) * f}
+                y2={PAD_Y + (H - PAD_Y * 2) * f}
+                stroke="var(--ink-300)"
+                strokeOpacity="0.35"
+                strokeDasharray="2 5"
+              />
+            ))}
+            {months.map((month, index) => {
+              const slot = W / months.length;
+              const width = slot * 0.52;
+              const full = H - PAD_Y * 2;
+              const height = max > 0 ? (full * month.volumeMinor) / max : 0;
+              return (
+                <rect
+                  key={month.start}
+                  x={slot * index + (slot - width) / 2}
+                  y={PAD_Y + full - height}
+                  width={width}
+                  height={height}
+                  rx="4"
+                  fill="var(--brand-600)"
+                  fillOpacity={index === months.length - 1 ? "0.45" : "0.85"}
+                />
+              );
+            })}
+            <line
+              x1={0}
+              x2={W}
+              y1={H - PAD_Y}
+              y2={H - PAD_Y}
+              stroke="var(--ink-300)"
+              strokeOpacity="0.7"
+            />
+          </svg>
+
+          <div
+            className="mt-1.5 grid gap-0.5 text-center"
+            style={{ gridTemplateColumns: `repeat(${months.length}, minmax(0, 1fr))` }}
+          >
+            {months.map((month) => (
+              <p key={month.start} className="text-[0.625rem] font-medium text-ink-600">
+                {monthLabel(month.start)}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <p className="text-xs leading-relaxed text-ink-600">{t("volumeHint")}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+/**
+ * Where the volume came from. Share of Toman volume, not share of orders: a
+ * corridor that carries a tenth of the tickets and half the money is the one
+ * that decides whether the quarter works, and counting tickets hides it.
+ */
+export function CorridorMix({ corridors }: { corridors: CorridorSlice[] }) {
+  const t = useTranslations("admin.dashboard");
+  const locale = useLocale() as AppLocale;
+
+  const total = corridors.reduce((sum, slice) => sum + slice.volumeMinor, 0);
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{t("corridorTitle")}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-2.5">
+        {total === 0 ? (
+          <p className="text-sm text-ink-600">{t("noVolume")}</p>
+        ) : (
+          <>
+            {corridors.map((slice) => (
+              <div key={slice.corridor} className="flex items-center gap-3">
+                <span className="w-24 shrink-0 font-mono text-xs" dir="ltr">
+                  {slice.corridor}
+                </span>
+                <span className="h-2 flex-1 overflow-hidden rounded-full bg-ink-300/40">
+                  <span
+                    className="block h-full rounded-full bg-brand-600"
+                    style={{ width: `${Math.max(2, (slice.volumeMinor / total) * 100)}%` }}
+                  />
+                </span>
+                <span className="num w-14 shrink-0 text-end text-sm">
+                  {formatNumber(slice.volumeMinor / total, locale, {
+                    style: "percent",
+                    maximumFractionDigits: 0,
+                  })}
+                </span>
+                <span className="num hidden w-32 shrink-0 text-end text-sm text-ink-600 sm:block">
+                  {formatAmount(fromMinor(slice.volumeMinor, "IRT"), "IRT", locale)}
+                </span>
+              </div>
+            ))}
+            <p className="text-xs leading-relaxed text-ink-600">{t("corridorHint")}</p>
+          </>
+        )}
+      </CardContent>
+    </Card>
+  );
+}

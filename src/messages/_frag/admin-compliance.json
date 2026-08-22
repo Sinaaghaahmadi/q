@@ -1,0 +1,143 @@
+{
+  "namespace": "admin.compliance",
+  "fa": {
+    "metaTitle": "انطباق",
+    "title": "انطباق",
+    "subtitle": "غربالگری تحریم، پیام‌های نشان‌دار، سقف‌های مبارزه با پول‌شویی، و مدت نگهداری داده.",
+    "sanctions": {
+      "title": "غربالگری تحریم",
+      "gapBadge": "شکاف باز",
+      "gapTitle": "غربالگری تحریم هنوز به هیچ منبعی وصل نیست",
+      "gapBody": "جدول sanctions_hits ساخته شده، اما هیچ سرویسی در آن چیزی نمی‌نویسد. پس خالی‌بودن این فهرست یعنی هنوز کسی غربال نشده، نه اینکه کسی با فهرست‌های تحریم تطبیق ندارد. این شکاف در docs/security-review.md ثبت شده و باید پیش از جابه‌جایی پول واقعی بسته شود.",
+      "col": {
+        "person": "شخص",
+        "list": "فهرست",
+        "score": "امتیاز تطبیق",
+        "created": "زمان",
+        "resolution": "تعیین تکلیف"
+      },
+      "unnamed": "بدون نام",
+      "unresolved": "تعیین تکلیف نشده",
+      "payload": "دادهٔ خام تطبیق",
+      "shown": "{count} تطبیق؛ فهرست به ۱۰۰ مورد تازه‌تر محدود است."
+    },
+    "flags": {
+      "title": "پیام‌های نشان‌دار",
+      "body": "این نشانه‌ها فقط علامت‌اند و هیچ پیامی را نمی‌بندند؛ متن همان‌طور که نوشته شده به گیرنده رسیده است.",
+      "empty": "پیام نشان‌داری ثبت نشده است.",
+      "name": {
+        "off_platform": "خارج از پلتفرم",
+        "account_number": "شمارهٔ حساب در متن",
+        "contact": "اطلاعات تماس"
+      },
+      "kind": {
+        "order": "گفت‌وگوی سفارش",
+        "p2p": "گفت‌وگوی نفربه‌نفر",
+        "support": "گفت‌وگوی پشتیبانی"
+      },
+      "open": "دیدن گفت‌وگو",
+      "noBody": "بدون متن",
+      "shown": "{count} پیام؛ فهرست به ۱۰۰ مورد تازه‌تر محدود است."
+    },
+    "thresholds": {
+      "title": "سقف‌ها و سطح‌ها",
+      "body": "این دو ردیف از جدول settings خوانده می‌شوند و در همان‌جا ذخیره می‌شوند. تا وقتی متن JSON معتبر نباشد، دکمهٔ ذخیره باز نمی‌شود.",
+      "keys": {
+        "p2p_limits": {
+          "label": "سقف‌های نفربه‌نفر",
+          "hint": "بیشترین آگهی باز، آگهی در ساعت، و سقف تومانی هر معامله به تفکیک سطح ریسک."
+        },
+        "customer_tiers": {
+          "label": "سطح‌های مشتری",
+          "hint": "آستانهٔ گردش هر سطح و کارمزد پلتفرم آن سطح بر حسب صدم درصد."
+        }
+      },
+      "editorLabel": "مقدار {key}",
+      "missing": "این کلید در جدول settings نیست.",
+      "invalid": "متن واردشده JSON معتبر نیست.",
+      "readOnly": "ویرایش این مقادیر کار نقش مدیر پلتفرم است؛ اینجا فقط خوانده می‌شود.",
+      "save": "ذخیره",
+      "saving": "کمی صبر کنید…",
+      "saved": "ذخیره شد.",
+      "saveFailed": "ذخیره نشد. دوباره بزنید."
+    },
+    "retention": {
+      "title": "نگهداری داده",
+      "body": "چه چیزی می‌ماند و تا کی.",
+      "audit": "دفتر رخدادها (audit_log) همیشگی است. ردیف‌ها نه ویرایش می‌شوند و نه پاک؛ تریگر پایگاه‌داده هر دو را رد می‌کند.",
+      "ledger": "دفتر مالی (ledger_entries) همیشگی است و زیر همان قاعدهٔ فقط‌افزودنی می‌ماند. هر رقمی که جابه‌جا شده باقی می‌ماند.",
+      "kyc": "مدارک احراز هویت در باکت خصوصی kyc-documents می‌مانند؛ عمومی نیستند و فقط با پیوند امضاشدهٔ ۶۰ ثانیه‌ای باز می‌شوند.",
+      "gap": "هیچ کار خودکاری برای پاک‌سازی وجود ندارد. چیزی به‌خودی‌خود منقضی نمی‌شود، پس تعیین مدت نگهداری تصمیمی است که هنوز نوشته نشده."
+    }
+  },
+  "en": {
+    "metaTitle": "Compliance",
+    "title": "Compliance",
+    "subtitle": "Sanctions screening, flagged messages, AML thresholds, and how long data is kept.",
+    "sanctions": {
+      "title": "Sanctions screening",
+      "gapBadge": "Open gap",
+      "gapTitle": "Sanctions screening is not connected to any source yet",
+      "gapBody": "The sanctions_hits table exists, but no service writes to it. An empty list here means nobody has been screened, not that nobody matches a sanctions list. The gap is recorded in docs/security-review.md and has to close before real money moves.",
+      "col": {
+        "person": "Person",
+        "list": "List",
+        "score": "Match score",
+        "created": "When",
+        "resolution": "Resolution"
+      },
+      "unnamed": "No name",
+      "unresolved": "Not resolved",
+      "payload": "Raw match data",
+      "shown": "{count} hits; the list is capped at the 100 most recent."
+    },
+    "flags": {
+      "title": "Flagged messages",
+      "body": "These are signals, never a block: the message reached its reader exactly as it was written.",
+      "empty": "No flagged messages.",
+      "name": {
+        "off_platform": "Off platform",
+        "account_number": "Account number in text",
+        "contact": "Contact details"
+      },
+      "kind": {
+        "order": "Order thread",
+        "p2p": "P2P thread",
+        "support": "Support thread"
+      },
+      "open": "Open the thread",
+      "noBody": "No text",
+      "shown": "{count} messages; the list is capped at the 100 most recent."
+    },
+    "thresholds": {
+      "title": "Limits and tiers",
+      "body": "Both rows are read from the settings table and saved back to it. Save stays closed until the text parses as JSON.",
+      "keys": {
+        "p2p_limits": {
+          "label": "P2P limits",
+          "hint": "Open offers per maker, offers per hour, and the Toman ceiling on a single trade by risk tier."
+        },
+        "customer_tiers": {
+          "label": "Customer tiers",
+          "hint": "The volume threshold for each tier and the platform fee, in basis points, that comes with it."
+        }
+      },
+      "editorLabel": "Value of {key}",
+      "missing": "This key is not in the settings table.",
+      "invalid": "That is not valid JSON.",
+      "readOnly": "Editing these values belongs to the platform-admin role; here they are read-only.",
+      "save": "Save",
+      "saving": "One moment…",
+      "saved": "Saved.",
+      "saveFailed": "Not saved. Try again."
+    },
+    "retention": {
+      "title": "Retention",
+      "body": "What is kept, and for how long.",
+      "audit": "The audit log (audit_log) is permanent. Rows can be neither edited nor deleted; a database trigger refuses both.",
+      "ledger": "The ledger (ledger_entries) is permanent, under the same append-only rule. Every figure that moved stays.",
+      "kyc": "KYC documents live in the private kyc-documents bucket. They are never public and open only through a 60-second signed link.",
+      "gap": "There is no automatic purge job. Nothing ages out on its own, so a retention window is a decision still to be written down."
+    }
+  }
+}

@@ -41,44 +41,15 @@ export function OfficeChatInbox({
   viewerId: string;
 }) {
   const t = useTranslations("officePanel.chat");
-  const format = useFormatter();
 
   const orders = threads.filter((thread) => thread.kind === "order");
   const support = threads.filter((thread) => thread.kind === "support");
+  const open = threads.find((thread) => thread.id === openThread) ?? null;
 
-  function Row({ thread }: { thread: ChatThread }) {
-    return (
-      <Link
-        href={`/office/chat?thread=${thread.id}`}
-        aria-current={thread.id === openThread ? "page" : undefined}
-        className={`block px-4 py-3 transition-colors hover:bg-canvas ${
-          thread.id === openThread ? "bg-canvas" : ""
-        }`}
-      >
-        <div className="flex items-center justify-between gap-2">
-          {thread.kind === "order" ? (
-            <span className="num font-mono text-xs" dir="ltr">
-              {thread.orderRef ?? t("unknownOrder")}
-            </span>
-          ) : (
-            <span className="flex items-center gap-1.5 text-xs font-medium">
-              <LifeBuoy className="size-3.5" aria-hidden />
-              {t("supportThread")}
-            </span>
-          )}
-          <Badge variant={thread.status === "resolved" ? "up" : "neutral"}>
-            {t(`status.${thread.status}`)}
-          </Badge>
-        </div>
-        <p className="mt-1 flex items-center gap-1.5 text-xs text-ink-600">
-          <Clock className="size-3" aria-hidden />
-          {thread.lastMessageAt
-            ? format.relativeTime(new Date(thread.lastMessageAt))
-            : t("noMessages")}
-        </p>
-      </Link>
-    );
-  }
+  // `message_send` derives the internal-note privilege from the office behind
+  // the order, so a support thread has no office side to grant it. Offering the
+  // checkbox there would only earn a refusal that throws away what was typed.
+  const canWriteNotes = open?.kind === "order";
 
   return (
     <div className="grid gap-4 lg:grid-cols-[22rem_1fr]">
@@ -91,13 +62,13 @@ export function OfficeChatInbox({
               <p className="px-4 py-2 text-xs font-semibold text-ink-600">{t("sectionOrders")}</p>
             ) : null}
             {orders.map((thread) => (
-              <Row key={thread.id} thread={thread} />
+              <Row key={thread.id} thread={thread} openThread={openThread} />
             ))}
             {support.length > 0 ? (
               <p className="px-4 py-2 text-xs font-semibold text-ink-600">{t("sectionSupport")}</p>
             ) : null}
             {support.map((thread) => (
-              <Row key={thread.id} thread={thread} />
+              <Row key={thread.id} thread={thread} openThread={openThread} />
             ))}
           </>
         )}
@@ -109,16 +80,58 @@ export function OfficeChatInbox({
             <ConversationView
               conversationId={openThread}
               viewerId={viewerId}
-              canWriteNotes
+              canWriteNotes={canWriteNotes}
               initialMessages={messages}
               senderNames={senderNames}
             />
-            <p className="text-xs text-ink-600">{t("notesHint")}</p>
+            {canWriteNotes ? <p className="text-xs text-ink-600">{t("notesHint")}</p> : null}
           </>
         ) : (
           <p className="py-16 text-center text-sm text-ink-600">{t("pickThread")}</p>
         )}
       </Card>
     </div>
+  );
+}
+
+/**
+ * Declared here rather than inside the inbox: a component defined in a render
+ * body is a new type on every render, so React would tear down and rebuild
+ * every row each time a thread is opened.
+ */
+function Row({ thread, openThread }: { thread: ChatThread; openThread: string | null }) {
+  const t = useTranslations("officePanel.chat");
+  const format = useFormatter();
+
+  return (
+    <Link
+      href={`/office/chat?thread=${thread.id}`}
+      aria-current={thread.id === openThread ? "page" : undefined}
+      className={`block px-4 py-3 transition-colors hover:bg-canvas ${
+        thread.id === openThread ? "bg-canvas" : ""
+      }`}
+    >
+      <div className="flex items-center justify-between gap-2">
+        {thread.kind === "order" ? (
+          <span className="num font-mono text-xs" dir="ltr">
+            {thread.orderRef ?? t("unknownOrder")}
+          </span>
+        ) : (
+          <span className="flex items-center gap-1.5 text-xs font-medium">
+            <LifeBuoy className="size-3.5" aria-hidden />
+            {t("supportThread")}
+          </span>
+        )}
+        <Badge variant={thread.status === "resolved" ? "up" : "neutral"}>
+          {t(`status.${thread.status}`)}
+        </Badge>
+      </div>
+      <p className="mt-1 flex items-center gap-1.5 text-xs text-ink-600">
+        <Clock className="size-3" aria-hidden />
+        {thread.lastMessageAt
+          ? format.relativeTime(new Date(thread.lastMessageAt))
+          : t("noMessages")}
+      </p>
+    </Link>
   );
 }

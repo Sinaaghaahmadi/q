@@ -345,3 +345,123 @@ begin
     (select count(*) from public.conversations),
     (select count(*) from public.messages);
 end $$;
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- Editorial content and notification copy.
+--
+-- /admin/content edits both of these tables, and both shipped empty: the page
+-- opened onto two blank tabs, so nothing about the editor could be judged — not
+-- the Persian/English pairing, not publish-and-unpublish, not the variable
+-- schema on a template. Seeding them is what makes the screen mean something.
+--
+-- Idempotent on the natural keys, so re-running the seed neither duplicates a
+-- row nor overwrites an edit somebody made through the panel.
+-- ─────────────────────────────────────────────────────────────────────────────
+
+insert into public.cms_content (key, locale, type, title, body, published_at) values
+  ('faq-how-long', 'fa', 'faq', 'انتقال چقدر طول می‌کشد؟',
+   'بیشتر انتقال‌ها در همان روز کاری انجام می‌شود. پس از اینکه صرافی مبلغ را ارسال کرد، وضعیت سفارش شما به «ارسال شد» تغییر می‌کند و گیرنده معمولاً ظرف چند ساعت مبلغ را دریافت می‌کند.',
+   now() - interval '20 days'),
+  ('faq-how-long', 'en', 'faq', 'How long does a transfer take?',
+   'Most transfers complete within the same business day. Once the exchange office sends the money your order moves to “sent”, and the recipient usually has the funds within a few hours.',
+   now() - interval '20 days'),
+
+  ('faq-rate-lock', 'fa', 'faq', 'نرخ چه زمانی قفل می‌شود؟',
+   'نرخ در لحظهٔ ثبت سفارش قفل می‌شود و تا زمان انقضای اعلام‌شده روی همان سفارش ثابت می‌ماند. اگر سفارش منقضی شود، نرخ روز دوباره محاسبه می‌شود.',
+   now() - interval '18 days'),
+  ('faq-rate-lock', 'en', 'faq', 'When is the rate locked?',
+   'The rate is locked the moment you place the order and holds for that order until the stated expiry. If an order expires, the rate is recalculated at the current price.',
+   now() - interval '18 days'),
+
+  ('faq-documents', 'fa', 'faq', 'چه مدارکی لازم است؟',
+   'برای مبالغ کوچک، شمارهٔ تماس تأییدشده کافی است. با بالا رفتن سقف انتقال، کارت ملی یا گذرنامه و یک عکس زنده لازم می‌شود. مدارک شما رمزگذاری‌شده نگهداری و هرگز با گیرنده به اشتراک گذاشته نمی‌شود.',
+   now() - interval '15 days'),
+  ('faq-documents', 'en', 'faq', 'What documents do I need?',
+   'For small amounts a verified phone number is enough. As your limits rise we ask for a national ID or passport and a liveness photo. Documents are stored encrypted and are never shared with the recipient.',
+   now() - interval '15 days'),
+
+  ('faq-fees', 'fa', 'faq', 'کارمزد چگونه محاسبه می‌شود؟',
+   'کارمزد پیش از تأیید، به صورت کامل و جداگانه نمایش داده می‌شود: نرخ تبدیل، کارمزد صرافی و هزینهٔ انتقال. مبلغی که گیرنده دریافت می‌کند همان عددی است که در پیش‌فاکتور دیده‌اید.',
+   now() - interval '12 days'),
+  ('faq-fees', 'en', 'faq', 'How are fees calculated?',
+   'Every fee is shown in full before you confirm: the conversion rate, the office margin, and the transfer cost. The amount the recipient receives is the number you saw on the quote.',
+   now() - interval '12 days'),
+
+  ('announce-hours', 'fa', 'announcement', 'ساعات کاری در ایام تعطیل',
+   'در روزهای تعطیل رسمی، سفارش‌ها ثبت می‌شوند اما تسویهٔ ریالی در اولین روز کاری انجام خواهد شد.',
+   now() - interval '3 days'),
+  ('announce-hours', 'en', 'announcement', 'Holiday opening hours',
+   'On public holidays orders are still accepted, but rial settlement happens on the next business day.',
+   now() - interval '3 days'),
+
+  -- Left unpublished on purpose: the editor needs one draft to show that
+  -- publish/unpublish is a real control and not a decoration.
+  ('announce-new-corridor', 'fa', 'announcement', 'کریدور جدید: امارات',
+   'به‌زودی انتقال به درهم امارات از طریق صرافی‌های همکار در دبی فعال می‌شود.', null),
+  ('announce-new-corridor', 'en', 'announcement', 'New corridor: UAE',
+   'Transfers to UAE dirham through partner offices in Dubai are opening soon.', null)
+on conflict (key, locale) do nothing;
+
+insert into public.notification_templates (key, locale, channel, subject, body, variables) values
+  ('order_matched', 'fa', 'sms', null,
+   'آساایکس: سفارش {{ref}} به صرافی {{office}} سپرده شد. پیگیری: {{link}}',
+   '["ref","office","link"]'::jsonb),
+  ('order_matched', 'en', 'sms', null,
+   'Asaex: order {{ref}} has been assigned to {{office}}. Track it: {{link}}',
+   '["ref","office","link"]'::jsonb),
+
+  ('funding_needed', 'fa', 'sms', null,
+   'آساایکس: برای سفارش {{ref}} مبلغ {{amount}} تومان را به حساب اعلام‌شده واریز کنید.',
+   '["ref","amount"]'::jsonb),
+  ('funding_needed', 'en', 'sms', null,
+   'Asaex: please transfer {{amount}} IRT for order {{ref}} to the account shown in the app.',
+   '["ref","amount"]'::jsonb),
+
+  ('leg_sent', 'fa', 'sms', null,
+   'آساایکس: مبلغ {{amount}} {{currency}} برای سفارش {{ref}} ارسال شد. پس از دریافت، در برنامه تأیید کنید.',
+   '["ref","amount","currency"]'::jsonb),
+  ('leg_sent', 'en', 'sms', null,
+   'Asaex: {{amount}} {{currency}} has been sent for order {{ref}}. Confirm receipt in the app.',
+   '["ref","amount","currency"]'::jsonb),
+
+  ('order_completed', 'fa', 'email', 'سفارش {{ref}} تکمیل شد',
+   'سلام {{name}}،
+
+سفارش {{ref}} با موفقیت تکمیل شد. گیرنده مبلغ {{amount}} {{currency}} را دریافت کرد.
+
+رسید کامل در حساب کاربری شما در دسترس است: {{link}}
+
+آساایکس',
+   '["name","ref","amount","currency","link"]'::jsonb),
+  ('order_completed', 'en', 'email', 'Order {{ref}} is complete',
+   'Hello {{name}},
+
+Order {{ref}} has completed. The recipient received {{amount}} {{currency}}.
+
+Your full receipt is in your account: {{link}}
+
+Asaex',
+   '["name","ref","amount","currency","link"]'::jsonb),
+
+  ('kyc_approved', 'fa', 'inapp', null,
+   'احراز هویت شما تأیید شد. سقف انتقال شما به سطح {{tier}} افزایش یافت.',
+   '["tier"]'::jsonb),
+  ('kyc_approved', 'en', 'inapp', null,
+   'Your identity check was approved. Your limits are now at the {{tier}} tier.',
+   '["tier"]'::jsonb),
+
+  ('kyc_rejected', 'fa', 'inapp', null,
+   'مدارک شما تأیید نشد: {{reason}}. می‌توانید دوباره ارسال کنید.',
+   '["reason"]'::jsonb),
+  ('kyc_rejected', 'en', 'inapp', null,
+   'Your documents were not accepted: {{reason}}. You can submit again.',
+   '["reason"]'::jsonb)
+on conflict (key, locale, channel) do nothing;
+
+do $$
+begin
+  raise notice 'content seeded: % cms rows (% published), % notification templates',
+    (select count(*) from public.cms_content),
+    (select count(*) from public.cms_content where published_at is not null),
+    (select count(*) from public.notification_templates);
+end $$;

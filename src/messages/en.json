@@ -1130,6 +1130,483 @@
       "people": "People & compliance",
       "money": "Money",
       "platform": "Platform"
+    },
+    "compliance": {
+      "metaTitle": "Compliance",
+      "title": "Compliance",
+      "subtitle": "Sanctions screening, flagged messages, AML thresholds, and how long data is kept.",
+      "sanctions": {
+        "title": "Sanctions screening",
+        "gapBadge": "Open gap",
+        "gapTitle": "Sanctions screening is not connected to any source yet",
+        "gapBody": "The sanctions_hits table exists, but no service writes to it. An empty list here means nobody has been screened, not that nobody matches a sanctions list. The gap is recorded in docs/security-review.md and has to close before real money moves.",
+        "col": {
+          "person": "Person",
+          "list": "List",
+          "score": "Match score",
+          "created": "When",
+          "resolution": "Resolution"
+        },
+        "unnamed": "No name",
+        "unresolved": "Not resolved",
+        "payload": "Raw match data",
+        "shown": "{count} hits; the list is capped at the 100 most recent."
+      },
+      "flags": {
+        "title": "Flagged messages",
+        "body": "These are signals, never a block: the message reached its reader exactly as it was written.",
+        "empty": "No flagged messages.",
+        "name": {
+          "off_platform": "Off platform",
+          "account_number": "Account number in text",
+          "contact": "Contact details"
+        },
+        "kind": {
+          "order": "Order thread",
+          "p2p": "P2P thread",
+          "support": "Support thread"
+        },
+        "open": "Open the thread",
+        "noBody": "No text",
+        "shown": "{count} messages; the list is capped at the 100 most recent."
+      },
+      "thresholds": {
+        "title": "Limits and tiers",
+        "body": "Both rows are read from the settings table and saved back to it. Save stays closed until the text parses as JSON.",
+        "keys": {
+          "p2p_limits": {
+            "label": "P2P limits",
+            "hint": "Open offers per maker, offers per hour, and the Toman ceiling on a single trade by risk tier."
+          },
+          "customer_tiers": {
+            "label": "Customer tiers",
+            "hint": "The volume threshold for each tier and the platform fee, in basis points, that comes with it."
+          }
+        },
+        "editorLabel": "Value of {key}",
+        "missing": "This key is not in the settings table.",
+        "invalid": "That is not valid JSON.",
+        "readOnly": "Editing these values belongs to the platform-admin role; here they are read-only.",
+        "save": "Save",
+        "saving": "One moment…",
+        "saved": "Saved.",
+        "saveFailed": "Not saved. Try again."
+      },
+      "retention": {
+        "title": "Retention",
+        "body": "What is kept, and for how long.",
+        "audit": "The audit log (audit_log) is permanent. Rows can be neither edited nor deleted; a database trigger refuses both.",
+        "ledger": "The ledger (ledger_entries) is permanent, under the same append-only rule. Every figure that moved stays.",
+        "kyc": "KYC documents live in the private kyc-documents bucket. They are never public and open only through a 60-second signed link.",
+        "gap": "There is no automatic purge job. Nothing ages out on its own, so a retention window is a decision still to be written down."
+      }
+    },
+    "content": {
+      "metaTitle": "Content",
+      "title": "Content and messages",
+      "subtitle": "Pages, FAQs, banners and announcements, and the SMS and email wording — each of them in Persian and English.",
+      "loadFailedTitle": "Content could not be read",
+      "loadFailedBody": "The read from the database did not complete, so we cannot say what is stored. Reload the page; if it keeps happening, tell the engineering team.",
+      "tab": {
+        "cms": "Site content",
+        "templates": "Message wording"
+      },
+      "locale": {
+        "fa": "Persian",
+        "en": "English"
+      },
+      "edit": "Edit",
+      "close": "Close",
+      "save": "Save",
+      "saved": "Saved.",
+      "create": "Create",
+      "cancel": "Cancel",
+      "working": "One moment…",
+      "errors": {
+        "keyRequired": "Write the key in Latin letters, digits, dots, hyphens or underscores.",
+        "titleRequired": "Write a title.",
+        "bodyRequired": "Write the body.",
+        "duplicate": "This key already exists in this language.",
+        "forbidden": "Not saved: writing content is open to platform administrators only.",
+        "saveFailed": "Not saved. Try again."
+      },
+      "cms": {
+        "noDelete": "Rows are never deleted; the database refuses it. Unpublishing is how content is retired — no page renders CMS content yet, so publishing marks a row ready rather than putting it on the site.",
+        "gapWarning": "{count, plural, one {One key is written in one language only.} other {# keys are written in one language only.}}",
+        "allTranslated": "Every key is written in both languages.",
+        "newKey": "New key",
+        "keyLabel": "Key",
+        "keyHint": "The name this content is filed under — faq.fees, legal.terms.",
+        "keyPlaceholder": "faq.fees",
+        "typeLabel": "Type",
+        "localeLabel": "Language",
+        "titleLabel": "Title",
+        "bodyLabel": "Body",
+        "bodyHint": "Plain text. What you write is what is stored.",
+        "draftNote": "New content is stored unpublished. Publishing is a separate act, and today it only marks the row ready.",
+        "missing": "No {locale}",
+        "addTranslation": "Add {locale}",
+        "published": "Published",
+        "draft": "Unpublished",
+        "publishedOn": "Published {date}",
+        "updatedOn": "Edited {date}",
+        "publish": "Publish",
+        "unpublish": "Unpublish",
+        "empty": "No content yet.",
+        "type": {
+          "page": "Page",
+          "faq": "FAQ",
+          "banner": "Banner",
+          "announcement": "Announcement"
+        }
+      },
+      "templates": {
+        "intro": "The wording for each message key and channel is stored here. No sender reads this table yet, so an edit changes the stored text, not a message a customer receives. New keys are not created from this screen.",
+        "gapWarning": "{count, plural, one {One message is written in one language only.} other {# messages are written in one language only.}}",
+        "allTranslated": "Every message is written in both languages.",
+        "subjectLabel": "Subject",
+        "subjectHint": "For email. SMS and in-app messages carry no subject.",
+        "noSubject": "No subject",
+        "bodyLabel": "Body",
+        "bodyHint": "Write variables with the names declared beside the body.",
+        "variablesTitle": "Declared variables",
+        "noVariables": "No variables declared.",
+        "previewTitle": "Preview",
+        "previewHint": "Each variable is shown as its own name. Nothing is sent from here.",
+        "undeclared": "These names appear in the body but are not declared: {names}",
+        "missing": "No {locale}",
+        "addTranslation": "Add {locale}",
+        "empty": "No wording yet.",
+        "channel": {
+          "inapp": "In-app",
+          "push": "Push",
+          "sms": "SMS",
+          "email": "Email"
+        }
+      }
+    },
+    "dashboard": {
+      "metaTitle": "Management reports",
+      "title": "Management reports",
+      "subtitle": "Settled volume, fee revenue and how each office is doing over the last twelve months. Every figure is counted from the orders, their events and the ledger.",
+      "toman": "Toman",
+      "vsLastMonth": "vs the same span last month",
+      "noBase": "Last month has no figure to compare against.",
+      "card": {
+        "volume": "Settled volume this month",
+        "settled": "Completed orders this month",
+        "fees": "Platform fee revenue this month",
+        "inFlight": "Orders in flight",
+        "atRisk": "At SLA risk"
+      },
+      "hint": {
+        "inFlight": "Open right now, with someone waiting on it.",
+        "atRisk": "Due in under 24 hours, or already past due.",
+        "noDeadlines": "No open order carries a deadline yet."
+      },
+      "volumeTitle": "Settled volume by month",
+      "volumeHint": "An order counts in the month it settled, not the month it was opened. The last column is the current month so far, and is not complete.",
+      "chartLabel": "Bar chart of settled volume from {from} to {to}. The highest month was {peak} at {max} Toman.",
+      "corridorTitle": "Corridor share of volume",
+      "corridorHint": "Share is by Toman volume of the orders settled in the last twelve months.",
+      "noVolume": "Nothing has settled in this period yet.",
+      "scoreTitle": "Office scorecards",
+      "scoreHint": "Active offices only, over the last twelve months, sorted by volume. Average completion is the gap between an order being opened and its completion event.",
+      "scoreEmpty": "No active offices.",
+      "col": {
+        "office": "Office",
+        "orders": "Orders",
+        "volume": "Volume (Toman)",
+        "completion": "Avg. completion",
+        "sla": "On time",
+        "disputes": "Dispute rate"
+      },
+      "hours": "{value} h",
+      "minutes": "{value} min",
+      "noData": "—",
+      "noOrders": "None"
+    },
+    "finance": {
+      "metaTitle": "Ledger",
+      "title": "Ledger and reconciliation",
+      "subtitle": "The trial balance, fee revenue and the most recent ledger transactions. The ledger is append-only; nothing on this page edits it.",
+      "toman": "Toman",
+      "partialTitle": "The trial balance covers part of the ledger",
+      "partialBody": "This page read the {count} most recent entries; older ones are not in the sum. If the total is not zero, a transaction may have been cut in half at that boundary rather than the ledger being out.",
+      "failedTitle": "The ledger could not be read",
+      "failedBody": "Reading the ledger failed. What is shown below is incomplete and may be nothing at all; until the read succeeds this page says nothing about whether the ledger balances.",
+      "balance": {
+        "zeroTitle": "The ledger balances",
+        "zeroBody": "In every currency, debits equal credits. That is the only acceptable state for a double-entry ledger.",
+        "brokenTitle": "The ledger does not balance",
+        "brokenBody": "The difference below is real and needs chasing. It is neither rounded nor hidden; until it reaches zero the reconciliation is not closed.",
+        "unknownTitle": "This total is not a verdict",
+        "unknownBody": "The sum below covers only the entries this page could read. A figure other than zero here does not on its own mean the ledger is out; read it together with the note above.",
+        "emptyTitle": "Nothing to balance yet",
+        "zeroBadge": "Balanced",
+        "brokenBadge": "Out of balance",
+        "empty": "No ledger account has been opened yet."
+      },
+      "escrow": {
+        "title": "Funded into holding",
+        "hint": "Total Toman debited to the holding account since launch, less reversals. The office withdrawal leg is not posted yet, so this is cumulative funding, not a live escrow balance.",
+        "empty": "Nothing has been funded into holding yet."
+      },
+      "trial": {
+        "title": "Trial balance",
+        "hint": "Each account's position is debits minus credits. A negative position is not a fault in itself; a payable account is supposed to sit in credit.",
+        "col": {
+          "account": "Account",
+          "owner": "Owner",
+          "entries": "Entries",
+          "net": "Position"
+        },
+        "subtotal": "Group total",
+        "remainder": "{count} further accounts",
+        "noOwner": "—"
+      },
+      "owner": {
+        "platform": "Platform",
+        "office": "Offices",
+        "customer": "Customers",
+        "suspense": "Suspense"
+      },
+      "code": {
+        "irt_holding": "Toman holding",
+        "irt_payable": "Toman payable",
+        "irt_fees": "Toman fees",
+        "irt_settlement": "Office settlement"
+      },
+      "fees": {
+        "platformTitle": "Platform fee revenue",
+        "platformHint": "The last twelve months, Toman fee account only. A fee handed back in a refund is posted as a debit on the same account and is subtracted from that month; what you see is net revenue.",
+        "total": "Twelve-month total",
+        "empty": "No fee was posted in this window.",
+        "officeTitle": "Office fee revenue",
+        "officeHint": "Each office's share of the fees over the same twelve months.",
+        "officeEmpty": "No office fee has been posted.",
+        "col": {
+          "office": "Office",
+          "fees": "Fees"
+        },
+        "unknownOffice": "Removed office"
+      },
+      "txn": {
+        "title": "Recent ledger transactions",
+        "hint": "One block per transaction, newest first. Reversal entries compensate a refund rather than move money afresh; reading them as ordinary movements is how a reconciliation goes wrong.",
+        "empty": "No ledger transaction has been posted yet.",
+        "reversal": "Reversal",
+        "reversalLine": "Reversal",
+        "noOrder": "No order",
+        "debit": "Debit",
+        "credit": "Credit",
+        "noMemo": "—",
+        "unknownOwner": "Unknown owner",
+        "shown": "Showing the {count} most recent transactions."
+      }
+    },
+    "rates": {
+      "metaTitle": "Rates & spread",
+      "title": "Rates & spread",
+      "subtitle": "Where the rates come from, which sources are registered, and the floor and ceiling this console measures office spreads against.",
+      "snapshot": {
+        "title": "Current rate snapshot",
+        "degradedTitle": "This snapshot is not fresh",
+        "degradedBody": "The primary source did not answer, or its newest observation is older than the accepted window. Check the source and observation time below before pricing a customer or settling a dispute from these numbers.",
+        "staleBadge": "Stale rates",
+        "okTitle": "The snapshot is fresh",
+        "okBody": "The primary source answered and its newest observation is within the accepted window.",
+        "source": "Source",
+        "observed": "Observed at source",
+        "fetched": "Fetched by us",
+        "sourceName": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "demo": "Demo data"
+        },
+        "col": {
+          "pair": "Pair",
+          "mid": "Mid (Toman)",
+          "change": "24h change",
+          "source": "Source",
+          "observed": "Observed"
+        },
+        "empty": "This snapshot carries no rates."
+      },
+      "sources": {
+        "title": "Rate providers",
+        "hint": "One row per registered source, exactly as it is stored in the database.",
+        "readOnly": "A source cannot be switched on or off from this page: the database policy on the sources table grants read only, and has no policy for writes at all. The switches show the current state and are disabled; changing it today is a database migration. “Last success” and “Last error” are the stored columns, and no job writes them yet, so they stay empty even while a provider is answering — the freshness banner at the top of this page is what tells you whether the pipeline is working.",
+        "col": {
+          "name": "Name",
+          "kind": "Kind",
+          "state": "State",
+          "lastOk": "Last success",
+          "lastError": "Last error"
+        },
+        "active": "Active",
+        "inactive": "Inactive",
+        "empty": "No source has been registered yet.",
+        "kind": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "manual": "Manual",
+          "demo": "Demo"
+        }
+      },
+      "bounds": {
+        "title": "Platform spread floor and ceiling",
+        "hint": "The floor and ceiling this console measures every office's per-corridor spread against. They are a review aid: nothing rejects a spread outside them yet. Both are in basis points; 100 of them make one percent.",
+        "floor": "Floor",
+        "ceiling": "Ceiling",
+        "means": "{bps} bps = {pct}%",
+        "missing": "Nothing is stored yet. The numbers below are an opening suggestion; until they are saved, this page marks nothing as out of range.",
+        "unreadable": "A value is stored under this key, but it cannot be read as a floor and a ceiling, so no row is measured against it. The fields below show the opening suggestion rather than what is stored, and saving replaces the stored value.",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Saved.",
+        "saveFailed": "Not saved.",
+        "invalid": "The floor must be zero or more, the ceiling must be greater than the floor, and the ceiling cannot go above {max} bps — the office spread editors refuse anything higher. Both are whole numbers.",
+        "updated": "Last changed: {at}"
+      },
+      "spread": {
+        "title": "Spread across offices",
+        "hint": "For each corridor, the lowest, median and highest spread the active offices have set. A draft, suspended or archived office is left out, and so is an inactive corridor, since neither quotes anybody.",
+        "notEnforced": "Until a floor and ceiling are saved, no row is marked as out of range.",
+        "col": {
+          "corridor": "Corridor",
+          "offices": "Offices",
+          "min": "Lowest",
+          "median": "Median",
+          "max": "Highest"
+        },
+        "empty": "No office has configured a corridor yet.",
+        "belowFloor": "Below floor",
+        "aboveCeiling": "Above ceiling"
+      }
+    },
+    "users": {
+      "metaTitle": "Customers",
+      "title": "Customers",
+      "subtitle": "Every customer on the platform. Search by name or phone.",
+      "searchLabel": "Search by name or phone",
+      "searchPlaceholder": "Name or phone",
+      "search": "Search",
+      "kycFilter": "KYC",
+      "kycAll": "All statuses",
+      "accessFilter": "Account access",
+      "accessAll": "All",
+      "accessFrozen": "Frozen",
+      "accessOpen": "Open",
+      "kyc": {
+        "unverified": "Unverified",
+        "pending": "In review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "more_info_needed": "More documents needed"
+      },
+      "col": {
+        "name": "Name",
+        "phone": "Phone",
+        "kyc": "KYC",
+        "risk": "Risk",
+        "access": "Access",
+        "orders": "Orders",
+        "volume": "Volume",
+        "joined": "Joined"
+      },
+      "unnamed": "No name",
+      "notSet": "Not set",
+      "risk": "Tier {tier}",
+      "frozenBadge": "Frozen",
+      "openBadge": "Open",
+      "toman": "Toman",
+      "empty": "No customers yet.",
+      "emptyFiltered": "No customer matches these filters.",
+      "shown": "{count} customers; the list is capped at the 200 most recent.",
+      "volumeHint": "Volume is the Toman leg of completed orders only.",
+      "totalsTruncated": "Not every order behind this list was read; the Orders and Volume columns are understated. Narrow the search to see them whole.",
+      "detailMetaTitle": "Customer file",
+      "identityTitle": "Identity",
+      "identity": {
+        "nameFa": "Name (Persian)",
+        "nameLatin": "Name (Latin)",
+        "phone": "Phone",
+        "email": "Email",
+        "nationalCode": "National code",
+        "dob": "Date of birth",
+        "nationality": "Nationality",
+        "kyc": "KYC",
+        "risk": "Risk tier",
+        "referralCode": "Referral code",
+        "joined": "Joined"
+      },
+      "phoneVerified": "Verified",
+      "phoneUnverified": "Not verified",
+      "tierTitle": "Customer tier",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum"
+      },
+      "tierFee": "The platform fee at this tier is {pct}%.",
+      "tierVolume": "Completed volume",
+      "tierToNext": "{amount} Toman to reach {tier}",
+      "tierTop": "Top tier; there is no next one.",
+      "tierUnavailable": "The tier for this customer could not be read; volume and fee stay hidden until it answers.",
+      "ordersTitle": "Orders",
+      "orderCol": {
+        "ref": "Reference",
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "state": "State",
+        "created": "Date"
+      },
+      "noOrders": "No orders yet.",
+      "ordersCapped": "This list is capped at the {count} most recent orders; the volume above covers every completed one.",
+      "destinationsTitle": "Destination accounts",
+      "noDestinations": "No destination account saved.",
+      "kind": {
+        "sheba": "Sheba",
+        "card": "Card",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash_pickup": "Cash pickup"
+      },
+      "verification": {
+        "unverified": "Unchecked",
+        "pending": "Pending",
+        "verified": "Verified",
+        "rejected": "Rejected"
+      },
+      "thirdParty": "Third party",
+      "archived": "Archived",
+      "loginsTitle": "Sign-in history",
+      "loginKind": {
+        "sign_in": "Sign-in",
+        "sign_out": "Sign-out",
+        "revoked": "Session revoked"
+      },
+      "noLogins": "No sign-in events recorded.",
+      "loginsCapped": "This list is capped at the {count} most recent events.",
+      "unknownDevice": "Unknown",
+      "referralsTitle": "Referrals",
+      "invitedBy": "Invited by {name} with code {code}",
+      "invitedByNobody": "Did not join with anyone's referral code.",
+      "noReferrals": "Has not referred anyone.",
+      "rewarded": "Rewarded",
+      "rewardPending": "Waiting on their first completed order",
+      "freezeTitle": "Freeze account",
+      "freezeBody": "Freezing closes profile edits for this customer, and takes a written reason.",
+      "freezeReason": "Reason",
+      "freezeReasonPlaceholder": "Why is this account being frozen?",
+      "freeze": "Freeze",
+      "unfreeze": "Unfreeze",
+      "freezeUnavailable": "This panel cannot freeze an account. In 0002_identity_access.sql the only write policy on profiles is profiles_self_update, which admits the customer's own row and nothing else, and there is no SECURITY DEFINER function for it either. Until one of the two is added the control stays disabled: a button the database refuses is worse than no button.",
+      "frozenSince": "Frozen since {date}",
+      "frozenReasonLabel": "Recorded reason",
+      "notFrozen": "This account is open."
     }
   },
   "chat": {
@@ -1377,8 +1854,10 @@
         "metaTitle": "Settlement accounts",
         "title": "Settlement accounts",
         "subtitle": "The accounts your customers pay into.",
-        "noPublicTitle": "No public IRT account",
-        "noPublicBody": "Until at least one IRT account is both public and active, the office cannot go live and no work is routed to it.",
+        "noPublicTitle": "No public account",
+        "noPublicBody": "Until at least one account — in any currency — is both public and active, the office cannot be set to active.",
+        "noIrtTitle": "No public IRT account",
+        "noIrtBody": "P2P escrow work is only routed to an office with a public, active IRT account. Other orders do not need one.",
         "noDeleteNote": "Accounts are never deleted; the record of past payments has to stay. Deactivate an account you no longer want.",
         "readOnly": "Changing accounts needs the finance or owner role at this office.",
         "empty": "No account has been added yet.",
@@ -1402,7 +1881,7 @@
         "label": "Account name",
         "labelPlaceholder": "e.g. Bank Mellat, central branch",
         "publicLabel": "Show to customers",
-        "publicHint": "Customers see this number as a payment target.",
+        "publicHint": "Makes this account visible to customers.",
         "activeLabel": "Active",
         "activeHint": "An inactive account is not used on new orders.",
         "add": "Add account",
@@ -1423,27 +1902,28 @@
       "liquidity": {
         "metaTitle": "Liquidity",
         "title": "Liquidity",
-        "subtitle": "Balance per currency, and this office's position in the ledger.",
+        "subtitle": "This office's ledger position, by currency.",
         "holding": "Settlement money stays in platform holding until it is withdrawn. What you see here is your share of it, not money already sitting in the office's bank account.",
-        "readOnly": "This page is read-only; balances move as orders are recorded.",
-        "available": "Available",
-        "reserved": "Reserved",
-        "reservedHint": "Held against open orders.",
+        "readOnly": "This page is read-only; it reports what the ledger has recorded and changes nothing.",
         "position": "Ledger position",
-        "positionHint": "Debits minus credits.",
+        "positionHint": "Credits minus debits.",
         "code": {
           "irt_fees": "Fees",
           "irt_settlement": "Settlement"
         },
         "noPosition": "Nothing recorded in the ledger.",
-        "empty": "No balance has been recorded yet."
+        "ledgerHidden": "The ledger is visible to platform staff only.",
+        "truncated": "The ledger is larger than one read; these figures cover its most recent part.",
+        "empty": "No currency has been set up for this office yet.",
+        "noAccessTitle": "No access to the office's money",
+        "noAccessBody": "Seeing the office's money needs the finance, owner, or viewer role. If you need this page, ask the office owner to change your role."
       }
     },
     "config": {
       "rates": {
         "metaTitle": "Corridors and spread",
         "title": "Corridors and spread",
-        "subtitle": "Per corridor: the spread, the smallest and largest amount you take, and the daily cut-off.",
+        "subtitle": "Set the spread for each corridor here. The smallest and largest amount and the daily cut-off are recorded too, but they do not yet affect how orders reach you.",
         "readOnly": "Changing corridors needs the owner role at this office. This page is read-only for you.",
         "templateNote": "The platform template carries a spread for each corridor. Wherever your number differs you see \"Overridden\" — the same diff the platform sees.",
         "listTitle": "This office's corridors",
@@ -1458,9 +1938,9 @@
         "onFile": "On file: {amount} {code}",
         "noLimit": "On file: no limit",
         "cutoffLabel": "Daily cut-off",
-        "cutoffHint": "After this time, no new request on this corridor is routed to you.",
+        "cutoffHint": "The cut-off recorded for this corridor.",
         "activeLabel": "Active",
-        "activeHint": "An inactive corridor takes no new request; open orders stay where they are.",
+        "activeHint": "An inactive corridor is skipped when the platform picks an escrow office; open orders stay where they are.",
         "badge": {
           "same": "Same as default",
           "overridden": "Overridden",
@@ -1469,7 +1949,7 @@
         },
         "addTitle": "Add a corridor",
         "addCurrency": "Currency",
-        "addHint": "One leg of a corridor is always Toman.",
+        "addHint": "One leg of a corridor is always Toman. A new corridor is recorded inactive, at the platform's default spread — zero where the template carries none — so set the spread in the list above, then switch it on.",
         "add": "Add corridor",
         "save": "Save",
         "saved": "Saved.",
@@ -1481,7 +1961,9 @@
           "duplicate": "That corridor is already defined.",
           "forbidden": "Not saved: only the office owner may write corridors.",
           "saveFailed": "Not saved. Try again."
-        }
+        },
+        "emptyReadOnly": "No corridor has been defined yet.",
+        "amountUnknownCurrency": "This corridor's currency is not in the platform list, so no amount can be written for it."
       },
       "settings": {
         "metaTitle": "Office settings",
@@ -1509,25 +1991,24 @@
         },
         "auto": {
           "title": "Auto-accept",
-          "body": "With this on, requests under the ceiling below are accepted without a manual decision.",
+          "body": "This is recorded; auto-accept is not applied to orders yet.",
           "enabledLabel": "Auto-accept",
-          "enabledHint": "Off means you accept every request yourself.",
           "maxLabel": "Auto-accept ceiling",
-          "maxHint": "In Toman. Empty means no ceiling is recorded and auto-accept does nothing.",
+          "maxHint": "In Toman. Empty means no ceiling is recorded.",
           "onFile": "On file: {amount} IRT",
           "noLimit": "On file: no ceiling"
         },
         "notify": {
           "title": "Where notices go",
-          "body": "New requests and customer messages are announced to these.",
+          "body": "These are recorded on the office record; nothing is sent to them yet.",
           "phone": "Phone",
           "phonePlaceholder": "+982188001122",
           "email": "Email",
           "emailPlaceholder": "office@example.com",
           "smsLabel": "SMS",
-          "smsHint": "New request announced by SMS to that number.",
+          "smsHint": "The SMS preference, recorded on file.",
           "emailLabel": "Email",
-          "emailHint": "A summary of open work, once a day."
+          "emailHint": "The email preference, recorded on file."
         },
         "save": "Save",
         "saved": "Saved.",
@@ -1567,8 +2048,11 @@
       "errors": {
         "alreadyClaimed": "Another office claimed this one first. The list has been refreshed.",
         "inactive": "This office is not active, so it cannot claim requests right now.",
-        "failed": "That did not go through. Try again."
-      }
+        "failed": "That did not go through. Try again.",
+        "gone": "This request is no longer available. The list has been refreshed.",
+        "network": "No connection. Check it and try again."
+      },
+      "poolClosed": "This office is not active, so no new requests are shown to claim. Its own work in progress is still listed here."
     },
     "customers": {
       "metaTitle": "Customers",
@@ -1581,7 +2065,8 @@
         "orders": "Orders",
         "volume": "Total",
         "last": "Last order",
-        "kyc": "Verification"
+        "kyc": "Verification",
+        "ref": "Customer"
       },
       "toman": "Toman",
       "unnamed": "No name",
@@ -1596,12 +2081,19 @@
         "rejected": "Rejected",
         "more_info_needed": "More information needed",
         "unknown": "Unknown"
-      }
+      },
+      "search": {
+        "label": "Search by customer reference",
+        "placeholder": "Customer reference"
+      },
+      "identityNote": "A customer's name is not available to an office; each is identified by the same reference you see on the requests list.",
+      "truncated": "This office has a great many orders; the counts and totals cover the most recent {count}.",
+      "noMatch": "No customer matches that reference."
     },
     "team": {
       "metaTitle": "Team",
       "title": "Team",
-      "subtitle": "The people who can open this office's panel.",
+      "subtitle": "Access to this office's panel. Only your own seat is listed here; a colleague's seat is not readable from this page.",
       "col": {
         "person": "Person",
         "role": "Role",
@@ -1660,7 +2152,7 @@
       "minutes": "{value} minutes",
       "noData": "No data yet",
       "volumeTitle": "Monthly volume",
-      "volumeHint": "Volume counts completed orders only; the order count is every order raised that month.",
+      "volumeHint": "Volume counts completed orders only; the order count is every order raised that month. The last month is still running, so its bar is drawn faded.",
       "chartLabel": "Bar chart of Toman volume by month, {from} to {to}. Highest month {peak} at {max} Toman.",
       "monthOrders": "{count} orders",
       "corridorTitle": "Corridors",
@@ -1668,7 +2160,8 @@
       "completionHint": "From an order's first event to the moment it completed, across {count} completed orders.",
       "slaHint": "The share of completed orders closed before their deadline, across {count} orders that had one.",
       "noCompleted": "Nothing has completed yet.",
-      "noSla": "No deadline was recorded for this period's orders."
+      "noSla": "No deadline was recorded for this period's orders.",
+      "chartEmptyLabel": "Bar chart of Toman volume by month, {from} to {to}. Nothing has completed in this period."
     },
     "chat": {
       "metaTitle": "Messages",
@@ -1678,7 +2171,7 @@
       "sectionSupport": "Asaex support",
       "supportThread": "Support thread",
       "pickThread": "Pick a conversation from the list.",
-      "empty": "No conversations yet.",
+      "empty": "No conversations that include you yet. Only threads you were added to appear here.",
       "noMessages": "No messages",
       "unknownOrder": "Order",
       "notesHint": "An internal note is never shown to the customer — only this office and the platform see it.",

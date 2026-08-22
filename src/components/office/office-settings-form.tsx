@@ -227,7 +227,6 @@ export function OfficeSettingsForm({
           <p className="text-sm text-ink-600">{t("settings.auto.body")}</p>
           <ToggleField
             label={t("settings.auto.enabledLabel")}
-            hint={t("settings.auto.enabledHint")}
             checked={autoEnabled}
             disabled={!canWrite}
             onChange={setAutoEnabled}
@@ -333,7 +332,7 @@ function ToggleField({
   onChange,
 }: {
   label: string;
-  hint: string;
+  hint?: string;
   checked: boolean;
   disabled: boolean;
   onChange: (value: boolean) => void;
@@ -345,14 +344,16 @@ function ToggleField({
         checked={checked}
         disabled={disabled}
         aria-label={label}
-        aria-describedby={hintId}
+        aria-describedby={hint ? hintId : undefined}
         onCheckedChange={onChange}
       />
       <span>
         <span className="block text-sm font-medium">{label}</span>
-        <span id={hintId} className="block text-xs text-ink-600">
-          {hint}
-        </span>
+        {hint ? (
+          <span id={hintId} className="block text-xs text-ink-600">
+            {hint}
+          </span>
+        ) : null}
       </span>
     </span>
   );
@@ -397,9 +398,11 @@ function readContact(value: Json): {
   return {
     phone: typeof root.phone === "string" ? root.phone : "",
     email: typeof root.email === "string" ? root.email : "",
-    // Absent means SMS on: a new request the office never hears about is worse
-    // than one announcement too many, and the office can turn it off here.
-    sms: notify.sms !== false,
+    // Only a recorded `true` reads as on. `contact` is `{}` on every office the
+    // platform provisions, and the switch is disabled for anyone who can open
+    // this page, so treating absent as on would show every office a preference
+    // nobody set and nobody here can clear.
+    sms: notify.sms === true,
     email_notice: notify.email === true,
   };
 }

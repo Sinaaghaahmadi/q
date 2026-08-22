@@ -17,8 +17,6 @@ import type { CurrencyCode } from "@/lib/rates/catalog";
 import { createClient } from "@/lib/supabase/client";
 import type { Order } from "@/lib/supabase/types";
 
-export type QueueRow = { order: Order; customerName: string | null };
-
 /** Long enough in one state that the wait itself is worth noticing. */
 const STALE_AFTER_MS = 2 * 60 * 60 * 1000;
 
@@ -32,11 +30,16 @@ const STALE_AFTER_MS = 2 * 60 * 60 * 1000;
  * filters — the corridor they are set up to serve, and whether the request is
  * actually theirs to move.
  *
+ * Customers appear as a reference, not a name: `profiles_self_read` hands an
+ * office its own members' rows and nothing else, so no name is reachable from
+ * here for anyone. The first segment of the id is what the office can honestly
+ * show, and it is the same reference the customers screen is searched by.
+ *
  * Claiming is a race two offices can enter at the same instant. `order_claim`
  * settles it under a row lock, and the loser is told plainly rather than left
  * pressing a button that quietly does nothing.
  */
-export function RequestsQueue({ officeId, rows }: { officeId: string; rows: QueueRow[] }) {
+export function RequestsQueue({ officeId, orders }: { officeId: string; orders: Order[] }) {
   const t = useTranslations("officePanel.requests");
   const states = useTranslations("orders.state");
   const locale = useLocale() as AppLocale;
@@ -48,38 +51,50 @@ export function RequestsQueue({ officeId, rows }: { officeId: string; rows: Queu
   const [busy, setBusy] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
 
-  const corridors = [...new Set(rows.map((r) => r.order.corridor))].sort();
-  const shown = rows.filter(
-    (row) =>
-      (corridor === "" || row.order.corridor === corridor) &&
-      (scope === "all" || nextAction(row.order.state) !== null),
+  const corridors = [...new Set(orders.map((o) => o.corridor))].sort();
+  const shown = orders.filter(
+    (order) =>
+      (corridor === "" || order.corridor === corridor) &&
+      (scope === "all" || nextAction(order.state) !== null),
   );
 
   async function claim(order: Order) {
     setBusy(order.id);
     setError(null);
-    const supabase = createClient();
-    const { error: rpcError } = await supabase.rpc("order_claim", {
-      p_order: order.id,
-      p_office: officeId,
-    });
-    setBusy(null);
+    try {
+      const supabase = createClient();
+      const { error: rpcError } = await supabase.rpc("order_claim", {
+        p_order: order.id,
+        p_office: officeId,
+      });
 
-    if (rpcError) {
-      const lost = /already claimed/i.test(rpcError.message);
-      setError(
-        lost
-          ? t("errors.alreadyClaimed")
-          : /not active/i.test(rpcError.message)
-            ? t("errors.inactive")
-            : t("errors.failed"),
-      );
-      // Losing the race is ordinary, not a failure: take the row off the screen
-      // in the same breath as saying why it went.
-      if (lost) router.refresh();
-      return;
+      if (rpcError) {
+        // Both "already claimed" and "not matching" mean the row is spent:
+        // somebody else took it, or it expired or was cancelled under the
+        // operator. Neither is a failure to retry, so each says what happened
+        // and takes the row off the screen in the same breath.
+        const claimed = /already claimed/i.test(rpcError.message);
+        const gone = /not matching/i.test(rpcError.message);
+        setError(
+          claimed
+            ? t("errors.alreadyClaimed")
+            : gone
+              ? t("errors.gone")
+              : /not active/i.test(rpcError.message)
+                ? t("errors.inactive")
+                : t("errors.failed"),
+        );
+        if (claimed || gone) router.refresh();
+        return;
+      }
+      router.refresh();
+    } catch {
+      // A dropped connection rejects rather than returning an error, and this
+      // panel is used on patchy phone data more often than not.
+      setError(t("errors.network"));
+    } finally {
+      setBusy(null);
     }
-    router.refresh();
   }
 
   return (
@@ -112,7 +127,7 @@ export function RequestsQueue({ officeId, rows }: { officeId: string; rows: Queu
       </div>
 
       {error ? (
-        <p className="flex items-start gap-1.5 rounded-xl bg-down/10 p-3 text-sm text-down-ink">
+        <p className="flex items-start gap-1.5 rounded-xl bg-down/12 p-3 text-sm text-down-ink">
           <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
           {error}
         </p>
@@ -120,7 +135,7 @@ export function RequestsQueue({ officeId, rows }: { officeId: string; rows: Queu
 
       {shown.length === 0 ? (
         <Card className="p-10 text-center text-sm text-ink-600">
-          {rows.length === 0 ? t("empty") : t("emptyFiltered")}
+          {orders.length === 0 ? t("empty") : t("emptyFiltered")}
         </Card>
       ) : (
         <Card className="overflow-x-auto">
@@ -135,7 +150,7 @@ export function RequestsQueue({ officeId, rows }: { officeId: string; rows: Queu
               </tr>
             </thead>
             <tbody>
-              {shown.map(({ order, customerName }) => {
+              {shown.map((order) => {
                 const send = order.send_currency as CurrencyCode;
                 const since = new Date(order.state_since);
                 const stale = Date.now() - since.getTime() > STALE_AFTER_MS;
@@ -161,7 +176,11 @@ export function RequestsQueue({ officeId, rows }: { officeId: string; rows: Queu
                         {send}
                       </span>
                     </td>
-                    <td className="px-4 py-3">{customerName ?? t("unnamed")}</td>
+                    <td className="num px-4 py-3">
+                      <span className="font-mono text-xs text-ink-600" dir="ltr">
+                        {order.customer_id.slice(0, 8)}
+                      </span>
+                    </td>
                     <td className="num px-4 py-3">
                       {stale ? (
                         <Badge variant="warn">{format.relativeTime(since)}</Badge>

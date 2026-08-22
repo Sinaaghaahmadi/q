@@ -4,16 +4,77 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { LiveFeed } from "@/components/admin/live-feed";
+import { OfficeScorecards, type OfficeScore } from "@/components/admin/office-scorecards";
+import { ReportCards } from "@/components/admin/report-cards";
 import { StateBreakdown } from "@/components/admin/state-breakdown";
-import { StatTile } from "@/components/admin/stat-tile";
+import {
+  CorridorMix,
+  VolumeChart,
+  type CorridorSlice,
+  type MonthBar,
+} from "@/components/admin/volume-chart";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
-import { isPlatformStaff } from "@/lib/auth/can";
-import { fromMinor } from "@/lib/money/minor";
-import type { CurrencyCode } from "@/lib/rates/catalog";
+import { can } from "@/lib/auth/can";
+import { gregorianToJalali, jalaliToGregorian } from "@/lib/date/jalali";
+import { isTerminal } from "@/lib/orders/flow";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
-import type { AuditLogEntry, Order, OrderState } from "@/lib/supabase/types";
+import type {
+  AuditLogEntry,
+  ExchangeOffice,
+  LedgerEntry,
+  Order,
+  OrderEvent,
+  OrderState,
+} from "@/lib/supabase/types";
+
+const MONTHS = 12;
+const DAY_MS = 86_400_000;
+
+/** The columns a report needs; the rest of an order is not read for a total. */
+type ReportLeg = Pick<
+  Order,
+  | "id"
+  | "office_id"
+  | "corridor"
+  | "state"
+  | "send_currency"
+  | "send_amount_minor"
+  | "receive_amount_minor"
+  | "due_at"
+  | "created_at"
+>;
+
+/** Every total is stated in Toman, because that is the leg every corridor has. */
+function tomanMinor(order: ReportLeg): number {
+  return order.send_currency === "IRT" ? order.send_amount_minor : order.receive_amount_minor;
+}
+
+/**
+ * The twelve month boundaries, in the calendar the reader keeps books in.
+ *
+ * A Persian desk closes its month on the last of Esfand, not on 31 December, so
+ * bucketing into Gregorian months and then printing a Jalali label would put
+ * the wrong number under every bar. The boundaries are built in the display
+ * calendar instead, and each label is simply that bucket's own first day.
+ */
+function monthStarts(locale: string, now: Date): Date[] {
+  const starts: Date[] = [];
+  if (locale === "fa") {
+    const { jy, jm } = gregorianToJalali(now);
+    const index = jy * 12 + (jm - 1);
+    for (let back = MONTHS - 1; back >= 0; back -= 1) {
+      const month = index - back;
+      starts.push(jalaliToGregorian(Math.floor(month / 12), (month % 12) + 1, 1));
+    }
+    return starts;
+  }
+  for (let back = MONTHS - 1; back >= 0; back -= 1) {
+    starts.push(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - back, 1)));
+  }
+  return starts;
+}
 
 export async function generateMetadata({
   params,
@@ -21,99 +82,270 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "admin" });
+  const t = await getTranslations({ locale, namespace: "admin.dashboard" });
   return { title: t("metaTitle") };
 }
-
-/** States that mean money is in flight and somebody is waiting on us (§17.18). */
-const LIVE_STATES: OrderState[] = [
-  "matching",
-  "office_review",
-  "accepted",
-  "awaiting_irt_funding",
-  "irt_funded",
-  "foreign_leg_pending",
-  "foreign_leg_sent",
-  "recipient_confirmed",
-  "irt_released",
-];
 
 export default async function AdminHomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("admin");
+  const t = await getTranslations("admin.dashboard");
+  const shell = await getTranslations("admin");
 
   if (!isSupabaseConfigured()) {
     return (
       <EmptyState
         icon={ShieldAlert}
-        title={t("unavailableTitle")}
-        description={t("unavailableBody")}
-        ctaLabel={t("backHome")}
+        title={shell("unavailableTitle")}
+        description={shell("unavailableBody")}
+        ctaLabel={shell("backHome")}
       />
     );
   }
 
   const ctx = await getAdminContext();
   if (!ctx) redirect({ href: "/signin?next=/admin", locale });
-  if (!ctx || !isPlatformStaff(ctx.seats)) {
+  if (!ctx || !can(ctx.seats, "platform.oversee")) {
     return (
       <EmptyState
         icon={ShieldAlert}
-        title={t("forbiddenTitle")}
-        description={t("forbiddenBody")}
-        ctaLabel={t("backHome")}
+        title={shell("forbiddenTitle")}
+        description={shell("forbiddenBody")}
+        ctaLabel={shell("backHome")}
       />
     );
   }
 
+  const now = new Date();
+  const starts = monthStarts(locale, now);
+  const windowStart = starts[0] ?? now;
+  const thisMonthStart = starts[MONTHS - 1] ?? windowStart;
+  const lastMonthStart = starts[MONTHS - 2] ?? windowStart;
+
+  // `platform.oversee` reaches wider than the audit_log policy does: a support
+  // seat passes the gate on this page but the policy admits only admin,
+  // superadmin and compliance. RLS filters rows instead of raising, so asking
+  // anyway would hand back an empty array and the feed would state that nothing
+  // has happened — a claim about the log, where the truth is "not yours to read".
+  const mayAudit = can(ctx.seats, "platform.audit");
+
   const supabase = await createClient();
-  const [{ data: orders }, { data: offices }, { data: audit }] = await Promise.all([
+  const [
+    { data: orderRows },
+    { data: officeRows },
+    { data: eventRows },
+    { data: accountRows },
+    auditResult,
+  ] = await Promise.all([
     supabase
       .from("orders")
       .select(
-        "id, public_ref, state, state_since, corridor, send_currency, send_amount_minor, receive_currency, receive_amount_minor, sla_target_at, due_at, origin, created_at",
+        "id, office_id, corridor, state, send_currency, send_amount_minor, receive_amount_minor, due_at, created_at",
       )
+      .is("deleted_at", null)
+      .gte("created_at", windowStart.toISOString())
       .order("created_at", { ascending: false })
-      .limit(500),
-    supabase.from("exchange_offices").select("id, status").is("deleted_at", null),
-    supabase.from("audit_log").select("*").order("created_at", { ascending: false }).limit(12),
+      .limit(4000),
+    supabase
+      .from("exchange_offices")
+      .select("id, legal_name_fa, legal_name_en, status")
+      .is("deleted_at", null),
+    // Two transitions out of the whole timeline: the one that settles an order
+    // and the one that disputes it. Pulling a year of events to recover two
+    // timestamps per order is the difference between a page and a batch job.
+    supabase
+      .from("order_events")
+      .select("order_id, to_state, created_at")
+      .in("to_state", ["completed", "disputed"])
+      .gte("created_at", windowStart.toISOString())
+      .limit(8000),
+    supabase
+      .from("ledger_accounts")
+      .select("id, currency")
+      .eq("owner_type", "platform")
+      .eq("code", "irt_fees"),
+    mayAudit
+      ? supabase.from("audit_log").select("*").order("created_at", { ascending: false }).limit(12)
+      : null,
   ]);
 
-  const rows = (orders ?? []) as Pick<
-    Order,
-    | "id"
-    | "public_ref"
-    | "state"
-    | "state_since"
-    | "corridor"
-    | "send_currency"
-    | "send_amount_minor"
-    | "receive_currency"
-    | "receive_amount_minor"
-    | "sla_target_at"
-    | "due_at"
-    | "origin"
-    | "created_at"
+  const orders = (orderRows ?? []) as ReportLeg[];
+  const offices = (officeRows ?? []) as Pick<
+    ExchangeOffice,
+    "id" | "legal_name_fa" | "legal_name_en" | "status"
   >[];
+  const events = (eventRows ?? []) as Pick<OrderEvent, "order_id" | "to_state" | "created_at">[];
+
+  // The order row only remembers the state it is in now. When it settled, and
+  // whether it was ever argued over, live in the event log — which is also the
+  // record the office panel and the customer timeline read, so the three
+  // screens cannot drift apart.
+  const settledAt = new Map<string, number>();
+  const disputed = new Set<string>();
+  for (const event of events) {
+    if (event.to_state === "completed") settledAt.set(event.order_id, Date.parse(event.created_at));
+    else disputed.add(event.order_id);
+  }
+
+  // Platform fee revenue is a Toman figure, so only the IRT fee account is
+  // summed; converting a fee held in another currency would mean picking a rate
+  // for a past month, and a report that guesses is worse than one that omits.
+  const feeAccountIds = (accountRows ?? [])
+    .filter((account) => account.currency === "IRT")
+    .map((account) => account.id);
+
+  let feeEntries: Pick<LedgerEntry, "amount_minor" | "direction" | "created_at">[] = [];
+  if (feeAccountIds.length > 0) {
+    const { data } = await supabase
+      .from("ledger_entries")
+      .select("amount_minor, direction, created_at")
+      .in("ledger_account_id", feeAccountIds)
+      .gte("created_at", lastMonthStart.toISOString());
+    feeEntries = data ?? [];
+  }
+
+  // Every month-over-month figure on this page compares the month in progress
+  // against the same number of days into last month, never against a complete
+  // one. On the second of Mehr a full Shahrivar baseline prints a ninety-percent
+  // collapse in volume, fees and settled orders alike, every single month.
+  const elapsed = now.getTime() - thisMonthStart.getTime();
+  const inSameSpanLastMonth = (at: number) =>
+    at >= lastMonthStart.getTime() &&
+    at < thisMonthStart.getTime() &&
+    at - lastMonthStart.getTime() <= elapsed;
+
+  // Net of debits, not gross credits: the ledger is append-only, so a reversed
+  // fee comes back as a debit on the same account. Counting only the credit
+  // side would have the platform reporting income it handed back.
+  let feesThisMonth = 0;
+  let feesLastMonth = 0;
+  for (const entry of feeEntries) {
+    const at = Date.parse(entry.created_at);
+    const signed = entry.direction === "credit" ? entry.amount_minor : -entry.amount_minor;
+    if (at >= thisMonthStart.getTime()) feesThisMonth += signed;
+    else if (inSameSpanLastMonth(at)) feesLastMonth += signed;
+  }
+
+  const bounds = starts.map((start) => start.getTime());
+  const bucketOf = (at: number) => {
+    for (let index = bounds.length - 1; index >= 0; index -= 1) {
+      if (at >= (bounds[index] ?? 0)) return index;
+    }
+    return -1;
+  };
+
+  // Volume is bucketed by when an order settled rather than when it was opened:
+  // "how much did we move in Mehr" is a question about money that landed, and
+  // an order opened in Shahrivar spends its Toman in Mehr all the same.
+  const months: MonthBar[] = starts.map((start) => ({
+    start: start.toISOString(),
+    volumeMinor: 0,
+    settled: 0,
+  }));
+  let previousVolumeMinor = 0;
+  let previousSettled = 0;
+  for (const order of orders) {
+    const at = settledAt.get(order.id);
+    if (order.state !== "completed" || at === undefined) continue;
+    const bar = months[bucketOf(at)];
+    if (!bar) continue;
+    bar.volumeMinor += tomanMinor(order);
+    bar.settled += 1;
+    if (inSameSpanLastMonth(at)) {
+      previousVolumeMinor += tomanMinor(order);
+      previousSettled += 1;
+    }
+  }
+
+  const thisMonth = months[MONTHS - 1];
+
+  // One definition of open, shared by both counts. Anything still able to move
+  // is open, minus the drafts nobody has handed us yet; on_hold, info_needed and
+  // disputed belong here too, because the Toman is already funded and a customer
+  // is waiting on all three. Two definitions would let "at risk" exceed "in
+  // flight" and leave the reader to work out which card meant what.
+  const open = orders.filter((order) => !isTerminal(order.state) && order.state !== "draft");
+
+  // `due_at` is written in exactly one place in the product — `p2p_trade_take` —
+  // so a marketplace built of remittance orders has nothing to judge. Printing a
+  // confident zero there claims every deadline is safe; the card says "no
+  // deadline is recorded" instead, which is the fact.
+  const graded = open.filter(
+    (order): order is ReportLeg & { due_at: string } => order.due_at !== null,
+  );
+  // An order already past its deadline is the most at-risk thing on the board,
+  // so the window has no floor — it is "less than a day left", not "a day left".
+  const atRisk =
+    graded.length > 0
+      ? {
+          counted: graded.filter((order) => Date.parse(order.due_at) - now.getTime() < DAY_MS)
+            .length,
+        }
+      : null;
 
   const byState = new Map<OrderState, number>();
-  for (const row of rows) byState.set(row.state, (byState.get(row.state) ?? 0) + 1);
+  for (const order of orders) byState.set(order.state, (byState.get(order.state) ?? 0) + 1);
 
-  // GMV is stated in the Toman leg, because that is the leg every corridor has.
-  const settled = rows.filter((r) => r.state === "completed");
-  const gmvMinor = settled.reduce(
-    (sum, r) => sum + (r.send_currency === "IRT" ? r.send_amount_minor : r.receive_amount_minor),
-    0,
-  );
+  const byCorridor = new Map<string, number>();
+  for (const order of orders) {
+    if (order.state !== "completed") continue;
+    byCorridor.set(order.corridor, (byCorridor.get(order.corridor) ?? 0) + tomanMinor(order));
+  }
+  const corridors: CorridorSlice[] = [...byCorridor]
+    .map(([corridor, volumeMinor]) => ({ corridor, volumeMinor }))
+    .sort((a, b) => b.volumeMinor - a.volumeMinor);
 
-  const now = Date.now();
-  const atRisk = rows.filter(
-    (r) =>
-      LIVE_STATES.includes(r.state) &&
-      r.due_at !== null &&
-      new Date(r.due_at).getTime() - now < 24 * 60 * 60 * 1000,
-  );
+  const handledBy = new Map<string, ReportLeg[]>();
+  for (const order of orders) {
+    if (!order.office_id) continue;
+    const held = handledBy.get(order.office_id);
+    if (held) held.push(order);
+    else handledBy.set(order.office_id, [order]);
+  }
+
+  const scores: OfficeScore[] = offices
+    .filter((office) => office.status === "active")
+    .map((office) => {
+      const handled = handledBy.get(office.id) ?? [];
+      const settled = handled.filter(
+        (order) => order.state === "completed" && settledAt.has(order.id),
+      );
+      // The clock starts when the customer opened the order and stops on the
+      // event that recorded the settlement, so a row that sat unclaimed for two
+      // days counts those two days against the office that eventually took it.
+      const durations = settled
+        .map((order) => (settledAt.get(order.id) ?? 0) - Date.parse(order.created_at))
+        .filter((ms) => ms >= 0);
+      const judged = settled.filter(
+        (order): order is ReportLeg & { due_at: string } => order.due_at !== null,
+      );
+
+      return {
+        officeId: office.id,
+        nameFa: office.legal_name_fa,
+        nameEn: office.legal_name_en,
+        orders: handled.length,
+        volumeMinor: settled.reduce((sum, order) => sum + tomanMinor(order), 0),
+        averageMinutes:
+          durations.length > 0
+            ? durations.reduce((sum, ms) => sum + ms, 0) / durations.length / 60_000
+            : null,
+        sla:
+          judged.length > 0
+            ? {
+                measured: judged.length,
+                onTime: judged.filter(
+                  (order) => (settledAt.get(order.id) ?? 0) <= Date.parse(order.due_at),
+                ).length,
+              }
+            : null,
+        disputeRate:
+          handled.length > 0
+            ? handled.filter((order) => disputed.has(order.id)).length / handled.length
+            : null,
+      };
+    })
+    .sort((a, b) => b.volumeMinor - a.volumeMinor);
 
   return (
     <AdminShell
@@ -123,35 +355,22 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
       title={t("title")}
       description={t("subtitle")}
     >
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatTile
-          label={t("stats.gmv")}
-          value={fromMinor(gmvMinor, "IRT" as CurrencyCode)}
-          currency="IRT"
-        />
-        <StatTile label={t("stats.settled")} value={settled.length} />
-        <StatTile
-          label={t("stats.live")}
-          value={rows.filter((r) => LIVE_STATES.includes(r.state)).length}
-        />
-        <StatTile
-          label={t("stats.atRisk")}
-          value={atRisk.length}
-          tone={atRisk.length > 0 ? "warn" : "neutral"}
-        />
-      </div>
+      <ReportCards
+        volumeMinor={{ current: thisMonth?.volumeMinor ?? 0, previous: previousVolumeMinor }}
+        settled={{ current: thisMonth?.settled ?? 0, previous: previousSettled }}
+        inFlight={open.length}
+        atRisk={atRisk}
+        feesMinor={{ current: feesThisMonth, previous: feesLastMonth }}
+      />
 
-      <div className="grid gap-4 lg:grid-cols-[3fr_2fr]">
-        <StateBreakdown counts={[...byState.entries()]} total={rows.length} />
-        <LiveFeed entries={(audit ?? []) as AuditLogEntry[]} />
-      </div>
+      <VolumeChart months={months} />
+      <CorridorMix corridors={corridors} />
+      <OfficeScorecards scores={scores} />
 
-      <p className="text-sm text-ink-600">
-        {t("officeCount", {
-          active: (offices ?? []).filter((o) => o.status === "active").length,
-          total: (offices ?? []).length,
-        })}
-      </p>
+      <div className={mayAudit ? "grid gap-4 lg:grid-cols-[3fr_2fr]" : "grid gap-4"}>
+        <StateBreakdown counts={[...byState.entries()]} total={orders.length} />
+        {mayAudit ? <LiveFeed entries={(auditResult?.data ?? []) as AuditLogEntry[]} /> : null}
+      </div>
     </AdminShell>
   );
 }

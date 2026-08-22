@@ -91,6 +91,54 @@ Supabase's built-in mailer is rate-limited to a couple of messages an hour, so
 the email one-time code is not a reliable way in during a demo. That is the
 whole reason the password channel exists.
 
+### What is behind each panel
+
+`/office` is the exchange-office panel and it is deliberately not a dashboard.
+The landing screen is **کار امروز** — one card per job, one full-width green
+button per card carrying a plain sentence ("پول تومانی رسید"), four progress
+dots, and a "مشکلی هست؟" link for the paths that are not the happy one. A whole
+transfer is four presses; the fifth act belongs to the customer, so between
+"sent" and "settled" the panel says who is being waited on instead of offering a
+button the machine would refuse. `src/lib/office/steps.ts` is the mapping from
+the nineteen-state machine to those four, and `tests/unit/office-steps.test.ts`
+asserts every state is classified. The rest of the menu is the depth behind it:
+
+| Route               | What it is                                                 |
+| ------------------- | ---------------------------------------------------------- |
+| `/office`           | Today's work — the four-button flow                        |
+| `/office/requests`  | The matching pool and this office's own orders, filterable |
+| `/office/chat`      | Order threads and support threads in one inbox             |
+| `/office/accounts`  | The office's settlement accounts, public and internal      |
+| `/office/liquidity` | Position per currency, from the ledger                     |
+| `/office/rates`     | Per-corridor spread, min/max, cut-off                      |
+| `/office/customers` | Who this office has served, with KYC state                 |
+| `/office/team`      | Seats at this office, granted and revoked                  |
+| `/office/reports`   | Six Jalali months of volume, completion and SLA            |
+| `/office/settings`  | Hours, auto-accept, notification preferences               |
+
+`/admin` opens on **گزارش‌های مدیریت** — settled volume, platform fee, orders in
+flight, SLA risk, twelve Jalali months of volume, corridor mix, a scorecard per
+office, the state breakdown, and the live audit feed. The sidebar groups the
+depth into overview / operations / customers and compliance / money / platform:
+
+| Route               | What it is                                                 |
+| ------------------- | ---------------------------------------------------------- |
+| `/admin/orders`     | Every order, with force-transition                         |
+| `/admin/exchanges`  | Provisioning, per-office configuration, act-as             |
+| `/admin/p2p`        | Offers, trades, disputes                                   |
+| `/admin/support`    | The support queues                                         |
+| `/admin/users`      | Every customer; a row opens their history, tier and logins |
+| `/admin/kyc`        | The four-eyes review queue                                 |
+| `/admin/compliance` | Sanctions hits, flagged messages, tier and P2P thresholds  |
+| `/admin/finance`    | Ledger and reconciliation                                  |
+| `/admin/rates`      | Provider health, corridor spreads across offices, bounds   |
+| `/admin/content`    | FAQ, announcements and notification templates, fa and en   |
+| `/admin/settings`   | Feature flags, platform settings, business calendar        |
+| `/admin/audit`      | The audit log                                              |
+
+Every one of those routes is asserted to exist by `tests/unit/panel-nav.test.ts`
+— a menu item that points at a 404 is a bug the nav itself should catch.
+
 ## Bootstrapping the first account
 
 Nothing works from a cold start: the first person to sign in is an unverified

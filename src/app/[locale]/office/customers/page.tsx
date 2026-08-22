@@ -23,6 +23,11 @@ type OrderLeg = Pick<
   | "created_at"
 >;
 
+/** PostgREST will not return more than this in one response. */
+const PAGE_SIZE = 1000;
+/** A ceiling so one enormous office cannot hold the request open indefinitely. */
+const MAX_PAGES = 20;
+
 export async function generateMetadata({
   params,
 }: {
@@ -72,10 +77,13 @@ export default async function OfficeCustomersPage({
   }
 
   const supabase = await createClient();
-  const [{ data: office }, { data: legs }] = await Promise.all([
-    supabase.from("exchange_offices").select("*").eq("id", officeId).maybeSingle(),
-    // There is no customer table to read: a customer of this office is whoever
-    // appears on its orders, so the list is folded out of the orders themselves.
+
+  // There is no customer table to read: a customer of this office is whoever
+  // appears on its orders, so the list is folded out of the orders themselves.
+  // The fold needs every order, and PostgREST caps a response at PAGE_SIZE, so
+  // the pages are walked — a single capped read would have quietly turned the
+  // counts and totals into the counts and totals of the most recent thousand.
+  const legPage = (page: number) =>
     supabase
       .from("orders")
       .select(
@@ -83,11 +91,26 @@ export default async function OfficeCustomersPage({
       )
       .eq("office_id", officeId)
       .order("created_at", { ascending: false })
-      .limit(1000),
+      .range(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE - 1);
+
+  const [{ data: office }, firstPage] = await Promise.all([
+    supabase.from("exchange_offices").select("*").eq("id", officeId).maybeSingle(),
+    legPage(0),
   ]);
 
+  const legs = [...((firstPage.data ?? []) as OrderLeg[])];
+  let truncatedAfter: number | null = null;
+  for (let page = 1; legs.length === page * PAGE_SIZE; page += 1) {
+    if (page >= MAX_PAGES) {
+      truncatedAfter = legs.length;
+      break;
+    }
+    const { data } = await legPage(page);
+    legs.push(...((data ?? []) as OrderLeg[]));
+  }
+
   const totals = new Map<string, { orders: number; volumeMinor: number; lastOrderAt: string }>();
-  for (const leg of (legs ?? []) as OrderLeg[]) {
+  for (const leg of legs) {
     const row = totals.get(leg.customer_id) ?? {
       orders: 0,
       volumeMinor: 0,
@@ -106,26 +129,8 @@ export default async function OfficeCustomersPage({
     totals.set(leg.customer_id, row);
   }
 
-  const customerIds = [...totals.keys()];
-  const { data: profiles } = customerIds.length
-    ? await supabase
-        .from("profiles")
-        .select("id, full_name_fa, full_name_latin, kyc_status")
-        .in("id", customerIds)
-    : { data: [] };
-
-  const known = new Map((profiles ?? []).map((p) => [p.id, p]));
-
-  const customers: CustomerRow[] = customerIds
-    .map((id) => {
-      const total = totals.get(id)!;
-      const profile = known.get(id);
-      const name =
-        (locale === "fa"
-          ? (profile?.full_name_fa ?? profile?.full_name_latin)
-          : (profile?.full_name_latin ?? profile?.full_name_fa)) ?? null;
-      return { id, name, kyc: profile?.kyc_status ?? null, ...total };
-    })
+  const customers: CustomerRow[] = [...totals.entries()]
+    .map(([id, total]) => ({ id, ...total }))
     .sort((a, b) => Date.parse(b.lastOrderAt) - Date.parse(a.lastOrderAt));
 
   return (
@@ -135,7 +140,7 @@ export default async function OfficeCustomersPage({
       title={t("title")}
       description={t("subtitle")}
     >
-      <CustomerList customers={customers} />
+      <CustomerList customers={customers} truncatedAfter={truncatedAfter} />
     </OfficeShell>
   );
 }

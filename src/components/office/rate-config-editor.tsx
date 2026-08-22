@@ -14,6 +14,7 @@ import {
   formatAmountInput,
   formatNumber,
   parseAmountInput,
+  toLatinDigits,
   type AppLocale,
 } from "@/lib/money/format";
 import { fromMinor, toMinor } from "@/lib/money/minor";
@@ -76,21 +77,33 @@ export function RateConfigEditor({
     const draft = draftOf(row);
     const code = baseOf(row.corridor);
 
-    const spread = Number(draft.spread.trim());
-    if (!Number.isInteger(spread) || spread < 0 || spread > 2000) {
+    const spread = parseSpread(draft.spread);
+    if (spread === null) {
       setError(t("rates.errors.spreadRange"));
       return;
     }
 
-    const min = minorOrNull(draft.min, code);
-    const max = minorOrNull(draft.max, code);
-    if (min === undefined || max === undefined) {
-      setError(t("rates.errors.amountInvalid"));
-      return;
-    }
-    if (min !== null && max !== null && min > max) {
-      setError(t("rates.errors.amountOrder"));
-      return;
+    const patch: Partial<OfficeRateConfig> = {
+      spread_bps: spread,
+      cutoff_time: draft.cutoff.trim() || null,
+    };
+
+    // A corridor whose foreign leg is outside the catalogue has no unit to read
+    // an amount in, so both fields are disabled — and left out of the patch,
+    // because writing the empty inputs back would erase what is on file.
+    if (code !== null) {
+      const min = minorOrNull(draft.min, code);
+      const max = minorOrNull(draft.max, code);
+      if (min === undefined || max === undefined) {
+        setError(t("rates.errors.amountInvalid"));
+        return;
+      }
+      if (min !== null && max !== null && min > max) {
+        setError(t("rates.errors.amountOrder"));
+        return;
+      }
+      patch.min_amount_minor = min;
+      patch.max_amount_minor = max;
     }
 
     setBusy(row.id);
@@ -98,12 +111,7 @@ export function RateConfigEditor({
     const supabase = createClient();
     const { data, error: dbError } = await supabase
       .from("office_rate_config")
-      .update({
-        spread_bps: spread,
-        min_amount_minor: min,
-        max_amount_minor: max,
-        cutoff_time: draft.cutoff.trim() || null,
-      })
+      .update(patch)
       .eq("id", row.id)
       .select("id");
     setBusy(null);
@@ -150,7 +158,11 @@ export function RateConfigEditor({
       office_id: officeId,
       corridor,
       spread_bps: baseline.get(corridor) ?? 0,
-      active: true,
+      // Off until someone has read the spread it landed on: `p2p_route_escrow`
+      // picks the active office with the smallest spread, so a corridor the
+      // template does not carry would go in at zero and outrank every other
+      // office for that pair the moment it is written.
+      active: false,
     });
     setBusy(null);
 
@@ -179,13 +191,15 @@ export function RateConfigEditor({
         </CardHeader>
         <CardContent className="space-y-4">
           {rates.length === 0 ? (
-            <p className="text-sm text-ink-600">{t("rates.empty")}</p>
+            <p className="text-sm text-ink-600">
+              {canManage ? t("rates.empty") : t("rates.emptyReadOnly")}
+            </p>
           ) : (
             rates.map((row) => {
               const draft = draftOf(row);
               const code = baseOf(row.corridor);
               const base = baseline.get(row.corridor);
-              const spreadNow = Number(draft.spread.trim());
+              const spreadNow = parseSpread(draft.spread);
 
               return (
                 <div key={row.id} className="space-y-3 rounded-xl border border-ink-300/55 p-4">
@@ -215,7 +229,7 @@ export function RateConfigEditor({
                         onChange={(e) => patchDraft(row, { spread: e.target.value })}
                       />
                       <span className="mt-1 block text-xs font-normal text-ink-600">
-                        {Number.isInteger(spreadNow) && spreadNow >= 0
+                        {spreadNow !== null
                           ? t("rates.spreadMeans", {
                               bps: formatNumber(spreadNow, locale),
                               pct: formatNumber(spreadNow / 100, locale, {
@@ -249,40 +263,48 @@ export function RateConfigEditor({
 
                     <AmountField
                       label={t("rates.minLabel")}
-                      hint={t("rates.amountHint", { code: code ?? row.corridor })}
+                      hint={
+                        code ? t("rates.amountHint", { code }) : t("rates.amountUnknownCurrency")
+                      }
                       onFile={
-                        row.min_amount_minor === null || code === null
+                        row.min_amount_minor === null
                           ? t("rates.noLimit")
-                          : t("rates.onFile", {
-                              amount: formatAmount(
-                                fromMinor(row.min_amount_minor, code),
+                          : code === null
+                            ? undefined
+                            : t("rates.onFile", {
+                                amount: formatAmount(
+                                  fromMinor(row.min_amount_minor, code),
+                                  code,
+                                  locale,
+                                ),
                                 code,
-                                locale,
-                              ),
-                              code,
-                            })
+                              })
                       }
                       value={draft.min}
-                      disabled={!canManage}
+                      disabled={!canManage || code === null}
                       onChange={(v) => patchDraft(row, { min: v })}
                     />
                     <AmountField
                       label={t("rates.maxLabel")}
-                      hint={t("rates.amountHint", { code: code ?? row.corridor })}
+                      hint={
+                        code ? t("rates.amountHint", { code }) : t("rates.amountUnknownCurrency")
+                      }
                       onFile={
-                        row.max_amount_minor === null || code === null
+                        row.max_amount_minor === null
                           ? t("rates.noLimit")
-                          : t("rates.onFile", {
-                              amount: formatAmount(
-                                fromMinor(row.max_amount_minor, code),
+                          : code === null
+                            ? undefined
+                            : t("rates.onFile", {
+                                amount: formatAmount(
+                                  fromMinor(row.max_amount_minor, code),
+                                  code,
+                                  locale,
+                                ),
                                 code,
-                                locale,
-                              ),
-                              code,
-                            })
+                              })
                       }
                       value={draft.max}
-                      disabled={!canManage}
+                      disabled={!canManage || code === null}
                       onChange={(v) => patchDraft(row, { max: v })}
                     />
                   </div>
@@ -365,7 +387,7 @@ function AmountField({
 }: {
   label: string;
   hint: string;
-  onFile: string;
+  onFile?: string;
   value: string;
   disabled: boolean;
   onChange: (value: string) => void;
@@ -382,7 +404,9 @@ function AmountField({
         onChange={(e) => onChange(e.target.value)}
       />
       <span className="mt-1 block text-xs font-normal text-ink-600">{hint}</span>
-      <span className="mt-0.5 block text-xs font-normal text-ink-600">{onFile}</span>
+      {onFile ? (
+        <span className="mt-0.5 block text-xs font-normal text-ink-600">{onFile}</span>
+      ) : null}
     </label>
   );
 }
@@ -420,6 +444,19 @@ function ToggleField({
   );
 }
 
+/**
+ * The spread is read out of the string rather than coerced from it: `Number("")`
+ * is 0, and clearing the field to retype is the ordinary gesture — one Save on
+ * an empty box would put the corridor on zero margin. Persian digits are
+ * accepted here because every other number on this screen accepts them.
+ */
+function parseSpread(raw: string): number | null {
+  const digits = toLatinDigits(raw.trim());
+  if (!/^\d{1,4}$/.test(digits)) return null;
+  const value = Number(digits);
+  return value <= 2000 ? value : null;
+}
+
 /** The foreign leg of a corridor — the currency its min/max are counted in. */
 function baseOf(corridor: string): CurrencyCode | null {
   const base = corridor.split("-")[0] ?? "";
@@ -454,10 +491,9 @@ function dirty(draft: Draft, row: OfficeRateConfig): boolean {
 }
 
 /** Empty is a deliberate "no limit"; `undefined` is the caller's error to report. */
-function minorOrNull(raw: string, code: CurrencyCode | null): number | null | undefined {
+function minorOrNull(raw: string, code: CurrencyCode): number | null | undefined {
   const trimmed = raw.trim();
   if (trimmed === "") return null;
-  if (code === null) return undefined;
   const value = parseAmountInput(trimmed);
   if (value === null || value < 0) return undefined;
   try {

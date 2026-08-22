@@ -19,14 +19,16 @@
         "waiting": "در انتظار",
         "action": "اقدام"
       },
-      "unnamed": "بدون نام",
       "claim": "برمی‌دارم",
       "working": "کمی صبر کنید…",
       "empty": "درخواستی در جریان نیست.",
       "emptyFiltered": "با این فیلترها چیزی پیدا نشد.",
+      "poolClosed": "این صرافی فعال نیست، بنابراین درخواست تازه‌ای برای برداشتن نشان داده نمی‌شود. کارهای در جریان خودتان همچنان در همین فهرست است.",
       "errors": {
         "alreadyClaimed": "صرافی دیگری زودتر این درخواست را برداشت. فهرست به‌روز شد.",
+        "gone": "این درخواست دیگر در دسترس نیست. فهرست به‌روز شد.",
         "inactive": "این صرافی فعال نیست؛ فعلاً نمی‌توانید درخواستی بردارید.",
+        "network": "ارتباط برقرار نشد. اتصال را بررسی کنید و دوباره بزنید.",
         "failed": "انجام نشد. دوباره بزنید."
       }
     },
@@ -34,29 +36,22 @@
       "metaTitle": "مشتریان",
       "title": "مشتریان",
       "subtitle": "کسانی که با این صرافی معامله کرده‌اند.",
-      "searchLabel": "جست‌وجوی مشتری",
-      "searchPlaceholder": "نام مشتری",
+      "search": {
+        "label": "جست‌وجوی کد مشتری",
+        "placeholder": "کد مشتری"
+      },
       "col": {
-        "name": "نام",
+        "ref": "کد مشتری",
         "orders": "سفارش‌ها",
         "volume": "مجموع",
-        "last": "آخرین سفارش",
-        "kyc": "احراز هویت"
+        "last": "آخرین سفارش"
       },
       "toman": "تومان",
-      "unnamed": "بدون نام",
       "volumeHint": "مجموع، فقط سفارش‌های تکمیل‌شده را می‌شمارد.",
-      "privacy": "از هر مشتری تنها نام و وضعیت احراز هویت در دسترس صرافی است.",
+      "identityNote": "نام مشتری در دسترس صرافی نیست؛ هر مشتری با همان کدی شناخته می‌شود که در فهرست درخواست‌ها می‌بینید.",
+      "truncated": "این صرافی سفارش‌های بسیاری دارد؛ شمارش و مجموع، {count} سفارش اخیر را در بر می‌گیرد.",
       "empty": "هنوز مشتری‌ای ندارید.",
-      "emptyFiltered": "مشتری‌ای با این نام پیدا نشد.",
-      "kyc": {
-        "unverified": "احراز نشده",
-        "pending": "در انتظار بررسی",
-        "approved": "تأییدشده",
-        "rejected": "رد شده",
-        "more_info_needed": "نیازمند اطلاعات بیشتر",
-        "unknown": "نامشخص"
-      }
+      "noMatch": "مشتری‌ای با این کد پیدا نشد."
     }
   },
   "en": {
@@ -78,14 +73,16 @@
         "waiting": "Waiting",
         "action": "Action"
       },
-      "unnamed": "No name",
       "claim": "Claim",
       "working": "One moment…",
       "empty": "Nothing is in progress.",
       "emptyFiltered": "Nothing matches these filters.",
+      "poolClosed": "This office is not active, so no new requests are shown to claim. Its own work in progress is still listed here.",
       "errors": {
         "alreadyClaimed": "Another office claimed this one first. The list has been refreshed.",
+        "gone": "This request is no longer available. The list has been refreshed.",
         "inactive": "This office is not active, so it cannot claim requests right now.",
+        "network": "No connection. Check it and try again.",
         "failed": "That did not go through. Try again."
       }
     },
@@ -93,29 +90,22 @@
       "metaTitle": "Customers",
       "title": "Customers",
       "subtitle": "People who have transacted with this office.",
-      "searchLabel": "Search customers",
-      "searchPlaceholder": "Customer name",
+      "search": {
+        "label": "Search by customer reference",
+        "placeholder": "Customer reference"
+      },
       "col": {
-        "name": "Name",
+        "ref": "Customer",
         "orders": "Orders",
         "volume": "Total",
-        "last": "Last order",
-        "kyc": "Verification"
+        "last": "Last order"
       },
       "toman": "Toman",
-      "unnamed": "No name",
       "volumeHint": "The total counts completed orders only.",
-      "privacy": "An office sees a customer's name and verification state, nothing further.",
+      "identityNote": "A customer's name is not available to an office; each is identified by the same reference you see on the requests list.",
+      "truncated": "This office has a great many orders; the counts and totals cover the most recent {count}.",
       "empty": "No customers yet.",
-      "emptyFiltered": "No customer matches that name.",
-      "kyc": {
-        "unverified": "Unverified",
-        "pending": "In review",
-        "approved": "Verified",
-        "rejected": "Rejected",
-        "more_info_needed": "More information needed",
-        "unknown": "Unknown"
-      }
+      "noMatch": "No customer matches that reference."
     }
   }
 }

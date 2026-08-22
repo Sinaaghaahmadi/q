@@ -128,24 +128,39 @@ export default async function OfficeReportsPage({
   // Only the completed orders need their history: the two figures below are the
   // gap between an order's first event and its completion, and whether that
   // completion beat the deadline. Everything still open has neither yet.
-  let events: Pick<OrderEvent, "order_id" | "to_state" | "seq" | "created_at">[] = [];
-  if (completed.length > 0) {
+  //
+  // Naming those orders in the query would put a uuid each into the URL, and a
+  // few hundred completions is enough query string to be refused outright — at
+  // which point the page would report an idle office. `order_events_visibility`
+  // already narrows the table to this office's orders, so the window is read
+  // whole and the completed ones picked out here.
+  const completedIds = new Set(completed.map((order) => order.id));
+  let events: Pick<OrderEvent, "order_id" | "to_state" | "created_at">[] = [];
+  if (completedIds.size > 0) {
     const { data } = await supabase
       .from("order_events")
-      .select("order_id, to_state, seq, created_at")
-      .in(
-        "order_id",
-        completed.map((order) => order.id),
-      )
-      .order("seq");
+      .select("order_id, to_state, created_at")
+      .gte("created_at", windowStart.toISOString())
+      .limit(8000);
     events = data ?? [];
   }
 
+  // Read without an order clause, so first and last are found by comparison
+  // rather than by trusting the rows to arrive in timeline order.
   const opened = new Map<string, string>();
   const closed = new Map<string, string>();
   for (const event of events) {
-    if (!opened.has(event.order_id)) opened.set(event.order_id, event.created_at);
-    if (event.to_state === "completed") closed.set(event.order_id, event.created_at);
+    if (!completedIds.has(event.order_id)) continue;
+    const firstSoFar = opened.get(event.order_id);
+    if (!firstSoFar || Date.parse(event.created_at) < Date.parse(firstSoFar)) {
+      opened.set(event.order_id, event.created_at);
+    }
+    if (event.to_state === "completed") {
+      const lastSoFar = closed.get(event.order_id);
+      if (!lastSoFar || Date.parse(event.created_at) > Date.parse(lastSoFar)) {
+        closed.set(event.order_id, event.created_at);
+      }
+    }
   }
 
   const months: MonthBar[] = starts.map((start, index) => {

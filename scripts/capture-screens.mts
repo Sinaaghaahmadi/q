@@ -155,6 +155,38 @@ const SHOTS: Shot[] = [
     fullPage: true,
     as: "admin",
   },
+  {
+    name: "admin-finance-fa-light",
+    path: "/admin/finance",
+    scheme: "light",
+    viewport: { width: 1440, height: 900 },
+    fullPage: true,
+    as: "admin",
+  },
+  {
+    name: "admin-users-fa-light",
+    path: "/admin/users",
+    scheme: "light",
+    viewport: { width: 1440, height: 900 },
+    fullPage: true,
+    as: "admin",
+  },
+  {
+    name: "office-requests-fa-light-mobile",
+    path: "/office/requests",
+    scheme: "light",
+    viewport: { width: 390, height: 844 },
+    fullPage: true,
+    as: "operator",
+  },
+  {
+    name: "office-reports-fa-light",
+    path: "/office/reports",
+    scheme: "light",
+    viewport: { width: 1280, height: 900 },
+    fullPage: true,
+    as: "operator",
+  },
 ];
 
 /**

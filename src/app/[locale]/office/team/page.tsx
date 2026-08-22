@@ -57,6 +57,10 @@ export default async function OfficeTeamPage({ params }: { params: Promise<{ loc
     );
   }
 
+  // `memberships_self_read` hands a seat only to the person holding it, so for
+  // an office user this list comes back as their own seat and nothing else.
+  // There is no peer-read policy to widen it with, and the subtitle says so
+  // rather than letting one row read as the whole team.
   const supabase = await createClient();
   const [{ data: office }, { data: members }] = await Promise.all([
     supabase.from("exchange_offices").select("*").eq("id", officeId).maybeSingle(),

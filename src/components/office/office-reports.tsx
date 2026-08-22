@@ -23,6 +23,10 @@ const PAD_Y = 10;
  * table to drift away from the ledger. Volume counts completed orders only,
  * because money that never reached a till is not volume, and the caption says
  * so rather than leaving the two numbers to be reconciled by guesswork.
+ *
+ * The last bar is the month still running, drawn faded as it is on the platform
+ * chart: a month three days old rendered like the five beside it reads as a
+ * collapse in volume, and that misreading is the one that costs a decision.
  */
 export function OfficeReports({
   months,
@@ -58,6 +62,16 @@ export function OfficeReports({
   const max = peak.volumeMinor;
   const first = months[0];
   const last = months[months.length - 1];
+  const from = first ? monthLabel(first.start) : "";
+  const to = last ? monthLabel(last.start) : "";
+
+  // A peak of nought is not a peak: until something completes every bar is
+  // flat, and naming a highest month would describe a picture that is not on
+  // the screen for anyone reading it by eye.
+  const chartLabel =
+    max > 0
+      ? t("chartLabel", { from, to, peak: monthLabel(peak.start), max: toman(max) })
+      : t("chartEmptyLabel", { from, to });
 
   const completionText = completion
     ? completion.averageMinutes >= 90
@@ -104,12 +118,7 @@ export function OfficeReports({
               viewBox={`0 0 ${W} ${H}`}
               className="h-auto w-full"
               role="img"
-              aria-label={t("chartLabel", {
-                from: first ? monthLabel(first.start) : "",
-                to: last ? monthLabel(last.start) : "",
-                peak: monthLabel(peak.start),
-                max: toman(max),
-              })}
+              aria-label={chartLabel}
             >
               {[0.25, 0.5, 0.75].map((f) => (
                 <line
@@ -137,7 +146,7 @@ export function OfficeReports({
                     height={height}
                     rx="4"
                     fill="var(--brand-600)"
-                    fillOpacity="0.85"
+                    fillOpacity={index === months.length - 1 ? "0.45" : "0.85"}
                   />
                 );
               })}

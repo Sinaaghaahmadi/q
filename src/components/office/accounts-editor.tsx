@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, Plus, Save, TriangleAlert } from "lucide-react";
+import { CircleAlert, Info, Plus, Save, TriangleAlert } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -53,9 +53,11 @@ export function AccountsEditor({
   const [newNumber, setNewNumber] = React.useState("");
   const [newLabel, setNewLabel] = React.useState("");
 
-  // `admin_set_office_status` refuses to activate an office without one of
-  // these, so the absence is worth shouting about before someone waits on a
-  // status change that will never come.
+  // Two different gates, and telling the operator only about the harsher one is
+  // how this banner came to overstate: `admin_set_office_status` refuses to
+  // activate an office with no public, active account in any currency, while it
+  // is only P2P escrow routing that asks for a Toman one.
+  const hasPublicAccount = accounts.some((a) => a.is_public && a.active);
   const hasPublicIrt = accounts.some((a) => a.currency === "IRT" && a.is_public && a.active);
 
   function draftOf(account: OfficeAccount) {
@@ -105,7 +107,11 @@ export function AccountsEditor({
       .eq("id", account.id);
     setBusy(null);
     if (dbError) {
-      setError(t("accounts.errors.forbidden"));
+      // The switch is only on screen for a seat that may write, so a refusal
+      // here is far more likely to be the network than the policy.
+      setError(
+        dbError.code === "42501" ? t("accounts.errors.forbidden") : t("accounts.errors.saveFailed"),
+      );
       return;
     }
     router.refresh();
@@ -142,12 +148,20 @@ export function AccountsEditor({
 
   return (
     <div className="space-y-4">
-      {!hasPublicIrt ? (
+      {!hasPublicAccount ? (
         <div className="flex items-start gap-2.5 rounded-xl bg-warn/12 p-4 text-sm text-warn-ink">
           <TriangleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
           <span>
             <span className="block font-semibold">{t("accounts.noPublicTitle")}</span>
             <span className="mt-1 block leading-relaxed">{t("accounts.noPublicBody")}</span>
+          </span>
+        </div>
+      ) : !hasPublicIrt ? (
+        <div className="flex items-start gap-2.5 rounded-xl bg-info/12 p-4 text-sm text-info-ink">
+          <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>
+            <span className="block font-semibold">{t("accounts.noIrtTitle")}</span>
+            <span className="mt-1 block leading-relaxed">{t("accounts.noIrtBody")}</span>
           </span>
         </div>
       ) : null}

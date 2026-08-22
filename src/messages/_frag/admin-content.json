@@ -1,0 +1,171 @@
+{
+  "namespace": "admin.content",
+  "fa": {
+    "metaTitle": "محتوا",
+    "title": "محتوا و پیام‌ها",
+    "subtitle": "صفحه‌ها، پرسش‌های پرتکرار، بنرها و اطلاعیه‌ها، و متن پیامک و ایمیل — هر کدام به فارسی و انگلیسی.",
+    "loadFailedTitle": "محتوا خوانده نشد",
+    "loadFailedBody": "این بار خواندن محتوا از پایگاه داده انجام نشد، پس نمی‌دانیم چه چیزی ثبت شده است. صفحه را دوباره باز کنید؛ اگر تکرار شد، به تیم فنی بگویید.",
+    "tab": {
+      "cms": "محتوای سایت",
+      "templates": "متن پیام‌ها"
+    },
+    "locale": {
+      "fa": "فارسی",
+      "en": "انگلیسی"
+    },
+    "edit": "ویرایش",
+    "close": "بستن",
+    "save": "ذخیره",
+    "saved": "ذخیره شد.",
+    "create": "ثبت",
+    "cancel": "انصراف",
+    "working": "لحظه‌ای…",
+    "errors": {
+      "keyRequired": "کلید را با حروف انگلیسی، عدد، نقطه، خط تیره یا زیرخط بنویسید.",
+      "titleRequired": "عنوان را بنویسید.",
+      "bodyRequired": "متن را بنویسید.",
+      "duplicate": "این کلید به این زبان از قبل ثبت شده است.",
+      "forbidden": "ذخیره نشد: نوشتن در محتوا از عهدهٔ مدیر پلتفرم برمی‌آید.",
+      "saveFailed": "ذخیره نشد. دوباره تلاش کنید."
+    },
+    "cms": {
+      "noDelete": "ردیف‌ها پاک نمی‌شوند؛ پایگاه داده حذف را رد می‌کند. برداشتن انتشار، راه بازنشسته‌کردن محتواست — فعلاً هیچ صفحه‌ای محتوای CMS را نشان نمی‌دهد، پس انتشار یعنی «آماده است»، نه «روی سایت رفت».",
+      "gapWarning": "{count} کلید فقط به یک زبان نوشته شده است.",
+      "allTranslated": "هر کلید به هر دو زبان نوشته شده است.",
+      "newKey": "کلید تازه",
+      "keyLabel": "کلید",
+      "keyHint": "نامی که این محتوا با آن ثبت می‌شود؛ مثل faq.fees یا legal.terms.",
+      "keyPlaceholder": "faq.fees",
+      "typeLabel": "نوع",
+      "localeLabel": "زبان",
+      "titleLabel": "عنوان",
+      "bodyLabel": "متن",
+      "bodyHint": "متن ساده. همان چیزی ذخیره می‌شود که می‌نویسید.",
+      "draftNote": "محتوای تازه منتشرنشده ثبت می‌شود. انتشار کار جداگانه‌ای است و فعلاً فقط ردیف را «آماده» علامت می‌زند.",
+      "missing": "{locale} ندارد",
+      "addTranslation": "افزودن {locale}",
+      "published": "منتشر شده",
+      "draft": "منتشر نشده",
+      "publishedOn": "انتشار: {date}",
+      "updatedOn": "آخرین ویرایش: {date}",
+      "publish": "انتشار",
+      "unpublish": "برداشتن انتشار",
+      "empty": "هنوز محتوایی ثبت نشده است.",
+      "type": {
+        "page": "صفحه",
+        "faq": "پرسش پرتکرار",
+        "banner": "بنر",
+        "announcement": "اطلاعیه"
+      }
+    },
+    "templates": {
+      "intro": "متن هر پیام برای هر کلید و کانال اینجا نگهداری می‌شود. هنوز هیچ فرستنده‌ای این جدول را نمی‌خواند، پس ویرایش اینجا متن ذخیره‌شده را عوض می‌کند، نه پیامی که به مشتری می‌رسد. کلید تازه از این صفحه ساخته نمی‌شود.",
+      "gapWarning": "{count} پیام فقط به یک زبان نوشته شده است.",
+      "allTranslated": "هر پیام به هر دو زبان نوشته شده است.",
+      "subjectLabel": "موضوع",
+      "subjectHint": "برای ایمیل. پیامک و اعلان موضوع ندارند.",
+      "noSubject": "بدون موضوع",
+      "bodyLabel": "متن",
+      "bodyHint": "متغیرها را با همان نامی که کنار متن اعلام شده بنویسید.",
+      "variablesTitle": "متغیرهای اعلام‌شده",
+      "noVariables": "متغیری اعلام نشده است.",
+      "previewTitle": "پیش‌نمایش",
+      "previewHint": "هر متغیر با نام خودش نشان داده می‌شود. از اینجا چیزی فرستاده نمی‌شود.",
+      "undeclared": "این نام‌ها در متن هست ولی اعلام نشده‌اند: {names}",
+      "missing": "{locale} ندارد",
+      "addTranslation": "افزودن {locale}",
+      "empty": "هنوز متنی ثبت نشده است.",
+      "channel": {
+        "inapp": "درون‌برنامه",
+        "push": "اعلان",
+        "sms": "پیامک",
+        "email": "ایمیل"
+      }
+    }
+  },
+  "en": {
+    "metaTitle": "Content",
+    "title": "Content and messages",
+    "subtitle": "Pages, FAQs, banners and announcements, and the SMS and email wording — each of them in Persian and English.",
+    "loadFailedTitle": "Content could not be read",
+    "loadFailedBody": "The read from the database did not complete, so we cannot say what is stored. Reload the page; if it keeps happening, tell the engineering team.",
+    "tab": {
+      "cms": "Site content",
+      "templates": "Message wording"
+    },
+    "locale": {
+      "fa": "Persian",
+      "en": "English"
+    },
+    "edit": "Edit",
+    "close": "Close",
+    "save": "Save",
+    "saved": "Saved.",
+    "create": "Create",
+    "cancel": "Cancel",
+    "working": "One moment…",
+    "errors": {
+      "keyRequired": "Write the key in Latin letters, digits, dots, hyphens or underscores.",
+      "titleRequired": "Write a title.",
+      "bodyRequired": "Write the body.",
+      "duplicate": "This key already exists in this language.",
+      "forbidden": "Not saved: writing content is open to platform administrators only.",
+      "saveFailed": "Not saved. Try again."
+    },
+    "cms": {
+      "noDelete": "Rows are never deleted; the database refuses it. Unpublishing is how content is retired — no page renders CMS content yet, so publishing marks a row ready rather than putting it on the site.",
+      "gapWarning": "{count, plural, one {One key is written in one language only.} other {# keys are written in one language only.}}",
+      "allTranslated": "Every key is written in both languages.",
+      "newKey": "New key",
+      "keyLabel": "Key",
+      "keyHint": "The name this content is filed under — faq.fees, legal.terms.",
+      "keyPlaceholder": "faq.fees",
+      "typeLabel": "Type",
+      "localeLabel": "Language",
+      "titleLabel": "Title",
+      "bodyLabel": "Body",
+      "bodyHint": "Plain text. What you write is what is stored.",
+      "draftNote": "New content is stored unpublished. Publishing is a separate act, and today it only marks the row ready.",
+      "missing": "No {locale}",
+      "addTranslation": "Add {locale}",
+      "published": "Published",
+      "draft": "Unpublished",
+      "publishedOn": "Published {date}",
+      "updatedOn": "Edited {date}",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "empty": "No content yet.",
+      "type": {
+        "page": "Page",
+        "faq": "FAQ",
+        "banner": "Banner",
+        "announcement": "Announcement"
+      }
+    },
+    "templates": {
+      "intro": "The wording for each message key and channel is stored here. No sender reads this table yet, so an edit changes the stored text, not a message a customer receives. New keys are not created from this screen.",
+      "gapWarning": "{count, plural, one {One message is written in one language only.} other {# messages are written in one language only.}}",
+      "allTranslated": "Every message is written in both languages.",
+      "subjectLabel": "Subject",
+      "subjectHint": "For email. SMS and in-app messages carry no subject.",
+      "noSubject": "No subject",
+      "bodyLabel": "Body",
+      "bodyHint": "Write variables with the names declared beside the body.",
+      "variablesTitle": "Declared variables",
+      "noVariables": "No variables declared.",
+      "previewTitle": "Preview",
+      "previewHint": "Each variable is shown as its own name. Nothing is sent from here.",
+      "undeclared": "These names appear in the body but are not declared: {names}",
+      "missing": "No {locale}",
+      "addTranslation": "Add {locale}",
+      "empty": "No wording yet.",
+      "channel": {
+        "inapp": "In-app",
+        "push": "Push",
+        "sms": "SMS",
+        "email": "Email"
+      }
+    }
+  }
+}

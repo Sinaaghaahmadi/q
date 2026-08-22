@@ -1,17 +1,31 @@
-import { Building2 } from "lucide-react";
+import { Building2, CircleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfficeShell } from "@/components/office/office-shell";
-import { RequestsQueue, type QueueRow } from "@/components/office/requests-queue";
+import { RequestsQueue } from "@/components/office/requests-queue";
 import { redirect } from "@/i18n/navigation";
 import { officeScopes } from "@/lib/auth/can";
-import { isDone } from "@/lib/office/steps";
+import { ALLOWED_TRANSITIONS } from "@/lib/orders/flow";
 import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
-import type { ExchangeOffice, Order } from "@/lib/supabase/types";
+import type { ExchangeOffice, Order, OrderState } from "@/lib/supabase/types";
 
 export const dynamic = "force-dynamic";
+
+/**
+ * Settled work has to be excluded by the query, not by a pass over the result:
+ * `state_since` is rewritten on every transition, so an order that finished
+ * months ago carries the oldest timestamp of all and sorts to the front. A
+ * filter applied afterwards would throw away the whole window and leave a busy
+ * office staring at an empty queue. The set is derived from the transition map
+ * — a state nothing leaves is a state this office is finished with — so it
+ * cannot drift from the machine the way a second hand-written list would.
+ */
+const SETTLED = `(${(Object.entries(ALLOWED_TRANSITIONS) as [OrderState, OrderState[]][])
+  .filter(([, onward]) => onward.length === 0)
+  .map(([state]) => state)
+  .join(",")})`;
 
 export async function generateMetadata({
   params,
@@ -73,44 +87,36 @@ export default async function OfficeRequestsPage({
       .eq("state", "matching")
       .order("state_since")
       .limit(100),
-    supabase.from("orders").select("*").eq("office_id", officeId).order("state_since").limit(200),
+    supabase
+      .from("orders")
+      .select("*")
+      .eq("office_id", officeId)
+      .not("state", "in", SETTLED)
+      .order("state_since")
+      .limit(200),
   ]);
 
-  const orders = [
-    ...((pool ?? []) as Order[]),
-    ...((mine ?? []) as Order[]).filter((o) => !isDone(o.state)),
-  ];
+  const orders = [...((pool ?? []) as Order[]), ...((mine ?? []) as Order[])];
+  const officeRow = (office ?? null) as ExchangeOffice | null;
 
-  const customerIds = [...new Set(orders.map((o) => o.customer_id))];
-  const { data: profiles } = customerIds.length
-    ? await supabase
-        .from("profiles")
-        .select("id, full_name_fa, full_name_latin")
-        .in("id", customerIds)
-    : { data: [] };
-
-  const names = new Map(
-    (profiles ?? []).map((p) => [
-      p.id,
-      (locale === "fa"
-        ? (p.full_name_fa ?? p.full_name_latin)
-        : (p.full_name_latin ?? p.full_name_fa)) ?? null,
-    ]),
-  );
-
-  const rows: QueueRow[] = orders.map((order) => ({
-    order,
-    customerName: names.get(order.customer_id) ?? null,
-  }));
+  // `orders_matching_pool` only opens to members of an *active* office, so a
+  // suspended one sees no unclaimed requests at all. Without a word to that
+  // effect the screen says "nothing is in progress" and the operator reads it
+  // as a quiet morning. Their own work still shows — being suspended stops new
+  // requests arriving, not the ones already on the counter.
+  const poolClosed = officeRow !== null && officeRow.status !== "active";
 
   return (
-    <OfficeShell
-      office={(office ?? null) as ExchangeOffice | null}
-      locale={locale}
-      title={t("title")}
-      description={t("subtitle")}
-    >
-      <RequestsQueue officeId={officeId} rows={rows} />
+    <OfficeShell office={officeRow} locale={locale} title={t("title")} description={t("subtitle")}>
+      <div className="space-y-4">
+        {poolClosed ? (
+          <p className="flex items-start gap-1.5 rounded-xl bg-warn/12 p-3 text-sm text-warn-ink">
+            <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+            {t("poolClosed")}
+          </p>
+        ) : null}
+        <RequestsQueue officeId={officeId} orders={orders} />
+      </div>
     </OfficeShell>
   );
 }

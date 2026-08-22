@@ -1,0 +1,163 @@
+{
+  "namespace": "admin.rates",
+  "fa": {
+    "metaTitle": "نرخ‌ها و اسپرد",
+    "title": "نرخ‌ها و اسپرد",
+    "subtitle": "منبع نرخ‌ها، منابعی که ثبت شده‌اند، و کف و سقفی که این کنسول اسپرد صرافی‌ها را با آن می‌سنجد.",
+    "snapshot": {
+      "title": "تصویر فعلی نرخ‌ها",
+      "degradedTitle": "این تصویر تازه نیست",
+      "degradedBody": "یا منبع اصلی پاسخ نداده، یا تازه‌ترین مشاهده‌اش از بازهٔ قابل قبول کهنه‌تر است. پیش از قیمت دادن به مشتری یا رسیدگی به اختلاف، منبع و زمان مشاهده را در همین صفحه ببینید.",
+      "staleBadge": "نرخ کهنه",
+      "okTitle": "تصویر نرخ‌ها تازه است",
+      "okBody": "منبع اصلی پاسخ داده و تازه‌ترین مشاهده در بازهٔ قابل قبول است.",
+      "source": "منبع",
+      "observed": "زمان مشاهده در منبع",
+      "fetched": "زمان دریافت ما",
+      "sourceName": {
+        "tgju": "TGJU",
+        "frankfurter": "Frankfurter",
+        "demo": "دادهٔ نمایشی"
+      },
+      "col": {
+        "pair": "جفت‌ارز",
+        "mid": "میانه (تومان)",
+        "change": "تغییر ۲۴ ساعت",
+        "source": "منبع",
+        "observed": "زمان مشاهده"
+      },
+      "empty": "این تصویر هیچ نرخی ندارد."
+    },
+    "sources": {
+      "title": "ارائه‌دهنده‌های نرخ",
+      "hint": "هر سطر یک منبع ثبت‌شده است، همان‌طور که در پایگاه‌داده ذخیره شده.",
+      "readOnly": "روشن و خاموش کردن منبع از این صفحه انجام نمی‌شود: سیاست دسترسی پایگاه‌داده روی جدول منابع تنها خواندن را باز گذاشته و برای نوشتن هیچ سیاستی ندارد. کلیدها وضعیت فعلی را نشان می‌دهند و غیرفعال‌اند؛ تغییر وضعیت امروز با مهاجرت پایگاه‌داده انجام می‌شود. «آخرین دریافت موفق» و «آخرین خطا» هم ستون‌های ذخیره‌شده‌اند و هنوز هیچ فرایندی آن‌ها را نمی‌نویسد، پس حتی وقتی منبعی درست پاسخ می‌دهد خالی می‌مانند؛ سلامت خط نرخ را از هشدار تازگی در بالای همین صفحه بخوانید.",
+      "col": {
+        "name": "نام",
+        "kind": "نوع",
+        "state": "وضعیت",
+        "lastOk": "آخرین دریافت موفق",
+        "lastError": "آخرین خطا"
+      },
+      "active": "فعال",
+      "inactive": "غیرفعال",
+      "empty": "هنوز منبعی ثبت نشده است.",
+      "kind": {
+        "tgju": "TGJU",
+        "frankfurter": "Frankfurter",
+        "manual": "دستی",
+        "demo": "نمایشی"
+      }
+    },
+    "bounds": {
+      "title": "کف و سقف اسپرد پلتفرم",
+      "hint": "همان کف و سقفی که این کنسول اسپرد هر مسیر هر صرافی را با آن می‌سنجد. این‌ها کمکِ بازبینی‌اند: هنوز هیچ‌جا اسپرد بیرون از این محدوده را رد نمی‌کند. اعداد بر حسب صدم درصد‌اند؛ هر ۱۰۰ واحد یک درصد.",
+      "floor": "کف",
+      "ceiling": "سقف",
+      "means": "{bps} یعنی {pct}٪",
+      "missing": "هنوز مقداری ذخیره نشده است. اعداد پایین پیشنهاد اولیه‌اند و تا ذخیره نشوند، این صفحه هیچ سطری را بیرون از محدوده علامت نمی‌زند.",
+      "unreadable": "برای این کلید مقداری ذخیره شده اما به‌صورت کف و سقف خوانده نمی‌شود، پس هیچ سطری با آن سنجیده نمی‌شود. اعداد پایین پیشنهاد اولیه‌اند، نه آنچه ذخیره شده؛ ذخیره کردن، مقدار ذخیره‌شده را جایگزین می‌کند.",
+      "save": "ذخیره",
+      "saving": "در حال ذخیره…",
+      "saved": "ذخیره شد.",
+      "saveFailed": "ذخیره نشد.",
+      "invalid": "کف باید صفر یا بیشتر باشد، سقف باید از کف بزرگ‌تر باشد، و سقف نمی‌تواند از {max} صدم درصد بالاتر برود؛ ویرایشگر اسپرد صرافی‌ها عدد بالاتر را نمی‌پذیرد. هر دو عدد درست و بدون اعشارند.",
+      "updated": "آخرین تغییر: {at}"
+    },
+    "spread": {
+      "title": "پراکندگی اسپرد صرافی‌ها",
+      "hint": "برای هر مسیر، کمترین و میانه و بیشترین اسپردی که صرافی‌های فعال گذاشته‌اند. صرافی پیش‌نویس یا معلق یا بایگانی‌شده و نیز مسیر غیرفعال شمرده نمی‌شوند، چون هیچ‌کدام به کسی قیمت نمی‌دهند.",
+      "notEnforced": "تا وقتی کف و سقف ذخیره نشده، هیچ سطری بیرون از محدوده علامت نمی‌خورد.",
+      "col": {
+        "corridor": "مسیر",
+        "offices": "تعداد صرافی",
+        "min": "کمترین",
+        "median": "میانه",
+        "max": "بیشترین"
+      },
+      "empty": "هنوز هیچ صرافی مسیری را پیکربندی نکرده است.",
+      "belowFloor": "زیر کف",
+      "aboveCeiling": "بالای سقف"
+    }
+  },
+  "en": {
+    "metaTitle": "Rates & spread",
+    "title": "Rates & spread",
+    "subtitle": "Where the rates come from, which sources are registered, and the floor and ceiling this console measures office spreads against.",
+    "snapshot": {
+      "title": "Current rate snapshot",
+      "degradedTitle": "This snapshot is not fresh",
+      "degradedBody": "The primary source did not answer, or its newest observation is older than the accepted window. Check the source and observation time below before pricing a customer or settling a dispute from these numbers.",
+      "staleBadge": "Stale rates",
+      "okTitle": "The snapshot is fresh",
+      "okBody": "The primary source answered and its newest observation is within the accepted window.",
+      "source": "Source",
+      "observed": "Observed at source",
+      "fetched": "Fetched by us",
+      "sourceName": {
+        "tgju": "TGJU",
+        "frankfurter": "Frankfurter",
+        "demo": "Demo data"
+      },
+      "col": {
+        "pair": "Pair",
+        "mid": "Mid (Toman)",
+        "change": "24h change",
+        "source": "Source",
+        "observed": "Observed"
+      },
+      "empty": "This snapshot carries no rates."
+    },
+    "sources": {
+      "title": "Rate providers",
+      "hint": "One row per registered source, exactly as it is stored in the database.",
+      "readOnly": "A source cannot be switched on or off from this page: the database policy on the sources table grants read only, and has no policy for writes at all. The switches show the current state and are disabled; changing it today is a database migration. “Last success” and “Last error” are the stored columns, and no job writes them yet, so they stay empty even while a provider is answering — the freshness banner at the top of this page is what tells you whether the pipeline is working.",
+      "col": {
+        "name": "Name",
+        "kind": "Kind",
+        "state": "State",
+        "lastOk": "Last success",
+        "lastError": "Last error"
+      },
+      "active": "Active",
+      "inactive": "Inactive",
+      "empty": "No source has been registered yet.",
+      "kind": {
+        "tgju": "TGJU",
+        "frankfurter": "Frankfurter",
+        "manual": "Manual",
+        "demo": "Demo"
+      }
+    },
+    "bounds": {
+      "title": "Platform spread floor and ceiling",
+      "hint": "The floor and ceiling this console measures every office's per-corridor spread against. They are a review aid: nothing rejects a spread outside them yet. Both are in basis points; 100 of them make one percent.",
+      "floor": "Floor",
+      "ceiling": "Ceiling",
+      "means": "{bps} bps = {pct}%",
+      "missing": "Nothing is stored yet. The numbers below are an opening suggestion; until they are saved, this page marks nothing as out of range.",
+      "unreadable": "A value is stored under this key, but it cannot be read as a floor and a ceiling, so no row is measured against it. The fields below show the opening suggestion rather than what is stored, and saving replaces the stored value.",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Saved.",
+      "saveFailed": "Not saved.",
+      "invalid": "The floor must be zero or more, the ceiling must be greater than the floor, and the ceiling cannot go above {max} bps — the office spread editors refuse anything higher. Both are whole numbers.",
+      "updated": "Last changed: {at}"
+    },
+    "spread": {
+      "title": "Spread across offices",
+      "hint": "For each corridor, the lowest, median and highest spread the active offices have set. A draft, suspended or archived office is left out, and so is an inactive corridor, since neither quotes anybody.",
+      "notEnforced": "Until a floor and ceiling are saved, no row is marked as out of range.",
+      "col": {
+        "corridor": "Corridor",
+        "offices": "Offices",
+        "min": "Lowest",
+        "median": "Median",
+        "max": "Highest"
+      },
+      "empty": "No office has configured a corridor yet.",
+      "belowFloor": "Below floor",
+      "aboveCeiling": "Above ceiling"
+    }
+  }
+}

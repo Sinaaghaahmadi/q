@@ -105,74 +105,73 @@ export function TeamView({
 
   return (
     <div className="space-y-4">
-      {members.length === 0 ? (
-        <Card className="p-10 text-center text-sm text-ink-600">{t("empty")}</Card>
-      ) : (
-        <Card className="overflow-x-auto">
-          <table className="w-full min-w-[34rem] text-sm">
-            <thead className="border-b border-ink-300/40 text-xs text-ink-600">
-              <tr>
-                <th className="px-4 py-3 text-start font-medium">{t("col.person")}</th>
-                <th className="px-4 py-3 text-start font-medium">{t("col.role")}</th>
-                <th className="px-4 py-3 text-start font-medium">{t("col.since")}</th>
-                <th className="px-4 py-3 text-end font-medium">{t("col.action")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {members.map((member) => (
-                <tr key={member.id} className="border-b border-ink-300/25 last:border-0">
-                  <td className="px-4 py-3">
-                    <p className="font-medium">
-                      {member.name ?? t("unnamed")}
-                      {member.userId === viewerId ? (
-                        <span className="ms-2 text-xs font-normal text-ink-600">{t("you")}</span>
-                      ) : null}
-                    </p>
-                    <p className="num mt-0.5 font-mono text-xs text-ink-600" dir="ltr">
-                      {member.userId.slice(0, 8)}
-                    </p>
-                  </td>
-                  <td className="px-4 py-3">
-                    <Badge variant={ROLE_TONE[member.role]}>{t(`role.${member.role}`)}</Badge>
-                  </td>
-                  <td className="num px-4 py-3 text-ink-600">{formatDate(member.since, locale)}</td>
-                  <td className="px-4 py-3 text-end">
-                    {canManage && confirming === member.id ? (
-                      <span className="flex flex-wrap items-center justify-end gap-2">
-                        <span className="text-xs text-ink-600">{t("revokeConfirm")}</span>
-                        <Button
-                          variant="destructive"
-                          size="sm"
-                          disabled={busy !== null}
-                          onClick={() => setSeat(member.userId, member.role, false, member.id)}
-                        >
-                          {busy === member.id ? t("working") : t("revokeYes")}
-                        </Button>
-                        <Button variant="ghost" size="sm" onClick={() => setConfirming(null)}>
-                          {t("cancel")}
-                        </Button>
-                      </span>
-                    ) : canManage ? (
+      <Card className="overflow-x-auto">
+        <table className="w-full min-w-[34rem] text-sm">
+          <thead className="border-b border-ink-300/40 text-xs text-ink-600">
+            <tr>
+              <th className="px-4 py-3 text-start font-medium">{t("col.person")}</th>
+              <th className="px-4 py-3 text-start font-medium">{t("col.role")}</th>
+              <th className="px-4 py-3 text-start font-medium">{t("col.since")}</th>
+              <th className="px-4 py-3 text-end font-medium">{t("col.action")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {members.map((member) => (
+              <tr key={member.id} className="border-b border-ink-300/25 last:border-0">
+                <td className="px-4 py-3">
+                  <p className="font-medium">
+                    {member.name ?? t("unnamed")}
+                    {member.userId === viewerId ? (
+                      <span className="ms-2 text-xs font-normal text-ink-600">{t("you")}</span>
+                    ) : null}
+                  </p>
+                  <p className="num mt-0.5 font-mono text-xs text-ink-600" dir="ltr">
+                    {member.userId.slice(0, 8)}
+                  </p>
+                </td>
+                <td className="px-4 py-3">
+                  <Badge variant={ROLE_TONE[member.role]}>{t(`role.${member.role}`)}</Badge>
+                </td>
+                <td className="num px-4 py-3 text-ink-600">{formatDate(member.since, locale)}</td>
+                <td className="px-4 py-3 text-end">
+                  {/* Never the viewer's own seat: `admin_set_office_member` has
+                      no last-owner guard, so an owner who revoked themselves
+                      would lose the one seat that lets them undo it. */}
+                  {canManage && member.userId !== viewerId && confirming === member.id ? (
+                    <span className="flex flex-wrap items-center justify-end gap-2">
+                      <span className="text-xs text-ink-600">{t("revokeConfirm")}</span>
                       <Button
-                        variant="ghost"
+                        variant="destructive"
                         size="sm"
                         disabled={busy !== null}
-                        onClick={() => {
-                          setConfirming(member.id);
-                          setError(null);
-                        }}
+                        onClick={() => setSeat(member.userId, member.role, false, member.id)}
                       >
-                        <UserMinus className="size-4" aria-hidden />
-                        {t("revoke")}
+                        {busy === member.id ? t("working") : t("revokeYes")}
                       </Button>
-                    ) : null}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Card>
-      )}
+                      <Button variant="ghost" size="sm" onClick={() => setConfirming(null)}>
+                        {t("cancel")}
+                      </Button>
+                    </span>
+                  ) : canManage && member.userId !== viewerId ? (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={busy !== null}
+                      onClick={() => {
+                        setConfirming(member.id);
+                        setError(null);
+                      }}
+                    >
+                      <UserMinus className="size-4" aria-hidden />
+                      {t("revoke")}
+                    </Button>
+                  ) : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Card>
 
       <p className="text-xs text-ink-600">{t("nameNote")}</p>
 

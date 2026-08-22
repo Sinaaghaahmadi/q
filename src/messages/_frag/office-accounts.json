@@ -5,8 +5,10 @@
       "metaTitle": "حساب‌های صرافی",
       "title": "حساب‌های صرافی",
       "subtitle": "حساب‌هایی که مشتری پول را به آن‌ها واریز می‌کند.",
-      "noPublicTitle": "حساب تومانی عمومی ندارید",
-      "noPublicBody": "تا وقتی دست‌کم یک حساب تومانی هم عمومی و هم فعال نباشد، صرافی فعال نمی‌شود و کاری به شما ارجاع نمی‌شود.",
+      "noPublicTitle": "حساب عمومی ندارید",
+      "noPublicBody": "تا وقتی دست‌کم یک حساب — از هر ارزی — هم عمومی و هم فعال نباشد، صرافی فعال نمی‌شود.",
+      "noIrtTitle": "حساب تومانی عمومی ندارید",
+      "noIrtBody": "معاملهٔ امانی همتا‌به‌همتا فقط به صرافی‌ای می‌رسد که حساب تومانی عمومی و فعال دارد. سفارش‌های دیگر به این حساب نیازی ندارند.",
       "noDeleteNote": "حساب پاک نمی‌شود؛ سابقهٔ واریزهای گذشته باید بماند. حسابی را که دیگر نمی‌خواهید غیرفعال کنید.",
       "readOnly": "برای تغییر حساب‌ها نقش مالی یا مالک صرافی لازم است.",
       "empty": "هنوز حسابی ثبت نشده است.",
@@ -30,7 +32,7 @@
       "label": "نام حساب",
       "labelPlaceholder": "مثلاً حساب بانک ملت، شعبهٔ مرکزی",
       "publicLabel": "نمایش به مشتری",
-      "publicHint": "مشتری این شماره را برای واریز می‌بیند.",
+      "publicHint": "این حساب برای مشتری قابل دیدن می‌شود.",
       "activeLabel": "فعال",
       "activeHint": "حساب غیرفعال در سفارش تازه استفاده نمی‌شود.",
       "add": "ثبت حساب",
@@ -51,20 +53,21 @@
     "liquidity": {
       "metaTitle": "موجودی",
       "title": "موجودی",
-      "subtitle": "موجودی هر ارز و وضعیت حساب دفتری این صرافی.",
+      "subtitle": "وضعیت حساب دفتری این صرافی، به تفکیک ارز.",
       "holding": "پول تسویه تا زمان برداشت نزد پلتفرم می‌ماند. آنچه اینجا می‌بینید سهم شماست، نه پولی که در حساب بانکی صرافی نشسته باشد.",
-      "readOnly": "این صفحه فقط برای دیدن است؛ موجودی با ثبت سفارش‌ها تغییر می‌کند.",
-      "available": "قابل استفاده",
-      "reserved": "رزروشده",
-      "reservedHint": "درگیر سفارش‌های باز.",
+      "readOnly": "این صفحه فقط برای دیدن است؛ آنچه در دفتر ثبت شده را گزارش می‌کند و چیزی را تغییر نمی‌دهد.",
       "position": "حساب دفتری",
-      "positionHint": "بدهکار منهای بستانکار.",
+      "positionHint": "بستانکار منهای بدهکار.",
       "code": {
         "irt_fees": "کارمزد",
         "irt_settlement": "تسویه"
       },
       "noPosition": "ثبتی در دفتر نیست.",
-      "empty": "هنوز موجودی‌ای ثبت نشده است."
+      "ledgerHidden": "دفتر حساب فقط برای کارکنان پلتفرم دیده می‌شود.",
+      "truncated": "دفتر بزرگ‌تر از آن است که یک‌بار خوانده شود؛ این ارقام تازه‌ترین بخش آن را در بر می‌گیرد.",
+      "empty": "هنوز ارزی برای این صرافی تنظیم نشده است.",
+      "noAccessTitle": "به بخش مالی دسترسی ندارید",
+      "noAccessBody": "دیدن موجودی صرافی نقش مالی، مالک یا ناظر می‌خواهد. اگر باید این صفحه را ببینید، از مالک صرافی بخواهید نقش شما را تغییر دهد."
     }
   },
   "en": {
@@ -72,8 +75,10 @@
       "metaTitle": "Settlement accounts",
       "title": "Settlement accounts",
       "subtitle": "The accounts your customers pay into.",
-      "noPublicTitle": "No public IRT account",
-      "noPublicBody": "Until at least one IRT account is both public and active, the office cannot go live and no work is routed to it.",
+      "noPublicTitle": "No public account",
+      "noPublicBody": "Until at least one account — in any currency — is both public and active, the office cannot be set to active.",
+      "noIrtTitle": "No public IRT account",
+      "noIrtBody": "P2P escrow work is only routed to an office with a public, active IRT account. Other orders do not need one.",
       "noDeleteNote": "Accounts are never deleted; the record of past payments has to stay. Deactivate an account you no longer want.",
       "readOnly": "Changing accounts needs the finance or owner role at this office.",
       "empty": "No account has been added yet.",
@@ -97,7 +102,7 @@
       "label": "Account name",
       "labelPlaceholder": "e.g. Bank Mellat, central branch",
       "publicLabel": "Show to customers",
-      "publicHint": "Customers see this number as a payment target.",
+      "publicHint": "Makes this account visible to customers.",
       "activeLabel": "Active",
       "activeHint": "An inactive account is not used on new orders.",
       "add": "Add account",
@@ -118,20 +123,21 @@
     "liquidity": {
       "metaTitle": "Liquidity",
       "title": "Liquidity",
-      "subtitle": "Balance per currency, and this office's position in the ledger.",
+      "subtitle": "This office's ledger position, by currency.",
       "holding": "Settlement money stays in platform holding until it is withdrawn. What you see here is your share of it, not money already sitting in the office's bank account.",
-      "readOnly": "This page is read-only; balances move as orders are recorded.",
-      "available": "Available",
-      "reserved": "Reserved",
-      "reservedHint": "Held against open orders.",
+      "readOnly": "This page is read-only; it reports what the ledger has recorded and changes nothing.",
       "position": "Ledger position",
-      "positionHint": "Debits minus credits.",
+      "positionHint": "Credits minus debits.",
       "code": {
         "irt_fees": "Fees",
         "irt_settlement": "Settlement"
       },
       "noPosition": "Nothing recorded in the ledger.",
-      "empty": "No balance has been recorded yet."
+      "ledgerHidden": "The ledger is visible to platform staff only.",
+      "truncated": "The ledger is larger than one read; these figures cover its most recent part.",
+      "empty": "No currency has been set up for this office yet.",
+      "noAccessTitle": "No access to the office's money",
+      "noAccessBody": "Seeing the office's money needs the finance, owner, or viewer role. If you need this page, ask the office owner to change your role."
     }
   }
 }
