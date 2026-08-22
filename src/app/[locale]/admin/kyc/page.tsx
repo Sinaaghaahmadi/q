@@ -2,15 +2,14 @@ import { ShieldAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { KycQueue, type QueueRow } from "@/components/admin/kyc-queue";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
-import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
+import { getAdminContext } from "@/lib/auth/admin-context";
+import { can } from "@/lib/auth/can";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import type { KycDocument } from "@/lib/supabase/types";
-
-export const dynamic = "force-dynamic";
-
-const REVIEW_ROLES = ["platform_compliance", "platform_admin", "platform_superadmin"];
 
 export async function generateMetadata({
   params,
@@ -38,15 +37,12 @@ export default async function AdminKycPage({ params }: { params: Promise<{ local
     );
   }
 
-  const session = await getSessionProfile();
-  if (!session?.user) {
-    redirect({ href: "/signin?next=/admin/kyc", locale });
-  }
+  const ctx = await getAdminContext();
+  if (!ctx) redirect({ href: "/signin?next=/admin/kyc", locale });
 
   // UI gating is convenience; RLS on kyc_submissions is what actually protects
   // the rows, so a non-reviewer simply sees nothing even if they reach here.
-  const canReview = session?.memberships.some((m) => REVIEW_ROLES.includes(m.role));
-  if (!canReview) {
+  if (!ctx || !can(ctx.seats, "kyc.review")) {
     return (
       <EmptyState
         icon={ShieldAlert}
@@ -76,8 +72,14 @@ export default async function AdminKycPage({ params }: { params: Promise<{ local
   }));
 
   return (
-    <div className="py-4">
-      <KycQueue rows={rows} reviewerId={session!.user.id} />
-    </div>
+    <AdminShell
+      seats={ctx.seats}
+      impersonation={ctx.impersonation}
+      office={ctx.impersonatedOffice}
+      title={t("title")}
+      description={t("subtitle")}
+    >
+      <KycQueue rows={rows} reviewerId={ctx.userId} />
+    </AdminShell>
   );
 }

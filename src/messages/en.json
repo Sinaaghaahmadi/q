@@ -24,7 +24,8 @@
     "accounts": "Accounts",
     "signin": "Sign in",
     "verify": "Verify",
-    "office": "Office"
+    "office": "Office",
+    "admin": "Admin"
   },
   "footer": {
     "brand": "Asaex",
@@ -835,6 +836,202 @@
       "officeInactive": "That office isn't active.",
       "claimFailed": "The request could not be claimed.",
       "network": "Couldn't reach us. Try again."
+    }
+  },
+  "admin": {
+    "metaTitle": "Admin",
+    "title": "Platform overview",
+    "subtitle": "Every order, every office, and every change that was recorded.",
+    "navLabel": "Admin sections",
+    "nav": {
+      "dashboard": "Overview",
+      "exchanges": "Offices",
+      "orders": "Orders",
+      "kyc": "Identity",
+      "settings": "Settings",
+      "audit": "Audit"
+    },
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "This preview is not connected to a database.",
+    "forbiddenTitle": "You do not have access",
+    "forbiddenBody": "The admin panel is open to platform roles only.",
+    "backHome": "Back to home",
+    "byState": "Orders by state",
+    "noOrders": "No orders yet.",
+    "feed": "Live activity",
+    "noActivity": "Nothing recorded yet.",
+    "officeCount": "{active} active of {total} exchange offices.",
+    "stats": {
+      "gmv": "Settled volume",
+      "settled": "Completed orders",
+      "live": "Orders in flight",
+      "atRisk": "At SLA risk"
+    },
+    "impersonation": {
+      "actingAs": "You are acting as {office}.",
+      "actingAsUnknown": "You are acting as an exchange office.",
+      "reason": "Reason: {reason}",
+      "endsIn": "Ends automatically in {time}",
+      "expired": "This session has expired.",
+      "end": "End session"
+    },
+    "exchanges": {
+      "metaTitle": "Exchange offices",
+      "title": "Exchange offices",
+      "subtitle": "Create, configure and suspend offices. Every change is recorded with its reason.",
+      "provision": "Provision an office",
+      "empty": "No exchange offices yet.",
+      "liveOrders": "{count} orders in flight",
+      "status": {
+        "draft": "Draft",
+        "active": "Active",
+        "suspended": "Suspended",
+        "archived": "Archived"
+      },
+      "kind": {
+        "card": "Card",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Cash"
+      },
+      "reasonTitle": "Reason for this action",
+      "reasonBody": "Suspending an office and standing in for one both need a written reason; the same text lands in the audit log.",
+      "reasonPlaceholder": "e.g. investigating a customer complaint about settlement delay",
+      "activate": "Activate",
+      "suspend": "Suspend",
+      "impersonate": "Act as this office",
+      "alreadyImpersonating": "Already acting as this office",
+      "spreads": "Spreads",
+      "spreadBps": "Spread in basis points",
+      "noCorridors": "No corridors configured.",
+      "save": "Save",
+      "saved": "Saved.",
+      "overridden": "Overridden (default {base})",
+      "fromTemplate": "From template",
+      "accounts": "Settlement accounts",
+      "noAccounts": "No accounts recorded.",
+      "publicAccount": "Shown to customers",
+      "balances": "Balances",
+      "noBalances": "No balances recorded.",
+      "errors": {
+        "spreadRange": "Spread must be a number between 0 and 2000.",
+        "saveFailed": "Could not save. Try again.",
+        "reasonRequired": "A written reason of at least 8 characters is required.",
+        "noAccount": "An office cannot go live without a public settlement account.",
+        "superadminOnly": "Acting as an office is open to the superadmin only."
+      }
+    },
+    "wizard": {
+      "steps": {
+        "legal": {
+          "title": "Legal details",
+          "body": "Registered name, licence number and the office's unique handle."
+        },
+        "corridors": {
+          "title": "Corridors",
+          "body": "Which routes it takes and at what spread. Defaults come from the platform template."
+        },
+        "accounts": {
+          "title": "Settlement accounts",
+          "body": "The account customers pay Toman into, plus any foreign accounts."
+        },
+        "review": {
+          "title": "Review",
+          "body": "One transaction, once. Either all of it lands or none of it does."
+        }
+      },
+      "fields": {
+        "nameFa": "Registered name (Persian)",
+        "nameEn": "Registered name (English)",
+        "slug": "Handle",
+        "slugHint": "Lowercase letters, digits and hyphens; used in URLs.",
+        "licence": "Licence number",
+        "city": "City",
+        "reason": "Reason for provisioning",
+        "corridor": "Corridor",
+        "spread": "Spread",
+        "currency": "Currency",
+        "kind": "Account type",
+        "accountNumber": "Account number"
+      },
+      "kinds": {
+        "card": "Card",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Cash"
+      },
+      "addCorridor": "Add corridor",
+      "addAccount": "Add account",
+      "remove": "Remove",
+      "spreadHint": "Spread is in basis points: 90 means 0.9%.",
+      "accountHint": "At least one Toman account is required; without it the office cannot go live.",
+      "back": "Back",
+      "next": "Continue",
+      "saveDraft": "Save as draft",
+      "activate": "Create and activate",
+      "working": "Creating…",
+      "failed": "Could not create the office. Try again.",
+      "errors": {
+        "slug": "The handle must be 3–40 lowercase letters, digits or hyphens.",
+        "slugTaken": "That handle is already taken.",
+        "names": "Both registered names are required.",
+        "licence": "A licence number is required.",
+        "forbidden": "Provisioning an office is open to platform administrators only.",
+        "noAccount": "The office was created but not activated: it has no public settlement account."
+      }
+    },
+    "orders": {
+      "metaTitle": "All orders",
+      "title": "Orders",
+      "subtitle": "Every order, in every office. Forcing a transition takes a written reason.",
+      "all": "All",
+      "empty": "No orders match this filter.",
+      "unclaimed": "Unclaimed",
+      "onBehalf": "On behalf",
+      "force": "Force",
+      "forceTitle": "Force {ref} to a new state",
+      "forceBody": "This overrides the role matrix, not the ledger: a refund posts reversing entries rather than deleting rows.",
+      "targetState": "Target state",
+      "reason": "Reason (at least 8 characters)",
+      "confirmForce": "Apply",
+      "cancel": "Cancel",
+      "working": "Applying…",
+      "col": {
+        "ref": "Reference",
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "office": "Office",
+        "state": "State",
+        "action": "Action"
+      },
+      "errors": {
+        "reason": "A written reason of at least 8 characters is required.",
+        "terminal": "This order is already terminal; post a compensating action instead.",
+        "forbidden": "This action is open to platform administrators only.",
+        "failed": "Could not apply. Try again."
+      }
+    },
+    "audit": {
+      "metaTitle": "Audit log",
+      "title": "Audit log",
+      "subtitle": "Immutable and undeletable. Every configuration change and admin action, with its before and after.",
+      "searchPlaceholder": "Search actions",
+      "search": "Search",
+      "entity": "Entity",
+      "allEntities": "All entities",
+      "empty": "No records found.",
+      "before": "Before",
+      "after": "After"
+    },
+    "settings": {
+      "metaTitle": "Platform settings",
+      "title": "Settings",
+      "subtitle": "Feature flags and the default office template.",
+      "flags": "Feature flags",
+      "noFlags": "No flags defined.",
+      "saveFailed": "Could not save. Try again.",
+      "template": "Default office template",
+      "templateBody": "Every new office starts from these values; differences are shown on that office's own page."
     }
   }
 }

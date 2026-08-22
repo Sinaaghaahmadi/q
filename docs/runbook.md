@@ -141,19 +141,63 @@ functions arrive with that grant.
 The app holds **no service-role key** (ADR 0010): privileged work goes through
 `SECURITY DEFINER` functions that check the caller's role themselves.
 
-## Onboarding an exchange office (target flow, Phase 4)
+## Onboarding an exchange office
 
-Admin → `/admin/exchanges` wizard: legal details → license upload →
-corridors → default rate config → settlement accounts → team invites →
-branding → activate. Until then: insert into `exchange_offices` +
-`memberships` via SQL with the same fields.
+`/admin/exchanges` → **Provision an office**: legal details → corridors and
+spreads → settlement accounts → activate. It is one transaction
+(`admin_create_office`), so a failure leaves nothing half-created, and the
+office lands in `draft` — activation is a separate, deliberate act that
+refuses to proceed until the office has a public settlement account for
+customers to pay into.
 
-## Stuck order (target flow, Phase 3)
+Corridors and spreads start from the platform template in
+`settings.office_defaults`; the office's own page marks each spread as
+**from template** or **overridden**, which is the diff §16.2 asks for.
 
-1. Read `order_events` for the order (append-only truth).
-2. Check SLA state and the office's working hours.
-3. Force-transition only via `assert_transition` with a reason — never a raw
-   `UPDATE`; the ledger is corrected by compensating entries.
+Add its team afterwards from the same page, or with
+`admin_set_office_member(office, user, 'office_operator')`.
+
+## Stuck order
+
+1. Read `order_events` for the order — append-only, ordered by `seq`.
+2. Check the SLA state and the office's working hours.
+3. `/admin/orders` → **Force**. Pick the target state, write a reason of at
+   least eight characters, apply. Never a raw `UPDATE`: the event row is what
+   the customer's own timeline reads, and a forced move is flagged there.
+
+Forcing an order to `refunded` posts reversing ledger entries — direction
+flipped, amounts and accounts preserved, memos prefixed `reversal:` — rather
+than editing anything. Reports over `ledger_entries` must therefore net rather
+than sum. A terminal order (completed, cancelled, refunded, expired,
+SLA-breached) cannot be forced anywhere: correct it with a new compensating
+action instead of rewinding it.
+
+## Acting as an exchange office
+
+`/admin/exchanges/{id}` → write a reason → **Act as this office**. Restricted
+to `platform_superadmin`. The session lasts 30 minutes (4 hours maximum),
+shows a banner with a live countdown on every admin screen, and expires on its
+own; **End session** closes it early. Everything done while impersonating still
+records your own user id — the office is the scope, never the identity — and
+both the start and the end land in the audit log.
+
+## Demo data
+
+```bash
+DATABASE_URL="postgres://…" pnpm seed:demo
+```
+
+Applies `supabase/seed/demo.sql`: two offices (one live, one draft), a
+compliance reviewer, three verified customers with destination accounts, and
+five orders spread across the state machine — including one refunded through
+the administrator's override, so the compensating entries are visible in the
+ledger. Idempotent; it does nothing if the demo offices already exist. Every
+person, licence and account in it is fictional.
+
+The same file is the Phase-4 acceptance run: it provisions through
+`admin_create_office` and drives every order through `order_advance`,
+`order_claim` and `order_force_transition` as the role that would really press
+the button, under `set local role authenticated` so RLS is in force.
 
 ## Deploying to Vercel
 

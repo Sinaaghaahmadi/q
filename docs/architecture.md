@@ -111,9 +111,18 @@ src/lib/money/format.ts      the one number/date formatter (fa digits, Jalali)
 supabase/migrations/*        full §11 schema + RLS + state machine + ledger
 ```
 
-`/office` and `/admin` mount as route groups on the same design system in
-Phases 3–4; RLS (already written) is the security boundary, `can()` UI gating
-is convenience.
+`/office` and `/admin` mount on the same design system. RLS is the security
+boundary; `src/lib/auth/can.ts` mirrors §5's role table for UI gating and is
+convenience only — every capability it names is re-checked by the RLS policy or
+the SECURITY DEFINER function behind it, so a wrong answer here shows a button
+the database then refuses rather than opening a door.
+
+The administrator's overrides — forcing a transition, refunding, impersonating
+an office — widen what a caller may do without narrowing what gets recorded:
+each takes a written reason as an argument, writes an `audit_log` row, and (for
+transitions) marks the `order_events` row `forced`. ADR 0016 has the reasoning;
+`audit_row` triggers on every configuration table are what make it hold for
+edits that do not go through a function at all.
 
 ## 5. PWA & offline (§14)
 

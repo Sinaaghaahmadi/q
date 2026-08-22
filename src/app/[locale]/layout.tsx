@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { isPlatformStaff } from "@/lib/auth/can";
 import { Providers } from "@/components/layout/providers";
 import { TabBar } from "@/components/layout/tabbar";
 import { localeDir, routing, type Locale } from "@/i18n/routing";
@@ -115,6 +116,7 @@ export default async function LocaleLayout({
             <Header
               signedIn={Boolean(session?.user)}
               officeMember={Boolean(session?.memberships.some((m) => m.scope_type === "office"))}
+              platformStaff={isPlatformStaff(session?.memberships ?? [])}
             />
             <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-24 sm:px-6 md:pb-10">
               {children}

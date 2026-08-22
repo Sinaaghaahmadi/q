@@ -1,0 +1,223 @@
+-- Seeded demo mode (§17.21)
+--
+-- Produces enough of a platform that every screen can be reviewed with
+-- real-looking data: two exchange offices (one live, one still a draft), a
+-- compliance reviewer, three verified customers with destination accounts, and
+-- orders sitting at states across the whole machine — including one refunded
+-- through the administrator's override, so the compensating entries §16.4 asks
+-- for are visible in the ledger rather than only described.
+--
+-- It doubles as the Phase-4 acceptance run: every office is provisioned through
+-- `admin_create_office` and every order moves through `order_advance`,
+-- `order_claim` or `order_force_transition`, each executed as the role that
+-- would really be pressing the button, with `set local role authenticated` so
+-- RLS is in force throughout. A clean run means the panels work — not merely
+-- that the tables accept inserts.
+--
+-- Idempotent by the presence of the first office. Fixed UUIDs keep links into
+-- the demo stable across runs. Every person, licence and account below is
+-- fictional.
+--
+--   psql "$DATABASE_URL" -f supabase/seed/demo.sql
+
+do $$
+declare
+  v_admin      uuid := '00000000-0000-4000-8000-00000000ad01';
+  v_compliance uuid := '00000000-0000-4000-8000-00000000c001';
+  v_operator   uuid := '00000000-0000-4000-8000-0000000000f1';
+  v_c1         uuid := '00000000-0000-4000-8000-000000000c01';
+  v_c2         uuid := '00000000-0000-4000-8000-000000000c02';
+  v_c3         uuid := '00000000-0000-4000-8000-000000000c03';
+
+  v_office     uuid;
+  v_office2    uuid;
+  v_order      uuid;
+  v_spec       record;
+  v_state      public.order_state;
+  v_step       public.order_state;
+  -- The happy path in order. The seed walks it until it reaches each order's
+  -- target state, so one list describes every order's history.
+  v_path       public.order_state[] := array[
+    'office_review','accepted','awaiting_irt_funding','irt_funded',
+    'foreign_leg_pending','foreign_leg_sent','recipient_confirmed',
+    'irt_released','completed']::public.order_state[];
+begin
+  if exists (select 1 from public.exchange_offices where slug = 'asa-tehran') then
+    raise notice 'demo data already present; nothing to do';
+    return;
+  end if;
+
+  -- ── People ────────────────────────────────────────────────────────────────
+  insert into auth.users (
+    instance_id, id, aud, role, email, phone, encrypted_password,
+    email_confirmed_at, phone_confirmed_at, raw_app_meta_data, raw_user_meta_data,
+    created_at, updated_at
+  )
+  select '00000000-0000-0000-0000-000000000000', u.id, 'authenticated', 'authenticated',
+         u.email, u.phone, '', now(), now(),
+         '{"provider":"email","providers":["email"]}'::jsonb, '{}'::jsonb, now(), now()
+  from (values
+    (v_admin,      'admin@asaex.demo',      '+989120000001'),
+    (v_compliance, 'compliance@asaex.demo', '+989120000002'),
+    (v_operator,   'operator@asaex.demo',   '+989120000003'),
+    (v_c1,         'sara@asaex.demo',       '+989120000101'),
+    (v_c2,         'omid@asaex.demo',       '+989120000102'),
+    (v_c3,         'nadia@asaex.demo',      '+989120000103')
+  ) as u(id, email, phone)
+  on conflict (id) do nothing;
+
+  update public.profiles p set
+    full_name_fa = v.fa, full_name_latin = v.en, kyc_status = 'approved', locale = v.loc
+  from (values
+    (v_admin,      'مدیر پلتفرم',   'Platform Admin',  'fa'),
+    (v_compliance, 'ناظر انطباق',   'Compliance Lead', 'fa'),
+    (v_operator,   'اپراتور صرافی', 'Office Operator', 'fa'),
+    (v_c1,         'سارا کریمی',    'Sara Karimi',     'fa'),
+    (v_c2,         'امید رضایی',    'Omid Rezaei',     'fa'),
+    (v_c3,         'نادیا حسینی',   'Nadia Hosseini',  'en')
+  ) as v(id, fa, en, loc)
+  where p.id = v.id;
+
+  insert into public.memberships (user_id, role, scope_type)
+  values
+    (v_admin, 'platform_admin', 'platform'),
+    (v_admin, 'platform_superadmin', 'platform'),
+    (v_compliance, 'platform_compliance', 'platform')
+  on conflict do nothing;
+
+  -- ── Provisioning, as the administrator (§16.1) ────────────────────────────
+  perform set_config('request.jwt.claims',
+    json_build_object('sub', v_admin, 'role', 'authenticated')::text, true);
+  execute 'set local role authenticated';
+
+  v_office := public.admin_create_office(jsonb_build_object(
+    'slug', 'asa-tehran',
+    'legal_name_fa', 'صرافی آسا تهران',
+    'legal_name_en', 'Asa Exchange Tehran',
+    'license_no', 'IR-CB-114872',
+    'city', 'تهران',
+    'reason', 'launch partner for the USD and EUR corridors',
+    'contact', jsonb_build_object('phone', '+982188001122', 'email', 'tehran@asaex.demo'),
+    'accounts', jsonb_build_array(
+      jsonb_build_object('currency','IRT','kind','card','label','بانک ملی','is_public',true,
+        'details', jsonb_build_object('number','6037991122334455','holder','صرافی آسا تهران')),
+      jsonb_build_object('currency','IRT','kind','iban','label','شبا ملت','is_public',true,
+        'details', jsonb_build_object('number','IR820170000000123456789012')),
+      jsonb_build_object('currency','USD','kind','swift','label','Correspondent USD','is_public',false,
+        'details', jsonb_build_object('number','AE070331234567890123456','swift','EBILAEAD')))
+  ));
+  perform public.admin_set_office_status(
+    v_office, 'active', 'launch partner activated after licence check');
+
+  -- A second office left in draft, so the directory shows both states and the
+  -- template diff on /admin/exchanges has something to show.
+  v_office2 := public.admin_create_office(jsonb_build_object(
+    'slug', 'asa-mashhad',
+    'legal_name_fa', 'صرافی آسا مشهد',
+    'legal_name_en', 'Asa Exchange Mashhad',
+    'license_no', 'IR-CB-220913',
+    'city', 'مشهد',
+    'reason', 'onboarding the second corridor partner',
+    'rate_config', jsonb_build_array(
+      jsonb_build_object('corridor','AED-IRT','spread_bps',95),
+      jsonb_build_object('corridor','TRY-IRT','spread_bps',105))
+  ));
+
+  execute 'reset role';
+  insert into public.memberships (user_id, role, scope_type, scope_id, created_by)
+  values (v_operator, 'office_owner', 'office', v_office, v_admin)
+  on conflict do nothing;
+
+  -- ── Destination accounts ──────────────────────────────────────────────────
+  insert into public.beneficiary_accounts (
+    id, user_id, nickname, currency, country, kind, details, holder_name, verification_state
+  ) values
+    ('00000000-0000-4000-8000-0000000000a1', v_c1, 'حساب دانشگاه', 'EUR', 'DE', 'iban',
+     jsonb_build_object('iban','DE89370400440532013000'), 'Sara Karimi', 'verified'),
+    ('00000000-0000-4000-8000-0000000000a2', v_c2, 'حساب برادرم', 'USD', 'AE', 'iban',
+     jsonb_build_object('iban','AE070331234567890123456'), 'Omid Rezaei', 'verified'),
+    ('00000000-0000-4000-8000-0000000000a3', v_c3, 'Family account', 'TRY', 'TR', 'iban',
+     jsonb_build_object('iban','TR330006100519786457841326'), 'Nadia Hosseini', 'verified')
+  on conflict (id) do nothing;
+
+  -- ── Orders, each driven by the party who would really drive it ────────────
+  for v_spec in
+    select * from (values
+      -- customer, destination, corridor, send, send minor, receive minor, rate, purpose, stop at
+      (v_c1, '00000000-0000-4000-8000-0000000000a1'::uuid, 'EUR-IRT', 'EUR',
+        250000::bigint, 51150000::bigint, 204600::numeric, 'tuition', 'completed'),
+      (v_c2, '00000000-0000-4000-8000-0000000000a2'::uuid, 'USD-IRT', 'USD',
+        120000::bigint, 227280000::bigint, 189400::numeric, 'family_support', 'foreign_leg_sent'),
+      (v_c3, '00000000-0000-4000-8000-0000000000a3'::uuid, 'TRY-IRT', 'TRY',
+        1500000::bigint, 82500000::bigint, 5500::numeric, 'family_support', 'awaiting_irt_funding'),
+      (v_c1, '00000000-0000-4000-8000-0000000000a1'::uuid, 'EUR-IRT', 'EUR',
+        90000::bigint, 18414000::bigint, 204600::numeric, 'medical', 'matching'),
+      (v_c2, '00000000-0000-4000-8000-0000000000a2'::uuid, 'USD-IRT', 'USD',
+        40000::bigint, 75760000::bigint, 189400::numeric, 'business', 'irt_funded')
+    ) as s(customer, dest, corridor, ccy, send_minor, recv_minor, rate, purpose, stop_at)
+  loop
+    -- The customer writes the draft and submits it. `order_advance` routes
+    -- submitted → matching itself, so submission lands in the pool.
+    perform set_config('request.jwt.claims',
+      json_build_object('sub', v_spec.customer, 'role', 'authenticated')::text, true);
+    execute 'set local role authenticated';
+
+    insert into public.orders (
+      customer_id, corridor, send_currency, send_amount_minor,
+      receive_currency, receive_amount_minor, locked_rate, rate_locked_at, rate_expires_at,
+      platform_fee_minor, office_fee_minor, destination_account_id, purpose_of_transfer,
+      sla_target_at, due_at, state
+    ) values (
+      v_spec.customer, v_spec.corridor, v_spec.ccy, v_spec.send_minor,
+      'IRT', v_spec.recv_minor, v_spec.rate, now(), now() + interval '15 minutes',
+      (v_spec.recv_minor * 25) / 10000,          -- 0.25% platform fee
+      (v_spec.recv_minor * 15) / 10000,          -- 0.15% office fee
+      v_spec.dest, v_spec.purpose,
+      now() + interval '1 day', now() + interval '3 days', 'draft'
+    ) returning id into v_order;
+
+    v_state := public.order_advance(v_order, 'submitted', null);
+    execute 'reset role';
+
+    if v_spec.stop_at <> 'matching' then
+      -- From here the office drives, except for the one step only the recipient
+      -- can take (§8.1): confirming the money arrived.
+      foreach v_step in array v_path loop
+        exit when v_state = v_spec.stop_at::public.order_state;
+
+        if v_step = 'recipient_confirmed' then
+          perform set_config('request.jwt.claims',
+            json_build_object('sub', v_spec.customer, 'role', 'authenticated')::text, true);
+        else
+          perform set_config('request.jwt.claims',
+            json_build_object('sub', v_operator, 'role', 'authenticated')::text, true);
+        end if;
+        execute 'set local role authenticated';
+
+        if v_step = 'office_review' then
+          v_state := public.order_claim(v_order, v_office);
+        else
+          v_state := public.order_advance(v_order, v_step, null);
+        end if;
+
+        execute 'reset role';
+      end loop;
+    end if;
+
+    -- The last one is funded and then refunded by the administrator, so the
+    -- ledger carries a reversal to look at rather than only a happy path.
+    if v_spec.stop_at = 'irt_funded' then
+      perform set_config('request.jwt.claims',
+        json_build_object('sub', v_admin, 'role', 'authenticated')::text, true);
+      execute 'set local role authenticated';
+      perform public.order_force_transition(v_order, 'refunded',
+        'beneficiary bank rejected the transfer; funds returned to the customer');
+      execute 'reset role';
+    end if;
+  end loop;
+
+  raise notice 'demo seeded: % offices, % orders, % ledger entries',
+    (select count(*) from public.exchange_offices),
+    (select count(*) from public.orders),
+    (select count(*) from public.ledger_entries);
+end $$;

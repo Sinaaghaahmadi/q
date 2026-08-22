@@ -242,6 +242,80 @@ export type ExchangeOffice = {
   deleted_at: string | null;
 };
 
+export type OfficeAccount = {
+  id: string;
+  office_id: string;
+  currency: string;
+  kind: "iban" | "card" | "swift" | "cash";
+  details: Json;
+  is_public: boolean;
+  active: boolean;
+  label: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type OfficeRateConfig = {
+  id: string;
+  office_id: string;
+  corridor: string;
+  spread_bps: number;
+  min_amount_minor: number | null;
+  max_amount_minor: number | null;
+  cutoff_time: string | null;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type OfficeBalance = {
+  id: string;
+  office_id: string;
+  currency: string;
+  available_minor: number;
+  reserved_minor: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+/** One live "acting as this office" session (§16.3). */
+export type Impersonation = {
+  id: string;
+  actor_id: string;
+  office_id: string;
+  reason: string;
+  started_at: string;
+  expires_at: string;
+  ended_at: string | null;
+  created_at: string;
+};
+
+export type FeatureFlag = {
+  id: string;
+  key: string;
+  description: string | null;
+  enabled: boolean;
+  rules: Json;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LedgerEntry = {
+  id: string;
+  txn_id: string;
+  ledger_account_id: string;
+  direction: "debit" | "credit";
+  amount_minor: number;
+  currency: string;
+  order_id: string | null;
+  memo: string | null;
+  created_at: string;
+};
+
 /** Row + the Insert/Update shapes PostgREST accepts for it. */
 type Table<Row, Required extends keyof Row = never> = {
   Row: Row;
@@ -288,6 +362,12 @@ export type Database = {
       order_events: Table<OrderEvent>;
       order_documents: Table<OrderDocument, "order_id" | "kind" | "storage_path">;
       exchange_offices: Table<ExchangeOffice>;
+      office_accounts: Table<OfficeAccount, "office_id" | "currency" | "kind">;
+      office_rate_config: Table<OfficeRateConfig, "office_id" | "corridor">;
+      office_balances: Table<OfficeBalance, "office_id" | "currency">;
+      impersonations: Table<Impersonation>;
+      feature_flags: Table<FeatureFlag, "key">;
+      ledger_entries: Table<LedgerEntry>;
     };
     Views: Record<string, never>;
     Functions: {
@@ -318,6 +398,42 @@ export type Database = {
       allowed_transitions: {
         Args: { s: OrderState };
         Returns: OrderState[];
+      };
+      admin_create_office: {
+        Args: { p_office: Json };
+        Returns: string;
+      };
+      admin_set_office_status: {
+        Args: { p_office: string; p_status: string; p_reason?: string | null };
+        Returns: string;
+      };
+      admin_set_office_member: {
+        Args: { p_office: string; p_user: string; p_role: AppRole; p_grant?: boolean };
+        Returns: undefined;
+      };
+      admin_create_order_on_behalf: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      order_force_transition: {
+        Args: { p_order: string; p_to: OrderState; p_reason: string };
+        Returns: OrderState;
+      };
+      impersonation_start: {
+        Args: { p_office: string; p_reason: string; p_minutes?: number };
+        Returns: Impersonation;
+      };
+      impersonation_end: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
+      active_impersonation: {
+        Args: Record<string, never>;
+        Returns: Impersonation | null;
+      };
+      office_defaults: {
+        Args: Record<string, never>;
+        Returns: Json;
       };
     };
     Enums: { app_role: AppRole; kyc_status: KycStatus; order_state: OrderState };

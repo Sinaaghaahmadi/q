@@ -18,9 +18,11 @@ const NAV_ITEMS = [
 export function Header({
   signedIn = false,
   officeMember = false,
+  platformStaff = false,
 }: {
   signedIn?: boolean;
   officeMember?: boolean;
+  platformStaff?: boolean;
 }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
@@ -37,6 +39,7 @@ export function Header({
             ...NAV_ITEMS,
             // Only staff have a panel, so only staff see the way to it.
             ...(officeMember ? [{ href: "/office", key: "office" } as const] : []),
+            ...(platformStaff ? [{ href: "/admin", key: "admin" } as const] : []),
           ].map((item) => (
             <Link
               key={item.href}

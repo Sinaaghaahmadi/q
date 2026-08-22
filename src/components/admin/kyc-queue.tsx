@@ -36,11 +36,6 @@ export function KycQueue({ rows, reviewerId }: { rows: QueueRow[]; reviewerId: s
 
   return (
     <div className="space-y-5">
-      <div>
-        <h1 className="text-2xl font-bold">{t("title")}</h1>
-        <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
-      </div>
-
       {queue.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 p-10 text-center">
           <ReviewScene size={130} label={t("emptyTitle")} />

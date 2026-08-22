@@ -6,12 +6,17 @@ A currency-exchange & remittance marketplace between licensed exchange
 offices: customer PWA + exchange-office panel + super-admin panel, one
 codebase, one design system, bilingual (fa-IR RTL / en LTR) from line one.
 
-> **Status: Phases 0–2 delivered.**
+> **Status: Phases 0–4 delivered.**
 > Live tgju.org rates, inline converter, full rate board with history, and a
 > transfer quote with rate-lock preview (Phase 1); one-time-code sign-in, the
 > KYC wizard, destination-account management, the profile surface and the
-> four-eyes admin review queue, all on a live Supabase project in the EU with
-> RLS enforced (Phase 2). Roadmap: §20 of the master prompt; decisions in
+> four-eyes admin review queue (Phase 2); the order state machine end to end —
+> submission, the office inbox, both settlement legs and the double-entry
+> ledger (Phase 3); and the super-admin panel — office provisioning, per-office
+> overrides, time-boxed impersonation, reason-required force transitions,
+> compensating refunds and the immutable audit trail (Phase 4). All on a live
+> Supabase project in the EU with RLS enforced. Remaining: chat (Phase 5), P2P
+> (Phase 6), polish (Phase 7). Roadmap: §20 of the master prompt; decisions in
 > `docs/decisions/`.
 
 ## Quick start (under ten minutes)
