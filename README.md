@@ -6,7 +6,7 @@ A currency-exchange & remittance marketplace between licensed exchange
 offices: customer PWA + exchange-office panel + super-admin panel, one
 codebase, one design system, bilingual (fa-IR RTL / en LTR) from line one.
 
-> **Status: Phases 0–6 delivered.**
+> **Status: Phases 0–7 delivered.**
 > Live tgju.org rates, inline converter, full rate board with history, and a
 > transfer quote with rate-lock preview (Phase 1); one-time-code sign-in, the
 > KYC wizard, destination-account management, the profile surface and the

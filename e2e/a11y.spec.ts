@@ -11,7 +11,11 @@ import { expect, test, type Page } from "@playwright/test";
 const PAGES = ["/", "/en", "/rates", "/p2p", "/signin", "/legal/terms", "/_design"];
 
 async function scan(page: Page, path: string, theme: "light" | "dark") {
-  await page.emulateMedia({ colorScheme: theme });
+  // Reduced motion is not a convenience here, it is the right state to audit:
+  // §13 requires every animation to collapse to static under it, so this both
+  // checks that rendering and stops contrast being measured against an element
+  // caught mid-fade by the page transition.
+  await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
   await page.goto(path);
   await page.evaluate(() => document.fonts.ready);
 

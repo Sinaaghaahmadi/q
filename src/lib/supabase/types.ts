@@ -173,6 +173,8 @@ export type Order = {
   receive_currency: string;
   receive_amount_minor: number;
   locked_rate: string;
+  /** The public mid at lock time, for the cost comparison (§17.11). */
+  benchmark_rate: string | null;
   rate_locked_at: string;
   rate_expires_at: string;
   platform_fee_minor: number;
@@ -602,6 +604,10 @@ export type Database = {
         Returns: Json;
       };
       customer_tiers: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      cost_benchmark: {
         Args: Record<string, never>;
         Returns: Json;
       };

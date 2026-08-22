@@ -25,12 +25,11 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
-      - name: Upload build stats
-        if: always()
-        run: du -sh .next | tee build-size.txt
+      - name: Performance budget (§20)
+        run: pnpm budget
 
   e2e:
-    name: Playwright smoke (fa/en, RTL/LTR)
+    name: Playwright — smoke + WCAG 2.1 AA (fa/en, RTL/LTR, light/dark)
     runs-on: ubuntu-latest
     needs: quality
     steps:

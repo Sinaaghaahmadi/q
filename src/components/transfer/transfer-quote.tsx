@@ -92,6 +92,9 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
           platform_fee_minor: toMinor(quote.platformFeeToman, "IRT"),
           office_fee_minor: toMinor(quote.officeFeeToman, "IRT"),
           spread_breakdown: quote.layers,
+          // The public mid this quote was struck against, so a completed
+          // order can state its cost against a benchmark later (§17.11).
+          benchmark_rate: String(quote.midToman),
           destination_account_id: destination,
           state: "draft",
         })

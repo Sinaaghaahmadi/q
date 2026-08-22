@@ -337,6 +337,11 @@
       "on_hold": "Put on hold",
       "refunded": "Refund",
       "sla_breached": "Record an SLA breach"
+    },
+    "cost": {
+      "title": "What this transfer cost",
+      "body": "All in, this transfer cost {ours}% over the published market mid. A walk-in exchange counter typically charges about {counter}% over the same mid.",
+      "basis": "Mid at the moment the rate was locked: {mid} Toman (source: tgju)."
     }
   },
   "profile": {

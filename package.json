@@ -20,7 +20,8 @@
     "format:check": "prettier --check .",
     "brand:assets": "tsx scripts/generate-brand-assets.mts",
     "seed:demo": "tsx scripts/seed-demo.mts",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "budget": "node scripts/check-budget.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
