@@ -725,6 +725,16 @@ export type Database = {
         Args: { p_rows: Json };
         Returns: number;
       };
+      /** Coverage roster plus the switch, for /admin/settings (migration 0030). */
+      staff_mfa_state: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      /** Refuses to turn the requirement on while any staff account lacks a factor. */
+      staff_mfa_require_set: {
+        Args: { p_on: boolean };
+        Returns: boolean;
+      };
       coin_order_create: {
         Args: { p_payload: Json };
         Returns: string;

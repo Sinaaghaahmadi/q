@@ -173,7 +173,7 @@
     "alertBody": "Once accounts arrive you can set a threshold per currency and get notified by SMS, email, or app push.",
     "high24h": "24h high",
     "low24h": "24h low",
-    "chartSummary": "{code} over the last {days} days, from {from} to {to} Toman.",
+    "chartSummary": "{code} over the last {days, number} days, from {from} to {to} Toman.",
     "reorder": "Reorder",
     "reorderDone": "Done",
     "reorderReset": "Reset order",
@@ -408,7 +408,7 @@
       "referralBody": "The reward lands when your friend's first transfer completes — not when they sign up.",
       "copy": "Copy",
       "copied": "Copied",
-      "invitedCount": "{invited} invited · {rewarded} rewarded",
+      "invitedCount": "{invited, number} invited · {rewarded, number} rewarded",
       "haveACode": "Have a code?",
       "apply": "Apply",
       "claimOk": "Code applied.",
@@ -630,7 +630,7 @@
       "done": "Signed in"
     },
     "errors": {
-      "rateLimited": "That's a lot of requests. Try again in about {minutes} minutes.",
+      "rateLimited": "That's a lot of requests. Try again in about {minutes, number} minutes.",
       "smsUnavailable": "SMS delivery isn't live on this environment yet. Sign in by email for now — mobile sign-in switches on the moment the gateway is connected.",
       "invalidPhone": "That mobile number doesn't look right — enter an 11-digit Iranian number.",
       "authUnavailable": "Sign-in isn't configured on this environment.",
@@ -813,7 +813,7 @@
     "forbiddenBody": "KYC review is open to compliance and platform-admin roles only.",
     "backHome": "Back to home",
     "unnamed": "Unnamed",
-    "documentCount": "{count} documents",
+    "documentCount": "{count, number} documents",
     "awaitingYou": "Awaiting your approval",
     "awaitingOther": "Awaiting a second reviewer",
     "needsFirst": "Needs a first review",
@@ -933,7 +933,7 @@
       "subtitle": "Create, configure and suspend offices. Every change is recorded with its reason.",
       "provision": "Provision an office",
       "empty": "No exchange offices yet.",
-      "liveOrders": "{count} orders in flight",
+      "liveOrders": "{count, number} orders in flight",
       "status": {
         "draft": "Draft",
         "active": "Active",
@@ -958,7 +958,7 @@
       "noCorridors": "No corridors configured.",
       "save": "Save",
       "saved": "Saved.",
-      "overridden": "Overridden (default {base})",
+      "overridden": "Overridden (default {base, number})",
       "fromTemplate": "From template",
       "accounts": "Settlement accounts",
       "noAccounts": "No accounts recorded.",
@@ -1120,12 +1120,33 @@
     "settings": {
       "metaTitle": "Platform settings",
       "title": "Settings",
-      "subtitle": "Feature flags and the default office template.",
+      "subtitle": "Staff two-factor authentication, feature flags, and the default office template.",
       "flags": "Feature flags",
       "noFlags": "No flags defined.",
       "saveFailed": "Could not save. Try again.",
       "template": "Default office template",
       "templateBody": "Every new office starts from these values; differences are shown on that office's own page."
+    },
+    "security": {
+      "title": "Staff two-factor authentication",
+      "body": "Every platform staff account can attach an authenticator app. While the requirement is off, not having one is only a warning; with it on, no staff account reaches the console or the database without a six-digit code.",
+      "selfMissing": "Your own account has no second factor yet. Turning the requirement on before you enrol would lock you out of the console.",
+      "selfMissingCta": "Set one up on your account page",
+      "require": "Require a second factor from all staff",
+      "requireReady": "Every staff account has a second factor; turning this on locks nobody out.",
+      "requireBlocked": "{count, plural, one {# staff account has} other {# staff accounts have}} no second factor yet. The switch stays off until they all do — otherwise every administrator, including whoever flipped it, is locked out that moment.",
+      "coverage": "{covered, number} of {total, number} staff accounts have a second factor.",
+      "empty": "No staff accounts are recorded.",
+      "unnamed": "Unnamed",
+      "enrolled": "Enrolled",
+      "notEnrolled": "No second factor",
+      "saveFailed": "The change was not saved.",
+      "role": {
+        "platform_support": "Support",
+        "platform_compliance": "Compliance",
+        "platform_admin": "Administrator",
+        "platform_superadmin": "Super administrator"
+      }
     },
     "support": {
       "metaTitle": "Support inbox",
@@ -1161,7 +1182,7 @@
       "resolve": "Resolve",
       "listings": "Listings",
       "noListings": "No listings yet.",
-      "tradesOnOffer": "{count} trades",
+      "tradesOnOffer": "{count, number} trades",
       "remove": "Remove",
       "removeReason": "Reason for removal (at least 8 characters)",
       "confirmRemove": "Remove listing",
@@ -1342,6 +1363,7 @@
       "toman": "Toman",
       "vsLastMonth": "vs the same span last month",
       "noBase": "Last month has no figure to compare against.",
+      "monthToDate": "{month}, month to date ({days, plural, one {# day} other {# days}}).",
       "card": {
         "volume": "Settled volume this month",
         "settled": "Completed orders this month",
@@ -1726,14 +1748,14 @@
     "perUnit": " Toman per {code}",
     "anonymousMaker": "Verified trader",
     "newTrader": "New trader",
-    "tradesDone": "{count} trades done",
+    "tradesDone": "{count, number} trades done",
     "yours": "Your offer",
     "escrowNote": "The Toman leg settles inside the platform under an exchange office's supervision; nothing outside it is covered.",
     "rateLabel": "Rate (Toman per {code})",
     "minSliceLabel": "Minimum slice",
     "makerLabel": "Maker",
     "reputationLabel": "Track record",
-    "reputationValue": "{count} trades · {rate}% completed",
+    "reputationValue": "{count, number} trades · {rate}% completed",
     "status": {
       "open": "Open",
       "paused": "Paused",
@@ -1812,7 +1834,7 @@
       "chatBody": "The counterparty and the escrow office see this, and it is retained as dispute evidence.",
       "rateTitle": "Rate your counterparty",
       "rateBody": "Your rating shows on their public track record.",
-      "stars": "{count} stars",
+      "stars": "{count, number} stars",
       "alreadyRated": "You have already rated this trade.",
       "disputeTitle": "Raise a dispute",
       "disputeBody": "The trade freezes and platform compliance reviews both sides.",
@@ -1827,7 +1849,7 @@
       "bodySell": "You can sell up to {pct}% under the market rate. The cheaper you go, the higher your offer sits and the sooner a buyer finds it.",
       "bodyBuy": "You can buy up to {pct}% over the market rate. The more you pay, the sooner sellers come to your offer.",
       "atMarket": "Market rate",
-      "off": "{pct}%",
+      "off": "{pct, number}%",
       "marketNow": "Market now",
       "yourPrice": "Your price",
       "difference": "Difference",
@@ -1835,7 +1857,7 @@
       "above": "above",
       "fasterSell": "At this price you sit ahead of offers priced at market.",
       "fasterBuy": "At this price you are more attractive to sellers than the rest.",
-      "outside": "More than {pct}% away from the market is not accepted. Bring the price back into range."
+      "outside": "More than {pct, number}% away from the market is not accepted. Bring the price back into range."
     },
     "visibility": {
       "title": "How do I get seen first?",
@@ -1918,7 +1940,7 @@
     "allClear": "Nothing left to do",
     "allClearBody": "Any new request will appear here.",
     "aCustomer": "a customer",
-    "beat": "Step {n} of 4",
+    "beat": "Step {n, number} of 4",
     "working": "One moment…",
     "sendTo": "Send this amount to",
     "copy": "Copy",
@@ -2263,11 +2285,11 @@
       "volumeTitle": "Monthly volume",
       "volumeHint": "Volume counts completed orders only; the order count is every order raised that month. The last month is still running, so its bar is drawn faded.",
       "chartLabel": "Bar chart of Toman volume by month, {from} to {to}. Highest month {peak} at {max} Toman.",
-      "monthOrders": "{count} orders",
+      "monthOrders": "{count, number} orders",
       "corridorTitle": "Corridors",
       "corridorHint": "Each corridor's share of this period's orders.",
-      "completionHint": "From an order's first event to the moment it completed, across {count} completed orders.",
-      "slaHint": "The share of completed orders closed before their deadline, across {count} orders that had one.",
+      "completionHint": "From an order's first event to the moment it completed, across {count, number} completed orders.",
+      "slaHint": "The share of completed orders closed before their deadline, across {count, number} orders that had one.",
       "noCompleted": "Nothing has completed yet.",
       "noSla": "No deadline was recorded for this period's orders.",
       "chartEmptyLabel": "Bar chart of Toman volume by month, {from} to {to}. Nothing has completed in this period."
@@ -2420,9 +2442,9 @@
   },
   "tickets": {
     "officeTitle": "Support tickets",
-    "officeSubtitle": "Tickets whose first answer is yours. If you do not reply within {hours} hours, the customer can escalate to the platform.",
+    "officeSubtitle": "Tickets whose first answer is yours. If you do not reply within {hours, number} hours, the customer can escalate to the platform.",
     "adminTitle": "Platform tickets",
-    "adminSubtitle": "Every ticket, including the ones an office is sitting on. The platform sits above the office and can take any of them. The office window is {hours} hours.",
+    "adminSubtitle": "Every ticket, including the ones an office is sitting on. The platform sits above the office and can take any of them. The office window is {hours, number} hours.",
     "filterLabel": "Show",
     "filters": {
       "live": "Open",
@@ -2433,7 +2455,7 @@
     "filedBy": "from {name}",
     "someone": "a customer",
     "awaitingFirstReply": "no first reply yet",
-    "overdue": "{hours} hours with no reply",
+    "overdue": "{hours, number} hours with no reply",
     "state": {
       "open": "Open",
       "in_progress": "In progress",
@@ -2664,7 +2686,7 @@
     "skipHint": "Choose \"not now\" and you keep the password you were given. This message will not appear again.",
     "working": "Saving…",
     "errors": {
-      "tooShort": "A password needs at least {min} characters.",
+      "tooShort": "A password needs at least {min, number} characters.",
       "mismatch": "The two passwords do not match.",
       "failed": "That did not save. Please try again."
     }

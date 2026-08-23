@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { formatAmount, type AppLocale } from "@/lib/money/format";
+import { formatAmount, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
 import { createClient } from "@/lib/supabase/client";
 import type { Json } from "@/lib/supabase/types";
@@ -94,7 +94,14 @@ export function TierAndReferral({
           <div className="flex items-center justify-between gap-3">
             <Badge variant="brand">{t(`tier.${current.tier ?? "standard"}`)}</Badge>
             <span className="text-sm text-ink-600">
-              {t("feeIs", { bps: ((current.platform_bps ?? 25) / 100).toFixed(2) })}
+              {/* toFixed would print 0.25 with a Latin decimal point in Persian,
+                  where the fee reads ۰٫۲۵ — the one formatter decides both. */}
+              {t("feeIs", {
+                bps: formatNumber((current.platform_bps ?? 25) / 100, locale, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }),
+              })}
             </span>
           </div>
 

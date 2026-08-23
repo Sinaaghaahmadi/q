@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { Card } from "@/components/ui/card";
-import { formatAmount, formatNumber, type AppLocale } from "@/lib/money/format";
+import { formatAmount, formatDate, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
 
 /** A figure and the same figure one month earlier, both in the same unit. */
@@ -21,6 +21,12 @@ export type Period = { current: number; previous: number };
  * `atRisk` is null when no open order carries a deadline at all. A zero would
  * be read as an all-clear, and "nothing is late" is a very different statement
  * from "nothing has a date to be late against".
+ *
+ * The three month-scoped figures carry the span they cover. Read on the first
+ * of a month they are all zero, sitting directly above a chart showing a full
+ * previous month — which looks like a broken report rather than a young one.
+ * Naming the month and how far into it we are costs one line and removes the
+ * only reading of this screen that would send somebody looking for a bug.
  */
 export function ReportCards({
   volumeMinor,
@@ -28,18 +34,25 @@ export function ReportCards({
   inFlight,
   atRisk,
   feesMinor,
+  month,
 }: {
   volumeMinor: Period;
   settled: Period;
   inFlight: number;
   atRisk: { counted: number } | null;
   feesMinor: Period;
+  month: { start: string; day: number };
 }) {
   const t = useTranslations("admin.dashboard");
   const locale = useLocale() as AppLocale;
 
   const toman = (minor: number) => formatAmount(fromMinor(minor, "IRT"), "IRT", locale);
   const count = (value: number) => formatNumber(value, locale, { maximumFractionDigits: 0 });
+
+  const monthToDate = t("monthToDate", {
+    month: formatDate(month.start, locale, { month: "long" }),
+    days: month.day,
+  });
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,6 +64,7 @@ export function ReportCards({
         locale={locale}
         against={t("vsLastMonth")}
         noBase={t("noBase")}
+        hint={monthToDate}
       />
       <Figure
         label={t("card.settled")}
@@ -59,6 +73,7 @@ export function ReportCards({
         locale={locale}
         against={t("vsLastMonth")}
         noBase={t("noBase")}
+        hint={monthToDate}
       />
       <Figure
         label={t("card.fees")}
@@ -68,6 +83,7 @@ export function ReportCards({
         locale={locale}
         against={t("vsLastMonth")}
         noBase={t("noBase")}
+        hint={monthToDate}
       />
       <Figure label={t("card.inFlight")} value={count(inFlight)} hint={t("hint.inFlight")} />
       {atRisk === null ? (

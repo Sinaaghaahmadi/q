@@ -209,6 +209,12 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
   // one. On the second of Mehr a full Shahrivar baseline prints a ninety-percent
   // collapse in volume, fees and settled orders alike, every single month.
   const elapsed = now.getTime() - thisMonthStart.getTime();
+  // Which day of the month it is, in the reader's calendar. Three of the cards
+  // count only the month in progress, and on the first of Shahrivar that is a
+  // few hours of trading — the tiles read zero while the chart underneath still
+  // shows all of Mordad, and nothing on the page said why. Stating the span is
+  // the difference between "we settled nothing" and "the month is one day old".
+  const dayOfMonth = Math.floor(elapsed / DAY_MS) + 1;
   const inSameSpanLastMonth = (at: number) =>
     at >= lastMonthStart.getTime() &&
     at < thisMonthStart.getTime() &&
@@ -361,6 +367,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
         inFlight={open.length}
         atRisk={atRisk}
         feesMinor={{ current: feesThisMonth, previous: feesLastMonth }}
+        month={{ start: thisMonthStart.toISOString(), day: dayOfMonth }}
       />
 
       <VolumeChart months={months} />

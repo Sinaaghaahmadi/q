@@ -36,3 +36,6 @@ pnpm-debug.log*
 /coverage
 /playwright-report
 /test-results
+
+# Throwaway verification scripts — kept out of the repo, not out of the way.
+scripts/tmp/

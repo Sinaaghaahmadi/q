@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { FeatureFlags } from "@/components/admin/feature-flags";
+import { StaffSecurity, type StaffMfaState } from "@/components/admin/staff-security";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -55,9 +56,13 @@ export default async function AdminSettingsPage({
   }
 
   const supabase = await createClient();
-  const [{ data: flags }, { data: defaults }] = await Promise.all([
+  const [{ data: flags }, { data: defaults }, { data: mfa }] = await Promise.all([
     supabase.from("feature_flags").select("*").is("deleted_at", null).order("key"),
     supabase.rpc("office_defaults"),
+    // Refuses for anyone but an administrator, which is the same gate this page
+    // already passed — so a null here means the call failed, not that the
+    // reader is unwelcome, and the section simply does not render.
+    supabase.rpc("staff_mfa_state"),
   ]);
 
   return (
@@ -68,6 +73,7 @@ export default async function AdminSettingsPage({
       title={t("settings.title")}
       description={t("settings.subtitle")}
     >
+      {mfa ? <StaffSecurity state={mfa as unknown as StaffMfaState} /> : null}
       <FeatureFlags flags={(flags ?? []) as FeatureFlag[]} defaults={defaults ?? null} />
     </AdminShell>
   );

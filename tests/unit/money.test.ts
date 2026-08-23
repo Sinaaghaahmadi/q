@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   formatChangePct,
+  formatDate,
   formatNumber,
   formatRate,
   parseAmountInput,
@@ -62,5 +63,26 @@ describe("digit conversion + input parsing", () => {
     expect(parseAmountInput("12a")).toBeNull();
     expect(parseAmountInput("")).toBeNull();
     expect(parseAmountInput("1.2.3")).toBeNull();
+  });
+});
+
+describe("formatDate", () => {
+  const day = new Date("2026-08-22T12:00:00Z");
+
+  it("renders the Persian calendar in fa, not a translated Gregorian date", () => {
+    // 22 August 2026 is 31 Mordad 1405 — a different month, not a different
+    // spelling, which is why the calendar override is not just a locale tag.
+    const rendered = formatDate(day, "fa", { month: "long", day: "numeric" });
+    expect(rendered).toContain("مرداد");
+    expect(rendered).toContain("۳۱");
+  });
+
+  it("renders every other locale in its own language", () => {
+    // This file used to hand fr, de and ar to en-US, so a French administrator
+    // read "Aug 22, 2026" on a French page.
+    expect(formatDate(day, "fr", { month: "long" })).toBe("août");
+    expect(formatDate(day, "de", { month: "long" })).toBe("August");
+    expect(formatDate(day, "en", { month: "long" })).toBe("August");
+    expect(formatDate(day, "ar", { month: "long" })).toBe("أغسطس");
   });
 });

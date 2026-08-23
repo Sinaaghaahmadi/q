@@ -112,14 +112,18 @@ export function formatSecondsAgo(seconds: number, locale: AppLocale): string {
   return rtf.format(-Math.round(seconds / 3600), "hour");
 }
 
-/** Jalali date in fa, Gregorian in en (§18). */
+/** Jalali date in fa, Gregorian elsewhere, each in its own language (§18). */
 export function formatDate(
   date: Date | string,
   locale: AppLocale,
   options: Intl.DateTimeFormatOptions = { dateStyle: "medium" },
 ): string {
   const d = typeof date === "string" ? new Date(date) : date;
-  const loc = locale === "fa" ? "fa-IR-u-ca-persian" : "en-US";
+  // Persian keeps its own calendar as well as its own language — a date in fa
+  // is 31 Mordad, not 22 August. Every other locale takes its own tag rather
+  // than en-US, which is what this line used to hand German, French and Arabic
+  // readers: a French administrator was being shown "Aug 22, 2026".
+  const loc = locale === "fa" ? "fa-IR-u-ca-persian" : intlLocale(locale);
   return new Intl.DateTimeFormat(loc, options).format(d);
 }
 

@@ -13,8 +13,11 @@ blocks what, not by effort. Everything unticked is deliberately unticked — see
 - [ ] **Enrol every staff account, then set `require_staff_mfa` to true.** Until
       that switch is on, an account with _no_ factor still has full staff powers —
       which is deliberate, because turning it on first would lock out the only
-      administrator who could turn it back off. `/admin/settings` shows who has
-      enrolled. Do not flip it until that list is complete.
+      administrator who could turn it back off. The roster and the switch are on
+      `/admin/settings` (migration 0030); the switch stays disabled, and
+      `staff_mfa_require_set` refuses and names the accounts, until every staff
+      member has a factor — so this item is now a matter of enrolling people,
+      not of remembering an order of operations.
 - [ ] **Rotate the demo staff passwords.** `AsaDemo!1404` is in the repository,
       in `docs/runbook.md` and in `supabase/seed/demo.sql`. Every account in
       `*@asaex.demo` must be removed or re-credentialled before the project
