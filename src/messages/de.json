@@ -24,8 +24,12 @@
     "about": "Über uns",
     "contact": "Kontakt"
   },
-  "locale": { "label": "Sprache" },
-  "common": { "phase2": "Kommt in Phase 2" },
+  "locale": {
+    "label": "Sprache"
+  },
+  "common": {
+    "phase2": "Kommt in Phase 2"
+  },
   "theme": {
     "label": "Darstellung",
     "light": "Hell",
@@ -309,5 +313,8 @@
     "sent": "Gesendet",
     "failed": "Das hat nicht geklappt. Versuchen Sie es erneut.",
     "offline": "Sie sind offline. Es werden die zuletzt bekannten Daten angezeigt."
+  },
+  "auth": {
+    "legalNote": "Die Anmeldung in diesem Panel gilt als vollständige Annahme der <terms>Nutzungsbedingungen</terms>, der <privacy>Datenschutzerklärung</privacy> und der <aml>Geldwäsche-Richtlinie</aml>."
   }
 }

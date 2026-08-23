@@ -614,7 +614,7 @@
     "emailLabel": "Email address",
     "sending": "Sending…",
     "cta": "Continue",
-    "legalNote": "By continuing you accept Asaex's Terms of Service and Privacy Policy.",
+    "legalNote": "Signing in to this panel constitutes full acceptance of the <terms>terms of use</terms>, the <privacy>privacy policy</privacy> and the <aml>anti-money-laundering policy</aml>.",
     "codeLabel": "One-time code",
     "verifying": "Checking…",
     "verifyCta": "Verify & sign in",

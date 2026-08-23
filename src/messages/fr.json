@@ -24,8 +24,12 @@
     "about": "À propos",
     "contact": "Nous contacter"
   },
-  "locale": { "label": "Langue" },
-  "common": { "phase2": "Arrive en phase 2" },
+  "locale": {
+    "label": "Langue"
+  },
+  "common": {
+    "phase2": "Arrive en phase 2"
+  },
   "theme": {
     "label": "Apparence",
     "light": "Clair",
@@ -309,5 +313,8 @@
     "sent": "Envoyé",
     "failed": "Cela n'a pas abouti. Réessayez.",
     "offline": "Vous êtes hors ligne. Dernières données connues affichées."
+  },
+  "auth": {
+    "legalNote": "Se connecter à ce panneau vaut acceptation pleine et entière des <terms>conditions d’utilisation</terms>, de la <privacy>politique de confidentialité</privacy> et de la <aml>politique de lutte contre le blanchiment</aml>."
   }
 }

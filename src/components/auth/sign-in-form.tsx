@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Segmented } from "@/components/ui/segmented";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { toLatinDigits, toPersianDigits, type AppLocale } from "@/lib/money/format";
 import { cn } from "@/lib/utils";
 
@@ -302,7 +302,28 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
             {busy ? t("sending") : channel === "staff" ? t("staffCta") : t("cta")}
             <ArrowRight className="size-4 rtl:-scale-x-100" />
           </Button>
-          <p className="text-center text-xs leading-relaxed text-ink-600">{t("legalNote")}</p>
+          {/* The notice names three documents, so it links to all three. An
+              acceptance recorded against terms the person had no way to open is
+              worth very little if it is ever tested. */}
+          <p className="text-center text-xs leading-relaxed text-ink-600">
+            {t.rich("legalNote", {
+              terms: (c) => (
+                <Link href="/legal/terms" className="underline underline-offset-2 hover:text-ink-900">
+                  {c}
+                </Link>
+              ),
+              privacy: (c) => (
+                <Link href="/legal/privacy" className="underline underline-offset-2 hover:text-ink-900">
+                  {c}
+                </Link>
+              ),
+              aml: (c) => (
+                <Link href="/legal/aml" className="underline underline-offset-2 hover:text-ink-900">
+                  {c}
+                </Link>
+              ),
+            })}
+          </p>
         </div>
       ) : null}
 
