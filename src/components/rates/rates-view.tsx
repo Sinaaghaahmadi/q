@@ -1,13 +1,13 @@
 "use client";
 
-import { Bell, Search, Star } from "lucide-react";
+import { ArrowUpDown, Bell, Check, RotateCcw, Search } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { HistoryChart } from "@/components/rates/history-chart";
+import { RateBox } from "@/components/rates/rate-box";
 import { RateStatus } from "@/components/rates/rate-status";
-import { Sparkline } from "@/components/rates/sparkline";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,11 +15,11 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useRateOrder } from "@/lib/hooks/use-rate-order";
 import { useRateHistory, useRates } from "@/lib/hooks/use-rates";
 import { formatRate, type AppLocale } from "@/lib/money/format";
 import { FOREIGN_CODES, type CurrencyCode } from "@/lib/rates/catalog";
 import type { RatesSnapshot } from "@/lib/rates/types";
-import { cn } from "@/lib/utils";
 
 const FAVORITES_KEY = "asaex.rates.favorites";
 
@@ -54,6 +54,9 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
   const snapshot = data ?? initialSnapshot;
   const { data: history } = useRateHistory([...FOREIGN_CODES], 30);
   const { favorites, toggle } = useFavorites();
+  const { order, move, reset } = useRateOrder();
+  const [reordering, setReordering] = React.useState(false);
+  const dragged = React.useRef<CurrencyCode | null>(null);
 
   const [query, setQuery] = React.useState("");
   const [detail, setDetail] = React.useState<CurrencyCode | null>(null);
@@ -62,13 +65,18 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
   const [alertOpen, setAlertOpen] = React.useState(false);
 
   const q = query.trim().toLowerCase();
-  const codes = FOREIGN_CODES.filter(
+  const codes = order.filter(
     (c) => !q || c.toLowerCase().includes(q) || t(`currencies.${c}`).toLowerCase().includes(q),
   );
-  const sorted = [
-    ...codes.filter((c) => favorites.includes(c)),
-    ...codes.filter((c) => !favorites.includes(c)),
-  ];
+  // Favourites float to the top of the board, but not while it is being
+  // rearranged: a box that jumps the moment you star or move it is a box you
+  // cannot aim at. In reorder mode the list is exactly the order being edited.
+  const sorted = reordering
+    ? codes
+    : [
+        ...codes.filter((c) => favorites.includes(c)),
+        ...codes.filter((c) => !favorites.includes(c)),
+      ];
 
   const detailQuote = detail && snapshot ? snapshot.rates[detail] : undefined;
   const detailPoints = detail ? (detailHistory?.series[detail]?.points ?? []) : [];
@@ -83,89 +91,74 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
         <RateStatus snapshot={snapshot} />
       </div>
 
-      <div className="relative max-w-sm">
-        <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-ink-600" />
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={t("ratesPage.search")}
-          className="ps-9"
-        />
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="relative w-full max-w-sm flex-1">
+          <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-ink-600" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t("ratesPage.search")}
+            className="ps-9"
+          />
+        </div>
+
+        <div className="flex gap-2">
+          <Button
+            variant={reordering ? "primary" : "secondary"}
+            size="sm"
+            onClick={() => setReordering((v) => !v)}
+            aria-pressed={reordering}
+          >
+            {reordering ? <Check className="size-4" /> : <ArrowUpDown className="size-4" />}
+            {t(reordering ? "ratesPage.reorderDone" : "ratesPage.reorder")}
+          </Button>
+          {reordering ? (
+            <Button variant="ghost" size="sm" onClick={reset}>
+              <RotateCcw className="size-4" />
+              {t("ratesPage.reorderReset")}
+            </Button>
+          ) : null}
+        </div>
       </div>
 
-      <Card className="list-rise divide-y divide-ink-300/40 overflow-hidden">
-        {sorted.length === 0 ? (
-          <p className="p-8 text-center text-sm text-ink-600">{t("ratesPage.noResults")}</p>
-        ) : (
-          sorted.map((code, index) => {
-            const quote = snapshot?.rates[code];
-            const points = history?.series[code]?.points.map((p) => p.c) ?? [];
-            const tone =
-              quote && quote.changePct24h > 0.005
-                ? "up"
-                : quote && quote.changePct24h < -0.005
-                  ? "down"
-                  : "neutral";
-            const starred = favorites.includes(code);
-            return (
-              <div
-                key={code}
-                style={{ "--i": index } as React.CSSProperties}
-                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-canvas"
-              >
-                <button
-                  type="button"
-                  onClick={() => toggle(code)}
-                  aria-label={t(starred ? "ratesPage.unfavorite" : "ratesPage.favorite", {
-                    currency: t(`currencies.${code}`),
-                  })}
-                  aria-pressed={starred}
-                  className="pressable rounded-lg p-1.5 text-ink-600 hover:bg-ink-300/20"
-                >
-                  <Star className={cn("size-4", starred && "fill-warn text-warn")} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setDetail(code)}
-                  className="pressable flex min-w-0 flex-1 items-center gap-3 text-start"
-                >
-                  <CoinIcon code={code} size={34} />
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-medium">
-                      {t(`currencies.${code}`)}
-                    </span>
-                    <span className="block text-xs text-ink-600" dir="ltr">
-                      {code}
-                    </span>
-                  </span>
-                  <span className="hidden sm:block">
-                    {points.length > 1 ? (
-                      <Sparkline points={points} width={88} height={28} tone={tone} />
-                    ) : (
-                      <Skeleton className="h-7 w-22" />
-                    )}
-                  </span>
-                  <span className="w-28 text-end sm:w-36">
-                    {quote ? (
-                      <>
-                        <span className="num block text-sm font-semibold">
-                          {formatRate(quote.mid, locale)}
-                          <span className="ms-1 text-xs font-normal text-ink-600">
-                            {t("converter.toman")}
-                          </span>
-                        </span>
-                        <ChangeChip pct={quote.changePct24h} locale={locale} className="mt-1" />
-                      </>
-                    ) : (
-                      <Skeleton className="ms-auto h-9 w-24" />
-                    )}
-                  </span>
-                </button>
-              </div>
-            );
-          })
-        )}
-      </Card>
+      {reordering ? (
+        <p className="text-sm leading-relaxed text-ink-600">{t("ratesPage.reorderHint")}</p>
+      ) : null}
+
+      {sorted.length === 0 ? (
+        <Card className="p-8 text-center text-sm text-ink-600">{t("ratesPage.noResults")}</Card>
+      ) : (
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {sorted.map((code, index) => (
+            <li key={code}>
+              <RateBox
+                code={code}
+                quote={snapshot?.rates[code]}
+                points={history?.series[code]?.points.map((p) => p.c) ?? []}
+                locale={locale}
+                starred={favorites.includes(code)}
+                onToggleStar={() => toggle(code)}
+                onOpen={() => setDetail(code)}
+                index={index}
+                reordering={reordering}
+                isFirst={index === 0}
+                isLast={index === sorted.length - 1}
+                onMoveUp={() => move(code, order.indexOf(code) - 1)}
+                onMoveDown={() => move(code, order.indexOf(code) + 1)}
+                onDragStart={() => {
+                  dragged.current = code;
+                }}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={() => {
+                  const from = dragged.current;
+                  dragged.current = null;
+                  if (from && from !== code) move(from, order.indexOf(code));
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* Pair detail sheet */}
       <Dialog open={detail !== null} onOpenChange={(open) => !open && setDetail(null)}>

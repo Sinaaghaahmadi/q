@@ -175,7 +175,13 @@
     "alertBody": "Once accounts arrive you can set a threshold per currency and get notified by SMS, email, or app push.",
     "high24h": "24h high",
     "low24h": "24h low",
-    "chartSummary": "{code} over the last {days} days, from {from} to {to} Toman."
+    "chartSummary": "{code} over the last {days} days, from {from} to {to} Toman.",
+    "reorder": "Reorder",
+    "reorderDone": "Done",
+    "reorderReset": "Reset order",
+    "reorderHint": "Drag a box, or use the up and down buttons, to arrange the currencies your way. The order is kept on this device.",
+    "moveUp": "Move {currency} up",
+    "moveDown": "Move {currency} down"
   },
   "transfer": {
     "metaTitle": "New transfer",
