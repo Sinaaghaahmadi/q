@@ -1,5 +1,6 @@
 import {
   Banknote,
+  CircleDollarSign,
   Building2,
   ClipboardList,
   Coins,
@@ -28,6 +29,7 @@ import type { ExchangeOffice } from "@/lib/supabase/types";
 const SECTIONS = [
   { href: "/office", key: "today", icon: ClipboardList },
   { href: "/office/requests", key: "requests", icon: Coins },
+  { href: "/office/coins", key: "coins", icon: CircleDollarSign },
   { href: "/office/tickets", key: "tickets", icon: LifeBuoy },
   { href: "/office/chat", key: "chat", icon: MessageSquare },
   { href: "/office/accounts", key: "accounts", icon: Landmark },

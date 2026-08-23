@@ -291,6 +291,41 @@ export type OfficeAccount = {
   deleted_at: string | null;
 };
 
+export type CoinState = "requested" | "confirmed" | "paid" | "ready" | "collected" | "cancelled";
+
+export type CoinOrder = {
+  id: string;
+  public_ref: string | null;
+  customer_id: string;
+  /** Null while the request is still in the unclaimed pool. */
+  office_id: string | null;
+  /** A code from `src/lib/coins/catalog.ts`. */
+  product: string;
+  quantity: number;
+  /** What the customer was shown when they asked. Never what they will pay. */
+  quoted_unit_minor: number;
+  /** Fixed by the office at confirmation. Null before that. */
+  unit_price_minor: number | null;
+  total_minor: number;
+  state: CoinState;
+  state_since: string;
+  pickup_note: string | null;
+  cancel_reason: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type CoinEvent = {
+  id: number;
+  coin_order_id: string;
+  from_state: CoinState | null;
+  to_state: CoinState;
+  actor_id: string | null;
+  note: string | null;
+  created_at: string;
+};
+
 export type SettlementAcceptance = {
   id: string;
   account_id: string;
@@ -635,6 +670,8 @@ export type Database = {
       order_documents: Table<OrderDocument, "order_id" | "kind" | "storage_path">;
       exchange_offices: Table<ExchangeOffice>;
       office_accounts: Table<OfficeAccount, "office_id" | "currency" | "kind">;
+      coin_orders: Table<CoinOrder, "customer_id" | "product" | "quantity" | "quoted_unit_minor">;
+      coin_events: Table<CoinEvent, "coin_order_id" | "to_state">;
       settlement_acceptances: Table<
         SettlementAcceptance,
         "account_id" | "accepted_by" | "mismatch_reason" | "terms_version"
@@ -667,6 +704,18 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      coin_order_create: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      coin_order_advance: {
+        Args: { p_order: string; p_to: CoinState; p_note?: string | null };
+        Returns: CoinState;
+      };
+      coin_order_claim: {
+        Args: { p_order: string; p_office: string };
+        Returns: undefined;
+      };
       office_login_identity: {
         Args: { p_username: string; p_password: string };
         Returns: { email: string | null; phone: string | null }[];

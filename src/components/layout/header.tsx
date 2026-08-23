@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: "/rates", key: "rates" },
+  { href: "/coins", key: "coins" },
   { href: "/transfer/new", key: "transfer" },
   { href: "/p2p", key: "p2p" },
   { href: "/orders", key: "orders" },

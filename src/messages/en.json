@@ -31,7 +31,8 @@
     "how": "How it works",
     "why": "Why Asa",
     "about": "About us",
-    "contact": "Contact"
+    "contact": "Contact",
+    "coins": "Gold coins"
   },
   "footer": {
     "brand": "Asaex",
@@ -1905,7 +1906,8 @@
       "reports": "Reports",
       "settings": "Settings",
       "tickets": "Tickets",
-      "settlement": "Settlement"
+      "settlement": "Settlement",
+      "coins": "Coins"
     },
     "status": {
       "draft": "Not live yet",
@@ -2303,7 +2305,8 @@
       "team": "Colleagues with access to this panel. You can grant access or take it away.",
       "settlement": "When a card hits its ceiling, define a fresh card or IBAN here so payments keep coming in.",
       "reports": "Volume and fees over six months, completion speed and how well deadlines were met.",
-      "settings": "Opening hours, auto-accept, and which number and email get the alerts."
+      "settings": "Opening hours, auto-accept, and which number and email get the alerts.",
+      "coins": "Requests to buy gold coins. Take one, price it, hand it over."
     }
   },
   "toast": {
@@ -2665,6 +2668,81 @@
       "tooShort": "A password needs at least {min} characters.",
       "mismatch": "The two passwords do not match.",
       "failed": "That did not save. Please try again."
+    }
+  },
+  "coins": {
+    "metaTitle": "Buy gold coins — Asaex",
+    "title": "Gold coins",
+    "subtitle": "Live prices for Iranian gold coins and bullion. Ask, the office confirms, you collect it in person.",
+    "perUnit": "each",
+    "fine": "{grams} g fine gold",
+    "premium": "Premium {pct}%",
+    "buy": "Request",
+    "noPrice": "No price available.",
+    "staleNotice": "These prices have not refreshed; the market may be closed. Check with the office before acting on them.",
+    "demoNotice": "These prices are demonstration data, not real. Requests are disabled until the price source is connected.",
+    "disclaimer": "The price shown follows the open market; the office states the final price when it confirms. The premium is how much more a coin costs than the gold inside it.",
+    "products": {
+      "EMAMI": "Emami coin (full)",
+      "BAHAR": "Bahar Azadi (old design)",
+      "NIM": "Half coin",
+      "ROB": "Quarter coin",
+      "GERAMI": "Gram coin",
+      "GERAM18": "One gram, 18 carat",
+      "MESGHAL": "Mesghal of gold"
+    },
+    "request": {
+      "title": "Request to buy",
+      "notPaidYet": "Nothing is charged yet. The office checks its stock, states a firm price, and payment happens after that.",
+      "quantity": "Quantity",
+      "fewer": "Fewer",
+      "more": "More",
+      "pickup": "Where to collect (optional)",
+      "pickupPlaceholder": "e.g. the Vanak branch",
+      "estimate": "Estimated total",
+      "cta": "Send request",
+      "working": "Sending…",
+      "placed": "Your request is in.",
+      "next": "The office will confirm stock and the firm price shortly. Follow it under your orders.",
+      "done": "Got it",
+      "failed": "That did not send. Please try again.",
+      "signInFirst": "You need to sign in before you can request coins.",
+      "signIn": "Sign in"
+    },
+    "state": {
+      "requested": "Waiting for an office",
+      "confirmed": "Confirmed — awaiting payment",
+      "paid": "Paid",
+      "ready": "Ready to collect",
+      "collected": "Collected",
+      "cancelled": "Cancelled"
+    }
+  },
+  "coinQueue": {
+    "metaTitle": "Gold coins — office panel",
+    "title": "Coin requests",
+    "subtitle": "Requests to buy gold. Take one, price it, hand it over.",
+    "intro": {
+      "office": "Requests with no office yet are yours to take. Once taken, enter the firm price and the customer sees it.",
+      "platform": "Every coin request on the platform."
+    },
+    "empty": "No requests yet.",
+    "quoted": "Quoted to the customer",
+    "total": "Total",
+    "pickup": "Collection",
+    "firmPrice": "Firm price each (Toman)",
+    "claim": "Take this request",
+    "confirm": "Confirm stock and price",
+    "cancel": "Cancel",
+    "cancelledByOffice": "The office cancelled this request.",
+    "advance": {
+      "paid": "I have the money",
+      "ready": "It is ready",
+      "collected": "Handed over"
+    },
+    "errors": {
+      "taken": "Another office has already taken this request.",
+      "failed": "That did not go through. Please try again."
     }
   }
 }
