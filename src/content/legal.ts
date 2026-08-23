@@ -18,6 +18,8 @@
  * Copy rules per §18: native formal-but-warm Persian, plain numbers, no hype.
  */
 
+import { TERMS_UPDATED, TERMS_VERSION_LABEL } from "./legal-version";
+
 export const LEGAL_SLUGS = ["terms", "privacy", "aml", "fees", "sla", "complaints"] as const;
 export type LegalSlug = (typeof LEGAL_SLUGS)[number];
 
@@ -35,9 +37,9 @@ export interface LegalDoc {
 
 type Localized = Record<"fa" | "en", LegalDoc>;
 
-const V = "0.2 (پیش‌نویس)";
-const V_EN = "0.2 (draft)";
-const UPDATED = "2026-08-23";
+const V = TERMS_VERSION_LABEL.fa;
+const V_EN = TERMS_VERSION_LABEL.en;
+const UPDATED = TERMS_UPDATED;
 
 export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
   terms: {

@@ -247,6 +247,8 @@ export type ExchangeOffice = {
   deleted_at: string | null;
 };
 
+export type AccountMatch = "verified" | "unverified" | "mismatch";
+
 export type OfficeAccount = {
   id: string;
   office_id: string;
@@ -256,9 +258,31 @@ export type OfficeAccount = {
   is_public: boolean;
   active: boolean;
   label: string | null;
+  /** Which bank, from `IRANIAN_BANKS`. Null on accounts provisioned before 0022. */
+  bank_id: string | null;
+  holder_name: string | null;
+  holder_national_code: string | null;
+  match_state: AccountMatch;
+  mismatch_reason: string | null;
+  /** Null means no ceiling was recorded, not that there is none. */
+  daily_ceiling_minor: number | null;
+  monthly_ceiling_minor: number | null;
+  /** Set when the account is taken out of use; the row is never deleted. */
+  retired_at: string | null;
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+};
+
+export type SettlementAcceptance = {
+  id: string;
+  account_id: string;
+  accepted_by: string;
+  mismatch_reason: string;
+  terms_version: string;
+  ip: string | null;
+  user_agent: string | null;
+  created_at: string;
 };
 
 export type OfficeRateConfig = {
@@ -594,6 +618,10 @@ export type Database = {
       order_documents: Table<OrderDocument, "order_id" | "kind" | "storage_path">;
       exchange_offices: Table<ExchangeOffice>;
       office_accounts: Table<OfficeAccount, "office_id" | "currency" | "kind">;
+      settlement_acceptances: Table<
+        SettlementAcceptance,
+        "account_id" | "accepted_by" | "mismatch_reason" | "terms_version"
+      >;
       office_rate_config: Table<OfficeRateConfig, "office_id" | "corridor">;
       office_balances: Table<OfficeBalance, "office_id" | "currency">;
       impersonations: Table<Impersonation>;
@@ -622,6 +650,14 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      office_account_add: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      office_account_retire: {
+        Args: { p_account: string; p_reason?: string | null };
+        Returns: undefined;
+      };
       ticket_open: {
         Args: { p_payload: Json };
         Returns: string;

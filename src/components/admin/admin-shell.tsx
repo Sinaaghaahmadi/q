@@ -1,4 +1,5 @@
 import {
+  Banknote,
   Building2,
   FileClock,
   FileText,
@@ -62,6 +63,12 @@ const GROUPS = [
     items: [
       { href: "/admin/finance", key: "finance", icon: Wallet, need: "platform.oversee" },
       { href: "/admin/rates", key: "rates", icon: Percent, need: "platform.config" },
+      {
+        href: "/admin/settlement",
+        key: "settlement",
+        icon: Banknote,
+        need: "office.configure",
+      },
     ],
   },
   {

@@ -893,7 +893,8 @@
       "finance": "Finance",
       "rates": "Rates",
       "content": "Content",
-      "tickets": "Tickets"
+      "tickets": "Tickets",
+      "settlement": "Settlement"
     },
     "unavailableTitle": "Not available in this environment",
     "unavailableBody": "This preview is not connected to a database.",
@@ -1854,7 +1855,8 @@
       "team": "Team",
       "reports": "Reports",
       "settings": "Settings",
-      "tickets": "Tickets"
+      "tickets": "Tickets",
+      "settlement": "Settlement"
     },
     "status": {
       "draft": "Not live yet",
@@ -2422,6 +2424,102 @@
     "errors": {
       "failed": "That did not go through. Try again.",
       "alreadyEscalated": "This ticket is already with the platform."
+    }
+  },
+  "banks": {
+    "melli": "Bank Melli",
+    "sepah": "Bank Sepah",
+    "mellat": "Bank Mellat",
+    "tejarat": "Bank Tejarat",
+    "saderat": "Bank Saderat",
+    "keshavarzi": "Bank Keshavarzi",
+    "maskan": "Bank Maskan",
+    "refah": "Bank Refah",
+    "parsian": "Parsian Bank",
+    "pasargad": "Pasargad Bank",
+    "saman": "Saman Bank",
+    "eghtesadNovin": "Eghtesad Novin Bank",
+    "ansar": "Ansar Bank",
+    "postbank": "Post Bank",
+    "ayandeh": "Ayandeh Bank",
+    "shahr": "Shahr Bank",
+    "day": "Day Bank",
+    "sina": "Sina Bank",
+    "sarmayeh": "Sarmayeh Bank",
+    "tosee": "Tosee Ta'avon Bank"
+  },
+  "settlement": {
+    "metaTitle": "Settlement — office panel",
+    "adminMetaTitle": "Settlement — admin console",
+    "title": "Settlement",
+    "subtitle": "The cards and IBANs you receive money into. When one fills up, add another here.",
+    "adminSubtitle": "Every office's settlement cards and IBANs, and how each one matched.",
+    "intro": "Every Iranian card has a daily and a monthly receiving ceiling. When one fills up, customer payments stop arriving and transfers stall. So you can add a new card or IBAN yourself, without waiting.",
+    "readOnly": "Adding or retiring an account needs finance access.",
+    "unavailableTitle": "Not available yet",
+    "unavailableBody": "The database connection is not configured.",
+    "forbiddenTitle": "You do not have access",
+    "forbiddenBody": "This section is for administrators who configure offices.",
+    "backHome": "Back home",
+    "bank": {
+      "label": "Bank",
+      "search": "Search banks",
+      "noMatch": "No bank matches that name.",
+      "detected": "Named from the IBAN",
+      "disagrees": "The IBAN you entered belongs to a different bank. One of the two is wrong — please check."
+    },
+    "add": {
+      "title": "Add an account",
+      "office": "Office",
+      "kind": "Account type",
+      "kind_card": "Bank card",
+      "kind_iban": "IBAN",
+      "number_card": "Card number (16 digits)",
+      "number_iban": "IBAN",
+      "holder": "Account holder's name",
+      "holderPlaceholder": "As registered with the bank",
+      "code": "Holder's national code",
+      "codeHint": "Checked against the office on file.",
+      "ceiling": "Daily ceiling (Toman)",
+      "ceilingHint": "Optional. So you know when it is full.",
+      "cta": "Add account",
+      "working": "Saving…"
+    },
+    "list": {
+      "title": "Settlement accounts",
+      "empty": "No accounts yet.",
+      "noHolder": "No holder name",
+      "ceiling": "Daily ceiling {amount}",
+      "retire": "Ceiling full",
+      "retired": "Retired"
+    },
+    "match": {
+      "verified": "Matched",
+      "unverified": "Not checked",
+      "mismatch": "Responsibility accepted"
+    },
+    "mismatch": {
+      "title": "The name or national code does not match",
+      "reason": {
+        "noCode": "No national code was given for this account holder.",
+        "codeDiffers": "The holder's national code differs from the one on file for this office.",
+        "nameDiffers": "The holder's name differs from the office's registered name.",
+        "unknown": "This account's details do not match what is on file."
+      },
+      "body": "You may continue, but if you do, full responsibility for the transfer — any loss, delay, freeze or failure to return funds — is yours. This acceptance is recorded with your name, the time and the reason.",
+      "checkbox": "I accept that responsibility for this transfer is mine, under §7 of the",
+      "termsLink": "terms of use",
+      "cancel": "Cancel and correct",
+      "confirm": "I accept — continue"
+    },
+    "errors": {
+      "number_card": "That card number is not valid. Sixteen digits with a valid check digit.",
+      "number_iban": "That IBAN is not valid. IR followed by 24 digits.",
+      "code": "That national code is not valid.",
+      "saveFailed": "Could not save. Please try again.",
+      "forbidden": "You are not a member of that office.",
+      "holderRequired": "The account holder name is required.",
+      "numberRequired": "An account number is required."
     }
   }
 }

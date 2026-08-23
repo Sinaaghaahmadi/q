@@ -308,12 +308,18 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
           <p className="text-center text-xs leading-relaxed text-ink-600">
             {t.rich("legalNote", {
               terms: (c) => (
-                <Link href="/legal/terms" className="underline underline-offset-2 hover:text-ink-900">
+                <Link
+                  href="/legal/terms"
+                  className="underline underline-offset-2 hover:text-ink-900"
+                >
                   {c}
                 </Link>
               ),
               privacy: (c) => (
-                <Link href="/legal/privacy" className="underline underline-offset-2 hover:text-ink-900">
+                <Link
+                  href="/legal/privacy"
+                  className="underline underline-offset-2 hover:text-ink-900"
+                >
                   {c}
                 </Link>
               ),

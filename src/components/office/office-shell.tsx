@@ -1,4 +1,5 @@
 import {
+  Banknote,
   Building2,
   ClipboardList,
   Coins,
@@ -29,6 +30,7 @@ const SECTIONS = [
   { href: "/office/tickets", key: "tickets", icon: LifeBuoy },
   { href: "/office/chat", key: "chat", icon: MessageSquare },
   { href: "/office/accounts", key: "accounts", icon: Landmark },
+  { href: "/office/settlement", key: "settlement", icon: Banknote },
   { href: "/office/liquidity", key: "liquidity", icon: Coins },
   { href: "/office/rates", key: "rates", icon: Percent },
   { href: "/office/customers", key: "customers", icon: Users },
