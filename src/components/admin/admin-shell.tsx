@@ -10,6 +10,7 @@ import {
   ScrollText,
   ShieldCheck,
   SlidersHorizontal,
+  TicketCheck,
   Users,
   Wallet,
 } from "lucide-react";
@@ -45,6 +46,7 @@ const GROUPS = [
       { href: "/admin/exchanges", key: "exchanges", icon: Building2, need: "office.configure" },
       { href: "/admin/p2p", key: "p2p", icon: Handshake, need: "platform.oversee" },
       { href: "/admin/support", key: "support", icon: LifeBuoy, need: "platform.oversee" },
+      { href: "/admin/tickets", key: "tickets", icon: TicketCheck, need: "platform.oversee" },
     ],
   },
   {

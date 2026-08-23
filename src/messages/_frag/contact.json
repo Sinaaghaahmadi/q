@@ -1,0 +1,125 @@
+{
+  "namespace": "contact",
+  "fa": {
+    "metaTitle": "تماس با ما",
+    "title": "مشکلی هست؟ بگویید.",
+    "lede": "پیام خود را بنویسید و بفرستید. برای پیگیری فقط یک تأیید شمارهٔ تماس لازم است — نه ثبت‌نام، نه فرم اضافه. هر تیکت شماره می‌گیرد و تا پایان قابل پیگیری است.",
+    "categoryLabel": "موضوع پیام دربارهٔ چیست؟",
+    "categories": {
+      "order": "یک حواله",
+      "payment": "واریز و پرداخت",
+      "kyc": "احراز هویت",
+      "p2p": "بازار همتا",
+      "account": "حساب کاربری",
+      "office": "برخورد صرافی",
+      "other": "چیز دیگر"
+    },
+    "subjectLabel": "در یک جمله",
+    "subjectPlaceholder": "مثلاً: واریز تومانی من ثبت نشده",
+    "bodyLabel": "شرح ماجرا",
+    "bodyPlaceholder": "هرچه بیشتر بنویسید، سریع‌تر جواب می‌گیرید: شمارهٔ سفارش، تاریخ، مبلغ.",
+    "bodyHint": "اگر شمارهٔ پیگیری سفارش دارید حتماً بنویسید.",
+    "phoneLabel": "شمارهٔ تماس",
+    "phoneHint": "یک کد پیامک می‌شود. متن شما همین‌جا می‌ماند و بعد از تأیید فرستاده می‌شود.",
+    "submit": "ارسال و دریافت کد",
+    "submitSignedIn": "ثبت تیکت",
+    "working": "در حال ارسال…",
+    "verify": {
+      "title": "کد را وارد کنید",
+      "body": "کد شش‌رقمی به {phone} پیامک شد. پیام شما نوشته و آمادهٔ ارسال است.",
+      "codeLabel": "کد تأیید",
+      "cta": "تأیید و ثبت تیکت",
+      "working": "در حال ثبت…",
+      "back": "اصلاح متن یا شماره"
+    },
+    "done": {
+      "title": "تیکت ثبت شد",
+      "body": "شمارهٔ تیکت شما این است. هر تغییری در وضعیت، در همین شماره قابل پیگیری است.",
+      "cta": "دیدن گفت‌وگو"
+    },
+    "promises": {
+      "tracked": {
+        "title": "همه‌چیز قابل پیگیری",
+        "body": "هر تیکت شماره، وضعیت و تاریخچه دارد. می‌بینید چه کسی و کِی روی آن کار کرده است."
+      },
+      "answered": {
+        "title": "پاسخ تا ۲۴ ساعت",
+        "body": "صرافی مسئول ۲۴ ساعت فرصت دارد. زمان اولین پاسخ ثبت و سنجیده می‌شود."
+      },
+      "escalates": {
+        "title": "اگر جواب ندادند",
+        "body": "بعد از ۲۴ ساعت بی‌پاسخی، می‌توانید تیکت را به پلتفرم ارجاع دهید. پلتفرم بالای صرافی است."
+      }
+    },
+    "errors": {
+      "invalidPhone": "شمارهٔ تماس معتبر نیست.",
+      "rateLimited": "درخواست‌های زیاد. کمی بعد دوباره تلاش کنید.",
+      "sendFailed": "ارسال کد ممکن نشد.",
+      "invalidCode": "کد درست نیست.",
+      "cooldown": "در یک ساعت گذشته تیکت‌های زیادی ثبت کرده‌اید.",
+      "failed": "ثبت تیکت ممکن نشد. دوباره تلاش کنید.",
+      "network": "اتصال برقرار نشد."
+    }
+  },
+  "en": {
+    "metaTitle": "Contact us",
+    "title": "Something wrong? Tell us.",
+    "lede": "Write your message and send it. All we need to follow up is a verified phone number — no sign-up, no extra form. Every ticket gets a reference and stays trackable to the end.",
+    "categoryLabel": "What is this about?",
+    "categories": {
+      "order": "A transfer",
+      "payment": "Payment",
+      "kyc": "Identity check",
+      "p2p": "P2P market",
+      "account": "My account",
+      "office": "An exchange office",
+      "other": "Something else"
+    },
+    "subjectLabel": "In one line",
+    "subjectPlaceholder": "e.g. My Toman payment has not been registered",
+    "bodyLabel": "What happened",
+    "bodyPlaceholder": "The more you write, the faster the answer: order reference, date, amount.",
+    "bodyHint": "If you have an order reference, include it.",
+    "phoneLabel": "Phone number",
+    "phoneHint": "We send one code. Your message stays here and is filed once you confirm.",
+    "submit": "Send and get a code",
+    "submitSignedIn": "File the ticket",
+    "working": "Sending…",
+    "verify": {
+      "title": "Enter the code",
+      "body": "A six-digit code went to {phone}. Your message is written and ready to send.",
+      "codeLabel": "Verification code",
+      "cta": "Confirm and file",
+      "working": "Filing…",
+      "back": "Edit the message or number"
+    },
+    "done": {
+      "title": "Ticket filed",
+      "body": "This is your ticket reference. Every change of state is trackable against it.",
+      "cta": "Open the conversation"
+    },
+    "promises": {
+      "tracked": {
+        "title": "Everything trackable",
+        "body": "Every ticket has a reference, a state and a history. You can see who worked on it and when."
+      },
+      "answered": {
+        "title": "An answer within 24 hours",
+        "body": "The responsible exchange office has 24 hours. First-response time is recorded and measured."
+      },
+      "escalates": {
+        "title": "If nobody answers",
+        "body": "After 24 hours of silence you can escalate the ticket to the platform. The platform sits above the office."
+      }
+    },
+    "errors": {
+      "invalidPhone": "That phone number is not valid.",
+      "rateLimited": "Too many requests. Try again shortly.",
+      "sendFailed": "The code could not be sent.",
+      "invalidCode": "That code is not right.",
+      "cooldown": "You have filed too many tickets in the last hour.",
+      "failed": "The ticket could not be filed. Try again.",
+      "network": "Could not reach the server."
+    }
+  }
+}

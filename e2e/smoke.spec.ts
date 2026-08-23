@@ -5,7 +5,7 @@ test.describe("front door (§0.3): rates + converter before login", () => {
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
     await expect(page.locator("html")).toHaveAttribute("lang", "fa");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("ارز، به سادگی آسا");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("انتقال ارز، به سادگی");
 
     const amount = page.getByRole("textbox").first();
     await amount.fill("2500");
@@ -19,7 +19,7 @@ test.describe("front door (§0.3): rates + converter before login", () => {
     await page.goto("/en");
     await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Currency, made effortless",
+      "Currency transfer, made simple",
     );
   });
 });

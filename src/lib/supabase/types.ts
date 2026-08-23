@@ -349,6 +349,49 @@ export type ConversationParticipant = {
   deleted_at: string | null;
 };
 
+export type TicketState =
+  "open" | "in_progress" | "waiting_user" | "escalated" | "resolved" | "closed";
+
+export type TicketPriority = "low" | "normal" | "high" | "urgent";
+
+export type TicketCategory = "order" | "payment" | "kyc" | "p2p" | "account" | "office" | "other";
+
+/** A support thread somebody is accountable for (migration 0021). */
+export type SupportTicket = {
+  id: string;
+  public_ref: string;
+  conversation_id: string;
+  opened_by: string;
+  category: TicketCategory;
+  subject: string;
+  state: TicketState;
+  priority: TicketPriority;
+  order_id: string | null;
+  /** The office that owes the first answer. Null means the platform does. */
+  office_id: string | null;
+  assigned_to: string | null;
+  first_response_at: string | null;
+  resolved_at: string | null;
+  escalated_at: string | null;
+  escalation_reason: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+/** Append-only: who moved the ticket, when, and why. */
+export type TicketEvent = {
+  id: string;
+  ticket_id: string;
+  actor_id: string | null;
+  actor_role: string | null;
+  kind: string;
+  from_state: TicketState | null;
+  to_state: TicketState | null;
+  note: string | null;
+  created_at: string;
+};
+
 export type Message = {
   id: string;
   conversation_id: string;
@@ -571,9 +614,30 @@ export type Database = {
       ledger_accounts: Table<LedgerAccount>;
       sanctions_hits: Table<SanctionsHit>;
       settings: Table<PlatformSetting, "key" | "value">;
+      support_tickets: Table<
+        SupportTicket,
+        "public_ref" | "conversation_id" | "opened_by" | "category" | "subject"
+      >;
+      ticket_events: Table<TicketEvent, "ticket_id" | "kind">;
     };
     Views: Record<string, never>;
     Functions: {
+      ticket_open: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      ticket_set_state: {
+        Args: { p_ticket: string; p_state: TicketState; p_note?: string | null };
+        Returns: TicketState;
+      };
+      ticket_escalate: {
+        Args: { p_ticket: string; p_reason?: string | null };
+        Returns: undefined;
+      };
+      ticket_response_hours: {
+        Args: Record<string, never>;
+        Returns: number;
+      };
       otp_rate_check: {
         Args: { p_phone: string; p_ip?: string | null };
         Returns: Json;

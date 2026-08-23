@@ -3,6 +3,7 @@ import {
   ClipboardList,
   Coins,
   Landmark,
+  LifeBuoy,
   MessageSquare,
   Percent,
   Settings,
@@ -25,6 +26,7 @@ import type { ExchangeOffice } from "@/lib/supabase/types";
 const SECTIONS = [
   { href: "/office", key: "today", icon: ClipboardList },
   { href: "/office/requests", key: "requests", icon: Coins },
+  { href: "/office/tickets", key: "tickets", icon: LifeBuoy },
   { href: "/office/chat", key: "chat", icon: MessageSquare },
   { href: "/office/accounts", key: "accounts", icon: Landmark },
   { href: "/office/liquidity", key: "liquidity", icon: Coins },

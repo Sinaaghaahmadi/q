@@ -31,7 +31,7 @@ export default async function HowPage({ params }: { params: Promise<{ locale: st
 
   return (
     <div className="space-y-10">
-      <HowItWorks />
+      <HowItWorks heading="h1" />
       <div className="flex flex-wrap gap-3">
         <Button asChild size="lg">
           <Link href="/transfer/new">{t("hero.ctaPrimary")}</Link>

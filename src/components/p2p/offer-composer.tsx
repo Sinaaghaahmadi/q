@@ -156,12 +156,7 @@ export function OfferComposer({ limits }: { limits: Json | null }) {
             className="mt-1.5"
           />
           <div className="mt-3">
-            <PriceDial
-              direction={direction}
-              market={market}
-              rate={rate}
-              onRate={setRate}
-            />
+            <PriceDial direction={direction} market={market} rate={rate} onRate={setRate} />
           </div>
         </div>
 
