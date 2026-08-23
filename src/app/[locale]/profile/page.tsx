@@ -31,7 +31,6 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
         icon={UserRound}
         title={t("emptyTitle")}
         description={t("emptyBody")}
-        phaseLabel={t("phase")}
         ctaLabel={t("cta")}
       />
     );

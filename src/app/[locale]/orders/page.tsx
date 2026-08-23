@@ -39,7 +39,6 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
         icon={ReceiptText}
         title={t("emptyTitle")}
         description={t("emptyBody")}
-        phaseLabel={t("phase")}
         ctaLabel={t("cta")}
         ctaHref="/transfer/new"
       />

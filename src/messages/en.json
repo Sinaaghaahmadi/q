@@ -42,7 +42,7 @@
     "legal": "Legal",
     "designSystem": "Design system",
     "copyright": "© 2026 Asaex — All rights reserved.",
-    "buildTag": "Demo build · Phase 0–2",
+    "buildTag": "Preview · phases 0–9",
     "account": "Account",
     "company": "Company"
   },
@@ -57,9 +57,6 @@
       "sla": "SLA & Refunds",
       "complaints": "Complaints Procedure"
     }
-  },
-  "common": {
-    "phase2": "Arrives in Phase 2"
   },
   "rates": {
     "status": {
@@ -248,8 +245,7 @@
   "orders": {
     "metaTitle": "Orders",
     "emptyTitle": "No orders yet",
-    "emptyBody": "After your first transfer, each order's live timeline — with its SLA countdown and office chat — appears right here.",
-    "phase": "Order timeline arrives in Phase 3",
+    "emptyBody": "Once you place your first transfer, each order's live timeline — with the time-commitment countdown and the chat with your office — appears here.",
     "cta": "Start a transfer",
     "title": "Orders",
     "subtitle": "Every transfer with its own reference, and the full timeline of each step.",
@@ -353,8 +349,7 @@
   "profile": {
     "metaTitle": "Profile",
     "emptyTitle": "Your account",
-    "emptyBody": "SMS one-time-code sign-in, one-time KYC, bank account management, and security settings (2FA) arrive in Phase 2.",
-    "phase": "Arrives in Phase 2",
+    "emptyBody": "Sign in to see your verification status, bank accounts and security settings.",
     "cta": "Back to home",
     "title": "Your account",
     "subtitle": "Verification status, security, and your devices.",
@@ -2772,6 +2767,33 @@
       "verifyFailed": "That did not verify. Please try again.",
       "wrongCode": "That code is not right. Check your device clock too.",
       "disableFailed": "Could not turn it off. Please try again."
+    }
+  },
+  "alerts": {
+    "title": "{currency} price alert",
+    "body": "We tell you when the price crosses the number you name.",
+    "when": "When the price goes",
+    "direction": {
+      "above": "above",
+      "below": "below"
+    },
+    "threshold": "Price (Toman)",
+    "add": "Add alert",
+    "none": "No alerts for this currency yet.",
+    "fired": "Sent",
+    "remove": "Remove alert",
+    "summary": {
+      "above": "When it goes above {amount} Toman",
+      "below": "When it drops below {amount} Toman"
+    },
+    "deliveryNote": "Alerts are evaluated in the database against the latest recorded price and appear in this app. SMS delivery switches on once the gateway is connected.",
+    "signInFirst": "You need an account to set a price alert.",
+    "signIn": "Sign in",
+    "errors": {
+      "threshold": "That is not a valid number.",
+      "tooMany": "You can keep up to 20 alerts at a time.",
+      "signIn": "Please sign in first.",
+      "failed": "That did not save. Please try again."
     }
   }
 }

@@ -2,13 +2,13 @@
 
 import { ArrowUpDown, Bell, Check, RotateCcw, Search } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { HistoryChart } from "@/components/rates/history-chart";
 import { RateBox } from "@/components/rates/rate-box";
 import { RateStatus } from "@/components/rates/rate-status";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -20,6 +20,20 @@ import { useRateHistory, useRates } from "@/lib/hooks/use-rates";
 import { formatRate, type AppLocale } from "@/lib/money/format";
 import { FOREIGN_CODES, type CurrencyCode } from "@/lib/rates/catalog";
 import type { RatesSnapshot } from "@/lib/rates/types";
+
+/**
+ * Loaded only when somebody opens the alert sheet.
+ *
+ * Alerts need the Supabase client, and importing it here statically put 73 kB
+ * gzipped into the rates board — 162 kB to 235 against a 215 budget, caught by
+ * `pnpm budget` rather than by a user on a slow connection. The board is the
+ * front door and most visitors never set an alert, so the cost belongs to the
+ * ones who do.
+ */
+const AlertManager = dynamic(
+  () => import("@/components/rates/alert-manager").then((m) => m.AlertManager),
+  { ssr: false },
+);
 
 const FAVORITES_KEY = "asaex.rates.favorites";
 
@@ -47,7 +61,14 @@ function useFavorites() {
   return { favorites, toggle };
 }
 
-export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot }) {
+export function RatesView({
+  initialSnapshot,
+  signedIn = false,
+}: {
+  initialSnapshot?: RatesSnapshot;
+  /** Alerts belong to an account, so the sheet asks for one when there is none. */
+  signedIn?: boolean;
+}) {
   const t = useTranslations();
   const locale = useLocale() as AppLocale;
   const { data } = useRates();
@@ -230,16 +251,23 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
         </DialogContent>
       </Dialog>
 
-      {/* Price alerts land with auth in Phase 2 — say so plainly (§18). */}
+      {/* Alerts are real now: the row is the customer's own, and the firing
+          happens in the database against recorded snapshots (migration 0029). */}
       <Dialog open={alertOpen} onOpenChange={setAlertOpen}>
         <DialogContent className="p-6">
-          <DialogTitle className="text-base font-semibold">{t("ratesPage.alertTitle")}</DialogTitle>
-          <DialogDescription className="mt-2 text-sm leading-relaxed text-ink-600">
-            {t("ratesPage.alertBody")}
-          </DialogDescription>
-          <Badge variant="info" className="mt-4 self-start">
-            {t("common.phase2")}
-          </Badge>
+          <DialogTitle className="text-base font-semibold">
+            {t("alerts.title", { currency: detail ? t(`currencies.${detail}`) : "" })}
+          </DialogTitle>
+          <div className="mt-3">
+            {detail ? (
+              <AlertManager
+                code={detail}
+                currentMid={detailQuote?.mid}
+                locale={locale}
+                signedIn={signedIn}
+              />
+            ) : null}
+          </div>
         </DialogContent>
       </Dialog>
     </div>

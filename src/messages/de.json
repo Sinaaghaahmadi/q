@@ -27,9 +27,6 @@
   "locale": {
     "label": "Sprache"
   },
-  "common": {
-    "phase2": "Kommt in Phase 2"
-  },
   "theme": {
     "label": "Darstellung",
     "light": "Hell",

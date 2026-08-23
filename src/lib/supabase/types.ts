@@ -326,6 +326,22 @@ export type CoinEvent = {
   created_at: string;
 };
 
+export type PriceAlert = {
+  id: string;
+  user_id: string;
+  /** "USD-IRT" — the same shape `rate_snapshots.pair` uses. */
+  pair: string;
+  direction: "above" | "below";
+  threshold: number;
+  channels: string[];
+  active: boolean;
+  /** Set when the alert last sent, and what keeps it quiet for six hours after. */
+  last_fired_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
 export type SettlementAcceptance = {
   id: string;
   account_id: string;
@@ -670,6 +686,7 @@ export type Database = {
       order_documents: Table<OrderDocument, "order_id" | "kind" | "storage_path">;
       exchange_offices: Table<ExchangeOffice>;
       office_accounts: Table<OfficeAccount, "office_id" | "currency" | "kind">;
+      price_alerts: Table<PriceAlert, "user_id" | "pair" | "direction" | "threshold">;
       coin_orders: Table<CoinOrder, "customer_id" | "product" | "quantity" | "quoted_unit_minor">;
       coin_events: Table<CoinEvent, "coin_order_id" | "to_state">;
       settlement_acceptances: Table<
@@ -704,6 +721,10 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      rate_snapshot_record: {
+        Args: { p_rows: Json };
+        Returns: number;
+      };
       coin_order_create: {
         Args: { p_payload: Json };
         Returns: string;

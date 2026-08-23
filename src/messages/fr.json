@@ -27,9 +27,6 @@
   "locale": {
     "label": "Langue"
   },
-  "common": {
-    "phase2": "Arrive en phase 2"
-  },
   "theme": {
     "label": "Apparence",
     "light": "Clair",
