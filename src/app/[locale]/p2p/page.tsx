@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { OfferBoard } from "@/components/p2p/offer-board";
+import { VisibilityGuide } from "@/components/p2p/visibility-guide";
 import { EmptyState } from "@/components/layout/empty-state";
 import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
 import type { P2pOffer, Profile, Reputation } from "@/lib/supabase/types";
@@ -73,7 +74,7 @@ export default async function P2pBoardPage({ params }: { params: Promise<{ local
   }
 
   return (
-    <div className="space-y-5 py-4">
+    <div className="space-y-10 py-4">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
         <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
@@ -86,6 +87,8 @@ export default async function P2pBoardPage({ params }: { params: Promise<{ local
         viewerId={session?.user.id ?? null}
         verified={session?.profile?.kyc_status === "approved"}
       />
+
+      <VisibilityGuide />
     </div>
   );
 }

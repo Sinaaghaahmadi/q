@@ -36,7 +36,7 @@
   "footer": {
     "brand": "Asaex",
     "tagline": "Currency, made effortless. You submit a transfer request, a licensed exchange office executes it, and every step runs under platform supervision.",
-    "compliance": "Asaex is a remittance marketplace between licensed exchange offices; it is not a custodial wallet or a securities venue and holds no deposits.",
+    "compliance": "Asa is a marketplace for remittance between licensed exchange offices. It is not a custodial wallet holding your money, not a securities market, and it holds no deposits.",
     "product": "Product",
     "legal": "Legal",
     "designSystem": "Design system",
@@ -110,7 +110,7 @@
   },
   "home": {
     "metaTitle": "Live rates & transfers",
-    "stripTitle": "Live rates — main corridors",
+    "stripTitle": "Live rates on the main routes",
     "allRates": "All rates",
     "hero": {
       "title": "Currency transfer, made simple",
@@ -137,7 +137,7 @@
     },
     "trust": {
       "title": "Why Asaex?",
-      "subtitle": "No hidden numbers: base rate, spread, and fees are itemized before you confirm.",
+      "subtitle": "No number is hidden: the base rate, the rate difference and every fee are itemised before you confirm.",
       "counter": "{count} transfers completed this week",
       "items": {
         "licensed": {
@@ -193,11 +193,11 @@
     "platformFee": "Platform fee",
     "officeFee": "Exchange office fee",
     "recipientGets": "Recipient gets",
-    "savings": "Compared to the typical street spread, about {amount} Toman stays with you.",
+    "savings": "About {amount} Toman better than the usual market rate difference.",
     "confirmCta": "Confirm & continue",
     "back": "Back",
     "slaNote": "Timing: usually completed within one business day; the contractual cap is three business days, counted on the Iranian and destination-country business calendars.",
-    "whyBody": "The base (mid-market) rate is {rate} Toman per {code}. These spread layers apply on top:",
+    "whyBody": "The base rate (the mid-market rate) is {rate} Toman per {code}. These rate differences are applied on top:",
     "creating": "Creating the order…",
     "destination": "Destination account",
     "createErrors": {
@@ -229,10 +229,10 @@
     }
   },
   "pricing": {
-    "total": "Total spread",
+    "total": "Total rate difference",
     "layers": {
       "platform_floor": "Platform floor",
-      "corridor_default": "Corridor default",
+      "corridor_default": "Base route difference",
       "office_markup": "Office markup",
       "tier_discount": "Tier discount",
       "promo": "Promo code"
@@ -944,8 +944,8 @@
       "suspend": "Suspend",
       "impersonate": "Act as this office",
       "alreadyImpersonating": "Already acting as this office",
-      "spreads": "Spreads",
-      "spreadBps": "Spread in basis points",
+      "spreads": "Fees and rate difference (spread)",
+      "spreadBps": "Rate difference, in hundredths of a percent",
       "noCorridors": "No corridors configured.",
       "save": "Save",
       "saved": "Saved.",
@@ -957,7 +957,7 @@
       "balances": "Balances",
       "noBalances": "No balances recorded.",
       "errors": {
-        "spreadRange": "Spread must be a number between 0 and 2000.",
+        "spreadRange": "The rate difference must be between 0 and 2000 hundredths of a percent (0–20%).",
         "saveFailed": "Could not save. Try again.",
         "reasonRequired": "A written reason of at least 8 characters is required.",
         "noAccount": "An office cannot go live without a public settlement account.",
@@ -1458,7 +1458,7 @@
         "hint": "The floor and ceiling this console measures every office's per-corridor spread against. They are a review aid: nothing rejects a spread outside them yet. Both are in basis points; 100 of them make one percent.",
         "floor": "Floor",
         "ceiling": "Ceiling",
-        "means": "{bps} bps = {pct}%",
+        "means": "{bps} hundredths of a percent means {pct}%",
         "missing": "Nothing is stored yet. The numbers below are an opening suggestion; until they are saved, this page marks nothing as out of range.",
         "unreadable": "A value is stored under this key, but it cannot be read as a floor and a ceiling, so no row is measured against it. The fields below show the opening suggestion rather than what is stored, and saving replaces the stored value.",
         "save": "Save",
@@ -1692,7 +1692,8 @@
       "ceiling": "That is above the ceiling for your verification tier.",
       "unverified": "Verify your identity first.",
       "closed": "This offer is no longer open.",
-      "failed": "Could not complete. Try again."
+      "failed": "Could not complete. Try again.",
+      "outsideBand": "That price is more than 7% away from the market rate. Bring it back into range."
     },
     "compose": {
       "metaTitle": "Post an offer",
@@ -1751,7 +1752,44 @@
       "reasonRequired": "A written reason of at least 8 characters is required.",
       "failed": "Could not complete. Try again."
     },
-    "rateBadge": "{rate} per {code}"
+    "rateBadge": "{rate} per {code}",
+    "dial": {
+      "title": "Price and how fast you trade",
+      "bodySell": "You can sell up to {pct}% under the market rate. The cheaper you go, the higher your offer sits and the sooner a buyer finds it.",
+      "bodyBuy": "You can buy up to {pct}% over the market rate. The more you pay, the sooner sellers come to your offer.",
+      "atMarket": "Market rate",
+      "off": "{pct}%",
+      "marketNow": "Market now",
+      "yourPrice": "Your price",
+      "difference": "Difference",
+      "below": "below",
+      "above": "above",
+      "fasterSell": "At this price you sit ahead of offers priced at market.",
+      "fasterBuy": "At this price you are more attractive to sellers than the rest.",
+      "outside": "More than {pct}% away from the market is not accepted. Bring the price back into range."
+    },
+    "visibility": {
+      "title": "How do I get seen first?",
+      "subtitle": "The order of offers is not random. These four things decide where you sit in the list.",
+      "items": {
+        "price": {
+          "title": "A keener price",
+          "body": "The strongest lever. You have up to 7% of room either side of the market; every step toward the other party moves you up."
+        },
+        "reputation": {
+          "title": "A good rating",
+          "body": "Your rating is built from completed trades. A clean trade delivered on time lifts your next offer."
+        },
+        "speed": {
+          "title": "Quick replies",
+          "body": "Your average reply time is visible. People go to whoever answers soonest."
+        },
+        "clarity": {
+          "title": "Clear terms",
+          "body": "Say how and where you settle. An offer with plain conditions is far less likely to be ignored."
+        }
+      }
+    }
   },
   "track": {
     "metaTitle": "Tracking {ref}",
@@ -1928,7 +1966,7 @@
         "listTitle": "This office's corridors",
         "empty": "No corridor has been defined yet. Add one below.",
         "spreadLabel": "Spread",
-        "spreadMeans": "{bps} means {pct}%",
+        "spreadMeans": "{bps} hundredths of a percent means {pct}%",
         "spreadHint": "Spread is written in hundredths of a percent; every 100 units is one percent.",
         "templateSpread": "Platform default: {bps}",
         "minLabel": "Smallest amount",

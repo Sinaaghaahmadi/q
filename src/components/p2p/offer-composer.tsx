@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PriceDial } from "@/components/p2p/price-dial";
 import { Input } from "@/components/ui/input";
 import { formatNumber, type AppLocale } from "@/lib/money/format";
 import { toMinor } from "@/lib/money/minor";
@@ -59,6 +60,7 @@ export function OfferComposer({ limits }: { limits: Json | null }) {
         min_slice_minor: minSlice ? toMinor(Number(minSlice), haveCurrency as CurrencyCode) : null,
         rate_mode: "fixed",
         rate_value: rateValue,
+        reference_rate: market,
         terms: terms.trim() || null,
       };
       const { data, error: rpcError } = await supabase.rpc("p2p_offer_publish", {
@@ -84,6 +86,7 @@ export function OfferComposer({ limits }: { limits: Json | null }) {
     if (/above the ceiling/i.test(raw)) return t("errors.ceiling");
     if (/identity must be verified/i.test(raw)) return t("errors.unverified");
     if (/one leg .* must be Toman/i.test(raw)) return t("errors.corridor");
+    if (/bps from the market mid/i.test(raw)) return t("errors.outsideBand");
     return t("errors.failed");
   }
 
@@ -152,20 +155,14 @@ export function OfferComposer({ limits }: { limits: Json | null }) {
             onChange={(e) => setRate(e.target.value)}
             className="mt-1.5"
           />
-          {market ? (
-            <p className="mt-1 text-xs text-ink-600">
-              {t("marketHint", {
-                rate: formatNumber(market, locale, { maximumFractionDigits: 0 }),
-              })}{" "}
-              <button
-                type="button"
-                className="font-medium text-brand-700 underline dark:text-brand-600"
-                onClick={() => setRate(String(Math.round(market)))}
-              >
-                {t("useMarket")}
-              </button>
-            </p>
-          ) : null}
+          <div className="mt-3">
+            <PriceDial
+              direction={direction}
+              market={market}
+              rate={rate}
+              onRate={setRate}
+            />
+          </div>
         </div>
 
         <div>
