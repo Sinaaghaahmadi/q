@@ -1,0 +1,15 @@
+{
+  "namespace": "nav",
+  "fa": {
+    "how": "حواله چطور انجام می‌شود؟",
+    "why": "چرا آسا؟",
+    "about": "دربارهٔ ما",
+    "contact": "تماس با ما"
+  },
+  "en": {
+    "how": "How it works",
+    "why": "Why Asa",
+    "about": "About us",
+    "contact": "Contact"
+  }
+}

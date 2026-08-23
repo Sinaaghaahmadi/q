@@ -10,8 +10,8 @@ export async function Footer() {
 
   return (
     <footer className="mt-16 border-t border-ink-300/40 bg-surface pb-28 md:pb-10">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4">
-        <div className="space-y-3 md:col-span-2">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:grid-cols-5">
+        <div className="space-y-3 md:col-span-3 lg:col-span-2">
           <p className="text-lg font-bold">{t("brand")}</p>
           <p className="max-w-md text-sm leading-relaxed text-ink-600">{t("tagline")}</p>
           <p className="max-w-md text-xs leading-relaxed text-ink-600/80">{t("compliance")}</p>
@@ -48,6 +48,32 @@ export async function Footer() {
             <li>
               <Link className="hover:text-ink-900" href="/design">
                 {t("designSystem")}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <nav aria-label={t("company")} className="space-y-3">
+          <p className="text-sm font-semibold">{t("company")}</p>
+          <ul className="space-y-2 text-sm text-ink-600">
+            <li>
+              <Link className="hover:text-ink-900" href="/how">
+                {nav("how")}
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-ink-900" href="/why">
+                {nav("why")}
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-ink-900" href="/about">
+                {nav("about")}
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-ink-900" href="/contact">
+                {nav("contact")}
               </Link>
             </li>
           </ul>

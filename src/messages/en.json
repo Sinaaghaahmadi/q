@@ -27,7 +27,11 @@
     "office": "Office",
     "admin": "Admin",
     "support": "Support",
-    "p2p": "P2P"
+    "p2p": "P2P",
+    "how": "How it works",
+    "why": "Why Asa",
+    "about": "About us",
+    "contact": "Contact"
   },
   "footer": {
     "brand": "Asaex",
@@ -38,7 +42,8 @@
     "designSystem": "Design system",
     "copyright": "© 2026 Asaex — All rights reserved.",
     "buildTag": "Demo build · Phase 0–2",
-    "account": "Account"
+    "account": "Account",
+    "company": "Company"
   },
   "legal": {
     "version": "Version {version}",
@@ -108,13 +113,7 @@
     "stripTitle": "Live rates — main corridors",
     "allRates": "All rates",
     "hero": {
-      "title": "Currency, made effortless",
-      "subtitle": "Submit a transfer request; a licensed exchange office executes it while every step — from the Toman deposit to the foreign receipt — runs under platform supervision. Usually within one business day.",
-      "chips": {
-        "sla": "Target: one business day",
-        "supervised": "Two-sided supervised settlement",
-        "kycOnce": "Verify once, ever"
-      },
+      "title": "Currency transfer, made simple",
       "ctaPrimary": "Start a transfer",
       "ctaSecondary": "See rates"
     },
@@ -2190,5 +2189,46 @@
     "sent": "Sent",
     "failed": "That did not go through. Try again.",
     "offline": "You are offline. Showing the last known data."
+  },
+  "about": {
+    "metaTitle": "About us",
+    "title": "Seventeen people, spread across the world, on one thing",
+    "lede": "We are a team of seventeen working fully remotely from corners of the world — Tehran and Dubai, Berlin and Toronto. None of us share an office, and all of us work on one thing: making it as simple for an Iranian family to send money as it is to send a message. With love for Iran, and for the Iran being built next.",
+    "map": {
+      "alt": "A world map with nine markers, all connected to Tehran, with work moving along the routes between them.",
+      "caption": "Nine points on a map, seventeen people behind it — and one shared route."
+    },
+    "crafts": {
+      "product": {
+        "title": "Product design",
+        "body": "Every screen you see was made here: from the transfer flow to a panel an exchange office finishes its work on in four presses."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "body": "Our job is to say what this is without overstating it. The number we promise is the number the recipient gets."
+      },
+      "bizdev": {
+        "title": "Business development",
+        "body": "We build the network of licensed exchange offices and open the corridors that come next."
+      },
+      "strategy": {
+        "title": "Strategy",
+        "body": "We decide which route opens next, and what we deliberately will not build."
+      },
+      "support": {
+        "title": "Support",
+        "body": "When a transfer gets stuck there is a person on the other side who answers — not a bot."
+      },
+      "people": {
+        "title": "People",
+        "body": "A team across eight time zones does not hold together on its own. That is somebody's work."
+      }
+    },
+    "mission": {
+      "title": "Why we do this",
+      "body": "For many Iranians, sending currency still means trusting an unknown number on Telegram and hoping for the best. We think the same job can be done, with the same real exchange offices, but with a rate you can see, a route you can follow, and a clear answer to who is responsible.",
+      "contact": "Talk to us",
+      "how": "How a transfer works"
+    }
   }
 }
