@@ -6,8 +6,15 @@ blocks what, not by effort. Everything unticked is deliberately unticked — see
 
 ## Blocking — do not go live without these
 
-- [ ] **TOTP 2FA for every staff account** (§15). Platform and office roles can
-      move money and currently sign in with email and password alone.
+- [x] **Staff TOTP 2FA — built** (migration 0028). Enrolment is on the profile
+      page and enforcement is in the database, not the screen: `is_platform_staff()`
+      returns false for a staff account that has enrolled a factor and not answered
+      it this session, so the panels empty and the RPCs refuse for the same reason.
+- [ ] **Enrol every staff account, then set `require_staff_mfa` to true.** Until
+      that switch is on, an account with _no_ factor still has full staff powers —
+      which is deliberate, because turning it on first would lock out the only
+      administrator who could turn it back off. `/admin/settings` shows who has
+      enrolled. Do not flip it until that list is complete.
 - [ ] **Rotate the demo staff passwords.** `AsaDemo!1404` is in the repository,
       in `docs/runbook.md` and in `supabase/seed/demo.sql`. Every account in
       `*@asaex.demo` must be removed or re-credentialled before the project

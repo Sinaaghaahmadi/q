@@ -1,9 +1,10 @@
 "use client";
 
-import { BadgeCheck, Clock3, Copy, Gift, LogOut, ShieldCheck, Smartphone } from "lucide-react";
+import { BadgeCheck, Clock3, Copy, Gift, LogOut, Smartphone } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { SecurityScene } from "@/components/brand/scenes";
+import { TwoFactor } from "@/components/auth/two-factor";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -24,10 +25,13 @@ export function ProfileView({
   profile,
   email,
   events,
+  isStaff = false,
 }: {
   profile: Profile | null;
   email: string | null;
   events: LoginEvent[];
+  /** Staff accounts are told the second factor is required, not optional. */
+  isStaff?: boolean;
 }) {
   const t = useTranslations("profile");
   const locale = useLocale() as AppLocale;
@@ -86,10 +90,9 @@ export function ProfileView({
               <Smartphone className="size-3.5" />
               {t("security.otpOn")}
             </Badge>
-            <Badge variant="neutral">
-              <ShieldCheck className="size-3.5" />
-              {t("security.totpSoon")}
-            </Badge>
+          </div>
+          <div className="mt-4 border-t border-ink-300/40 pt-4">
+            <TwoFactor isStaff={isStaff} />
           </div>
         </div>
       </Card>

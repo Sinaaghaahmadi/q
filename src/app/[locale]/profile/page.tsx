@@ -57,6 +57,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
         profile={session?.profile ?? null}
         email={session?.user.email ?? null}
         events={events ?? []}
+        isStaff={(session?.memberships ?? []).some((m) => m.scope_type === "platform")}
       />
       <TierAndReferral
         tier={tier ?? null}

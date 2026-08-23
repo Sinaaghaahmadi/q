@@ -649,7 +649,11 @@
     "staffHint": "Exchange offices sign in with a username; platform staff with an email.",
     "passwordLabel": "Password",
     "staffCta": "Open the panel",
-    "staffIdLabel": "Username or email"
+    "staffIdLabel": "Username or email",
+    "totpPrompt": "Enter the six-digit code from your authenticator app.",
+    "totpLabel": "Two-step code",
+    "totpCta": "Sign in",
+    "totpLost": "If you cannot reach your authenticator app, contact the platform administrator."
   },
   "kyc": {
     "metaTitle": "Verification",
@@ -2743,6 +2747,31 @@
     "errors": {
       "taken": "Another office has already taken this request.",
       "failed": "That did not go through. Please try again."
+    }
+  },
+  "twoFactor": {
+    "title": "Two-step sign-in",
+    "on": "On",
+    "off": "Off",
+    "body": "With this on, signing in needs a six-digit code from your authenticator app as well as your password.",
+    "bodyStaff": "Required for platform staff accounts. Until you enter the code, the database does not open your administrative access.",
+    "enable": "Turn on",
+    "scan": "Scan this with your authenticator app",
+    "qrAlt": "QR code for your authenticator app",
+    "orType": "Or enter this key by hand:",
+    "copy": "Copy key",
+    "copied": "Copied",
+    "codeLabel": "Six-digit code from the app",
+    "confirm": "Confirm and turn on",
+    "cancel": "Cancel",
+    "codeToDisable": "Enter a current code to turn it off",
+    "disable": "Turn off",
+    "working": "Please wait…",
+    "errors": {
+      "enrollFailed": "Could not start setup. Please try again.",
+      "verifyFailed": "That did not verify. Please try again.",
+      "wrongCode": "That code is not right. Check your device clock too.",
+      "disableFailed": "Could not turn it off. Please try again."
     }
   }
 }

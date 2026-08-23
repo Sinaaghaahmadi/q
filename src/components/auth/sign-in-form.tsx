@@ -13,11 +13,17 @@ import { Input } from "@/components/ui/input";
 import { Segmented } from "@/components/ui/segmented";
 import { Link, useRouter } from "@/i18n/navigation";
 import { OFFICE_USERNAME_RE } from "@/lib/auth/office-login";
+import { createClient } from "@/lib/supabase/client";
 import { toLatinDigits, toPersianDigits, type AppLocale } from "@/lib/money/format";
 import { cn } from "@/lib/utils";
 
 type Channel = "phone" | "email" | "staff";
-type Step = "identify" | "code" | "sent" | "done";
+/**
+ * `totp` sits between the password and the panel. It is not a gate — the
+ * database already refuses a staff seat that has not reached aal2 (migration
+ * 0028) — it is the screen where the person supplies what raises them to it.
+ */
+type Step = "identify" | "code" | "sent" | "totp" | "done";
 
 const CODE_LENGTH = 6;
 const RESEND_SECONDS = 120;
@@ -97,7 +103,10 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email: email.trim(), password }),
       });
-      const payload = (await res.json().catch(() => ({}))) as { error?: string };
+      const payload = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        mfaRequired?: boolean;
+      };
       if (!res.ok) {
         setError(
           payload.error === "not_staff"
@@ -106,6 +115,59 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
               ? t("errors.authUnavailable")
               : t("errors.invalidCredentials"),
         );
+        return;
+      }
+      if (payload.mfaRequired) {
+        // The session exists but is only aal1, which the database treats as no
+        // staff seat at all. Ask for the factor rather than navigating into a
+        // panel that would render empty.
+        setCode("");
+        setStep("totp");
+        return;
+      }
+      setStep("done");
+      setTimeout(() => router.push(nextPath), 900);
+    } catch {
+      setError(t("errors.network"));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  /**
+   * Answer the second factor.
+   *
+   * Done in the browser rather than through a route because Supabase's MFA
+   * challenge is bound to the session its client holds, and the client here
+   * already has it. Verifying rewrites the session cookie at aal2, which is the
+   * whole point — every later request, server or browser, carries the raised
+   * level without anything else being told about it.
+   */
+  async function submitTotp() {
+    setBusy(true);
+    setError(null);
+    try {
+      const supabase = createClient();
+      const { data: factors } = await supabase.auth.mfa.listFactors();
+      const factor = (factors?.totp ?? []).find((f) => f.status === "verified");
+      if (!factor) {
+        setError(t("errors.invalidCode"));
+        return;
+      }
+      const { data: challenge, error: challengeError } = await supabase.auth.mfa.challenge({
+        factorId: factor.id,
+      });
+      if (challengeError || !challenge) {
+        setError(t("errors.invalidCode"));
+        return;
+      }
+      const { error: verifyError } = await supabase.auth.mfa.verify({
+        factorId: factor.id,
+        challengeId: challenge.id,
+        code: toLatinDigits(code).replace(/\D/g, ""),
+      });
+      if (verifyError) {
+        setError(t("errors.invalidCode"));
         return;
       }
       setStep("done");
@@ -395,6 +457,42 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
               </button>
             )}
           </div>
+        </div>
+      ) : null}
+
+      {step === "totp" ? (
+        <div className="mt-6 space-y-4">
+          <p className="text-sm leading-relaxed text-ink-600">{t("totpPrompt")}</p>
+          <label htmlFor="signin-totp" className="sr-only">
+            {t("totpLabel")}
+          </label>
+          <Input
+            id="signin-totp"
+            dir="ltr"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            maxLength={CODE_LENGTH}
+            placeholder="······"
+            className="text-center font-mono text-2xl tracking-[0.4em]"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && code.replace(/\D/g, "").length === CODE_LENGTH && !busy) {
+                void submitTotp();
+              }
+            }}
+          />
+          {error ? <p className="text-sm leading-relaxed text-down">{error}</p> : null}
+          <Button
+            size="lg"
+            className="w-full"
+            disabled={busy || code.replace(/\D/g, "").length < CODE_LENGTH}
+            onClick={submitTotp}
+          >
+            {busy ? t("verifying") : t("totpCta")}
+            <ArrowRight className="size-4 rtl:-scale-x-100" />
+          </Button>
+          <p className="text-center text-xs leading-relaxed text-ink-600">{t("totpLost")}</p>
         </div>
       ) : null}
 

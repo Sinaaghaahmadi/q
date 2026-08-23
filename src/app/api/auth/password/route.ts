@@ -92,5 +92,15 @@ export async function POST(request: NextRequest) {
     user_agent: request.headers.get("user-agent")?.slice(0, 300) ?? null,
   });
 
-  return NextResponse.json({ ok: true });
+  // Does this account owe a second factor?
+  //
+  // `nextLevel` is aal2 exactly when a verified factor exists; `currentLevel`
+  // is still aal1 because a password is one factor. Saying so lets the form ask
+  // for the code instead of navigating into a panel that would render empty —
+  // the database already treats an aal1 staff session as holding no staff seat
+  // (migration 0028), so this is a courtesy to the person, not the enforcement.
+  const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+  const mfaRequired = aal?.nextLevel === "aal2" && aal.currentLevel !== "aal2";
+
+  return NextResponse.json({ ok: true, mfaRequired });
 }
