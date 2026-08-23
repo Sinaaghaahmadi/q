@@ -8,7 +8,10 @@ import { expect, test, type Page } from "@playwright/test";
  * silently. Keyboard reachability and focus order are asserted separately
  * below, because axe cannot see them.
  */
-const PAGES = ["/", "/en", "/rates", "/p2p", "/signin", "/legal/terms", "/_design"];
+// `/coins` is here because it is where the newest visual system lives — tinted
+// glass on gold — and a contrast failure in a new palette is exactly what this
+// audit exists to catch before anyone ships it.
+const PAGES = ["/", "/en", "/rates", "/coins", "/p2p", "/signin", "/legal/terms", "/_design"];
 
 async function scan(page: Page, path: string, theme: "light" | "dark") {
   // Reduced motion is not a convenience here, it is the right state to audit:
