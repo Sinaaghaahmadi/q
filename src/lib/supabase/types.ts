@@ -38,6 +38,8 @@ export type Profile = {
   referral_code: string | null;
   frozen_at: string | null;
   frozen_reason: string | null;
+  /** False while an account is still on the password it was provisioned with. */
+  password_set_by_user: boolean;
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
@@ -229,15 +231,30 @@ export type OrderDocument = {
   deleted_at: string | null;
 };
 
+export type OfficeKyc = "unverified" | "pending" | "verified" | "rejected";
+
 export type ExchangeOffice = {
   id: string;
   slug: string;
   legal_name_fa: string;
   legal_name_en: string;
+  /** The short name customers see; the legal names stay for contracts. */
+  display_name: string | null;
   license_no: string;
   country: string;
   city: string | null;
   status: "draft" | "active" | "suspended" | "archived";
+  /** Registered owner and national code — what settlement matches against. */
+  owner_name: string | null;
+  national_id: string | null;
+  owner_phone: string | null;
+  /** Object path in the `office-logos` bucket; null means show the initial. */
+  logo_path: string | null;
+  /** Whether the platform has verified who this office is. Not the lifecycle. */
+  kyc_state: OfficeKyc;
+  kyc_reason: string | null;
+  kyc_decided_by: string | null;
+  kyc_decided_at: string | null;
   branding: Json;
   contact: Json;
   working_hours: Json;
@@ -650,6 +667,40 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      office_login_identity: {
+        Args: { p_username: string; p_password: string };
+        Returns: { email: string | null; phone: string | null }[];
+      };
+      office_invitation_create: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      office_invitation_pending: {
+        Args: Record<string, never>;
+        Returns: {
+          id: string;
+          office_id: string;
+          office_name: string;
+          username: string;
+          role: AppRole;
+        }[];
+      };
+      office_invitation_claim: {
+        Args: { p_invitation: string };
+        Returns: { office_id: string; username: string; secret: string | null }[];
+      };
+      admin_decide_office_kyc: {
+        Args: { p_office: string; p_decision: OfficeKyc; p_reason?: string | null };
+        Returns: OfficeKyc;
+      };
+      admin_update_office: {
+        Args: { p_office: string; p_patch: Json };
+        Returns: undefined;
+      };
+      password_choice_settled: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
       office_account_add: {
         Args: { p_payload: Json };
         Returns: string;

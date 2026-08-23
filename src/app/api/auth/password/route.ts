@@ -1,11 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
+import { OFFICE_USERNAME_RE } from "@/lib/auth/office-login";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
 const bodySchema = z.object({
-  email: z.string().email(),
+  /**
+   * An email address, or an office's username. Offices sign in with a username
+   * because an exchange clerk should not need a mailbox to open the panel.
+   */
+  email: z.string().trim().min(3).max(320),
   password: z.string().min(8).max(200),
 });
 
@@ -35,10 +40,33 @@ export async function POST(request: NextRequest) {
   }
 
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: parsed.data.email.trim(),
-    password: parsed.data.password,
-  });
+  const identifier = parsed.data.email.trim();
+
+  // A username is resolved to the identifier Supabase actually authenticates.
+  // `office_login_identity` checks the password before it answers, so this is
+  // not a way to turn a word list into a list of offices' phone numbers — see
+  // its docblock. It never issues a session; the grant below still does that,
+  // with Supabase's own rate limiting in front of it.
+  let credentials:
+    { email: string; password: string } | { phone: string; password: string } | null = null;
+
+  if (identifier.includes("@")) {
+    credentials = { email: identifier, password: parsed.data.password };
+  } else if (OFFICE_USERNAME_RE.test(identifier.toLowerCase())) {
+    const { data: rows } = await supabase.rpc("office_login_identity", {
+      p_username: identifier,
+      p_password: parsed.data.password,
+    });
+    const found = Array.isArray(rows) ? rows[0] : null;
+    if (found?.email) credentials = { email: found.email, password: parsed.data.password };
+    else if (found?.phone) credentials = { phone: found.phone, password: parsed.data.password };
+  }
+
+  if (!credentials) {
+    return NextResponse.json({ error: "invalid_credentials" }, { status: 401 });
+  }
+
+  const { data, error } = await supabase.auth.signInWithPassword(credentials);
 
   // One message for a wrong address and a wrong password alike: telling them
   // apart is an account-enumeration oracle.

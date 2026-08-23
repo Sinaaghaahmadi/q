@@ -645,9 +645,10 @@
       "invalidCredentials": "That email and password do not match."
     },
     "channelLabel": "Sign-in method",
-    "staffHint": "Your work address at the platform or the exchange office.",
+    "staffHint": "Exchange offices sign in with a username; platform staff with an email.",
     "passwordLabel": "Password",
-    "staffCta": "Open the panel"
+    "staffCta": "Open the panel",
+    "staffIdLabel": "Username or email"
   },
   "kyc": {
     "metaTitle": "Verification",
@@ -970,6 +971,12 @@
         "reasonRequired": "A written reason of at least 8 characters is required.",
         "noAccount": "An office cannot go live without a public settlement account.",
         "superadminOnly": "Acting as an office is open to the superadmin only."
+      },
+      "kyc": {
+        "verified": "Verified",
+        "pending": "Pending",
+        "rejected": "Rejected",
+        "unverified": "Unchecked"
       }
     },
     "wizard": {
@@ -989,6 +996,10 @@
         "review": {
           "title": "Review",
           "body": "One transaction, once. Either all of it lands or none of it does."
+        },
+        "access": {
+          "title": "Office login",
+          "body": "The username and password for the panel, and where to text them."
         }
       },
       "fields": {
@@ -1003,7 +1014,22 @@
         "spread": "Spread",
         "currency": "Currency",
         "kind": "Account type",
-        "accountNumber": "Account number"
+        "accountNumber": "Account number",
+        "displayName": "Display name",
+        "displayNameHint": "This is the name customers see.",
+        "ownerName": "Registered owner",
+        "ownerNameHint": "What settlement accounts are matched against.",
+        "nationalId": "Owner's national code",
+        "nationalIdHint": "The basis for checking card and IBAN ownership.",
+        "username": "Username",
+        "usernameHint": "Lowercase letters, digits, dots and dashes.",
+        "phone": "Destination phone",
+        "phoneHint": "They sign in with this number the first time.",
+        "ownPassword": "I will type the password",
+        "ownPasswordHint": "Otherwise a secure one is generated.",
+        "password": "Password",
+        "sendSms": "Text it to the destination number",
+        "sendSmsHint": "With this off, the details appear only on this screen."
       },
       "kinds": {
         "card": "Card",
@@ -1028,7 +1054,24 @@
         "names": "Both registered names are required.",
         "licence": "A licence number is required.",
         "forbidden": "Provisioning an office is open to platform administrators only.",
-        "noAccount": "The office was created but not activated: it has no public settlement account."
+        "noAccount": "The office was created but not activated: it has no public settlement account.",
+        "nationalId": "That national code is not valid.",
+        "usernameTaken": "That username is already taken.",
+        "inviteFailed": "The office was created but the login was not. Try again from the office page."
+      },
+      "accessNote": "You can leave this step empty and issue a login later. If you do not type a password, one is generated.",
+      "issued": {
+        "title": "The office has a login",
+        "body": "These details are shown once and only once.",
+        "warning": "The password cannot be recovered after this screen. If it is lost, issue a new login.",
+        "copy": "Copy username and password",
+        "copied": "Copied",
+        "done": "Go to the office",
+        "sms": {
+          "sent": "Texted to the destination number.",
+          "failed": "The message could not be sent. Pass the details on yourself.",
+          "skipped": "No message was sent."
+        }
       }
     },
     "orders": {
@@ -2526,6 +2569,102 @@
       "forbidden": "You are not a member of that office.",
       "holderRequired": "The account holder name is required.",
       "numberRequired": "An account number is required."
+    }
+  },
+  "officeIdentity": {
+    "title": "Office details",
+    "displayName": "Display name",
+    "displayNameHint": "This is the name your customers see.",
+    "ownerName": "Registered owner",
+    "nationalId": "National code",
+    "licence": "Licence number",
+    "notSet": "Not set",
+    "lockedNote": "Once identity is verified, the registered owner, national code and licence number can only be changed by the platform. File a ticket to correct them.",
+    "addLogo": "Add a logo",
+    "changeLogo": "Change logo",
+    "logoHint": "PNG, JPG, WebP or SVG up to 512 kB.",
+    "logoSaved": "Logo saved.",
+    "saved": "Saved.",
+    "save": "Save",
+    "working": "Saving…",
+    "kyc": {
+      "verified": "Identity verified",
+      "pending": "Under review",
+      "rejected": "Not verified",
+      "unverified": "Not checked"
+    },
+    "status": {
+      "draft": "Draft",
+      "active": "Active",
+      "suspended": "Suspended",
+      "archived": "Archived"
+    },
+    "errors": {
+      "tooBig": "That file is larger than 512 kB.",
+      "uploadFailed": "The upload did not go through. Please try again.",
+      "saveFailed": "Could not save. Please try again."
+    }
+  },
+  "adminOffice": {
+    "decided": "Recorded.",
+    "saved": "Saved.",
+    "kyc": {
+      "verified": "Identity verified",
+      "pending": "Under review",
+      "rejected": "Not verified",
+      "unverified": "Not checked"
+    },
+    "identity": {
+      "title": "Office identity",
+      "ownerName": "Registered owner",
+      "nationalId": "Owner's national code",
+      "nationalIdHint": "The basis for checking who owns a settlement card or IBAN.",
+      "reason": "Note",
+      "reasonPlaceholder": "A reason is required to reject.",
+      "save": "Save details",
+      "verify": "Verify identity",
+      "reject": "Reject",
+      "note": "Once verified, the office can no longer change its registered owner or national code itself. Settlement accounts are matched against these."
+    },
+    "login": {
+      "title": "Office panel login",
+      "body": "Issue a fresh username and password and text them to the destination number. Any unclaimed earlier login is superseded.",
+      "username": "Username",
+      "password": "Password",
+      "phone": "Destination phone",
+      "sendSms": "Send by SMS",
+      "sendSmsHint": "With this off, the details appear only on this screen.",
+      "cta": "Issue login",
+      "working": "Issuing…",
+      "again": "Issue another",
+      "warning": "The password is shown once and cannot be recovered afterwards.",
+      "sms": {
+        "sent": "Text message sent.",
+        "failed": "The message could not be sent. Pass the details on yourself.",
+        "skipped": "No message was sent."
+      }
+    },
+    "errors": {
+      "nationalId": "That national code is not valid.",
+      "reasonRequired": "Rejecting needs a written reason (at least 8 characters).",
+      "usernameTaken": "That username is already taken.",
+      "saveFailed": "That did not go through. Please try again."
+    }
+  },
+  "firstEntry": {
+    "claiming": "Setting up your access…",
+    "title": "Choose your own password",
+    "body": "You signed in with a password that was generated for you. Keep it, or set one of your own.",
+    "password": "New password",
+    "confirm": "Repeat the new password",
+    "cta": "Set password",
+    "skip": "Not now",
+    "skipHint": "Choose \"not now\" and you keep the password you were given. This message will not appear again.",
+    "working": "Saving…",
+    "errors": {
+      "tooShort": "A password needs at least {min} characters.",
+      "mismatch": "The two passwords do not match.",
+      "failed": "That did not save. Please try again."
     }
   }
 }

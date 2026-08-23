@@ -67,7 +67,7 @@ export default async function OfficeTicketsPage({
   const [{ data: office }, rows, hours] = await Promise.all([
     supabase
       .from("exchange_offices")
-      .select("legal_name_fa, legal_name_en, status")
+      .select("id, legal_name_fa, legal_name_en, display_name, logo_path, status")
       .eq("id", officeId)
       .maybeSingle(),
     loadTicketQueue(locale as AppLocale),

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { OfficeConfig } from "@/components/admin/office-config";
+import { OfficeVerification } from "@/components/admin/office-verification";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -87,9 +88,15 @@ export default async function AdminExchangeDetailPage({
       seats={ctx.seats}
       impersonation={ctx.impersonation}
       office={ctx.impersonatedOffice}
-      title={locale === "fa" ? office.legal_name_fa : office.legal_name_en}
+      title={office.display_name ?? (locale === "fa" ? office.legal_name_fa : office.legal_name_en)}
       description={`${office.slug} · ${office.license_no}`}
     >
+      {/* Identity first: everything below it — rates, accounts, activation — is
+          only worth configuring for an office we believe is who it says it is. */}
+      <div className="mb-5">
+        <OfficeVerification office={office as ExchangeOffice} />
+      </div>
+
       <OfficeConfig
         office={office as ExchangeOffice}
         accounts={(accounts ?? []) as OfficeAccount[]}

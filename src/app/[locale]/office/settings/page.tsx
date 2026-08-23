@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { EmptyState } from "@/components/layout/empty-state";
+import { OfficeIdentityCard } from "@/components/office/office-identity-card";
 import { OfficeSettingsForm } from "@/components/office/office-settings-form";
 import { OfficeShell } from "@/components/office/office-shell";
 import { redirect } from "@/i18n/navigation";
@@ -89,6 +90,15 @@ export default async function OfficeSettingsPage({
       title={tc("settings.title")}
       description={tc("settings.subtitle")}
     >
+      {/* The office's own face, first: it is the thing an owner opens this page
+          to look at, and the only part of it they may change themselves. */}
+      <div className="mb-5">
+        <OfficeIdentityCard
+          office={office}
+          canEdit={can(seats, "office.team", office.id) || can(seats, "office.configure")}
+        />
+      </div>
+
       <OfficeSettingsForm
         office={office}
         autoAcceptRules={office.auto_accept_rules ?? {}}

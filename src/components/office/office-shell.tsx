@@ -13,6 +13,7 @@ import {
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
 import { PanelNavLink } from "@/components/layout/panel-nav-link";
+import { OfficeLogo, officeLogoUrl } from "@/components/office/office-logo";
 import type { ExchangeOffice } from "@/lib/supabase/types";
 
 /**
@@ -47,7 +48,10 @@ export async function OfficeShell({
   actions,
   children,
 }: {
-  office: Pick<ExchangeOffice, "legal_name_fa" | "legal_name_en" | "status"> | null;
+  office: Pick<
+    ExchangeOffice,
+    "id" | "legal_name_fa" | "legal_name_en" | "display_name" | "logo_path" | "status"
+  > | null;
   locale: string;
   title: string;
   description?: string;
@@ -55,14 +59,27 @@ export async function OfficeShell({
   children: React.ReactNode;
 }) {
   const t = await getTranslations("officePanel");
-  const name = office ? (locale === "fa" ? office.legal_name_fa : office.legal_name_en) : null;
+  // The display name is what the office chose to be called; the legal names
+  // are for contracts. A panel header is not a contract.
+  const name = office
+    ? (office.display_name ?? (locale === "fa" ? office.legal_name_fa : office.legal_name_en))
+    : null;
 
   return (
     <div className="space-y-5 py-2">
       <div className="flex flex-wrap items-center gap-3">
-        <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50">
-          <Building2 className="size-5 text-brand-600" aria-hidden />
-        </span>
+        {office ? (
+          <OfficeLogo
+            name={name}
+            logoUrl={officeLogoUrl(office.logo_path)}
+            officeId={office.id}
+            size={40}
+          />
+        ) : (
+          <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50">
+            <Building2 className="size-5 text-brand-600" aria-hidden />
+          </span>
+        )}
         <div className="min-w-0 flex-1">
           <p className="truncate font-semibold">{name ?? t("unknownOffice")}</p>
           {office ? <p className="text-xs text-ink-600">{t(`status.${office.status}`)}</p> : null}

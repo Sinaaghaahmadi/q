@@ -12,6 +12,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Segmented } from "@/components/ui/segmented";
 import { Link, useRouter } from "@/i18n/navigation";
+import { OFFICE_USERNAME_RE } from "@/lib/auth/office-login";
 import { toLatinDigits, toPersianDigits, type AppLocale } from "@/lib/money/format";
 import { cn } from "@/lib/utils";
 
@@ -143,6 +144,10 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
   const clock = locale === "fa" ? toPersianDigits(`${mm}:${ss}`) : `${mm}:${ss}`;
 
   const emailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
+  // An exchange office signs in with a username rather than an address — a
+  // clerk should not need a mailbox to open the panel — so the staff field
+  // accepts either, and the route resolves whichever it is given.
+  const staffIdValid = emailValid || OFFICE_USERNAME_RE.test(email.trim().toLowerCase());
   const identifierValid =
     channel === "phone"
       ? /^\d{10,13}$/.test(
@@ -151,7 +156,7 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
             .replace(/^0/, ""),
         )
       : channel === "staff"
-        ? emailValid && password.length >= 8
+        ? staffIdValid && password.length >= 8
         : emailValid;
 
   return (
@@ -252,14 +257,17 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
             <div className="space-y-4">
               <div>
                 <label htmlFor="signin-email" className="text-sm font-medium">
-                  {t("emailLabel")}
+                  {channel === "staff" ? t("staffIdLabel") : t("emailLabel")}
                 </label>
                 <Input
                   id="signin-email"
                   dir="ltr"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="you@example.com"
+                  // `type="email"` on the staff field would make a browser
+                  // refuse a perfectly good username, so it stays plain text
+                  // there and the field validates itself.
+                  type={channel === "staff" ? "text" : "email"}
+                  autoComplete={channel === "staff" ? "username" : "email"}
+                  placeholder={channel === "staff" ? "tehran.desk" : "you@example.com"}
                   className="mt-2 text-start"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

@@ -72,3 +72,21 @@ blocks what, not by effort. Everything unticked is deliberately unticked — see
 `docs/runbook.md` covers: bootstrapping the first account, onboarding an office,
 unsticking an order, acting as an office, P2P limits, seeding demo data, key
 rotation and deployment.
+
+## Supabase auth settings, before offices are provisioned
+
+- [ ] **Turn on the phone provider** (Authentication → Providers → Phone) with the
+      Kavenegar credentials. Office logins are keyed to a phone number: the
+      invitation flow texts credentials to a destination number and the office
+      signs in with that number the first time. Until the provider is on,
+      `signInWithOtp({ phone })` fails and a provisioned office cannot take up
+      its invitation. Verified against the live project: phone password grants
+      currently return `phone_provider_disabled`.
+- [ ] **Do not rely on email sign-up.** `signUp` on the publishable key demands a
+      confirmable address and goes through Supabase's shared SMTP, which is rate
+      limited to a couple of messages an hour. It was tried and rejected as the
+      provisioning path; see `supabase/migrations/0026_office_invitations.sql`.
+- [ ] **Set `SMS_PROVIDER=kavenegar`** and the pattern names. With it unset the
+      console provider logs the message and reports success, which is right for
+      a test environment and wrong for a real one — an administrator would be
+      told an office had been texted when nothing left the building.

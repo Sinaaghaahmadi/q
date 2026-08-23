@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { EmptyState } from "@/components/layout/empty-state";
+import { FirstEntry } from "@/components/office/first-entry";
 import { OfficeShell } from "@/components/office/office-shell";
 import { Today, type TodayJob } from "@/components/office/today";
 import { redirect } from "@/i18n/navigation";
@@ -54,9 +55,25 @@ export default async function OfficeTodayPage({ params }: { params: Promise<{ lo
     redirect({ href: "/signin?next=/office", locale });
   }
 
+  const supabase = await createClient();
+
+  // An office arriving for the first time has no seat yet — the seat is what
+  // claiming the invitation grants. So this is checked *before* the membership
+  // gate, or the very people it exists for would be turned away by it.
+  const { data: invitations } = await supabase.rpc("office_invitation_pending");
+  const invitation = Array.isArray(invitations) ? invitations[0] : null;
+
   const scopes = officeScopes(session?.memberships ?? []);
   const officeId = scopes[0];
+
   if (!officeId) {
+    if (invitation) {
+      return (
+        <div className="mx-auto w-full max-w-2xl py-6">
+          <FirstEntry pendingInvitationId={invitation.id} />
+        </div>
+      );
+    }
     return (
       <EmptyState
         icon={Building2}
@@ -66,8 +83,8 @@ export default async function OfficeTodayPage({ params }: { params: Promise<{ lo
       />
     );
   }
+  const askPassword = session?.profile?.password_set_by_user === false;
 
-  const supabase = await createClient();
   const [{ data: office }, { data: pool }, { data: mine }] = await Promise.all([
     supabase.from("exchange_offices").select("*").eq("id", officeId).maybeSingle(),
     // The matching-pool policy already limits this to members of an active
@@ -136,6 +153,7 @@ export default async function OfficeTodayPage({ params }: { params: Promise<{ lo
       title={t("title")}
       description={t("subtitle")}
     >
+      {askPassword ? <FirstEntry /> : null}
       <Today officeId={officeId} jobs={jobs} />
     </OfficeShell>
   );
