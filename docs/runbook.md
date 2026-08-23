@@ -75,21 +75,45 @@ one-time code, because a remittance app has no business asking someone to invent
 a password. `/api/auth/password` refuses any account without a `memberships`
 row, so the channel cannot become a general customer login by accident.
 
-The demo accounts, all with the password `AsaDemo!1404`:
+The demo accounts, all with the password `AsaDemo!1404`. Every row below was
+exercised against the running app, and the result is what the table says:
 
-| Account                 | Opens        | Roles                                                               |
-| ----------------------- | ------------ | ------------------------------------------------------------------- |
-| `admin@asaex.demo`      | `/admin`     | `platform_admin`, `platform_superadmin`                             |
-| `compliance@asaex.demo` | `/admin/kyc` | `platform_compliance`                                               |
-| `operator@asaex.demo`   | `/office`    | `office_owner`, `office_operator`, `office_finance` at `asa-tehran` |
+| Identifier              | Tab       | Opens        | Roles                                                               |
+| ----------------------- | --------- | ------------ | ------------------------------------------------------------------- |
+| `admin@asaex.demo`      | `کارکنان` | `/admin`     | `platform_admin`, `platform_superadmin`                             |
+| `compliance@asaex.demo` | `کارکنان` | `/admin/kyc` | `platform_compliance`                                               |
+| `operator@asaex.demo`   | `کارکنان` | `/office`    | `office_owner`, `office_operator`, `office_finance` at `asa-tehran` |
+| `tehran.desk`           | `کارکنان` | `/office`    | the same account, reached the way a real office does — by username  |
+
+`tehran.desk` is worth using at least once: it is the only path that exercises
+`office_login_identity`, which resolves a username to an identifier _after_
+checking the password. A clerk never types an address.
+
+**The customer accounts cannot currently be signed into**, and that is an
+environment gap rather than a missing feature. `sara@`, `omid@` and `nadia@
+asaex.demo` hold no `memberships` row, so the password channel refuses them by
+design (401), and both one-time-code channels are unavailable in this project:
+
+| Channel | Result today                    | Why                                                            |
+| ------- | ------------------------------- | -------------------------------------------------------------- |
+| Phone   | `sms_channel_unavailable` (503) | The Supabase phone provider is off; it needs Kavenegar (§15).  |
+| Email   | `send_failed` (500)             | `@asaex.demo` is not a real domain, so no mailbox receives it. |
+
+Two ways to open the customer surface for testing, in order of effort:
+
+1. **Use a staff account.** Nothing about `/verify`, `/accounts`, `/orders`,
+   `/coins`, `/profile` or `/p2p` requires the _absence_ of a staff seat —
+   `admin@asaex.demo` opens all of them, and that is how the KYC wizard and the
+   document reader were tested. What this does not exercise is the one-time-code
+   sign-in itself.
+2. **Add a test OTP in Supabase** (Authentication → Sign In / Providers → Phone,
+   _Test OTP_). It pins a fixed code to a specific number without any gateway,
+   which is exactly what it is for. Pair `+989120000101` with a code of your
+   choosing and the whole customer path opens, Kavenegar or not.
 
 **These are demo credentials and must be rotated before production** — they are
 in this file, in the repository, and in the seed. `docs/launch-checklist.md`
 blocks go-live on rotating them and on adding TOTP (§15).
-
-Supabase's built-in mailer is rate-limited to a couple of messages an hour, so
-the email one-time code is not a reliable way in during a demo. That is the
-whole reason the password channel exists.
 
 ### What is behind each panel
 
