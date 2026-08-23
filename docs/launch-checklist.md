@@ -18,6 +18,12 @@ blocks what, not by effort. Everything unticked is deliberately unticked — see
       `staff_mfa_require_set` refuses and names the accounts, until every staff
       member has a factor — so this item is now a matter of enrolling people,
       not of remembering an order of operations.
+- [x] **Document OCR — built** (ADR 0022), behind `kyc.ocr`. Reads the
+      machine-readable zone on a phone, in the browser; nothing is written to the
+      form without a press, and a reading is shown only when every ICAO check
+      digit agrees. It helps passports and international ID cards. Iran's smart
+      national card has no zone, so most domestic customers will still type their
+      details — that is a property of the document, not a gap to close.
 - [ ] **Rotate the demo staff passwords.** `AsaDemo!1404` is in the repository,
       in `docs/runbook.md` and in `supabase/seed/demo.sql`. Every account in
       `*@asaex.demo` must be removed or re-credentialled before the project

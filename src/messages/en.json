@@ -739,6 +739,29 @@
       "submitFailed": "We couldn't file that submission. Try again in a moment.",
       "uploadFailed": "The document upload didn't finish. Check your connection and try again.",
       "network": "Couldn't reach us. Try again."
+    },
+    "ocr": {
+      "title": "Read it from the document",
+      "body": "If your document has a machine-readable zone — a passport, or an international ID card — we can read the details from the photo you just took. The photo never leaves your phone; the reading happens entirely on this device.",
+      "read": "Read",
+      "working": "Reading…",
+      "verified": "Checked",
+      "verifiedBody": "Every ICAO check digit on these fields was recomputed and agreed. Had anything been misread, nothing would be shown here at all.",
+      "field": {
+        "name": "Name",
+        "dob": "Date of birth",
+        "nationality": "Nationality",
+        "number": "Document number"
+      },
+      "mismatch": "What was read differs from what you typed (marked in colour). If the document is right, use the button below; if you deliberately entered a different name, leave it.",
+      "expired": "This document expired on {date}.",
+      "apply": "Put this in the form",
+      "appliedLabel": "Added to the form",
+      "errors": {
+        "no-zone": "No machine-readable zone found. Make sure the whole passport page is flat in the frame and the two lines along the bottom are not cut off.",
+        "failed": "The reading did not finish. You can enter the details by hand.",
+        "unsupported": "This browser cannot do it. Please enter the details by hand."
+      }
     }
   },
   "accounts": {

@@ -16,6 +16,10 @@ const eslintConfig = [
       ".next/**",
       "out/**",
       "public/sw.js",
+      // Vendored, minified, and not ours: the Tesseract worker and Wasm loader
+      // (ADR 0022). Linting somebody else's build output produces 576 findings
+      // and no information.
+      "public/ocr/**",
       "next-env.d.ts",
       "artifacts/**",
     ],

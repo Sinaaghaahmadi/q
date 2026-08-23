@@ -5,7 +5,7 @@ import * as React from "react";
 import { EmptyState } from "@/components/layout/empty-state";
 import { KycWizard } from "@/components/kyc/wizard";
 import { redirect } from "@/i18n/navigation";
-import { getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
+import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -40,11 +40,24 @@ export default async function VerifyPage({ params }: { params: Promise<{ locale:
     redirect({ href: "/signin?next=/verify", locale });
   }
 
+  // `kyc.ocr` decides whether the document reader is offered at all. Reading it
+  // here rather than in the client keeps the five-megabyte engine out of reach
+  // of a browser whose flag is off — a client-side check would still ship the
+  // button and the dynamic import behind it.
+  const supabase = await createClient();
+  const { data: flag } = await supabase
+    .from("feature_flags")
+    .select("enabled")
+    .eq("key", "kyc.ocr")
+    .is("deleted_at", null)
+    .maybeSingle();
+
   return (
     <div className="py-4">
       <KycWizard
         initialName={session?.profile?.full_name_fa ?? null}
         initialStatus={session?.profile?.kyc_status ?? null}
+        ocrEnabled={flag?.enabled === true}
       />
     </div>
   );

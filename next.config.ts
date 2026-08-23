@@ -8,6 +8,24 @@ const withSerwist = withSerwistInit({
   swSrc: "src/app/sw.ts",
   swDest: "public/sw.js",
   disable: process.env.NODE_ENV === "development",
+  // Keep the OCR engine out of the precache.
+  //
+  // It is five megabytes serving one optional step of one flow. Precaching it
+  // would make every visitor — including everyone who never opens the verify
+  // page — fetch it before the app shell is usable, which is the opposite of
+  // what an offline shell is for.
+  //
+  // This is `globPublicPatterns`, not `exclude`: `exclude` filters webpack's
+  // own assets, and files under `public/` never pass through it. The first
+  // attempt used `exclude` and the built `sw.js` precached all four files
+  // anyway — a silent no-op, caught by grepping the output rather than by
+  // trusting the option name.
+  //
+  // The exclusion is written as an extglob rather than a `!` negation: the
+  // plugin passes these straight to `glob`, which — unlike fast-glob — treats a
+  // leading `!` inside a pattern as a literal and hardcodes its own `ignore`,
+  // so `"!ocr/**"` was a second silent no-op. `"*"` keeps the top-level files.
+  globPublicPatterns: ["!(ocr)/**", "*"],
 });
 
 // Financial-grade headers (§15). CSP uses 'unsafe-inline' for Next.js bootstrap
@@ -22,7 +40,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseOrigin = supabaseUrl ? new URL(supabaseUrl).origin : "https://*.supabase.co";
 const supabaseSocket = supabaseOrigin.replace(/^https:/, "wss:");
 
-const csp = [
+const cspDirectives = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
@@ -35,7 +53,30 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-].join("; ");
+];
+
+const csp = cspDirectives.join("; ");
+
+/**
+ * The same policy, plus WebAssembly, for the one route that needs it.
+ *
+ * Reading a passport's machine-readable zone runs Tesseract compiled to Wasm,
+ * and instantiating a Wasm module needs `'wasm-unsafe-eval'` in `script-src`.
+ * Granting that site-wide would relax the policy on every screen that moves
+ * money to buy a convenience on one, so it is granted to the four static engine
+ * files under `/ocr/` and nowhere else — see `headers()` for why that is
+ * sufficient. The engine is served from our own origin rather than a CDN, so
+ * `default-src 'self'` still holds, and `worker-src` is untouched because the
+ * worker is loaded from a same-origin path rather than the blob: URL the
+ * library reaches for by default.
+ *
+ * ADR 0022 has the reasoning and what it would take to remove this again.
+ */
+const cspWithWasm = cspDirectives
+  .map((directive) =>
+    directive.startsWith("script-src ") ? `${directive} 'wasm-unsafe-eval'` : directive,
+  )
+  .join("; ");
 
 const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
@@ -65,7 +106,29 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
   },
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    // One CSP header per response, and the Wasm exception on the engine only.
+    //
+    // Two findings, both from reading real responses rather than the config.
+    //
+    // First, Next applies *every* matching entry, and a browser given two CSP
+    // headers enforces their intersection — so adding a second, looser policy
+    // on top of the site-wide one leaves Wasm blocked and nothing looks wrong.
+    // `curl -D-` on /verify returned two `Content-Security-Policy` lines.
+    //
+    // Second, and the reason this ended up narrower than planned: the module is
+    // compiled inside a Web Worker, and a dedicated worker takes its policy
+    // from the headers of *its own script*, not from the page that started it.
+    // Granting the page `'wasm-unsafe-eval'` changed nothing; the worker still
+    // refused. So the exception belongs on `/ocr/*` — four static engine files
+    // that render nothing and read nothing — and every page in the product,
+    // /verify included, keeps the strict policy unchanged.
+    const wasmHeaders = securityHeaders.map((header) =>
+      header.key === "Content-Security-Policy" ? { ...header, value: cspWithWasm } : header,
+    );
+    return [
+      { source: "/ocr/:file*", headers: wasmHeaders },
+      { source: "/:path((?!ocr/).*)", headers: securityHeaders },
+    ];
   },
   async rewrites() {
     // App Router reserves `_`-prefixed folders as private, so the public

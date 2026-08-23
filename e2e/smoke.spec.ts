@@ -80,6 +80,36 @@ test("CSP allowlists the Supabase origin the browser actually calls (§15)", asy
   expect(csp).toContain("frame-ancestors 'none'");
 });
 
+test("the Wasm exception reaches the OCR engine and nothing else (ADR 0022)", async ({
+  request,
+}) => {
+  // Two ways this silently breaks, both seen while building it.
+  //
+  // One: Next applies every matching `headers()` entry, so a second, looser CSP
+  // arrives as a *second* header and the browser enforces the intersection —
+  // the page looks configured and Wasm is still refused. Count the headers, do
+  // not just read the first.
+  //
+  // Two: the module is instantiated inside a Web Worker, which takes its policy
+  // from its own script's headers rather than the page's. The exception belongs
+  // on `/ocr/*`; if it ever drifts back onto a page, that page gains
+  // `'wasm-unsafe-eval'` for nothing and this fails.
+  const engine = await request.get("/ocr/worker.min.js");
+  expect(engine.status()).toBe(200);
+  const engineCsp = engine.headersArray().filter((h) => /^content-security-policy$/i.test(h.name));
+  expect(engineCsp).toHaveLength(1);
+  expect(engineCsp[0]?.value).toContain("'wasm-unsafe-eval'");
+
+  for (const path of ["/fa", "/fa/verify", "/verify", "/fa/admin", "/fa/rates"]) {
+    const response = await request.get(path);
+    const headers = response
+      .headersArray()
+      .filter((h) => /^content-security-policy$/i.test(h.name));
+    expect(headers, `${path} must carry exactly one CSP header`).toHaveLength(1);
+    expect(headers[0]?.value, `${path} must not allow Wasm`).not.toContain("'wasm-unsafe-eval'");
+  }
+});
+
 test("every authenticated route redirects a signed-out visitor to sign-in", async ({ page }) => {
   // This is the shape the Vercel deployment got wrong: with no Supabase values
   // at runtime the server decided auth was unconfigured and rendered the pages

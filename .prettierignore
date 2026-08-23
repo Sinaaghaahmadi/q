@@ -5,3 +5,6 @@ public/sw.js
 pnpm-lock.yaml
 *.woff2
 supabase/migrations/*.sql
+
+# Vendored OCR engine — minified upstream builds (ADR 0022).
+public/ocr/

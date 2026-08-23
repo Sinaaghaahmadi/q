@@ -12,6 +12,7 @@ import {
   ReviewScene,
 } from "@/components/brand/scenes";
 import { ProgressRail } from "@/components/kyc/progress-rail";
+import { DocumentReader, type DocumentFacts } from "@/components/kyc/document-reader";
 import { UploadTile, type PreparedFile } from "@/components/kyc/upload-tile";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -51,9 +52,12 @@ const CURRENT_JY = gregorianToJalali(new Date()).jy;
 export function KycWizard({
   initialName,
   initialStatus,
+  ocrEnabled = false,
 }: {
   initialName?: string | null;
   initialStatus?: string | null;
+  /** `kyc.ocr` in `feature_flags`; the reader is not rendered without it. */
+  ocrEnabled?: boolean;
 }) {
   const t = useTranslations("kyc");
   const locale = useLocale() as AppLocale;
@@ -98,6 +102,25 @@ export function KycWizard({
   const livenessComplete = Boolean(selfie);
 
   const canAdvance = [identityComplete, documentComplete, livenessComplete, true][step];
+
+  /**
+   * Take what the document says.
+   *
+   * Only ever called from the button in `DocumentReader`, never on a successful
+   * read — the customer decides whether the passport or the form is right about
+   * their own name, and a passport in a maiden name is a real thing that should
+   * not silently overwrite what they typed.
+   */
+  const applyDocument = React.useCallback((facts: DocumentFacts) => {
+    setIdentity((s) => ({
+      ...s,
+      fullNameLatin: facts.fullNameLatin,
+      nationality: facts.nationality,
+    }));
+    setJy(facts.jy);
+    setJm(facts.jm);
+    setJd(facts.jd);
+  }, []);
 
   const steps = STEP_KEYS.map((key) => ({ key, label: t(`steps.${key}.rail`) }));
 
@@ -373,6 +396,21 @@ export function KycWizard({
                   />
                 ) : null}
               </div>
+              {ocrEnabled ? (
+                <DocumentReader
+                  file={front?.blob ?? null}
+                  typed={{
+                    fullNameLatin: identity.fullNameLatin,
+                    nationality: identity.nationality,
+                    jy,
+                    jm,
+                    jd,
+                  }}
+                  locale={locale}
+                  onApply={applyDocument}
+                />
+              ) : null}
+
               <p className="text-xs leading-relaxed text-ink-600">{t("doc.privacy")}</p>
             </div>
           ) : null}
