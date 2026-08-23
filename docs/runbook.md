@@ -139,6 +139,30 @@ depth into overview / operations / customers and compliance / money / platform:
 Every one of those routes is asserted to exist by `tests/unit/panel-nav.test.ts`
 — a menu item that points at a 404 is a bug the nav itself should catch.
 
+### The public pages
+
+| Route      | What it is                                                         |
+| ---------- | ------------------------------------------------------------------ |
+| `/`        | Headline, two buttons, converter, live rate strip — nothing else   |
+| `/how`     | How a transfer works, moved off the front door                     |
+| `/why`     | The trust layer, moved off the front door                          |
+| `/about`   | Seventeen people across nine cities, and the drawn world map       |
+| `/contact` | File a ticket: message first, phone verification second (ADR 0020) |
+
+### Languages
+
+Four locales: `fa` (RTL, default, complete), `en`, `ar` (RTL) and `fr`. Arabic
+and French cover the customer-facing surface; the staff consoles do not, because
+the people in them are Iranian offices and Asaex staff working in Persian. Every
+locale is layered over English in `src/i18n/request.ts`, so an untranslated key
+renders as readable English rather than as a raw key.
+
+Run `pnpm messages` for per-locale coverage. It fails when Persian regresses —
+that one must stay complete — and reports the others. Legal documents under
+`/legal/*` are deliberately Persian and English only: an unreviewed terms of
+service in a jurisdiction is a liability, so Arabic and French readers get the
+English text somebody actually signed off.
+
 ## Bootstrapping the first account
 
 Nothing works from a cold start: the first person to sign in is an unverified
