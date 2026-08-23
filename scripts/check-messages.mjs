@@ -16,7 +16,7 @@
  */
 import { readFileSync } from "node:fs";
 
-const LOCALES = ["fa", "en", "ar", "fr"];
+const LOCALES = ["fa", "en", "ar", "fr", "de"];
 /** Locales expected to be complete. A gap here is an error, not a note. */
 const COMPLETE = ["fa"];
 

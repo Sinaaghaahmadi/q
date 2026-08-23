@@ -1,0 +1,43 @@
+{
+  "namespace": "admin",
+  "fa": {
+    "hintLabel": "این بخش چیست؟",
+    "hint": {
+      "dashboard": "نمای کلی پلتفرم: حجم تسویه، کارمزد، سفارش‌های در جریان و کارنامهٔ صرافی‌ها. صفحهٔ اولی که هر روز نگاه می‌کنید.",
+      "orders": "همهٔ سفارش‌های پلتفرم. می‌توانید وضعیت یک سفارش گیرکرده را با ثبت دلیل، دستی جلو ببرید.",
+      "exchanges": "ساخت صرافی تازه، تنظیم مسیرها و کارمزدش، و «به‌جای این صرافی عمل کن» برای وقتی جواب نمی‌دهد.",
+      "p2p": "آگهی‌ها و معامله‌های بازار همتا‌به‌همتا و داوری اختلاف‌ها.",
+      "support": "صف‌های پشتیبانی، تفکیک‌شده بر اساس نوع گفت‌وگو.",
+      "tickets": "همهٔ تیکت‌ها، از جمله آن‌هایی که صرافی روی‌شان مانده. پلتفرم بالای صرافی است و می‌توانید هر تیکتی را بردارید.",
+      "users": "هر مشتری پلتفرم. با باز کردن یک ردیف، تاریخچه، سطح و ورودهایش را می‌بینید.",
+      "kyc": "صف بررسی مدارک هویتی مشتری‌ها و صرافی‌ها. تأیید یا رد با شماست.",
+      "compliance": "تطبیق با تحریم، پیام‌های پرچم‌دار، و آستانه‌های سطح کاربری و بازار همتا.",
+      "finance": "دفتر کل، تراز حساب‌ها و تطبیق مالی.",
+      "settlement": "کارت‌ها و شباهای تسویهٔ همهٔ صرافی‌ها و وضعیت سقف هرکدام.",
+      "rates": "سلامت منابع نرخ و مقایسهٔ اسپرد صرافی‌ها با هم.",
+      "content": "متن‌های سایت: سؤالات متداول، اطلاعیه‌ها و قالب پیامک و ایمیل، به هر دو زبان.",
+      "settings": "کلیدهای فعال‌سازی امکانات، تنظیم‌های پلتفرم و تقویم کاری.",
+      "audit": "دفتر ممیزی: هر تغییری که هر کسی داده، با نام و زمان. قابل ویرایش نیست."
+    }
+  },
+  "en": {
+    "hintLabel": "What is this section?",
+    "hint": {
+      "dashboard": "The platform at a glance: settled volume, fees, orders in flight and how each office is performing. The page to open first each day.",
+      "orders": "Every order on the platform. You can move a stuck one forward by hand, with a reason on the record.",
+      "exchanges": "Create an office, set its corridors and fees, and act on its behalf when it goes quiet.",
+      "p2p": "Peer-to-peer offers and trades, and arbitration of disputes.",
+      "support": "Support queues, split by the kind of conversation.",
+      "tickets": "Every ticket, including ones an office is sitting on. The platform is above the office and you can take any of them.",
+      "users": "Every customer. Opening a row shows their history, tier and sign-ins.",
+      "kyc": "The review queue for customer and office identity documents. Approval or refusal is yours.",
+      "compliance": "Sanctions matching, flagged messages, and the tier and P2P thresholds.",
+      "finance": "The ledger, account balances and reconciliation.",
+      "settlement": "Settlement cards and IBANs for every office, and where each stands against its ceiling.",
+      "rates": "Rate-source health and how office spreads compare with each other.",
+      "content": "The site's text: FAQ, announcements and the SMS and email templates, in both languages.",
+      "settings": "Feature switches, platform settings and the business calendar.",
+      "audit": "The audit log: every change anyone made, with who and when. Not editable."
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
-  locales: ["fa", "en", "ar", "fr"],
+  locales: ["fa", "en", "ar", "fr", "de"],
   defaultLocale: "fa",
   localePrefix: "as-needed",
   // `/` is always Persian — the primary market. Users switch manually and the
@@ -16,6 +16,7 @@ export const localeDir: Record<Locale, "rtl" | "ltr"> = {
   ar: "rtl",
   en: "ltr",
   fr: "ltr",
+  de: "ltr",
 };
 
 /**
@@ -30,6 +31,7 @@ export const localeName: Record<Locale, string> = {
   en: "English",
   ar: "العربية",
   fr: "Français",
+  de: "Deutsch",
 };
 
 /**
@@ -52,4 +54,8 @@ export const localeTag: Record<Locale, string> = {
   en: "en-US",
   ar: "ar-AE",
   fr: "fr-FR",
+  // German groups thousands with a full stop and decimals with a comma, which
+  // is the opposite of English — a rate printed the English way reads as a
+  // different number entirely to a German speaker.
+  de: "de-DE",
 };

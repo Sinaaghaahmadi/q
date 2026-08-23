@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "brand": "Asaex",
+    "title": "Asaex — Devisentransfer, ganz einfach",
+    "description": "Ein Überweisungsmarktplatz zwischen lizenzierten Wechselstuben. Live-Kurse, transparente Gebühren, beaufsichtigte Abwicklung — meist innerhalb eines Werktags."
+  },
+  "nav": {
+    "home": "Start",
+    "primary": "Hauptnavigation",
+    "rates": "Kurse",
+    "transfer": "Transfer",
+    "orders": "Aufträge",
+    "profile": "Profil",
+    "startTransfer": "Transfer starten",
+    "accounts": "Konten",
+    "signin": "Anmelden",
+    "verify": "Verifizierung",
+    "office": "Wechselstube",
+    "admin": "Verwaltung",
+    "support": "Hilfe",
+    "p2p": "P2P-Markt",
+    "how": "So funktioniert es",
+    "why": "Warum Asa",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "locale": { "label": "Sprache" },
+  "common": { "phase2": "Kommt in Phase 2" },
+  "theme": {
+    "label": "Darstellung",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht",
+    "body": "Prüfen Sie die Adresse oder beginnen Sie auf der Startseite. Hat die App selbst Sie hierher gebracht, sagen Sie uns über die Hilfe Bescheid.",
+    "cta": "Zurück zur Startseite"
+  },
+  "offline": {
+    "metaTitle": "Offline",
+    "title": "Sie sind offline",
+    "body": "Die zwischengespeicherte App-Hülle ist verfügbar, und die zuletzt geladenen Kurse werden mit ihrem Zeitstempel angezeigt. Alles aktualisiert sich, sobald die Verbindung zurück ist.",
+    "cta": "Erneut versuchen"
+  },
+  "converter": {
+    "title": "Schnell umrechnen",
+    "youSend": "Sie senden",
+    "recipientGets": "Empfänger erhält",
+    "swap": "Währungen tauschen",
+    "fromCurrency": "Ausgangswährung",
+    "toCurrency": "Zielwährung",
+    "pickCurrency": "Währung wählen",
+    "searchCurrency": "Name oder Code suchen…",
+    "popular": "Häufig genutzt",
+    "all": "Alle Währungen",
+    "noResults": "Keine Währung passt zu dieser Suche.",
+    "unitRate": "1 {from} ≈ {rate} {toUnit}",
+    "toman": "Toman",
+    "midRateNote": "Mittelkurs; der endgültige Kurs und die Gebühren werden beim Absenden des Transfers einzeln aufgeführt.",
+    "cta": "Weiter zum Transfer"
+  },
+  "home": {
+    "metaTitle": "Live-Kurse und Transfers",
+    "stripTitle": "Live-Kurse auf den wichtigsten Korridoren",
+    "allRates": "Alle Kurse",
+    "hero": {
+      "title": "Devisentransfer, ganz einfach",
+      "ctaPrimary": "Transfer starten",
+      "ctaSecondary": "Kurse ansehen"
+    },
+    "how": {
+      "title": "Wie läuft ein Transfer ab?",
+      "subtitle": "Drei klare Schritte; bei jedem wissen Sie, was gerade passiert ist und was als Nächstes kommt.",
+      "steps": {
+        "1": {
+          "title": "Absenden und Kurs festhalten",
+          "body": "Sie legen Betrag und Zielkonto fest; der Kurs wird fünfzehn Minuten festgehalten und geeignete Wechselstuben sehen Ihre Anfrage."
+        },
+        "2": {
+          "title": "Wechselstube nimmt an, Toman wird eingezahlt",
+          "body": "Eine Wechselstube übernimmt die Anfrage und der Chat öffnet sich. Der Toman-Teil wird im beaufsichtigten Ablauf der Plattform eingezahlt und beidseitig bestätigt."
+        },
+        "3": {
+          "title": "Devisenausführung und Freigabe",
+          "body": "Die Wechselstube führt den Devisentransfer aus und lädt den Nachweis hoch; nach bestätigtem Eingang wird der Toman freigegeben und Ihr Beleg erstellt."
+        }
+      }
+    },
+    "trust": {
+      "title": "Warum Asa?",
+      "subtitle": "Keine Zahl bleibt verborgen: Grundkurs, Kursunterschied und jede Gebühr werden vor Ihrer Bestätigung einzeln aufgeführt.",
+      "counter": "{count} Transfers diese Woche abgeschlossen",
+      "items": {
+        "licensed": {
+          "title": "Nur lizenzierte Wechselstuben",
+          "body": "Jede Wechselstube zeigt ihre Lizenznummer und ihr öffentliches Profil, mit nachverfolgter Leistung — Geschwindigkeit und Bewertungen."
+        },
+        "rateLock": {
+          "title": "Kurs fünfzehn Minuten fest",
+          "body": "Ein bestätigter Kurs gilt bis zum Ende des Countdowns; danach ändert er sich nur mit Ihrer erneuten Zustimmung."
+        },
+        "sla": {
+          "title": "Eine klare Fristzusage",
+          "body": "Ziel ist ein Werktag, die vertragliche Obergrenze drei; Verzögerungen werden automatisch nachverfolgt."
+        },
+        "chat": {
+          "title": "Sprechen, bevor es verbindlich ist",
+          "body": "Sprechen Sie mit der Wechselstube schon ab der Prüfung — bevor irgendetwas endgültig ist."
+        }
+      }
+    }
+  },
+  "currencies": {
+    "IRT": "Iranischer Toman",
+    "USD": "US-Dollar",
+    "EUR": "Euro",
+    "GBP": "Britisches Pfund",
+    "AED": "VAE-Dirham",
+    "TRY": "Türkische Lira",
+    "IQD": "Irakischer Dinar",
+    "AZN": "Aserbaidschanischer Manat",
+    "AMD": "Armenischer Dram",
+    "GEL": "Georgischer Lari",
+    "RUB": "Russischer Rubel",
+    "AFN": "Afghani",
+    "PKR": "Pakistanische Rupie",
+    "TMT": "Turkmenischer Manat",
+    "OMR": "Omanischer Rial",
+    "KWD": "Kuwaitischer Dinar",
+    "QAR": "Katar-Riyal",
+    "SAR": "Saudi-Riyal",
+    "CAD": "Kanadischer Dollar",
+    "CNY": "Chinesischer Yuan"
+  },
+  "rates": {
+    "status": {
+      "loading": "Kurse werden geladen…",
+      "live": "Live-Kurs",
+      "updated": "Aktualisiert {ago}",
+      "degraded": "Kurs verzögert — Hauptquelle nicht erreichbar",
+      "demo": "Demodaten"
+    }
+  },
+  "ratesPage": {
+    "metaTitle": "Live-Wechselkurse",
+    "title": "Kurse",
+    "subtitle": "Live-Preise in Toman, Veränderung über 24 Stunden und der Trend über 30 Tage — Quelle: freier Markt (tgju).",
+    "search": "Währung suchen…",
+    "noResults": "Keine Währung passt zu dieser Suche.",
+    "favorite": "{currency} zu Favoriten hinzufügen",
+    "unfavorite": "{currency} aus Favoriten entfernen",
+    "range30": "30 T",
+    "range90": "90 T",
+    "range180": "180 T",
+    "alertCta": "Kursalarm",
+    "alertTitle": "Kursalarme",
+    "alertBody": "Sobald es Konten gibt, können Sie je Währung eine Schwelle setzen und per SMS, E-Mail oder Push benachrichtigt werden.",
+    "high24h": "Hoch 24 Std.",
+    "low24h": "Tief 24 Std.",
+    "chartSummary": "{code} über die letzten {days} Tage, von {from} bis {to} Toman."
+  },
+  "footer": {
+    "brand": "Asaex",
+    "tagline": "Devisentransfer, ganz einfach. Sie stellen eine Anfrage, eine lizenzierte Wechselstube führt sie aus, und jeder Schritt läuft unter Aufsicht der Plattform.",
+    "compliance": "Asa ist ein Überweisungsmarktplatz zwischen lizenzierten Wechselstuben. Es ist keine Wallet, die Ihr Geld verwahrt, kein Wertpapiermarkt, und es werden keine Einlagen gehalten.",
+    "product": "Produkt",
+    "legal": "Rechtliches",
+    "designSystem": "Designsystem",
+    "copyright": "© 2026 Asaex — Alle Rechte vorbehalten.",
+    "buildTag": "Demoversion · Phase 0–2",
+    "account": "Konto",
+    "company": "Unternehmen"
+  },
+  "track": {
+    "metaTitle": "Verfolgung von {ref}",
+    "arriving": "Unterwegs zum Empfänger",
+    "milestone": {
+      "accepted": "Die Wechselstube hat angenommen",
+      "funded": "Der Toman liegt bei der Wechselstube",
+      "sent": "Der Devisentransfer wurde gesendet",
+      "done": "Eingang bestätigt und abgerechnet"
+    },
+    "handledBy": "Bearbeitet von {office}.",
+    "dueBy": "Zugesagt bis {date}",
+    "privacyNote": "Diese Seite zeigt nur den Status — keine Namen, keine Kontonummern, keine Gebühren.",
+    "cta": "Selbst einen senden?",
+    "ctaLink": "Asaex ansehen",
+    "notFoundTitle": "Kein Transfer mit dieser Nummer",
+    "notFoundBody": "Prüfen Sie die Referenz; sie sieht aus wie ASA-XXXXXX.",
+    "throttledTitle": "Gleich noch einmal versuchen",
+    "throttledBody": "Es gibt gerade sehr viele Verfolgungsanfragen.",
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Diese Vorschau ist nicht mit einer Datenbank verbunden.",
+    "backHome": "Zurück zur Startseite",
+    "share": {
+      "title": "Verfolgung für den Empfänger",
+      "body": "Senden Sie diesen Link an die empfangende Person. Sie sieht den Status ohne Konto, und der Link trägt weder Namen noch Kontonummer.",
+      "copy": "Kopieren",
+      "copied": "Kopiert"
+    }
+  },
+  "about": {
+    "metaTitle": "Über uns",
+    "title": "Siebzehn Menschen, weltweit, an einer Sache",
+    "lede": "Wir sind ein Team von siebzehn Menschen, vollständig remote, aus allen Ecken der Welt — von Teheran und Dubai bis Berlin und Toronto. Kein Büro bringt uns zusammen, aber eine Sache tut es: dass das Senden von Geld für eine iranische Familie so einfach wird wie das Senden einer Nachricht. Aus Liebe zu Iran, und für das Iran, das als Nächstes entsteht.",
+    "map": {
+      "alt": "Eine Weltkarte mit neun Markierungen, alle mit Teheran verbunden, mit Arbeit, die sich auf den Strecken dazwischen bewegt.",
+      "caption": "Neun Punkte auf einer Karte, siebzehn Menschen dahinter — und eine gemeinsame Strecke."
+    },
+    "crafts": {
+      "product": {
+        "title": "Produktdesign",
+        "body": "Jeder Bildschirm, den Sie sehen, ist hier entstanden: vom Transferablauf bis zum Panel, auf dem eine Wechselstube ihre Arbeit mit vier Tastendrücken erledigt."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "body": "Unsere Aufgabe ist zu sagen, was dieses Produkt ist, ohne zu übertreiben. Die versprochene Zahl ist die Zahl, die beim Empfänger ankommt."
+      },
+      "bizdev": {
+        "title": "Geschäftsentwicklung",
+        "body": "Wir bauen das Netz lizenzierter Wechselstuben auf und öffnen die nächsten Korridore."
+      },
+      "strategy": {
+        "title": "Strategie",
+        "body": "Wir entscheiden, welcher Korridor als Nächstes öffnet — und was wir bewusst nicht bauen."
+      },
+      "support": {
+        "title": "Hilfe",
+        "body": "Wenn ein Transfer hängt, antwortet auf der anderen Seite ein Mensch — kein Bot."
+      },
+      "people": {
+        "title": "Personal",
+        "body": "Ein Team über acht Zeitzonen hält nicht von allein zusammen. Das ist die Arbeit von jemandem."
+      }
+    },
+    "mission": {
+      "title": "Warum wir das tun",
+      "body": "Für viele Iranerinnen und Iraner heißt Geld senden noch immer, einer unbekannten Nummer auf Telegram zu vertrauen und auf das Beste zu hoffen. Wir glauben, dieselbe Aufgabe lässt sich erledigen, mit denselben echten Wechselstuben, aber mit einem sichtbaren Kurs, einem verfolgbaren Weg und einer klaren Antwort darauf, wer verantwortlich ist.",
+      "contact": "Sprechen Sie mit uns",
+      "how": "Wie läuft ein Transfer ab?"
+    }
+  },
+  "contact": {
+    "metaTitle": "Kontakt",
+    "title": "Stimmt etwas nicht? Sagen Sie es uns.",
+    "lede": "Schreiben Sie Ihre Nachricht und senden Sie sie ab. Für die Nachverfolgung brauchen wir nur eine bestätigte Telefonnummer — keine Registrierung, kein weiteres Formular. Jedes Ticket bekommt eine Referenz und bleibt bis zum Ende verfolgbar.",
+    "categoryLabel": "Worum geht es?",
+    "categories": {
+      "order": "Ein Transfer",
+      "payment": "Zahlung",
+      "kyc": "Identitätsprüfung",
+      "p2p": "P2P-Markt",
+      "account": "Mein Konto",
+      "office": "Eine Wechselstube",
+      "other": "Etwas anderes"
+    },
+    "subjectLabel": "In einer Zeile",
+    "subjectPlaceholder": "z. B.: Meine Toman-Zahlung wurde nicht erfasst",
+    "bodyLabel": "Was passiert ist",
+    "bodyPlaceholder": "Je mehr Sie schreiben, desto schneller die Antwort: Auftragsreferenz, Datum, Betrag.",
+    "bodyHint": "Wenn Sie eine Auftragsreferenz haben, geben Sie sie an.",
+    "phoneLabel": "Telefonnummer",
+    "phoneHint": "Wir senden einen Code. Ihre Nachricht bleibt hier und geht nach der Bestätigung raus.",
+    "submit": "Senden und Code erhalten",
+    "submitSignedIn": "Ticket eröffnen",
+    "working": "Wird gesendet…",
+    "verify": {
+      "title": "Code eingeben",
+      "body": "Ein sechsstelliger Code ging an {phone}. Ihre Nachricht ist geschrieben und bereit.",
+      "codeLabel": "Bestätigungscode",
+      "cta": "Bestätigen und eröffnen",
+      "working": "Wird eröffnet…",
+      "back": "Nachricht oder Nummer ändern"
+    },
+    "done": {
+      "title": "Ticket eröffnet",
+      "body": "Das ist Ihre Ticketreferenz. Jede Statusänderung lässt sich damit verfolgen.",
+      "cta": "Unterhaltung öffnen"
+    },
+    "promises": {
+      "tracked": {
+        "title": "Alles nachverfolgbar",
+        "body": "Jedes Ticket hat eine Referenz, einen Status und eine Historie. Sie sehen, wer daran gearbeitet hat und wann."
+      },
+      "answered": {
+        "title": "Antwort binnen 24 Stunden",
+        "body": "Die zuständige Wechselstube hat 24 Stunden. Die Zeit bis zur ersten Antwort wird erfasst und gemessen."
+      },
+      "escalates": {
+        "title": "Wenn niemand antwortet",
+        "body": "Nach 24 Stunden Schweigen können Sie das Ticket an die Plattform eskalieren. Die Plattform steht über der Wechselstube."
+      }
+    },
+    "errors": {
+      "invalidPhone": "Diese Telefonnummer ist nicht gültig.",
+      "rateLimited": "Zu viele Anfragen. Versuchen Sie es gleich noch einmal.",
+      "sendFailed": "Der Code konnte nicht gesendet werden.",
+      "invalidCode": "Dieser Code stimmt nicht.",
+      "cooldown": "Sie haben in der letzten Stunde zu viele Tickets eröffnet.",
+      "failed": "Das Ticket konnte nicht eröffnet werden. Versuchen Sie es erneut.",
+      "network": "Der Server ist nicht erreichbar."
+    }
+  },
+  "toast": {
+    "copied": "Kopiert",
+    "copyFailed": "Kopieren nicht möglich. Markieren Sie den Text von Hand.",
+    "saved": "Gespeichert",
+    "sent": "Gesendet",
+    "failed": "Das hat nicht geklappt. Versuchen Sie es erneut.",
+    "offline": "Sie sind offline. Es werden die zuletzt bekannten Daten angezeigt."
+  }
+}

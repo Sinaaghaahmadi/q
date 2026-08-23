@@ -1607,6 +1607,24 @@
       "frozenSince": "Frozen since {date}",
       "frozenReasonLabel": "Recorded reason",
       "notFrozen": "This account is open."
+    },
+    "hintLabel": "What is this section?",
+    "hint": {
+      "dashboard": "The platform at a glance: settled volume, fees, orders in flight and how each office is performing. The page to open first each day.",
+      "orders": "Every order on the platform. You can move a stuck one forward by hand, with a reason on the record.",
+      "exchanges": "Create an office, set its corridors and fees, and act on its behalf when it goes quiet.",
+      "p2p": "Peer-to-peer offers and trades, and arbitration of disputes.",
+      "support": "Support queues, split by the kind of conversation.",
+      "tickets": "Every ticket, including ones an office is sitting on. The platform is above the office and you can take any of them.",
+      "users": "Every customer. Opening a row shows their history, tier and sign-ins.",
+      "kyc": "The review queue for customer and office identity documents. Approval or refusal is yours.",
+      "compliance": "Sanctions matching, flagged messages, and the tier and P2P thresholds.",
+      "finance": "The ledger, account balances and reconciliation.",
+      "settlement": "Settlement cards and IBANs for every office, and where each stands against its ceiling.",
+      "rates": "Rate-source health and how office spreads compare with each other.",
+      "content": "The site's text: FAQ, announcements and the SMS and email templates, in both languages.",
+      "settings": "Feature switches, platform settings and the business calendar.",
+      "audit": "The audit log: every change anyone made, with who and when. Not editable."
     }
   },
   "chat": {
@@ -2220,6 +2238,21 @@
         "resolved": "Closed",
         "archived": "Archived"
       }
+    },
+    "hintLabel": "What is this section?",
+    "hint": {
+      "today": "Today's work. Each card is one transfer and the green button does the next thing. If this is the only screen you open, that is enough.",
+      "requests": "Transfers no office has taken yet that you can claim, plus your own. For the full list and search.",
+      "tickets": "Customer complaints and questions whose first answer is yours. Go 24 hours without replying and the customer can escalate to the platform.",
+      "chat": "Every conversation in one place: messages about each transfer, and support messages.",
+      "accounts": "Your card and IBAN numbers that customers see when paying in. Public means the customer can see it.",
+      "liquidity": "Your balance in each currency, from the ledger. To see how much Toman and how much foreign currency you hold.",
+      "rates": "For each corridor, the rate difference (spread) and the smallest and largest amount you accept.",
+      "customers": "The customers who have dealt with you, and their identity-check status.",
+      "team": "Colleagues with access to this panel. You can grant access or take it away.",
+      "settlement": "When a card hits its ceiling, define a fresh card or IBAN here so payments keep coming in.",
+      "reports": "Volume and fees over six months, completion speed and how well deadlines were met.",
+      "settings": "Opening hours, auto-accept, and which number and email get the alerts."
     }
   },
   "toast": {

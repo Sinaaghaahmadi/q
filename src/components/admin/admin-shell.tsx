@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
-import { AdminNavLink } from "@/components/admin/admin-nav-link";
+import { PanelNavLink } from "@/components/layout/panel-nav-link";
 import { ImpersonationBanner } from "@/components/admin/impersonation-banner";
 import { can, type Capability, type Seat } from "@/lib/auth/can";
 import type { ExchangeOffice, Impersonation } from "@/lib/supabase/types";
@@ -128,9 +128,16 @@ export async function AdminShell({
                   <ul className="flex gap-1 lg:flex-col">
                     {group.items.map((item) => (
                       <li key={item.href}>
-                        <AdminNavLink href={item.href} label={t(`nav.${item.key}`)}>
+                        <PanelNavLink
+                          href={item.href}
+                          label={t(`nav.${item.key}`)}
+                          hint={t(`hint.${item.key}`)}
+                          hintLabel={t("hintLabel")}
+                          root="/admin"
+                          compact
+                        >
                           <item.icon className="size-4 shrink-0" aria-hidden />
-                        </AdminNavLink>
+                        </PanelNavLink>
                       </li>
                     ))}
                   </ul>

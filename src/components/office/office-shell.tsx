@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
-import { OfficeNavLink } from "@/components/office/office-nav-link";
+import { PanelNavLink } from "@/components/layout/panel-nav-link";
 import type { ExchangeOffice } from "@/lib/supabase/types";
 
 /**
@@ -71,9 +71,15 @@ export async function OfficeShell({
         <ul className="flex min-w-max gap-1 rounded-2xl bg-ink-300/25 p-1">
           {SECTIONS.map((section) => (
             <li key={section.href}>
-              <OfficeNavLink href={section.href} label={t(`nav.${section.key}`)}>
+              <PanelNavLink
+                href={section.href}
+                label={t(`nav.${section.key}`)}
+                hint={t(`hint.${section.key}`)}
+                hintLabel={t("hintLabel")}
+                root="/office"
+              >
                 <section.icon className="size-4 shrink-0" aria-hidden />
-              </OfficeNavLink>
+              </PanelNavLink>
             </li>
           ))}
         </ul>
