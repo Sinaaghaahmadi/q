@@ -36,36 +36,187 @@ export type CoinTone = "brand" | "gold" | "silver" | "bronze";
 
 export interface CurrencyMeta {
   code: CurrencyCode;
-  /** Glyph embossed on the 3D coin face. */
+  /**
+   * Glyph embossed on the 3D coin face.
+   *
+   * Where a currency's own symbol is ambiguous against another we carry on this
+   * board, the fuller conventional form is used instead: the Gulf currencies
+   * all reduce to «ر» or «د» on their own, and three indistinguishable coins in
+   * a row are worse than none. `د.إ`, `د.ك`, `ر.ع`, `ر.ق` and `C$` are the
+   * forms those currencies are actually written in.
+   */
   glyph: string;
   /** Display decimals for amounts of this currency. */
   decimals: number;
   /** tgju symbol for the CURRENCY/IRR price, if quoted there. */
   tgjuSymbol?: string;
   tone: CoinTone;
+  /**
+   * A single hue lifted from the issuing country's flag, drawn as a thin arc on
+   * the coin's rim.
+   *
+   * Not a flag — §2.6 keeps the coins one metal set and never mixes flags into
+   * them, and a flag at 24px is mush anyway. But an all-metal board of twenty
+   * coins is a board where nothing is findable at a glance, and this is enough
+   * of a cue to locate a currency by memory without breaking the rig.
+   */
+  accent: string;
 }
 
 export const CURRENCIES: Record<CurrencyCode, CurrencyMeta> = {
-  IRT: { code: "IRT", glyph: "ت", decimals: 0, tone: "brand" },
-  USD: { code: "USD", glyph: "$", decimals: 2, tgjuSymbol: "price_dollar_rl", tone: "gold" },
-  EUR: { code: "EUR", glyph: "€", decimals: 2, tgjuSymbol: "price_eur", tone: "gold" },
-  GBP: { code: "GBP", glyph: "£", decimals: 2, tgjuSymbol: "price_gbp", tone: "gold" },
-  AED: { code: "AED", glyph: "د", decimals: 2, tgjuSymbol: "price_aed", tone: "silver" },
-  TRY: { code: "TRY", glyph: "₺", decimals: 2, tgjuSymbol: "price_try", tone: "silver" },
-  IQD: { code: "IQD", glyph: "ع", decimals: 0, tgjuSymbol: "price_iqd", tone: "bronze" },
-  AZN: { code: "AZN", glyph: "₼", decimals: 2, tgjuSymbol: "price_azn", tone: "silver" },
-  AMD: { code: "AMD", glyph: "֏", decimals: 0, tgjuSymbol: "price_amd", tone: "bronze" },
-  GEL: { code: "GEL", glyph: "₾", decimals: 2, tgjuSymbol: "price_gel", tone: "silver" },
-  RUB: { code: "RUB", glyph: "₽", decimals: 2, tgjuSymbol: "price_rub", tone: "bronze" },
-  AFN: { code: "AFN", glyph: "؋", decimals: 0, tgjuSymbol: "price_afn", tone: "bronze" },
-  PKR: { code: "PKR", glyph: "₨", decimals: 0, tgjuSymbol: "price_pkr", tone: "bronze" },
-  TMT: { code: "TMT", glyph: "m", decimals: 2, tgjuSymbol: "price_tmt", tone: "silver" },
-  OMR: { code: "OMR", glyph: "ر", decimals: 3, tgjuSymbol: "price_omr", tone: "gold" },
-  KWD: { code: "KWD", glyph: "د", decimals: 3, tgjuSymbol: "price_kwd", tone: "gold" },
-  QAR: { code: "QAR", glyph: "ر", decimals: 2, tgjuSymbol: "price_qar", tone: "silver" },
-  SAR: { code: "SAR", glyph: "ر", decimals: 2, tgjuSymbol: "price_sar", tone: "silver" },
-  CAD: { code: "CAD", glyph: "$", decimals: 2, tgjuSymbol: "price_cad", tone: "silver" },
-  CNY: { code: "CNY", glyph: "¥", decimals: 2, tgjuSymbol: "price_cny", tone: "bronze" },
+  IRT: { code: "IRT", glyph: "ت", decimals: 0, tone: "brand", accent: "#239f40" },
+  USD: {
+    code: "USD",
+    glyph: "$",
+    decimals: 2,
+    tgjuSymbol: "price_dollar_rl",
+    tone: "gold",
+    accent: "#3c3b6e",
+  },
+  EUR: {
+    code: "EUR",
+    glyph: "€",
+    decimals: 2,
+    tgjuSymbol: "price_eur",
+    tone: "gold",
+    accent: "#003399",
+  },
+  GBP: {
+    code: "GBP",
+    glyph: "£",
+    decimals: 2,
+    tgjuSymbol: "price_gbp",
+    tone: "gold",
+    accent: "#c8102e",
+  },
+  AED: {
+    code: "AED",
+    glyph: "د.إ",
+    decimals: 2,
+    tgjuSymbol: "price_aed",
+    tone: "silver",
+    accent: "#00732f",
+  },
+  TRY: {
+    code: "TRY",
+    glyph: "₺",
+    decimals: 2,
+    tgjuSymbol: "price_try",
+    tone: "silver",
+    accent: "#e30a17",
+  },
+  IQD: {
+    code: "IQD",
+    glyph: "ع.د",
+    decimals: 0,
+    tgjuSymbol: "price_iqd",
+    tone: "bronze",
+    accent: "#007a3d",
+  },
+  AZN: {
+    code: "AZN",
+    glyph: "₼",
+    decimals: 2,
+    tgjuSymbol: "price_azn",
+    tone: "silver",
+    accent: "#00b5e2",
+  },
+  AMD: {
+    code: "AMD",
+    glyph: "֏",
+    decimals: 0,
+    tgjuSymbol: "price_amd",
+    tone: "bronze",
+    accent: "#d90012",
+  },
+  GEL: {
+    code: "GEL",
+    glyph: "₾",
+    decimals: 2,
+    tgjuSymbol: "price_gel",
+    tone: "silver",
+    accent: "#ff0000",
+  },
+  RUB: {
+    code: "RUB",
+    glyph: "₽",
+    decimals: 2,
+    tgjuSymbol: "price_rub",
+    tone: "bronze",
+    accent: "#0039a6",
+  },
+  AFN: {
+    code: "AFN",
+    glyph: "؋",
+    decimals: 0,
+    tgjuSymbol: "price_afn",
+    tone: "bronze",
+    accent: "#007a36",
+  },
+  PKR: {
+    code: "PKR",
+    glyph: "₨",
+    decimals: 0,
+    tgjuSymbol: "price_pkr",
+    tone: "bronze",
+    accent: "#01411c",
+  },
+  TMT: {
+    code: "TMT",
+    glyph: "m",
+    decimals: 2,
+    tgjuSymbol: "price_tmt",
+    tone: "silver",
+    accent: "#28ae66",
+  },
+  OMR: {
+    code: "OMR",
+    glyph: "ر.ع",
+    decimals: 3,
+    tgjuSymbol: "price_omr",
+    tone: "gold",
+    accent: "#c8102e",
+  },
+  KWD: {
+    code: "KWD",
+    glyph: "د.ك",
+    decimals: 3,
+    tgjuSymbol: "price_kwd",
+    tone: "gold",
+    accent: "#007a3d",
+  },
+  QAR: {
+    code: "QAR",
+    glyph: "ر.ق",
+    decimals: 2,
+    tgjuSymbol: "price_qar",
+    tone: "silver",
+    accent: "#8a1538",
+  },
+  SAR: {
+    code: "SAR",
+    glyph: "ر.س",
+    decimals: 2,
+    tgjuSymbol: "price_sar",
+    tone: "silver",
+    accent: "#006c35",
+  },
+  CAD: {
+    code: "CAD",
+    glyph: "C$",
+    decimals: 2,
+    tgjuSymbol: "price_cad",
+    tone: "silver",
+    accent: "#d80621",
+  },
+  CNY: {
+    code: "CNY",
+    glyph: "¥",
+    decimals: 2,
+    tgjuSymbol: "price_cny",
+    tone: "bronze",
+    accent: "#de2910",
+  },
 };
 
 export const FOREIGN_CODES = CURRENCY_CODES.filter(

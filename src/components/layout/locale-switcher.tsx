@@ -12,12 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { routing, type Locale } from "@/i18n/routing";
-
-const LOCALE_LABELS: Record<Locale, string> = {
-  fa: "فارسی",
-  en: "English",
-};
+import { localeName, routing, type Locale } from "@/i18n/routing";
 
 export function LocaleSwitcher() {
   const t = useTranslations("locale");
@@ -45,7 +40,7 @@ export function LocaleSwitcher() {
             checked={locale === value}
             onCheckedChange={() => switchTo(value)}
           >
-            {LOCALE_LABELS[value]}
+            {localeName[value]}
           </DropdownMenuCheckItem>
         ))}
       </DropdownMenuContent>

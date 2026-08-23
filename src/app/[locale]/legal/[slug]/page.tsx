@@ -31,8 +31,13 @@ export default async function LegalPage({
   setRequestLocale(locale);
   if (!LEGAL_SLUGS.includes(slug as LegalSlug)) notFound();
 
-  const appLocale = (locale === "fa" ? "fa" : "en") as AppLocale;
-  const doc = LEGAL_CONTENT[slug as LegalSlug][appLocale];
+  const appLocale = locale as AppLocale;
+  // Legal text exists in Persian and English only, and deliberately so: a
+  // terms-of-service nobody has had reviewed in a jurisdiction is a liability,
+  // not a feature. Arabic and French readers get the English document — which
+  // is a real document somebody signed off — rather than a translation of one.
+  const legalLocale: "fa" | "en" = locale === "fa" ? "fa" : "en";
+  const doc = LEGAL_CONTENT[slug as LegalSlug][legalLocale];
   const t = await getTranslations("legal");
   const titles = await getTranslations("legal.titles");
 

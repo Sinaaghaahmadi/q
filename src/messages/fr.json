@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "brand": "Asaex",
+    "title": "Asaex — Le transfert de devises, en simple",
+    "description": "Une place de marché de transfert entre bureaux de change agréés. Taux en direct, frais détaillés, règlement supervisé — généralement sous un jour ouvré."
+  },
+  "nav": {
+    "home": "Accueil",
+    "primary": "Navigation principale",
+    "rates": "Taux",
+    "transfer": "Transfert",
+    "orders": "Commandes",
+    "profile": "Profil",
+    "startTransfer": "Lancer un transfert",
+    "accounts": "Comptes",
+    "signin": "Se connecter",
+    "verify": "Vérification",
+    "office": "Bureau",
+    "admin": "Administration",
+    "support": "Assistance",
+    "p2p": "Marché P2P",
+    "how": "Comment ça marche",
+    "why": "Pourquoi Asa",
+    "about": "À propos",
+    "contact": "Nous contacter"
+  },
+  "locale": { "label": "Langue" },
+  "common": { "phase2": "Arrive en phase 2" },
+  "theme": {
+    "label": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "notFound": {
+    "title": "Cette page n'existe pas",
+    "body": "Vérifiez l'adresse ou repartez de l'accueil. Si c'est l'application elle-même qui vous a amené ici, dites-le-nous via l'assistance.",
+    "cta": "Retour à l'accueil"
+  },
+  "offline": {
+    "metaTitle": "Hors ligne",
+    "title": "Vous êtes hors ligne",
+    "body": "La coque de l'application en cache est disponible et les derniers taux récupérés s'affichent avec leur horodatage. Tout se rafraîchit dès le retour de la connexion.",
+    "cta": "Réessayer"
+  },
+  "converter": {
+    "title": "Conversion rapide",
+    "youSend": "Vous envoyez",
+    "recipientGets": "Le destinataire reçoit",
+    "swap": "Inverser les devises",
+    "fromCurrency": "Devise de départ",
+    "toCurrency": "Devise d'arrivée",
+    "pickCurrency": "Choisir une devise",
+    "searchCurrency": "Rechercher un nom ou un code…",
+    "popular": "Les plus courantes",
+    "all": "Toutes les devises",
+    "noResults": "Aucune devise ne correspond à cette recherche.",
+    "unitRate": "1 {from} ≈ {rate} {toUnit}",
+    "toman": "toman",
+    "midRateNote": "Taux milieu de marché ; le taux final et les frais sont détaillés au moment de soumettre le transfert.",
+    "cta": "Continuer vers le transfert"
+  },
+  "home": {
+    "metaTitle": "Taux en direct et transferts",
+    "stripTitle": "Taux en direct sur les principaux corridors",
+    "allRates": "Tous les taux",
+    "hero": {
+      "title": "Le transfert de devises, en simple",
+      "ctaPrimary": "Lancer un transfert",
+      "ctaSecondary": "Voir les taux"
+    },
+    "how": {
+      "title": "Comment se déroule un transfert ?",
+      "subtitle": "Trois étapes claires ; à chacune, vous savez ce qui vient de se passer et ce qui suit.",
+      "steps": {
+        "1": {
+          "title": "Soumettre et bloquer le taux",
+          "body": "Vous indiquez le montant et le compte destinataire ; le taux est bloqué quinze minutes et les bureaux de change éligibles voient votre demande."
+        },
+        "2": {
+          "title": "Le bureau accepte, le toman est versé",
+          "body": "Un bureau prend la demande et la discussion s'ouvre. Le versement en toman se fait dans le circuit supervisé par la plateforme et est confirmé des deux côtés."
+        },
+        "3": {
+          "title": "Exécution en devise et libération",
+          "body": "Le bureau exécute le transfert en devise et téléverse la preuve ; une fois la réception confirmée, le toman est libéré et votre reçu est émis."
+        }
+      }
+    },
+    "trust": {
+      "title": "Pourquoi Asa ?",
+      "subtitle": "Aucun chiffre n'est caché : le taux de base, l'écart de taux et chaque frais sont détaillés avant votre confirmation.",
+      "counter": "{count} transferts terminés cette semaine",
+      "items": {
+        "licensed": {
+          "title": "Uniquement des bureaux agréés",
+          "body": "Chaque bureau affiche son numéro d'agrément et son profil public, avec une performance suivie — rapidité et évaluations."
+        },
+        "rateLock": {
+          "title": "Taux bloqué quinze minutes",
+          "body": "Un taux confirmé tient jusqu'à la fin du compte à rebours ; ensuite il ne change qu'avec votre nouvelle acceptation."
+        },
+        "sla": {
+          "title": "Un engagement de délai clair",
+          "body": "L'objectif est d'un jour ouvré, le plafond contractuel de trois ; les retards sont relancés automatiquement."
+        },
+        "chat": {
+          "title": "Parlez avant que ce soit ferme",
+          "body": "Échangez avec le bureau dès l'examen de la demande — avant que quoi que ce soit ne soit définitif."
+        }
+      }
+    }
+  },
+  "currencies": {
+    "IRT": "Toman iranien",
+    "USD": "Dollar américain",
+    "EUR": "Euro",
+    "GBP": "Livre sterling",
+    "AED": "Dirham des Émirats",
+    "TRY": "Livre turque",
+    "IQD": "Dinar irakien",
+    "AZN": "Manat azerbaïdjanais",
+    "AMD": "Dram arménien",
+    "GEL": "Lari géorgien",
+    "RUB": "Rouble russe",
+    "AFN": "Afghani",
+    "PKR": "Roupie pakistanaise",
+    "TMT": "Manat turkmène",
+    "OMR": "Rial omanais",
+    "KWD": "Dinar koweïtien",
+    "QAR": "Riyal qatari",
+    "SAR": "Riyal saoudien",
+    "CAD": "Dollar canadien",
+    "CNY": "Yuan chinois"
+  },
+  "rates": {
+    "status": {
+      "loading": "Récupération des taux…",
+      "live": "Taux en direct",
+      "updated": "Mis à jour {ago}",
+      "degraded": "Taux différé — source principale indisponible",
+      "demo": "Données de démonstration"
+    }
+  },
+  "ratesPage": {
+    "metaTitle": "Taux de change en direct",
+    "title": "Taux",
+    "subtitle": "Prix en direct en toman, variation sur 24 h et tendance sur 30 jours — source : marché libre (tgju).",
+    "search": "Rechercher une devise…",
+    "noResults": "Aucune devise ne correspond à cette recherche.",
+    "favorite": "Ajouter {currency} aux favoris",
+    "unfavorite": "Retirer {currency} des favoris",
+    "range30": "30 j",
+    "range90": "90 j",
+    "range180": "180 j",
+    "alertCta": "Alerte de prix",
+    "alertTitle": "Alertes de prix",
+    "alertBody": "Dès l'arrivée des comptes, vous pourrez fixer un seuil par devise et être averti par SMS, e-mail ou notification.",
+    "high24h": "Plus haut 24 h",
+    "low24h": "Plus bas 24 h",
+    "chartSummary": "{code} sur les {days} derniers jours, de {from} à {to} toman."
+  },
+  "footer": {
+    "brand": "Asaex",
+    "tagline": "Le transfert de devises, en simple. Vous soumettez une demande, un bureau de change agréé l'exécute, et chaque étape se déroule sous la supervision de la plateforme.",
+    "compliance": "Asa est une place de marché de transfert entre bureaux de change agréés. Ce n'est pas un portefeuille qui détient votre argent, ni un marché de titres, et elle ne conserve aucun dépôt.",
+    "product": "Produit",
+    "legal": "Mentions légales",
+    "designSystem": "Système de design",
+    "copyright": "© 2026 Asaex — Tous droits réservés.",
+    "buildTag": "Version de démonstration · Phase 0–2",
+    "account": "Compte",
+    "company": "Entreprise"
+  },
+  "track": {
+    "metaTitle": "Suivi de {ref}",
+    "arriving": "En route vers le destinataire",
+    "milestone": {
+      "accepted": "Le bureau de change a accepté",
+      "funded": "Le toman est détenu par le bureau",
+      "sent": "Le transfert en devise a été envoyé",
+      "done": "Réception confirmée et réglée"
+    },
+    "handledBy": "Pris en charge par {office}.",
+    "dueBy": "Engagé pour le {date}",
+    "privacyNote": "Cette page n'affiche que l'état — aucun nom, aucun numéro de compte, aucun frais.",
+    "cta": "Envie d'en envoyer un vous aussi ?",
+    "ctaLink": "Découvrir Asaex",
+    "notFoundTitle": "Aucun transfert de ce numéro",
+    "notFoundBody": "Vérifiez la référence ; elle ressemble à ASA-XXXXXX.",
+    "throttledTitle": "Réessayez dans un instant",
+    "throttledBody": "Il y a beaucoup de demandes de suivi en ce moment.",
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "Cet aperçu n'est pas relié à une base de données.",
+    "backHome": "Retour à l'accueil",
+    "share": {
+      "title": "Suivi pour le destinataire",
+      "body": "Envoyez ce lien à la personne qui reçoit. Elle voit l'état sans compte, et le lien ne porte le nom ni le numéro de compte de personne.",
+      "copy": "Copier",
+      "copied": "Copié"
+    }
+  },
+  "about": {
+    "metaTitle": "À propos",
+    "title": "Dix-sept personnes, partout dans le monde, sur une seule chose",
+    "lede": "Nous sommes une équipe de dix-sept personnes en télétravail complet, aux quatre coins du monde — de Téhéran et Dubaï à Berlin et Toronto. Aucun bureau ne nous réunit, mais une chose nous rassemble : rendre l'envoi d'argent pour une famille iranienne aussi simple que l'envoi d'un message. Avec amour pour l'Iran, et pour l'Iran qui se construit ensuite.",
+    "map": {
+      "alt": "Une carte du monde avec neuf marqueurs, tous reliés à Téhéran, et le travail circulant sur les trajets entre eux.",
+      "caption": "Neuf points sur une carte, dix-sept personnes derrière — et un trajet commun."
+    },
+    "crafts": {
+      "product": {
+        "title": "Design produit",
+        "body": "Chaque écran que vous voyez a été fait ici : du parcours de transfert au panneau où un bureau termine son travail en quatre appuis."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "body": "Notre travail est de dire ce qu'est ce produit sans en rajouter. Le chiffre promis est le chiffre que reçoit le destinataire."
+      },
+      "bizdev": {
+        "title": "Développement commercial",
+        "body": "Nous construisons le réseau de bureaux de change agréés et ouvrons les corridors suivants."
+      },
+      "strategy": {
+        "title": "Stratégie",
+        "body": "Nous décidons quel corridor ouvre ensuite, et ce que nous choisissons délibérément de ne pas construire."
+      },
+      "support": {
+        "title": "Assistance",
+        "body": "Quand un transfert se bloque, il y a une personne en face qui répond — pas un robot."
+      },
+      "people": {
+        "title": "Ressources humaines",
+        "body": "Une équipe répartie sur huit fuseaux horaires ne tient pas ensemble toute seule. C'est le travail de quelqu'un."
+      }
+    },
+    "mission": {
+      "title": "Pourquoi nous faisons cela",
+      "body": "Pour beaucoup d'Iraniens, envoyer des devises signifie encore faire confiance à un numéro inconnu sur Telegram et espérer que tout se passe bien. Nous pensons que le même travail peut se faire, avec les mêmes bureaux de change réels, mais avec un taux visible, un trajet suivable et une réponse claire à la question de savoir qui est responsable.",
+      "contact": "Parlez-nous",
+      "how": "Comment se déroule un transfert ?"
+    }
+  },
+  "contact": {
+    "metaTitle": "Nous contacter",
+    "title": "Un problème ? Dites-le-nous.",
+    "lede": "Écrivez votre message et envoyez-le. Pour assurer le suivi, il nous faut seulement un numéro de téléphone vérifié — pas d'inscription, pas de formulaire supplémentaire. Chaque ticket reçoit une référence et reste suivable jusqu'au bout.",
+    "categoryLabel": "De quoi s'agit-il ?",
+    "categories": {
+      "order": "Un transfert",
+      "payment": "Paiement",
+      "kyc": "Vérification d'identité",
+      "p2p": "Marché P2P",
+      "account": "Mon compte",
+      "office": "Un bureau de change",
+      "other": "Autre chose"
+    },
+    "subjectLabel": "En une ligne",
+    "subjectPlaceholder": "ex. : mon versement en toman n'a pas été enregistré",
+    "bodyLabel": "Ce qui s'est passé",
+    "bodyPlaceholder": "Plus vous écrivez, plus la réponse arrive vite : référence de commande, date, montant.",
+    "bodyHint": "Si vous avez une référence de commande, indiquez-la.",
+    "phoneLabel": "Numéro de téléphone",
+    "phoneHint": "Nous envoyons un seul code. Votre message reste ici et part une fois la confirmation faite.",
+    "submit": "Envoyer et recevoir un code",
+    "submitSignedIn": "Ouvrir le ticket",
+    "working": "Envoi…",
+    "verify": {
+      "title": "Saisissez le code",
+      "body": "Un code à six chiffres a été envoyé au {phone}. Votre message est écrit et prêt à partir.",
+      "codeLabel": "Code de vérification",
+      "cta": "Confirmer et ouvrir",
+      "working": "Ouverture…",
+      "back": "Modifier le message ou le numéro"
+    },
+    "done": {
+      "title": "Ticket ouvert",
+      "body": "Voici la référence de votre ticket. Chaque changement d'état se suit grâce à elle.",
+      "cta": "Ouvrir la conversation"
+    },
+    "promises": {
+      "tracked": {
+        "title": "Tout est suivable",
+        "body": "Chaque ticket a une référence, un état et un historique. Vous voyez qui y a travaillé et quand."
+      },
+      "answered": {
+        "title": "Une réponse sous 24 heures",
+        "body": "Le bureau de change responsable dispose de 24 heures. Le délai de première réponse est enregistré et mesuré."
+      },
+      "escalates": {
+        "title": "Si personne ne répond",
+        "body": "Après 24 heures de silence, vous pouvez escalader le ticket vers la plateforme. La plateforme est au-dessus du bureau."
+      }
+    },
+    "errors": {
+      "invalidPhone": "Ce numéro de téléphone n'est pas valide.",
+      "rateLimited": "Trop de demandes. Réessayez dans un instant.",
+      "sendFailed": "Le code n'a pas pu être envoyé.",
+      "invalidCode": "Ce code n'est pas le bon.",
+      "cooldown": "Vous avez ouvert trop de tickets dans la dernière heure.",
+      "failed": "Le ticket n'a pas pu être ouvert. Réessayez.",
+      "network": "Impossible de joindre le serveur."
+    }
+  },
+  "toast": {
+    "copied": "Copié",
+    "copyFailed": "Copie impossible. Sélectionnez le texte à la main.",
+    "saved": "Enregistré",
+    "sent": "Envoyé",
+    "failed": "Cela n'a pas abouti. Réessayez.",
+    "offline": "Vous êtes hors ligne. Dernières données connues affichées."
+  }
+}

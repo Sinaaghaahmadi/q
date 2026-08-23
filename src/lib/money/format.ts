@@ -1,12 +1,27 @@
 import { CURRENCIES, type CurrencyCode } from "@/lib/rates/catalog";
+import { localeTag, type Locale } from "@/i18n/routing";
 
-export type AppLocale = "fa" | "en";
+/**
+ * Every locale the app formats numbers and dates for.
+ *
+ * Kept as an alias of the routing `Locale` rather than its own list, so adding
+ * a language cannot leave the formatter behind — which is exactly what would
+ * have happened here: this file said `"fa" | "en"` while routing gained Arabic
+ * and French, and every call site casts to it.
+ */
+export type AppLocale = Locale;
 
 const PERSIAN_DIGITS = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"] as const;
 
-/** Intl locale used for display formatting. fa-IR renders Persian digits (§18). */
+/**
+ * Intl locale used for display formatting.
+ *
+ * fa-IR renders Persian digits and ar-AE renders Eastern Arabic ones (§18);
+ * both are the digits those readers expect to see on a price. The tags live in
+ * `@/i18n/routing` beside the locale list so the two cannot drift.
+ */
 function intlLocale(locale: AppLocale): string {
-  return locale === "fa" ? "fa-IR" : "en-US";
+  return localeTag[locale] ?? "en-US";
 }
 
 /**

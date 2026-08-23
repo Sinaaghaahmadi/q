@@ -6,6 +6,12 @@ import { CURRENCIES, type CoinTone, type CurrencyCode } from "../rates/catalog";
  * brand-neutral metal tones, embossed glyph. Generated as SVG so it stays
  * crisp at every size; `scripts/generate-brand-assets.ts` exports the same
  * markup to /public/icons/currency as .svg plus 1×/2×/3× .webp sprites.
+ *
+ * Each coin also carries one short arc on its rim in a hue lifted from the
+ * issuing country's flag. Twenty coins in four metals meant four currencies
+ * that looked alike and sixteen that were merely hard to place; a single arc is
+ * enough to find a currency by memory without turning the set into flags, which
+ * §2.6 rules out and which would be mush at 24px regardless.
  */
 
 interface ToneSpec {
@@ -52,9 +58,19 @@ const TONES: Record<CoinTone, ToneSpec> = {
   },
 };
 
-/** Glyphs longer than one char get a smaller face size. */
+/**
+ * Face size by glyph width.
+ *
+ * The Gulf currencies carry a two-part glyph — `د.إ`, `ر.ق` — precisely so they
+ * are told apart from each other, and that only works if the whole thing fits
+ * inside the rim rather than being clipped at the ellipse. Three steps rather
+ * than two: `C$` and `ع.د` are wider than one character but narrower than the
+ * dotted Arabic pairs.
+ */
 function glyphFontSize(glyph: string): number {
-  return glyph.length > 1 ? 17 : 23;
+  if (glyph.length >= 3) return 14;
+  if (glyph.length === 2) return 17;
+  return 23;
 }
 
 export function coinSvg(code: CurrencyCode, idPrefix: string): string {
@@ -83,6 +99,7 @@ export function coinSvg(code: CurrencyCode, idPrefix: string): string {
   <ellipse cx="32" cy="30.4" rx="24" ry="22.4" fill="url(#${p}-face)"/>
   <ellipse cx="32" cy="30.4" rx="19.2" ry="17.9" fill="none" stroke="${tone.rim}" stroke-opacity="0.8" stroke-width="1.5"/>
   <ellipse cx="32" cy="30.4" rx="19.2" ry="17.9" fill="none" stroke="${tone.faceLight}" stroke-opacity="0.55" stroke-width="0.8" stroke-dasharray="3 100" stroke-dashoffset="-22"/>
+  <ellipse cx="32" cy="30.4" rx="22" ry="20.5" fill="none" stroke="${meta.accent}" stroke-opacity="0.9" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="26 200" stroke-dashoffset="-96" transform="rotate(0 32 30.4)"/>
   <text x="32.9" y="31.3" text-anchor="middle" dominant-baseline="central" font-family="Vazirmatn, Inter, system-ui, sans-serif" font-weight="700" font-size="${fs}" fill="${tone.glyphDark}" opacity="0.85">${meta.glyph}</text>
   <text x="31.6" y="30" text-anchor="middle" dominant-baseline="central" font-family="Vazirmatn, Inter, system-ui, sans-serif" font-weight="700" font-size="${fs}" fill="${tone.glyphLight}">${meta.glyph}</text>
   <ellipse cx="22" cy="18" rx="9" ry="5.4" fill="#ffffff" opacity="0.32" filter="url(#${p}-blur)" transform="rotate(-28 22 18)"/>
