@@ -93,11 +93,11 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
         />
       </div>
 
-      <Card className="divide-y divide-ink-300/40 overflow-hidden">
+      <Card className="list-rise divide-y divide-ink-300/40 overflow-hidden">
         {sorted.length === 0 ? (
           <p className="p-8 text-center text-sm text-ink-600">{t("ratesPage.noResults")}</p>
         ) : (
-          sorted.map((code) => {
+          sorted.map((code, index) => {
             const quote = snapshot?.rates[code];
             const points = history?.series[code]?.points.map((p) => p.c) ?? [];
             const tone =
@@ -110,6 +110,7 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
             return (
               <div
                 key={code}
+                style={{ "--i": index } as React.CSSProperties}
                 className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-canvas"
               >
                 <button
@@ -119,14 +120,14 @@ export function RatesView({ initialSnapshot }: { initialSnapshot?: RatesSnapshot
                     currency: t(`currencies.${code}`),
                   })}
                   aria-pressed={starred}
-                  className="rounded-lg p-1.5 text-ink-600 transition-colors hover:bg-ink-300/20"
+                  className="pressable rounded-lg p-1.5 text-ink-600 hover:bg-ink-300/20"
                 >
                   <Star className={cn("size-4", starred && "fill-warn text-warn")} />
                 </button>
                 <button
                   type="button"
                   onClick={() => setDetail(code)}
-                  className="flex min-w-0 flex-1 items-center gap-3 text-start"
+                  className="pressable flex min-w-0 flex-1 items-center gap-3 text-start"
                 >
                   <CoinIcon code={code} size={34} />
                   <span className="min-w-0 flex-1">

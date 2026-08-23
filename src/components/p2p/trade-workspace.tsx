@@ -147,7 +147,7 @@ export function TradeWorkspace({
                 disabled={busy}
                 onClick={() => rate(value)}
                 aria-label={t("stars", { count: value })}
-                className="rounded-lg p-1.5 transition-colors hover:bg-ink-300/25"
+                className="pressable rounded-lg p-1.5 hover:bg-ink-300/25"
               >
                 <Star
                   className={`size-6 ${value <= score ? "fill-current text-warn" : "text-ink-300"}`}

@@ -78,7 +78,7 @@ export function UploadTile({
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
-            className="flex size-full flex-col items-center justify-center gap-2 text-ink-600 transition-colors hover:bg-ink-300/10"
+            className="pressable flex size-full flex-col items-center justify-center gap-2 text-ink-600 hover:bg-ink-300/10"
           >
             <Upload className="size-6" />
             <span className="text-sm font-medium">{t("choose")}</span>

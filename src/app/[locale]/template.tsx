@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useLocale } from "next-intl";
 import * as React from "react";
+import { directionSign, LIST_RISE_PX, PAGE } from "@/lib/motion";
 
 /**
  * Page transition (§13): 200ms fade plus an 8px slide along the reading
@@ -13,7 +14,8 @@ import * as React from "react";
  * `x` is a physical translate, so the sign is flipped for RTL: content arrives
  * from the end of the line and settles, which reads the same way in both
  * scripts. Reduced motion collapses it to nothing, as §13 requires of
- * everything.
+ * everything. The numbers come from `@/lib/motion` so this transition and every
+ * other one in the app move at the same speed.
  */
 export default function LocaleTemplate({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
@@ -22,9 +24,9 @@ export default function LocaleTemplate({ children }: { children: React.ReactNode
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: locale === "fa" ? -8 : 8 }}
+      initial={{ opacity: 0, x: LIST_RISE_PX * directionSign(locale) }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      transition={PAGE}
       style={{ transformBox: "border-box" }}
     >
       {children}

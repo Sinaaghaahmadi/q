@@ -49,6 +49,7 @@ export function CurrencyPicker({ value, onChange, exclude = [], ariaLabel }: Cur
         className={cn(
           "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-start transition-colors",
           active ? "bg-brand-50" : "hover:bg-ink-300/20",
+          "pressable",
         )}
       >
         <CoinIcon code={code} size={32} />
@@ -69,7 +70,7 @@ export function CurrencyPicker({ value, onChange, exclude = [], ariaLabel }: Cur
         <button
           type="button"
           aria-label={ariaLabel}
-          className="flex shrink-0 items-center gap-2 rounded-xl px-2.5 py-1.5 transition-colors hover:bg-ink-300/20"
+          className="pressable flex shrink-0 items-center gap-2 rounded-xl px-2.5 py-1.5 hover:bg-ink-300/20"
         >
           <CoinIcon code={value} size={30} />
           <span className="text-sm font-semibold" dir="ltr">

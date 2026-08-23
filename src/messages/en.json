@@ -2182,5 +2182,13 @@
         "archived": "Archived"
       }
     }
+  },
+  "toast": {
+    "copied": "Copied",
+    "copyFailed": "Could not copy. Select the text instead.",
+    "saved": "Saved",
+    "sent": "Sent",
+    "failed": "That did not go through. Try again.",
+    "offline": "You are offline. Showing the last known data."
   }
 }

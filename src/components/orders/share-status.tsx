@@ -3,6 +3,7 @@
 import { Check, Copy, Share2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
+import { useToast } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -14,6 +15,8 @@ import { Card } from "@/components/ui/card";
  */
 export function ShareStatus({ publicRef }: { publicRef: string }) {
   const t = useTranslations("track.share");
+  const tToast = useTranslations("toast");
+  const toast = useToast();
   const [copied, setCopied] = React.useState(false);
   const [url, setUrl] = React.useState("");
 
@@ -25,9 +28,12 @@ export function ShareStatus({ publicRef }: { publicRef: string }) {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
+      toast(tToast("copied"));
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard access can be denied; the link is selectable on screen.
+      // Clipboard access can be denied — over http, in a cross-origin frame, or
+      // by permission. Saying so beats a button that visibly does nothing.
+      toast(tToast("copyFailed"), "bad");
     }
   }
 

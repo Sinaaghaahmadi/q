@@ -4,6 +4,7 @@ import { Check, Copy, Gift, TrendingUp } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { useToast } from "@/components/ui/toast";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,6 +43,8 @@ export function TierAndReferral({
   alreadyReferred: boolean;
 }) {
   const t = useTranslations("profile.rewards");
+  const tToast = useTranslations("toast");
+  const toast = useToast();
   const locale = useLocale() as AppLocale;
   const router = useRouter();
 
@@ -62,9 +65,11 @@ export function TierAndReferral({
     try {
       await navigator.clipboard.writeText(referralCode);
       setCopied(true);
+      toast(tToast("copied"));
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard can be blocked; the code is on screen either way.
+      // Clipboard can be blocked; say so rather than looking inert.
+      toast(tToast("copyFailed"), "bad");
     }
   }
 

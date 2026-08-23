@@ -132,6 +132,61 @@ html[lang="fa"] {
 }
 
 @layer components {
+  /* Press feedback (§4): every tappable surface answers the finger, not just
+     the ones that happen to be a <Button>. A card, a list row, a rate line —
+     if it does something when tapped, it moves 3% when tapped. Pure CSS on
+     purpose: this is on nearly every interactive element in the app, and it is
+     not worth a byte of JavaScript.
+
+     `touch-action: manipulation` removes the 300ms tap delay that otherwise
+     makes the whole app feel a beat behind the finger on older mobile Safari. */
+  .pressable {
+    transition:
+      transform 150ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 150ms cubic-bezier(0.22, 1, 0.36, 1);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pressable:active {
+    transform: scale(0.97);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pressable,
+    .pressable:active {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  /* Staggered list entry (§4). Rows rise 8px into place, 35ms apart, and the
+     stagger stops after the tenth so a long list finishes with the screen
+     rather than after it.
+
+     CSS rather than a motion library on purpose: wiring framer-motion into the
+     rates board for this alone cost 39 kB gzipped against a 215 kB budget. The
+     brief is explicit that design must not ask for what the budget cannot pay,
+     and an entrance animation is the last thing worth spending it on. Depth is
+     set with `--i` inline per row. */
+  .list-rise > * {
+    animation: list-rise 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(min(var(--i, 0), 10) * 35ms);
+  }
+  @keyframes list-rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .list-rise > * {
+      animation: none;
+    }
+  }
+
   /* Skeleton shimmer (§13): 1.6s period, transform-only animation */
   .skeleton {
     position: relative;
