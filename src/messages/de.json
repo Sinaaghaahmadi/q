@@ -1988,5 +1988,151 @@
         }
       }
     }
+  },
+  "admin": {
+    "metaTitle": "Verwaltung",
+    "title": "Überblick über die Plattform",
+    "subtitle": "Jeder Auftrag, jede Wechselstube und jede erfasste Änderung.",
+    "navLabel": "Verwaltungsbereiche",
+    "nav": {
+      "dashboard": "Überblick",
+      "exchanges": "Wechselstuben",
+      "orders": "Aufträge",
+      "kyc": "Identität",
+      "settings": "Einstellungen",
+      "audit": "Prüfprotokoll",
+      "support": "Support",
+      "p2p": "Privathandel",
+      "users": "Kundschaft",
+      "compliance": "Compliance",
+      "finance": "Finanzen",
+      "rates": "Kurse",
+      "content": "Inhalte",
+      "tickets": "Tickets",
+      "settlement": "Abwicklung"
+    },
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "forbiddenTitle": "Sie haben keinen Zugriff",
+    "forbiddenBody": "Der Verwaltungsbereich steht nur Plattform-Rollen offen.",
+    "backHome": "Zurück zur Startseite",
+    "byState": "Aufträge nach Zustand",
+    "noOrders": "Noch keine Aufträge.",
+    "feed": "Laufende Aktivität",
+    "noActivity": "Bisher nichts erfasst.",
+    "officeCount": "{active} von {total} Wechselstuben aktiv.",
+    "stats": {
+      "gmv": "Abgewickeltes Volumen",
+      "settled": "Abgeschlossene Aufträge",
+      "live": "Aufträge in Arbeit",
+      "atRisk": "Frist gefährdet"
+    },
+    "impersonation": {
+      "actingAs": "Sie handeln im Namen von {office}.",
+      "actingAsUnknown": "Sie handeln im Namen einer Wechselstube.",
+      "reason": "Grund: {reason}",
+      "endsIn": "Endet automatisch in {time}",
+      "expired": "Diese Sitzung ist abgelaufen.",
+      "end": "Sitzung beenden"
+    },
+    "group": {
+      "overview": "Überblick",
+      "operations": "Betrieb",
+      "people": "Menschen und Compliance",
+      "money": "Geld",
+      "platform": "Plattform"
+    },
+    "hintLabel": "Wofür ist dieser Bereich?",
+    "hint": {
+      "dashboard": "Die Plattform auf einen Blick: abgewickeltes Volumen, Provisionen, laufende Aufträge und wie jede Wechselstube arbeitet. Die Seite, die man morgens zuerst öffnet.",
+      "orders": "Jeder Auftrag auf der Plattform. Einen feststeckenden können Sie von Hand weiterbewegen, mit einem Grund im Datensatz.",
+      "exchanges": "Eine Wechselstube anlegen, ihre Strecken und Provisionen setzen und in ihrem Namen handeln, wenn sie nicht reagiert.",
+      "p2p": "Angebote und Geschäfte im Privathandel und die Schlichtung von Streitfällen.",
+      "support": "Die Support-Warteschlangen, getrennt nach Art des Gesprächs.",
+      "tickets": "Jedes Ticket, auch die, auf denen eine Wechselstube sitzt. Die Plattform steht darüber, Sie können jedes übernehmen.",
+      "users": "Die gesamte Kundschaft. Eine Zeile zu öffnen zeigt Verlauf, Stufe und Anmeldungen.",
+      "kyc": "Die Prüfschlange für Ausweisunterlagen von Kundschaft und Wechselstuben. Freigabe oder Ablehnung liegt bei Ihnen.",
+      "compliance": "Sanktionsabgleich, gemeldete Nachrichten sowie die Schwellen für Stufen und Privathandel.",
+      "finance": "Das Buchungsjournal, Kontostände und der Abgleich.",
+      "settlement": "Abwicklungskarten und IBANs jeder Wechselstube und ihr Stand gegenüber dem Limit.",
+      "rates": "Der Zustand der Kursquellen und wie die Aufschläge der Wechselstuben zueinander stehen.",
+      "content": "Die Texte der Website: FAQ, Ankündigungen sowie SMS- und E-Mail-Vorlagen, in beiden Sprachen.",
+      "settings": "Funktionsschalter, Plattform-Einstellungen und der Werktagskalender.",
+      "audit": "Das Prüfprotokoll: jede Änderung, von wem und wann. Nicht bearbeitbar."
+    },
+    "orders": {
+      "metaTitle": "Alle Aufträge",
+      "title": "Aufträge",
+      "subtitle": "Jeder Auftrag, in jeder Wechselstube. Einen Übergang zu erzwingen verlangt eine schriftliche Begründung.",
+      "all": "Alle",
+      "empty": "Kein Auftrag passt zu diesem Filter.",
+      "unclaimed": "Nicht übernommen",
+      "onBehalf": "Im Namen von",
+      "force": "Erzwingen",
+      "forceTitle": "{ref} in einen neuen Zustand zwingen",
+      "forceBody": "Das übergeht die Rollenmatrix, nicht das Journal: Eine Erstattung bucht Gegenbuchungen, statt Zeilen zu löschen.",
+      "targetState": "Zielzustand",
+      "reason": "Begründung (mindestens 8 Zeichen)",
+      "confirmForce": "Anwenden",
+      "cancel": "Abbrechen",
+      "working": "Wird angewandt…",
+      "col": {
+        "ref": "Auftragsnummer",
+        "corridor": "Strecke",
+        "amount": "Betrag",
+        "office": "Wechselstube",
+        "state": "Zustand",
+        "action": "Handlung"
+      },
+      "errors": {
+        "reason": "Eine schriftliche Begründung von mindestens 8 Zeichen ist erforderlich.",
+        "terminal": "Dieser Auftrag ist bereits im Endzustand; buchen Sie stattdessen eine Gegenbewegung.",
+        "forbidden": "Diese Handlung steht nur Plattform-Administratoren offen.",
+        "failed": "Anwenden nicht möglich. Versuchen Sie es erneut."
+      }
+    },
+    "audit": {
+      "metaTitle": "Prüfprotokoll",
+      "title": "Prüfprotokoll",
+      "subtitle": "Unveränderlich und nicht löschbar. Jede Konfigurationsänderung und jede Verwaltungshandlung, mit Vorher und Nachher.",
+      "searchPlaceholder": "Handlungen durchsuchen",
+      "search": "Suchen",
+      "entity": "Objekt",
+      "allEntities": "Alle Objekte",
+      "empty": "Keine Einträge gefunden.",
+      "before": "Vorher",
+      "after": "Nachher"
+    },
+    "settings": {
+      "metaTitle": "Plattform-Einstellungen",
+      "title": "Einstellungen",
+      "subtitle": "Zwei-Faktor-Anmeldung für Mitarbeitende, Funktionsschalter und die Standardvorlage für Wechselstuben.",
+      "flags": "Funktionsschalter",
+      "noFlags": "Keine Schalter angelegt.",
+      "saveFailed": "Speichern nicht möglich. Versuchen Sie es erneut.",
+      "template": "Standardvorlage für Wechselstuben",
+      "templateBody": "Jede neue Wechselstube startet von diesen Werten; Abweichungen erscheinen auf ihrer eigenen Seite."
+    },
+    "security": {
+      "title": "Zwei-Faktor-Anmeldung für Mitarbeitende",
+      "body": "Jedes Konto von Plattform-Mitarbeitenden kann eine Authenticator-App anbinden. Solange die Pflicht aus ist, ist ein fehlender zweiter Faktor nur ein Hinweis; ist sie an, erreicht kein Mitarbeitendenkonto die Konsole oder die Datenbank ohne sechsstelligen Code.",
+      "selfMissing": "Ihr eigenes Konto hat noch keinen zweiten Faktor. Die Pflicht einzuschalten, bevor Sie sich eintragen, würde Sie aus der Konsole aussperren.",
+      "selfMissingCta": "Auf Ihrer Kontoseite einrichten",
+      "require": "Einen zweiten Faktor von allen Mitarbeitenden verlangen",
+      "requireReady": "Alle Mitarbeitendenkonten haben einen zweiten Faktor; das Einschalten sperrt niemanden aus.",
+      "requireBlocked": "{count, plural, one {# Mitarbeitendenkonto hat} other {# Mitarbeitendenkonten haben}} noch keinen zweiten Faktor. Der Schalter bleibt aus, bis alle einen haben — sonst ist in dem Moment jede Administration ausgesperrt, auch wer umgelegt hat.",
+      "coverage": "{covered, number} von {total, number} Mitarbeitendenkonten haben einen zweiten Faktor.",
+      "empty": "Es sind keine Mitarbeitendenkonten erfasst.",
+      "unnamed": "Ohne Namen",
+      "enrolled": "Eingetragen",
+      "notEnrolled": "Kein zweiter Faktor",
+      "saveFailed": "Die Änderung wurde nicht gespeichert.",
+      "role": {
+        "platform_support": "Support",
+        "platform_compliance": "Compliance",
+        "platform_admin": "Administration",
+        "platform_superadmin": "Oberste Administration"
+      }
+    }
   }
 }

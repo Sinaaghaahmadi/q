@@ -1988,5 +1988,151 @@
         }
       }
     }
+  },
+  "admin": {
+    "metaTitle": "Administration",
+    "title": "Vue d'ensemble de la plateforme",
+    "subtitle": "Chaque commande, chaque bureau et chaque changement consigné.",
+    "navLabel": "Sections d'administration",
+    "nav": {
+      "dashboard": "Vue d'ensemble",
+      "exchanges": "Bureaux",
+      "orders": "Commandes",
+      "kyc": "Identité",
+      "settings": "Réglages",
+      "audit": "Audit",
+      "support": "Assistance",
+      "p2p": "Particuliers",
+      "users": "Clients",
+      "compliance": "Conformité",
+      "finance": "Finance",
+      "rates": "Taux",
+      "content": "Contenu",
+      "tickets": "Tickets",
+      "settlement": "Règlement"
+    },
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "forbiddenTitle": "Vous n'avez pas accès",
+    "forbiddenBody": "Le panneau d'administration est réservé aux rôles de la plateforme.",
+    "backHome": "Retour à l'accueil",
+    "byState": "Commandes par état",
+    "noOrders": "Aucune commande pour l'instant.",
+    "feed": "Activité en direct",
+    "noActivity": "Rien de consigné pour l'instant.",
+    "officeCount": "{active} bureaux actifs sur {total}.",
+    "stats": {
+      "gmv": "Volume réglé",
+      "settled": "Commandes abouties",
+      "live": "Commandes en cours",
+      "atRisk": "Échéance menacée"
+    },
+    "impersonation": {
+      "actingAs": "Vous agissez au nom de {office}.",
+      "actingAsUnknown": "Vous agissez au nom d'un bureau de change.",
+      "reason": "Motif : {reason}",
+      "endsIn": "Se termine automatiquement dans {time}",
+      "expired": "Cette session a expiré.",
+      "end": "Terminer la session"
+    },
+    "group": {
+      "overview": "Vue d'ensemble",
+      "operations": "Opérations",
+      "people": "Personnes et conformité",
+      "money": "Argent",
+      "platform": "Plateforme"
+    },
+    "hintLabel": "À quoi sert cette section ?",
+    "hint": {
+      "dashboard": "La plateforme d'un coup d'œil : volume réglé, commissions, commandes en cours et performance de chaque bureau. La page à ouvrir en premier chaque jour.",
+      "orders": "Toutes les commandes de la plateforme. Vous pouvez faire avancer à la main celle qui bloque, avec un motif au dossier.",
+      "exchanges": "Créer un bureau, définir ses corridors et ses commissions, et agir en son nom lorsqu'il ne répond plus.",
+      "p2p": "Les offres et échanges entre particuliers, et l'arbitrage des litiges.",
+      "support": "Les files d'assistance, séparées par type de conversation.",
+      "tickets": "Tous les tickets, y compris ceux qu'un bureau laisse dormir. La plateforme est au-dessus du bureau et vous pouvez reprendre n'importe lequel.",
+      "users": "Tous les clients. Ouvrir une ligne montre l'historique, le palier et les connexions.",
+      "kyc": "La file d'examen des pièces d'identité des clients et des bureaux. L'approbation ou le refus vous revient.",
+      "compliance": "Rapprochement avec les listes de sanctions, messages signalés, et seuils des paliers et du marché entre particuliers.",
+      "finance": "Le registre, les soldes des comptes et le rapprochement.",
+      "settlement": "Les cartes et IBAN de règlement de chaque bureau, et leur position par rapport au plafond.",
+      "rates": "La santé des sources de taux et la comparaison des écarts pratiqués par les bureaux.",
+      "content": "Les textes du site : FAQ, annonces et modèles de SMS et d'e-mails, dans les deux langues.",
+      "settings": "Interrupteurs de fonctionnalités, réglages de la plateforme et calendrier ouvré.",
+      "audit": "Le journal d'audit : chaque changement, par qui et quand. Non modifiable."
+    },
+    "orders": {
+      "metaTitle": "Toutes les commandes",
+      "title": "Commandes",
+      "subtitle": "Chaque commande, dans chaque bureau. Forcer une transition demande un motif écrit.",
+      "all": "Toutes",
+      "empty": "Aucune commande ne correspond à ce filtre.",
+      "unclaimed": "Non prise",
+      "onBehalf": "Au nom de",
+      "force": "Forcer",
+      "forceTitle": "Forcer {ref} vers un nouvel état",
+      "forceBody": "Cela outrepasse la matrice des rôles, pas le registre : un remboursement passe des écritures d'annulation plutôt que de supprimer des lignes.",
+      "targetState": "État visé",
+      "reason": "Motif (au moins 8 caractères)",
+      "confirmForce": "Appliquer",
+      "cancel": "Annuler",
+      "working": "Application…",
+      "col": {
+        "ref": "Référence",
+        "corridor": "Corridor",
+        "amount": "Montant",
+        "office": "Bureau",
+        "state": "État",
+        "action": "Action"
+      },
+      "errors": {
+        "reason": "Un motif écrit d'au moins 8 caractères est requis.",
+        "terminal": "Cette commande est déjà dans un état terminal ; passez plutôt une action compensatoire.",
+        "forbidden": "Cette action est réservée aux administrateurs de la plateforme.",
+        "failed": "Application impossible. Réessayez."
+      }
+    },
+    "audit": {
+      "metaTitle": "Journal d'audit",
+      "title": "Journal d'audit",
+      "subtitle": "Immuable et indélébile. Chaque changement de configuration et chaque action d'administration, avec l'avant et l'après.",
+      "searchPlaceholder": "Rechercher des actions",
+      "search": "Rechercher",
+      "entity": "Entité",
+      "allEntities": "Toutes les entités",
+      "empty": "Aucun enregistrement trouvé.",
+      "before": "Avant",
+      "after": "Après"
+    },
+    "settings": {
+      "metaTitle": "Réglages de la plateforme",
+      "title": "Réglages",
+      "subtitle": "Double authentification du personnel, interrupteurs de fonctionnalités et modèle de bureau par défaut.",
+      "flags": "Interrupteurs de fonctionnalités",
+      "noFlags": "Aucun interrupteur défini.",
+      "saveFailed": "Enregistrement impossible. Réessayez.",
+      "template": "Modèle de bureau par défaut",
+      "templateBody": "Chaque nouveau bureau part de ces valeurs ; les écarts apparaissent sur la page du bureau concerné."
+    },
+    "security": {
+      "title": "Double authentification du personnel",
+      "body": "Chaque compte du personnel de la plateforme peut rattacher une application d'authentification. Tant que l'obligation est désactivée, ne pas en avoir n'est qu'un avertissement ; une fois activée, aucun compte du personnel n'atteint la console ni la base de données sans un code à six chiffres.",
+      "selfMissing": "Votre propre compte n'a pas encore de second facteur. Activer l'obligation avant de vous inscrire vous fermerait la console.",
+      "selfMissingCta": "Configurez-le depuis la page de votre compte",
+      "require": "Exiger un second facteur de tout le personnel",
+      "requireReady": "Tous les comptes du personnel ont un second facteur ; l'activer n'exclut personne.",
+      "requireBlocked": "{count, plural, one {# compte du personnel n'a} other {# comptes du personnel n'ont}} pas encore de second facteur. L'interrupteur reste éteint jusqu'à ce que tous en aient un — sinon tous les administrateurs, y compris celui qui l'a activé, sont exclus à l'instant même.",
+      "coverage": "{covered, number} comptes du personnel sur {total, number} ont un second facteur.",
+      "empty": "Aucun compte du personnel n'est enregistré.",
+      "unnamed": "Sans nom",
+      "enrolled": "Inscrit",
+      "notEnrolled": "Aucun second facteur",
+      "saveFailed": "Le changement n'a pas été enregistré.",
+      "role": {
+        "platform_support": "Assistance",
+        "platform_compliance": "Conformité",
+        "platform_admin": "Administrateur",
+        "platform_superadmin": "Super-administrateur"
+      }
+    }
   }
 }
