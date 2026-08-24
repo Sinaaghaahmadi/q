@@ -148,6 +148,65 @@ if (nanRisks.length > 0) {
   failed = true;
 }
 
+// ─── Placeholders must survive translation ───────────────────────────────────
+//
+// A translated string is a format string. Drop `{amount}` from the German and
+// the sentence loses its number; invent `{amt}` and next-intl throws at render
+// time, in that one locale, on that one screen — the kind of fault that reaches
+// a user because nobody browses the app in every language.
+//
+// So every locale's placeholders are compared against English as a set. Rich
+// tags (`<terms>…</terms>`) count too: they are supplied by the call site the
+// same way, and a missing one is a link that silently disappears.
+function placeholders(value) {
+  const found = new Set();
+  // `{name}` and `{name, number}` alike — the argument name is what matters.
+  for (const m of value.matchAll(/\{\s*(\w+)\s*[,}]/g)) found.add(m[1]);
+  for (const m of value.matchAll(/<(\w+)>/g)) found.add(`<${m[1]}>`);
+  return found;
+}
+
+function flatten(node, trail = [], into = new Map()) {
+  for (const [key, value] of Object.entries(node)) {
+    if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+      flatten(value, [...trail, key], into);
+    } else if (typeof value === "string") {
+      into.set([...trail, key].join("."), value);
+    }
+  }
+  return into;
+}
+
+const englishStrings = flatten(catalogues.en);
+const placeholderFaults = [];
+for (const locale of LOCALES) {
+  if (locale === "en") continue;
+  for (const [key, value] of flatten(catalogues[locale])) {
+    const source = englishStrings.get(key);
+    if (source === undefined) continue;
+    const want = placeholders(source);
+    const got = placeholders(value);
+    const missing = [...want].filter((p) => !got.has(p));
+    const extra = [...got].filter((p) => !want.has(p));
+    if (missing.length || extra.length) {
+      placeholderFaults.push(
+        `      ${locale} ${key}` +
+          (missing.length ? ` — missing ${missing.join(", ")}` : "") +
+          (extra.length ? ` — unknown ${extra.join(", ")}` : ""),
+      );
+    }
+  }
+}
+
+if (placeholderFaults.length > 0) {
+  console.error(`\n  ✗ placeholders differ from English — these render wrong or throw:`);
+  console.error(placeholderFaults.slice(0, 40).join("\n"));
+  if (placeholderFaults.length > 40) {
+    console.error(`      … and ${placeholderFaults.length - 40} more`);
+  }
+  failed = true;
+}
+
 if (failed) {
   console.error("\n✗ message catalogues are not consistent");
   process.exit(1);

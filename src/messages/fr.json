@@ -22,7 +22,8 @@
     "how": "Comment ça marche",
     "why": "Pourquoi Asa",
     "about": "À propos",
-    "contact": "Nous contacter"
+    "contact": "Nous contacter",
+    "coins": "Or et pièces"
   },
   "locale": {
     "label": "Langue"
@@ -59,7 +60,8 @@
     "unitRate": "1 {from} ≈ {rate} {toUnit}",
     "toman": "toman",
     "midRateNote": "Taux milieu de marché ; le taux final et les frais sont détaillés au moment de soumettre le transfert.",
-    "cta": "Continuer vers le transfert"
+    "cta": "Continuer vers le transfert",
+    "tomanLegNote": "Dans une conversion rapide, un côté est toujours en tomans."
   },
   "home": {
     "metaTitle": "Taux en direct et transferts",
@@ -139,8 +141,8 @@
       "loading": "Récupération des taux…",
       "live": "Taux en direct",
       "updated": "Mis à jour {ago}",
-      "degraded": "Taux différé — source principale indisponible",
-      "demo": "Données de démonstration"
+      "degraded": "Mise à jour en retard",
+      "demo": "Prix de secours"
     }
   },
   "ratesPage": {
@@ -159,7 +161,13 @@
     "alertBody": "Dès l'arrivée des comptes, vous pourrez fixer un seuil par devise et être averti par SMS, e-mail ou notification.",
     "high24h": "Plus haut 24 h",
     "low24h": "Plus bas 24 h",
-    "chartSummary": "{code} sur les {days} derniers jours, de {from} à {to} toman."
+    "chartSummary": "{code} sur les {days} derniers jours, de {from} à {to} toman.",
+    "reorder": "Réorganiser",
+    "reorderDone": "Terminé",
+    "reorderReset": "Rétablir l'ordre",
+    "reorderHint": "Faites glisser une carte, ou utilisez les flèches haut et bas, pour classer les devises à votre convenance. L'ordre est conservé sur cet appareil.",
+    "moveUp": "Monter {currency}",
+    "moveDown": "Descendre {currency}"
   },
   "footer": {
     "brand": "Asaex",
@@ -309,5 +317,327 @@
   },
   "auth": {
     "legalNote": "Se connecter à ce panneau vaut acceptation pleine et entière des <terms>conditions d’utilisation</terms>, de la <privacy>politique de confidentialité</privacy> et de la <aml>politique de lutte contre le blanchiment</aml>."
+  },
+  "legal": {
+    "version": "Version {version}",
+    "updated": "Dernière mise à jour : {date}",
+    "titles": {
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "aml": "Politique anti-blanchiment",
+      "fees": "Grille tarifaire",
+      "sla": "Engagement de délai et remboursements",
+      "complaints": "Procédure de réclamation"
+    }
+  },
+  "pricing": {
+    "total": "Écart de taux total",
+    "layers": {
+      "platform_floor": "Plancher de la plateforme",
+      "corridor_default": "Écart de base du corridor",
+      "office_markup": "Marge du bureau de change",
+      "tier_discount": "Remise de palier",
+      "promo": "Code promo"
+    },
+    "bands": {
+      "intro": "Le montant est découpé en tranches et chaque tranche a son propre taux. Les tranches basses sont toujours facturées en entier : envoyer davantage fait baisser le pourcentage global sans jamais réduire la commission elle-même.",
+      "between": "De {from} à {to} tomans",
+      "above": "Au-delà de {from} tomans",
+      "notReached": "Non atteinte",
+      "toman": "tomans",
+      "total": "Commission totale"
+    },
+    "schedule": {
+      "title": "Commission par tranches",
+      "tryLabel": "Saisissez un montant pour voir sa commission",
+      "commission": "Commission",
+      "effective": "Taux global",
+      "marginal": "Tranche la plus haute atteinte",
+      "officeShare": "Part du bureau",
+      "ceilingNote": "Ce pourcentage est le plafond de tout ce que paie le client. Si le taux annoncé par un bureau s'écarte du taux de base, l'écart est retranché de la commission au lieu d'être ajouté à ce que paie le client.",
+      "splitNote": "La part de la plateforme est de {pct} % de la commission, le reste revient au bureau exécutant. Ce partage n'a aucun effet sur ce que paie le client."
+    }
+  },
+  "support": {
+    "metaTitle": "Assistance",
+    "title": "Assistance",
+    "subtitle": "Votre message arrive directement à l'équipe d'assistance. Nous répondons sous un jour ouvré.",
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil"
+  },
+  "menu": {
+    "title": "Menu",
+    "track": "Suivre une commande",
+    "alerts": "Alertes de prix",
+    "appearance": "Langue et apparence",
+    "version": "Version {version}",
+    "group": {
+      "services": "Services",
+      "account": "Mon compte",
+      "staff": "Panneaux",
+      "company": "Aide et contact",
+      "legal": "Conditions et politiques"
+    },
+    "hint": {
+      "rates": "Prix en direct de toutes les devises",
+      "transfer": "Calculer et déposer un transfert",
+      "coins": "Acheter des pièces et de l'or",
+      "p2p": "Acheter et vendre directement entre particuliers",
+      "orders": "Commandes en cours et passées",
+      "track": "Suivre une commande par sa référence, sans se connecter",
+      "profile": "Informations personnelles et sécurité du compte",
+      "accounts": "Comptes de destination où l'argent arrive",
+      "verify": "Compléter vos pièces d'identité",
+      "alerts": "Être prévenu quand un prix atteint votre chiffre",
+      "signin": "Se connecter ou créer un compte",
+      "office": "Pour le personnel des bureaux de change",
+      "admin": "Pour les administrateurs de la plateforme"
+    }
+  },
+  "glossary": {
+    "open": "Ce que cela veut dire : {term}",
+    "close": "Fermer",
+    "midRate": {
+      "title": "Taux de base du marché",
+      "body": "Le point médian entre le prix auquel une devise s'achète et celui auquel elle se vend sur le marché libre, à l'instant même. Ce n'est ni votre prix d'achat ni votre prix de vente : c'est le milieu, et tous les chiffres ici en partent, pour que vous puissiez comparer le nôtre à n'importe quel autre."
+    },
+    "commission": {
+      "title": "Commission par tranches",
+      "body": "Le seul coût d'un transfert. Par tranches signifie que votre montant est découpé et que chaque tranche a son taux : la première à 15 %, les suivantes jusqu'à 5 %. Plus vous envoyez, plus le pourcentage global baisse — sans que le montant de la commission ne diminue jamais parce que vous envoyez plus."
+    },
+    "commissionCeiling": {
+      "title": "Plafond de coût",
+      "body": "Le pourcentage affiché est tout ce que vous payez. Si un bureau annonce un taux un peu écarté du taux de base, exactement autant est retranché de sa commission ; rien ne s'ajoute par-dessus ce chiffre."
+    },
+    "rateMarkup": {
+      "title": "Écart de taux",
+      "body": "Certains bureaux annoncent un taux légèrement au-dessus ou en dessous du taux de base plutôt qu'un frais séparé. Ce n'est pas un coût supplémentaire : c'est déduit de la même commission par tranches."
+    },
+    "rateLock": {
+      "title": "Taux verrouillé",
+      "body": "À l'ouverture d'un transfert, le taux vous est réservé quinze minutes. Jusqu'à la fin du compte à rebours, ce que fait le marché ne concerne pas votre commande. Ensuite, vous voyez un nouveau taux et confirmez à nouveau."
+    },
+    "refresh": {
+      "title": "Actualisation des prix",
+      "body": "Les prix se mettent à jour seuls toutes les 30 secondes, et si plus de 20 secondes se sont écoulées depuis le dernier, ils sont récupérés dès votre retour sur la page. L'heure de la dernière mise à jour est toujours écrite à côté du prix."
+    },
+    "identity": {
+      "title": "Vérification d'identité",
+      "body": "Confirmer que vous êtes bien qui vous dites : un numéro de mobile, une pièce d'identité et une photo en direct. La loi anti-blanchiment l'exige pour les transferts de devises, et sans cela nous ne pouvons pas confier votre commande à un bureau de change."
+    },
+    "iban": {
+      "title": "IBAN (Sheba)",
+      "body": "L'identifiant de compte bancaire de 24 caractères commençant par IR. Ses caractères portent un contrôle arithmétique : si vous en saisissez un de travers, nous vous le disons ici plutôt que de laisser l'argent partir sur le mauvais compte."
+    },
+    "destinationAccount": {
+      "title": "Compte de destination",
+      "body": "Le compte où l'argent doit arriver — le vôtre, ou celui de la personne à qui vous envoyez. Enregistré une fois, puis simplement choisi la fois suivante."
+    },
+    "escrow": {
+      "title": "Fonds conservés en sécurité",
+      "body": "Dans un échange direct entre deux personnes, l'argent reste chez la plateforme jusqu'à ce que les deux parties aient fait leur part, puis il est libéré. Aucune ne remet quoi que ce soit avant l'autre."
+    },
+    "p2p": {
+      "title": "Marché entre particuliers",
+      "body": "L'endroit où les gens échangent directement entre eux, la plateforme n'étant que l'intermédiaire sûr. Les deux parties fixent elles-mêmes le prix, dans une fourchette autorisée autour du taux du marché."
+    },
+    "settlement": {
+      "title": "Règlement",
+      "body": "L'étape où l'argent passe réellement d'un compte à l'autre. Chaque règlement a un justificatif et figure sur votre commande."
+    },
+    "twoFactor": {
+      "title": "Connexion en deux étapes",
+      "body": "En plus d'un mot de passe, un code à six chiffres qui change toutes les trente secondes dans une application sur votre téléphone. Même qui connaît votre mot de passe n'entre pas sans ce téléphone."
+    },
+    "otp": {
+      "title": "Code à usage unique",
+      "body": "Un code envoyé par SMS, valable quelques minutes seulement. Il remplace un mot de passe fixe, de sorte qu'il ne reste rien à voler."
+    },
+    "sla": {
+      "title": "Engagement de délai",
+      "body": "Ce que nous promettons sur les délais : le jour ouvré même comme objectif, trois jours ouvrés comme maximum contractuel. Au-delà, la relance démarre automatiquement."
+    },
+    "corridor": {
+      "title": "Corridor de devises",
+      "body": "Un couple de devise de départ et de devise d'arrivée — du toman au dirham, par exemple. Chaque corridor a ses bureaux et ses conditions."
+    },
+    "bubble": {
+      "title": "Prime de la pièce",
+      "body": "L'écart entre le prix d'une pièce et la valeur de l'or qu'elle contient. Quand la demande est forte, l'écart se creuse ; le chiffre affiché est cet écart."
+    },
+    "install": {
+      "title": "Installer sur votre téléphone",
+      "body": "Vous pouvez ajouter ceci à l'écran d'accueil de votre téléphone comme une application, sans passer par un magasin d'applications. Ensuite, les derniers prix restent visibles même hors connexion."
+    },
+    "openMarket": {
+      "title": "Marché libre",
+      "body": "Le prix auquel les devises changent réellement de mains dans les échanges libres, et non le taux officiel de la banque centrale. Tous les chiffres de cette application s'y appuient."
+    }
+  },
+  "transfer": {
+    "metaTitle": "Nouveau transfert",
+    "title": "Devis de transfert",
+    "subtitle": "Chaque composante du prix, avant de confirmer — aucun coût caché.",
+    "toman": "tomans",
+    "lockActive": "Votre taux est verrouillé",
+    "lockExpired": "Le verrouillage du taux a expiré",
+    "lockNote": "Un taux confirmé reste valable quinze minutes. S'il expire, un seul geste fournit un nouveau devis et affiche clairement l'écart.",
+    "requote": "Obtenir un nouveau taux",
+    "youSend": "Vous envoyez",
+    "rateUsed": "Taux appliqué",
+    "rateValue": "{rate} tomans pour 1 {code}",
+    "whyThisRate": "Pourquoi ce taux ?",
+    "recipientGets": "Le bénéficiaire reçoit",
+    "confirmCta": "Confirmer et continuer",
+    "back": "Retour",
+    "slaNote": "Délais : le transfert est généralement exécuté sous un jour ouvré ; le plafond contractuel est de trois jours ouvrés, comptés sur les calendriers ouvrés iranien et du pays de destination.",
+    "whyBody": "Le taux de base (le taux médian du marché) est de {rate} tomans pour 1 {code}. Les écarts suivants s'y appliquent :",
+    "creating": "Création de la commande…",
+    "destination": "Compte de destination",
+    "createErrors": {
+      "signedOut": "Votre session a pris fin. Reconnectez-vous.",
+      "failed": "La commande n'a pas pu être créée. Réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    },
+    "gate": {
+      "anonymous": {
+        "title": "Connectez-vous pour déposer la demande",
+        "body": "Connectez-vous par mobile ou par e-mail. Si vous n'avez pas encore de compte, le même parcours en crée un.",
+        "cta": "Se connecter"
+      },
+      "unverified": {
+        "title": "La vérification d'identité est requise d'abord",
+        "body": "La vérification se fait une seule fois et prend moins de cinq minutes. Ensuite, déposer un transfert se fait sans interruption.",
+        "cta": "Commencer la vérification"
+      },
+      "no_accounts": {
+        "title": "Aucun compte de destination pour l'instant",
+        "body": "Aucun compte enregistré pour cette devise. Ajoutez-en un et il suffira de le choisir au moment de déposer.",
+        "cta": "Ajouter un compte"
+      },
+      "ready": {
+        "title": "Prêt à déposer",
+        "body": "Tout est en place.",
+        "cta": "Continuer"
+      }
+    },
+    "commission": "Commission du bureau de change",
+    "commissionRate": "{pct} % du transfert",
+    "howCommission": "Comment ce chiffre est-il obtenu ?",
+    "nextBand": "Portez le montant à {amount} tomans et la commission descend à {pct} %.",
+    "edit": {
+      "title": "Montant et devise",
+      "recalculating": "Nouveau calcul en cours…",
+      "youSend": "Vous envoyez",
+      "recipientCurrency": "Le bénéficiaire reçoit",
+      "tomanLeg": "Un côté est toujours en tomans",
+      "fromCurrency": "Devise envoyée",
+      "toCurrency": "Devise reçue"
+    }
+  },
+  "orders": {
+    "metaTitle": "Commandes",
+    "emptyTitle": "Aucune commande pour l'instant",
+    "emptyBody": "Dès votre premier transfert, la chronologie en direct de chaque commande — avec le compte à rebours de l'engagement de délai et la discussion avec votre bureau — apparaît ici.",
+    "cta": "Démarrer un transfert",
+    "title": "Commandes",
+    "subtitle": "Chaque transfert avec sa propre référence, et la chronologie complète de chaque étape.",
+    "ref": "Référence",
+    "created": "Créée le",
+    "youSend": "Vous envoyez",
+    "recipientGets": "Le bénéficiaire reçoit",
+    "office": "Bureau de change",
+    "officeUnassigned": "Aucun bureau pour l'instant",
+    "timeline": "Chronologie",
+    "noEvents": "Rien ne s'est encore produit.",
+    "by": "par {role}",
+    "actorRole": {
+      "customer": "le client",
+      "office": "le bureau",
+      "platform": "la plateforme"
+    },
+    "detailTitle": "Commande {ref}",
+    "notFound": "Cette commande n'existe pas, ou vous n'y avez pas accès.",
+    "rateLocked": "Taux verrouillé",
+    "fees": "Frais",
+    "actions": "Ce que vous pouvez faire",
+    "noActions": "Rien n'est attendu de vous à cette étape.",
+    "reasonLabel": "Note (facultative)",
+    "reasonRequired": "Note (obligatoire)",
+    "working": "Enregistrement…",
+    "actionFailed": "Ce changement n'a pas pu être enregistré.",
+    "errors": {
+      "notVerified": "Votre identité doit être vérifiée avant de pouvoir déposer un transfert.",
+      "noDestination": "Aucun compte de destination n'est sélectionné.",
+      "rateExpired": "Le taux verrouillé a expiré — demandez-en un nouveau.",
+      "notPermitted": "Cette action ne vous revient pas à cette étape.",
+      "funded": "Une commande approvisionnée se rembourse, elle ne s'annule pas."
+    },
+    "state": {
+      "draft": "Non déposée",
+      "submitted": "Déposée",
+      "matching": "En attente d'un bureau",
+      "office_review": "En cours d'examen par le bureau",
+      "accepted": "Acceptée",
+      "awaiting_irt_funding": "En attente de vos tomans",
+      "irt_funded": "Tomans versés",
+      "foreign_leg_pending": "Volet en devise en cours",
+      "foreign_leg_sent": "Volet en devise envoyé",
+      "recipient_confirmed": "Réception confirmée",
+      "irt_released": "Tomans libérés",
+      "completed": "Terminée",
+      "on_hold": "Suspendue",
+      "info_needed": "Informations complémentaires requises",
+      "disputed": "En litige",
+      "cancelled": "Annulée",
+      "refunded": "Remboursée",
+      "expired": "Expirée",
+      "sla_breached": "Engagement de délai dépassé"
+    },
+    "stateBody": {
+      "draft": "Cette commande n'a pas encore été déposée.",
+      "submitted": "Déposée et mise en file pour atteindre les bureaux de change éligibles.",
+      "matching": "Les bureaux éligibles peuvent voir votre demande.",
+      "office_review": "Un bureau a pris la demande et l'examine.",
+      "accepted": "Le bureau a accepté. L'étape suivante est le versement des tomans.",
+      "awaiting_irt_funding": "Virez le montant en tomans et déposez le justificatif.",
+      "irt_funded": "Les tomans sont en garde supervisée ; le bureau n'a pas encore été payé.",
+      "foreign_leg_pending": "Le bureau exécute le transfert en devise.",
+      "foreign_leg_sent": "C'est en route. Confirmez dès réception.",
+      "recipient_confirmed": "La réception est confirmée ; l'étape suivante est la libération des tomans.",
+      "irt_released": "Les tomans ont été libérés au profit du bureau.",
+      "completed": "Ce transfert est clos.",
+      "on_hold": "En pause pour le moment ; la raison figure dans la chronologie.",
+      "info_needed": "Le bureau a demandé des informations complémentaires.",
+      "disputed": "En cours d'examen, et gelée jusqu'à résolution.",
+      "cancelled": "Cette commande a été annulée.",
+      "refunded": "Le montant en tomans a été restitué.",
+      "expired": "Cette commande a dépassé son délai.",
+      "sla_breached": "Au-delà du délai, et remontée en escalade."
+    },
+    "act": {
+      "submitted": "Déposer la demande",
+      "cancelled": "Annuler la commande",
+      "recipient_confirmed": "Je l'ai reçu",
+      "disputed": "Ouvrir un litige",
+      "office_review": "Prendre et examiner",
+      "accepted": "Accepter la demande",
+      "info_needed": "Demander des informations",
+      "awaiting_irt_funding": "Prêt pour les tomans",
+      "irt_funded": "Confirmer l'arrivée des tomans",
+      "foreign_leg_pending": "Lancer le volet en devise",
+      "foreign_leg_sent": "Marquer le volet en devise comme envoyé",
+      "irt_released": "Libérer les tomans",
+      "completed": "Clore la commande",
+      "on_hold": "Suspendre",
+      "refunded": "Rembourser",
+      "sla_breached": "Consigner un dépassement de délai"
+    },
+    "cost": {
+      "title": "Ce que ce transfert a coûté",
+      "body": "{toman} tomans ont été prélevés au total sur ce transfert — soit {pct} % de celui-ci.",
+      "basis": "Taux de base du marché au moment du verrouillage : {mid} tomans."
+    }
   }
 }

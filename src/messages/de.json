@@ -22,7 +22,8 @@
     "how": "So funktioniert es",
     "why": "Warum Asa",
     "about": "Über uns",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "coins": "Gold und Münzen"
   },
   "locale": {
     "label": "Sprache"
@@ -59,7 +60,8 @@
     "unitRate": "1 {from} ≈ {rate} {toUnit}",
     "toman": "Toman",
     "midRateNote": "Mittelkurs; der endgültige Kurs und die Gebühren werden beim Absenden des Transfers einzeln aufgeführt.",
-    "cta": "Weiter zum Transfer"
+    "cta": "Weiter zum Transfer",
+    "tomanLegNote": "Bei der Schnellumrechnung ist eine Seite immer Toman."
   },
   "home": {
     "metaTitle": "Live-Kurse und Transfers",
@@ -139,8 +141,8 @@
       "loading": "Kurse werden geladen…",
       "live": "Live-Kurs",
       "updated": "Aktualisiert {ago}",
-      "degraded": "Kurs verzögert — Hauptquelle nicht erreichbar",
-      "demo": "Demodaten"
+      "degraded": "Aktualisierung verspätet",
+      "demo": "Ersatzkurs"
     }
   },
   "ratesPage": {
@@ -159,7 +161,13 @@
     "alertBody": "Sobald es Konten gibt, können Sie je Währung eine Schwelle setzen und per SMS, E-Mail oder Push benachrichtigt werden.",
     "high24h": "Hoch 24 Std.",
     "low24h": "Tief 24 Std.",
-    "chartSummary": "{code} über die letzten {days} Tage, von {from} bis {to} Toman."
+    "chartSummary": "{code} über die letzten {days} Tage, von {from} bis {to} Toman.",
+    "reorder": "Neu ordnen",
+    "reorderDone": "Fertig",
+    "reorderReset": "Reihenfolge zurücksetzen",
+    "reorderHint": "Ziehen Sie eine Karte oder nutzen Sie die Pfeiltasten, um die Währungen nach Ihrem Bedarf zu ordnen. Die Reihenfolge bleibt auf diesem Gerät gespeichert.",
+    "moveUp": "{currency} nach oben",
+    "moveDown": "{currency} nach unten"
   },
   "footer": {
     "brand": "Asaex",
@@ -309,5 +317,327 @@
   },
   "auth": {
     "legalNote": "Die Anmeldung in diesem Panel gilt als vollständige Annahme der <terms>Nutzungsbedingungen</terms>, der <privacy>Datenschutzerklärung</privacy> und der <aml>Geldwäsche-Richtlinie</aml>."
+  },
+  "legal": {
+    "version": "Version {version}",
+    "updated": "Zuletzt aktualisiert: {date}",
+    "titles": {
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutzerklärung",
+      "aml": "Geldwäschepräventions-Richtlinie",
+      "fees": "Gebührenübersicht",
+      "sla": "Zeitzusage und Erstattung",
+      "complaints": "Beschwerdeverfahren"
+    }
+  },
+  "pricing": {
+    "total": "Kursunterschied gesamt",
+    "layers": {
+      "platform_floor": "Untergrenze der Plattform",
+      "corridor_default": "Grundunterschied der Strecke",
+      "office_markup": "Aufschlag der Wechselstube",
+      "tier_discount": "Stufenrabatt",
+      "promo": "Aktionscode"
+    },
+    "bands": {
+      "intro": "Der Betrag wird in Stufen zerlegt, und jede Stufe hat ihren eigenen Satz. Die unteren Stufen werden immer voll berechnet: Wer mehr sendet, senkt den Gesamtprozentsatz, ohne dass die Provision selbst je kleiner wird.",
+      "between": "Von {from} bis {to} Toman",
+      "above": "Über {from} Toman",
+      "notReached": "Nicht erreicht",
+      "toman": "Toman",
+      "total": "Provision gesamt"
+    },
+    "schedule": {
+      "title": "Gestaffelte Provision",
+      "tryLabel": "Betrag eingeben und die Provision dazu sehen",
+      "commission": "Provision",
+      "effective": "Gesamtsatz",
+      "marginal": "Höchste erreichte Stufe",
+      "officeShare": "Anteil der Wechselstube",
+      "ceilingNote": "Dieser Prozentsatz ist die Obergrenze für alles, was der Kunde zahlt. Weicht der Kurs einer Wechselstube vom Grundkurs ab, wird genau dieser Betrag von der Provision abgezogen und nicht auf den Kundenpreis aufgeschlagen.",
+      "splitNote": "Der Anteil der Plattform beträgt {pct} % der Provision, der Rest geht an die ausführende Wechselstube. Diese Aufteilung ändert nichts an dem, was der Kunde zahlt."
+    }
+  },
+  "support": {
+    "metaTitle": "Hilfe",
+    "title": "Hilfe",
+    "subtitle": "Ihre Nachricht geht direkt an das Support-Team. Wir antworten innerhalb eines Werktags.",
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "backHome": "Zurück zur Startseite"
+  },
+  "menu": {
+    "title": "Menü",
+    "track": "Auftrag verfolgen",
+    "alerts": "Kurswarnungen",
+    "appearance": "Sprache und Darstellung",
+    "version": "Version {version}",
+    "group": {
+      "services": "Leistungen",
+      "account": "Mein Konto",
+      "staff": "Bereiche",
+      "company": "Hilfe und Kontakt",
+      "legal": "Bedingungen und Richtlinien"
+    },
+    "hint": {
+      "rates": "Live-Kurse aller Währungen",
+      "transfer": "Überweisung berechnen und beauftragen",
+      "coins": "Goldmünzen und Barren kaufen",
+      "p2p": "Direkt mit anderen kaufen und verkaufen",
+      "orders": "Laufende und frühere Aufträge",
+      "track": "Auftrag über die Nummer verfolgen, ohne Anmeldung",
+      "profile": "Persönliche Daten und Kontosicherheit",
+      "accounts": "Zielkonten, auf denen das Geld ankommt",
+      "verify": "Ausweisunterlagen abschließen",
+      "alerts": "Bescheid bekommen, wenn ein Kurs Ihre Zahl erreicht",
+      "signin": "Anmelden oder Konto anlegen",
+      "office": "Für Mitarbeitende der Wechselstuben",
+      "admin": "Für Plattform-Administratoren"
+    }
+  },
+  "glossary": {
+    "open": "Was das bedeutet: {term}",
+    "close": "Schließen",
+    "midRate": {
+      "title": "Marktgrundkurs",
+      "body": "Die Mitte zwischen dem An- und dem Verkaufskurs einer Währung am freien Markt, in genau diesem Moment. Weder Ihr Kaufpreis noch Ihr Verkaufspreis, sondern die Mitte — und jede Zahl hier geht davon aus, damit Sie unsere mit jeder anderen vergleichen können."
+    },
+    "commission": {
+      "title": "Gestaffelte Provision",
+      "body": "Die einzigen Kosten einer Überweisung. Gestaffelt heißt: Ihr Betrag wird in Stufen zerlegt, und jede Stufe hat ihren Satz — die erste 15 %, höhere bis hinunter zu 5 %. Je mehr Sie senden, desto niedriger der Gesamtprozentsatz, während die Provision selbst durch einen größeren Betrag nie sinkt."
+    },
+    "commissionCeiling": {
+      "title": "Kostenobergrenze",
+      "body": "Der angezeigte Prozentsatz ist alles, was Sie zahlen. Setzt eine Wechselstube den Kurs etwas abseits des Grundkurses an, wird genau dieser Betrag von ihrer Provision abgezogen; auf diese Zahl kommt nichts obendrauf."
+    },
+    "rateMarkup": {
+      "title": "Kursunterschied",
+      "body": "Manche Wechselstuben nennen statt einer eigenen Gebühr einen Kurs leicht über oder unter dem Grundkurs. Das sind keine zusätzlichen Kosten: Es wird von derselben gestaffelten Provision abgezogen."
+    },
+    "rateLock": {
+      "title": "Kursbindung",
+      "body": "Wenn Sie eine Überweisung öffnen, wird der Kurs fünfzehn Minuten lang für Sie gehalten. Bis der Countdown abläuft, geht Sie nichts an, was der Markt tut. Danach sehen Sie einen frischen Kurs und bestätigen erneut."
+    },
+    "refresh": {
+      "title": "Kursaktualisierung",
+      "body": "Die Kurse aktualisieren sich alle 30 Sekunden von selbst, und sind seit dem letzten mehr als 20 Sekunden vergangen, werden sie geholt, sobald Sie zur Seite zurückkehren. Die Uhrzeit der letzten Aktualisierung steht immer neben dem Kurs."
+    },
+    "identity": {
+      "title": "Identitätsprüfung",
+      "body": "Die Bestätigung, dass Sie sind, wer Sie sagen: eine Mobilnummer, ein Ausweisdokument und ein Live-Foto. Das Geldwäschegesetz verlangt es bei Devisenüberweisungen, und ohne das können wir Ihren Auftrag keiner Wechselstube übergeben."
+    },
+    "iban": {
+      "title": "IBAN (Sheba)",
+      "body": "Die 24-stellige Kennung des Bankkontos, die mit IR beginnt. Ihre Zeichen tragen eine Prüfrechnung: Vertippen Sie sich, sagen wir es Ihnen hier, statt das Geld auf ein falsches Konto laufen zu lassen."
+    },
+    "destinationAccount": {
+      "title": "Zielkonto",
+      "body": "Das Konto, auf dem das Geld ankommen soll — Ihres oder das der Person, an die Sie senden. Einmal gespeichert, danach nur noch ausgewählt."
+    },
+    "escrow": {
+      "title": "Sichere Verwahrung",
+      "body": "Beim direkten Handel zwischen zwei Personen bleibt das Geld bei der Plattform, bis beide Seiten ihren Teil erfüllt haben, und wird dann freigegeben. Keine Seite gibt etwas heraus, bevor die andere geliefert hat."
+    },
+    "p2p": {
+      "title": "Markt unter Privatpersonen",
+      "body": "Der Ort, an dem Menschen direkt miteinander handeln und die Plattform nur die sichere Mitte ist. Den Preis setzen die beiden Seiten selbst, innerhalb einer erlaubten Spanne um den Marktkurs."
+    },
+    "settlement": {
+      "title": "Abwicklung",
+      "body": "Der Schritt, in dem Geld tatsächlich zwischen Konten bewegt wird. Jede Abwicklung hat einen Beleg und steht in Ihrem Auftrag."
+    },
+    "twoFactor": {
+      "title": "Anmeldung in zwei Schritten",
+      "body": "Neben dem Passwort ein sechsstelliger Code, der sich alle dreißig Sekunden in einer App auf Ihrem Telefon ändert. Selbst wer Ihr Passwort kennt, kommt ohne dieses Telefon nicht hinein."
+    },
+    "otp": {
+      "title": "Einmalcode",
+      "body": "Ein per SMS geschickter Code, der nur wenige Minuten gilt. Er ersetzt ein festes Passwort, sodass nichts mehr da ist, was gestohlen werden könnte."
+    },
+    "sla": {
+      "title": "Zeitzusage",
+      "body": "Was wir zur Dauer zusagen: derselbe Werktag als Ziel, drei Werktage als vertragliches Maximum. Danach beginnt die Nachverfolgung automatisch."
+    },
+    "corridor": {
+      "title": "Währungsstrecke",
+      "body": "Ein Paar aus Ausgangs- und Zielwährung — etwa Toman zu Dirham. Jede Strecke hat ihre eigenen Wechselstuben und Bedingungen."
+    },
+    "bubble": {
+      "title": "Aufgeld der Münze",
+      "body": "Der Abstand zwischen dem Preis einer Münze und dem Wert des Goldes darin. Bei hoher Nachfrage wird der Abstand größer; die angezeigte Zahl ist genau dieser Abstand."
+    },
+    "install": {
+      "title": "Auf dem Telefon installieren",
+      "body": "Sie können dies wie eine App auf den Startbildschirm Ihres Telefons legen, ohne einen App-Store. Danach zeigt es die letzten Kurse auch ohne Verbindung."
+    },
+    "openMarket": {
+      "title": "Freier Markt",
+      "body": "Der Preis, zu dem Währungen im freien Handel tatsächlich den Besitzer wechseln, nicht der amtliche Kurs der Zentralbank. Alle Zahlen in dieser App beruhen darauf."
+    }
+  },
+  "transfer": {
+    "metaTitle": "Neue Überweisung",
+    "title": "Überweisungsangebot",
+    "subtitle": "Jeder Preisbestandteil, bevor Sie bestätigen — keine versteckten Kosten.",
+    "toman": "Toman",
+    "lockActive": "Ihr Kurs ist festgehalten",
+    "lockExpired": "Die Kursbindung ist abgelaufen",
+    "lockNote": "Ein bestätigter Kurs gilt fünfzehn Minuten. Läuft er ab, liefert ein Tippen ein frisches Angebot und zeigt den Unterschied deutlich an.",
+    "requote": "Neuen Kurs holen",
+    "youSend": "Sie senden",
+    "rateUsed": "Angewandter Kurs",
+    "rateValue": "{rate} Toman je {code}",
+    "whyThisRate": "Warum dieser Kurs?",
+    "recipientGets": "Empfänger erhält",
+    "confirmCta": "Bestätigen und fortfahren",
+    "back": "Zurück",
+    "slaNote": "Zeitrahmen: üblicherweise innerhalb eines Werktags erledigt; die vertragliche Obergrenze liegt bei drei Werktagen, gezählt nach dem iranischen und dem Werktagskalender des Ziellandes.",
+    "whyBody": "Der Grundkurs (der Mittelkurs des Marktes) liegt bei {rate} Toman je {code}. Darauf werden folgende Kursunterschiede angewandt:",
+    "creating": "Auftrag wird angelegt…",
+    "destination": "Zielkonto",
+    "createErrors": {
+      "signedOut": "Ihre Sitzung ist beendet. Bitte melden Sie sich erneut an.",
+      "failed": "Der Auftrag konnte nicht angelegt werden. Versuchen Sie es erneut.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    },
+    "gate": {
+      "anonymous": {
+        "title": "Zum Absenden anmelden",
+        "body": "Melden Sie sich per Mobilnummer oder E-Mail an. Haben Sie noch kein Konto, legt derselbe Weg eines an.",
+        "cta": "Anmelden"
+      },
+      "unverified": {
+        "title": "Zuerst ist die Identitätsprüfung nötig",
+        "body": "Die Prüfung erfolgt ein einziges Mal und dauert unter fünf Minuten. Danach läuft das Absenden einer Überweisung ohne Unterbrechung.",
+        "cta": "Prüfung starten"
+      },
+      "no_accounts": {
+        "title": "Noch kein Zielkonto",
+        "body": "Für diese Währung ist kein Konto gespeichert. Legen Sie eines an, dann wählen Sie es beim Absenden nur noch aus.",
+        "cta": "Konto hinzufügen"
+      },
+      "ready": {
+        "title": "Bereit zum Absenden",
+        "body": "Alles ist vorbereitet.",
+        "cta": "Weiter"
+      }
+    },
+    "commission": "Provision der Wechselstube",
+    "commissionRate": "{pct} % der Überweisung",
+    "howCommission": "Wie kommt diese Zahl zustande?",
+    "nextBand": "Erhöhen Sie den Betrag auf {amount} Toman, dann sinkt die Provision auf {pct} %.",
+    "edit": {
+      "title": "Betrag und Währung",
+      "recalculating": "Wird neu berechnet…",
+      "youSend": "Sie senden",
+      "recipientCurrency": "Empfänger erhält",
+      "tomanLeg": "Eine Seite ist immer Toman",
+      "fromCurrency": "Währung, die Sie senden",
+      "toCurrency": "Währung, die ankommt"
+    }
+  },
+  "orders": {
+    "metaTitle": "Aufträge",
+    "emptyTitle": "Noch keine Aufträge",
+    "emptyBody": "Sobald Sie die erste Überweisung beauftragen, erscheint hier der laufende Verlauf jedes Auftrags — mit dem Countdown der Zeitzusage und dem Chat mit Ihrer Wechselstube.",
+    "cta": "Überweisung starten",
+    "title": "Aufträge",
+    "subtitle": "Jede Überweisung mit eigener Nummer und dem vollständigen Verlauf jedes Schritts.",
+    "ref": "Auftragsnummer",
+    "created": "Angelegt",
+    "youSend": "Sie senden",
+    "recipientGets": "Empfänger erhält",
+    "office": "Wechselstube",
+    "officeUnassigned": "Noch keine Wechselstube",
+    "timeline": "Verlauf",
+    "noEvents": "Bisher ist nichts geschehen.",
+    "by": "von {role}",
+    "actorRole": {
+      "customer": "dem Kunden",
+      "office": "der Wechselstube",
+      "platform": "der Plattform"
+    },
+    "detailTitle": "Auftrag {ref}",
+    "notFound": "Diesen Auftrag gibt es nicht, oder Sie haben keinen Zugriff darauf.",
+    "rateLocked": "Festgehaltener Kurs",
+    "fees": "Gebühren",
+    "actions": "Was Sie tun können",
+    "noActions": "In diesem Schritt wird nichts von Ihnen gebraucht.",
+    "reasonLabel": "Notiz (optional)",
+    "reasonRequired": "Notiz (erforderlich)",
+    "working": "Wird erfasst…",
+    "actionFailed": "Diese Änderung konnte nicht erfasst werden.",
+    "errors": {
+      "notVerified": "Ihre Identität muss geprüft sein, bevor Sie eine Überweisung absenden können.",
+      "noDestination": "Es ist kein Zielkonto ausgewählt.",
+      "rateExpired": "Der festgehaltene Kurs ist abgelaufen — holen Sie einen neuen.",
+      "notPermitted": "Diese Handlung steht Ihnen in diesem Schritt nicht zu.",
+      "funded": "Ein bereits eingezahlter Auftrag wird erstattet, nicht storniert."
+    },
+    "state": {
+      "draft": "Nicht abgesendet",
+      "submitted": "Abgesendet",
+      "matching": "Wartet auf eine Wechselstube",
+      "office_review": "Wird von der Wechselstube geprüft",
+      "accepted": "Angenommen",
+      "awaiting_irt_funding": "Wartet auf Ihre Toman",
+      "irt_funded": "Toman eingezahlt",
+      "foreign_leg_pending": "Devisenteil in Arbeit",
+      "foreign_leg_sent": "Devisenteil versandt",
+      "recipient_confirmed": "Eingang bestätigt",
+      "irt_released": "Toman freigegeben",
+      "completed": "Abgeschlossen",
+      "on_hold": "Angehalten",
+      "info_needed": "Weitere Angaben nötig",
+      "disputed": "Im Streitfall",
+      "cancelled": "Storniert",
+      "refunded": "Erstattet",
+      "expired": "Abgelaufen",
+      "sla_breached": "Zeitzusage überschritten"
+    },
+    "stateBody": {
+      "draft": "Dieser Auftrag ist noch nicht abgesendet.",
+      "submitted": "Abgesendet und in der Warteschlange zu den geeigneten Wechselstuben.",
+      "matching": "Geeignete Wechselstuben können Ihre Anfrage sehen.",
+      "office_review": "Eine Wechselstube hat die Anfrage übernommen und prüft sie.",
+      "accepted": "Die Wechselstube hat angenommen. Als Nächstes wird der Toman-Teil eingezahlt.",
+      "awaiting_irt_funding": "Überweisen Sie den Toman-Betrag und laden Sie den Beleg hoch.",
+      "irt_funded": "Die Toman liegen in beaufsichtigter Verwahrung; die Wechselstube ist noch nicht bezahlt.",
+      "foreign_leg_pending": "Die Wechselstube führt die Devisenüberweisung aus.",
+      "foreign_leg_sent": "Sie ist unterwegs. Bestätigen Sie, sobald sie ankommt.",
+      "recipient_confirmed": "Der Eingang ist bestätigt; als Nächstes werden die Toman freigegeben.",
+      "irt_released": "Die Toman wurden an die Wechselstube freigegeben.",
+      "completed": "Diese Überweisung ist abgeschlossen.",
+      "on_hold": "Vorerst angehalten; der Grund steht im Verlauf.",
+      "info_needed": "Die Wechselstube hat weitere Angaben angefordert.",
+      "disputed": "Wird geprüft und bis zur Klärung eingefroren.",
+      "cancelled": "Dieser Auftrag wurde storniert.",
+      "refunded": "Der Toman-Betrag wurde zurückgezahlt.",
+      "expired": "Für diesen Auftrag ist die Zeit abgelaufen.",
+      "sla_breached": "Über der Frist und eskaliert."
+    },
+    "act": {
+      "submitted": "Anfrage absenden",
+      "cancelled": "Auftrag stornieren",
+      "recipient_confirmed": "Ich habe es erhalten",
+      "disputed": "Streitfall eröffnen",
+      "office_review": "Übernehmen und prüfen",
+      "accepted": "Anfrage annehmen",
+      "info_needed": "Weitere Angaben anfordern",
+      "awaiting_irt_funding": "Bereit für die Toman",
+      "irt_funded": "Eingang der Toman bestätigen",
+      "foreign_leg_pending": "Devisenteil starten",
+      "foreign_leg_sent": "Devisenteil als versandt markieren",
+      "irt_released": "Toman freigeben",
+      "completed": "Auftrag schließen",
+      "on_hold": "Anhalten",
+      "refunded": "Erstatten",
+      "sla_breached": "Überschreitung der Zeitzusage erfassen"
+    },
+    "cost": {
+      "title": "Was diese Überweisung gekostet hat",
+      "body": "Insgesamt {toman} Toman wurden von dieser Überweisung abgezogen — {pct} % davon.",
+      "basis": "Marktgrundkurs im Moment der Kursbindung: {mid} Toman."
+    }
   }
 }
