@@ -2806,5 +2806,174 @@
       "frozenReasonLabel": "Motif consigné",
       "notFrozen": "Ce compte est ouvert."
     }
+  },
+  "design": {
+    "metaTitle": "Système de design",
+    "badge": "Fondation",
+    "title": "Le système de design d'Asaex",
+    "intro": "Chaque jeton, composant et mouvement renvoie à cette page — dans les deux langues et les deux thèmes. C'est ce qui maintient la cohérence des trois surfaces du produit (application client, panneau du bureau, panneau d'administration).",
+    "tocLabel": "Sections",
+    "sections": {
+      "brand": "Marque et logo",
+      "colors": "Couleurs",
+      "type": "Typographie",
+      "layout": "Espacements, rayons, élévation",
+      "components": "Composants",
+      "validation": "Validation financière",
+      "coins": "Icônes de devises en 3D",
+      "charts": "Graphiques",
+      "motion": "Mouvement",
+      "scenes": "Illustration animée"
+    },
+    "brand": {
+      "description": "La marque Asaex forme la lettre A à partir de deux flux de devises qui se croisent — se lisant à la fois comme un A, comme la paire de flèches du change (⇄) et comme de l'eau qui coule.",
+      "markSizes": "Lisible d'une favicon de 16 px jusqu'à une enseigne de bâtiment",
+      "lockup": "Logotype avec le nom — en persan, la marque se place à droite",
+      "mono": "Version monochrome pour tampons, reçus et supports de marque",
+      "rules": {
+        "clearspace": "Espace de respiration : la hauteur du contrepoinçon de la marque, sur les quatre côtés",
+        "minsize": "Taille minimale : 16 px en numérique / 8 mm en impression",
+        "never": "Jamais : étirer, faire pivoter, ajouter des ombres portées ou recolorer hors de la palette",
+        "rtl": "Non miroitée en écriture de droite à gauche ; c'est l'ordre du logotype qui place la marque"
+      }
+    },
+    "colors": {
+      "description": "Un seul accent vert profond — la confiance et l'héritage visuel persan, délibérément à l'écart du bleu de toutes les fintechs.",
+      "note": "La couleur de hausse et de baisse n'est jamais le seul signal ; une flèche et un + ou − explicite l'accompagnent toujours (une exigence d'accessibilité pour la vision des couleurs).",
+      "use": {
+        "brand600": "Accent principal, boutons d'action, états actifs",
+        "brand700": "Survol / appui",
+        "brand50": "Surfaces teintées, lignes sélectionnées",
+        "ink900": "Texte principal",
+        "ink600": "Texte secondaire",
+        "ink300": "Bordures, séparateurs",
+        "surface": "Cartes",
+        "canvas": "Fond de page",
+        "up": "Hausse du taux",
+        "down": "Baisse du taux",
+        "warn": "En attente / attention",
+        "info": "Information"
+      }
+    },
+    "type": {
+      "description": "Le persan en Vazirmatn (interligne 1,75), l'anglais en Inter (1,6). Les chiffres affichés sont persans en persan ; les champs et identifiants restent en latin, et chaque chiffre est tabulaire.",
+      "sample": "La devise, en toute simplicité — آسا",
+      "numeralsFa": "Chiffres persans à l'affichage + chiffres tabulaires",
+      "numeralsEn": "Chiffres latins dans les contextes anglais"
+    },
+    "layout": {
+      "description": "Espacements uniquement sur l'échelle 4/8/12/16/24/32/48/64 ; rayons 8/12/16/24 ; exactement trois niveaux d'élévation douce.",
+      "spacing": "Échelle d'espacement (px)",
+      "radius": "Rayons d'angle (px)",
+      "elevation": "Trois niveaux d'élévation"
+    },
+    "components": {
+      "description": "Les primitives d'interface : boutons, badges d'état, champs et squelettes de chargement — avec des cibles tactiles d'au moins 44 px.",
+      "primary": "Principal",
+      "secondary": "Secondaire",
+      "soft": "Doux",
+      "ghost": "Fantôme",
+      "destructive": "Destructif",
+      "disabled": "Désactivé",
+      "badgeBrand": "Marque",
+      "badgeUp": "▲ +0,42 %",
+      "badgeDown": "▼ −0,85 %",
+      "badgeWarn": "En attente",
+      "badgeInfo": "Info",
+      "badgeNeutral": "Neutre",
+      "inputPlaceholder": "Un champ ordinaire…",
+      "inputInvalid": "Saisie invalide"
+    },
+    "validation": {
+      "description": "La validation est réelle, pas cosmétique : le Sheba par mod-97, les cartes par Luhn avec identification de la banque d'après le BIN, et le code national par son chiffre de contrôle.",
+      "sheba": {
+        "label": "Sheba (IBAN)",
+        "hint": "IR + 24 chiffres ; espaces autorisés",
+        "ok": "Sheba valide",
+        "err": {
+          "format": "Ce n'est pas un format Sheba — il commence par IR suivi de chiffres uniquement.",
+          "length": "Un Sheba demande exactement 24 chiffres après IR.",
+          "checksum": "Les chiffres de contrôle du Sheba ne correspondent pas — revérifiez le numéro."
+        }
+      },
+      "card": {
+        "label": "Numéro de carte",
+        "hint": "16 chiffres ; la banque est déduite des six premiers",
+        "ok": "Numéro de carte valide",
+        "okBank": "Carte valide — {bank}",
+        "err": {
+          "format": "Un numéro de carte compte exactement 16 chiffres.",
+          "checksum": "La somme de contrôle échoue — un chiffre est erroné."
+        }
+      },
+      "nid": {
+        "label": "Code national",
+        "hint": "10 chiffres avec un chiffre de contrôle",
+        "ok": "Code national valide",
+        "err": "Code national invalide — revérifiez les chiffres."
+      },
+      "banks": {
+        "melli": "Banque Melli",
+        "sepah": "Banque Sepah",
+        "mellat": "Banque Mellat",
+        "tejarat": "Banque Tejarat",
+        "saderat": "Banque Saderat",
+        "keshavarzi": "Banque Keshavarzi",
+        "maskan": "Banque Maskan",
+        "refah": "Banque Refah",
+        "parsian": "Banque Parsian",
+        "pasargad": "Banque Pasargad",
+        "saman": "Banque Saman",
+        "eghtesadNovin": "Banque EN",
+        "ansar": "Banque Ansar",
+        "postbank": "Banque postale",
+        "ayandeh": "Banque Ayandeh",
+        "shahr": "Banque Shahr",
+        "day": "Banque Day",
+        "sina": "Banque Sina",
+        "sarmayeh": "Banque Sarmayeh",
+        "tosee": "Banque Tose'e Ta'avon"
+      }
+    },
+    "coins": {
+      "description": "Vingt devises, un seul dispositif d'éclairage : caméra à 45°, lumière principale en haut à gauche, ombre de contact douce, et le symbole de la devise gravé sur la face.",
+      "rule": "La règle de frontière : les icônes 3D sont pour les devises et les concepts produit ; la micro-interface fonctionnelle (chevrons, fermer, rechercher) reste un jeu de traits nets de 2 px — de la 3D à 16 px, c'est du bruit, pas du raffinement."
+    },
+    "charts": {
+      "description": "Une seule série, trait de 2 px, grille discrète, réticule avec infobulle. Le texte des valeurs porte toujours les jetons d'encre, jamais la couleur de la série ; l'axe du temps reste de gauche à droite dans les deux langues.",
+      "history": "Historique de 90 jours avec réticule",
+      "sparkUp": "Sparkline, tendance positive",
+      "sparkDown": "Sparkline, tendance négative",
+      "note": "La direction s'accompagne toujours d'une flèche et d'un signe, de sorte que la couleur n'est jamais le seul signal."
+    },
+    "motion": {
+      "description": "Le mouvement est ici une fonctionnalité du produit, pas une décoration : 150–350 ms pour le retour, 600–1200 ms pour les moments narratifs ; transformations et opacité uniquement.",
+      "rules": "Sous le réglage « réduire les animations » du système, tout devient statique, et aucune animation ne bloque jamais une interaction ni ne retarde une action monétaire.",
+      "logoDraw": "Tracé du logo au lancement (700 ms)",
+      "replay": "Rejouer",
+      "swap": "Échange à ressort du convertisseur",
+      "digitRoll": "Défilement des chiffres au tic du taux",
+      "tick": "Simuler un tic de taux",
+      "countdown": "Anneau du compte à rebours du taux",
+      "countdownNote": "Sous 60 s, il passe à l'ambre et pulse",
+      "skeleton": "Squelette de chargement (miroitement de 1,6 s)",
+      "skeletonNote": "Calqué sur la mise en page finale, pour que le décalage reste nul"
+    },
+    "scenes": {
+      "description": "Chaque scène repose sur un même dispositif : le disque teinté de la marque, l'ombre de contact, et la même épaisseur de trait et silhouette de pièce que le logo et les icônes de devises. SVG + Framer Motion, quelques ko chacune, entièrement statiques sous le réglage de réduction des animations.",
+      "replay": "Tout rejouer",
+      "items": {
+        "otp": "Réception d'un code à usage unique",
+        "identity": "Saisie des informations",
+        "document": "Scan et tampon du document",
+        "liveness": "Photo en direct",
+        "review": "En cours d'examen",
+        "success": "Abouti",
+        "accounts": "Comptes enregistrés",
+        "security": "Sécurité du compte",
+        "matching": "Attribution d'un bureau",
+        "ordersEmpty": "Aucune commande"
+      }
+    }
   }
 }

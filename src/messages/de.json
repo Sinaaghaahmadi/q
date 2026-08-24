@@ -2806,5 +2806,174 @@
       "frozenReasonLabel": "Erfasster Grund",
       "notFrozen": "Dieses Konto ist offen."
     }
+  },
+  "design": {
+    "metaTitle": "Design-System",
+    "badge": "Grundlage",
+    "title": "Das Design-System von Asaex",
+    "intro": "Jedes Token, jede Komponente und jede Bewegung verweist auf diese Seite — in beiden Sprachen und beiden Themen. So bleiben die drei Produktoberflächen (Kunden-App, Bereich der Wechselstube, Verwaltungsbereich) stimmig.",
+    "tocLabel": "Abschnitte",
+    "sections": {
+      "brand": "Marke und Logo",
+      "colors": "Farben",
+      "type": "Typografie",
+      "layout": "Abstände, Radien, Erhebung",
+      "components": "Komponenten",
+      "validation": "Finanzielle Prüfung",
+      "coins": "3D-Währungssymbole",
+      "charts": "Diagramme",
+      "motion": "Bewegung",
+      "scenes": "Animierte Illustration"
+    },
+    "brand": {
+      "description": "Die Asaex-Marke baut den Buchstaben A aus zwei sich kreuzenden Währungsströmen — sie liest sich zugleich als A, als das Pfeilpaar des Wechsels (⇄) und als fließendes Wasser.",
+      "markSizes": "Lesbar vom 16-Pixel-Favicon bis zum Gebäudeschild",
+      "lockup": "Wortmarke mit Zeichen — im Persischen steht das Zeichen rechts",
+      "mono": "Einfarbige Fassung für Stempel, Belege und Markenflächen",
+      "rules": {
+        "clearspace": "Schutzraum: die Punzenhöhe des Zeichens, auf allen vier Seiten",
+        "minsize": "Mindestgröße: 16 px digital / 8 mm im Druck",
+        "never": "Niemals: verzerren, drehen, Schlagschatten hinzufügen oder außerhalb der Palette einfärben",
+        "rtl": "Wird bei Rechts-nach-links-Schrift nicht gespiegelt; die Reihenfolge der Wortmarke bestimmt, wo das Zeichen steht"
+      }
+    },
+    "colors": {
+      "description": "Ein einziger tiefgrüner Akzent — Vertrauen und persisches Bilderbe, bewusst abseits vom Blau jeder Fintech.",
+      "note": "Die Farbe für Auf und Ab ist nie das einzige Signal; ein Pfeil und ein ausdrückliches + oder − begleiten sie immer (eine Anforderung der Barrierefreiheit bei Farbsehschwäche).",
+      "use": {
+        "brand600": "Hauptakzent, Handlungsknöpfe, aktive Zustände",
+        "brand700": "Überfahren / Drücken",
+        "brand50": "Getönte Flächen, ausgewählte Zeilen",
+        "ink900": "Haupttext",
+        "ink600": "Nebentext",
+        "ink300": "Ränder, Trenner",
+        "surface": "Karten",
+        "canvas": "Seitenhintergrund",
+        "up": "Kurs steigt",
+        "down": "Kurs fällt",
+        "warn": "Ausstehend / Achtung",
+        "info": "Hinweis"
+      }
+    },
+    "type": {
+      "description": "Persisch in Vazirmatn (Zeilenabstand 1,75), Englisch in Inter (1,6). Angezeigte Ziffern sind im Persischen persisch; Eingabefelder und Kennungen bleiben lateinisch, und jede Ziffer ist tabellarisch.",
+      "sample": "Währung, ganz einfach — آسا",
+      "numeralsFa": "Persische Anzeigeziffern + tabellarische Ziffern",
+      "numeralsEn": "Lateinische Ziffern im englischen Kontext"
+    },
+    "layout": {
+      "description": "Abstände nur aus der Skala 4/8/12/16/24/32/48/64; Radien 8/12/16/24; genau drei weiche Erhebungsstufen.",
+      "spacing": "Abstandsskala (px)",
+      "radius": "Eckradien (px)",
+      "elevation": "Drei Erhebungsstufen"
+    },
+    "components": {
+      "description": "Die Bausteine der Oberfläche: Knöpfe, Zustandsabzeichen, Eingabefelder und Ladegerüste — mit Berührflächen von mindestens 44 px.",
+      "primary": "Primär",
+      "secondary": "Sekundär",
+      "soft": "Weich",
+      "ghost": "Transparent",
+      "destructive": "Zerstörend",
+      "disabled": "Deaktiviert",
+      "badgeBrand": "Marke",
+      "badgeUp": "▲ +0,42 %",
+      "badgeDown": "▼ −0,85 %",
+      "badgeWarn": "Ausstehend",
+      "badgeInfo": "Hinweis",
+      "badgeNeutral": "Neutral",
+      "inputPlaceholder": "Ein gewöhnliches Eingabefeld…",
+      "inputInvalid": "Ungültige Eingabe"
+    },
+    "validation": {
+      "description": "Die Prüfung ist echt, nicht kosmetisch: Sheba über mod-97, Karten über Luhn mit Bankermittlung aus der BIN, und die nationale Kennnummer über ihre Prüfziffer.",
+      "sheba": {
+        "label": "Sheba (IBAN)",
+        "hint": "IR + 24 Ziffern; Leerzeichen erlaubt",
+        "ok": "Gültiges Sheba",
+        "err": {
+          "format": "Das ist kein Sheba-Format — es beginnt mit IR und danach nur Ziffern.",
+          "length": "Ein Sheba braucht nach IR genau 24 Ziffern.",
+          "checksum": "Die Prüfziffern des Sheba stimmen nicht — prüfen Sie die Nummer noch einmal."
+        }
+      },
+      "card": {
+        "label": "Kartennummer",
+        "hint": "16 Ziffern; die Bank wird aus den ersten sechs erkannt",
+        "ok": "Gültige Kartennummer",
+        "okBank": "Gültige Karte — {bank}",
+        "err": {
+          "format": "Eine Kartennummer hat genau 16 Ziffern.",
+          "checksum": "Die Prüfsumme der Karte geht nicht auf — eine Ziffer stimmt nicht."
+        }
+      },
+      "nid": {
+        "label": "Nationale Kennnummer",
+        "hint": "10 Ziffern mit Prüfziffer",
+        "ok": "Gültige Kennnummer",
+        "err": "Ungültige Kennnummer — prüfen Sie die Ziffern noch einmal."
+      },
+      "banks": {
+        "melli": "Bank Melli",
+        "sepah": "Bank Sepah",
+        "mellat": "Bank Mellat",
+        "tejarat": "Tejarat Bank",
+        "saderat": "Bank Saderat",
+        "keshavarzi": "Keshavarzi Bank",
+        "maskan": "Bank Maskan",
+        "refah": "Refah Bank",
+        "parsian": "Parsian Bank",
+        "pasargad": "Bank Pasargad",
+        "saman": "Saman Bank",
+        "eghtesadNovin": "EN Bank",
+        "ansar": "Ansar Bank",
+        "postbank": "Post Bank",
+        "ayandeh": "Ayandeh Bank",
+        "shahr": "Shahr Bank",
+        "day": "Day Bank",
+        "sina": "Sina Bank",
+        "sarmayeh": "Sarmayeh Bank",
+        "tosee": "Tose'e Ta'avon Bank"
+      }
+    },
+    "coins": {
+      "description": "Zwanzig Währungen, eine Lichtsetzung: Kamera bei 45°, Hauptlicht oben links, weicher Kontaktschatten und das Währungszeichen erhaben auf der Fläche.",
+      "rule": "Die Grenzregel: 3D-Symbole sind für Währungen und Produktbegriffe; die funktionale Mikro-Oberfläche (Pfeile, Schließen, Suchen) bleibt ein sauberer 2-px-Strichsatz — 3D bei 16 px ist Lärm, nicht Feinschliff."
+    },
+    "charts": {
+      "description": "Eine Reihe, 2 px Linie, zurückgenommenes Raster, Fadenkreuz mit Tooltip. Werttexte tragen immer die Tinten-Token, nie die Farbe der Reihe; die Zeitachse bleibt in beiden Sprachen von links nach rechts.",
+      "history": "90-Tage-Verlauf mit Fadenkreuz",
+      "sparkUp": "Sparkline, steigender Trend",
+      "sparkDown": "Sparkline, fallender Trend",
+      "note": "Die Richtung trägt immer Pfeil und Vorzeichen, damit Farbe nie das einzige Signal ist."
+    },
+    "motion": {
+      "description": "Bewegung ist hier eine Produkteigenschaft, keine Dekoration: 150–350 ms für Rückmeldung, 600–1200 ms für erzählende Momente; nur Transformation und Deckkraft.",
+      "rules": "Unter der Systemeinstellung „Bewegung reduzieren“ wird alles statisch, und keine Animation blockiert je eine Eingabe oder verzögert eine Geldhandlung.",
+      "logoDraw": "Logo-Zeichnung beim Start (700 ms)",
+      "replay": "Erneut abspielen",
+      "swap": "Federnder Tausch im Umrechner",
+      "digitRoll": "Ziffernrollen beim Kurswechsel",
+      "tick": "Einen Kurswechsel simulieren",
+      "countdown": "Countdown-Ring der Kursbindung",
+      "countdownNote": "Unter 60 s wird er bernsteinfarben und pulsiert",
+      "skeleton": "Ladegerüst (1,6 s Schimmern)",
+      "skeletonNote": "Auf das endgültige Layout abgestimmt, damit kein Versatz entsteht"
+    },
+    "scenes": {
+      "description": "Jede Szene steht auf demselben Gerüst: die markenfarbene Scheibe, der Kontaktschatten und dieselbe Strichstärke und Münzsilhouette wie Logo und Währungssymbole. SVG mit Framer Motion, je wenige kB, unter der Systemeinstellung zur Bewegungsreduktion vollständig statisch.",
+      "replay": "Alle erneut abspielen",
+      "items": {
+        "otp": "Einmalcode wird empfangen",
+        "identity": "Angaben ausfüllen",
+        "document": "Dokument scannen und stempeln",
+        "liveness": "Live-Foto",
+        "review": "In Prüfung",
+        "success": "Abgeschlossen",
+        "accounts": "Gespeicherte Konten",
+        "security": "Kontosicherheit",
+        "matching": "Wechselstube wird zugeordnet",
+        "ordersEmpty": "Keine Aufträge"
+      }
+    }
   }
 }

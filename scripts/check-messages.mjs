@@ -1,16 +1,17 @@
 /**
- * Report what each locale is missing against English.
+ * Every locale must match English, key for key.
  *
- * Arabic and French are translated across the customer-facing surface; the
- * staff consoles are not, because the people in them are Iranian exchange
- * offices and Asaex staff working in Persian. `src/i18n/request.ts` layers
- * every locale over English so an untranslated key renders as readable English
- * rather than as `admin.rates.title`.
+ * This used to be advisory: Persian had to be complete and the rest were
+ * allowed to fall back, because the staff consoles were only ever going to be
+ * read in Persian. They are all complete now — customer surface and both
+ * consoles, in all five languages — and the moment that is true the check
+ * becomes worth enforcing. A key added in English and not translated is a
+ * screen that silently changes language mid-sentence for somebody, and the
+ * cheapest place to notice is here rather than in the app.
  *
- * That fallback is only defensible while somebody can see how big the gap is,
- * which is what this prints. It fails only when a *fully* translated locale
- * regresses — fa must match en exactly, because Persian is the primary market
- * and a missing Persian key is a bug, not a deferral.
+ * `src/i18n/request.ts` still layers every locale over English, so a gap
+ * degrades to readable English instead of a raw key. That is a safety net, not
+ * a licence: this check is what keeps it unused.
  *
  *   node scripts/check-messages.mjs
  */
@@ -18,8 +19,8 @@ import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 const LOCALES = ["fa", "en", "ar", "fr", "de"];
-/** Locales expected to be complete. A gap here is an error, not a note. */
-const COMPLETE = ["fa"];
+/** Every locale is expected to be complete. A gap is an error, not a note. */
+const COMPLETE = LOCALES;
 
 function leaves(node, trail = []) {
   const out = [];
