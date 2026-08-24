@@ -1775,6 +1775,218 @@
         "resolved": "Close",
         "archived": "Archivée"
       }
+    },
+    "customers": {
+      "metaTitle": "Clients",
+      "title": "Clients",
+      "subtitle": "Les personnes ayant traité avec ce bureau.",
+      "searchLabel": "Rechercher un client",
+      "searchPlaceholder": "Nom du client",
+      "col": {
+        "name": "Nom",
+        "orders": "Commandes",
+        "volume": "Total",
+        "last": "Dernière commande",
+        "kyc": "Vérification",
+        "ref": "Client"
+      },
+      "toman": "tomans",
+      "unnamed": "Sans nom",
+      "volumeHint": "Le total ne compte que les commandes abouties.",
+      "privacy": "Un bureau voit le nom d'un client et son état de vérification, rien de plus.",
+      "empty": "Aucun client pour l'instant.",
+      "emptyFiltered": "Aucun client ne correspond à ce nom.",
+      "kyc": {
+        "unverified": "Non vérifié",
+        "pending": "En cours d'examen",
+        "approved": "Vérifié",
+        "rejected": "Refusé",
+        "more_info_needed": "Informations complémentaires requises",
+        "unknown": "Inconnu"
+      },
+      "search": {
+        "label": "Rechercher par référence client",
+        "placeholder": "Référence client"
+      },
+      "identityNote": "Le nom d'un client n'est pas accessible au bureau ; chacun est identifié par la même référence que celle de la liste des demandes.",
+      "truncated": "Ce bureau a un très grand nombre de commandes ; les comptages et totaux couvrent les {count} plus récentes.",
+      "noMatch": "Aucun client ne correspond à cette référence."
+    },
+    "team": {
+      "metaTitle": "Équipe",
+      "title": "Équipe",
+      "subtitle": "L'accès au panneau de ce bureau. Seul votre propre siège est listé ici ; celui d'un collègue n'est pas lisible depuis cette page.",
+      "col": {
+        "person": "Personne",
+        "role": "Rôle",
+        "since": "Depuis",
+        "action": "Action"
+      },
+      "role": {
+        "office_viewer": "Observateur",
+        "office_operator": "Opérateur",
+        "office_finance": "Finance",
+        "office_owner": "Propriétaire"
+      },
+      "roleMeaning": {
+        "office_viewer": "Consulte le panneau et ne modifie rien.",
+        "office_operator": "Traite les commandes du jour.",
+        "office_finance": "Les commandes du jour, plus les comptes et les soldes.",
+        "office_owner": "Tout, y compris cette page."
+      },
+      "you": "Vous",
+      "unnamed": "Sans nom",
+      "nameNote": "Un nom n'apparaît que là où la plateforme vous laisse lire ce profil ; les autres sont listés par identifiant.",
+      "empty": "Aucun siège n'a encore été accordé dans ce bureau.",
+      "readOnly": "Seul le propriétaire du bureau peut modifier les accès.",
+      "addTitle": "Ajouter un collègue",
+      "addBody": "Il doit déjà avoir un compte Asaex. Rien n'est envoyé par e-mail d'ici — demandez-lui son identifiant et collez-le.",
+      "userIdLabel": "Identifiant utilisateur",
+      "roleLabel": "Rôle",
+      "grant": "Accorder l'accès",
+      "revoke": "Retirer l'accès",
+      "revokeConfirm": "Retirer cet accès ?",
+      "revokeYes": "Oui, retirer",
+      "cancel": "Laisser tomber",
+      "working": "Un instant…",
+      "granted": "Accès accordé.",
+      "revoked": "Accès retiré.",
+      "errors": {
+        "badId": "Ce n'est pas un identifiant utilisateur. Il doit être complet.",
+        "noSuchUser": "Aucun compte Asaex n'a cet identifiant.",
+        "forbidden": "Seul le propriétaire du bureau peut le faire.",
+        "failed": "Cela n'est pas passé. Réessayez."
+      }
+    },
+    "reports": {
+      "metaTitle": "Rapports",
+      "title": "Rapports",
+      "subtitle": "Le volume et la performance de ce bureau sur les six derniers mois.",
+      "empty": "Ce bureau n'a aucune commande sur les six derniers mois.",
+      "stat": {
+        "orders": "Commandes",
+        "volume": "Volume en tomans",
+        "completion": "Temps moyen d'exécution",
+        "sla": "Livrées avant l'échéance"
+      },
+      "toman": "tomans",
+      "hours": "{value} heures",
+      "minutes": "{value} minutes",
+      "noData": "Pas encore de données",
+      "volumeTitle": "Volume mensuel",
+      "volumeHint": "Le volume ne compte que les commandes abouties ; le nombre de commandes couvre tout ce qui a été déposé ce mois-là. Le dernier mois est encore en cours, sa barre est donc estompée.",
+      "chartLabel": "Diagramme en barres du volume en tomans par mois, de {from} à {to}. Mois le plus élevé : {peak}, à {max} tomans.",
+      "monthOrders": "{count, number} commandes",
+      "corridorTitle": "Corridors",
+      "corridorHint": "La part de chaque corridor dans les commandes de la période.",
+      "completionHint": "Du premier événement d'une commande jusqu'à son aboutissement, sur {count, number} commandes abouties.",
+      "slaHint": "La part des commandes abouties closes avant leur échéance, sur {count, number} commandes qui en avaient une.",
+      "noCompleted": "Rien n'a encore abouti.",
+      "noSla": "Aucune échéance n'a été consignée pour les commandes de cette période.",
+      "chartEmptyLabel": "Diagramme en barres du volume en tomans par mois, de {from} à {to}. Rien n'a abouti sur cette période."
+    },
+    "config": {
+      "rates": {
+        "metaTitle": "Corridors et écart de taux",
+        "title": "Corridors et écart de taux",
+        "subtitle": "Pour chaque corridor, vous pouvez annoncer un taux légèrement écarté du taux de base. Cet écart n'est pas un supplément : il sort de la commission par tranches ci-dessus, de sorte que ce que paie le client ne change pas et que votre part de la commission augmente. Les montants minimum et maximum et une heure de clôture sont également enregistrés.",
+        "readOnly": "Modifier les corridors demande le rôle propriétaire dans ce bureau. Cette page est en lecture seule pour vous.",
+        "templateNote": "La plateforme a un chiffre par défaut pour chaque corridor. Là où le vôtre diffère, vous voyez « modifié » — la même chose que voit la plateforme.",
+        "listTitle": "Les corridors de ce bureau",
+        "empty": "Aucun corridor n'a encore été défini. Ajoutez-en un ci-dessous.",
+        "spreadLabel": "Écart par rapport au taux de base",
+        "spreadMeans": "{bps} centièmes de pour cent — soit {pct} % d'écart avec le taux de base",
+        "spreadHint": "Écrivez le nombre en centièmes de pour cent ; 100 vaut un pour cent. 150 signifie un et demi pour cent.",
+        "templateSpread": "Valeur par défaut de la plateforme : {bps}",
+        "minLabel": "Montant minimum",
+        "maxLabel": "Montant maximum",
+        "amountHint": "En {code}. Vide signifie aucune limite.",
+        "onFile": "Enregistré : {amount} {code}",
+        "noLimit": "Enregistré : aucune limite",
+        "cutoffLabel": "Heure de clôture",
+        "cutoffHint": "L'heure de clôture enregistrée pour ce corridor.",
+        "activeLabel": "Actif",
+        "activeHint": "Un corridor inactif est écarté quand la plateforme choisit un bureau séquestre ; les commandes ouvertes restent en place.",
+        "badge": {
+          "same": "Identique au défaut",
+          "overridden": "Modifié",
+          "custom": "Hors modèle",
+          "inactive": "Inactif"
+        },
+        "addTitle": "Ajouter un corridor",
+        "addCurrency": "Devise",
+        "addHint": "Un côté d'un corridor est toujours en tomans. Un nouveau corridor est enregistré avec la valeur par défaut de la plateforme — ou zéro s'il n'y en a pas — et désactivé ; corrigez la valeur dans la liste ci-dessus, puis activez-le.",
+        "add": "Ajouter le corridor",
+        "save": "Enregistrer",
+        "saved": "Enregistré.",
+        "working": "Un instant…",
+        "errors": {
+          "spreadRange": "Ce doit être un nombre entier entre 0 et 2000 (de zéro à vingt pour cent).",
+          "amountInvalid": "Écrivez le montant en chiffres.",
+          "amountOrder": "Le montant minimum ne peut pas dépasser le maximum.",
+          "duplicate": "Ce corridor est déjà défini.",
+          "forbidden": "Non enregistré : seul le propriétaire du bureau peut écrire les corridors.",
+          "saveFailed": "Non enregistré. Réessayez."
+        },
+        "emptyReadOnly": "Aucun corridor n'a encore été défini.",
+        "amountUnknownCurrency": "La devise de ce corridor ne figure pas dans la liste de la plateforme ; aucun montant ne peut donc y être inscrit."
+      },
+      "settings": {
+        "metaTitle": "Réglages du bureau",
+        "title": "Réglages du bureau",
+        "subtitle": "Horaires, acceptation automatique et destination des avis.",
+        "lockedTitle": "Ces trois réglages ne sont pas écrits par le bureau",
+        "lockedBody": "Les écritures sur la fiche du bureau ne sont acceptées que de la plateforme. Vous pouvez lire les valeurs actuelles ici et envoyer le changement souhaité à l'assistance.",
+        "supportCta": "Écrire à l'assistance",
+        "hours": {
+          "title": "Horaires d'ouverture",
+          "body": "Les heures sont en {tz}.",
+          "bodyUnknown": "Aucun fuseau horaire n'est enregistré pour ce bureau ; les heures se lisent à l'heure locale du bureau.",
+          "open": "Ouvre",
+          "close": "Ferme",
+          "closedLabel": "Fermé",
+          "day": {
+            "sat": "Samedi",
+            "sun": "Dimanche",
+            "mon": "Lundi",
+            "tue": "Mardi",
+            "wed": "Mercredi",
+            "thu": "Jeudi",
+            "fri": "Vendredi"
+          }
+        },
+        "auto": {
+          "title": "Acceptation automatique",
+          "body": "Ceci est enregistré ; l'acceptation automatique n'est pas encore appliquée aux commandes.",
+          "enabledLabel": "Acceptation automatique",
+          "maxLabel": "Plafond d'acceptation automatique",
+          "maxHint": "En tomans. Vide signifie qu'aucun plafond n'est enregistré.",
+          "onFile": "Enregistré : {amount} IRT",
+          "noLimit": "Enregistré : aucun plafond"
+        },
+        "notify": {
+          "title": "Où vont les avis",
+          "body": "Ces coordonnées sont enregistrées sur la fiche du bureau ; rien ne leur est encore envoyé.",
+          "phone": "Téléphone",
+          "phonePlaceholder": "+982188001122",
+          "email": "E-mail",
+          "emailPlaceholder": "office@example.com",
+          "smsLabel": "SMS",
+          "smsHint": "La préférence SMS, enregistrée au dossier.",
+          "emailLabel": "E-mail",
+          "emailHint": "La préférence e-mail, enregistrée au dossier."
+        },
+        "save": "Enregistrer",
+        "saved": "Enregistré.",
+        "working": "Un instant…",
+        "errors": {
+          "timeOrder": "L'heure de fermeture doit être postérieure à l'heure d'ouverture.",
+          "timeMissing": "Écrivez les deux heures pour un jour qui n'est pas fermé.",
+          "amountInvalid": "Écrivez le plafond en chiffres.",
+          "forbidden": "Non enregistré : les écritures sur la fiche du bureau ne sont acceptées que de la plateforme. Envoyez le changement à l'assistance.",
+          "saveFailed": "Non enregistré. Réessayez."
+        }
+      }
     }
   }
 }

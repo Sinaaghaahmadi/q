@@ -1775,6 +1775,218 @@
         "resolved": "Geschlossen",
         "archived": "Archiviert"
       }
+    },
+    "customers": {
+      "metaTitle": "Kundschaft",
+      "title": "Kundschaft",
+      "subtitle": "Menschen, die mit dieser Wechselstube zu tun hatten.",
+      "searchLabel": "Kundschaft suchen",
+      "searchPlaceholder": "Name",
+      "col": {
+        "name": "Name",
+        "orders": "Aufträge",
+        "volume": "Summe",
+        "last": "Letzter Auftrag",
+        "kyc": "Prüfung",
+        "ref": "Kundennummer"
+      },
+      "toman": "Toman",
+      "unnamed": "Ohne Namen",
+      "volumeHint": "Die Summe zählt nur abgeschlossene Aufträge.",
+      "privacy": "Eine Wechselstube sieht Namen und Prüfstand, sonst nichts.",
+      "empty": "Noch keine Kundschaft.",
+      "emptyFiltered": "Niemand passt zu diesem Namen.",
+      "kyc": {
+        "unverified": "Nicht geprüft",
+        "pending": "In Prüfung",
+        "approved": "Geprüft",
+        "rejected": "Abgelehnt",
+        "more_info_needed": "Weitere Angaben nötig",
+        "unknown": "Unbekannt"
+      },
+      "search": {
+        "label": "Nach Kundennummer suchen",
+        "placeholder": "Kundennummer"
+      },
+      "identityNote": "Der Name ist der Wechselstube nicht zugänglich; jede Person wird über dieselbe Nummer geführt, die auch in der Anfrageliste steht.",
+      "truncated": "Diese Wechselstube hat sehr viele Aufträge; Zahlen und Summen decken die jüngsten {count} ab.",
+      "noMatch": "Zu dieser Nummer passt niemand."
+    },
+    "team": {
+      "metaTitle": "Team",
+      "title": "Team",
+      "subtitle": "Der Zugang zu diesem Bereich. Hier steht nur Ihr eigener Platz; der einer Kollegin oder eines Kollegen ist von dieser Seite aus nicht lesbar.",
+      "col": {
+        "person": "Person",
+        "role": "Rolle",
+        "since": "Seit",
+        "action": "Handlung"
+      },
+      "role": {
+        "office_viewer": "Einsicht",
+        "office_operator": "Bedienung",
+        "office_finance": "Finanzen",
+        "office_owner": "Inhaberschaft"
+      },
+      "roleMeaning": {
+        "office_viewer": "Liest den Bereich und ändert nichts.",
+        "office_operator": "Bearbeitet die Aufträge des Tages.",
+        "office_finance": "Die Aufträge des Tages, dazu Konten und Bestände.",
+        "office_owner": "Alles, auch diese Seite."
+      },
+      "you": "Sie",
+      "unnamed": "Ohne Namen",
+      "nameNote": "Ein Name erscheint nur dort, wo die Plattform Ihnen das Profil zu lesen erlaubt; alle anderen stehen mit ihrer Benutzerkennung.",
+      "empty": "In dieser Wechselstube wurden noch keine Plätze vergeben.",
+      "readOnly": "Nur die Inhaberschaft kann ändern, wer Zugang hat.",
+      "addTitle": "Kollegin oder Kollegen hinzufügen",
+      "addBody": "Ein Asaex-Konto muss bereits bestehen. Von hier geht keine E-Mail — fragen Sie nach der Benutzerkennung und fügen Sie sie ein.",
+      "userIdLabel": "Benutzerkennung",
+      "roleLabel": "Rolle",
+      "grant": "Zugang geben",
+      "revoke": "Zugang entziehen",
+      "revokeConfirm": "Diesen Zugang entziehen?",
+      "revokeYes": "Ja, entziehen",
+      "cancel": "Doch nicht",
+      "working": "Einen Moment…",
+      "granted": "Zugang gegeben.",
+      "revoked": "Zugang entzogen.",
+      "errors": {
+        "badId": "Das ist keine Benutzerkennung. Sie muss vollständig sein.",
+        "noSuchUser": "Kein Asaex-Konto hat diese Kennung.",
+        "forbidden": "Das kann nur die Inhaberschaft.",
+        "failed": "Das ging nicht durch. Versuchen Sie es erneut."
+      }
+    },
+    "reports": {
+      "metaTitle": "Berichte",
+      "title": "Berichte",
+      "subtitle": "Volumen und Leistung dieser Wechselstube über die letzten sechs Monate.",
+      "empty": "Diese Wechselstube hat aus den letzten sechs Monaten keine Aufträge.",
+      "stat": {
+        "orders": "Aufträge",
+        "volume": "Volumen in Toman",
+        "completion": "Durchschnittliche Bearbeitungsdauer",
+        "sla": "Vor der Frist geliefert"
+      },
+      "toman": "Toman",
+      "hours": "{value} Stunden",
+      "minutes": "{value} Minuten",
+      "noData": "Noch keine Daten",
+      "volumeTitle": "Monatsvolumen",
+      "volumeHint": "Das Volumen zählt nur abgeschlossene Aufträge; die Auftragszahl umfasst alles, was in dem Monat eingereicht wurde. Der letzte Monat läuft noch, deshalb ist sein Balken blass gezeichnet.",
+      "chartLabel": "Balkendiagramm des Toman-Volumens nach Monat, {from} bis {to}. Höchster Monat {peak} mit {max} Toman.",
+      "monthOrders": "{count, number} Aufträge",
+      "corridorTitle": "Strecken",
+      "corridorHint": "Der Anteil jeder Strecke an den Aufträgen dieses Zeitraums.",
+      "completionHint": "Vom ersten Ereignis eines Auftrags bis zu seinem Abschluss, über {count, number} abgeschlossene Aufträge.",
+      "slaHint": "Der Anteil abgeschlossener Aufträge, die vor ihrer Frist geschlossen wurden, über {count, number} Aufträge mit Frist.",
+      "noCompleted": "Bisher wurde nichts abgeschlossen.",
+      "noSla": "Für die Aufträge dieses Zeitraums wurde keine Frist erfasst.",
+      "chartEmptyLabel": "Balkendiagramm des Toman-Volumens nach Monat, {from} bis {to}. In diesem Zeitraum wurde nichts abgeschlossen."
+    },
+    "config": {
+      "rates": {
+        "metaTitle": "Strecken und Kursunterschied",
+        "title": "Strecken und Kursunterschied",
+        "subtitle": "Für jede Strecke dürfen Sie einen Kurs nennen, der leicht vom Grundkurs abweicht. Dieser Unterschied ist kein Aufschlag: Er kommt aus der gestaffelten Provision oben, sodass sich für die Kundschaft nichts ändert und Ihr Anteil an der Provision wächst. Mindest- und Höchstbetrag sowie eine Annahmeschlusszeit werden ebenfalls erfasst.",
+        "readOnly": "Strecken zu ändern erfordert in dieser Wechselstube die Rolle Inhaberschaft. Für Sie ist diese Seite nur lesbar.",
+        "templateNote": "Die Plattform hat für jede Strecke einen Standardwert. Wo Ihrer abweicht, steht „abweichend“ — dasselbe sieht die Plattform.",
+        "listTitle": "Die Strecken dieser Wechselstube",
+        "empty": "Es ist noch keine Strecke angelegt. Legen Sie unten eine an.",
+        "spreadLabel": "Abstand zum Grundkurs",
+        "spreadMeans": "{bps} Hundertstelprozent — also {pct} % Abstand zum Grundkurs",
+        "spreadHint": "Schreiben Sie die Zahl in Hundertstelprozent; 100 ist ein Prozent. 150 bedeutet anderthalb Prozent.",
+        "templateSpread": "Standard der Plattform: {bps}",
+        "minLabel": "Kleinster Betrag",
+        "maxLabel": "Größter Betrag",
+        "amountHint": "In {code}. Leer heißt: keine Grenze.",
+        "onFile": "Hinterlegt: {amount} {code}",
+        "noLimit": "Hinterlegt: keine Grenze",
+        "cutoffLabel": "Täglicher Annahmeschluss",
+        "cutoffHint": "Der für diese Strecke erfasste Annahmeschluss.",
+        "activeLabel": "Aktiv",
+        "activeHint": "Eine inaktive Strecke wird übersprungen, wenn die Plattform eine treuhänderische Wechselstube wählt; offene Aufträge bleiben, wo sie sind.",
+        "badge": {
+          "same": "Wie der Standard",
+          "overridden": "Abweichend",
+          "custom": "Nicht in der Vorlage",
+          "inactive": "Inaktiv"
+        },
+        "addTitle": "Strecke anlegen",
+        "addCurrency": "Währung",
+        "addHint": "Eine Seite einer Strecke ist immer Toman. Eine neue Strecke wird mit dem Standardwert der Plattform — oder mit null, wo es keinen gibt — und ausgeschaltet gespeichert; setzen Sie den Wert in der Liste oben und schalten Sie sie dann ein.",
+        "add": "Strecke anlegen",
+        "save": "Speichern",
+        "saved": "Gespeichert.",
+        "working": "Einen Moment…",
+        "errors": {
+          "spreadRange": "Das muss eine ganze Zahl zwischen 0 und 2000 sein (null bis zwanzig Prozent).",
+          "amountInvalid": "Schreiben Sie den Betrag in Ziffern.",
+          "amountOrder": "Der kleinste Betrag darf nicht größer sein als der größte.",
+          "duplicate": "Diese Strecke ist bereits angelegt.",
+          "forbidden": "Nicht gespeichert: Strecken darf nur die Inhaberschaft schreiben.",
+          "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        },
+        "emptyReadOnly": "Es ist noch keine Strecke angelegt.",
+        "amountUnknownCurrency": "Die Währung dieser Strecke steht nicht in der Liste der Plattform, daher lässt sich kein Betrag dafür eintragen."
+      },
+      "settings": {
+        "metaTitle": "Einstellungen der Wechselstube",
+        "title": "Einstellungen der Wechselstube",
+        "subtitle": "Öffnungszeiten, automatische Annahme und wohin Hinweise gehen.",
+        "lockedTitle": "Diese drei Einstellungen schreibt die Wechselstube nicht",
+        "lockedBody": "Schreibzugriffe auf den Datensatz der Wechselstube nimmt nur die Plattform an. Sie können die aktuellen Werte hier lesen und die gewünschte Änderung an den Support schicken.",
+        "supportCta": "Support anschreiben",
+        "hours": {
+          "title": "Öffnungszeiten",
+          "body": "Die Zeiten gelten in {tz}.",
+          "bodyUnknown": "Für diese Wechselstube ist keine Zeitzone erfasst; die Zeiten gelten als Ortszeit der Wechselstube.",
+          "open": "Öffnet",
+          "close": "Schließt",
+          "closedLabel": "Geschlossen",
+          "day": {
+            "sat": "Samstag",
+            "sun": "Sonntag",
+            "mon": "Montag",
+            "tue": "Dienstag",
+            "wed": "Mittwoch",
+            "thu": "Donnerstag",
+            "fri": "Freitag"
+          }
+        },
+        "auto": {
+          "title": "Automatische Annahme",
+          "body": "Das wird erfasst; auf Aufträge angewandt wird die automatische Annahme noch nicht.",
+          "enabledLabel": "Automatische Annahme",
+          "maxLabel": "Obergrenze der automatischen Annahme",
+          "maxHint": "In Toman. Leer heißt: keine Obergrenze erfasst.",
+          "onFile": "Hinterlegt: {amount} IRT",
+          "noLimit": "Hinterlegt: keine Obergrenze"
+        },
+        "notify": {
+          "title": "Wohin Hinweise gehen",
+          "body": "Diese Angaben stehen im Datensatz der Wechselstube; gesendet wird an sie noch nichts.",
+          "phone": "Telefon",
+          "phonePlaceholder": "+982188001122",
+          "email": "E-Mail",
+          "emailPlaceholder": "office@example.com",
+          "smsLabel": "SMS",
+          "smsHint": "Die SMS-Einstellung, im Datensatz hinterlegt.",
+          "emailLabel": "E-Mail",
+          "emailHint": "Die E-Mail-Einstellung, im Datensatz hinterlegt."
+        },
+        "save": "Speichern",
+        "saved": "Gespeichert.",
+        "working": "Einen Moment…",
+        "errors": {
+          "timeOrder": "Die Schließzeit muss nach der Öffnungszeit liegen.",
+          "timeMissing": "Tragen Sie für einen nicht geschlossenen Tag beide Zeiten ein.",
+          "amountInvalid": "Schreiben Sie die Obergrenze in Ziffern.",
+          "forbidden": "Nicht gespeichert: Schreibzugriffe auf den Datensatz nimmt nur die Plattform an. Schicken Sie die Änderung an den Support.",
+          "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        }
+      }
     }
   }
 }
