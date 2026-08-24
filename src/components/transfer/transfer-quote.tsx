@@ -148,7 +148,7 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
    * band edge is checkable: it is on the schedule, one tap away, and it is
    * information the customer can act on rather than a claim they have to trust.
    */
-  const upgrade = nextBand(quote.tomanLeg);
+  const upgrade = nextBand(quote.tomanLeg, quote.commission.discountPct);
   const worthShowing =
     upgrade !== null &&
     quote.tomanLeg > 0 &&

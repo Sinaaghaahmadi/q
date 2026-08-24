@@ -8,6 +8,7 @@ import { TwoFactor } from "@/components/auth/two-factor";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Link, useRouter } from "@/i18n/navigation";
 import { formatDate, type AppLocale } from "@/lib/money/format";
 import { maskPhone } from "@/lib/sms/types";
@@ -84,7 +85,10 @@ export function ProfileView({
         <SecurityScene size={96} label={t("security.title")} />
         <div className="flex-1">
           <h2 className="text-sm font-semibold">{t("security.title")}</h2>
-          <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("security.body")}</p>
+          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm leading-relaxed text-ink-600">
+            {t("security.body")}
+            <InfoHint term="twoFactor" />
+          </p>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <Badge variant="up">
               <Smartphone className="size-3.5" />

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Switch } from "@/components/ui/switch";
 import {
   formatAmount,
@@ -218,9 +219,16 @@ export function RateConfigEditor({
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="block text-sm font-medium">
-                      {t("rates.spreadLabel")}
+                    <div className="text-sm font-medium">
+                      {/* The hint is a button, so it sits beside the label
+                          rather than inside it: a click inside a `<label>`
+                          also drives the field the label points at. */}
+                      <span className="flex items-center gap-1.5">
+                        <label htmlFor={`spread-${row.corridor}`}>{t("rates.spreadLabel")}</label>
+                        <InfoHint term="rateMarkup" />
+                      </span>
                       <Input
+                        id={`spread-${row.corridor}`}
                         dir="ltr"
                         className="mt-1.5 text-start"
                         inputMode="numeric"
@@ -244,7 +252,7 @@ export function RateConfigEditor({
                           {t("rates.templateSpread", { bps: formatNumber(base, locale) })}
                         </span>
                       ) : null}
-                    </label>
+                    </div>
 
                     <label className="block text-sm font-medium">
                       {t("rates.cutoffLabel")}

@@ -10,6 +10,7 @@ import {
   type SpreadBounds,
 } from "@/components/admin/rates-admin";
 import { EmptyState } from "@/components/layout/empty-state";
+import { CommissionSchedule } from "@/components/pricing/commission-schedule";
 import { SPREAD_BOUNDS_KEY } from "@/lib/admin/filters";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -158,6 +159,11 @@ export default async function AdminRatesPage({ params }: { params: Promise<{ loc
       title={t("title")}
       description={t("subtitle")}
     >
+      {/* The schedule sits above the corridor spreads because it is the bigger
+          number: a per-corridor markup is carved out of the commission, not
+          added to it, so reading the spreads without this is misleading. */}
+      <CommissionSchedule showSplit />
+
       <RatesAdmin
         snapshot={snapshot}
         sources={(sourceRows ?? []) as RateSource[]}

@@ -63,11 +63,30 @@ describe("banded commission", () => {
     }
   });
 
-  it("reports the next edge worth reaching", () => {
+  it("reports the next edge worth reaching, discount included", () => {
     const next = nextBand(50_000_000);
     expect(next?.atToman).toBe(100_000_000);
     expect(next?.marginalPct).toBe(10);
+    expect(nextBand(50_000_000, 1)?.marginalPct).toBe(9);
     expect(nextBand(5e9)).toBeNull();
+  });
+
+  it("takes a loyalty discount off each band, and stops at the published floor", () => {
+    const plain = commissionOn(100_000_000);
+    const silver = commissionOn(100_000_000, 0.5);
+    // 20M at 14.5% + 80M at 11.5% = 2.9M + 9.2M
+    expect(silver.toman).toBeCloseTo(12_100_000, 6);
+    expect(silver.toman).toBeLessThan(plain.toman);
+    expect(silver.discountPct).toBe(0.5);
+
+    // A discount far larger than any band puts every band on the floor and not
+    // one Toman below it — the fee schedule says 5% to 15% and has to stay true.
+    const absurd = commissionOn(5_000_000_000, 99);
+    expect(absurd.effectivePct).toBeCloseTo(COMMISSION_MIN_PCT, 9);
+    expect(absurd.slices.every((s) => s.pct >= COMMISSION_MIN_PCT)).toBe(true);
+
+    // A negative "discount" is a bug upstream, not a surcharge.
+    expect(commissionOn(50_000_000, -5).toman).toBeCloseTo(commissionOn(50_000_000).toman, 6);
   });
 
   it("returns a zero result for an empty or invalid leg", () => {

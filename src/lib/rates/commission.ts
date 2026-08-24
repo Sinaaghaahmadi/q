@@ -53,6 +53,8 @@ export const PLATFORM_SHARE = 0.2;
 export interface CommissionResult {
   /** Toman charged in total, across every band. */
   toman: number;
+  /** Percentage points taken off each band by the customer's loyalty tier. */
+  discountPct: number;
   /** What that works out to as a percentage of the Toman leg. */
   effectivePct: number;
   /** Per-band detail, for the breakdown sheet. Only bands actually reached. */
@@ -64,12 +66,25 @@ export interface CommissionResult {
 /**
  * Commission on a Toman leg, band by band.
  *
+ * `discountPct` is the loyalty tier's benefit, in percentage points off each
+ * band. It is clamped at the published floor rather than allowed through it: a
+ * schedule that says "between 5% and 15%" has to stay true for a platinum
+ * customer too, and a discount that quietly broke the lower bound would make
+ * the fee document wrong rather than the customer lucky.
+ *
  * Returns zeros for a non-positive leg rather than throwing: a converter that
  * has not been typed into yet is a normal state, not an error.
  */
-export function commissionOn(tomanLeg: number): CommissionResult {
+export function commissionOn(tomanLeg: number, discountPct = 0): CommissionResult {
+  const discount = Number.isFinite(discountPct) ? Math.max(0, discountPct) : 0;
   if (!Number.isFinite(tomanLeg) || tomanLeg <= 0) {
-    return { toman: 0, effectivePct: 0, slices: [], marginalPct: COMMISSION_MAX_PCT };
+    return {
+      toman: 0,
+      discountPct: discount,
+      effectivePct: 0,
+      slices: [],
+      marginalPct: COMMISSION_MAX_PCT,
+    };
   }
 
   const slices: CommissionResult["slices"] = [];
@@ -81,21 +96,23 @@ export function commissionOn(tomanLeg: number): CommissionResult {
     const ceiling = band.upToToman ?? Infinity;
     const slice = Math.min(tomanLeg, ceiling) - floor;
     if (slice <= 0) break;
-    const amount = (slice * band.pct) / 100;
+    const rate = Math.max(COMMISSION_MIN_PCT, band.pct - discount);
+    const amount = (slice * rate) / 100;
     slices.push({
-      pct: band.pct,
+      pct: rate,
       fromToman: floor,
       toToman: Math.min(tomanLeg, ceiling),
       tomanCharged: amount,
     });
     charged += amount;
-    marginalPct = band.pct;
+    marginalPct = rate;
     floor = ceiling;
     if (tomanLeg <= ceiling) break;
   }
 
   return {
     toman: charged,
+    discountPct: discount,
     effectivePct: (charged / tomanLeg) * 100,
     slices,
     marginalPct,
@@ -109,6 +126,7 @@ export function commissionOn(tomanLeg: number): CommissionResult {
  */
 export function nextBand(
   tomanLeg: number,
+  discountPct = 0,
 ): { atToman: number; effectivePct: number; marginalPct: number } | null {
   for (const band of COMMISSION_BANDS) {
     if (band.upToToman !== null && tomanLeg < band.upToToman) {
@@ -117,8 +135,8 @@ export function nextBand(
       if (!next) return null;
       return {
         atToman: at,
-        effectivePct: commissionOn(at).effectivePct,
-        marginalPct: next.pct,
+        effectivePct: commissionOn(at, discountPct).effectivePct,
+        marginalPct: Math.max(COMMISSION_MIN_PCT, next.pct - Math.max(0, discountPct)),
       };
     }
   }

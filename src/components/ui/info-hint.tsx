@@ -79,7 +79,7 @@ export function InfoHint({
           /* Anchored to the trigger and clamped to the viewport width, because
              these sit inside tight table rows where a fixed-width panel would
              hang off the edge of a phone. */
-          className="absolute top-[calc(100%+0.5rem)] start-0 z-50 block w-[min(20rem,calc(100vw-2rem))] rounded-xl border border-ink-300/60 bg-surface p-3 text-start shadow-e2"
+          className="absolute start-0 top-[calc(100%+0.5rem)] z-50 block w-[min(20rem,calc(100vw-2rem))] rounded-xl border border-ink-300/60 bg-surface p-3 text-start shadow-e2"
         >
           <span className="flex items-start gap-2">
             <span className="flex-1">

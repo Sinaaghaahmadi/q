@@ -152,7 +152,12 @@ export function AppMenu() {
 
   const services: Entry[] = [
     { href: "/rates", label: t("rates"), icon: ChartNoAxesCombined, hint: tMenu("hint.rates") },
-    { href: "/transfer/new", label: t("transfer"), icon: ArrowLeftRight, hint: tMenu("hint.transfer") },
+    {
+      href: "/transfer/new",
+      label: t("transfer"),
+      icon: ArrowLeftRight,
+      hint: tMenu("hint.transfer"),
+    },
     { href: "/coins", label: t("coins"), icon: Coins, hint: tMenu("hint.coins") },
     { href: "/p2p", label: t("p2p"), icon: Handshake, hint: tMenu("hint.p2p") },
     { href: "/orders", label: t("orders"), icon: Receipt, hint: tMenu("hint.orders") },

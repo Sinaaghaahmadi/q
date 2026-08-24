@@ -5,6 +5,7 @@ import * as React from "react";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfficeShell } from "@/components/office/office-shell";
 import { RateConfigEditor } from "@/components/office/rate-config-editor";
+import { CommissionSchedule } from "@/components/pricing/commission-schedule";
 import { redirect } from "@/i18n/navigation";
 import { can, officeScopes } from "@/lib/auth/can";
 import { createClient, getSessionProfile, isSupabaseConfigured } from "@/lib/supabase/server";
@@ -78,6 +79,10 @@ export default async function OfficeRatesPage({ params }: { params: Promise<{ lo
       title={tc("rates.title")}
       description={tc("rates.subtitle")}
     >
+      {/* What the office actually earns per transfer, with a box to try an
+          amount in — the question a clerk on the phone is being asked. */}
+      <CommissionSchedule />
+
       <RateConfigEditor
         officeId={officeId}
         rates={(rates ?? []) as OfficeRateConfig[]}

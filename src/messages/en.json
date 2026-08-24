@@ -255,6 +255,16 @@
       "notReached": "Not reached",
       "toman": "Toman",
       "total": "Total commission"
+    },
+    "schedule": {
+      "title": "Banded commission",
+      "tryLabel": "Enter a transfer amount to see its commission",
+      "commission": "Commission",
+      "effective": "Overall rate",
+      "marginal": "Top band reached",
+      "officeShare": "Office's share",
+      "ceilingNote": "This percentage is the ceiling on the customer's whole cost. Where an office's quoted rate differs from the base rate, that much comes off the commission rather than being added to what the customer pays.",
+      "splitNote": "The platform's share is {pct}% of the commission and the rest goes to the executing office. That split has no effect on what the customer pays."
     }
   },
   "orders": {
@@ -386,7 +396,7 @@
     "startKyc": "Start verification",
     "security": {
       "title": "Account security",
-      "body": "Sign-in is protected by a one-time code. Authenticator-app 2FA lands in the next step.",
+      "body": "Your sign-in is protected by a one-time code. Two-step sign-in is available as well, and is required for exchange-office and platform staff.",
       "otpOn": "One-time-code sign-in",
       "totpSoon": "2FA soon"
     },
@@ -415,7 +425,7 @@
         "gold": "Gold",
         "platinum": "Platinum"
       },
-      "feeIs": "Platform fee {bps}%",
+      "feeIs": "{pct} percentage points off the commission",
       "toNext": "{amount} Toman more to reach {tier}",
       "topTier": "You are at the top tier.",
       "volume": "Completed volume: {amount} Toman",
@@ -1661,11 +1671,11 @@
         "gold": "Gold",
         "platinum": "Platinum"
       },
-      "tierFee": "The platform fee at this tier is {pct}%.",
+      "tierFee": "At this level, {pct} percentage points come off the banded commission.",
       "tierVolume": "Completed volume",
       "tierToNext": "{amount} Toman to reach {tier}",
       "tierTop": "Top tier; there is no next one.",
-      "tierUnavailable": "The tier for this customer could not be read; volume and fee stay hidden until it answers.",
+      "tierUnavailable": "This customer's level could not be read; volume and discount are hidden until it answers.",
       "ordersTitle": "Orders",
       "orderCol": {
         "ref": "Reference",
@@ -2091,16 +2101,16 @@
     },
     "config": {
       "rates": {
-        "metaTitle": "Corridors and spread",
-        "title": "Corridors and spread",
-        "subtitle": "Set the spread for each corridor here. The smallest and largest amount and the daily cut-off are recorded too, but they do not yet affect how orders reach you.",
+        "metaTitle": "Routes and rate difference",
+        "title": "Routes and rate difference",
+        "subtitle": "For each route you can quote a rate slightly away from the base rate. That difference is not an extra charge: it comes out of the banded commission above, so what the customer pays does not change and your share of the commission grows. Minimum and maximum amounts and a cut-off time are recorded too.",
         "readOnly": "Changing corridors needs the owner role at this office. This page is read-only for you.",
-        "templateNote": "The platform template carries a spread for each corridor. Wherever your number differs you see \"Overridden\" — the same diff the platform sees.",
+        "templateNote": "The platform has a default figure for each route. Wherever yours differs you see \\u201coverridden\\u201d — the same thing the platform sees.",
         "listTitle": "This office's corridors",
         "empty": "No corridor has been defined yet. Add one below.",
-        "spreadLabel": "Spread",
-        "spreadMeans": "{bps} hundredths of a percent means {pct}%",
-        "spreadHint": "Spread is written in hundredths of a percent; every 100 units is one percent.",
+        "spreadLabel": "Distance from the base rate",
+        "spreadMeans": "{bps} hundredths of a percent — {pct}% away from the base rate",
+        "spreadHint": "Write the number in hundredths of a percent; 100 is one percent. 150 means one and a half percent.",
         "templateSpread": "Platform default: {bps}",
         "minLabel": "Smallest amount",
         "maxLabel": "Largest amount",
@@ -2119,13 +2129,13 @@
         },
         "addTitle": "Add a corridor",
         "addCurrency": "Currency",
-        "addHint": "One leg of a corridor is always Toman. A new corridor is recorded inactive, at the platform's default spread — zero where the template carries none — so set the spread in the list above, then switch it on.",
+        "addHint": "One side of a route is always Toman. A new route is saved with the platform's default figure — or zero where there is none — and switched off; set the figure in the list above, then activate it.",
         "add": "Add corridor",
         "save": "Save",
         "saved": "Saved.",
         "working": "One moment…",
         "errors": {
-          "spreadRange": "The spread must be a whole number between 0 and 2000.",
+          "spreadRange": "This has to be a whole number between 0 and 2000 (nought to twenty percent).",
           "amountInvalid": "Write the amount in digits.",
           "amountOrder": "The smallest amount cannot be larger than the largest.",
           "duplicate": "That corridor is already defined.",

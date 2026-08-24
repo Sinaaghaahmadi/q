@@ -11,13 +11,21 @@
  * stores whatever this was at the moment someone accepted, which is the only
  * way to answer "what exactly did they agree to" a year later.
  */
-export const TERMS_VERSION = "0.2";
+export const TERMS_VERSION = "1.0";
 
-/** The same number as the legal pages present it, per language. */
+/**
+ * The same number as the legal pages present it, per language.
+ *
+ * It used to carry "(draft)". These are the terms the service actually runs on
+ * now, and a document that calls itself a draft while binding people is worse
+ * than one that does not: it invites the reader to treat every clause as
+ * provisional. What is still true — that counsel has not reviewed them in any
+ * jurisdiction — is a launch-checklist item, not a label on the contract.
+ */
 export const TERMS_VERSION_LABEL = {
-  fa: `${TERMS_VERSION} (پیش‌نویس)`,
-  en: `${TERMS_VERSION} (draft)`,
+  fa: TERMS_VERSION,
+  en: TERMS_VERSION,
 } as const;
 
 /** ISO date of the last substantive change. */
-export const TERMS_UPDATED = "2026-08-23";
+export const TERMS_UPDATED = "2026-08-24";

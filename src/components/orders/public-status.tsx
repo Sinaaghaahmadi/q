@@ -6,6 +6,7 @@ import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
 import { formatAmount, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
@@ -114,6 +115,7 @@ export function PublicStatus({ status }: { status: PublicStatusPayload }) {
         ) : null}
         {status.due_at ? (
           <p className="text-ink-600">
+            <InfoHint term="sla" className="me-1" />
             {t("dueBy", {
               date: format.dateTime(new Date(status.due_at), { dateStyle: "medium" }),
             })}

@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet } from "@/components/ui/sheet";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
 import {
   COINS,
@@ -119,6 +120,7 @@ export function CoinsBoard({
 
                 {premium !== null ? (
                   <Badge variant={premium > 25 ? "warn" : "neutral"} className="self-start">
+                    <InfoHint term="bubble" className="me-1" />
                     {t("premium", {
                       pct: formatNumber(premium, locale, { maximumFractionDigits: 1 }),
                     })}

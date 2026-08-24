@@ -89,7 +89,9 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
           h: "۵. نرخ، کارمزد و قفل نرخ",
           ps: [
             "نرخ نمایش‌داده‌شده پیش از ثبت سفارش، نرخ میانگین بازار است و جنبهٔ اطلاع‌رسانی دارد.",
-            "نرخ نهایی هنگام ثبت درخواست برای مدت اعلام‌شده قفل می‌شود و اجزای آن — نرخ پایه، تفاوت نرخ (اسپرد) و کارمزدها — پیش از تأیید نهایی، به تفکیک و به صورت کامل نمایش داده می‌شود. کاربر تا پیش از دیدن این تفکیک، هیچ تعهدی ندارد.",
+            "نرخ نهایی هنگام ثبت درخواست برای مدت اعلام‌شده قفل می‌شود و اجزای آن — نرخ پایه و کارمزد — پیش از تأیید نهایی، به تفکیک و به صورت کامل نمایش داده می‌شود. کاربر تا پیش از دیدن این تفکیک، هیچ تعهدی ندارد.",
+            "کارمزد این خدمت پلکانی است و بر پایهٔ مبلغ تومانی حواله محاسبه می‌شود: از ۱۵٪ برای پلهٔ نخست تا ۵٪ برای بالاترین پله. هر پله تنها بر سهم خودش از مبلغ اعمال می‌شود، بنابراین درصد کل با افزایش مبلغ کاهش می‌یابد و در هیچ نقطه‌ای از ۵٪ کمتر و از ۱۵٪ بیشتر نمی‌شود. جدول کامل پله‌ها در سند «تعرفه کارمزدها» آمده و همان اعداد پیش از تأیید هر حواله نمایش داده می‌شود.",
+            "این درصد، سقف کل هزینه‌ای است که کاربر می‌پردازد. اگر نرخ اعلام‌شده از سوی صرافی مجری با نرخ پایه تفاوت داشته باشد، معادل همان تفاوت از کارمزد پلکانی کسر می‌شود و بر مبلغ پرداختی کاربر افزوده نمی‌گردد. تقسیم کارمزد میان آسا و صرافی مجری بر مبلغ پرداختی کاربر اثری ندارد.",
             "پس از انقضای زمان قفل، نرخ تنها با تأیید مجدد کاربر به‌روزرسانی می‌شود.",
             "مبلغی که گیرنده دریافت می‌کند، همان عددی است که در پیش‌فاکتور نمایش داده شده، مگر در صورت تغییر مبلغ ارسالی توسط خود کاربر یا کسر کارمزد بانک واسط مقصد که خارج از کنترل پلتفرم و صرافی است و پیشاپیش اعلام می‌شود.",
           ],
@@ -228,7 +230,9 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
           h: "5. Rates, fees and the rate lock",
           ps: [
             "Rates shown before an order is placed are mid-market and informational.",
-            "The final rate is locked at submission for the stated period, and its components — base rate, rate difference (spread) and fees — are itemised in full before final confirmation. The user is under no obligation until that breakdown has been seen.",
+            "The final rate is locked at submission for the stated period, and its components — the base rate and the commission — are itemised in full before final confirmation. The user is under no obligation until that breakdown has been seen.",
+            "The commission for this service is banded and calculated on the Toman value of the transfer: from 15% on the first band down to 5% on the highest. Each band applies only to its own slice of the amount, so the overall percentage falls as the amount rises and at no point is it below 5% or above 15%. The full band table is set out in the fee schedule, and those same figures are shown before each transfer is confirmed.",
+            "That percentage is the ceiling on the entire cost to the user. Where the rate quoted by the executing exchange office differs from the base rate, the equivalent amount is deducted from the banded commission rather than added to what the user pays. How the commission is divided between Asa and the executing office has no effect on the amount the user pays.",
             "After the lock expires, the rate is updated only with the user's renewed acceptance.",
             "The amount the recipient receives is the amount shown on the quote, except where the user changes the amount sent, or where an intermediary bank at the destination deducts a charge outside the control of the platform and the office, which is disclosed in advance.",
           ],
@@ -439,19 +443,37 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
       version: V,
       updated: UPDATED,
       intro:
-        "کارمزدها پیش از تأیید، به تفکیک نمایش داده می‌شود: نرخ پایه، اسپرد، کارمزد پلتفرم و کارمزد صرافی. هیچ هزینه پنهانی وجود ندارد.",
+        "کارمزد این خدمت یک عدد است و پیش از تأیید حواله می‌بینیدش: کارمزد صرافی، که پلکانی محاسبه می‌شود و بین ۵٪ تا ۱۵٪ مبلغ حواله است. هیچ مبلغ دیگری روی آن اضافه نمی‌شود.",
       sections: [
         {
-          h: "ساختار فعلی (نمونه فاز ۱)",
+          h: "پله‌های کارمزد",
           ps: [
-            "کارمزد پلتفرم: ۰٫۲۵٪ از سمت تومانی، حداقل ۱۵۰٬۰۰۰ تومان. کارمزد صرافی: ۰٫۱۵٪، حداقل ۱۰۰٬۰۰۰ تومان. اسپرد کریدور: در مجموع حدود ۹۰ واحد در ده‌هزار (bps) که در «چرا این نرخ؟» به تفکیک لایه‌ها دیده می‌شود.",
-            "با افزایش حجم معاملات، تخفیف سطح کاربری به‌صورت خودکار روی اسپرد اعمال می‌شود.",
+            "مبلغ حواله — به تومان — به پله‌ها تقسیم می‌شود و هر پله درصد خودش را دارد: تا ۲۰٬۰۰۰٬۰۰۰ تومان ۱۵٪؛ از ۲۰٬۰۰۰٬۰۰۰ تا ۱۰۰٬۰۰۰٬۰۰۰ تومان ۱۲٪؛ از ۱۰۰٬۰۰۰٬۰۰۰ تا ۳۰۰٬۰۰۰٬۰۰۰ تومان ۱۰٪؛ از ۳۰۰٬۰۰۰٬۰۰۰ تا ۱٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۸٪؛ از ۱٬۰۰۰٬۰۰۰٬۰۰۰ تا ۳٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۶٫۵٪؛ و بیشتر از ۳٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۵٪.",
+            "پلکانی بودن یعنی هر پله فقط روی سهم خودش از مبلغ حساب می‌شود، نه روی کل مبلغ. برای نمونه، در حواله‌ای به ارزش ۱۰۰٬۰۰۰٬۰۰۰ تومان، بیست میلیون اول با ۱۵٪ و هشتاد میلیون بعدی با ۱۲٪ محاسبه می‌شود؛ جمع کارمزد ۱۲٬۶۰۰٬۰۰۰ تومان، یعنی ۱۲٫۶٪ کل مبلغ.",
+            "نتیجهٔ این روش دو چیز است: درصد کل با بالا رفتن مبلغ کم می‌شود، و مبلغ کارمزد با بالا رفتن مبلغ هیچ‌وقت کاهش پیدا نمی‌کند. یعنی هیچ نقطه‌ای وجود ندارد که فرستادن مبلغ بیشتر، کارمزد کمتری داشته باشد.",
+            "درصد دقیق هر حواله، همراه با جدول کامل پله‌ها و اینکه حواله به کدام پله‌ها رسیده، پیش از تأیید در صفحهٔ پیش‌فاکتور نمایش داده می‌شود.",
+          ],
+        },
+        {
+          h: "این عدد سقف کل هزینه است",
+          ps: [
+            "نرخی که به شما اعلام می‌شود بر پایهٔ نرخ بازار آزاد است. اگر صرافی مجری، نرخ را کمی بالاتر یا پایین‌تر از نرخ پایه اعلام کند، دقیقاً همان مقدار از کارمزد پلکانی کم می‌شود؛ بنابراین آنچه شما می‌پردازید در هر حالت همان درصد پلکانی است و چیزی روی آن اضافه نمی‌شود.",
+            "تقسیم این کارمزد میان آسا و صرافی مجری، رابطه‌ای میان ما و صرافی است و بر مبلغی که شما می‌پردازید اثری ندارد.",
+            "کارمزدهای شبکهٔ بانکی مقصد یا بانک واسط — در صورت وجود — از سوی همان بانک‌ها اعمال می‌شود و خارج از کنترل آساست. هر جا از آن‌ها خبر داشته باشیم، پیش از تأیید اعلام می‌کنیم.",
           ],
         },
         {
           h: "قفل نرخ",
           ps: [
-            "نرخ تأییدشده ۱۵ دقیقه معتبر می‌ماند. پس از انقضا، با یک لمس نرخ تازه می‌گیرید و تفاوت به‌روشنی نمایش داده می‌شود.",
+            "نرخ تأییدشده ۱۵ دقیقه معتبر می‌ماند. پس از پایان این مهلت، با یک لمس نرخ تازه می‌گیرید و تفاوت آن با نرخ قبلی به‌روشنی نمایش داده می‌شود. تمدید خودکارِ نرخ منقضی‌شده انجام نمی‌شود.",
+          ],
+        },
+        {
+          h: "استرداد کارمزد",
+          ps: [
+            "اگر حواله‌ای پیش از اجرای ارزی لغو شود، کارمزد به‌صورت کامل بازگردانده می‌شود.",
+            "اگر پس از اجرای ارزی و به دلیلی خارج از اختیار شما، حواله به مقصد نرسد، کارمزد بازگردانده می‌شود و پیگیری بازگشت اصل مبلغ بر عهدهٔ آسا و صرافی مجری است.",
+            "لغو حواله پس از اجرای ارزی و به درخواست شما، تابع شرایط بازگشت وجه در «تعهد زمانی و استرداد» است.",
           ],
         },
       ],
@@ -460,19 +482,37 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
       version: V_EN,
       updated: UPDATED,
       intro:
-        "Fees are itemized before you confirm: base rate, spread, platform fee, and office fee. There are no hidden costs.",
+        "The cost of this service is one number, and you see it before you confirm: the exchange commission, worked out in bands, between 5% and 15% of the transfer. Nothing is added on top of it.",
       sections: [
         {
-          h: "Current structure (Phase-1 sample)",
+          h: "The bands",
           ps: [
-            "Platform fee: 0.25% of the Toman leg, minimum 150,000 Toman. Office fee: 0.15%, minimum 100,000 Toman. Corridor spread: about 90 bps total, itemized per layer in “Why this rate?”.",
-            "Volume-based tier discounts apply to the spread automatically.",
+            "The transfer amount — in Toman — is cut into bands and each band has its own rate: up to 20,000,000 Toman, 15%; from 20,000,000 to 100,000,000, 12%; from 100,000,000 to 300,000,000, 10%; from 300,000,000 to 1,000,000,000, 8%; from 1,000,000,000 to 3,000,000,000, 6.5%; and above 3,000,000,000, 5%.",
+            "Banded means each rate applies only to its own slice of the amount, not to the whole. On a transfer worth 100,000,000 Toman the first twenty million is charged at 15% and the next eighty million at 12%; the commission is 12,600,000 Toman, which is 12.6% of the total.",
+            "Two things follow. The overall percentage falls as the amount rises, and the commission in Toman never falls as the amount rises — there is no point at which sending more money costs less.",
+            "The exact percentage for a given transfer, the full band table, and which bands the transfer reached are all shown on the quote before you confirm.",
+          ],
+        },
+        {
+          h: "That figure is the ceiling on the whole cost",
+          ps: [
+            "The rate you are quoted is based on the open market rate. If the executing exchange office prices slightly above or below that base, exactly that much is deducted from the banded commission — so what you pay is the band percentage in every case, with nothing added to it.",
+            "How that commission is divided between Asa and the executing office is a matter between us and the office, and has no effect on what you pay.",
+            "Fees charged by a destination or intermediary bank, where they exist, are applied by those banks and are outside Asa's control. Wherever we know of them, we say so before you confirm.",
           ],
         },
         {
           h: "Rate lock",
           ps: [
-            "A confirmed rate stays valid for 15 minutes. After expiry, a one-tap re-quote shows the delta clearly.",
+            "A confirmed rate stays valid for 15 minutes. After that a one-tap re-quote shows the difference from the previous rate clearly. An expired rate is never renewed silently.",
+          ],
+        },
+        {
+          h: "Refund of commission",
+          ps: [
+            "If a transfer is cancelled before the currency leg is executed, the commission is refunded in full.",
+            "If, after execution and for a reason outside your control, the transfer does not reach its destination, the commission is refunded and recovering the principal is Asa's and the executing office's responsibility.",
+            "Cancellation at your request after execution follows the refund terms in “Time commitment and refunds”.",
           ],
         },
       ],

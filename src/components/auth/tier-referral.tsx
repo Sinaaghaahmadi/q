@@ -16,7 +16,7 @@ import type { Json } from "@/lib/supabase/types";
 
 type Tier = {
   tier?: string;
-  platform_bps?: number;
+  commission_discount_pct?: number;
   volume_irt?: number;
   next?: { key?: string; from_irt?: number } | null;
   to_next_irt?: number | null;
@@ -94,11 +94,10 @@ export function TierAndReferral({
           <div className="flex items-center justify-between gap-3">
             <Badge variant="brand">{t(`tier.${current.tier ?? "standard"}`)}</Badge>
             <span className="text-sm text-ink-600">
-              {/* toFixed would print 0.25 with a Latin decimal point in Persian,
-                  where the fee reads ۰٫۲۵ — the one formatter decides both. */}
+              {/* toFixed would print 0.5 with a Latin decimal point in
+                  Persian, where it reads ۰٫۵ — the one formatter decides both. */}
               {t("feeIs", {
-                bps: formatNumber((current.platform_bps ?? 25) / 100, locale, {
-                  minimumFractionDigits: 2,
+                pct: formatNumber(Number(current.commission_discount_pct ?? 0), locale, {
                   maximumFractionDigits: 2,
                 }),
               })}

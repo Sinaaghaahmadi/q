@@ -64,17 +64,16 @@ export default async function OrderDetailPage({
     return <EmptyState icon={Compass} title={t("notFound")} description={t("emptyBody")} />;
   }
 
-  const [{ data: events }, { data: role }, { data: office }] =
-    await Promise.all([
-      // Insertion order, not created_at: events written in one transaction
-      // share a timestamp (submitting also routes), and a timeline that can
-      // render them backwards is worse than no timeline.
-      supabase.from("order_events").select("*").eq("order_id", id).order("seq"),
-      supabase.rpc("order_actor_role", { p_order: id }),
-      order.office_id
-        ? supabase.from("exchange_offices").select("*").eq("id", order.office_id).maybeSingle()
-        : Promise.resolve({ data: null }),
-    ]);
+  const [{ data: events }, { data: role }, { data: office }] = await Promise.all([
+    // Insertion order, not created_at: events written in one transaction
+    // share a timestamp (submitting also routes), and a timeline that can
+    // render them backwards is worse than no timeline.
+    supabase.from("order_events").select("*").eq("order_id", id).order("seq"),
+    supabase.rpc("order_actor_role", { p_order: id }),
+    order.office_id
+      ? supabase.from("exchange_offices").select("*").eq("id", order.office_id).maybeSingle()
+      : Promise.resolve({ data: null }),
+  ]);
 
   const send = order.send_currency as CurrencyCode;
   const receive = order.receive_currency as CurrencyCode;
@@ -139,9 +138,7 @@ export default async function OrderDetailPage({
         <OrderActions orderId={order.id} state={order.state} role={role ?? null} />
       </Card>
 
-      {order.state === "completed" ? (
-        <CostComparison order={order} />
-      ) : null}
+      {order.state === "completed" ? <CostComparison order={order} /> : null}
 
       <ShareStatus publicRef={order.public_ref} />
 

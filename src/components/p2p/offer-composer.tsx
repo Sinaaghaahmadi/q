@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PriceDial } from "@/components/p2p/price-dial";
 import { Input } from "@/components/ui/input";
+import { InfoHint } from "@/components/ui/info-hint";
 import { formatNumber, type AppLocale } from "@/lib/money/format";
 import { toMinor } from "@/lib/money/minor";
 import { CURRENCY_CODES, type CurrencyCode } from "@/lib/rates/catalog";
@@ -198,7 +199,10 @@ export function OfferComposer({ limits }: { limits: Json | null }) {
         </p>
       ) : null}
 
-      <p className="text-sm text-ink-600">{t("escrowNote")}</p>
+      <p className="flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+        {t("escrowNote")}
+        <InfoHint term="escrow" />
+      </p>
 
       <Button disabled={!ready || busy} onClick={publish}>
         {busy ? t("publishing") : t("publish")}

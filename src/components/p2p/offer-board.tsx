@@ -6,6 +6,7 @@ import * as React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
 import { formatAmount, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
@@ -144,7 +145,10 @@ export function OfferBoard({
         </ul>
       )}
 
-      <p className="text-sm text-ink-600">{t("escrowNote")}</p>
+      <p className="flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+        {t("escrowNote")}
+        <InfoHint term="escrow" />
+      </p>
     </div>
   );
 }

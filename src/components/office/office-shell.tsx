@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
+import { versionLabel } from "@/lib/version";
 import { PanelNavLink } from "@/components/layout/panel-nav-link";
 import { OfficeLogo, officeLogoUrl } from "@/components/office/office-logo";
 import type { ExchangeOffice } from "@/lib/supabase/types";
@@ -115,6 +116,12 @@ export async function OfficeShell({
       </header>
 
       {children}
+
+      {/* Which build this panel is. The first question support asks and the
+          last thing a console usually tells you. */}
+      <p className="pt-2 text-end font-mono text-xs text-ink-600/70" dir="ltr">
+        {versionLabel()}
+      </p>
     </div>
   );
 }

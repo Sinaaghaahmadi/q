@@ -61,6 +61,8 @@ export interface QuoteInput {
   /** Mid market rate, Toman per 1 unit of the foreign currency. */
   midToman: number;
   layers?: SpreadLayer[];
+  /** The customer's loyalty discount, in percentage points off each band. */
+  commissionDiscountPct?: number;
 }
 
 export interface QuoteResult {
@@ -94,7 +96,7 @@ function emptyQuote(input: QuoteInput, layers: SpreadLayer[], spreadBps: number)
     sendAmount: input.sendAmount,
     platformFeeToman: 0,
     officeFeeToman: 0,
-    commission: commissionOn(0),
+    commission: commissionOn(0, input.commissionDiscountPct),
     rateMarkupToman: 0,
     receiveAmount: 0,
     tomanLeg: 0,
@@ -130,7 +132,7 @@ export function computeQuote(input: QuoteInput): QuoteResult {
   // a markup must not be able to push a customer into a more expensive band.
   const tomanLeg =
     input.direction === "irt_to_foreign" ? input.sendAmount : input.sendAmount * input.midToman;
-  const commission = commissionOn(tomanLeg);
+  const commission = commissionOn(tomanLeg, input.commissionDiscountPct);
 
   /*
    * How much of the band a given spread would collect, and the spread at which
@@ -143,8 +145,7 @@ export function computeQuote(input: QuoteInput): QuoteResult {
    * first version of this got wrong by about a million Toman on a 500M
    * transfer.
    */
-  const markupBase =
-    input.direction === "irt_to_foreign" ? tomanLeg - commission.toman : tomanLeg;
+  const markupBase = input.direction === "irt_to_foreign" ? tomanLeg - commission.toman : tomanLeg;
   const maxFactor = markupBase > 0 ? commission.toman / markupBase : 0;
   // Clamping rather than trusting the configuration is what makes the ceiling
   // absolute: no office markup can charge past the published band.

@@ -158,7 +158,7 @@ export function RateBox({
           ) : (
             <>
               <Skeleton className="h-6 w-24" />
-              <Skeleton className="mt-2 ms-auto h-5 w-20" />
+              <Skeleton className="ms-auto mt-2 h-5 w-20" />
             </>
           )}
         </span>

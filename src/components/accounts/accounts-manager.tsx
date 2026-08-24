@@ -13,6 +13,7 @@ import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { InfoHint } from "@/components/ui/info-hint";
 import { toLatinDigits } from "@/lib/money/format";
 import { CURRENCY_CODES, type CurrencyCode } from "@/lib/rates/catalog";
 import { createClient } from "@/lib/supabase/client";
@@ -246,7 +247,10 @@ function AddAccountDialog({
       <DialogContent variant="sheet" className="p-0 sm:max-w-lg">
         <div className="border-b border-ink-300/40 p-5 pe-12">
           <DialogTitle className="text-base font-semibold">{t("addTitle")}</DialogTitle>
-          <p className="mt-1 text-sm text-ink-600">{t("addBody")}</p>
+          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+            {t("addBody")}
+            <InfoHint term="iban" />
+          </p>
         </div>
 
         <div className="space-y-4 overflow-y-auto p-5">

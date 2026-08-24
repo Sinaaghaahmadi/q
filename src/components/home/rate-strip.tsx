@@ -61,10 +61,7 @@ export function RateStrip({ initialSnapshot }: RateStripProps) {
       </ul>
 
       <p className="mt-3 text-center">
-        <Link
-          href="/rates"
-          className="text-sm font-medium text-brand-600 hover:text-brand-700"
-        >
+        <Link href="/rates" className="text-sm font-medium text-brand-600 hover:text-brand-700">
           {t("home.allRates")}
         </Link>
       </p>

@@ -28,7 +28,7 @@ export type ReferralRow = {
 /** The shape `customer_tier` returns; every field is optional because it is jsonb. */
 type Tier = {
   tier?: string;
-  platform_bps?: number;
+  commission_discount_pct?: number;
   volume_irt?: number;
   next?: { key?: string; from_irt?: number } | null;
   to_next_irt?: number | null;
@@ -177,8 +177,7 @@ export function UserDetail({
                 <Badge variant="brand">{t(`tier.${tierKey(current.tier)}`)}</Badge>
                 <span className="text-sm text-ink-600">
                   {t("tierFee", {
-                    pct: formatNumber((current.platform_bps ?? 25) / 100, locale, {
-                      minimumFractionDigits: 2,
+                    pct: formatNumber(Number(current.commission_discount_pct ?? 0), locale, {
                       maximumFractionDigits: 2,
                     }),
                   })}
