@@ -1592,7 +1592,7 @@
       },
       "spread": {
         "title": "Spread across offices",
-        "hint": "For each corridor, the lowest, median and highest spread the active offices have set. A draft, suspended or archived office is left out, and so is an inactive corridor, since neither quotes anybody.",
+        "hint": "For each corridor, the lowest, median and highest distance from the base rate the active offices have set. An incomplete, suspended or archived office is left out, and so is an inactive corridor, since neither quotes anybody.",
         "notEnforced": "Until a floor and ceiling are saved, no row is marked as out of range.",
         "col": {
           "corridor": "Corridor",
@@ -2750,7 +2750,7 @@
     "buy": "Request",
     "noPrice": "No price available.",
     "staleNotice": "These prices have not refreshed; the market may be closed. Check with the office before acting on them.",
-    "demoNotice": "These prices are demonstration data, not real. Requests are disabled until the price source is connected.",
+    "demoNotice": "The coin price source is not connected yet, so requests cannot be placed from this page. Buying opens here the moment it is.",
     "disclaimer": "The price shown follows the open market; the office states the final price when it confirms. The premium is how much more a coin costs than the gold inside it.",
     "products": {
       "EMAMI": "Emami coin (full)",

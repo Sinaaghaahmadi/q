@@ -1303,7 +1303,7 @@
     "buy": "Anfragen",
     "noPrice": "Kein Preis verfügbar.",
     "staleNotice": "Diese Preise wurden nicht aufgefrischt; der Markt ist womöglich geschlossen. Fragen Sie bei der Wechselstube nach, bevor Sie danach handeln.",
-    "demoNotice": "Diese Preise sind noch nicht an eine Live-Quelle angebunden; Anfragen sind möglich, sobald die Quelle angeschlossen ist.",
+    "demoNotice": "Die Preisquelle für Münzen ist noch nicht angebunden, daher lassen sich von dieser Seite keine Anfragen stellen. Der Kauf öffnet sich hier, sobald sie es ist.",
     "disclaimer": "Der gezeigte Preis folgt dem freien Markt; den festen Preis nennt die Wechselstube bei der Bestätigung. Das Aufgeld ist der Betrag, um den eine Münze mehr kostet als das Gold in ihr.",
     "products": {
       "EMAMI": "Emami-Münze (ganz)",

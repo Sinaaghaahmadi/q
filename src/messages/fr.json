@@ -1303,7 +1303,7 @@
     "buy": "Demander",
     "noPrice": "Aucun prix disponible.",
     "staleNotice": "Ces prix ne se sont pas rafraîchis ; le marché est peut-être fermé. Vérifiez auprès du bureau avant d'agir.",
-    "demoNotice": "Ces prix ne sont pas encore reliés à une source en direct, et aucune demande n'est possible tant que la source n'est pas raccordée.",
+    "demoNotice": "La source du prix des pièces n'est pas encore reliée, aucune demande ne peut donc être déposée depuis cette page. L'achat s'ouvrira ici dès qu'elle le sera.",
     "disclaimer": "Le prix affiché suit le marché libre ; le bureau annonce le prix ferme au moment de confirmer. La prime est ce qu'une pièce coûte de plus que l'or qu'elle contient.",
     "products": {
       "EMAMI": "Pièce Emami (entière)",
