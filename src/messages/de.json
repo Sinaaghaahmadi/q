@@ -2369,6 +2369,156 @@
       "minutes": "{value} Min.",
       "noData": "—",
       "noOrders": "Keine"
+    },
+    "compliance": {
+      "metaTitle": "Compliance",
+      "title": "Compliance",
+      "subtitle": "Sanktionsabgleich, gemeldete Nachrichten, Geldwäscheschwellen und Aufbewahrungsfristen.",
+      "sanctions": {
+        "title": "Sanktionsabgleich",
+        "gapBadge": "Offene Lücke",
+        "gapTitle": "Der Sanktionsabgleich ist noch an keine Quelle angebunden",
+        "gapBody": "Die Tabelle sanctions_hits existiert, aber kein Dienst schreibt hinein. Eine leere Liste hier heißt, dass niemand abgeglichen wurde — nicht, dass niemand auf einer Sanktionsliste steht. Die Lücke ist in docs/security-review.md festgehalten und muss geschlossen sein, bevor echtes Geld fließt.",
+        "col": {
+          "person": "Person",
+          "list": "Liste",
+          "score": "Trefferwert",
+          "created": "Wann",
+          "resolution": "Entscheidung"
+        },
+        "unnamed": "Ohne Namen",
+        "unresolved": "Nicht entschieden",
+        "payload": "Rohdaten des Treffers",
+        "shown": "{count} Treffer; die Liste ist auf die 100 jüngsten begrenzt."
+      },
+      "flags": {
+        "title": "Gemeldete Nachrichten",
+        "body": "Das sind Hinweise, nie eine Sperre: Die Nachricht erreichte ihre Leserschaft genau so, wie sie geschrieben war.",
+        "empty": "Keine gemeldeten Nachrichten.",
+        "name": {
+          "off_platform": "Außerhalb der Plattform",
+          "account_number": "Kontonummer im Text",
+          "contact": "Kontaktdaten"
+        },
+        "kind": {
+          "order": "Auftragsstrang",
+          "p2p": "Privathandels-Strang",
+          "support": "Support-Strang"
+        },
+        "open": "Strang öffnen",
+        "noBody": "Kein Text",
+        "shown": "{count} Nachrichten; die Liste ist auf die 100 jüngsten begrenzt."
+      },
+      "thresholds": {
+        "title": "Grenzen und Stufen",
+        "body": "Beide Zeilen werden aus der Einstellungstabelle gelesen und dorthin zurückgeschrieben. Speichern bleibt gesperrt, bis der Text als JSON durchgeht.",
+        "keys": {
+          "p2p_limits": {
+            "label": "Grenzen im Privathandel",
+            "hint": "Offene Angebote je Person, Angebote je Stunde und die Toman-Obergrenze eines einzelnen Geschäfts nach Risikostufe."
+          },
+          "customer_tiers": {
+            "label": "Kundenstufen",
+            "hint": "Die Volumenschwelle jeder Stufe und der Provisionsrabatt, der dazugehört."
+          }
+        },
+        "editorLabel": "Wert von {key}",
+        "missing": "Dieser Schlüssel steht nicht in der Einstellungstabelle.",
+        "invalid": "Das ist kein gültiges JSON.",
+        "readOnly": "Diese Werte zu ändern gehört zur Rolle Plattform-Administration; hier sind sie nur lesbar.",
+        "save": "Speichern",
+        "saving": "Einen Moment…",
+        "saved": "Gespeichert.",
+        "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+      },
+      "retention": {
+        "title": "Aufbewahrung",
+        "body": "Was aufbewahrt wird, und wie lange.",
+        "audit": "Das Prüfprotokoll (audit_log) ist dauerhaft. Seine Zeilen lassen sich weder ändern noch löschen; ein Datenbank-Trigger verweigert beides.",
+        "ledger": "Das Buchungsjournal (ledger_entries) ist ebenfalls dauerhaft, unter derselben Nur-Anfügen-Regel. Jede bewegte Zahl bleibt.",
+        "kyc": "Ausweisunterlagen liegen im privaten Bucket kyc-documents. Sie sind nie öffentlich und öffnen sich nur über einen 60 Sekunden gültigen signierten Link.",
+        "gap": "Es gibt keinen automatischen Löschlauf. Nichts verfällt von selbst, und eine Aufbewahrungsfrist ist damit eine Entscheidung, die noch aufgeschrieben werden muss."
+      }
+    },
+    "rates": {
+      "metaTitle": "Kurse und Aufschlag",
+      "title": "Kurse und Aufschlag",
+      "subtitle": "Woher die Kurse kommen, welche Quellen erfasst sind, und die Unter- und Obergrenze, an der diese Konsole die Aufschläge der Wechselstuben misst.",
+      "snapshot": {
+        "title": "Aktuelle Kursaufnahme",
+        "degradedTitle": "Diese Aufnahme ist nicht frisch",
+        "degradedBody": "Die Hauptquelle hat nicht geantwortet, oder ihre jüngste Beobachtung ist älter als das zugelassene Fenster. Prüfen Sie Quelle und Beobachtungszeit unten, bevor Sie danach jemandem einen Preis nennen oder einen Streitfall entscheiden.",
+        "staleBadge": "Veraltete Kurse",
+        "okTitle": "Die Aufnahme ist frisch",
+        "okBody": "Die Hauptquelle hat geantwortet, und ihre jüngste Beobachtung liegt im zugelassenen Fenster.",
+        "source": "Quelle",
+        "observed": "An der Quelle beobachtet",
+        "fetched": "Von uns abgerufen",
+        "sourceName": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "demo": "Ersatzquelle"
+        },
+        "col": {
+          "pair": "Paar",
+          "mid": "Mitte (Toman)",
+          "change": "Veränderung 24 Std.",
+          "source": "Quelle",
+          "observed": "Beobachtet"
+        },
+        "empty": "Diese Aufnahme trägt keine Kurse."
+      },
+      "sources": {
+        "title": "Kursanbieter",
+        "hint": "Eine Zeile je erfasster Quelle, genau so, wie sie in der Datenbank steht.",
+        "readOnly": "Eine Quelle lässt sich von dieser Seite aus weder ein- noch ausschalten: Die Datenbank-Policy auf der Quellentabelle gewährt nur Lesen und hat für Schreiben überhaupt keine Policy. Die Schalter zeigen den aktuellen Stand und sind deaktiviert; das heute zu ändern ist eine Datenbank-Migration. „Letzter Erfolg“ und „Letzter Fehler“ sind gespeicherte Spalten, die noch kein Prozess beschreibt, also bleiben sie leer, selbst wenn ein Anbieter antwortet — ob die Kette arbeitet, sagt Ihnen das Frischebanner oben auf dieser Seite.",
+        "col": {
+          "name": "Name",
+          "kind": "Art",
+          "state": "Zustand",
+          "lastOk": "Letzter Erfolg",
+          "lastError": "Letzter Fehler"
+        },
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "empty": "Es wurde noch keine Quelle erfasst.",
+        "kind": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "manual": "Manuell",
+          "demo": "Ersatz"
+        }
+      },
+      "bounds": {
+        "title": "Unter- und Obergrenze des Aufschlags",
+        "hint": "Die Unter- und Obergrenze, an der diese Konsole den Aufschlag jeder Wechselstube je Strecke misst. Sie sind eine Prüfhilfe: Noch weist nichts einen Aufschlag außerhalb zurück. Beide stehen in Hundertstelprozent; hundert davon sind ein Prozent.",
+        "floor": "Untergrenze",
+        "ceiling": "Obergrenze",
+        "means": "{bps} Hundertstelprozent bedeuten {pct} %",
+        "missing": "Es ist noch nichts hinterlegt. Die Zahlen unten sind ein Vorschlag für den Anfang; bis sie gespeichert sind, markiert diese Seite nichts als außerhalb der Spanne.",
+        "unreadable": "Unter diesem Schlüssel ist ein Wert hinterlegt, der sich nicht als Unter- und Obergrenze lesen lässt, also wird keine Zeile daran gemessen. Die Felder unten zeigen den Anfangsvorschlag statt des Gespeicherten, und Speichern ersetzt den hinterlegten Wert.",
+        "save": "Speichern",
+        "saving": "Wird gespeichert…",
+        "saved": "Gespeichert.",
+        "saveFailed": "Nicht gespeichert.",
+        "invalid": "Die Untergrenze muss null oder größer sein, die Obergrenze größer als die Untergrenze, und die Obergrenze darf {max} Hundertstelprozent nicht überschreiten — die Aufschlags-Editoren der Wechselstuben lehnen Höheres ab. Beide sind ganze Zahlen.",
+        "updated": "Zuletzt geändert: {at}"
+      },
+      "spread": {
+        "title": "Aufschläge im Vergleich der Wechselstuben",
+        "hint": "Je Strecke der niedrigste, mittlere und höchste Aufschlag, den die aktiven Wechselstuben gesetzt haben. Unvollständige, ausgesetzte und archivierte Wechselstuben bleiben außen vor, ebenso inaktive Strecken, denn keine davon nennt jemandem einen Preis.",
+        "notEnforced": "Solange keine Unter- und Obergrenze gespeichert ist, wird keine Zeile als außerhalb der Spanne markiert.",
+        "col": {
+          "corridor": "Strecke",
+          "offices": "Wechselstuben",
+          "min": "Niedrigster",
+          "median": "Mittlerer",
+          "max": "Höchster"
+        },
+        "empty": "Noch hat keine Wechselstube eine Strecke eingerichtet.",
+        "belowFloor": "Unter der Untergrenze",
+        "aboveCeiling": "Über der Obergrenze"
+      }
     }
   }
 }

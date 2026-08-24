@@ -2369,6 +2369,156 @@
       "minutes": "{value} min",
       "noData": "—",
       "noOrders": "Aucune"
+    },
+    "compliance": {
+      "metaTitle": "Conformité",
+      "title": "Conformité",
+      "subtitle": "Filtrage des sanctions, messages signalés, seuils anti-blanchiment et durées de conservation.",
+      "sanctions": {
+        "title": "Filtrage des sanctions",
+        "gapBadge": "Lacune ouverte",
+        "gapTitle": "Le filtrage des sanctions n'est encore relié à aucune source",
+        "gapBody": "La table sanctions_hits existe, mais aucun service n'y écrit. Une liste vide ici signifie que personne n'a été filtré, pas que personne ne correspond à une liste de sanctions. La lacune est consignée dans docs/security-review.md et doit être comblée avant tout mouvement d'argent réel.",
+        "col": {
+          "person": "Personne",
+          "list": "Liste",
+          "score": "Score de correspondance",
+          "created": "Quand",
+          "resolution": "Décision"
+        },
+        "unnamed": "Sans nom",
+        "unresolved": "Non tranché",
+        "payload": "Données brutes de correspondance",
+        "shown": "{count} correspondances ; la liste est limitée aux 100 plus récentes."
+      },
+      "flags": {
+        "title": "Messages signalés",
+        "body": "Ce sont des signaux, jamais un blocage : le message est parvenu à son destinataire exactement tel qu'il était écrit.",
+        "empty": "Aucun message signalé.",
+        "name": {
+          "off_platform": "Hors plateforme",
+          "account_number": "Numéro de compte dans le texte",
+          "contact": "Coordonnées"
+        },
+        "kind": {
+          "order": "Fil de commande",
+          "p2p": "Fil entre particuliers",
+          "support": "Fil d'assistance"
+        },
+        "open": "Ouvrir le fil",
+        "noBody": "Aucun texte",
+        "shown": "{count} messages ; la liste est limitée aux 100 plus récents."
+      },
+      "thresholds": {
+        "title": "Limites et paliers",
+        "body": "Les deux lignes sont lues dans la table des réglages et y sont réécrites. L'enregistrement reste fermé tant que le texte n'est pas un JSON valide.",
+        "keys": {
+          "p2p_limits": {
+            "label": "Limites du marché entre particuliers",
+            "hint": "Offres ouvertes par intervenant, offres par heure, et plafond en tomans d'un échange selon le palier de risque."
+          },
+          "customer_tiers": {
+            "label": "Paliers clients",
+            "hint": "Le seuil de volume de chaque palier et la remise de commission qui l'accompagne."
+          }
+        },
+        "editorLabel": "Valeur de {key}",
+        "missing": "Cette clé n'est pas dans la table des réglages.",
+        "invalid": "Ce n'est pas du JSON valide.",
+        "readOnly": "Modifier ces valeurs relève du rôle administrateur de la plateforme ; ici, elles sont en lecture seule.",
+        "save": "Enregistrer",
+        "saving": "Un instant…",
+        "saved": "Enregistré.",
+        "saveFailed": "Non enregistré. Réessayez."
+      },
+      "retention": {
+        "title": "Conservation",
+        "body": "Ce qui est gardé, et pour combien de temps.",
+        "audit": "Le journal d'audit (audit_log) est permanent. Ses lignes ne peuvent être ni modifiées ni supprimées ; un déclencheur de base de données refuse les deux.",
+        "ledger": "Le registre (ledger_entries) est permanent, sous la même règle d'ajout seul. Chaque chiffre qui a bougé reste.",
+        "kyc": "Les documents d'identité vivent dans le bucket privé kyc-documents. Ils ne sont jamais publics et ne s'ouvrent que par un lien signé de 60 secondes.",
+        "gap": "Il n'y a pas de tâche de purge automatique. Rien ne s'efface tout seul, et une durée de conservation reste donc une décision à écrire."
+      }
+    },
+    "rates": {
+      "metaTitle": "Taux et écart",
+      "title": "Taux et écart",
+      "subtitle": "D'où viennent les taux, quelles sources sont enregistrées, et le plancher et le plafond auxquels cette console compare les écarts des bureaux.",
+      "snapshot": {
+        "title": "Instantané des taux",
+        "degradedTitle": "Cet instantané n'est pas frais",
+        "degradedBody": "La source primaire n'a pas répondu, ou sa dernière observation est plus ancienne que la fenêtre acceptée. Vérifiez la source et l'heure d'observation ci-dessous avant de tarifer un client ou de trancher un litige sur ces chiffres.",
+        "staleBadge": "Taux périmés",
+        "okTitle": "L'instantané est frais",
+        "okBody": "La source primaire a répondu et sa dernière observation est dans la fenêtre acceptée.",
+        "source": "Source",
+        "observed": "Observé à la source",
+        "fetched": "Récupéré par nous",
+        "sourceName": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "demo": "Source de secours"
+        },
+        "col": {
+          "pair": "Paire",
+          "mid": "Médian (tomans)",
+          "change": "Variation 24 h",
+          "source": "Source",
+          "observed": "Observé"
+        },
+        "empty": "Cet instantané ne porte aucun taux."
+      },
+      "sources": {
+        "title": "Fournisseurs de taux",
+        "hint": "Une ligne par source enregistrée, exactement telle qu'elle est stockée en base.",
+        "readOnly": "Une source ne peut être activée ni désactivée depuis cette page : la politique de la base sur la table des sources n'accorde que la lecture et n'a aucune politique d'écriture. Les interrupteurs montrent l'état actuel et sont désactivés ; le changer aujourd'hui passe par une migration. « Dernier succès » et « Dernière erreur » sont des colonnes stockées qu'aucune tâche n'écrit encore : elles restent vides même quand un fournisseur répond — c'est le bandeau de fraîcheur en haut de cette page qui vous dit si la chaîne fonctionne.",
+        "col": {
+          "name": "Nom",
+          "kind": "Type",
+          "state": "État",
+          "lastOk": "Dernier succès",
+          "lastError": "Dernière erreur"
+        },
+        "active": "Active",
+        "inactive": "Inactive",
+        "empty": "Aucune source n'a encore été enregistrée.",
+        "kind": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "manual": "Manuelle",
+          "demo": "Secours"
+        }
+      },
+      "bounds": {
+        "title": "Plancher et plafond d'écart de la plateforme",
+        "hint": "Le plancher et le plafond auxquels cette console compare l'écart de chaque bureau, corridor par corridor. Ce sont des repères d'examen : rien ne rejette encore un écart au-delà. Les deux sont en centièmes de pour cent ; cent d'entre eux font un pour cent.",
+        "floor": "Plancher",
+        "ceiling": "Plafond",
+        "means": "{bps} centièmes de pour cent, soit {pct} %",
+        "missing": "Rien n'est encore stocké. Les nombres ci-dessous sont une proposition de départ ; tant qu'ils ne sont pas enregistrés, cette page ne signale rien comme hors limites.",
+        "unreadable": "Une valeur est stockée sous cette clé, mais elle ne se lit pas comme un plancher et un plafond : aucune ligne n'y est donc comparée. Les champs ci-dessous montrent la proposition de départ et non ce qui est stocké, et l'enregistrement remplace la valeur stockée.",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "saved": "Enregistré.",
+        "saveFailed": "Non enregistré.",
+        "invalid": "Le plancher doit être supérieur ou égal à zéro, le plafond doit dépasser le plancher, et le plafond ne peut aller au-delà de {max} centièmes de pour cent — les éditeurs d'écart des bureaux refusent au-delà. Les deux sont des entiers.",
+        "updated": "Dernière modification : {at}"
+      },
+      "spread": {
+        "title": "Écarts d'un bureau à l'autre",
+        "hint": "Pour chaque corridor, l'écart le plus bas, médian et le plus haut fixé par les bureaux actifs. Un bureau incomplet, suspendu ou archivé est écarté, tout comme un corridor inactif, puisque ni l'un ni l'autre ne tarife qui que ce soit.",
+        "notEnforced": "Tant qu'un plancher et un plafond ne sont pas enregistrés, aucune ligne n'est signalée hors limites.",
+        "col": {
+          "corridor": "Corridor",
+          "offices": "Bureaux",
+          "min": "Le plus bas",
+          "median": "Médian",
+          "max": "Le plus haut"
+        },
+        "empty": "Aucun bureau n'a encore configuré de corridor.",
+        "belowFloor": "Sous le plancher",
+        "aboveCeiling": "Au-dessus du plafond"
+      }
     }
   }
 }
