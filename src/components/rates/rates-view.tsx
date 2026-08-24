@@ -14,6 +14,7 @@ import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRateOrder } from "@/lib/hooks/use-rate-order";
 import { useRateHistory, useRates } from "@/lib/hooks/use-rates";
@@ -107,9 +108,15 @@ export function RatesView({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold">{t("ratesPage.title")}</h1>
-          <p className="mt-1 text-sm text-ink-600">{t("ratesPage.subtitle")}</p>
+          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+            {t("ratesPage.subtitle")}
+            <InfoHint term="openMarket" />
+          </p>
         </div>
-        <RateStatus snapshot={snapshot} />
+        <span className="flex items-center gap-2">
+          <RateStatus snapshot={snapshot} />
+          <InfoHint term="refresh" />
+        </span>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
@@ -149,7 +156,7 @@ export function RatesView({
       {sorted.length === 0 ? (
         <Card className="p-8 text-center text-sm text-ink-600">{t("ratesPage.noResults")}</Card>
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-2.5">
           {sorted.map((code, index) => (
             <li key={code}>
               <RateBox

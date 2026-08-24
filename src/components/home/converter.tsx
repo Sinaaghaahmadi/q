@@ -8,6 +8,7 @@ import { CurrencyPicker } from "@/components/home/currency-picker";
 import { RateStatus } from "@/components/rates/rate-status";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { InfoHint } from "@/components/ui/info-hint";
 import { RollingNumber } from "@/components/ui/rolling-number";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "@/i18n/navigation";
@@ -113,9 +114,12 @@ export function Converter({ initialSnapshot, className }: ConverterProps) {
 
   return (
     <Card className={cn("relative overflow-hidden p-5 shadow-e2 sm:p-6", className)}>
-      <div className="mb-4 flex items-center justify-between gap-3">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-base font-semibold">{t("title")}</h2>
-        <RateStatus snapshot={snapshot} />
+        <span className="flex items-center gap-2">
+          <RateStatus snapshot={snapshot} />
+          <InfoHint term="refresh" />
+        </span>
       </div>
 
       <div className="relative space-y-2">
@@ -193,7 +197,14 @@ export function Converter({ initialSnapshot, className }: ConverterProps) {
               <span className="num">{unitRateText}</span>
             </p>
           ) : null}
-          <p className="text-xs text-ink-600/80">{t("midRateNote")}</p>
+          {/* The rule and the reason for it, where the two currencies are
+              picked rather than in a paragraph further down: one leg is Toman
+              because an Iranian exchange office settles in Toman, and a quote
+              between two foreign currencies is one nobody here can fill. */}
+          <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-ink-600/80">
+            <InfoHint term="midRate" label={t("midRateNote")} />
+          </p>
+          <p className="text-xs text-ink-600/80">{t("tomanLegNote")}</p>
         </div>
         <Button asChild size="lg" className="w-full sm:w-auto">
           <Link

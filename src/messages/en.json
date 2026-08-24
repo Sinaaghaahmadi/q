@@ -38,13 +38,9 @@
     "brand": "Asaex",
     "tagline": "Currency, made effortless. You submit a transfer request, a licensed exchange office executes it, and every step runs under platform supervision.",
     "compliance": "Asa is a marketplace for remittance between licensed exchange offices. It is not a custodial wallet holding your money, not a securities market, and it holds no deposits.",
-    "product": "Product",
     "legal": "Legal",
     "designSystem": "Design system",
-    "copyright": "© 2026 Asaex — All rights reserved.",
-    "buildTag": "Preview · phases 0–9",
-    "account": "Account",
-    "company": "Company"
+    "copyright": "© 2026 Asaex — All rights reserved."
   },
   "legal": {
     "version": "Version {version}",
@@ -63,8 +59,8 @@
       "loading": "Fetching rates…",
       "live": "Live rate",
       "updated": "Updated {ago}",
-      "degraded": "Rate delayed — primary source unavailable",
-      "demo": "Demo data"
+      "degraded": "Updating late",
+      "demo": "Fallback price"
     }
   },
   "currencies": {
@@ -103,8 +99,9 @@
     "noResults": "No currency matches that search.",
     "unitRate": "1 {from} ≈ {rate} {toUnit}",
     "toman": "Toman",
-    "midRateNote": "Mid-market rate; the final rate and fees are itemized when you submit a transfer.",
-    "cta": "Continue to transfer"
+    "midRateNote": "This figure is based on the market rate; the final rate and commission are shown before you confirm.",
+    "cta": "Continue to transfer",
+    "tomanLegNote": "In a quick conversion one side is always Toman."
   },
   "home": {
     "metaTitle": "Live rates & transfers",
@@ -160,7 +157,7 @@
   "ratesPage": {
     "metaTitle": "Live currency rates",
     "title": "Rates",
-    "subtitle": "Live prices in Toman, 24h change, and the 30-day trend — source: open market (tgju).",
+    "subtitle": "Live prices in Toman, the 24-hour change and the 30-day trend, based on the open market.",
     "search": "Search currencies…",
     "noResults": "No currency matches that search.",
     "favorite": "Add {currency} to favorites",
@@ -194,10 +191,7 @@
     "rateUsed": "Rate used",
     "rateValue": "{rate} Toman per {code}",
     "whyThisRate": "Why this rate?",
-    "platformFee": "Platform fee",
-    "officeFee": "Exchange office fee",
     "recipientGets": "Recipient gets",
-    "savings": "About {amount} Toman better than the usual market rate difference.",
     "confirmCta": "Confirm & continue",
     "back": "Back",
     "slaNote": "Timing: usually completed within one business day; the contractual cap is three business days, counted on the Iranian and destination-country business calendars.",
@@ -230,6 +224,19 @@
         "body": "Everything is in place.",
         "cta": "Continue"
       }
+    },
+    "commission": "Exchange commission",
+    "commissionRate": "{pct}% of the transfer",
+    "howCommission": "How was this worked out?",
+    "nextBand": "Raise the amount to {amount} Toman and the commission falls to {pct}%.",
+    "edit": {
+      "title": "Amount and currency",
+      "recalculating": "Working it out again…",
+      "youSend": "You send",
+      "recipientCurrency": "Recipient gets",
+      "tomanLeg": "One side is always Toman",
+      "fromCurrency": "Currency you send",
+      "toCurrency": "Currency they receive"
     }
   },
   "pricing": {
@@ -240,6 +247,14 @@
       "office_markup": "Office markup",
       "tier_discount": "Tier discount",
       "promo": "Promo code"
+    },
+    "bands": {
+      "intro": "The amount is cut into steps and each step has its own rate. Lower steps are always charged in full, so sending more brings the overall percentage down while never reducing the commission itself.",
+      "between": "From {from} to {to} Toman",
+      "above": "Above {from} Toman",
+      "notReached": "Not reached",
+      "toman": "Toman",
+      "total": "Total commission"
     }
   },
   "orders": {
@@ -281,7 +296,7 @@
       "funded": "A funded order is refunded, never cancelled."
     },
     "state": {
-      "draft": "Draft",
+      "draft": "Not submitted",
       "submitted": "Submitted",
       "matching": "Waiting for an office",
       "office_review": "Under office review",
@@ -342,8 +357,8 @@
     },
     "cost": {
       "title": "What this transfer cost",
-      "body": "All in, this transfer cost {ours}% over the published market mid. A walk-in exchange counter typically charges about {counter}% over the same mid.",
-      "basis": "Mid at the moment the rate was locked: {mid} Toman (source: tgju)."
+      "body": "{toman} Toman came off this transfer in total — {pct}% of it.",
+      "basis": "Market base rate when the rate was locked: {mid} Toman."
     }
   },
   "profile": {
@@ -612,11 +627,11 @@
     },
     "phoneLabel": "Mobile number",
     "phoneHint": "Start with 09, or write it as +98.",
-    "emailHint": "Email sign-in is available for customers outside Iran and for testing.",
+    "emailHint": "Email sign-in is available to customers outside Iran.",
     "emailLabel": "Email address",
     "sending": "Sending…",
     "cta": "Continue",
-    "legalNote": "Signing in to this panel constitutes full acceptance of the <terms>terms of use</terms>, the <privacy>privacy policy</privacy> and the <aml>anti-money-laundering policy</aml>.",
+    "legalNote": "Signing in means accepting Asa's <terms>terms of use</terms>, <privacy>privacy policy</privacy> and <aml>anti-money-laundering policy</aml>. Tick this to continue.",
     "codeLabel": "One-time code",
     "verifying": "Checking…",
     "verifyCta": "Verify & sign in",
@@ -648,12 +663,13 @@
     "totpPrompt": "Enter the six-digit code from your authenticator app.",
     "totpLabel": "Two-step code",
     "totpCta": "Sign in",
-    "totpLost": "If you cannot reach your authenticator app, contact the platform administrator."
+    "totpLost": "If you cannot reach your authenticator app, contact the platform administrator.",
+    "legalRequired": "You need to accept the terms before continuing."
   },
   "kyc": {
     "metaTitle": "Verification",
     "unavailableTitle": "Verification isn't live on this environment",
-    "unavailableBody": "This preview isn't connected to a database. On a connected environment the wizard opens right here.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "backHome": "Back to home",
     "steps": {
       "identity": {
@@ -773,7 +789,7 @@
     "emptyTitle": "No accounts saved yet",
     "emptyBody": "Add a Sheba, card, or international account and you'll simply pick it when you start a transfer.",
     "unavailableTitle": "Account management isn't live on this environment",
-    "unavailableBody": "This preview isn't connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "backHome": "Back to home",
     "thirdParty": "Third party",
     "ownAccount": "Mine",
@@ -831,7 +847,7 @@
     "emptyTitle": "The queue is empty",
     "emptyBody": "Nothing is waiting for review.",
     "unavailableTitle": "This section isn't live on the current environment",
-    "unavailableBody": "This preview isn't connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "forbiddenTitle": "You don't have access",
     "forbiddenBody": "KYC review is open to compliance and platform-admin roles only.",
     "backHome": "Back to home",
@@ -893,7 +909,7 @@
     "claim": "Claim",
     "claiming": "Claiming…",
     "unavailableTitle": "The office panel isn't live on this environment",
-    "unavailableBody": "This preview isn't connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "notAMemberTitle": "You're not a member of any office",
     "notAMemberBody": "This section is for staff of licensed exchange offices. If you should have access, ask the office owner to add you.",
     "backHome": "Back to home",
@@ -927,7 +943,7 @@
       "settlement": "Settlement"
     },
     "unavailableTitle": "Not available in this environment",
-    "unavailableBody": "This preview is not connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "forbiddenTitle": "You do not have access",
     "forbiddenBody": "The admin panel is open to platform roles only.",
     "backHome": "Back to home",
@@ -958,7 +974,7 @@
       "empty": "No exchange offices yet.",
       "liveOrders": "{count, number} orders in flight",
       "status": {
-        "draft": "Draft",
+        "draft": "Incomplete",
         "active": "Active",
         "suspended": "Suspended",
         "archived": "Archived"
@@ -1067,7 +1083,7 @@
       "accountHint": "At least one Toman account is required; without it the office cannot go live.",
       "back": "Back",
       "next": "Continue",
-      "saveDraft": "Save as draft",
+      "saveDraft": "Save without activating",
       "activate": "Create and activate",
       "working": "Creating…",
       "failed": "Could not create the office. Try again.",
@@ -1517,7 +1533,7 @@
         "sourceName": {
           "tgju": "TGJU",
           "frankfurter": "Frankfurter",
-          "demo": "Demo data"
+          "demo": "Fallback source"
         },
         "col": {
           "pair": "Pair",
@@ -1546,7 +1562,7 @@
           "tgju": "TGJU",
           "frankfurter": "Frankfurter",
           "manual": "Manual",
-          "demo": "Demo"
+          "demo": "Fallback"
         }
       },
       "bounds": {
@@ -1752,7 +1768,7 @@
     "title": "Support",
     "subtitle": "Your message goes straight to the support queue. We answer within one business day.",
     "unavailableTitle": "Not available in this environment",
-    "unavailableBody": "This preview is not connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "backHome": "Back to home"
   },
   "p2p": {
@@ -1760,7 +1776,7 @@
     "title": "P2P marketplace",
     "subtitle": "Trade directly with another person — with the Toman leg settled inside the platform, supervised by a licensed exchange office as a neutral confirmer.",
     "unavailableTitle": "Not available in this environment",
-    "unavailableBody": "This preview is not connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "backHome": "Back to home",
     "postOffer": "Post an offer",
     "verifyToPost": "Verify to post",
@@ -1924,7 +1940,7 @@
     "throttledTitle": "Try again shortly",
     "throttledBody": "There are a lot of tracking requests right now.",
     "unavailableTitle": "Not available in this environment",
-    "unavailableBody": "This preview is not connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "backHome": "Back to home",
     "share": {
       "title": "Tracking for the recipient",
@@ -1999,7 +2015,7 @@
       "failed": "That did not go through. Press again."
     },
     "unavailableTitle": "Not available in this environment",
-    "unavailableBody": "This preview is not connected to a database.",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
     "notAMemberTitle": "You are not part of an exchange office",
     "notAMemberBody": "If you should have office access, contact support.",
     "backHome": "Back to home",
@@ -2641,7 +2657,7 @@
       "unverified": "Not checked"
     },
     "status": {
-      "draft": "Draft",
+      "draft": "Incomplete",
       "active": "Active",
       "suspended": "Suspended",
       "archived": "Archived"
@@ -2839,6 +2855,115 @@
       "tooMany": "You can keep up to 20 alerts at a time.",
       "signIn": "Please sign in first.",
       "failed": "That did not save. Please try again."
+    }
+  },
+  "menu": {
+    "title": "Menu",
+    "track": "Track an order",
+    "alerts": "Rate alerts",
+    "appearance": "Language and appearance",
+    "version": "Version {version}",
+    "group": {
+      "services": "Services",
+      "account": "My account",
+      "staff": "Panels",
+      "company": "Help and contact",
+      "legal": "Terms and policies"
+    },
+    "hint": {
+      "rates": "Live prices for every currency",
+      "transfer": "Work out and place a transfer",
+      "coins": "Buy gold coins and bullion",
+      "p2p": "Buy and sell directly with other people",
+      "orders": "Orders in progress and past ones",
+      "track": "Follow an order by reference, without signing in",
+      "profile": "Personal details and account security",
+      "accounts": "Destination accounts money arrives in",
+      "verify": "Finish your identity documents",
+      "alerts": "Be told when a price reaches your number",
+      "signin": "Sign in or create an account",
+      "office": "For exchange-office staff",
+      "admin": "For platform administrators"
+    }
+  },
+  "glossary": {
+    "open": "What this means: {term}",
+    "close": "Close",
+    "midRate": {
+      "title": "Market base rate",
+      "body": "The midpoint between what a currency is being bought and sold for on the open market, right now. It is neither your buying price nor your selling price — it is the middle, and every figure here starts from it so you can check ours against anyone else's."
+    },
+    "commission": {
+      "title": "Banded commission",
+      "body": "The only cost of a transfer. Banded means your amount is cut into slices and each slice has its own rate: the first is charged at 15%, higher ones down to 5%. The more you send, the lower the overall percentage — while the amount of commission never falls by sending more."
+    },
+    "commissionCeiling": {
+      "title": "Cost ceiling",
+      "body": "The percentage shown is everything you pay. If an office prices the rate a little away from the base, exactly that much comes off its commission; nothing is added on top of this figure."
+    },
+    "rateMarkup": {
+      "title": "Rate difference",
+      "body": "Some offices quote a rate slightly above or below the base rate instead of charging a separate fee. It is not an extra cost: it is deducted from the same banded commission."
+    },
+    "rateLock": {
+      "title": "Rate lock",
+      "body": "When you open a transfer, the rate is held for you for 15 minutes. Until the countdown ends, whatever the market does has nothing to do with your order. After that you see a fresh rate and confirm again."
+    },
+    "refresh": {
+      "title": "Price refresh",
+      "body": "Prices update on their own every 30 seconds, and if more than 20 seconds have passed since the last one they are fetched again the moment you come back to the page. The time of the last update is always written beside the price."
+    },
+    "identity": {
+      "title": "Identity check",
+      "body": "Confirming you are who you say: a mobile number, an ID document and a live photo. Anti-money-laundering law requires it for currency transfers, and without it we cannot hand your order to an exchange office."
+    },
+    "iban": {
+      "title": "IBAN (Sheba)",
+      "body": "The 24-character bank account identifier beginning with IR. Its characters carry an arithmetic check, so if you mistype one we tell you here rather than letting money go to the wrong account."
+    },
+    "destinationAccount": {
+      "title": "Destination account",
+      "body": "The account the money has to arrive in — yours, or the person you are sending to. Saved once, then simply picked next time."
+    },
+    "escrow": {
+      "title": "Funds held safely",
+      "body": "In a direct trade between two people, the money stays with the platform until both sides have done their part, and is released then. Neither hands over anything without the other."
+    },
+    "p2p": {
+      "title": "Peer market",
+      "body": "Where people trade directly with each other and the platform is only the safe middle. The two sides set the price themselves, within a permitted band around the market rate."
+    },
+    "settlement": {
+      "title": "Settlement",
+      "body": "The step where money actually moves between accounts. Every settlement has a receipt and is recorded on your order."
+    },
+    "twoFactor": {
+      "title": "Two-step sign-in",
+      "body": "Besides a password, a six-digit code that changes every half minute in an app on your phone. Even somebody who knows your password cannot get in without that phone."
+    },
+    "otp": {
+      "title": "One-time code",
+      "body": "A code sent by text that is valid for a few minutes only. It replaces a fixed password so that there is nothing left to steal."
+    },
+    "sla": {
+      "title": "Time commitment",
+      "body": "What we promise about timing: the same working day as the target, three working days as the contractual maximum. Past that, chasing starts automatically."
+    },
+    "corridor": {
+      "title": "Currency route",
+      "body": "A pair of source and destination currencies — Toman to Dirham, say. Each route has its own offices and terms."
+    },
+    "bubble": {
+      "title": "Coin premium",
+      "body": "The gap between a coin's price and the value of the gold inside it. When demand is high the gap widens; the figure shown is that gap."
+    },
+    "install": {
+      "title": "Install on your phone",
+      "body": "You can add this to your phone's home screen like an app, without going to an app store. After that it shows the last prices even offline."
+    },
+    "openMarket": {
+      "title": "Open market",
+      "body": "The price currencies actually change hands at in free trading, not the central bank's official rate. Every figure in this app is based on it."
     }
   }
 }

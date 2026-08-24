@@ -39,3 +39,6 @@ pnpm-debug.log*
 
 # Throwaway verification scripts — kept out of the repo, not out of the way.
 scripts/tmp/
+
+# Python bytecode from the throwaway message-editing scripts
+__pycache__/

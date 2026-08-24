@@ -64,7 +64,7 @@ export default async function OrderDetailPage({
     return <EmptyState icon={Compass} title={t("notFound")} description={t("emptyBody")} />;
   }
 
-  const [{ data: events }, { data: role }, { data: office }, { data: benchmark }] =
+  const [{ data: events }, { data: role }, { data: office }] =
     await Promise.all([
       // Insertion order, not created_at: events written in one transaction
       // share a timestamp (submitting also routes), and a timeline that can
@@ -74,7 +74,6 @@ export default async function OrderDetailPage({
       order.office_id
         ? supabase.from("exchange_offices").select("*").eq("id", order.office_id).maybeSingle()
         : Promise.resolve({ data: null }),
-      supabase.rpc("cost_benchmark"),
     ]);
 
   const send = order.send_currency as CurrencyCode;
@@ -141,7 +140,7 @@ export default async function OrderDetailPage({
       </Card>
 
       {order.state === "completed" ? (
-        <CostComparison order={order} benchmark={benchmark ?? null} />
+        <CostComparison order={order} />
       ) : null}
 
       <ShareStatus publicRef={order.public_ref} />

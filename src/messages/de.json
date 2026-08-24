@@ -165,13 +165,9 @@
     "brand": "Asaex",
     "tagline": "Devisentransfer, ganz einfach. Sie stellen eine Anfrage, eine lizenzierte Wechselstube führt sie aus, und jeder Schritt läuft unter Aufsicht der Plattform.",
     "compliance": "Asa ist ein Überweisungsmarktplatz zwischen lizenzierten Wechselstuben. Es ist keine Wallet, die Ihr Geld verwahrt, kein Wertpapiermarkt, und es werden keine Einlagen gehalten.",
-    "product": "Produkt",
     "legal": "Rechtliches",
     "designSystem": "Designsystem",
-    "copyright": "© 2026 Asaex — Alle Rechte vorbehalten.",
-    "buildTag": "Demoversion · Phase 0–2",
-    "account": "Konto",
-    "company": "Unternehmen"
+    "copyright": "© 2026 Asaex — Alle Rechte vorbehalten."
   },
   "track": {
     "metaTitle": "Verfolgung von {ref}",

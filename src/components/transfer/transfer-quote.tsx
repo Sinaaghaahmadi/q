@@ -1,11 +1,14 @@
 "use client";
 
-import { CircleHelp, Info, RefreshCw } from "lucide-react";
+import { CircleHelp, RefreshCw, TrendingDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { RateStatus } from "@/components/rates/rate-status";
+import { CommissionBreakdown } from "@/components/transfer/commission-breakdown";
+import { QuoteEditor } from "@/components/transfer/quote-editor";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CountdownRing } from "@/components/ui/countdown-ring";
@@ -19,6 +22,7 @@ import {
   type AppLocale,
 } from "@/lib/money/format";
 import type { CurrencyCode } from "@/lib/rates/catalog";
+import { nextBand } from "@/lib/rates/commission";
 import type { QuoteResult } from "@/lib/rates/pricing";
 import type { RatesSnapshot } from "@/lib/rates/types";
 import { toMinor } from "@/lib/money/minor";
@@ -26,8 +30,6 @@ import { createClient } from "@/lib/supabase/client";
 import type { BeneficiaryAccount } from "@/lib/supabase/types";
 
 const LOCK_SECONDS = 15 * 60;
-/** Typical street-exchange spread used for the honest savings comparison (§17.11). */
-const STREET_SPREAD_BPS = 180;
 
 /** How far this visitor has got towards being able to submit. */
 export type TransferGate = "anonymous" | "unverified" | "no_accounts" | "ready";
@@ -49,6 +51,7 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
 
   const [remaining, setRemaining] = React.useState(LOCK_SECONDS);
   const [whyOpen, setWhyOpen] = React.useState(false);
+  const [bandsOpen, setBandsOpen] = React.useState(false);
   const [gateOpen, setGateOpen] = React.useState(false);
   const [destination, setDestination] = React.useState(accounts[0]?.id ?? "");
   const [creating, setCreating] = React.useState(false);
@@ -134,18 +137,28 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
   const clock = locale === "fa" ? toPersianDigits(`${mm}:${ss}`) : `${mm}:${ss}`;
 
   const foreign = from === "IRT" ? to : from;
-  // Honest benchmark: what a typical street exchange (no fee, wider spread)
-  // would deliver, valued in Toman at mid.
-  let savingsToman = 0;
-  if (quote.direction === "irt_to_foreign") {
-    const streetAsk = quote.midToman * (1 + STREET_SPREAD_BPS / 10_000);
-    const streetReceive = quote.sendAmount / streetAsk;
-    savingsToman = (quote.receiveAmount - streetReceive) * quote.midToman;
-  } else {
-    const streetBid = quote.midToman * (1 - STREET_SPREAD_BPS / 10_000);
-    savingsToman = quote.receiveAmount - quote.sendAmount * streetBid;
-  }
-  savingsToman = Math.max(0, savingsToman);
+
+  /*
+   * "Send a little more and the rate drops" — the honest version of a savings
+   * banner.
+   *
+   * This screen used to compare itself against an assumed walk-in counter
+   * spread. With the commission stated as a band that comparison was doing
+   * nothing but flattering us with a number the reader could not check. The
+   * band edge is checkable: it is on the schedule, one tap away, and it is
+   * information the customer can act on rather than a claim they have to trust.
+   */
+  const upgrade = nextBand(quote.tomanLeg);
+  const worthShowing =
+    upgrade !== null &&
+    quote.tomanLeg > 0 &&
+    // Within a third of the edge. Telling somebody sending two million that
+    // three hundred million would be cheaper is not advice, it is noise.
+    upgrade.atToman - quote.tomanLeg < quote.tomanLeg * 0.34;
+
+  const pct = (value: number) =>
+    formatNumber(value, locale, { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+  const money = (value: number) => formatNumber(Math.round(value), locale);
 
   const rows = [
     {
@@ -155,28 +168,41 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
     },
     {
       key: "rateUsed",
+      hint: quote.spreadBps > 0 ? "rateMarkup" : "midRate",
       value: t("rateValue", {
         rate: formatRate(quote.customerRateToman, locale),
         code: foreign,
       }),
+      action:
+        quote.spreadBps > 0 ? (
+          <button
+            type="button"
+            onClick={() => setWhyOpen(true)}
+            className="inline-flex items-center gap-1 text-xs font-medium text-info hover:underline"
+          >
+            <CircleHelp className="size-3.5" />
+            {t("whyThisRate")}
+          </button>
+        ) : null,
+    },
+    {
+      // One fee line, not two. What the office keeps and what the platform
+      // keeps is a split of this number, not an extra charge, and putting both
+      // on a receipt made a customer add up two figures to learn one.
+      key: "commission",
+      hint: "commission",
+      value: `− ${money(quote.commission.toman)} ${t("toman")}`,
+      note: t("commissionRate", { pct: pct(quote.commission.effectivePct) }),
       action: (
         <button
           type="button"
-          onClick={() => setWhyOpen(true)}
+          onClick={() => setBandsOpen(true)}
           className="inline-flex items-center gap-1 text-xs font-medium text-info hover:underline"
         >
           <CircleHelp className="size-3.5" />
-          {t("whyThisRate")}
+          {t("howCommission")}
         </button>
       ),
-    },
-    {
-      key: "platformFee",
-      value: `− ${formatNumber(Math.round(quote.platformFeeToman), locale)} ${t("toman")}`,
-    },
-    {
-      key: "officeFee",
-      value: `− ${formatNumber(Math.round(quote.officeFeeToman), locale)} ${t("toman")}`,
     },
   ] as const;
 
@@ -190,8 +216,10 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
         <RateStatus snapshot={snapshot} />
       </div>
 
+      <QuoteEditor from={from} to={to} amount={quote.sendAmount} />
+
       <Card className="overflow-hidden">
-        {/* Rate lock preview (§7.2): visible countdown, one-tap re-quote. */}
+        {/* Rate lock preview: visible countdown, one-tap re-quote. */}
         <div className="flex items-center justify-between gap-4 border-b border-ink-300/40 bg-canvas/60 p-5">
           <div className="space-y-1">
             <p className="text-sm font-semibold">{expired ? t("lockExpired") : t("lockActive")}</p>
@@ -214,19 +242,33 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
         {/* Wise-style itemization (§7.2) */}
         <div className="divide-y divide-ink-300/40">
           {rows.map((row) => (
-            <div key={row.key} className="flex items-center justify-between gap-3 px-5 py-3.5">
-              <span className="flex items-center gap-2 text-sm text-ink-600">
-                {t(row.key)}
+            <div key={row.key} className="flex items-start justify-between gap-3 px-5 py-3.5">
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-600">
+                {/* The word, then the `i`. Nothing on this receipt is a term
+                    somebody has to already know to read the number beside it. */}
+                {"hint" in row && row.hint ? (
+                  <InfoHint term={row.hint} label={t(row.key)} />
+                ) : (
+                  t(row.key)
+                )}
                 {"action" in row ? row.action : null}
               </span>
-              <span className="num inline-flex items-center gap-2 text-sm font-semibold">
-                {"coin" in row && row.coin ? <CoinIcon code={row.coin} size={22} /> : null}
-                {row.value}
+              <span className="shrink-0 text-end">
+                <span className="num inline-flex items-center gap-2 text-sm font-semibold">
+                  {"coin" in row && row.coin ? <CoinIcon code={row.coin} size={22} /> : null}
+                  {row.value}
+                </span>
+                {"note" in row && row.note ? (
+                  <span className="num mt-0.5 block text-xs text-ink-600">{row.note}</span>
+                ) : null}
               </span>
             </div>
           ))}
           <div className="flex items-center justify-between gap-3 bg-brand-50/50 px-5 py-4 dark:bg-brand-50/30">
-            <span className="text-sm font-semibold">{t("recipientGets")}</span>
+            <InfoHint
+              term="commissionCeiling"
+              label={<span className="text-sm font-semibold">{t("recipientGets")}</span>}
+            />
             <span className="num inline-flex items-center gap-2 text-xl font-bold">
               <CoinIcon code={to} size={26} />
               {formatAmount(quote.receiveAmount, to, locale)} {to === "IRT" ? t("toman") : to}
@@ -235,11 +277,20 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
         </div>
       </Card>
 
-      {savingsToman > 1000 ? (
-        <p className="flex items-start gap-2 rounded-xl bg-up/10 px-4 py-3 text-sm text-ink-900">
-          <Info className="mt-0.5 size-4 shrink-0 text-up" />
-          {t("savings", { amount: formatNumber(Math.round(savingsToman), locale) })}
-        </p>
+      {worthShowing && upgrade ? (
+        <button
+          type="button"
+          onClick={() => setBandsOpen(true)}
+          className="flex w-full items-start gap-2 rounded-xl bg-up/10 px-4 py-3 text-start text-sm text-ink-900"
+        >
+          <TrendingDown className="mt-0.5 size-4 shrink-0 text-up" aria-hidden />
+          <span className="num">
+            {t("nextBand", {
+              amount: money(upgrade.atToman),
+              pct: pct(upgrade.effectivePct),
+            })}
+          </span>
+        </button>
       ) : null}
 
       {gate === "ready" ? (
@@ -311,7 +362,18 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
         </DialogContent>
       </Dialog>
 
-      {/* Auth gate — honest phase framing (§18) */}
+      {/* The whole schedule, with the reached bands filled in. */}
+      <Dialog open={bandsOpen} onOpenChange={setBandsOpen}>
+        <DialogContent className="p-6">
+          <DialogTitle className="text-base font-semibold">{t("howCommission")}</DialogTitle>
+          <DialogDescription className="sr-only">{tPricing("bands.intro")}</DialogDescription>
+          <div className="mt-3">
+            <CommissionBreakdown commission={quote.commission} locale={locale} />
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Auth gate */}
       <Dialog open={gateOpen} onOpenChange={setGateOpen}>
         <DialogContent className="p-6">
           <DialogTitle className="text-base font-semibold">{t(`gate.${gate}.title`)}</DialogTitle>

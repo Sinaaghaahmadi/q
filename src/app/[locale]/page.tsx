@@ -7,8 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { getSnapshot } from "@/lib/rates/service";
 
-/** ISR: server paint stays ≤5min old; the client then live-refreshes every 60s. */
-export const revalidate = 300;
+/**
+ * The first paint must not be older than the refresh promise made everywhere
+ * else. Thirty seconds matches `RATES_REFRESH_MS`, so the figure a visitor sees
+ * before React has hydrated is the same age as the one they see after.
+ */
+export const revalidate = 30;
 
 export async function generateMetadata({
   params,

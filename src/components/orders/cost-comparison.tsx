@@ -4,24 +4,27 @@ import { Scale } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { Card } from "@/components/ui/card";
+import { InfoHint } from "@/components/ui/info-hint";
 import { formatNumber, type AppLocale } from "@/lib/money/format";
-import type { Json, Order } from "@/lib/supabase/types";
+import type { Order } from "@/lib/supabase/types";
 
 /**
- * §17.11's comparison, stated rather than implied.
+ * What this order actually cost, stated rather than compared.
  *
- * tgju publishes a mid; our customer rate is that mid plus our spread, so
- * measured against the mid we save nobody anything. The saving, where there is
- * one, is against what a walk-in counter charges over the same mid — so this
- * shows both numbers and lets the reader subtract, instead of asserting a
- * figure they cannot check (§18: we state numbers plainly, and never hype).
+ * This used to measure our cost against an assumed walk-in-counter spread and
+ * render only when we came out ahead. Two things were wrong with that. The
+ * benchmark was a number nobody could check — it was a constant in a config
+ * column — and hiding the panel when the comparison went badly meant the
+ * feature could only ever flatter us, which is the definition of a claim rather
+ * than a disclosure.
  *
- * It renders nothing at all when the benchmark is missing or when our cost is
- * not actually lower. An honest comparison has to be able to come out badly.
+ * So it states the figure instead: what came off the transfer, in Toman and as
+ * a percentage of it, against the market rate the quote was struck on. A reader
+ * who wants to compare has a percentage and a base rate and can compare against
+ * anything they like. It renders whenever the numbers exist, good or bad.
  */
 export function CostComparison({
   order,
-  benchmark,
 }: {
   order: Pick<
     Order,
@@ -33,7 +36,6 @@ export function CostComparison({
     | "office_fee_minor"
     | "receive_amount_minor"
   >;
-  benchmark: Json | null;
 }) {
   const t = useTranslations("orders.cost");
   const locale = useLocale() as AppLocale;
@@ -42,36 +44,33 @@ export function CostComparison({
   const ours = Number(order.locked_rate);
   if (!Number.isFinite(mid) || mid <= 0 || !Number.isFinite(ours) || ours <= 0) return null;
 
-  const counterBps = Number(
-    (benchmark && typeof benchmark === "object" && !Array.isArray(benchmark)
-      ? benchmark.counter_spread_bps
-      : null) ?? 200,
-  );
-
-  // Everything the customer paid over the public mid: the rate spread plus the
-  // explicit fees, as one percentage. Splitting them would understate the cost.
+  // The Toman side of the transfer, whichever direction it ran in, and
+  // everything taken off it: the fee lines plus whatever the rate itself took
+  // away from the market mid. Reporting only the fee lines would understate a
+  // cost that was partly collected through the rate.
   const tomanLeg =
     order.send_currency === "IRT" ? order.send_amount_minor : order.receive_amount_minor;
-  const feeShare =
-    tomanLeg > 0 ? (order.platform_fee_minor + order.office_fee_minor) / tomanLeg : 0;
-  const rateShare = Math.abs(ours - mid) / mid;
-  const ourBps = Math.round((rateShare + feeShare) * 10000);
+  if (tomanLeg <= 0) return null;
 
-  if (!Number.isFinite(ourBps) || ourBps >= counterBps) return null;
+  const fees = order.platform_fee_minor + order.office_fee_minor;
+  const rateShare = (Math.abs(ours - mid) / mid) * (tomanLeg - fees);
+  const totalToman = (fees + rateShare) / 10; // minor units are Rial; Toman is a tenth
+  const pct = ((fees + rateShare) / tomanLeg) * 100;
 
   return (
     <Card className="space-y-2 p-5">
       <h2 className="flex items-center gap-2 text-sm font-semibold">
         <Scale className="size-4 text-brand-600" aria-hidden />
         {t("title")}
+        <InfoHint term="commission" />
       </h2>
-      <p className="text-sm leading-relaxed text-ink-600">
+      <p className="num text-sm leading-relaxed text-ink-600">
         {t("body", {
-          ours: formatNumber(ourBps / 100, locale, { maximumFractionDigits: 2 }),
-          counter: formatNumber(counterBps / 100, locale, { maximumFractionDigits: 2 }),
+          toman: formatNumber(Math.round(totalToman), locale),
+          pct: formatNumber(pct, locale, { maximumFractionDigits: 2 }),
         })}
       </p>
-      <p className="text-xs text-ink-600">
+      <p className="num text-xs text-ink-600">
         {t("basis", { mid: formatNumber(mid, locale, { maximumFractionDigits: 0 }) })}
       </p>
     </Card>

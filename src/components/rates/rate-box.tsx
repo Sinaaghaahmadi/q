@@ -13,18 +13,24 @@ import type { RateQuote } from "@/lib/rates/types";
 import { cn } from "@/lib/utils";
 
 /**
- * One currency, as a pane of tinted glass.
+ * One currency, as a pane of tinted glass — and as a row, not a tile.
+ *
+ * The board used to be a grid of squares, two or three across. Prices in a grid
+ * read badly: the eye has to travel down one column and back up the next to
+ * compare two numbers, and on a phone the third column was a horizontal scroll
+ * nobody found. Stacked full-width rows put every figure on the same left edge
+ * with every price on the same right edge, so comparing twenty currencies is
+ * one movement down the page.
  *
  * The tint is the currency's own accent — the flag hue already used by its coin
  * — at a few percent, so a board of twenty reads as one material with twenty
- * temperatures rather than twenty coloured cards. Recognition comes from the
- * coin and the tint together; neither is loud enough alone to be noise.
+ * temperatures rather than twenty coloured cards.
  *
  * Three things move, and all three are earned:
  *
- *   · a sheen sweeps across once as the box arrives, staggered down the grid,
+ *   · a sheen sweeps across once as the row arrives, staggered down the list,
  *     which is what makes it read as glass instead of as a grey rectangle;
- *   · the box lifts under a pointer, and presses under a finger;
+ *   · the row lifts under a pointer, and presses under a finger;
  *   · the figure flashes its direction for a moment when the price actually
  *     changes — the only animation here carrying information rather than
  *     character, so it is the only one that repeats.
@@ -37,13 +43,13 @@ export function RateBox({
   quote,
   points,
   locale,
-  starred,
+  starred = false,
   onToggleStar,
   onOpen,
   index,
-  reordering,
-  isFirst,
-  isLast,
+  reordering = false,
+  isFirst = false,
+  isLast = false,
   onMoveUp,
   onMoveDown,
   onDragStart,
@@ -54,19 +60,20 @@ export function RateBox({
   quote: RateQuote | undefined;
   points: number[];
   locale: AppLocale;
-  starred: boolean;
-  onToggleStar: () => void;
-  onOpen: () => void;
-  /** Position in the grid, for the staggered sheen. */
+  /** Position in the list, for the staggered sheen. */
   index: number;
-  reordering: boolean;
-  isFirst: boolean;
-  isLast: boolean;
-  onMoveUp: () => void;
-  onMoveDown: () => void;
-  onDragStart: () => void;
-  onDragOver: (e: React.DragEvent) => void;
-  onDrop: () => void;
+  onOpen: () => void;
+  /** Starring and reordering belong to the full board; the home list omits them. */
+  starred?: boolean;
+  onToggleStar?: () => void;
+  reordering?: boolean;
+  isFirst?: boolean;
+  isLast?: boolean;
+  onMoveUp?: () => void;
+  onMoveDown?: () => void;
+  onDragStart?: () => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: () => void;
 }) {
   const t = useTranslations();
   const accent = CURRENCIES[code]?.accent ?? "var(--brand-600)";
@@ -99,101 +106,103 @@ export function RateBox({
       onDragOver={onDragOver}
       onDrop={onDrop}
       className={cn(
-        "glass glass-sheen relative flex flex-col gap-3 p-4",
+        "glass glass-sheen relative flex items-center gap-3 p-3 sm:gap-4 sm:p-4",
         reordering ? "cursor-grab active:cursor-grabbing" : "glass-lift",
       )}
     >
-      <div className="flex items-start gap-3">
-        <CoinIcon code={code} size={38} />
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold">{t(`currencies.${code}`)}</p>
-          <p className="text-xs text-ink-600" dir="ltr">
-            {code}
-          </p>
-        </div>
-
-        {reordering ? (
-          <span className="text-ink-600" aria-hidden>
-            <GripVertical className="size-4" />
-          </span>
-        ) : (
-          <button
-            type="button"
-            onClick={onToggleStar}
-            aria-pressed={starred}
-            aria-label={t(starred ? "ratesPage.unfavorite" : "ratesPage.favorite", {
-              currency: t(`currencies.${code}`),
-            })}
-            className="pressable -m-1.5 rounded-lg p-1.5 text-ink-600 hover:bg-ink-300/25"
-          >
-            <Star className={cn("size-4", starred && "fill-warn text-warn")} />
-          </button>
-        )}
-      </div>
-
+      {/* The row itself is the target: coin, name, trend and price all open the
+          same detail sheet, so there is no small tap area to aim at. */}
       <button
         type="button"
         onClick={onOpen}
         disabled={reordering}
-        className="pressable -m-1 flex items-end justify-between gap-3 rounded-xl p-1 text-start disabled:pointer-events-none"
+        className="pressable -m-1 flex min-w-0 flex-1 items-center gap-3 rounded-xl p-1 text-start disabled:pointer-events-none sm:gap-4"
       >
-        <span className="min-w-0">
+        <CoinIcon code={code} size={40} />
+
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-semibold">{t(`currencies.${code}`)}</span>
+          <span className="block text-xs text-ink-600" dir="ltr">
+            {code}
+          </span>
+        </span>
+
+        {/* The trend sits between the name and the price on a wide row and
+            steps out of the way on a narrow one, where the price matters more
+            than its shape. */}
+        <span className="hidden shrink-0 sm:block">
+          {points.length > 1 ? (
+            <Sparkline points={points} width={80} height={30} tone={tone} />
+          ) : (
+            <Skeleton className="h-7 w-20" />
+          )}
+        </span>
+
+        <span className="shrink-0 text-end">
           {quote ? (
             <>
               <span
                 className={cn(
-                  "num block text-xl font-semibold transition-colors duration-500",
+                  "num block text-lg leading-tight font-semibold transition-colors duration-500 sm:text-xl",
                   tick === "up" && "text-up",
                   tick === "down" && "text-down",
                 )}
               >
                 {formatRate(quote.mid, locale)}
               </span>
-              <span className="mt-1 flex items-center gap-2">
+              <span className="mt-1 flex items-center justify-end gap-2">
                 <span className="text-xs text-ink-600">{t("converter.toman")}</span>
                 <ChangeChip pct={quote.changePct24h} locale={locale} />
               </span>
             </>
           ) : (
             <>
-              <Skeleton className="h-7 w-28" />
-              <Skeleton className="mt-2 h-5 w-20" />
+              <Skeleton className="h-6 w-24" />
+              <Skeleton className="mt-2 ms-auto h-5 w-20" />
             </>
-          )}
-        </span>
-        <span className="shrink-0">
-          {points.length > 1 ? (
-            <Sparkline points={points} width={72} height={30} tone={tone} />
-          ) : (
-            <Skeleton className="h-7 w-18" />
           )}
         </span>
       </button>
 
-      {/* Arrows rather than drag alone. HTML5 drag does not exist on touch, and
-          this app is used on a phone more than anywhere else; the arrows are
-          also the only way to reorder from a keyboard. */}
       {reordering ? (
-        <div className="flex gap-2">
+        <span className="flex shrink-0 flex-col gap-1">
+          {/* Arrows rather than drag alone. HTML5 drag does not exist on touch,
+              and this app is used on a phone more than anywhere else; the
+              arrows are also the only way to reorder from a keyboard. */}
           <button
             type="button"
             onClick={onMoveUp}
             disabled={isFirst}
             aria-label={t("ratesPage.moveUp", { currency: t(`currencies.${code}`) })}
-            className="pressable flex-1 rounded-lg border border-ink-300 py-1.5 text-ink-600 disabled:opacity-40"
+            className="pressable rounded-lg border border-ink-300 px-2 py-1 text-ink-600 disabled:opacity-40"
           >
-            <ChevronUp className="mx-auto size-4" aria-hidden />
+            <ChevronUp className="size-4" aria-hidden />
           </button>
           <button
             type="button"
             onClick={onMoveDown}
             disabled={isLast}
             aria-label={t("ratesPage.moveDown", { currency: t(`currencies.${code}`) })}
-            className="pressable flex-1 rounded-lg border border-ink-300 py-1.5 text-ink-600 disabled:opacity-40"
+            className="pressable rounded-lg border border-ink-300 px-2 py-1 text-ink-600 disabled:opacity-40"
           >
-            <ChevronDown className="mx-auto size-4" aria-hidden />
+            <ChevronDown className="size-4" aria-hidden />
           </button>
-        </div>
+          <span className="mx-auto text-ink-600" aria-hidden>
+            <GripVertical className="size-4" />
+          </span>
+        </span>
+      ) : onToggleStar ? (
+        <button
+          type="button"
+          onClick={onToggleStar}
+          aria-pressed={starred}
+          aria-label={t(starred ? "ratesPage.unfavorite" : "ratesPage.favorite", {
+            currency: t(`currencies.${code}`),
+          })}
+          className="pressable -m-1.5 shrink-0 rounded-lg p-1.5 text-ink-600 hover:bg-ink-300/25"
+        >
+          <Star className={cn("size-4", starred && "fill-warn text-warn")} />
+        </button>
       ) : null}
     </div>
   );

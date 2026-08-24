@@ -10,14 +10,38 @@ async function fetchJson<T>(url: string): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+/**
+ * How often a price is allowed to be wrong, and by how much.
+ *
+ * Two numbers, and they do different jobs. `REFRESH_MS` is the drumbeat: while
+ * a page is open the snapshot is fetched again every thirty seconds whether or
+ * not anybody is looking at it. `STALE_MS` is the threshold everything else is
+ * measured against: past twenty seconds the copy in hand counts as old, so
+ * returning to the tab, remounting the component or reconnecting fetches
+ * immediately instead of showing the old figure until the next beat.
+ *
+ * Twenty under thirty is the point. If staleness equalled the interval, a
+ * customer coming back to the app a moment before the beat would be handed a
+ * price that was about to be replaced, with no way to know it. This way the
+ * worst case a price is on screen is thirty seconds, and any deliberate return
+ * to the app gets a figure at most twenty seconds old.
+ */
+export const RATES_REFRESH_MS = 30_000;
+export const RATES_STALE_MS = 20_000;
+
 /** Live snapshot — clients poll our API only, never the upstream (§7.1). */
 export function useRates() {
   return useQuery<RatesSnapshot>({
     queryKey: ["rates"],
     queryFn: () => fetchJson<RatesSnapshot>("/api/rates"),
-    refetchInterval: 60_000,
-    staleTime: 30_000,
+    refetchInterval: RATES_REFRESH_MS,
+    // Keep polling while the tab is in the background: coming back to a phone
+    // that has been in a pocket should not mean waiting for a fetch to land.
+    refetchIntervalInBackground: false,
+    staleTime: RATES_STALE_MS,
     refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    refetchOnMount: true,
   });
 }
 

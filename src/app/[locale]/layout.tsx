@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { AppMenu, MenuProvider } from "@/components/layout/app-menu";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { isPlatformStaff } from "@/lib/auth/can";
@@ -113,16 +114,25 @@ export default async function LocaleLayout({
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider>
           <Providers>
-            <Header
+            {/* Header, tab bar and footer all open the same menu, so the state
+                lives above all three rather than being duplicated in each. */}
+            <MenuProvider
               signedIn={Boolean(session?.user)}
               officeMember={Boolean(session?.memberships.some((m) => m.scope_type === "office"))}
               platformStaff={isPlatformStaff(session?.memberships ?? [])}
-            />
-            <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-24 sm:px-6 md:pb-10">
-              {children}
-            </main>
-            <Footer />
-            <TabBar />
+            >
+              <Header
+                signedIn={Boolean(session?.user)}
+                officeMember={Boolean(session?.memberships.some((m) => m.scope_type === "office"))}
+                platformStaff={isPlatformStaff(session?.memberships ?? [])}
+              />
+              <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-24 sm:px-6 md:pb-10">
+                {children}
+              </main>
+              <Footer />
+              <TabBar />
+              <AppMenu />
+            </MenuProvider>
           </Providers>
         </NextIntlClientProvider>
       </body>

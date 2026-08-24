@@ -20,7 +20,7 @@ import type { HistorySeries, ProviderHealth, RateQuote, RatesSnapshot } from "./
  * Upstream keys and calls never reach the browser — clients only see /api/rates.
  */
 
-const REFRESH_SECONDS = Number(process.env.RATE_REFRESH_SECONDS ?? 60);
+const REFRESH_SECONDS = Number(process.env.RATE_REFRESH_SECONDS ?? 30);
 const DEMO_MODE = process.env.RATES_DEMO_MODE === "true";
 /**
  * Beyond this, a snapshot is degraded even if fetches succeed (source frozen).

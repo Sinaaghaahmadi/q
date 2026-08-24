@@ -23,8 +23,10 @@ export async function GET() {
 
   return NextResponse.json(snapshot, {
     headers: {
-      // Snapshot cache lives server-side; clients poll every 60s and the SW
-      // keeps a NetworkFirst copy for the offline shell (§14).
+      // The snapshot cache lives server-side; clients poll every 30s (see
+      // `RATES_REFRESH_MS`) and the service worker keeps a NetworkFirst copy
+      // for the offline shell. No store here, because a cached copy of a price
+      // is the one thing this endpoint must never hand back.
       "cache-control": "no-store",
     },
   });

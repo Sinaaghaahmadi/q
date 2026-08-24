@@ -165,13 +165,9 @@
     "brand": "Asaex",
     "tagline": "Le transfert de devises, en simple. Vous soumettez une demande, un bureau de change agréé l'exécute, et chaque étape se déroule sous la supervision de la plateforme.",
     "compliance": "Asa est une place de marché de transfert entre bureaux de change agréés. Ce n'est pas un portefeuille qui détient votre argent, ni un marché de titres, et elle ne conserve aucun dépôt.",
-    "product": "Produit",
     "legal": "Mentions légales",
     "designSystem": "Système de design",
-    "copyright": "© 2026 Asaex — Tous droits réservés.",
-    "buildTag": "Version de démonstration · Phase 0–2",
-    "account": "Compte",
-    "company": "Entreprise"
+    "copyright": "© 2026 Asaex — Tous droits réservés."
   },
   "track": {
     "metaTitle": "Suivi de {ref}",

@@ -43,6 +43,20 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
   const [busy, setBusy] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [cooldown, setCooldown] = React.useState(0);
+  /**
+   * Accepting the terms, as an act rather than an inference.
+   *
+   * The page already said that signing in constitutes acceptance, and that
+   * sentence is still there. A line of small print under a button is a weak
+   * record though: it shows the words were on the page, not that anybody passed
+   * them. A box that has to be ticked before the button works is a deliberate
+   * act, taken at a moment when all three documents are one tap away, and it
+   * costs an honest user a single tap.
+   *
+   * Deliberately not remembered between visits — a stored tick would be the
+   * same inference wearing a checkbox.
+   */
+  const [accepted, setAccepted] = React.useState(false);
 
   React.useEffect(() => {
     if (cooldown <= 0) return;
@@ -210,7 +224,7 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
   // clerk should not need a mailbox to open the panel — so the staff field
   // accepts either, and the route resolves whichever it is given.
   const staffIdValid = emailValid || OFFICE_USERNAME_RE.test(email.trim().toLowerCase());
-  const identifierValid =
+  const channelValid =
     channel === "phone"
       ? /^\d{10,13}$/.test(
           toLatinDigits(phone)
@@ -220,6 +234,8 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
       : channel === "staff"
         ? staffIdValid && password.length >= 8
         : emailValid;
+  // Every channel, including staff pressing Enter in the password field.
+  const identifierValid = channelValid && accepted;
 
   return (
     <Card className="mx-auto w-full max-w-md overflow-hidden p-6 shadow-e2 sm:p-8">
@@ -363,6 +379,48 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
 
           {error ? <p className="text-sm leading-relaxed text-down">{error}</p> : null}
 
+          {/* The notice names three documents, so it links to all three: an
+              acceptance recorded against terms the person had no way to open is
+              worth very little if it is ever tested. It sits above the button
+              rather than under it, because a condition read after the decision
+              is not a condition. */}
+          <label className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-ink-300/60 bg-canvas/60 p-3 text-xs leading-relaxed text-ink-600">
+            <input
+              type="checkbox"
+              checked={accepted}
+              onChange={(e) => setAccepted(e.target.checked)}
+              className="mt-0.5 size-4 shrink-0 accent-brand-600"
+            />
+            <span>
+              {t.rich("legalNote", {
+                terms: (c) => (
+                  <Link
+                    href="/legal/terms"
+                    className="underline underline-offset-2 hover:text-ink-900"
+                  >
+                    {c}
+                  </Link>
+                ),
+                privacy: (c) => (
+                  <Link
+                    href="/legal/privacy"
+                    className="underline underline-offset-2 hover:text-ink-900"
+                  >
+                    {c}
+                  </Link>
+                ),
+                aml: (c) => (
+                  <Link
+                    href="/legal/aml"
+                    className="underline underline-offset-2 hover:text-ink-900"
+                  >
+                    {c}
+                  </Link>
+                ),
+              })}
+            </span>
+          </label>
+
           <Button
             size="lg"
             className="w-full"
@@ -372,34 +430,6 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
             {busy ? t("sending") : channel === "staff" ? t("staffCta") : t("cta")}
             <ArrowRight className="size-4 rtl:-scale-x-100" />
           </Button>
-          {/* The notice names three documents, so it links to all three. An
-              acceptance recorded against terms the person had no way to open is
-              worth very little if it is ever tested. */}
-          <p className="text-center text-xs leading-relaxed text-ink-600">
-            {t.rich("legalNote", {
-              terms: (c) => (
-                <Link
-                  href="/legal/terms"
-                  className="underline underline-offset-2 hover:text-ink-900"
-                >
-                  {c}
-                </Link>
-              ),
-              privacy: (c) => (
-                <Link
-                  href="/legal/privacy"
-                  className="underline underline-offset-2 hover:text-ink-900"
-                >
-                  {c}
-                </Link>
-              ),
-              aml: (c) => (
-                <Link href="/legal/aml" className="underline underline-offset-2 hover:text-ink-900">
-                  {c}
-                </Link>
-              ),
-            })}
-          </p>
         </div>
       ) : null}
 

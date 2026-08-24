@@ -1,6 +1,6 @@
 {
   "name": "asaex",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Asaex (صرافی آسا) — currency exchange & remittance marketplace. Customer PWA + Exchange-Office Panel + Super-Admin Panel.",
   "engines": {
