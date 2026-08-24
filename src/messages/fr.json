@@ -2519,6 +2519,169 @@
         "belowFloor": "Sous le plancher",
         "aboveCeiling": "Au-dessus du plafond"
       }
+    },
+    "finance": {
+      "metaTitle": "Registre",
+      "title": "Registre et rapprochement",
+      "subtitle": "La balance de vérification, les revenus de commission et les transactions les plus récentes. Le registre est en ajout seul ; rien sur cette page ne le modifie.",
+      "toman": "tomans",
+      "partialTitle": "La balance ne couvre qu'une partie du registre",
+      "partialBody": "Cette page a lu les {count} écritures les plus récentes ; les plus anciennes ne sont pas dans la somme. Si le total n'est pas nul, une transaction a peut-être été coupée en deux à cette limite, plutôt que le registre d'être en déséquilibre.",
+      "failedTitle": "Le registre n'a pas pu être lu",
+      "failedBody": "La lecture du registre a échoué. Ce qui est montré ci-dessous est incomplet, voire vide ; tant que la lecture n'aboutit pas, cette page ne dit rien de l'équilibre du registre.",
+      "balance": {
+        "zeroTitle": "Le registre est équilibré",
+        "zeroBody": "Dans chaque devise, les débits égalent les crédits. C'est le seul état acceptable pour une comptabilité en partie double.",
+        "brokenTitle": "Le registre n'est pas équilibré",
+        "brokenBody": "L'écart ci-dessous est réel et doit être poursuivi. Il n'est ni arrondi ni masqué ; tant qu'il n'atteint pas zéro, le rapprochement n'est pas clos.",
+        "unknownTitle": "Ce total n'est pas un verdict",
+        "unknownBody": "La somme ci-dessous ne couvre que les écritures que cette page a pu lire. Un chiffre non nul ici ne signifie pas à lui seul que le registre est en déséquilibre ; lisez-le avec la note ci-dessus.",
+        "emptyTitle": "Rien à équilibrer pour l'instant",
+        "zeroBadge": "Équilibré",
+        "brokenBadge": "En déséquilibre",
+        "empty": "Aucun compte du registre n'a encore été ouvert."
+      },
+      "escrow": {
+        "title": "Versé en dépôt",
+        "hint": "Total des tomans débités au compte de dépôt depuis le lancement, déduction faite des annulations. Le volet du retrait par le bureau n'est pas encore comptabilisé : il s'agit donc d'un financement cumulé, pas d'un solde de séquestre en direct.",
+        "empty": "Rien n'a encore été versé en dépôt."
+      },
+      "trial": {
+        "title": "Balance de vérification",
+        "hint": "La position de chaque compte est le débit moins le crédit. Une position négative n'est pas en soi une anomalie ; un compte de dettes est censé être créditeur.",
+        "col": {
+          "account": "Compte",
+          "owner": "Titulaire",
+          "entries": "Écritures",
+          "net": "Position"
+        },
+        "subtotal": "Total du groupe",
+        "remainder": "{count} autres comptes",
+        "noOwner": "—"
+      },
+      "owner": {
+        "platform": "Plateforme",
+        "office": "Bureaux",
+        "customer": "Clients",
+        "suspense": "Compte d'attente"
+      },
+      "code": {
+        "irt_holding": "Dépôt en tomans",
+        "irt_payable": "Tomans à payer",
+        "irt_fees": "Commissions en tomans",
+        "irt_settlement": "Règlement des bureaux"
+      },
+      "fees": {
+        "platformTitle": "Revenus de commission de la plateforme",
+        "platformHint": "Les douze derniers mois, compte de commissions en tomans uniquement. Une commission restituée lors d'un remboursement est passée au débit du même compte et se soustrait de ce mois-là ; ce que vous voyez est un revenu net.",
+        "total": "Total sur douze mois",
+        "empty": "Aucune commission n'a été passée sur cette période.",
+        "officeTitle": "Revenus de commission des bureaux",
+        "officeHint": "La part de chaque bureau dans les commissions sur les mêmes douze mois.",
+        "officeEmpty": "Aucune commission de bureau n'a été passée.",
+        "col": {
+          "office": "Bureau",
+          "fees": "Commissions"
+        },
+        "unknownOffice": "Bureau supprimé"
+      },
+      "txn": {
+        "title": "Transactions récentes du registre",
+        "hint": "Un bloc par transaction, la plus récente en premier. Les écritures d'annulation compensent un remboursement au lieu de déplacer de l'argent à nouveau ; les lire comme des mouvements ordinaires est ce qui fait dérailler un rapprochement.",
+        "empty": "Aucune transaction n'a encore été passée.",
+        "reversal": "Annulation",
+        "reversalLine": "Annulation",
+        "noOrder": "Aucune commande",
+        "debit": "Débit",
+        "credit": "Crédit",
+        "noMemo": "—",
+        "unknownOwner": "Titulaire inconnu",
+        "shown": "Affichage des {count} transactions les plus récentes."
+      }
+    },
+    "content": {
+      "metaTitle": "Contenu",
+      "title": "Contenu et messages",
+      "subtitle": "Pages, FAQ, bandeaux et annonces, ainsi que les formulations des SMS et des e-mails — chacun en persan et en anglais.",
+      "loadFailedTitle": "Le contenu n'a pas pu être lu",
+      "loadFailedBody": "La lecture en base ne s'est pas terminée : nous ne pouvons donc pas dire ce qui est stocké. Rechargez la page ; si cela persiste, prévenez l'équipe technique.",
+      "tab": {
+        "cms": "Contenu du site",
+        "templates": "Formulations des messages"
+      },
+      "locale": {
+        "fa": "Persan",
+        "en": "Anglais"
+      },
+      "edit": "Modifier",
+      "close": "Fermer",
+      "save": "Enregistrer",
+      "saved": "Enregistré.",
+      "create": "Créer",
+      "cancel": "Annuler",
+      "working": "Un instant…",
+      "errors": {
+        "keyRequired": "Écrivez la clé en lettres latines, chiffres, points, tirets ou tirets bas.",
+        "titleRequired": "Écrivez un titre.",
+        "bodyRequired": "Écrivez le corps.",
+        "duplicate": "Cette clé existe déjà dans cette langue.",
+        "forbidden": "Non enregistré : écrire du contenu est réservé aux administrateurs de la plateforme.",
+        "saveFailed": "Non enregistré. Réessayez."
+      },
+      "cms": {
+        "noDelete": "Les lignes ne sont jamais supprimées ; la base le refuse. Dépublier est la façon de retirer un contenu — aucune page n'affiche encore le contenu du CMS, donc publier marque une ligne comme prête plutôt que de la mettre en ligne.",
+        "gapWarning": "{count, plural, one {Une clé n'est écrite que dans une seule langue.} other {# clés ne sont écrites que dans une seule langue.}}",
+        "allTranslated": "Chaque clé est écrite dans les deux langues.",
+        "newKey": "Nouvelle clé",
+        "keyLabel": "Clé",
+        "keyHint": "Le nom sous lequel ce contenu est classé — faq.fees, legal.terms.",
+        "keyPlaceholder": "faq.fees",
+        "typeLabel": "Type",
+        "localeLabel": "Langue",
+        "titleLabel": "Titre",
+        "bodyLabel": "Corps",
+        "bodyHint": "Texte simple. Ce que vous écrivez est ce qui est stocké.",
+        "draftNote": "Un contenu neuf est stocké non publié. Publier est un acte distinct, et cela ne fait aujourd'hui que marquer la ligne comme prête.",
+        "missing": "Pas de {locale}",
+        "addTranslation": "Ajouter {locale}",
+        "published": "Publié",
+        "draft": "Non publié",
+        "publishedOn": "Publié le {date}",
+        "updatedOn": "Modifié le {date}",
+        "publish": "Publier",
+        "unpublish": "Dépublier",
+        "empty": "Aucun contenu pour l'instant.",
+        "type": {
+          "page": "Page",
+          "faq": "FAQ",
+          "banner": "Bandeau",
+          "announcement": "Annonce"
+        }
+      },
+      "templates": {
+        "intro": "La formulation de chaque clé de message et de chaque canal est stockée ici. Aucun émetteur ne lit encore cette table : une modification change le texte stocké, pas un message reçu par un client. Les nouvelles clés ne se créent pas depuis cet écran.",
+        "gapWarning": "{count, plural, one {Un message n'est écrit que dans une seule langue.} other {# messages ne sont écrits que dans une seule langue.}}",
+        "allTranslated": "Chaque message est écrit dans les deux langues.",
+        "subjectLabel": "Objet",
+        "subjectHint": "Pour l'e-mail. Les SMS et messages in-app n'ont pas d'objet.",
+        "noSubject": "Aucun objet",
+        "bodyLabel": "Corps",
+        "bodyHint": "Écrivez les variables avec les noms déclarés à côté du corps.",
+        "variablesTitle": "Variables déclarées",
+        "noVariables": "Aucune variable déclarée.",
+        "previewTitle": "Aperçu",
+        "previewHint": "Chaque variable apparaît sous son propre nom. Rien n'est envoyé d'ici.",
+        "undeclared": "Ces noms figurent dans le corps sans être déclarés : {names}",
+        "missing": "Pas de {locale}",
+        "addTranslation": "Ajouter {locale}",
+        "empty": "Aucune formulation pour l'instant.",
+        "channel": {
+          "inapp": "In-app",
+          "push": "Notification",
+          "sms": "SMS",
+          "email": "E-mail"
+        }
+      }
     }
   }
 }

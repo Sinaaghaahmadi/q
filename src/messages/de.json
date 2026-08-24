@@ -2519,6 +2519,169 @@
         "belowFloor": "Unter der Untergrenze",
         "aboveCeiling": "Über der Obergrenze"
       }
+    },
+    "finance": {
+      "metaTitle": "Buchungsjournal",
+      "title": "Journal und Abgleich",
+      "subtitle": "Die Rohbilanz, die Provisionserlöse und die jüngsten Buchungen. Das Journal kennt nur Anfügen; nichts auf dieser Seite bearbeitet es.",
+      "toman": "Toman",
+      "partialTitle": "Die Rohbilanz deckt nur einen Teil des Journals ab",
+      "partialBody": "Diese Seite hat die {count} jüngsten Buchungen gelesen; ältere sind nicht in der Summe. Ist die Summe nicht null, wurde vielleicht eine Transaktion an dieser Grenze zerschnitten — und nicht das Journal ist im Ungleichgewicht.",
+      "failedTitle": "Das Journal ließ sich nicht lesen",
+      "failedBody": "Das Lesen des Journals ist fehlgeschlagen. Was unten steht, ist unvollständig und womöglich gar nichts; bis das Lesen gelingt, sagt diese Seite nichts darüber, ob das Journal ausgeglichen ist.",
+      "balance": {
+        "zeroTitle": "Das Journal ist ausgeglichen",
+        "zeroBody": "In jeder Währung entsprechen Soll und Haben einander. Das ist der einzige zulässige Zustand einer doppelten Buchführung.",
+        "brokenTitle": "Das Journal ist nicht ausgeglichen",
+        "brokenBody": "Die Differenz unten ist echt und muss verfolgt werden. Sie ist weder gerundet noch versteckt; bis sie null erreicht, ist der Abgleich nicht abgeschlossen.",
+        "unknownTitle": "Diese Summe ist kein Urteil",
+        "unknownBody": "Die Summe unten deckt nur die Buchungen ab, die diese Seite lesen konnte. Eine Zahl ungleich null heißt für sich genommen nicht, dass das Journal im Ungleichgewicht ist; lesen Sie sie zusammen mit dem Hinweis oben.",
+        "emptyTitle": "Noch nichts auszugleichen",
+        "zeroBadge": "Ausgeglichen",
+        "brokenBadge": "Nicht ausgeglichen",
+        "empty": "Es wurde noch kein Journalkonto eröffnet."
+      },
+      "escrow": {
+        "title": "In Verwahrung eingezahlt",
+        "hint": "Summe der seit dem Start auf das Verwahrkonto gebuchten Toman, abzüglich Stornierungen. Die Abrufseite der Wechselstuben wird noch nicht gebucht, also ist dies eine kumulierte Einzahlung, kein laufender Treuhandbestand.",
+        "empty": "Es wurde noch nichts in Verwahrung eingezahlt."
+      },
+      "trial": {
+        "title": "Rohbilanz",
+        "hint": "Die Position jedes Kontos ist Soll minus Haben. Eine negative Position ist für sich kein Fehler; ein Verbindlichkeitskonto soll im Haben stehen.",
+        "col": {
+          "account": "Konto",
+          "owner": "Inhaber",
+          "entries": "Buchungen",
+          "net": "Position"
+        },
+        "subtotal": "Gruppensumme",
+        "remainder": "{count} weitere Konten",
+        "noOwner": "—"
+      },
+      "owner": {
+        "platform": "Plattform",
+        "office": "Wechselstuben",
+        "customer": "Kundschaft",
+        "suspense": "Verwahrkonto"
+      },
+      "code": {
+        "irt_holding": "Toman-Verwahrung",
+        "irt_payable": "Toman-Verbindlichkeiten",
+        "irt_fees": "Toman-Provisionen",
+        "irt_settlement": "Abwicklung der Wechselstuben"
+      },
+      "fees": {
+        "platformTitle": "Provisionserlöse der Plattform",
+        "platformHint": "Die letzten zwölf Monate, nur das Toman-Provisionskonto. Eine bei einer Erstattung zurückgegebene Provision wird auf demselben Konto im Soll gebucht und von jenem Monat abgezogen; was Sie sehen, ist der Nettoerlös.",
+        "total": "Summe über zwölf Monate",
+        "empty": "In diesem Zeitraum wurde keine Provision gebucht.",
+        "officeTitle": "Provisionserlöse der Wechselstuben",
+        "officeHint": "Der Anteil jeder Wechselstube an den Provisionen über dieselben zwölf Monate.",
+        "officeEmpty": "Es wurde keine Provision einer Wechselstube gebucht.",
+        "col": {
+          "office": "Wechselstube",
+          "fees": "Provisionen"
+        },
+        "unknownOffice": "Entfernte Wechselstube"
+      },
+      "txn": {
+        "title": "Jüngste Buchungen",
+        "hint": "Ein Block je Transaktion, die jüngste zuerst. Stornobuchungen gleichen eine Erstattung aus, statt erneut Geld zu bewegen; sie als gewöhnliche Bewegungen zu lesen ist der Weg zu einem falschen Abgleich.",
+        "empty": "Es wurde noch keine Buchung erfasst.",
+        "reversal": "Storno",
+        "reversalLine": "Storno",
+        "noOrder": "Kein Auftrag",
+        "debit": "Soll",
+        "credit": "Haben",
+        "noMemo": "—",
+        "unknownOwner": "Unbekannter Inhaber",
+        "shown": "Es werden die {count} jüngsten Transaktionen gezeigt."
+      }
+    },
+    "content": {
+      "metaTitle": "Inhalte",
+      "title": "Inhalte und Nachrichten",
+      "subtitle": "Seiten, FAQ, Banner und Ankündigungen sowie die Formulierungen für SMS und E-Mail — jeweils auf Persisch und Englisch.",
+      "loadFailedTitle": "Die Inhalte ließen sich nicht lesen",
+      "loadFailedBody": "Der Lesevorgang aus der Datenbank wurde nicht fertig, wir können also nicht sagen, was hinterlegt ist. Laden Sie die Seite neu; hält es an, sagen Sie dem Entwicklungsteam Bescheid.",
+      "tab": {
+        "cms": "Website-Inhalte",
+        "templates": "Nachrichtentexte"
+      },
+      "locale": {
+        "fa": "Persisch",
+        "en": "Englisch"
+      },
+      "edit": "Bearbeiten",
+      "close": "Schließen",
+      "save": "Speichern",
+      "saved": "Gespeichert.",
+      "create": "Anlegen",
+      "cancel": "Abbrechen",
+      "working": "Einen Moment…",
+      "errors": {
+        "keyRequired": "Schreiben Sie den Schlüssel mit lateinischen Buchstaben, Ziffern, Punkten, Binde- oder Unterstrichen.",
+        "titleRequired": "Schreiben Sie einen Titel.",
+        "bodyRequired": "Schreiben Sie den Text.",
+        "duplicate": "Diesen Schlüssel gibt es in dieser Sprache bereits.",
+        "forbidden": "Nicht gespeichert: Inhalte zu schreiben steht nur Plattform-Administratoren offen.",
+        "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+      },
+      "cms": {
+        "noDelete": "Zeilen werden nie gelöscht; die Datenbank verweigert es. Ein Inhalt wird durch Zurückziehen außer Dienst gestellt — noch zeigt keine Seite CMS-Inhalte an, Veröffentlichen markiert eine Zeile also als bereit, statt sie auf die Website zu stellen.",
+        "gapWarning": "{count, plural, one {Ein Schlüssel ist nur in einer Sprache geschrieben.} other {# Schlüssel sind nur in einer Sprache geschrieben.}}",
+        "allTranslated": "Jeder Schlüssel ist in beiden Sprachen geschrieben.",
+        "newKey": "Neuer Schlüssel",
+        "keyLabel": "Schlüssel",
+        "keyHint": "Der Name, unter dem dieser Inhalt abgelegt ist — faq.fees, legal.terms.",
+        "keyPlaceholder": "faq.fees",
+        "typeLabel": "Art",
+        "localeLabel": "Sprache",
+        "titleLabel": "Titel",
+        "bodyLabel": "Text",
+        "bodyHint": "Reiner Text. Was Sie schreiben, wird so gespeichert.",
+        "draftNote": "Neue Inhalte werden unveröffentlicht gespeichert. Veröffentlichen ist ein eigener Schritt und markiert die Zeile heute nur als bereit.",
+        "missing": "Kein {locale}",
+        "addTranslation": "{locale} hinzufügen",
+        "published": "Veröffentlicht",
+        "draft": "Unveröffentlicht",
+        "publishedOn": "Veröffentlicht am {date}",
+        "updatedOn": "Bearbeitet am {date}",
+        "publish": "Veröffentlichen",
+        "unpublish": "Zurückziehen",
+        "empty": "Noch keine Inhalte.",
+        "type": {
+          "page": "Seite",
+          "faq": "FAQ",
+          "banner": "Banner",
+          "announcement": "Ankündigung"
+        }
+      },
+      "templates": {
+        "intro": "Hier stehen die Formulierungen je Nachrichtenschlüssel und Kanal. Noch liest kein Versanddienst diese Tabelle, eine Änderung ändert also den hinterlegten Text, nicht eine Nachricht, die jemand erhält. Neue Schlüssel entstehen nicht auf diesem Bildschirm.",
+        "gapWarning": "{count, plural, one {Eine Nachricht ist nur in einer Sprache geschrieben.} other {# Nachrichten sind nur in einer Sprache geschrieben.}}",
+        "allTranslated": "Jede Nachricht ist in beiden Sprachen geschrieben.",
+        "subjectLabel": "Betreff",
+        "subjectHint": "Für E-Mail. SMS und In-App-Nachrichten haben keinen Betreff.",
+        "noSubject": "Kein Betreff",
+        "bodyLabel": "Text",
+        "bodyHint": "Schreiben Sie Variablen mit den neben dem Text angegebenen Namen.",
+        "variablesTitle": "Angegebene Variablen",
+        "noVariables": "Keine Variablen angegeben.",
+        "previewTitle": "Vorschau",
+        "previewHint": "Jede Variable erscheint unter ihrem eigenen Namen. Von hier wird nichts versendet.",
+        "undeclared": "Diese Namen stehen im Text, sind aber nicht angegeben: {names}",
+        "missing": "Kein {locale}",
+        "addTranslation": "{locale} hinzufügen",
+        "empty": "Noch keine Formulierungen.",
+        "channel": {
+          "inapp": "In der App",
+          "push": "Push",
+          "sms": "SMS",
+          "email": "E-Mail"
+        }
+      }
     }
   }
 }
