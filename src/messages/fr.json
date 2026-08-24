@@ -1568,5 +1568,213 @@
       "actionFailed": "Cette décision n'a pas pu être enregistrée. Réessayez.",
       "network": "Connexion impossible. Réessayez."
     }
+  },
+  "officePanel": {
+    "metaTitle": "Le travail du jour",
+    "title": "Le travail du jour",
+    "subtitle": "Une carte, une tâche. Appuyez sur le bouton vert pour faire l'étape suivante.",
+    "navLabel": "Sections du bureau",
+    "nav": {
+      "today": "Aujourd'hui",
+      "requests": "Demandes",
+      "chat": "Messages",
+      "accounts": "Comptes",
+      "liquidity": "Soldes",
+      "rates": "Taux",
+      "customers": "Clients",
+      "team": "Équipe",
+      "reports": "Rapports",
+      "settings": "Réglages",
+      "tickets": "Tickets",
+      "settlement": "Règlement",
+      "coins": "Pièces"
+    },
+    "status": {
+      "draft": "Pas encore en service",
+      "active": "Actif",
+      "suspended": "Suspendu",
+      "archived": "Archivé"
+    },
+    "unknownOffice": "Bureau de change",
+    "allClear": "Plus rien à faire",
+    "allClearBody": "Toute nouvelle demande apparaîtra ici.",
+    "aCustomer": "un client",
+    "beat": "Étape {n, number} sur 4",
+    "working": "Un instant…",
+    "sendTo": "Envoyez ce montant à",
+    "copy": "Copier",
+    "somethingWrong": "Un souci ?",
+    "whatIsWrong": "Que s'est-il passé ?",
+    "notePlaceholder": "par ex. le justificatif de paiement est illisible",
+    "askCustomer": "Demander au client",
+    "pause": "Mettre en pause",
+    "nevermind": "Laisser tomber",
+    "waitingTitle": "En attente des autres — rien à faire",
+    "waiting": {
+      "recipient": "En attente de la confirmation du bénéficiaire",
+      "customer": "En attente du client",
+      "platform": "Chez la plateforme"
+    },
+    "act": {
+      "claim": "Je prends celle-ci",
+      "accept": "J'accepte",
+      "money_in": "Les tomans sont arrivés",
+      "sent": "J'ai envoyé la devise",
+      "settle": "Réglé"
+    },
+    "line": {
+      "claim": "Nouvelle demande de {name}",
+      "accept": "{name} attend votre réponse",
+      "money_in": "Cela devrait arriver sur votre compte — de la part de {name}",
+      "sent": "Envoyez ceci à {name}",
+      "settle": "Le bénéficiaire a confirmé ; clôturez"
+    },
+    "errors": {
+      "alreadyClaimed": "Un autre bureau a pris celle-ci avant vous.",
+      "needNote": "Écrivez une courte note.",
+      "failed": "Cela n'est pas passé. Appuyez à nouveau."
+    },
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "notAMemberTitle": "Vous n'appartenez pas à un bureau de change",
+    "notAMemberBody": "Si vous devriez avoir accès à un bureau, contactez l'assistance.",
+    "backHome": "Retour à l'accueil",
+    "hintLabel": "À quoi sert cette section ?",
+    "hint": {
+      "today": "Le travail du jour. Chaque carte est un transfert et le bouton vert fait la chose suivante. Si vous n'ouvrez que cet écran, cela suffit.",
+      "requests": "Les transferts qu'aucun bureau n'a pris et que vous pouvez prendre, plus les vôtres. Pour la liste complète et la recherche.",
+      "tickets": "Les réclamations et questions des clients dont la première réponse vous revient. Passé 24 heures sans réponse, le client peut remonter à la plateforme.",
+      "chat": "Toutes les conversations au même endroit : les messages sur chaque transfert et ceux de l'assistance.",
+      "accounts": "Vos numéros de carte et d'IBAN que les clients voient au moment de payer. « Public » signifie que le client peut le voir.",
+      "liquidity": "Votre solde dans chaque devise, d'après le registre. Pour voir combien de tomans et combien de devises vous détenez.",
+      "rates": "Pour chaque corridor : l'écart de taux et les montants minimum et maximum que vous acceptez.",
+      "customers": "Les clients qui ont traité avec vous, et l'état de leur vérification d'identité.",
+      "team": "Les collègues qui accèdent à ce panneau. Vous pouvez donner l'accès ou le retirer.",
+      "settlement": "Quand une carte atteint son plafond, définissez ici une nouvelle carte ou un nouvel IBAN pour que les paiements continuent d'arriver.",
+      "reports": "Volume et commissions sur six mois, rapidité d'exécution et respect des délais.",
+      "settings": "Horaires d'ouverture, acceptation automatique, et le numéro et l'e-mail qui reçoivent les alertes.",
+      "coins": "Les demandes d'achat de pièces d'or. Prenez-en une, fixez le prix, remettez la marchandise."
+    },
+    "money": {
+      "accounts": {
+        "metaTitle": "Comptes de règlement",
+        "title": "Comptes de règlement",
+        "subtitle": "Les comptes sur lesquels vos clients paient.",
+        "noPublicTitle": "Aucun compte public",
+        "noPublicBody": "Tant qu'au moins un compte — dans n'importe quelle devise — n'est pas à la fois public et actif, le bureau ne peut pas passer en actif.",
+        "noIrtTitle": "Aucun compte IRT public",
+        "noIrtBody": "Le rôle de séquestre pour le marché entre particuliers n'est confié qu'à un bureau disposant d'un compte IRT public et actif. Les autres commandes n'en ont pas besoin.",
+        "noDeleteNote": "Les comptes ne sont jamais supprimés ; l'historique des paiements doit rester. Désactivez un compte dont vous ne voulez plus.",
+        "readOnly": "Modifier les comptes demande le rôle finance ou propriétaire dans ce bureau.",
+        "empty": "Aucun compte n'a encore été ajouté.",
+        "listTitle": "Comptes enregistrés",
+        "addTitle": "Ajouter un compte",
+        "currency": "Devise",
+        "kindLabel": "Type de compte",
+        "kind": {
+          "iban": "Sheba ou IBAN",
+          "card": "Carte",
+          "swift": "SWIFT",
+          "cash": "Espèces"
+        },
+        "number": "Numéro de compte",
+        "placeholder": {
+          "iban": "IR06 0120 0000 0000 1234 5678 90",
+          "card": "6037 9911 2345 6789",
+          "swift": "BKMTIRTH",
+          "cash": "Nom du guichet ou de l'agence"
+        },
+        "label": "Nom du compte",
+        "labelPlaceholder": "par ex. Banque Mellat, agence centrale",
+        "publicLabel": "Montrer aux clients",
+        "publicHint": "Rend ce compte visible aux clients.",
+        "activeLabel": "Actif",
+        "activeHint": "Un compte inactif n'est pas utilisé sur les nouvelles commandes.",
+        "add": "Ajouter le compte",
+        "save": "Enregistrer",
+        "saved": "Enregistré.",
+        "working": "Un instant…",
+        "badge": {
+          "public": "Public",
+          "internal": "Interne",
+          "inactive": "Inactif"
+        },
+        "errors": {
+          "numberRequired": "Écrivez le numéro de compte.",
+          "forbidden": "Vous n'avez pas le droit de modifier ce compte.",
+          "saveFailed": "Non enregistré. Réessayez."
+        }
+      },
+      "liquidity": {
+        "metaTitle": "Liquidité",
+        "title": "Liquidité",
+        "subtitle": "La position de ce bureau au registre, par devise.",
+        "holding": "L'argent du règlement reste en dépôt sur la plateforme jusqu'à son retrait. Ce que vous voyez ici est votre part de ce dépôt, pas de l'argent déjà présent sur le compte bancaire du bureau.",
+        "readOnly": "Cette page est en lecture seule ; elle rapporte ce que le registre a consigné et ne change rien.",
+        "position": "Position au registre",
+        "positionHint": "Crédits moins débits.",
+        "code": {
+          "irt_fees": "Commissions",
+          "irt_settlement": "Règlement"
+        },
+        "noPosition": "Rien de consigné au registre.",
+        "ledgerHidden": "Le registre n'est visible que par le personnel de la plateforme.",
+        "truncated": "Le registre dépasse une seule lecture ; ces chiffres couvrent sa partie la plus récente.",
+        "empty": "Aucune devise n'a encore été configurée pour ce bureau.",
+        "noAccessTitle": "Aucun accès à l'argent du bureau",
+        "noAccessBody": "Voir l'argent du bureau demande le rôle finance, propriétaire ou observateur. Si cette page vous est nécessaire, demandez au propriétaire du bureau de changer votre rôle."
+      }
+    },
+    "requests": {
+      "metaTitle": "Demandes",
+      "title": "Demandes",
+      "subtitle": "Les demandes non prises et le travail en cours de ce bureau, dans une seule liste.",
+      "scopeLabel": "Quelles demandes",
+      "scope": {
+        "all": "Toutes",
+        "action": "Demandent votre intervention"
+      },
+      "corridorLabel": "Corridor",
+      "allCorridors": "Tous les corridors",
+      "col": {
+        "corridor": "Corridor",
+        "amount": "Montant",
+        "customer": "Client",
+        "waiting": "Attente",
+        "action": "Action"
+      },
+      "unnamed": "Sans nom",
+      "claim": "Prendre",
+      "working": "Un instant…",
+      "empty": "Rien en cours.",
+      "emptyFiltered": "Rien ne correspond à ces filtres.",
+      "errors": {
+        "alreadyClaimed": "Un autre bureau a pris celle-ci avant vous. La liste a été rafraîchie.",
+        "inactive": "Ce bureau n'est pas actif : il ne peut pas prendre de demandes pour l'instant.",
+        "failed": "Cela n'est pas passé. Réessayez.",
+        "gone": "Cette demande n'est plus disponible. La liste a été rafraîchie.",
+        "network": "Pas de connexion. Vérifiez-la et réessayez."
+      },
+      "poolClosed": "Ce bureau n'est pas actif : aucune nouvelle demande n'est proposée. Son travail en cours reste néanmoins listé ici."
+    },
+    "chat": {
+      "metaTitle": "Messages",
+      "title": "Messages",
+      "subtitle": "Les conversations sur les commandes de ce bureau, et vos propres fils avec l'assistance Asaex.",
+      "sectionOrders": "Commandes",
+      "sectionSupport": "Assistance Asaex",
+      "supportThread": "Fil d'assistance",
+      "pickThread": "Choisissez une conversation dans la liste.",
+      "empty": "Aucune conversation vous incluant pour l'instant. Seuls les fils auxquels vous avez été ajouté apparaissent ici.",
+      "noMessages": "Aucun message",
+      "unknownOrder": "Commande",
+      "notesHint": "Une note interne n'est jamais montrée au client — seuls ce bureau et la plateforme la voient.",
+      "status": {
+        "open": "Ouverte",
+        "pending": "En attente",
+        "resolved": "Close",
+        "archived": "Archivée"
+      }
+    }
   }
 }

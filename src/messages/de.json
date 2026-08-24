@@ -1568,5 +1568,213 @@
       "actionFailed": "Diese Entscheidung ließ sich nicht erfassen. Versuchen Sie es erneut.",
       "network": "Keine Verbindung. Versuchen Sie es erneut."
     }
+  },
+  "officePanel": {
+    "metaTitle": "Die Arbeit von heute",
+    "title": "Die Arbeit von heute",
+    "subtitle": "Eine Karte, eine Aufgabe. Der grüne Knopf macht den nächsten Schritt.",
+    "navLabel": "Bereiche der Wechselstube",
+    "nav": {
+      "today": "Heute",
+      "requests": "Anfragen",
+      "chat": "Nachrichten",
+      "accounts": "Konten",
+      "liquidity": "Bestände",
+      "rates": "Kurse",
+      "customers": "Kundschaft",
+      "team": "Team",
+      "reports": "Berichte",
+      "settings": "Einstellungen",
+      "tickets": "Tickets",
+      "settlement": "Abwicklung",
+      "coins": "Münzen"
+    },
+    "status": {
+      "draft": "Noch nicht in Betrieb",
+      "active": "Aktiv",
+      "suspended": "Ausgesetzt",
+      "archived": "Archiviert"
+    },
+    "unknownOffice": "Wechselstube",
+    "allClear": "Nichts mehr zu tun",
+    "allClearBody": "Jede neue Anfrage erscheint hier.",
+    "aCustomer": "eine Kundin oder ein Kunde",
+    "beat": "Schritt {n, number} von 4",
+    "working": "Einen Moment…",
+    "sendTo": "Diesen Betrag senden an",
+    "copy": "Kopieren",
+    "somethingWrong": "Stimmt etwas nicht?",
+    "whatIsWrong": "Was ist schiefgegangen?",
+    "notePlaceholder": "z. B. der Zahlungsbeleg ist unleserlich",
+    "askCustomer": "Die Kundschaft fragen",
+    "pause": "Vorerst anhalten",
+    "nevermind": "Doch nicht",
+    "waitingTitle": "Warten auf andere — nichts zu tun",
+    "waiting": {
+      "recipient": "Wartet auf die Bestätigung der empfangenden Seite",
+      "customer": "Wartet auf die Kundschaft",
+      "platform": "Bei der Plattform"
+    },
+    "act": {
+      "claim": "Die nehme ich",
+      "accept": "Ich nehme an",
+      "money_in": "Die Toman sind da",
+      "sent": "Ich habe die Devisen gesendet",
+      "settle": "Abgewickelt"
+    },
+    "line": {
+      "claim": "Neue Anfrage von {name}",
+      "accept": "{name} wartet auf Ihre Antwort",
+      "money_in": "Das sollte auf Ihrem Konto eingehen — von {name}",
+      "sent": "Senden Sie dies an {name}",
+      "settle": "Die empfangende Seite hat bestätigt; schließen Sie ab"
+    },
+    "errors": {
+      "alreadyClaimed": "Eine andere Wechselstube war schneller.",
+      "needNote": "Schreiben Sie eine kurze Notiz.",
+      "failed": "Das ging nicht durch. Drücken Sie erneut."
+    },
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "notAMemberTitle": "Sie gehören zu keiner Wechselstube",
+    "notAMemberBody": "Sollten Sie Zugang zu einer Wechselstube haben, wenden Sie sich an den Support.",
+    "backHome": "Zurück zur Startseite",
+    "hintLabel": "Wofür ist dieser Bereich?",
+    "hint": {
+      "today": "Die Arbeit von heute. Jede Karte ist eine Überweisung, und der grüne Knopf macht das Nächste. Wenn Sie nur diesen Bildschirm öffnen, reicht das.",
+      "requests": "Überweisungen, die noch keine Wechselstube übernommen hat und die Sie übernehmen können, dazu Ihre eigenen. Für die vollständige Liste und die Suche.",
+      "tickets": "Beschwerden und Fragen der Kundschaft, deren erste Antwort Ihnen zusteht. Bleiben 24 Stunden ohne Antwort, kann eskaliert werden.",
+      "chat": "Alle Gespräche an einem Ort: Nachrichten zu jeder Überweisung und Support-Nachrichten.",
+      "accounts": "Ihre Karten- und IBAN-Nummern, die die Kundschaft beim Einzahlen sieht. „Öffentlich“ heißt, die Kundschaft kann sie sehen.",
+      "liquidity": "Ihr Bestand in jeder Währung, aus dem Buchungsjournal. Um zu sehen, wie viel Toman und wie viel Devisen Sie halten.",
+      "rates": "Je Strecke: der Kursunterschied und der kleinste und größte Betrag, den Sie annehmen.",
+      "customers": "Die Kundschaft, die mit Ihnen zu tun hatte, und der Stand ihrer Identitätsprüfung.",
+      "team": "Kolleginnen und Kollegen mit Zugang zu diesem Bereich. Sie können Zugang geben oder entziehen.",
+      "settlement": "Erreicht eine Karte ihr Limit, legen Sie hier eine neue Karte oder IBAN an, damit Zahlungen weiter eingehen.",
+      "reports": "Volumen und Provisionen über sechs Monate, Abschlussgeschwindigkeit und Einhaltung der Fristen.",
+      "settings": "Öffnungszeiten, automatische Annahme und die Nummer und E-Mail-Adresse, an die Hinweise gehen.",
+      "coins": "Anfragen zum Kauf von Goldmünzen. Übernehmen, bepreisen, übergeben."
+    },
+    "money": {
+      "accounts": {
+        "metaTitle": "Abwicklungskonten",
+        "title": "Abwicklungskonten",
+        "subtitle": "Die Konten, auf die Ihre Kundschaft einzahlt.",
+        "noPublicTitle": "Kein öffentliches Konto",
+        "noPublicBody": "Solange nicht mindestens ein Konto — in irgendeiner Währung — sowohl öffentlich als auch aktiv ist, kann die Wechselstube nicht auf aktiv gesetzt werden.",
+        "noIrtTitle": "Kein öffentliches IRT-Konto",
+        "noIrtBody": "Treuhandarbeit im Privathandel geht nur an eine Wechselstube mit einem öffentlichen, aktiven IRT-Konto. Andere Aufträge brauchen keines.",
+        "noDeleteNote": "Konten werden nie gelöscht; die Aufzeichnung früherer Zahlungen muss bleiben. Deaktivieren Sie ein Konto, das Sie nicht mehr wollen.",
+        "readOnly": "Konten zu ändern erfordert in dieser Wechselstube die Rolle Finanzen oder Inhaberschaft.",
+        "empty": "Es wurde noch kein Konto angelegt.",
+        "listTitle": "Hinterlegte Konten",
+        "addTitle": "Konto hinzufügen",
+        "currency": "Währung",
+        "kindLabel": "Kontoart",
+        "kind": {
+          "iban": "Sheba oder IBAN",
+          "card": "Karte",
+          "swift": "SWIFT",
+          "cash": "Bargeld"
+        },
+        "number": "Kontonummer",
+        "placeholder": {
+          "iban": "IR06 0120 0000 0000 1234 5678 90",
+          "card": "6037 9911 2345 6789",
+          "swift": "BKMTIRTH",
+          "cash": "Name des Schalters oder der Filiale"
+        },
+        "label": "Name des Kontos",
+        "labelPlaceholder": "z. B. Bank Mellat, Hauptfiliale",
+        "publicLabel": "Der Kundschaft zeigen",
+        "publicHint": "Macht dieses Konto für die Kundschaft sichtbar.",
+        "activeLabel": "Aktiv",
+        "activeHint": "Ein inaktives Konto wird bei neuen Aufträgen nicht verwendet.",
+        "add": "Konto anlegen",
+        "save": "Speichern",
+        "saved": "Gespeichert.",
+        "working": "Einen Moment…",
+        "badge": {
+          "public": "Öffentlich",
+          "internal": "Intern",
+          "inactive": "Inaktiv"
+        },
+        "errors": {
+          "numberRequired": "Schreiben Sie die Kontonummer.",
+          "forbidden": "Sie dürfen dieses Konto nicht ändern.",
+          "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        }
+      },
+      "liquidity": {
+        "metaTitle": "Liquidität",
+        "title": "Liquidität",
+        "subtitle": "Die Position dieser Wechselstube im Journal, nach Währung.",
+        "holding": "Abwicklungsgeld bleibt in Verwahrung der Plattform, bis es abgerufen wird. Was Sie hier sehen, ist Ihr Anteil daran, nicht Geld, das schon auf dem Bankkonto der Wechselstube liegt.",
+        "readOnly": "Diese Seite ist nur lesbar; sie berichtet, was das Journal erfasst hat, und ändert nichts.",
+        "position": "Position im Journal",
+        "positionHint": "Haben minus Soll.",
+        "code": {
+          "irt_fees": "Provisionen",
+          "irt_settlement": "Abwicklung"
+        },
+        "noPosition": "Im Journal ist nichts erfasst.",
+        "ledgerHidden": "Das Journal sehen nur Plattform-Mitarbeitende.",
+        "truncated": "Das Journal ist größer als ein Lesevorgang; diese Zahlen decken seinen jüngsten Teil ab.",
+        "empty": "Für diese Wechselstube ist noch keine Währung eingerichtet.",
+        "noAccessTitle": "Kein Zugriff auf das Geld der Wechselstube",
+        "noAccessBody": "Das Geld der Wechselstube zu sehen erfordert die Rolle Finanzen, Inhaberschaft oder Einsicht. Brauchen Sie diese Seite, bitten Sie die Inhaberschaft, Ihre Rolle zu ändern."
+      }
+    },
+    "requests": {
+      "metaTitle": "Anfragen",
+      "title": "Anfragen",
+      "subtitle": "Nicht übernommene Anfragen und die laufende Arbeit dieser Wechselstube, in einer Liste.",
+      "scopeLabel": "Welche Anfragen",
+      "scope": {
+        "all": "Alle",
+        "action": "Brauchen Ihr Zutun"
+      },
+      "corridorLabel": "Strecke",
+      "allCorridors": "Alle Strecken",
+      "col": {
+        "corridor": "Strecke",
+        "amount": "Betrag",
+        "customer": "Kundschaft",
+        "waiting": "Wartezeit",
+        "action": "Handlung"
+      },
+      "unnamed": "Ohne Namen",
+      "claim": "Übernehmen",
+      "working": "Einen Moment…",
+      "empty": "Nichts in Arbeit.",
+      "emptyFiltered": "Nichts passt zu diesen Filtern.",
+      "errors": {
+        "alreadyClaimed": "Eine andere Wechselstube war schneller. Die Liste wurde aufgefrischt.",
+        "inactive": "Diese Wechselstube ist nicht aktiv und kann derzeit keine Anfragen übernehmen.",
+        "failed": "Das ging nicht durch. Versuchen Sie es erneut.",
+        "gone": "Diese Anfrage ist nicht mehr verfügbar. Die Liste wurde aufgefrischt.",
+        "network": "Keine Verbindung. Prüfen Sie sie und versuchen Sie es erneut."
+      },
+      "poolClosed": "Diese Wechselstube ist nicht aktiv, daher werden keine neuen Anfragen zur Übernahme gezeigt. Ihre laufende Arbeit steht weiterhin hier."
+    },
+    "chat": {
+      "metaTitle": "Nachrichten",
+      "title": "Nachrichten",
+      "subtitle": "Die Gespräche zu den Aufträgen dieser Wechselstube und Ihre eigenen Stränge mit dem Asaex-Support.",
+      "sectionOrders": "Aufträge",
+      "sectionSupport": "Asaex-Support",
+      "supportThread": "Support-Strang",
+      "pickThread": "Wählen Sie ein Gespräch aus der Liste.",
+      "empty": "Noch keine Gespräche, an denen Sie beteiligt sind. Hier erscheinen nur Stränge, zu denen Sie hinzugefügt wurden.",
+      "noMessages": "Keine Nachrichten",
+      "unknownOrder": "Auftrag",
+      "notesHint": "Eine interne Notiz wird der Kundschaft nie gezeigt — nur diese Wechselstube und die Plattform sehen sie.",
+      "status": {
+        "open": "Offen",
+        "pending": "Ausstehend",
+        "resolved": "Geschlossen",
+        "archived": "Archiviert"
+      }
+    }
   }
 }
