@@ -2133,6 +2133,242 @@
         "platform_admin": "Administrateur",
         "platform_superadmin": "Super-administrateur"
       }
+    },
+    "support": {
+      "metaTitle": "Boîte d'assistance",
+      "title": "Assistance",
+      "subtitle": "Trois files distinctes : clients, intervenants du marché entre particuliers, bureaux de change. Chacune avec sa propre horloge.",
+      "segment": {
+        "customer": "Clients",
+        "p2p": "Marché entre particuliers",
+        "office": "Bureaux de change"
+      },
+      "status": {
+        "open": "Ouverte",
+        "pending": "En attente",
+        "resolved": "Résolue",
+        "archived": "Archivée"
+      },
+      "emptyQueue": "Cette file est vide.",
+      "pickThread": "Choisissez une conversation dans la liste.",
+      "noMessages": "Aucun message",
+      "assignToMe": "Me l'attribuer",
+      "assignedToYou": "Vous est attribuée",
+      "assigned": "Attribuée",
+      "resolve": "Résoudre"
+    },
+    "p2p": {
+      "metaTitle": "Marché entre particuliers",
+      "title": "Marché entre particuliers",
+      "subtitle": "Modération des annonces et règlement des litiges.",
+      "openOffers": "Offres ouvertes",
+      "liveTrades": "Échanges en cours",
+      "disputes": "Litiges ouverts",
+      "disputesTitle": "Litiges en attente de décision",
+      "resolve": "Trancher",
+      "listings": "Annonces",
+      "noListings": "Aucune annonce pour l'instant.",
+      "tradesOnOffer": "{count, number} échanges",
+      "remove": "Retirer",
+      "removeReason": "Motif du retrait (au moins 8 caractères)",
+      "confirmRemove": "Retirer l'annonce",
+      "removeFailed": "Retrait impossible. Réessayez.",
+      "status": {
+        "open": "Ouverte",
+        "paused": "En pause",
+        "filled": "Servie",
+        "cancelled": "Annulée",
+        "removed": "Retirée"
+      }
+    },
+    "exchanges": {
+      "metaTitle": "Bureaux de change",
+      "title": "Bureaux de change",
+      "subtitle": "Créer, configurer et suspendre des bureaux. Chaque changement est consigné avec son motif.",
+      "provision": "Créer un bureau",
+      "empty": "Aucun bureau de change pour l'instant.",
+      "liveOrders": "{count, number} commandes en cours",
+      "status": {
+        "draft": "Incomplet",
+        "active": "Actif",
+        "suspended": "Suspendu",
+        "archived": "Archivé"
+      },
+      "kind": {
+        "card": "Carte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Espèces"
+      },
+      "reasonTitle": "Motif de cette action",
+      "reasonBody": "Suspendre un bureau et agir en son nom demandent tous deux un motif écrit ; le même texte se retrouve au journal d'audit.",
+      "reasonPlaceholder": "par ex. examen d'une réclamation client sur un retard de règlement",
+      "activate": "Activer",
+      "suspend": "Suspendre",
+      "impersonate": "Agir au nom de ce bureau",
+      "alreadyImpersonating": "Vous agissez déjà au nom de ce bureau",
+      "spreads": "Commissions et écart de taux",
+      "spreadBps": "Écart de taux, en centièmes de pour cent",
+      "noCorridors": "Aucun corridor configuré.",
+      "save": "Enregistrer",
+      "saved": "Enregistré.",
+      "overridden": "Modifié (défaut {base, number})",
+      "fromTemplate": "Du modèle",
+      "accounts": "Comptes de règlement",
+      "noAccounts": "Aucun compte enregistré.",
+      "publicAccount": "Montré aux clients",
+      "balances": "Soldes",
+      "noBalances": "Aucun solde enregistré.",
+      "errors": {
+        "spreadRange": "L'écart de taux doit être compris entre 0 et 2000 centièmes de pour cent (0–20 %).",
+        "saveFailed": "Enregistrement impossible. Réessayez.",
+        "reasonRequired": "Un motif écrit d'au moins 8 caractères est requis.",
+        "noAccount": "Un bureau ne peut pas passer en service sans compte de règlement public.",
+        "superadminOnly": "Agir au nom d'un bureau est réservé au super-administrateur."
+      },
+      "kyc": {
+        "verified": "Vérifié",
+        "pending": "En attente",
+        "rejected": "Refusé",
+        "unverified": "Non contrôlé"
+      }
+    },
+    "wizard": {
+      "steps": {
+        "legal": {
+          "title": "Informations légales",
+          "body": "Raison sociale, numéro d'agrément et identifiant unique du bureau."
+        },
+        "corridors": {
+          "title": "Corridors",
+          "body": "Quels corridors il traite et à quel écart. Les valeurs par défaut viennent du modèle de la plateforme."
+        },
+        "accounts": {
+          "title": "Comptes de règlement",
+          "body": "Le compte sur lequel les clients versent les tomans, plus les éventuels comptes en devises."
+        },
+        "review": {
+          "title": "Vérification",
+          "body": "Une transaction, une seule fois. Soit tout aboutit, soit rien."
+        },
+        "access": {
+          "title": "Accès au bureau",
+          "body": "L'identifiant et le mot de passe du panneau, et le numéro auquel les envoyer."
+        }
+      },
+      "fields": {
+        "nameFa": "Raison sociale (en persan)",
+        "nameEn": "Raison sociale (en anglais)",
+        "slug": "Identifiant",
+        "slugHint": "Minuscules, chiffres et tirets ; utilisé dans les adresses.",
+        "licence": "Numéro d'agrément",
+        "city": "Ville",
+        "reason": "Motif de la création",
+        "corridor": "Corridor",
+        "spread": "Écart",
+        "currency": "Devise",
+        "kind": "Type de compte",
+        "accountNumber": "Numéro de compte",
+        "displayName": "Nom affiché",
+        "displayNameHint": "C'est le nom que voient les clients.",
+        "ownerName": "Propriétaire déclaré",
+        "ownerNameHint": "Ce à quoi les comptes de règlement sont rapprochés.",
+        "nationalId": "Code national du propriétaire",
+        "nationalIdHint": "La base pour vérifier à qui appartiennent cartes et IBAN.",
+        "username": "Identifiant",
+        "usernameHint": "Minuscules, chiffres, points et tirets.",
+        "phone": "Numéro destinataire",
+        "phoneHint": "Il se connecte avec ce numéro la première fois.",
+        "ownPassword": "Je saisirai le mot de passe",
+        "ownPasswordHint": "Sinon, un mot de passe sûr est généré.",
+        "password": "Mot de passe",
+        "sendSms": "L'envoyer par SMS au numéro destinataire",
+        "sendSmsHint": "Si vous désactivez cela, les informations n'apparaissent que sur cet écran."
+      },
+      "kinds": {
+        "card": "Carte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Espèces"
+      },
+      "addCorridor": "Ajouter un corridor",
+      "addAccount": "Ajouter un compte",
+      "remove": "Retirer",
+      "spreadHint": "L'écart est en centièmes de pour cent : 90 signifie 0,9 %.",
+      "accountHint": "Au moins un compte en tomans est requis ; sans lui, le bureau ne peut pas entrer en service.",
+      "back": "Retour",
+      "next": "Continuer",
+      "saveDraft": "Enregistrer sans activer",
+      "activate": "Créer et activer",
+      "working": "Création…",
+      "failed": "Le bureau n'a pas pu être créé. Réessayez.",
+      "errors": {
+        "slug": "L'identifiant doit compter de 3 à 40 minuscules, chiffres ou tirets.",
+        "slugTaken": "Cet identifiant est déjà pris.",
+        "names": "Les deux raisons sociales sont requises.",
+        "licence": "Un numéro d'agrément est requis.",
+        "forbidden": "Créer un bureau est réservé aux administrateurs de la plateforme.",
+        "noAccount": "Le bureau a été créé mais non activé : il n'a pas de compte de règlement public.",
+        "nationalId": "Ce code national n'est pas valide.",
+        "usernameTaken": "Cet identifiant est déjà pris.",
+        "inviteFailed": "Le bureau a été créé mais pas l'accès. Réessayez depuis la page du bureau."
+      },
+      "accessNote": "Vous pouvez laisser cette étape vide et émettre un accès plus tard. Si vous ne saisissez pas de mot de passe, un mot de passe est généré.",
+      "issued": {
+        "title": "Le bureau dispose d'un accès",
+        "body": "Ces informations sont montrées une fois et une seule.",
+        "warning": "Le mot de passe ne peut plus être récupéré après cet écran. S'il est perdu, émettez un nouvel accès.",
+        "copy": "Copier l'identifiant et le mot de passe",
+        "copied": "Copiés",
+        "done": "Aller au bureau",
+        "sms": {
+          "sent": "Envoyé par SMS au numéro destinataire.",
+          "failed": "Le message n'a pas pu partir. Transmettez les informations vous-même.",
+          "skipped": "Aucun message n'a été envoyé."
+        }
+      }
+    },
+    "dashboard": {
+      "metaTitle": "Rapports de gestion",
+      "title": "Rapports de gestion",
+      "subtitle": "Volume réglé, revenus de commission et performance de chaque bureau sur les douze derniers mois. Chaque chiffre est compté à partir des commandes, de leurs événements et du registre.",
+      "toman": "tomans",
+      "vsLastMonth": "par rapport à la même période le mois dernier",
+      "noBase": "Le mois dernier n'a pas de chiffre de comparaison.",
+      "monthToDate": "{month}, depuis le début du mois ({days, plural, one {# jour} other {# jours}}).",
+      "card": {
+        "volume": "Volume réglé ce mois-ci",
+        "settled": "Commandes abouties ce mois-ci",
+        "fees": "Revenus de commission de la plateforme ce mois-ci",
+        "inFlight": "Commandes en cours",
+        "atRisk": "Échéance menacée"
+      },
+      "hint": {
+        "inFlight": "Ouvertes en ce moment, avec quelqu'un qui attend.",
+        "atRisk": "À échéance sous 24 heures, ou déjà dépassées.",
+        "noDeadlines": "Aucune commande ouverte ne porte encore d'échéance."
+      },
+      "volumeTitle": "Volume réglé par mois",
+      "volumeHint": "Une commande compte dans le mois où elle a été réglée, pas celui où elle a été ouverte. La dernière colonne est le mois en cours et n'est pas complète.",
+      "chartLabel": "Diagramme en barres du volume réglé de {from} à {to}. Le mois le plus élevé a été {peak}, à {max} tomans.",
+      "corridorTitle": "Part de chaque corridor dans le volume",
+      "corridorHint": "La part est calculée sur le volume en tomans des commandes réglées ces douze derniers mois.",
+      "noVolume": "Rien n'a encore été réglé sur cette période.",
+      "scoreTitle": "Fiches de performance des bureaux",
+      "scoreHint": "Bureaux actifs uniquement, sur les douze derniers mois, triés par volume. Le délai moyen est l'écart entre l'ouverture d'une commande et son événement d'aboutissement.",
+      "scoreEmpty": "Aucun bureau actif.",
+      "col": {
+        "office": "Bureau",
+        "orders": "Commandes",
+        "volume": "Volume (tomans)",
+        "completion": "Délai moyen",
+        "sla": "Dans les temps",
+        "disputes": "Taux de litiges"
+      },
+      "hours": "{value} h",
+      "minutes": "{value} min",
+      "noData": "—",
+      "noOrders": "Aucune"
     }
   }
 }

@@ -2133,6 +2133,242 @@
         "platform_admin": "Administration",
         "platform_superadmin": "Oberste Administration"
       }
+    },
+    "support": {
+      "metaTitle": "Support-Eingang",
+      "title": "Support",
+      "subtitle": "Drei getrennte Warteschlangen: Kundschaft, Privathandel, Wechselstuben. Jede mit eigener Uhr.",
+      "segment": {
+        "customer": "Kundschaft",
+        "p2p": "Privathandel",
+        "office": "Wechselstuben"
+      },
+      "status": {
+        "open": "Offen",
+        "pending": "Ausstehend",
+        "resolved": "Gelöst",
+        "archived": "Archiviert"
+      },
+      "emptyQueue": "Diese Warteschlange ist leer.",
+      "pickThread": "Wählen Sie ein Gespräch aus der Liste.",
+      "noMessages": "Keine Nachrichten",
+      "assignToMe": "Mir zuweisen",
+      "assignedToYou": "Ihnen zugewiesen",
+      "assigned": "Zugewiesen",
+      "resolve": "Lösen"
+    },
+    "p2p": {
+      "metaTitle": "Privathandel",
+      "title": "Markt unter Privatpersonen",
+      "subtitle": "Moderation der Angebote und Schlichtung von Streitfällen.",
+      "openOffers": "Offene Angebote",
+      "liveTrades": "Laufende Geschäfte",
+      "disputes": "Offene Streitfälle",
+      "disputesTitle": "Streitfälle, die auf eine Entscheidung warten",
+      "resolve": "Entscheiden",
+      "listings": "Angebote",
+      "noListings": "Noch keine Angebote.",
+      "tradesOnOffer": "{count, number} Geschäfte",
+      "remove": "Entfernen",
+      "removeReason": "Grund für die Entfernung (mindestens 8 Zeichen)",
+      "confirmRemove": "Angebot entfernen",
+      "removeFailed": "Entfernen nicht möglich. Versuchen Sie es erneut.",
+      "status": {
+        "open": "Offen",
+        "paused": "Pausiert",
+        "filled": "Ausgeführt",
+        "cancelled": "Storniert",
+        "removed": "Entfernt"
+      }
+    },
+    "exchanges": {
+      "metaTitle": "Wechselstuben",
+      "title": "Wechselstuben",
+      "subtitle": "Wechselstuben anlegen, einrichten und aussetzen. Jede Änderung wird mit ihrem Grund erfasst.",
+      "provision": "Wechselstube anlegen",
+      "empty": "Noch keine Wechselstuben.",
+      "liveOrders": "{count, number} Aufträge in Arbeit",
+      "status": {
+        "draft": "Unvollständig",
+        "active": "Aktiv",
+        "suspended": "Ausgesetzt",
+        "archived": "Archiviert"
+      },
+      "kind": {
+        "card": "Karte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Bargeld"
+      },
+      "reasonTitle": "Grund für diese Handlung",
+      "reasonBody": "Eine Wechselstube auszusetzen und in ihrem Namen zu handeln verlangen beide eine schriftliche Begründung; derselbe Text landet im Prüfprotokoll.",
+      "reasonPlaceholder": "z. B. Prüfung einer Kundenbeschwerde über eine verspätete Abwicklung",
+      "activate": "Aktivieren",
+      "suspend": "Aussetzen",
+      "impersonate": "Im Namen dieser Wechselstube handeln",
+      "alreadyImpersonating": "Sie handeln bereits im Namen dieser Wechselstube",
+      "spreads": "Provisionen und Kursunterschied",
+      "spreadBps": "Kursunterschied, in Hundertstelprozent",
+      "noCorridors": "Keine Strecken eingerichtet.",
+      "save": "Speichern",
+      "saved": "Gespeichert.",
+      "overridden": "Abweichend (Standard {base, number})",
+      "fromTemplate": "Aus der Vorlage",
+      "accounts": "Abwicklungskonten",
+      "noAccounts": "Keine Konten erfasst.",
+      "publicAccount": "Der Kundschaft gezeigt",
+      "balances": "Bestände",
+      "noBalances": "Keine Bestände erfasst.",
+      "errors": {
+        "spreadRange": "Der Kursunterschied muss zwischen 0 und 2000 Hundertstelprozent liegen (0–20 %).",
+        "saveFailed": "Speichern nicht möglich. Versuchen Sie es erneut.",
+        "reasonRequired": "Eine schriftliche Begründung von mindestens 8 Zeichen ist erforderlich.",
+        "noAccount": "Eine Wechselstube kann ohne öffentliches Abwicklungskonto nicht in Betrieb gehen.",
+        "superadminOnly": "Im Namen einer Wechselstube zu handeln steht nur der obersten Administration offen."
+      },
+      "kyc": {
+        "verified": "Geprüft",
+        "pending": "Ausstehend",
+        "rejected": "Abgelehnt",
+        "unverified": "Nicht kontrolliert"
+      }
+    },
+    "wizard": {
+      "steps": {
+        "legal": {
+          "title": "Rechtliche Angaben",
+          "body": "Eingetragener Name, Lizenznummer und das eindeutige Kürzel der Wechselstube."
+        },
+        "corridors": {
+          "title": "Strecken",
+          "body": "Welche Strecken sie übernimmt und zu welchem Aufschlag. Die Vorgaben kommen aus der Plattform-Vorlage."
+        },
+        "accounts": {
+          "title": "Abwicklungskonten",
+          "body": "Das Konto, auf das die Kundschaft Toman einzahlt, dazu etwaige Fremdwährungskonten."
+        },
+        "review": {
+          "title": "Prüfen",
+          "body": "Eine Transaktion, einmal. Entweder gelingt alles oder nichts."
+        },
+        "access": {
+          "title": "Zugang zur Wechselstube",
+          "body": "Benutzername und Passwort für den Bereich und die Nummer, an die beides geht."
+        }
+      },
+      "fields": {
+        "nameFa": "Eingetragener Name (auf Persisch)",
+        "nameEn": "Eingetragener Name (auf Englisch)",
+        "slug": "Kürzel",
+        "slugHint": "Kleinbuchstaben, Ziffern und Bindestriche; wird in Adressen verwendet.",
+        "licence": "Lizenznummer",
+        "city": "Stadt",
+        "reason": "Grund der Anlage",
+        "corridor": "Strecke",
+        "spread": "Aufschlag",
+        "currency": "Währung",
+        "kind": "Kontoart",
+        "accountNumber": "Kontonummer",
+        "displayName": "Angezeigter Name",
+        "displayNameHint": "Diesen Namen sieht die Kundschaft.",
+        "ownerName": "Eingetragene Inhaberschaft",
+        "ownerNameHint": "Woran Abwicklungskonten abgeglichen werden.",
+        "nationalId": "Kennnummer der Inhaberschaft",
+        "nationalIdHint": "Die Grundlage der Prüfung, wem Karte und IBAN gehören.",
+        "username": "Benutzername",
+        "usernameHint": "Kleinbuchstaben, Ziffern, Punkte und Bindestriche.",
+        "phone": "Zielrufnummer",
+        "phoneHint": "Damit meldet sie sich beim ersten Mal an.",
+        "ownPassword": "Ich gebe das Passwort selbst ein",
+        "ownPasswordHint": "Sonst wird ein sicheres erzeugt.",
+        "password": "Passwort",
+        "sendSms": "Per SMS an die Zielrufnummer senden",
+        "sendSmsHint": "Ist das aus, erscheinen die Angaben nur auf diesem Bildschirm."
+      },
+      "kinds": {
+        "card": "Karte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Bargeld"
+      },
+      "addCorridor": "Strecke hinzufügen",
+      "addAccount": "Konto hinzufügen",
+      "remove": "Entfernen",
+      "spreadHint": "Der Aufschlag steht in Hundertstelprozent: 90 bedeutet 0,9 %.",
+      "accountHint": "Mindestens ein Toman-Konto ist nötig; ohne es kann die Wechselstube nicht in Betrieb gehen.",
+      "back": "Zurück",
+      "next": "Weiter",
+      "saveDraft": "Speichern ohne zu aktivieren",
+      "activate": "Anlegen und aktivieren",
+      "working": "Wird angelegt…",
+      "failed": "Die Wechselstube ließ sich nicht anlegen. Versuchen Sie es erneut.",
+      "errors": {
+        "slug": "Das Kürzel muss aus 3 bis 40 Kleinbuchstaben, Ziffern oder Bindestrichen bestehen.",
+        "slugTaken": "Dieses Kürzel ist bereits vergeben.",
+        "names": "Beide eingetragenen Namen sind erforderlich.",
+        "licence": "Eine Lizenznummer ist erforderlich.",
+        "forbidden": "Eine Wechselstube anzulegen steht nur Plattform-Administratoren offen.",
+        "noAccount": "Die Wechselstube wurde angelegt, aber nicht aktiviert: Sie hat kein öffentliches Abwicklungskonto.",
+        "nationalId": "Diese Kennnummer ist ungültig.",
+        "usernameTaken": "Dieser Benutzername ist bereits vergeben.",
+        "inviteFailed": "Die Wechselstube wurde angelegt, der Zugang nicht. Versuchen Sie es von ihrer Seite aus erneut."
+      },
+      "accessNote": "Sie können diesen Schritt leer lassen und den Zugang später erzeugen. Geben Sie kein Passwort ein, wird eines erzeugt.",
+      "issued": {
+        "title": "Die Wechselstube hat einen Zugang",
+        "body": "Diese Angaben werden ein einziges Mal gezeigt.",
+        "warning": "Nach diesem Bildschirm lässt sich das Passwort nicht wiederherstellen. Geht es verloren, erzeugen Sie einen neuen Zugang.",
+        "copy": "Benutzername und Passwort kopieren",
+        "copied": "Kopiert",
+        "done": "Zur Wechselstube",
+        "sms": {
+          "sent": "Per SMS an die Zielrufnummer gesendet.",
+          "failed": "Die Nachricht ließ sich nicht senden. Geben Sie die Angaben selbst weiter.",
+          "skipped": "Es wurde keine Nachricht gesendet."
+        }
+      }
+    },
+    "dashboard": {
+      "metaTitle": "Führungsberichte",
+      "title": "Führungsberichte",
+      "subtitle": "Abgewickeltes Volumen, Provisionserlöse und wie jede Wechselstube über die letzten zwölf Monate arbeitet. Jede Zahl ist aus den Aufträgen, ihren Ereignissen und dem Journal gezählt.",
+      "toman": "Toman",
+      "vsLastMonth": "gegenüber demselben Zeitraum im Vormonat",
+      "noBase": "Der Vormonat hat keine Zahl zum Vergleich.",
+      "monthToDate": "{month}, seit Monatsbeginn ({days, plural, one {# Tag} other {# Tage}}).",
+      "card": {
+        "volume": "Abgewickeltes Volumen diesen Monat",
+        "settled": "Abgeschlossene Aufträge diesen Monat",
+        "fees": "Provisionserlöse der Plattform diesen Monat",
+        "inFlight": "Aufträge in Arbeit",
+        "atRisk": "Frist gefährdet"
+      },
+      "hint": {
+        "inFlight": "Gerade offen, jemand wartet darauf.",
+        "atRisk": "Fällig in unter 24 Stunden oder bereits überfällig.",
+        "noDeadlines": "Noch trägt kein offener Auftrag eine Frist."
+      },
+      "volumeTitle": "Abgewickeltes Volumen nach Monat",
+      "volumeHint": "Ein Auftrag zählt in dem Monat, in dem er abgewickelt wurde, nicht in dem, in dem er eröffnet wurde. Die letzte Spalte ist der laufende Monat und noch unvollständig.",
+      "chartLabel": "Balkendiagramm des abgewickelten Volumens von {from} bis {to}. Der höchste Monat war {peak} mit {max} Toman.",
+      "corridorTitle": "Anteil der Strecken am Volumen",
+      "corridorHint": "Der Anteil bemisst sich am Toman-Volumen der in den letzten zwölf Monaten abgewickelten Aufträge.",
+      "noVolume": "In diesem Zeitraum wurde noch nichts abgewickelt.",
+      "scoreTitle": "Leistungsübersicht der Wechselstuben",
+      "scoreHint": "Nur aktive Wechselstuben, über die letzten zwölf Monate, nach Volumen sortiert. Die durchschnittliche Dauer ist der Abstand zwischen Eröffnung und Abschlussereignis eines Auftrags.",
+      "scoreEmpty": "Keine aktiven Wechselstuben.",
+      "col": {
+        "office": "Wechselstube",
+        "orders": "Aufträge",
+        "volume": "Volumen (Toman)",
+        "completion": "Ø Dauer",
+        "sla": "Pünktlich",
+        "disputes": "Streitquote"
+      },
+      "hours": "{value} Std.",
+      "minutes": "{value} Min.",
+      "noData": "—",
+      "noOrders": "Keine"
     }
   }
 }
