@@ -1374,5 +1374,199 @@
       "uploadFailed": "Der Upload ging nicht durch. Bitte erneut versuchen.",
       "saveFailed": "Speichern nicht möglich. Bitte erneut versuchen."
     }
+  },
+  "office": {
+    "metaTitle": "Bereich der Wechselstube",
+    "title": "Bereich der Wechselstube",
+    "subtitle": "{office} — offene Anfragen und die Aufträge, die Sie halten.",
+    "pool": "Nicht übernommene Anfragen",
+    "poolEmpty": "Gerade gibt es keine offenen Anfragen.",
+    "mine": "Aufträge dieser Wechselstube",
+    "mineEmpty": "Sie haben noch nichts übernommen.",
+    "claim": "Übernehmen",
+    "claiming": "Wird übernommen…",
+    "unavailableTitle": "Der Bereich der Wechselstube ist in dieser Umgebung nicht aktiv",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "notAMemberTitle": "Sie gehören keiner Wechselstube an",
+    "notAMemberBody": "Dieser Bereich ist für Mitarbeitende zugelassener Wechselstuben. Sollten Sie Zugang haben, bitten Sie die Inhaberschaft der Wechselstube, Sie hinzuzufügen.",
+    "backHome": "Zurück zur Startseite",
+    "errors": {
+      "alreadyClaimed": "Eine andere Wechselstube war mit dieser Anfrage schneller.",
+      "officeInactive": "Diese Wechselstube ist nicht aktiv.",
+      "claimFailed": "Die Anfrage konnte nicht übernommen werden.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    }
+  },
+  "twoFactor": {
+    "title": "Anmeldung in zwei Schritten",
+    "on": "An",
+    "off": "Aus",
+    "body": "Ist das eingeschaltet, verlangt die Anmeldung neben Ihrem Passwort auch einen sechsstelligen Code aus Ihrer Authenticator-App.",
+    "bodyStaff": "Für Konten von Plattform-Mitarbeitenden Pflicht. Bis Sie den Code eingeben, öffnet die Datenbank Ihre Verwaltungsrechte nicht.",
+    "enable": "Einschalten",
+    "scan": "Scannen Sie das mit Ihrer Authenticator-App",
+    "qrAlt": "QR-Code für Ihre Authenticator-App",
+    "orType": "Oder geben Sie diesen Schlüssel von Hand ein:",
+    "copy": "Schlüssel kopieren",
+    "copied": "Kopiert",
+    "codeLabel": "Sechsstelliger Code aus der App",
+    "confirm": "Bestätigen und einschalten",
+    "cancel": "Abbrechen",
+    "codeToDisable": "Geben Sie zum Ausschalten einen aktuellen Code ein",
+    "disable": "Ausschalten",
+    "working": "Bitte warten…",
+    "errors": {
+      "enrollFailed": "Die Einrichtung ließ sich nicht starten. Bitte erneut versuchen.",
+      "verifyFailed": "Das ließ sich nicht bestätigen. Bitte erneut versuchen.",
+      "wrongCode": "Dieser Code stimmt nicht. Prüfen Sie auch die Uhr Ihres Geräts.",
+      "disableFailed": "Ausschalten nicht möglich. Bitte erneut versuchen."
+    }
+  },
+  "firstEntry": {
+    "claiming": "Ihr Zugang wird eingerichtet…",
+    "title": "Wählen Sie ein eigenes Passwort",
+    "body": "Sie haben sich mit einem für Sie erzeugten Passwort angemeldet. Behalten Sie es, oder wählen Sie ein eigenes.",
+    "password": "Neues Passwort",
+    "confirm": "Neues Passwort wiederholen",
+    "cta": "Passwort setzen",
+    "skip": "Jetzt nicht",
+    "skipHint": "Mit „jetzt nicht“ behalten Sie das Passwort, das Sie erhalten haben. Diese Meldung erscheint nicht wieder.",
+    "working": "Wird gespeichert…",
+    "errors": {
+      "tooShort": "Ein Passwort braucht mindestens {min, number} Zeichen.",
+      "mismatch": "Die beiden Passwörter stimmen nicht überein.",
+      "failed": "Das wurde nicht gespeichert. Bitte erneut versuchen."
+    }
+  },
+  "coinQueue": {
+    "metaTitle": "Goldmünzen — Bereich der Wechselstube",
+    "title": "Münzanfragen",
+    "subtitle": "Anfragen zum Goldkauf. Übernehmen, bepreisen, übergeben.",
+    "intro": {
+      "office": "Anfragen ohne zugewiesene Wechselstube können Sie übernehmen. Danach tragen Sie den festen Preis ein, und die Kundschaft sieht ihn.",
+      "platform": "Jede Münzanfrage auf der Plattform."
+    },
+    "empty": "Noch keine Anfragen.",
+    "quoted": "Der Kundschaft genannt",
+    "total": "Summe",
+    "pickup": "Abholung",
+    "firmPrice": "Fester Preis je Stück (Toman)",
+    "claim": "Diese Anfrage übernehmen",
+    "confirm": "Bestand und Preis bestätigen",
+    "cancel": "Abbrechen",
+    "cancelledByOffice": "Die Wechselstube hat diese Anfrage storniert.",
+    "advance": {
+      "paid": "Das Geld ist da",
+      "ready": "Es ist bereit",
+      "collected": "Übergeben"
+    },
+    "errors": {
+      "taken": "Eine andere Wechselstube hat diese Anfrage bereits übernommen.",
+      "failed": "Das ging nicht durch. Bitte erneut versuchen."
+    }
+  },
+  "adminOffice": {
+    "decided": "Erfasst.",
+    "saved": "Gespeichert.",
+    "kyc": {
+      "verified": "Identität geprüft",
+      "pending": "In Prüfung",
+      "rejected": "Nicht geprüft",
+      "unverified": "Nicht kontrolliert"
+    },
+    "identity": {
+      "title": "Identität der Wechselstube",
+      "ownerName": "Eingetragene Inhaberschaft",
+      "nationalId": "Kennnummer der Inhaberschaft",
+      "nationalIdHint": "Die Grundlage der Prüfung, wem eine Abwicklungskarte oder IBAN gehört.",
+      "reason": "Notiz",
+      "reasonPlaceholder": "Für eine Ablehnung ist ein Grund erforderlich.",
+      "save": "Angaben speichern",
+      "verify": "Identität bestätigen",
+      "reject": "Ablehnen",
+      "note": "Nach der Bestätigung kann die Wechselstube ihre eingetragene Inhaberschaft und Kennnummer nicht mehr selbst ändern. Abwicklungskonten werden gegen diese Angaben abgeglichen."
+    },
+    "login": {
+      "title": "Zugang zum Bereich der Wechselstube",
+      "body": "Erzeugen Sie neuen Benutzernamen und neues Passwort und senden Sie beides per SMS an die gewünschte Nummer. Ein früherer, nicht eingelöster Zugang wird damit hinfällig.",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "phone": "Zielrufnummer",
+      "sendSms": "Per SMS senden",
+      "sendSmsHint": "Ist das aus, erscheinen die Angaben nur auf diesem Bildschirm.",
+      "cta": "Zugang erzeugen",
+      "working": "Wird erzeugt…",
+      "again": "Weiteren Zugang erzeugen",
+      "warning": "Das Passwort wird einmal angezeigt und lässt sich danach nicht wiederherstellen.",
+      "sms": {
+        "sent": "SMS gesendet.",
+        "failed": "Die Nachricht ließ sich nicht senden. Geben Sie die Angaben selbst weiter.",
+        "skipped": "Es wurde keine Nachricht gesendet."
+      }
+    },
+    "errors": {
+      "nationalId": "Diese Kennnummer ist ungültig.",
+      "reasonRequired": "Eine Ablehnung braucht eine schriftliche Begründung von mindestens 8 Zeichen.",
+      "usernameTaken": "Dieser Benutzername ist bereits vergeben.",
+      "saveFailed": "Das ging nicht durch. Bitte erneut versuchen."
+    }
+  },
+  "adminKyc": {
+    "metaTitle": "Identitätsprüfung",
+    "title": "Warteschlange der Identitätsprüfung",
+    "subtitle": "Jeder Fall braucht zwei Unterschriften: eine Person empfiehlt, eine zweite gibt frei. Niemand kann die eigene Empfehlung freigeben.",
+    "emptyTitle": "Die Warteschlange ist leer",
+    "emptyBody": "Nichts wartet auf Prüfung.",
+    "unavailableTitle": "Dieser Bereich ist in der aktuellen Umgebung nicht aktiv",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "forbiddenTitle": "Sie haben keinen Zugriff",
+    "forbiddenBody": "Die Identitätsprüfung steht nur den Rollen Compliance und Plattform-Administration offen.",
+    "backHome": "Zurück zur Startseite",
+    "unnamed": "Ohne Namen",
+    "documentCount": "{count, number} Dokumente",
+    "awaitingYou": "Wartet auf Ihre Freigabe",
+    "awaitingOther": "Wartet auf eine zweite prüfende Person",
+    "needsFirst": "Braucht eine erste Prüfung",
+    "review": "Prüfen",
+    "documents": "Dokumente",
+    "documentsNote": "Jeder Aufruf läuft über einen 60 Sekunden gültigen signierten Link und wird ins Prüfprotokoll geschrieben; Ihre Prüf-Kennung wird auf das Bild gestempelt.",
+    "openDocument": "Öffnen",
+    "docKind": {
+      "national_id": "Personalausweis",
+      "passport": "Reisepass",
+      "selfie": "Selfie",
+      "proof_of_address": "Adressnachweis"
+    },
+    "checklist": "Prüfliste",
+    "checks": {
+      "legible": "Der gesamte Text auf dem Dokument ist lesbar.",
+      "nameMatch": "Der Name auf dem Dokument stimmt mit dem angegebenen überein.",
+      "notExpired": "Das Dokument ist noch gültig.",
+      "selfieMatch": "Das Selfie passt zum Foto auf dem Dokument.",
+      "noTamper": "Kein Anzeichen von Manipulation oder Bearbeitung."
+    },
+    "reason": "Notiz zur Entscheidung",
+    "reasonPlaceholder": "Bei Ablehnung oder Nachforderung schreiben Sie einen klaren Grund — genau dieser Text wird der Kundschaft gezeigt.",
+    "fourEyesTitle": "Vier-Augen-Freigabe",
+    "fourEyesFirst": "Sie prüfen als Erste oder Erster. Ihre Empfehlung wird festgehalten, und der Fall geht zur endgültigen Entscheidung an eine weitere prüfende Person.",
+    "fourEyesSecond": "Die erste prüfende Person hat ihre Empfehlung festgehalten. Die endgültige Entscheidung liegt bei Ihnen.",
+    "fourEyesOwn": "Sie haben in diesem Fall die Empfehlung abgegeben; die endgültige Freigabe muss von einer anderen Person kommen.",
+    "recommendApprove": "Freigabe empfehlen",
+    "recommendMoreInfo": "Weitere Angaben anfordern",
+    "recommendReject": "Ablehnung empfehlen",
+    "approve": "Freigeben",
+    "reject": "Ablehnen",
+    "fields": {
+      "nameLatin": "Name in lateinischer Schrift",
+      "nationalCode": "Nationale Kennnummer",
+      "dob": "Geburtsdatum",
+      "nationality": "Staatsangehörigkeit"
+    },
+    "errors": {
+      "documentDenied": "Sie dürfen dieses Dokument nicht einsehen.",
+      "fourEyes": "Vier Augen: Wer empfiehlt, gibt nicht selbst frei.",
+      "actionFailed": "Diese Entscheidung ließ sich nicht erfassen. Versuchen Sie es erneut.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    }
   }
 }

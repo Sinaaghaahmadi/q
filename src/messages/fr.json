@@ -1374,5 +1374,199 @@
       "uploadFailed": "L'envoi n'est pas passé. Réessayez.",
       "saveFailed": "Enregistrement impossible. Réessayez."
     }
+  },
+  "office": {
+    "metaTitle": "Panneau du bureau",
+    "title": "Panneau du bureau",
+    "subtitle": "{office} — les demandes ouvertes et les commandes que vous détenez.",
+    "pool": "Demandes non prises",
+    "poolEmpty": "Aucune demande ouverte pour l'instant.",
+    "mine": "Commandes de ce bureau",
+    "mineEmpty": "Vous n'avez encore rien pris.",
+    "claim": "Prendre",
+    "claiming": "Prise en cours…",
+    "unavailableTitle": "Le panneau du bureau n'est pas actif dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "notAMemberTitle": "Vous n'appartenez à aucun bureau",
+    "notAMemberBody": "Cette section est réservée au personnel des bureaux de change agréés. Si vous devriez y avoir accès, demandez au propriétaire du bureau de vous ajouter.",
+    "backHome": "Retour à l'accueil",
+    "errors": {
+      "alreadyClaimed": "Un autre bureau a pris cette demande avant vous.",
+      "officeInactive": "Ce bureau n'est pas actif.",
+      "claimFailed": "La demande n'a pas pu être prise.",
+      "network": "Connexion impossible. Réessayez."
+    }
+  },
+  "twoFactor": {
+    "title": "Connexion en deux étapes",
+    "on": "Activée",
+    "off": "Désactivée",
+    "body": "Avec cette option, la connexion demande un code à six chiffres de votre application d'authentification en plus de votre mot de passe.",
+    "bodyStaff": "Obligatoire pour les comptes du personnel de la plateforme. Tant que vous n'avez pas saisi le code, la base de données n'ouvre pas vos accès d'administration.",
+    "enable": "Activer",
+    "scan": "Scannez ceci avec votre application d'authentification",
+    "qrAlt": "Code QR pour votre application d'authentification",
+    "orType": "Ou saisissez cette clé à la main :",
+    "copy": "Copier la clé",
+    "copied": "Copiée",
+    "codeLabel": "Code à six chiffres de l'application",
+    "confirm": "Confirmer et activer",
+    "cancel": "Annuler",
+    "codeToDisable": "Saisissez un code en cours pour désactiver",
+    "disable": "Désactiver",
+    "working": "Un instant…",
+    "errors": {
+      "enrollFailed": "La configuration n'a pas pu démarrer. Réessayez.",
+      "verifyFailed": "La vérification a échoué. Réessayez.",
+      "wrongCode": "Ce code n'est pas correct. Vérifiez aussi l'horloge de votre appareil.",
+      "disableFailed": "La désactivation a échoué. Réessayez."
+    }
+  },
+  "firstEntry": {
+    "claiming": "Préparation de votre accès…",
+    "title": "Choisissez votre mot de passe",
+    "body": "Vous vous êtes connecté avec un mot de passe généré pour vous. Gardez-le, ou choisissez le vôtre.",
+    "password": "Nouveau mot de passe",
+    "confirm": "Répétez le nouveau mot de passe",
+    "cta": "Définir le mot de passe",
+    "skip": "Pas maintenant",
+    "skipHint": "En choisissant « pas maintenant », vous gardez le mot de passe qui vous a été remis. Ce message ne reviendra pas.",
+    "working": "Enregistrement…",
+    "errors": {
+      "tooShort": "Un mot de passe demande au moins {min, number} caractères.",
+      "mismatch": "Les deux mots de passe ne correspondent pas.",
+      "failed": "L'enregistrement a échoué. Réessayez."
+    }
+  },
+  "coinQueue": {
+    "metaTitle": "Pièces d'or — panneau du bureau",
+    "title": "Demandes de pièces",
+    "subtitle": "Demandes d'achat d'or. Prenez-en une, fixez le prix, remettez la marchandise.",
+    "intro": {
+      "office": "Les demandes sans bureau attribué sont à prendre. Une fois prise, saisissez le prix ferme et le client le voit.",
+      "platform": "Toutes les demandes de pièces de la plateforme."
+    },
+    "empty": "Aucune demande pour l'instant.",
+    "quoted": "Prix annoncé au client",
+    "total": "Total",
+    "pickup": "Retrait",
+    "firmPrice": "Prix ferme à l'unité (tomans)",
+    "claim": "Prendre cette demande",
+    "confirm": "Confirmer le stock et le prix",
+    "cancel": "Annuler",
+    "cancelledByOffice": "Le bureau a annulé cette demande.",
+    "advance": {
+      "paid": "J'ai reçu l'argent",
+      "ready": "C'est prêt",
+      "collected": "Remis"
+    },
+    "errors": {
+      "taken": "Un autre bureau a déjà pris cette demande.",
+      "failed": "Cela n'est pas passé. Réessayez."
+    }
+  },
+  "adminOffice": {
+    "decided": "Enregistré.",
+    "saved": "Enregistré.",
+    "kyc": {
+      "verified": "Identité vérifiée",
+      "pending": "En cours d'examen",
+      "rejected": "Non vérifiée",
+      "unverified": "Non contrôlée"
+    },
+    "identity": {
+      "title": "Identité du bureau",
+      "ownerName": "Propriétaire déclaré",
+      "nationalId": "Code national du propriétaire",
+      "nationalIdHint": "La base sur laquelle on vérifie à qui appartient une carte ou un IBAN de règlement.",
+      "reason": "Note",
+      "reasonPlaceholder": "Un motif est requis pour refuser.",
+      "save": "Enregistrer les informations",
+      "verify": "Vérifier l'identité",
+      "reject": "Refuser",
+      "note": "Une fois vérifié, le bureau ne peut plus modifier lui-même son propriétaire déclaré ni son code national. Les comptes de règlement sont rapprochés de ces informations."
+    },
+    "login": {
+      "title": "Accès au panneau du bureau",
+      "body": "Émettez un nouvel identifiant et un nouveau mot de passe et envoyez-les par SMS au numéro voulu. Tout accès précédent non réclamé devient caduc.",
+      "username": "Identifiant",
+      "password": "Mot de passe",
+      "phone": "Numéro destinataire",
+      "sendSms": "Envoyer par SMS",
+      "sendSmsHint": "Si vous désactivez cela, les informations n'apparaissent que sur cet écran.",
+      "cta": "Émettre l'accès",
+      "working": "Émission…",
+      "again": "Émettre un autre accès",
+      "warning": "Le mot de passe s'affiche une seule fois et ne peut plus être récupéré ensuite.",
+      "sms": {
+        "sent": "SMS envoyé.",
+        "failed": "Le message n'a pas pu partir. Transmettez les informations vous-même.",
+        "skipped": "Aucun message n'a été envoyé."
+      }
+    },
+    "errors": {
+      "nationalId": "Ce code national n'est pas valide.",
+      "reasonRequired": "Un refus demande un motif écrit d'au moins 8 caractères.",
+      "usernameTaken": "Cet identifiant est déjà pris.",
+      "saveFailed": "Cela n'est pas passé. Réessayez."
+    }
+  },
+  "adminKyc": {
+    "metaTitle": "Examen des dossiers d'identité",
+    "title": "File d'examen des identités",
+    "subtitle": "Chaque dossier demande deux signatures : un examinateur recommande, un second approuve. Personne ne peut approuver sa propre recommandation.",
+    "emptyTitle": "La file est vide",
+    "emptyBody": "Rien n'attend d'examen.",
+    "unavailableTitle": "Cette section n'est pas active dans l'environnement actuel",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "forbiddenTitle": "Vous n'avez pas accès",
+    "forbiddenBody": "L'examen des identités est réservé aux rôles conformité et administration de la plateforme.",
+    "backHome": "Retour à l'accueil",
+    "unnamed": "Sans nom",
+    "documentCount": "{count, number} documents",
+    "awaitingYou": "Attend votre approbation",
+    "awaitingOther": "Attend un second examinateur",
+    "needsFirst": "Demande un premier examen",
+    "review": "Examiner",
+    "documents": "Documents",
+    "documentsNote": "Chaque consultation passe par un lien signé de 60 secondes et est inscrite au journal d'audit ; votre identifiant d'examinateur est apposé sur l'image.",
+    "openDocument": "Ouvrir",
+    "docKind": {
+      "national_id": "Carte nationale",
+      "passport": "Passeport",
+      "selfie": "Selfie",
+      "proof_of_address": "Justificatif de domicile"
+    },
+    "checklist": "Liste de contrôle",
+    "checks": {
+      "legible": "Tout le texte du document est lisible.",
+      "nameMatch": "Le nom du document correspond au nom déclaré.",
+      "notExpired": "Le document est encore dans sa durée de validité.",
+      "selfieMatch": "Le selfie correspond à la photo du document.",
+      "noTamper": "Aucun signe d'altération ou de retouche."
+    },
+    "reason": "Note de décision",
+    "reasonPlaceholder": "Pour un refus ou une demande d'information, écrivez un motif clair — ce texte exact est montré au client.",
+    "fourEyesTitle": "Approbation à quatre yeux",
+    "fourEyesFirst": "Vous êtes le premier examinateur. Votre recommandation est consignée et le dossier passe à un autre examinateur pour la décision finale.",
+    "fourEyesSecond": "Le premier examinateur a consigné sa recommandation. La décision finale vous revient.",
+    "fourEyesOwn": "C'est vous qui avez recommandé sur ce dossier ; l'approbation finale doit venir d'un autre examinateur.",
+    "recommendApprove": "Recommander l'approbation",
+    "recommendMoreInfo": "Demander des informations",
+    "recommendReject": "Recommander le refus",
+    "approve": "Approuver",
+    "reject": "Refuser",
+    "fields": {
+      "nameLatin": "Nom en caractères latins",
+      "nationalCode": "Code national",
+      "dob": "Date de naissance",
+      "nationality": "Nationalité"
+    },
+    "errors": {
+      "documentDenied": "Vous n'êtes pas autorisé à consulter ce document.",
+      "fourEyes": "Quatre yeux : l'examinateur qui a recommandé ne peut pas approuver.",
+      "actionFailed": "Cette décision n'a pas pu être enregistrée. Réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    }
   }
 }
