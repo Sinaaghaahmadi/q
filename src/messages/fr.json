@@ -316,7 +316,60 @@
     "offline": "Vous êtes hors ligne. Dernières données connues affichées."
   },
   "auth": {
-    "legalNote": "Se connecter à ce panneau vaut acceptation pleine et entière des <terms>conditions d’utilisation</terms>, de la <privacy>politique de confidentialité</privacy> et de la <aml>politique de lutte contre le blanchiment</aml>."
+    "legalNote": "Se connecter à ce panneau vaut acceptation pleine et entière des <terms>conditions d’utilisation</terms>, de la <privacy>politique de confidentialité</privacy> et de la <aml>politique de lutte contre le blanchiment</aml>.",
+    "metaTitle": "Connexion",
+    "title": "Connexion à Asaex",
+    "body": "Saisissez votre numéro de mobile et nous vous enverrons un code à usage unique par SMS. Si vous n'avez pas encore de compte, cela en crée un.",
+    "codeTitle": "Saisissez votre code à usage unique",
+    "codeBody": "Nous avons envoyé un code à six chiffres au {phone}. Il est valable deux minutes.",
+    "sentTitle": "Lien de connexion envoyé",
+    "sentBody": "Nous avons envoyé un lien de connexion à {email}. Ouvrez-le et vous y êtes.",
+    "doneTitle": "Bienvenue",
+    "doneBody": "Nous vous emmenons à l'étape suivante…",
+    "channel": {
+      "phone": "Mobile",
+      "email": "E-mail",
+      "staff": "Personnel"
+    },
+    "phoneLabel": "Numéro de mobile",
+    "phoneHint": "Commencez par 09, ou écrivez-le avec +98.",
+    "emailHint": "La connexion par e-mail est ouverte aux clients hors d'Iran.",
+    "emailLabel": "Adresse e-mail",
+    "sending": "Envoi…",
+    "cta": "Continuer",
+    "codeLabel": "Code à usage unique",
+    "verifying": "Vérification…",
+    "verifyCta": "Vérifier et se connecter",
+    "changeNumber": "Changer de numéro",
+    "resendIn": "Renvoyer dans {clock}",
+    "resend": "Envoyer un nouveau code",
+    "checkInbox": "Consultez votre boîte de réception",
+    "changeEmail": "Changer d'e-mail",
+    "scene": {
+      "otp": "Réception d'un code à usage unique",
+      "done": "Connecté"
+    },
+    "errors": {
+      "rateLimited": "Cela fait beaucoup de demandes. Réessayez dans environ {minutes, number} minutes.",
+      "smsUnavailable": "L'envoi de SMS n'est pas encore actif dans cet environnement. Connectez-vous par e-mail en attendant — la connexion par mobile s'active dès que la passerelle est raccordée.",
+      "invalidPhone": "Ce numéro de mobile ne semble pas correct — saisissez un numéro iranien à onze chiffres.",
+      "authUnavailable": "La connexion n'est pas configurée dans cet environnement.",
+      "sendFailed": "Le code n'est pas parti. Réessayez dans un instant.",
+      "network": "Connexion impossible. Vérifiez votre réseau et réessayez.",
+      "invalidCode": "Ce code est erroné ou a expiré — demandez-en un nouveau.",
+      "notStaff": "Ce compte n'a accès à aucun panneau.",
+      "invalidCredentials": "Cet e-mail et ce mot de passe ne correspondent pas."
+    },
+    "channelLabel": "Méthode de connexion",
+    "staffHint": "Les bureaux de change se connectent avec un identifiant, le personnel de la plateforme avec un e-mail.",
+    "passwordLabel": "Mot de passe",
+    "staffCta": "Ouvrir le panneau",
+    "staffIdLabel": "Identifiant ou e-mail",
+    "totpPrompt": "Saisissez le code à six chiffres de votre application d'authentification.",
+    "totpLabel": "Code de deuxième étape",
+    "totpCta": "Se connecter",
+    "totpLost": "Si vous ne pouvez pas accéder à votre application d'authentification, contactez l'administrateur de la plateforme.",
+    "legalRequired": "Vous devez accepter les conditions pour continuer."
   },
   "legal": {
     "version": "Version {version}",
@@ -638,6 +691,323 @@
       "title": "Ce que ce transfert a coûté",
       "body": "{toman} tomans ont été prélevés au total sur ce transfert — soit {pct} % de celui-ci.",
       "basis": "Taux de base du marché au moment du verrouillage : {mid} tomans."
+    }
+  },
+  "kyc": {
+    "metaTitle": "Vérification",
+    "unavailableTitle": "La vérification n'est pas active dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "steps": {
+      "identity": {
+        "rail": "Identité",
+        "title": "Vos informations",
+        "body": "Nous les recueillons une seule fois. Après validation, vous ne gérez plus que vos comptes de destination."
+      },
+      "document": {
+        "rail": "Document",
+        "title": "Pièce d'identité",
+        "body": "Photographiez votre carte nationale ou votre passeport sous une lumière régulière, sans reflet. La qualité de l'image est vérifiée ici même."
+      },
+      "liveness": {
+        "rail": "Selfie",
+        "title": "Photo en direct",
+        "body": "Prenez un simple selfie pour que nous confirmions que le document est bien le vôtre."
+      },
+      "review": {
+        "rail": "Vérification",
+        "title": "Vérifier et envoyer",
+        "body": "Relisez le tout une fois avant l'envoi.",
+        "pending": "Vos documents sont arrivés et attendent l'examen. Cela prend en général moins d'un jour ouvré.",
+        "badge": "En cours d'examen",
+        "next": "Nous vous annoncerons le résultat par SMS et dans l'application. Si un document est illisible, nous dirons précisément lequel et pourquoi."
+      }
+    },
+    "fields": {
+      "nameFa": "Nom complet (en persan)",
+      "nameFaPlaceholder": "علی رضایی",
+      "nameLatin": "Nom en caractères latins",
+      "nationality": "Nationalité",
+      "iranian": "Iranienne",
+      "other": "Non iranienne",
+      "nationalCode": "Code national",
+      "nationalCodeHint": "10 chiffres, exactement comme sur votre carte nationale.",
+      "nationalCodeInvalid": "Code national invalide — le chiffre de contrôle ne correspond pas au reste.",
+      "dob": "Date de naissance",
+      "dobHint": "Saisissez-la dans le calendrier jalali ; la date grégorienne est également conservée.",
+      "year": "Année",
+      "month": "Mois",
+      "day": "Jour",
+      "city": "Ville",
+      "cityPlaceholder": "Téhéran",
+      "postalCode": "Code postal",
+      "address": "Adresse",
+      "addressPlaceholder": "Rue, ruelle, numéro, appartement"
+    },
+    "doc": {
+      "nationalId": "Carte nationale d'identité",
+      "passport": "Passeport",
+      "passportPage": "Page de données du passeport",
+      "front": "Recto",
+      "back": "Verso",
+      "label": "Type de document",
+      "hint": "Faites tenir tout le document dans le cadre, sans reflet ni doigt sur le texte.",
+      "privacy": "Les documents résident dans un stockage privé chiffré ; seule l'équipe conformité les consulte, par un lien de courte durée, et chaque consultation est écrite au journal d'audit."
+    },
+    "liveness": {
+      "label": "Selfie",
+      "hint": "Tout votre visage dans le cadre, face à la lumière.",
+      "tip1": "Retirez lunettes de soleil, masques et chapeaux.",
+      "tip2": "Gardez un fond neutre, sans lumière crue.",
+      "tip3": "Si vous tenez le document, laissez son texte lisible."
+    },
+    "upload": {
+      "choose": "Choisir ou prendre une photo",
+      "ok": "C'est bon",
+      "retake": "Reprendre",
+      "readFailed": "Ce fichier n'a pas pu être lu — choisissez une image JPG ou PNG.",
+      "verdict": {
+        "blurry": "La photo est floue. Tenez l'appareil immobile et réessayez.",
+        "glare": "Un reflet traverse le document. Changez légèrement l'angle.",
+        "dark": "La photo est trop sombre. Réessayez dans un endroit plus clair.",
+        "small": "La résolution est trop faible. Rapprochez-vous et prenez une photo de meilleure qualité."
+      }
+    },
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Envoyer pour examen",
+    "submitting": "Envoi…",
+    "errors": {
+      "signedOut": "Votre session a pris fin. Reconnectez-vous.",
+      "submitFailed": "Ce dépôt n'a pas pu être enregistré. Réessayez dans un instant.",
+      "uploadFailed": "L'envoi du document ne s'est pas terminé. Vérifiez votre connexion et réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    },
+    "ocr": {
+      "title": "Le lire depuis le document",
+      "body": "Si votre document comporte une zone lisible par machine — un passeport, ou une carte d'identité internationale — nous pouvons en lire les informations sur la photo que vous venez de prendre. La photo ne quitte jamais votre téléphone : la lecture se fait entièrement sur cet appareil.",
+      "read": "Lire",
+      "working": "Lecture…",
+      "verified": "Vérifié",
+      "verifiedBody": "Chaque chiffre de contrôle OACI de ces champs a été recalculé et concorde. Si quoi que ce soit avait été mal lu, rien ne serait affiché ici.",
+      "field": {
+        "name": "Nom",
+        "dob": "Date de naissance",
+        "nationality": "Nationalité",
+        "number": "Numéro du document"
+      },
+      "mismatch": "Ce qui a été lu diffère de ce que vous avez saisi (signalé en couleur). Si le document a raison, utilisez le bouton ci-dessous ; si vous avez volontairement saisi un autre nom, laissez tel quel.",
+      "expired": "Ce document a expiré le {date}.",
+      "apply": "Reporter dans le formulaire",
+      "appliedLabel": "Ajouté au formulaire",
+      "errors": {
+        "no-zone": "Aucune zone lisible par machine trouvée. Assurez-vous que toute la page du passeport est à plat dans le cadre et que les deux lignes du bas ne sont pas coupées.",
+        "failed": "La lecture ne s'est pas terminée. Vous pouvez saisir les informations à la main.",
+        "unsupported": "Ce navigateur ne le permet pas. Saisissez les informations à la main."
+      }
+    }
+  },
+  "profile": {
+    "metaTitle": "Profil",
+    "emptyTitle": "Votre compte",
+    "emptyBody": "Connectez-vous pour voir votre statut de vérification, vos comptes bancaires et vos réglages de sécurité.",
+    "cta": "Retour à l'accueil",
+    "title": "Votre compte",
+    "subtitle": "Statut de vérification, sécurité et vos appareils.",
+    "unnamed": "Sans nom",
+    "kyc": {
+      "unverified": "Non vérifié",
+      "pending": "En cours d'examen",
+      "approved": "Vérifié",
+      "rejected": "Refusé",
+      "more_info_needed": "Informations complémentaires requises"
+    },
+    "kycBody": {
+      "unverified": "Déposer un transfert demande une vérification unique. Elle prend moins de cinq minutes.",
+      "pending": "Vos documents attendent l'examen — en général moins d'un jour ouvré.",
+      "approved": "Votre identité est vérifiée. À partir d'ici, vous ne gérez plus que vos comptes de destination.",
+      "rejected": "Votre dossier a été refusé. La raison figure dans le message que nous vous avons envoyé ; vous pouvez recommencer.",
+      "more_info_needed": "Il nous faut un peu plus d'informations, ou un document plus net, pour terminer l'examen."
+    },
+    "startKyc": "Commencer la vérification",
+    "security": {
+      "title": "Sécurité du compte",
+      "body": "Votre connexion est protégée par un code à usage unique. La connexion en deux étapes est également disponible, et obligatoire pour le personnel des bureaux de change et de la plateforme.",
+      "otpOn": "Connexion par code à usage unique",
+      "totpSoon": "2FA bientôt"
+    },
+    "referral": {
+      "title": "Votre code de parrainage",
+      "body": "Partagez-le et recevez une récompense après le premier transfert abouti de votre filleul.",
+      "copied": "Copié"
+    },
+    "devices": {
+      "title": "Activité de connexion",
+      "body": "Les connexions et déconnexions les plus récentes sur votre compte.",
+      "none": "Aucune activité enregistrée pour l'instant.",
+      "kind": {
+        "sign_in": "Connexion",
+        "sign_out": "Déconnexion",
+        "revoked": "Session révoquée"
+      }
+    },
+    "goAccounts": "Gérer les comptes",
+    "signOut": "Se déconnecter",
+    "rewards": {
+      "tierTitle": "Votre palier",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Argent",
+        "gold": "Or",
+        "platinum": "Platine"
+      },
+      "feeIs": "{pct} points de pourcentage en moins sur la commission",
+      "toNext": "Encore {amount} tomans pour atteindre le palier {tier}",
+      "topTier": "Vous êtes au palier le plus élevé.",
+      "volume": "Volume abouti : {amount} tomans",
+      "referralTitle": "Invitez un proche",
+      "referralBody": "La récompense arrive quand le premier transfert de votre filleul aboutit — pas à son inscription.",
+      "copy": "Copier",
+      "copied": "Copié",
+      "invitedCount": "{invited, number} invités · {rewarded, number} récompensés",
+      "haveACode": "Vous avez un code ?",
+      "apply": "Appliquer",
+      "claimOk": "Code appliqué.",
+      "claimRefused": "Ce code n'a pas été accepté — vous en avez peut-être déjà un, ou vous avez déjà effectué un transfert."
+    }
+  },
+  "accounts": {
+    "metaTitle": "Mes comptes",
+    "title": "Comptes de départ et de destination",
+    "subtitle": "Les comptes avec lesquels vous envoyez et recevez. La validation ici est réelle, pas cosmétique.",
+    "add": "Ajouter un compte",
+    "addFirst": "Ajoutez votre premier compte",
+    "emptyTitle": "Aucun compte enregistré",
+    "emptyBody": "Ajoutez un Sheba, une carte ou un compte international, et il suffira de le choisir au moment de lancer un transfert.",
+    "unavailableTitle": "La gestion des comptes n'est pas active dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "thirdParty": "Tiers",
+    "ownAccount": "Le mien",
+    "archive": "Archiver",
+    "kind": {
+      "sheba": "Sheba",
+      "card": "Carte",
+      "iban": "IBAN",
+      "swift": "SWIFT",
+      "cash_pickup": "Retrait en espèces"
+    },
+    "addTitle": "Ajouter un compte",
+    "addBody": "Choisissez le type de compte et saisissez son identifiant — nous le vérifions à mesure que vous tapez.",
+    "identifier": {
+      "sheba": "Numéro Sheba",
+      "card": "Numéro de carte",
+      "iban": "IBAN",
+      "swift": "Code SWIFT / BIC"
+    },
+    "hint": {
+      "sheba": "IR suivi de 24 chiffres ; les espaces ne gênent pas.",
+      "card": "Les 16 chiffres de la carte ; la banque est détectée automatiquement.",
+      "iban": "L'IBAN du pays de destination, commençant par son code à deux lettres.",
+      "swift": "8 ou 11 caractères, par exemple BKMTIRTH."
+    },
+    "invalid": {
+      "sheba": "Sheba invalide — les chiffres de contrôle ne correspondent pas.",
+      "card": "Numéro de carte invalide — un chiffre est erroné.",
+      "iban": "IBAN invalide — la longueur ou les chiffres de contrôle sont incorrects.",
+      "swift": "Code SWIFT invalide — 8 ou 11 caractères latins sont requis."
+    },
+    "valid": "L'identifiant du compte est valide",
+    "validBank": "Valide — {bank}",
+    "bankName": "Nom de la banque",
+    "bankPlaceholder": "Banque de destination",
+    "nickname": "Libellé",
+    "nicknamePlaceholder": "par ex. Compte des frais de scolarité",
+    "holder": "Titulaire du compte",
+    "holderPlaceholder": "Exactement comme à la banque",
+    "currency": "Devise du compte",
+    "thirdPartyLabel": "Ce compte n'est pas le mien",
+    "thirdPartyHint": "Les transferts vers un tiers exigent une déclaration explicite et l'accord de la conformité.",
+    "save": "Enregistrer le compte",
+    "saving": "Enregistrement…",
+    "errors": {
+      "signedOut": "Votre session a pris fin. Reconnectez-vous.",
+      "saveFailed": "Ce compte n'a pas pu être enregistré. Réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    }
+  },
+  "alerts": {
+    "title": "Alerte de prix {currency}",
+    "body": "Nous vous prévenons quand le prix franchit le chiffre que vous indiquez.",
+    "when": "Quand le prix passe",
+    "direction": {
+      "above": "au-dessus de",
+      "below": "en dessous de"
+    },
+    "threshold": "Prix (tomans)",
+    "add": "Ajouter une alerte",
+    "none": "Aucune alerte pour cette devise.",
+    "fired": "Envoyée",
+    "remove": "Supprimer l'alerte",
+    "summary": {
+      "above": "Quand il dépasse {amount} tomans",
+      "below": "Quand il tombe sous {amount} tomans"
+    },
+    "deliveryNote": "Les alertes sont évaluées dans la base de données à partir du dernier prix enregistré et apparaissent dans cette application. L'envoi par SMS s'active dès que la passerelle est raccordée.",
+    "signInFirst": "Il faut un compte pour créer une alerte de prix.",
+    "signIn": "Se connecter",
+    "errors": {
+      "threshold": "Ce n'est pas un nombre valide.",
+      "tooMany": "Vous pouvez conserver 20 alertes à la fois.",
+      "signIn": "Connectez-vous d'abord.",
+      "failed": "L'enregistrement a échoué. Réessayez."
+    }
+  },
+  "banks": {
+    "melli": "Banque Melli",
+    "sepah": "Banque Sepah",
+    "mellat": "Banque Mellat",
+    "tejarat": "Banque Tejarat",
+    "saderat": "Banque Saderat",
+    "keshavarzi": "Banque Keshavarzi",
+    "maskan": "Banque Maskan",
+    "refah": "Banque Refah",
+    "parsian": "Banque Parsian",
+    "pasargad": "Banque Pasargad",
+    "saman": "Banque Saman",
+    "eghtesadNovin": "Banque Eghtesad Novin",
+    "ansar": "Banque Ansar",
+    "postbank": "Banque postale",
+    "ayandeh": "Banque Ayandeh",
+    "shahr": "Banque Shahr",
+    "day": "Banque Day",
+    "sina": "Banque Sina",
+    "sarmayeh": "Banque Sarmayeh",
+    "tosee": "Banque Tosee Ta'avon"
+  },
+  "chat": {
+    "orderTitle": "Discussion avec le bureau de change",
+    "orderBody": "Posez vos questions avant de vous engager. Vous et le bureau voyez tous deux cette discussion.",
+    "notYet": "Tant qu'un bureau n'a pas pris la commande, il n'y a personne en face.",
+    "unavailable": "Cette discussion n'est pas disponible.",
+    "empty": "Rien n'a encore été dit.",
+    "placeholder": "Écrivez un message…",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "someone": "Quelqu'un",
+    "system": "Système",
+    "internalNote": "Note interne — le client ne la voit pas",
+    "asInternalNote": "En note interne",
+    "offPlatformWarning": "Le règlement se fait toujours dans la plateforme ; payer en dehors fait perdre le registre et la procédure de litige.",
+    "flag": {
+      "off_platform": "Propose un règlement hors plateforme",
+      "account_number": "Numéro de compte dans le texte",
+      "contact": "Coordonnées dans le texte"
+    },
+    "errors": {
+      "tooLong": "Ce message dépasse la longueur autorisée.",
+      "notParticipant": "Vous ne faites pas partie de cette discussion.",
+      "failed": "Envoi impossible. Réessayez."
     }
   }
 }
