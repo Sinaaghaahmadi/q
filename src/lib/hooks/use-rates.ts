@@ -13,12 +13,12 @@ async function fetchJson<T>(url: string): Promise<T> {
 /**
  * How often a price is allowed to be wrong, and by how much.
  *
- * Two numbers, and they do different jobs. `REFRESH_MS` is the drumbeat: while
- * a page is open the snapshot is fetched again every thirty seconds whether or
- * not anybody is looking at it. `STALE_MS` is the threshold everything else is
- * measured against: past twenty seconds the copy in hand counts as old, so
- * returning to the tab, remounting the component or reconnecting fetches
- * immediately instead of showing the old figure until the next beat.
+ * Two numbers, and they do different jobs. `RATES_REFRESH_MS` is the drumbeat:
+ * while a page is open and visible, the snapshot is fetched again every thirty
+ * seconds. `RATES_STALE_MS` is the threshold everything else is measured
+ * against: past twenty seconds the copy in hand counts as old, so returning to
+ * the tab, remounting the component or reconnecting fetches immediately
+ * instead of showing the old figure until the next beat.
  *
  * Twenty under thirty is the point. If staleness equalled the interval, a
  * customer coming back to the app a moment before the beat would be handed a
@@ -35,8 +35,11 @@ export function useRates() {
     queryKey: ["rates"],
     queryFn: () => fetchJson<RatesSnapshot>("/api/rates"),
     refetchInterval: RATES_REFRESH_MS,
-    // Keep polling while the tab is in the background: coming back to a phone
-    // that has been in a pocket should not mean waiting for a fetch to land.
+    // A hidden tab stops beating. Polling a phone in a pocket every thirty
+    // seconds spends its battery and its data on a screen nobody is looking
+    // at, and buys nothing: `refetchOnWindowFocus` with the twenty-second
+    // threshold already means the first thing a returning customer sees is a
+    // fresh price.
     refetchIntervalInBackground: false,
     staleTime: RATES_STALE_MS,
     refetchOnWindowFocus: true,
