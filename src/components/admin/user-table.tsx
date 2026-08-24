@@ -167,8 +167,11 @@ export function AdminUserTable({
                         {name ?? t("unnamed")}
                       </Link>
                     </td>
-                    <td className="num px-4 py-3 font-mono text-xs" dir="ltr">
-                      {user.phone ?? t("notSet")}
+                    <td className="num px-4 py-3 font-mono text-xs">
+                      {/* The direction belongs to the text: on the cell it would
+                          flip the cell's own logical padding as well, and the
+                          gap to the next column with it. */}
+                      <span dir="ltr">{user.phone ?? t("notSet")}</span>
                     </td>
                     <td className="px-4 py-3">
                       <Badge variant={KYC_TONE[user.kyc_status]}>

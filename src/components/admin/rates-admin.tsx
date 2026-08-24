@@ -211,8 +211,8 @@ export function RatesAdmin({
                 <tbody>
                   {quotes.map((quote) => (
                     <tr key={quote.pair} className="border-b border-ink-300/25 last:border-0">
-                      <td className="py-2.5 pe-4 font-mono text-xs" dir="ltr">
-                        {quote.pair}
+                      <td className="py-2.5 pe-4 font-mono text-xs">
+                        <span dir="ltr">{quote.pair}</span>
                       </td>
                       <td className="num py-2.5 pe-4 text-end">{formatRate(quote.mid, locale)}</td>
                       <td className="py-2.5 pe-4">
@@ -267,8 +267,11 @@ export function RatesAdmin({
                       key={source.id}
                       className="border-b border-ink-300/25 align-top last:border-0"
                     >
-                      <td className="py-2.5 pe-4 font-medium" dir="ltr">
-                        {source.name}
+                      <td className="py-2.5 pe-4 font-medium">
+                        {/* The direction belongs to the text: on the cell it would flip the
+                          cell's own logical padding too, and the gap to the next
+                          column with it. */}
+                        <span dir="ltr">{source.name}</span>
                       </td>
                       <td className="py-2.5 pe-4 text-ink-600">
                         {t(`sources.kind.${source.kind}`)}
@@ -392,8 +395,8 @@ export function RatesAdmin({
                         key={row.corridor}
                         className="border-b border-ink-300/25 align-top last:border-0"
                       >
-                        <td className="py-2.5 pe-4 font-mono text-xs" dir="ltr">
-                          {row.corridor}
+                        <td className="py-2.5 pe-4 font-mono text-xs">
+                          <span dir="ltr">{row.corridor}</span>
                         </td>
                         <td className="num py-2.5 pe-4 text-end text-ink-600">
                           {formatNumber(row.offices, locale)}

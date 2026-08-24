@@ -131,8 +131,8 @@ export function AdminOrderTable({
                       </Badge>
                     ) : null}
                   </td>
-                  <td className="px-4 py-3 font-mono text-xs" dir="ltr">
-                    {order.corridor}
+                  <td className="px-4 py-3 font-mono text-xs">
+                    <span dir="ltr">{order.corridor}</span>
                   </td>
                   <td className="px-4 py-3 tabular-nums">
                     {formatAmount(

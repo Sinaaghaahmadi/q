@@ -155,8 +155,8 @@ export function ComplianceView({
                             </pre>
                           </details>
                         </td>
-                        <td className="py-3 pe-4 font-mono text-xs" dir="ltr">
-                          {hit.list}
+                        <td className="py-3 pe-4 font-mono text-xs">
+                          <span dir="ltr">{hit.list}</span>
                         </td>
                         <td className="py-3 pe-4 tabular-nums">
                           {formatNumber(Number(hit.match_score), locale, {

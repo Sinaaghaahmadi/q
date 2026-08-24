@@ -111,10 +111,16 @@ export function CommissionSchedule({
                   ? tBands("above", { from: money(lower) })
                   : tBands("between", { from: money(lower), to: money(band.upToToman) })}
               </span>
+              {/* The rate and the amount are two number runs, and two number
+                  runs side by side in an RTL line are reordered by the bidi
+                  algorithm until they read as one long figure. Stacking them
+                  settles it, and matches the breakdown sheet. */}
               <span className="shrink-0 text-end">
-                <span className="num text-sm font-semibold">{pct(band.pct)}٪</span>
+                <span className="num block text-sm font-semibold">{pct(band.pct)}٪</span>
                 {slice ? (
-                  <span className="num ms-2 text-xs text-ink-600">{money(slice.tomanCharged)}</span>
+                  <span className="num block text-xs text-ink-600">
+                    {money(slice.tomanCharged)}
+                  </span>
                 ) : null}
               </span>
             </li>
