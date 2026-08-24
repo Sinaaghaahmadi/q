@@ -1009,5 +1009,370 @@
       "notParticipant": "Sie gehören nicht zu diesem Gespräch.",
       "failed": "Senden nicht möglich. Versuchen Sie es erneut."
     }
+  },
+  "p2p": {
+    "metaTitle": "Markt unter Privatpersonen",
+    "title": "Markt unter Privatpersonen",
+    "subtitle": "Handeln Sie direkt mit einer anderen Person — der Toman-Teil wird innerhalb der Plattform abgewickelt, beaufsichtigt von einer zugelassenen Wechselstube als neutraler Bestätigerin.",
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "backHome": "Zurück zur Startseite",
+    "postOffer": "Angebot einstellen",
+    "verifyToPost": "Zum Einstellen Identität prüfen lassen",
+    "allPairs": "Alle",
+    "empty": "Noch keine offenen Angebote.",
+    "sells": "Verkauft {code}",
+    "buys": "Kauft {code}",
+    "perUnit": " Toman je {code}",
+    "anonymousMaker": "Geprüfte Handelspartei",
+    "newTrader": "Neu im Handel",
+    "tradesDone": "{count, number} Geschäfte abgeschlossen",
+    "yours": "Ihr Angebot",
+    "escrowNote": "Der Toman-Teil wird innerhalb der Plattform unter Aufsicht einer Wechselstube abgewickelt; was außerhalb geschieht, ist nicht gedeckt.",
+    "rateLabel": "Kurs (Toman je {code})",
+    "minSliceLabel": "Kleinste Teilmenge",
+    "makerLabel": "Anbietende Seite",
+    "reputationLabel": "Bisherige Geschäfte",
+    "reputationValue": "{count, number} Geschäfte · {rate} % abgeschlossen",
+    "status": {
+      "open": "Offen",
+      "paused": "Pausiert",
+      "filled": "Ausgeführt",
+      "cancelled": "Storniert",
+      "removed": "Entfernt"
+    },
+    "alreadyTaken": "Sie haben zu diesem Angebot bereits ein laufendes Geschäft.",
+    "openTrade": "Geschäft öffnen",
+    "yourOwnOffer": "Das ist Ihr eigenes Angebot.",
+    "verifyToTake": "Ein Angebot anzunehmen setzt eine geprüfte Identität voraus.",
+    "verifyCta": "Identität prüfen lassen",
+    "signInCta": "Anmelden",
+    "takeTitle": "Dieses Angebot annehmen",
+    "sliceLabel": "Betrag ({code})",
+    "takeSummary": "Toman-Teil: {toman} IRT, von der Wechselstube gehalten, bis beide Seiten bestätigt haben.",
+    "take": "Geschäft starten",
+    "taking": "Wird gestartet…",
+    "errors": {
+      "ownOffer": "Ihr eigenes Angebot können Sie nicht annehmen.",
+      "belowMin": "Das liegt unter der kleinsten Teilmenge dieses Angebots.",
+      "aboveMax": "Das liegt über der größten Teilmenge dieses Angebots.",
+      "notEnoughLeft": "So viel ist von diesem Angebot nicht mehr übrig.",
+      "noEscrow": "Zurzeit deckt keine aktive Wechselstube diese Strecke ab.",
+      "ceiling": "Das liegt über der Obergrenze Ihrer Prüfstufe.",
+      "unverified": "Lassen Sie zuerst Ihre Identität prüfen.",
+      "closed": "Dieses Angebot ist nicht mehr offen.",
+      "failed": "Konnte nicht abgeschlossen werden. Versuchen Sie es erneut.",
+      "outsideBand": "Dieser Preis liegt mehr als 7 % vom Marktkurs entfernt. Bringen Sie ihn zurück in die Spanne."
+    },
+    "compose": {
+      "metaTitle": "Angebot einstellen",
+      "title": "Angebot einstellen",
+      "subtitle": "Eine Seite ist immer Toman. Den Kurs setzen Sie; die Abwicklung beaufsichtigt eine Wechselstube.",
+      "verifyTitle": "Ein Angebot einzustellen setzt eine geprüfte Identität voraus",
+      "verifyBody": "Das ist eine Bedingung, keine Vorliebe: Die Gegenseite muss wissen, mit wem sie handelt.",
+      "verifyCta": "Prüfung starten",
+      "direction": "Was möchten Sie tun?",
+      "sell": "Ich habe {code} und will Toman",
+      "buy": "Ich habe Toman und will {code}",
+      "currency": "Währung",
+      "amount": "Betrag ({code})",
+      "rate": "Ihr Kurs (Toman je {code})",
+      "marketHint": "Der Markt steht bei {rate} Toman.",
+      "useMarket": "Marktkurs übernehmen",
+      "minSlice": "Mindestbetrag je Geschäft",
+      "terms": "Bedingungen",
+      "termsPlaceholder": "z. B. SEPA-Überweisung, am selben Werktag",
+      "summary": "Sie bieten {have} gegen {want} zu {rate} Toman.",
+      "escrowNote": "Nach der Zuteilung hält die Wechselstube die Toman und gibt sie frei, sobald der Devisenteil bestätigt ist.",
+      "publish": "Angebot veröffentlichen",
+      "publishing": "Wird veröffentlicht…",
+      "errors": {
+        "duplicate": "Für dieses Paar haben Sie bereits ein offenes Angebot; bearbeiten Sie es stattdessen.",
+        "tooMany": "Sie haben die Höchstzahl offener Angebote erreicht.",
+        "cooldown": "Zu viele Angebote in der letzten Stunde.",
+        "ceiling": "Das liegt über der Obergrenze Ihrer Prüfstufe.",
+        "unverified": "Lassen Sie zuerst Ihre Identität prüfen.",
+        "corridor": "Eine Seite eines Angebots muss Toman sein.",
+        "failed": "Veröffentlichen nicht möglich. Versuchen Sie es erneut."
+      }
+    },
+    "trade": {
+      "metaTitle": "Geschäft unter Privatpersonen",
+      "title": "Geschäft unter Privatpersonen",
+      "youAreMaker": "Sie haben dieses Angebot eingestellt.",
+      "youAreTaker": "Sie haben dieses Angebot angenommen.",
+      "tomanLeg": "Toman-Teil",
+      "foreignLeg": "Devisenteil",
+      "agreedRate": "Vereinbarter Kurs",
+      "escrowOffice": "Treuhänderische Wechselstube",
+      "noEscrow": "Noch nicht zugewiesen",
+      "escrowExplainer": "Die Wechselstube ist nicht Partei des Geschäfts; sie bestätigt die Toman-Einzahlung und die Devisenüberweisung und erhält dafür eine Treuhandgebühr.",
+      "openOrder": "Abwicklung öffnen",
+      "chatTitle": "Gespräch zum Geschäft",
+      "chatBody": "Die Gegenseite und die treuhänderische Wechselstube sehen es, und es wird als Beweismittel für Streitfälle aufbewahrt.",
+      "rateTitle": "Bewerten Sie die Gegenseite",
+      "rateBody": "Ihre Bewertung erscheint in deren öffentlicher Bilanz.",
+      "stars": "{count, number} Sterne",
+      "alreadyRated": "Sie haben dieses Geschäft bereits bewertet.",
+      "disputeTitle": "Streitfall eröffnen",
+      "disputeBody": "Das Geschäft wird eingefroren, und die Compliance der Plattform prüft beide Seiten.",
+      "disputePlaceholder": "Was ist geschehen? (mindestens 8 Zeichen)",
+      "raiseDispute": "Streitfall eröffnen",
+      "reasonRequired": "Eine schriftliche Begründung von mindestens 8 Zeichen ist erforderlich.",
+      "failed": "Konnte nicht abgeschlossen werden. Versuchen Sie es erneut."
+    },
+    "rateBadge": "{rate} je {code}",
+    "dial": {
+      "title": "Preis und wie schnell Sie handeln",
+      "bodySell": "Sie dürfen bis zu {pct} % unter dem Marktkurs verkaufen. Je günstiger Sie gehen, desto weiter oben steht Ihr Angebot und desto eher findet eine kaufende Seite es.",
+      "bodyBuy": "Sie dürfen bis zu {pct} % über dem Marktkurs kaufen. Je mehr Sie zahlen, desto eher kommen Verkaufende zu Ihrem Angebot.",
+      "atMarket": "Marktkurs",
+      "off": "{pct, number} %",
+      "marketNow": "Markt jetzt",
+      "yourPrice": "Ihr Preis",
+      "difference": "Abstand",
+      "below": "darunter",
+      "above": "darüber",
+      "fasterSell": "Zu diesem Preis stehen Sie vor Angeboten, die zum Marktkurs ausgeschrieben sind.",
+      "fasterBuy": "Zu diesem Preis sind Sie für Verkaufende attraktiver als die übrigen.",
+      "outside": "Mehr als {pct, number} % Abstand zum Markt wird nicht angenommen. Bringen Sie den Preis zurück in die Spanne."
+    },
+    "visibility": {
+      "title": "Wie werde ich zuerst gesehen?",
+      "subtitle": "Die Reihenfolge der Angebote ist nicht zufällig. Diese vier Dinge entscheiden über Ihren Platz in der Liste.",
+      "items": {
+        "price": {
+          "title": "Ein schärferer Preis",
+          "body": "Der stärkste Hebel. Sie haben bis zu 7 % Spielraum auf jeder Seite des Marktes; jeder Schritt auf die Gegenseite zu bringt Sie nach oben."
+        },
+        "reputation": {
+          "title": "Eine gute Bewertung",
+          "body": "Ihre Bewertung entsteht aus abgeschlossenen Geschäften. Ein sauber und pünktlich erfülltes Geschäft hebt Ihr nächstes Angebot."
+        },
+        "speed": {
+          "title": "Schnelle Antworten",
+          "body": "Ihre durchschnittliche Antwortzeit ist sichtbar. Die Leute gehen zu dem, der am schnellsten antwortet."
+        },
+        "clarity": {
+          "title": "Klare Bedingungen",
+          "body": "Sagen Sie, wie und wo Sie abwickeln. Ein Angebot mit klaren Bedingungen wird weit seltener übergangen."
+        }
+      }
+    }
+  },
+  "settlement": {
+    "metaTitle": "Abwicklung — Bereich der Wechselstube",
+    "adminMetaTitle": "Abwicklung — Verwaltungskonsole",
+    "title": "Abwicklung",
+    "subtitle": "Die Karten und IBANs, auf denen Sie Geld empfangen. Ist eine voll, legen Sie hier eine weitere an.",
+    "adminSubtitle": "Die Abwicklungskarten und IBANs jeder Wechselstube und wie jede davon übereinstimmt.",
+    "intro": "Jede iranische Karte hat ein tägliches und ein monatliches Empfangslimit. Ist es erreicht, kommen Kundenzahlungen nicht mehr an und Überweisungen bleiben liegen. Deshalb können Sie selbst eine neue Karte oder IBAN anlegen, ohne zu warten.",
+    "readOnly": "Ein Konto anzulegen oder stillzulegen erfordert Finanzrechte.",
+    "unavailableTitle": "Noch nicht verfügbar",
+    "unavailableBody": "Die Datenbankverbindung ist nicht eingerichtet.",
+    "forbiddenTitle": "Sie haben keinen Zugriff",
+    "forbiddenBody": "Dieser Bereich ist für Administratoren, die Wechselstuben einrichten.",
+    "backHome": "Zurück zur Startseite",
+    "bank": {
+      "label": "Bank",
+      "search": "Bank suchen",
+      "noMatch": "Keine Bank passt zu diesem Namen.",
+      "detected": "Aus der IBAN abgeleitet",
+      "disagrees": "Die eingegebene IBAN gehört zu einer anderen Bank. Eines von beiden stimmt nicht — bitte prüfen."
+    },
+    "add": {
+      "title": "Konto hinzufügen",
+      "office": "Wechselstube",
+      "kind": "Kontoart",
+      "kind_card": "Bankkarte",
+      "kind_iban": "IBAN",
+      "number_card": "Kartennummer (16 Ziffern)",
+      "number_iban": "IBAN",
+      "holder": "Name des Kontoinhabers",
+      "holderPlaceholder": "Wie bei der Bank hinterlegt",
+      "code": "Nationale Kennnummer des Inhabers",
+      "codeHint": "Wird mit der für die Wechselstube hinterlegten verglichen.",
+      "ceiling": "Tageslimit (Toman)",
+      "ceilingHint": "Optional. Damit Sie sehen, wann es erreicht ist.",
+      "cta": "Konto anlegen",
+      "working": "Wird gespeichert…"
+    },
+    "list": {
+      "title": "Abwicklungskonten",
+      "empty": "Noch keine Konten.",
+      "noHolder": "Kein Inhabername",
+      "ceiling": "Tageslimit {amount}",
+      "retire": "Limit erreicht",
+      "retired": "Stillgelegt"
+    },
+    "match": {
+      "verified": "Übereinstimmend",
+      "unverified": "Nicht geprüft",
+      "mismatch": "Haftung übernommen"
+    },
+    "mismatch": {
+      "title": "Name oder Kennnummer stimmen nicht überein",
+      "reason": {
+        "noCode": "Für diesen Kontoinhaber wurde keine Kennnummer angegeben.",
+        "codeDiffers": "Die Kennnummer des Inhabers weicht von der für diese Wechselstube hinterlegten ab.",
+        "nameDiffers": "Der Name des Inhabers weicht vom eingetragenen Namen der Wechselstube ab.",
+        "unknown": "Die Angaben zu diesem Konto stimmen nicht mit den hinterlegten überein."
+      },
+      "body": "Sie dürfen fortfahren, dann liegt die volle Verantwortung für diese Überweisung jedoch bei Ihnen — jeder Verlust, jede Verzögerung, jede Sperre und jede ausbleibende Rückzahlung. Diese Übernahme wird mit Ihrem Namen, der Uhrzeit und dem Grund festgehalten.",
+      "checkbox": "Ich übernehme die Verantwortung für diese Überweisung nach § 7 der",
+      "termsLink": "Nutzungsbedingungen",
+      "cancel": "Abbrechen und berichtigen",
+      "confirm": "Ich übernehme sie — weiter"
+    },
+    "errors": {
+      "number_card": "Diese Kartennummer ist ungültig. Sechzehn Ziffern mit gültiger Prüfziffer.",
+      "number_iban": "Diese IBAN ist ungültig. IR gefolgt von 24 Ziffern.",
+      "code": "Diese Kennnummer ist ungültig.",
+      "saveFailed": "Speichern nicht möglich. Bitte erneut versuchen.",
+      "forbidden": "Sie gehören dieser Wechselstube nicht an.",
+      "holderRequired": "Der Name des Kontoinhabers ist erforderlich.",
+      "numberRequired": "Eine Kontonummer ist erforderlich."
+    }
+  },
+  "tickets": {
+    "officeTitle": "Support-Tickets",
+    "officeSubtitle": "Tickets, deren erste Antwort Ihnen zusteht. Antworten Sie nicht innerhalb von {hours, number} Stunden, kann die Kundschaft an die Plattform eskalieren.",
+    "adminTitle": "Tickets der Plattform",
+    "adminSubtitle": "Alle Tickets, auch die, auf denen eine Wechselstube sitzt. Die Plattform steht über der Wechselstube und kann jedes übernehmen. Das Zeitfenster der Wechselstube beträgt {hours, number} Stunden.",
+    "filterLabel": "Anzeigen",
+    "filters": {
+      "live": "Offen",
+      "escalated": "Eskaliert",
+      "all": "Alle"
+    },
+    "empty": "In dieser Ansicht gibt es keine Tickets.",
+    "filedBy": "von {name}",
+    "someone": "eine Kundin oder ein Kunde",
+    "awaitingFirstReply": "noch keine erste Antwort",
+    "overdue": "{hours, number} Stunden ohne Antwort",
+    "state": {
+      "open": "Offen",
+      "in_progress": "In Bearbeitung",
+      "waiting_user": "Wartet auf die Kundschaft",
+      "escalated": "Eskaliert",
+      "resolved": "Gelöst",
+      "closed": "Geschlossen"
+    },
+    "priority": {
+      "low": "Niedrig",
+      "normal": "Normal",
+      "high": "Hoch",
+      "urgent": "Dringend"
+    },
+    "category": {
+      "order": "Überweisung",
+      "payment": "Zahlung",
+      "kyc": "Identität",
+      "p2p": "Privathandel",
+      "account": "Konto",
+      "office": "Wechselstube",
+      "other": "Sonstiges"
+    },
+    "actions": {
+      "take": "Übernehmen",
+      "resolve": "Lösen",
+      "reopen": "Wieder öffnen",
+      "handOver": "An die Plattform geben",
+      "pullUp": "Von der Wechselstube übernehmen"
+    },
+    "moved": {
+      "open": "Ticket wieder geöffnet",
+      "in_progress": "Sie haben das Ticket übernommen",
+      "waiting_user": "Wartet auf die Kundschaft",
+      "escalated": "An die Plattform eskaliert",
+      "resolved": "Ticket gelöst",
+      "closed": "Ticket geschlossen"
+    },
+    "errors": {
+      "failed": "Das ging nicht durch. Versuchen Sie es erneut.",
+      "alreadyEscalated": "Dieses Ticket liegt bereits bei der Plattform."
+    }
+  },
+  "coins": {
+    "metaTitle": "Goldmünzen kaufen — Asaex",
+    "title": "Goldmünzen",
+    "subtitle": "Live-Preise für iranische Goldmünzen und Barren. Sie fragen an, die Wechselstube bestätigt, Sie holen es persönlich ab.",
+    "perUnit": "je Stück",
+    "fine": "{grams} g Feingold",
+    "premium": "Aufgeld {pct} %",
+    "buy": "Anfragen",
+    "noPrice": "Kein Preis verfügbar.",
+    "staleNotice": "Diese Preise wurden nicht aufgefrischt; der Markt ist womöglich geschlossen. Fragen Sie bei der Wechselstube nach, bevor Sie danach handeln.",
+    "demoNotice": "Diese Preise sind noch nicht an eine Live-Quelle angebunden; Anfragen sind möglich, sobald die Quelle angeschlossen ist.",
+    "disclaimer": "Der gezeigte Preis folgt dem freien Markt; den festen Preis nennt die Wechselstube bei der Bestätigung. Das Aufgeld ist der Betrag, um den eine Münze mehr kostet als das Gold in ihr.",
+    "products": {
+      "EMAMI": "Emami-Münze (ganz)",
+      "BAHAR": "Bahar Azadi (altes Muster)",
+      "NIM": "Halbe Münze",
+      "ROB": "Viertelmünze",
+      "GERAMI": "Grammmünze",
+      "GERAM18": "Ein Gramm, 18 Karat",
+      "MESGHAL": "Mesghal Gold"
+    },
+    "request": {
+      "title": "Kaufanfrage",
+      "notPaidYet": "Noch wird nichts abgebucht. Die Wechselstube prüft ihren Bestand, nennt einen festen Preis, und die Zahlung kommt danach.",
+      "quantity": "Menge",
+      "fewer": "Weniger",
+      "more": "Mehr",
+      "pickup": "Wo abholen (optional)",
+      "pickupPlaceholder": "z. B. die Filiale Vanak",
+      "estimate": "Geschätzte Summe",
+      "cta": "Anfrage senden",
+      "working": "Wird gesendet…",
+      "placed": "Ihre Anfrage ist eingegangen.",
+      "next": "Die Wechselstube bestätigt Bestand und festen Preis in Kürze. Verfolgen Sie das unter Ihren Aufträgen.",
+      "done": "Verstanden",
+      "failed": "Das wurde nicht gesendet. Bitte erneut versuchen.",
+      "signInFirst": "Sie müssen sich anmelden, bevor Sie Münzen anfragen können.",
+      "signIn": "Anmelden"
+    },
+    "state": {
+      "requested": "Wartet auf eine Wechselstube",
+      "confirmed": "Bestätigt — wartet auf Zahlung",
+      "paid": "Bezahlt",
+      "ready": "Abholbereit",
+      "collected": "Abgeholt",
+      "cancelled": "Storniert"
+    }
+  },
+  "officeIdentity": {
+    "title": "Angaben zur Wechselstube",
+    "displayName": "Angezeigter Name",
+    "displayNameHint": "Diesen Namen sehen Ihre Kundinnen und Kunden.",
+    "ownerName": "Eingetragene Inhaberschaft",
+    "nationalId": "Nationale Kennnummer",
+    "licence": "Lizenznummer",
+    "notSet": "Nicht gesetzt",
+    "lockedNote": "Sobald die Identität geprüft ist, können eingetragene Inhaberschaft, Kennnummer und Lizenznummer nur noch von der Plattform geändert werden. Eröffnen Sie ein Ticket, um sie zu berichtigen.",
+    "addLogo": "Logo hinzufügen",
+    "changeLogo": "Logo ändern",
+    "logoHint": "PNG, JPG, WebP oder SVG bis 512 kB.",
+    "logoSaved": "Logo gespeichert.",
+    "saved": "Gespeichert.",
+    "save": "Speichern",
+    "working": "Wird gespeichert…",
+    "kyc": {
+      "verified": "Identität geprüft",
+      "pending": "In Prüfung",
+      "rejected": "Nicht geprüft",
+      "unverified": "Nicht kontrolliert"
+    },
+    "status": {
+      "draft": "Unvollständig",
+      "active": "Aktiv",
+      "suspended": "Ausgesetzt",
+      "archived": "Archiviert"
+    },
+    "errors": {
+      "tooBig": "Diese Datei ist größer als 512 kB.",
+      "uploadFailed": "Der Upload ging nicht durch. Bitte erneut versuchen.",
+      "saveFailed": "Speichern nicht möglich. Bitte erneut versuchen."
+    }
   }
 }

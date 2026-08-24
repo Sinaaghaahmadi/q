@@ -1009,5 +1009,370 @@
       "notParticipant": "Vous ne faites pas partie de cette discussion.",
       "failed": "Envoi impossible. Réessayez."
     }
+  },
+  "p2p": {
+    "metaTitle": "Marché entre particuliers",
+    "title": "Marché entre particuliers",
+    "subtitle": "Échangez directement avec quelqu'un — le volet en tomans étant réglé au sein de la plateforme, sous la supervision d'un bureau de change agréé jouant le rôle de tiers confirmateur.",
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "postOffer": "Publier une offre",
+    "verifyToPost": "Vérifiez votre identité pour publier",
+    "allPairs": "Toutes",
+    "empty": "Aucune offre ouverte pour l'instant.",
+    "sells": "Vend {code}",
+    "buys": "Achète {code}",
+    "perUnit": " tomans par {code}",
+    "anonymousMaker": "Intervenant vérifié",
+    "newTrader": "Nouvel intervenant",
+    "tradesDone": "{count, number} échanges réalisés",
+    "yours": "Votre offre",
+    "escrowNote": "Le volet en tomans se règle dans la plateforme, sous la supervision d'un bureau de change ; rien de ce qui se passe en dehors n'est couvert.",
+    "rateLabel": "Taux (tomans par {code})",
+    "minSliceLabel": "Tranche minimale",
+    "makerLabel": "Émetteur",
+    "reputationLabel": "Historique",
+    "reputationValue": "{count, number} échanges · {rate} % menés à terme",
+    "status": {
+      "open": "Ouverte",
+      "paused": "En pause",
+      "filled": "Servie",
+      "cancelled": "Annulée",
+      "removed": "Retirée"
+    },
+    "alreadyTaken": "Vous avez déjà un échange en cours sur cette offre.",
+    "openTrade": "Ouvrir l'échange",
+    "yourOwnOffer": "C'est votre propre offre.",
+    "verifyToTake": "Prendre une offre demande une identité vérifiée.",
+    "verifyCta": "Vérifier l'identité",
+    "signInCta": "Se connecter",
+    "takeTitle": "Prendre cette offre",
+    "sliceLabel": "Montant ({code})",
+    "takeSummary": "Volet en tomans : {toman} IRT, conservés par le bureau de change jusqu'à confirmation des deux côtés.",
+    "take": "Démarrer l'échange",
+    "taking": "Démarrage…",
+    "errors": {
+      "ownOffer": "Vous ne pouvez pas prendre votre propre offre.",
+      "belowMin": "C'est en dessous de la tranche minimale de cette offre.",
+      "aboveMax": "C'est au-dessus de la tranche maximale de cette offre.",
+      "notEnoughLeft": "Il ne reste pas autant sur cette offre.",
+      "noEscrow": "Aucun bureau de change actif ne couvre ce corridor pour le moment.",
+      "ceiling": "C'est au-dessus du plafond de votre palier de vérification.",
+      "unverified": "Vérifiez d'abord votre identité.",
+      "closed": "Cette offre n'est plus ouverte.",
+      "failed": "Impossible d'aboutir. Réessayez.",
+      "outsideBand": "Ce prix s'écarte de plus de 7 % du taux du marché. Ramenez-le dans la fourchette."
+    },
+    "compose": {
+      "metaTitle": "Publier une offre",
+      "title": "Publier une offre",
+      "subtitle": "Un côté est toujours en tomans. Vous fixez le taux ; le règlement est supervisé par un bureau de change.",
+      "verifyTitle": "Publier une offre demande une identité vérifiée",
+      "verifyBody": "C'est une exigence, pas une préférence : l'autre partie doit savoir avec qui elle traite.",
+      "verifyCta": "Commencer la vérification",
+      "direction": "Que voulez-vous faire ?",
+      "sell": "J'ai des {code}, je veux des tomans",
+      "buy": "J'ai des tomans, je veux des {code}",
+      "currency": "Devise",
+      "amount": "Montant ({code})",
+      "rate": "Votre taux (tomans par {code})",
+      "marketHint": "Le marché est à {rate} tomans.",
+      "useMarket": "Prendre le taux du marché",
+      "minSlice": "Minimum par échange",
+      "terms": "Conditions",
+      "termsPlaceholder": "par ex. virement SEPA, le jour ouvré même",
+      "summary": "Vous proposez {have} contre {want} à {rate} tomans.",
+      "escrowNote": "Une fois l'offre appariée, les tomans sont conservés par le bureau de change et libérés à la confirmation du volet en devise.",
+      "publish": "Publier l'offre",
+      "publishing": "Publication…",
+      "errors": {
+        "duplicate": "Vous avez déjà une offre ouverte sur cette paire ; modifiez-la plutôt.",
+        "tooMany": "Vous avez atteint le nombre maximal d'offres ouvertes.",
+        "cooldown": "Trop d'offres au cours de la dernière heure.",
+        "ceiling": "C'est au-dessus du plafond de votre palier de vérification.",
+        "unverified": "Vérifiez d'abord votre identité.",
+        "corridor": "Un des deux côtés d'une offre doit être en tomans.",
+        "failed": "Publication impossible. Réessayez."
+      }
+    },
+    "trade": {
+      "metaTitle": "Échange entre particuliers",
+      "title": "Échange entre particuliers",
+      "youAreMaker": "Vous avez publié cette offre.",
+      "youAreTaker": "Vous avez pris cette offre.",
+      "tomanLeg": "Volet en tomans",
+      "foreignLeg": "Volet en devise",
+      "agreedRate": "Taux convenu",
+      "escrowOffice": "Bureau séquestre",
+      "noEscrow": "Pas encore attribué",
+      "escrowExplainer": "Le bureau n'est pas partie à l'échange ; il confirme le dépôt en tomans et le transfert en devise, et perçoit des frais de séquestre.",
+      "openOrder": "Ouvrir le règlement",
+      "chatTitle": "Discussion de l'échange",
+      "chatBody": "La contrepartie et le bureau séquestre la voient, et elle est conservée comme preuve en cas de litige.",
+      "rateTitle": "Notez votre contrepartie",
+      "rateBody": "Votre note figure dans son historique public.",
+      "stars": "{count, number} étoiles",
+      "alreadyRated": "Vous avez déjà noté cet échange.",
+      "disputeTitle": "Ouvrir un litige",
+      "disputeBody": "L'échange est gelé et la conformité de la plateforme examine les deux versions.",
+      "disputePlaceholder": "Que s'est-il passé ? (au moins 8 caractères)",
+      "raiseDispute": "Ouvrir un litige",
+      "reasonRequired": "Un motif écrit d'au moins 8 caractères est requis.",
+      "failed": "Impossible d'aboutir. Réessayez."
+    },
+    "rateBadge": "{rate} par {code}",
+    "dial": {
+      "title": "Le prix et la vitesse à laquelle vous traitez",
+      "bodySell": "Vous pouvez vendre jusqu'à {pct} % sous le taux du marché. Plus vous descendez, plus votre offre remonte et plus vite un acheteur la trouve.",
+      "bodyBuy": "Vous pouvez acheter jusqu'à {pct} % au-dessus du taux du marché. Plus vous payez, plus vite les vendeurs viennent à vous.",
+      "atMarket": "Taux du marché",
+      "off": "{pct, number} %",
+      "marketNow": "Marché actuel",
+      "yourPrice": "Votre prix",
+      "difference": "Écart",
+      "below": "en dessous",
+      "above": "au-dessus",
+      "fasterSell": "À ce prix, vous passez devant les offres alignées sur le marché.",
+      "fasterBuy": "À ce prix, vous êtes plus attirant pour les vendeurs que les autres.",
+      "outside": "S'écarter de plus de {pct, number} % du marché n'est pas accepté. Ramenez le prix dans la fourchette."
+    },
+    "visibility": {
+      "title": "Comment être vu en premier ?",
+      "subtitle": "L'ordre des offres n'est pas aléatoire. Ces quatre éléments décident de votre place dans la liste.",
+      "items": {
+        "price": {
+          "title": "Un prix plus serré",
+          "body": "Le levier le plus fort. Vous avez jusqu'à 7 % de marge de chaque côté du marché ; chaque pas vers l'autre partie vous fait remonter."
+        },
+        "reputation": {
+          "title": "Une bonne note",
+          "body": "Votre note se construit à partir des échanges menés à terme. Un échange propre livré à l'heure fait remonter le suivant."
+        },
+        "speed": {
+          "title": "Des réponses rapides",
+          "body": "Votre délai de réponse moyen est visible. Les gens vont vers qui répond le plus vite."
+        },
+        "clarity": {
+          "title": "Des conditions claires",
+          "body": "Dites comment et où vous réglez. Une offre aux conditions limpides est bien moins souvent ignorée."
+        }
+      }
+    }
+  },
+  "settlement": {
+    "metaTitle": "Règlement — panneau du bureau",
+    "adminMetaTitle": "Règlement — console d'administration",
+    "title": "Règlement",
+    "subtitle": "Les cartes et IBAN sur lesquels vous recevez l'argent. Quand l'un est plein, ajoutez-en un autre ici.",
+    "adminSubtitle": "Les cartes et IBAN de règlement de chaque bureau, et la concordance de chacun.",
+    "intro": "Chaque carte iranienne a un plafond de réception journalier et mensuel. Quand il est atteint, les paiements des clients n'arrivent plus et les transferts s'enlisent. Vous pouvez donc ajouter une carte ou un IBAN vous-même, sans attendre.",
+    "readOnly": "Ajouter ou retirer un compte demande un accès finance.",
+    "unavailableTitle": "Pas encore disponible",
+    "unavailableBody": "La connexion à la base de données n'est pas configurée.",
+    "forbiddenTitle": "Vous n'avez pas accès",
+    "forbiddenBody": "Cette section est réservée aux administrateurs qui configurent les bureaux.",
+    "backHome": "Retour à l'accueil",
+    "bank": {
+      "label": "Banque",
+      "search": "Rechercher une banque",
+      "noMatch": "Aucune banque ne correspond à ce nom.",
+      "detected": "Déduit de l'IBAN",
+      "disagrees": "L'IBAN saisi appartient à une autre banque. L'un des deux est faux — vérifiez, s'il vous plaît."
+    },
+    "add": {
+      "title": "Ajouter un compte",
+      "office": "Bureau",
+      "kind": "Type de compte",
+      "kind_card": "Carte bancaire",
+      "kind_iban": "IBAN",
+      "number_card": "Numéro de carte (16 chiffres)",
+      "number_iban": "IBAN",
+      "holder": "Nom du titulaire",
+      "holderPlaceholder": "Tel qu'enregistré à la banque",
+      "code": "Code national du titulaire",
+      "codeHint": "Comparé à celui enregistré pour le bureau.",
+      "ceiling": "Plafond journalier (tomans)",
+      "ceilingHint": "Facultatif. Pour savoir quand il est atteint.",
+      "cta": "Ajouter le compte",
+      "working": "Enregistrement…"
+    },
+    "list": {
+      "title": "Comptes de règlement",
+      "empty": "Aucun compte pour l'instant.",
+      "noHolder": "Aucun nom de titulaire",
+      "ceiling": "Plafond journalier {amount}",
+      "retire": "Plafond atteint",
+      "retired": "Retiré"
+    },
+    "match": {
+      "verified": "Concordant",
+      "unverified": "Non vérifié",
+      "mismatch": "Responsabilité acceptée"
+    },
+    "mismatch": {
+      "title": "Le nom ou le code national ne concorde pas",
+      "reason": {
+        "noCode": "Aucun code national n'a été fourni pour ce titulaire.",
+        "codeDiffers": "Le code national du titulaire diffère de celui enregistré pour ce bureau.",
+        "nameDiffers": "Le nom du titulaire diffère du nom enregistré du bureau.",
+        "unknown": "Les informations de ce compte ne correspondent pas à ce qui est enregistré."
+      },
+      "body": "Vous pouvez continuer, mais si vous le faites, l'entière responsabilité de ce transfert — toute perte, tout retard, tout gel ou toute non-restitution des fonds — vous incombe. Cette acceptation est consignée avec votre nom, l'heure et le motif.",
+      "checkbox": "J'accepte que la responsabilité de ce transfert m'incombe, au titre de l'article 7 des",
+      "termsLink": "conditions d'utilisation",
+      "cancel": "Annuler et corriger",
+      "confirm": "J'accepte — continuer"
+    },
+    "errors": {
+      "number_card": "Ce numéro de carte n'est pas valide. Seize chiffres avec un chiffre de contrôle correct.",
+      "number_iban": "Cet IBAN n'est pas valide. IR suivi de 24 chiffres.",
+      "code": "Ce code national n'est pas valide.",
+      "saveFailed": "Enregistrement impossible. Réessayez.",
+      "forbidden": "Vous n'êtes pas membre de ce bureau.",
+      "holderRequired": "Le nom du titulaire est obligatoire.",
+      "numberRequired": "Un numéro de compte est obligatoire."
+    }
+  },
+  "tickets": {
+    "officeTitle": "Tickets d'assistance",
+    "officeSubtitle": "Les tickets dont la première réponse vous revient. Sans réponse de votre part sous {hours, number} heures, le client peut les remonter à la plateforme.",
+    "adminTitle": "Tickets de la plateforme",
+    "adminSubtitle": "Tous les tickets, y compris ceux qu'un bureau laisse dormir. La plateforme est au-dessus du bureau et peut reprendre n'importe lequel. La fenêtre du bureau est de {hours, number} heures.",
+    "filterLabel": "Afficher",
+    "filters": {
+      "live": "Ouverts",
+      "escalated": "Remontés",
+      "all": "Tous"
+    },
+    "empty": "Aucun ticket dans cette vue.",
+    "filedBy": "de {name}",
+    "someone": "un client",
+    "awaitingFirstReply": "aucune première réponse",
+    "overdue": "{hours, number} heures sans réponse",
+    "state": {
+      "open": "Ouvert",
+      "in_progress": "En cours",
+      "waiting_user": "En attente du client",
+      "escalated": "Remonté",
+      "resolved": "Résolu",
+      "closed": "Clos"
+    },
+    "priority": {
+      "low": "Basse",
+      "normal": "Normale",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "category": {
+      "order": "Transfert",
+      "payment": "Paiement",
+      "kyc": "Identité",
+      "p2p": "Particuliers",
+      "account": "Compte",
+      "office": "Bureau de change",
+      "other": "Autre"
+    },
+    "actions": {
+      "take": "Le prendre",
+      "resolve": "Résoudre",
+      "reopen": "Rouvrir",
+      "handOver": "Passer à la plateforme",
+      "pullUp": "Reprendre au bureau"
+    },
+    "moved": {
+      "open": "Ticket rouvert",
+      "in_progress": "Vous avez pris le ticket",
+      "waiting_user": "En attente du client",
+      "escalated": "Remonté à la plateforme",
+      "resolved": "Ticket résolu",
+      "closed": "Ticket clos"
+    },
+    "errors": {
+      "failed": "Cela n'est pas passé. Réessayez.",
+      "alreadyEscalated": "Ce ticket est déjà chez la plateforme."
+    }
+  },
+  "coins": {
+    "metaTitle": "Acheter des pièces d'or — Asaex",
+    "title": "Pièces d'or",
+    "subtitle": "Prix en direct des pièces d'or iraniennes et des lingots. Vous demandez, le bureau confirme, vous retirez en personne.",
+    "perUnit": "l'unité",
+    "fine": "{grams} g d'or fin",
+    "premium": "Prime {pct} %",
+    "buy": "Demander",
+    "noPrice": "Aucun prix disponible.",
+    "staleNotice": "Ces prix ne se sont pas rafraîchis ; le marché est peut-être fermé. Vérifiez auprès du bureau avant d'agir.",
+    "demoNotice": "Ces prix ne sont pas encore reliés à une source en direct, et aucune demande n'est possible tant que la source n'est pas raccordée.",
+    "disclaimer": "Le prix affiché suit le marché libre ; le bureau annonce le prix ferme au moment de confirmer. La prime est ce qu'une pièce coûte de plus que l'or qu'elle contient.",
+    "products": {
+      "EMAMI": "Pièce Emami (entière)",
+      "BAHAR": "Bahar Azadi (ancien modèle)",
+      "NIM": "Demi-pièce",
+      "ROB": "Quart de pièce",
+      "GERAMI": "Pièce d'un gramme",
+      "GERAM18": "Un gramme, 18 carats",
+      "MESGHAL": "Mesghal d'or"
+    },
+    "request": {
+      "title": "Demande d'achat",
+      "notPaidYet": "Rien n'est prélevé pour l'instant. Le bureau vérifie son stock, annonce un prix ferme, et le paiement vient ensuite.",
+      "quantity": "Quantité",
+      "fewer": "Moins",
+      "more": "Plus",
+      "pickup": "Lieu de retrait (facultatif)",
+      "pickupPlaceholder": "par ex. l'agence de Vanak",
+      "estimate": "Total estimé",
+      "cta": "Envoyer la demande",
+      "working": "Envoi…",
+      "placed": "Votre demande est enregistrée.",
+      "next": "Le bureau confirmera le stock et le prix ferme sous peu. Suivez cela dans vos commandes.",
+      "done": "Entendu",
+      "failed": "Cela n'est pas parti. Réessayez.",
+      "signInFirst": "Vous devez vous connecter avant de demander des pièces.",
+      "signIn": "Se connecter"
+    },
+    "state": {
+      "requested": "En attente d'un bureau",
+      "confirmed": "Confirmée — en attente de paiement",
+      "paid": "Payée",
+      "ready": "Prête au retrait",
+      "collected": "Retirée",
+      "cancelled": "Annulée"
+    }
+  },
+  "officeIdentity": {
+    "title": "Informations du bureau",
+    "displayName": "Nom affiché",
+    "displayNameHint": "C'est le nom que vos clients voient.",
+    "ownerName": "Propriétaire déclaré",
+    "nationalId": "Code national",
+    "licence": "Numéro d'agrément",
+    "notSet": "Non renseigné",
+    "lockedNote": "Une fois l'identité vérifiée, le propriétaire déclaré, le code national et le numéro d'agrément ne peuvent être modifiés que par la plateforme. Ouvrez un ticket pour les corriger.",
+    "addLogo": "Ajouter un logo",
+    "changeLogo": "Changer le logo",
+    "logoHint": "PNG, JPG, WebP ou SVG, jusqu'à 512 ko.",
+    "logoSaved": "Logo enregistré.",
+    "saved": "Enregistré.",
+    "save": "Enregistrer",
+    "working": "Enregistrement…",
+    "kyc": {
+      "verified": "Identité vérifiée",
+      "pending": "En cours d'examen",
+      "rejected": "Non vérifiée",
+      "unverified": "Non contrôlée"
+    },
+    "status": {
+      "draft": "Incomplet",
+      "active": "Actif",
+      "suspended": "Suspendu",
+      "archived": "Archivé"
+    },
+    "errors": {
+      "tooBig": "Ce fichier dépasse 512 ko.",
+      "uploadFailed": "L'envoi n'est pas passé. Réessayez.",
+      "saveFailed": "Enregistrement impossible. Réessayez."
+    }
   }
 }
