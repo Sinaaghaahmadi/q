@@ -86,6 +86,13 @@ ENV NODE_ENV=production \
 # lands as an unprivileged user in a filesystem it cannot write to.
 RUN addgroup -g 1001 -S nodejs && adduser -u 1001 -S nextjs -G nodejs
 
+# npm and npx come with the base image and this app never runs them. A package
+# manager sitting in a production container is a way to fetch and execute
+# arbitrary code, which is exactly what an attacker who has found a foothold
+# wants next. `node` alone is what serves the site.
+RUN rm -rf /usr/local/lib/node_modules/npm \
+           /usr/local/bin/npm /usr/local/bin/npx /opt/yarn*
+
 # `standalone` already contains the traced dependencies and the server; the
 # other two are the parts Next deliberately leaves out of it.
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./

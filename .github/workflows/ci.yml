@@ -116,8 +116,18 @@ jobs:
             --build-arg NEXT_PUBLIC_APP_URL=https://example.test \
             -t asaex-app:ci .
           # The runtime layer must not carry the toolchain that built it.
+          #
+          # Not "no node_modules/.pnpm" — a standalone build legitimately has
+          # one, holding the dependencies Next traced. The check that means
+          # something is how *many*: this repo installs 573 packages and the
+          # traced set is about 19, so a number near the former is `output:
+          # "standalone"` having been turned off, and a gigabyte of image.
           docker run --rm --entrypoint sh asaex-app:ci -c '
-            test ! -d /app/node_modules/.pnpm || { echo "the pnpm store shipped in the runtime image"; exit 1; }
+            traced=$(ls /app/node_modules/.pnpm 2>/dev/null | wc -l)
+            test "$traced" -lt 120 || { echo "node_modules has $traced packages — standalone tracing is off"; exit 1; }
             test ! -d /app/src || { echo "source shipped in the runtime image"; exit 1; }
-            id -u nextjs >/dev/null || { echo "not running as a named user"; exit 1; }
-            echo "runtime image is clean"'
+            for t in pnpm npm npx tsc next; do
+              command -v $t >/dev/null 2>&1 && { echo "$t is present in the runtime image"; exit 1; }
+            done
+            test "$(id -un)" = nextjs || { echo "not running as the unprivileged user"; exit 1; }
+            echo "runtime image: $traced traced packages, no toolchain, running as $(id -un)"'
