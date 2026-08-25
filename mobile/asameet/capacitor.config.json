@@ -1,0 +1,13 @@
+{
+  "appId": "online.asameet.app",
+  "appName": "آسامیت",
+  "webDir": "www",
+  "server": {
+    "url": "https://asameet.vercel.app",
+    "cleartext": false
+  },
+  "android": {
+    "backgroundColor": "#f0fdfa",
+    "allowMixedContent": false
+  }
+}
