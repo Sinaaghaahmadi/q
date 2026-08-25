@@ -1,0 +1,11 @@
+[Unit]
+Description=Asaex monthly restore drill
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/asaex
+# Restores the newest backup into a scratch database and counts what arrived.
+# A backup nobody has ever restored is a hypothesis.
+ExecStart=/opt/asaex/deploy/scripts/restore.sh --drill
+TimeoutStartSec=30min

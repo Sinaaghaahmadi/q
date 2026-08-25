@@ -42,3 +42,10 @@ scripts/tmp/
 
 # Python bytecode from the throwaway message-editing scripts
 __pycache__/
+
+# The deployment's secrets. Generated on the server by
+# deploy/scripts/gen-secrets.sh and never committed — it holds the JWT signing
+# key, the database password and the backup passphrase.
+deploy/.env
+deploy/.env.*
+!deploy/.env.example

@@ -88,6 +88,19 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  /*
+   * A self-contained server directory, for the container.
+   *
+   * `standalone` traces exactly the files the built app imports and writes them
+   * next to a minimal server, so the runtime image carries no `node_modules`
+   * and no source. On this app that is the difference between shipping about a
+   * gigabyte and shipping under two hundred megabytes — which matters a great
+   * deal when the image is built on a server in Iran over a link that may be
+   * fetching its base layers through a mirror.
+   *
+   * It changes nothing about how the app runs on Vercel, which ignores it.
+   */
+  output: "standalone",
   reactStrictMode: true,
   /**
    * Inline the publishable Supabase values at build time.

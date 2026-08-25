@@ -1,0 +1,22 @@
+# Everything the build does not read. Keeping this tight is what makes the
+# build context small enough to send over a slow link.
+.git
+.github
+node_modules
+.next
+out
+coverage
+playwright-report
+test-results
+e2e
+tests
+docs
+supabase
+scripts/tmp
+*.log
+.env*
+!.env.example
+Dockerfile
+.dockerignore
+deploy/
+README.md

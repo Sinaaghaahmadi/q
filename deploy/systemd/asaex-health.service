@@ -1,0 +1,9 @@
+[Unit]
+Description=Asaex health check
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/asaex
+ExecStart=/opt/asaex/deploy/scripts/healthwatch.sh
+TimeoutStartSec=2min

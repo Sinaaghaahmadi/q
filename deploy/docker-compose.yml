@@ -1,0 +1,324 @@
+# The whole of Asaex, on one machine.
+#
+# Nine containers on a private network, with exactly one of them — Caddy —
+# holding a port on the public interface. Everything else talks over the Docker
+# network and cannot be reached from outside the machine at all, which is why
+# there are no published ports on the database, the auth service or the API.
+#
+# Supabase is self-hosted rather than used as a service, and that is not a
+# preference. Eighty components in this app call Supabase straight from the
+# browser; if the API lived in Paris, every Iranian customer's browser would
+# have to reach Paris to sign in, read a rate or open a chat. The API has to be
+# on the same origin as the site, so it runs here.
+#
+# Postgres is pinned to 17.6 to match the project this data is migrating from.
+# A dump taken from 17.6 will not restore into 15.x, and discovering that during
+# the cutover is not the moment to find out.
+
+name: asaex
+
+x-restart: &restart
+  restart: unless-stopped
+
+# Applied to every container that does not need to write to its own filesystem,
+# which is all of them except the ones with a volume. A process that is
+# exploited into writing a file finds nowhere to put it.
+x-hardened: &hardened
+  read_only: true
+  cap_drop: [ALL]
+  security_opt:
+    - no-new-privileges:true
+
+x-logging: &logging
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
+
+services:
+  # ── The only container with a public port ──────────────────────────────────
+  #
+  # Caddy terminates TLS, obtains and renews the certificate on its own, and
+  # routes by path prefix. It also does the job Supabase's own compose file
+  # gives to Kong: strip `/auth/v1`, `/rest/v1`, `/storage/v1`, `/realtime/v1`
+  # and hand what is left to the right service. Kong would be a tenth container,
+  # a second configuration language and 200 MB of memory to do what the
+  # reverse proxy already in front of everything can do in eleven lines.
+  caddy:
+    image: caddy:2.10-alpine
+    <<: [*restart, *logging]
+    cap_drop: [ALL]
+    # Binding 80 and 443 as a non-root user needs exactly this one capability.
+    cap_add: [NET_BIND_SERVICE]
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"   # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data      # certificates and ACME account — do not lose this
+      - caddy-config:/config
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN in deploy/.env}
+      ACME_EMAIL: ${ACME_EMAIL:?set ACME_EMAIL in deploy/.env}
+      TLS_LOCAL_CERTS: ${TLS_LOCAL_CERTS:-}
+    depends_on:
+      app: { condition: service_healthy }
+    networks: [edge, internal]
+
+  # ── The application ────────────────────────────────────────────────────────
+  app:
+    image: asaex-app:${APP_TAG:-latest}
+    <<: [*restart, *hardened, *logging]
+    environment:
+      NODE_ENV: production
+      # Server-side only. The browser gets the values baked in at build time.
+      NEXT_PUBLIC_SUPABASE_URL: https://${DOMAIN}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${ANON_KEY:?}
+      NEXT_PUBLIC_APP_URL: https://${DOMAIN}
+      NEXT_PUBLIC_BUILD_SHA: ${APP_TAG:-}
+      SMS_PROVIDER: ${SMS_PROVIDER:-kavenegar}
+      KAVENEGAR_API_KEY: ${KAVENEGAR_API_KEY:-}
+      KAVENEGAR_SENDER: ${KAVENEGAR_SENDER:-}
+      SMS_OTP_PATTERN: ${SMS_OTP_PATTERN:-}
+      RATE_REFRESH_SECONDS: ${RATE_REFRESH_SECONDS:-30}
+      # Deliberately absent: SERVICE_ROLE_KEY. The application has never held a
+      # key that bypasses row-level security and does not start holding one
+      # because the database moved into the same building (ADR 0010).
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    deploy:
+      resources:
+        limits: { memory: 1536M }
+    networks: [internal]
+
+  # ── Postgres ───────────────────────────────────────────────────────────────
+  db:
+    image: supabase/postgres:17.6.1.165
+    <<: [*restart, *logging]
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      POSTGRES_DB: postgres
+      JWT_SECRET: ${JWT_SECRET:?}
+      JWT_EXP: 3600
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      # The hook the image reserves for setting service-role passwords, run
+      # after its own migrations have created those roles. Mounted as a single
+      # file: a directory mounted over /docker-entrypoint-initdb.d would hide
+      # the image's migrations entirely, which is exactly what happened the
+      # first time this was written.
+      - ./config/postgres-post-init.sql:/etc/postgresql.schema.sql:ro
+    healthcheck:
+      # A real query as a real role. `pg_isready` reports a server that is
+      # accepting connections even when the role it was asked about does not
+      # exist, so the container went "healthy" while every service behind it
+      # was failing to log in.
+      test: ["CMD-SHELL", "psql -U supabase_admin -d postgres -c 'select 1' >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    deploy:
+      resources:
+        limits: { memory: 6G }
+    # No `ports:`. The database is reachable from the other containers and from
+    # nowhere else — not from the internet, and not from the host either.
+    networks: [internal]
+
+  # ── Auth ───────────────────────────────────────────────────────────────────
+  auth:
+    image: supabase/gotrue:v2.196.0
+    <<: [*restart, *hardened, *logging]
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: "9999"
+      API_EXTERNAL_URL: https://${DOMAIN}
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://supabase_auth_admin:${POSTGRES_PASSWORD}@db:5432/postgres
+      GOTRUE_SITE_URL: https://${DOMAIN}
+      GOTRUE_URI_ALLOW_LIST: https://${DOMAIN}/**
+      GOTRUE_JWT_SECRET: ${JWT_SECRET:?}
+      GOTRUE_JWT_EXP: "3600"
+      GOTRUE_JWT_AUD: authenticated
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      # Nobody signs up with an address here. Customers arrive by SMS and staff
+      # are provisioned by an administrator, so the whole email path is closed
+      # rather than left on with no mail server behind it.
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: "false"
+      GOTRUE_MAILER_AUTOCONFIRM: "true"
+      # The phone provider, which the hosted project could never switch on.
+      GOTRUE_EXTERNAL_PHONE_ENABLED: "true"
+      GOTRUE_SMS_AUTOCONFIRM: "false"
+      GOTRUE_SMS_PROVIDER: ${GOTRUE_SMS_PROVIDER:-kavenegar}
+      GOTRUE_SMS_OTP_EXP: "120"
+      GOTRUE_SMS_OTP_LENGTH: "6"
+      GOTRUE_SMS_TEMPLATE: ${SMS_TEMPLATE:-Your Asaex code is {{ .Code }}}
+      GOTRUE_SMS_KAVENEGAR_API_KEY: ${KAVENEGAR_API_KEY:-}
+      GOTRUE_SMS_KAVENEGAR_FROM: ${KAVENEGAR_SENDER:-}
+      # Two-step sign-in for staff, which migration 0028 requires at the
+      # database level. Without this the panels cannot be opened at all.
+      GOTRUE_MFA_ENABLED: "true"
+      GOTRUE_MFA_MAX_ENROLLED_FACTORS: "10"
+      GOTRUE_SECURITY_MANUAL_LINKING_ENABLED: "false"
+      GOTRUE_DISABLE_SIGNUP: "false"
+      GOTRUE_RATE_LIMIT_SMS_SENT: "10"
+      GOTRUE_RATE_LIMIT_VERIFY: "30"
+      GOTRUE_LOG_LEVEL: info
+    networks: [internal]
+
+  # ── The data API ───────────────────────────────────────────────────────────
+  rest:
+    image: postgrest/postgrest:v16.2
+    <<: [*restart, *hardened, *logging]
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      PGRST_DB_URI: postgres://authenticator:${POSTGRES_PASSWORD}@db:5432/postgres
+      PGRST_DB_SCHEMAS: public,storage
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${JWT_SECRET:?}
+      PGRST_DB_USE_LEGACY_GUCS: "false"
+      PGRST_APP_SETTINGS_JWT_SECRET: ${JWT_SECRET:?}
+      PGRST_APP_SETTINGS_JWT_EXP: "3600"
+      # Row-level security is the entire authorization model of this
+      # application. `authenticator` is a role with no rights of its own that
+      # can only switch into `anon` or `authenticated`, so a request arriving
+      # without a valid token gets the permissions of a stranger.
+    networks: [internal]
+
+  # ── Realtime, for the order chat ───────────────────────────────────────────
+  realtime:
+    image: supabase/realtime:v2.129.9
+    <<: [*restart, *logging]
+    cap_drop: [ALL]
+    # Its entrypoint drops itself to `nobody` with sudo before running the
+    # migrator, so it needs the three capabilities that costs. Dropping
+    # everything put it in a crash loop whose only symptom was
+    # "error initializing audit plugin sudoers_audit" — which does not sound
+    # like a missing capability at all.
+    cap_add: [SETUID, SETGID, AUDIT_WRITE, DAC_OVERRIDE]
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      PORT: "4000"
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: supabase_admin
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?}
+      DB_NAME: postgres
+      DB_AFTER_CONNECT_QUERY: "SET search_path TO _realtime"
+      DB_ENC_KEY: ${REALTIME_ENC_KEY:?}
+      API_JWT_SECRET: ${JWT_SECRET:?}
+      # Required since 2.129 and unset in most published examples, which is a
+      # crash at boot rather than a missing metrics endpoint. Its own secret,
+      # not the API one: the metrics endpoint is not exposed here at all, and a
+      # secret that guards nothing should still not be the secret that guards
+      # every session in the product.
+      METRICS_JWT_SECRET: ${REALTIME_METRICS_SECRET:?}
+      SECRET_KEY_BASE: ${REALTIME_SECRET_KEY_BASE:?}
+      ERL_AFLAGS: -proto_dist inet_tcp
+      DNS_NODES: "''"
+      RLIMIT_NOFILE: "10000"
+      APP_NAME: realtime
+      SEED_SELF_HOST: "true"
+      RUN_JANITOR: "true"
+    networks: [internal]
+
+  # ── Storage, for KYC documents ─────────────────────────────────────────────
+  storage:
+    image: supabase/storage-api:v1.71.0
+    <<: [*restart, *logging]
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      db: { condition: service_healthy }
+      rest: { condition: service_started }
+    environment:
+      ANON_KEY: ${ANON_KEY:?}
+      SERVICE_KEY: ${SERVICE_ROLE_KEY:?}
+      POSTGREST_URL: http://rest:3000
+      PGRST_JWT_SECRET: ${JWT_SECRET:?}
+      DATABASE_URL: postgres://supabase_storage_admin:${POSTGRES_PASSWORD}@db:5432/postgres
+      FILE_SIZE_LIMIT: "10485760"      # 10 MB — a phone photo of a passport
+      STORAGE_BACKEND: file
+      FILE_STORAGE_BACKEND_PATH: /var/lib/storage
+      TENANT_ID: asaex
+      REGION: local
+      GLOBAL_S3_BUCKET: asaex
+      ENABLE_IMAGE_TRANSFORMATION: "false"
+    volumes:
+      - storage-data:/var/lib/storage
+    networks: [internal]
+
+  # ── The database console, reachable only through an SSH tunnel ─────────────
+  #
+  # Studio can read and write everything. It is on the internal network with no
+  # published port and no route in the Caddyfile, so the only way to open it is
+  # to forward a port over SSH from a machine that already holds the server's
+  # key. That is a deliberate trade: slightly less convenient than a login page,
+  # and it removes an entire class of "the admin console was on the internet".
+  studio:
+    image: supabase/studio:2026.08.24-sha-8ec45b2
+    <<: [*restart, *logging]
+    profiles: [console]
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      STUDIO_PG_META_URL: http://meta:8080
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      SUPABASE_URL: http://caddy
+      SUPABASE_PUBLIC_URL: https://${DOMAIN}
+      SUPABASE_ANON_KEY: ${ANON_KEY:?}
+      SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY:?}
+      AUTH_JWT_SECRET: ${JWT_SECRET:?}
+      DEFAULT_ORGANIZATION_NAME: Asaex
+      DEFAULT_PROJECT_NAME: Asaex
+    ports:
+      # Bound to loopback, not 0.0.0.0. `ssh -L 3001:localhost:3001` is the
+      # only way in from another machine.
+      - "127.0.0.1:3001:3000"
+    networks: [internal]
+
+  meta:
+    image: supabase/postgres-meta:v0.98.0
+    <<: [*restart, *hardened, *logging]
+    profiles: [console]
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      PG_META_PORT: "8080"
+      PG_META_DB_HOST: db
+      PG_META_DB_PORT: "5432"
+      PG_META_DB_NAME: postgres
+      PG_META_DB_USER: supabase_admin
+      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD:?}
+    networks: [internal]
+
+networks:
+  # Two networks, so that a container which has no business being reachable
+  # from the proxy is not on the same segment as the proxy.
+  edge:
+  internal:
+    internal: true
+
+volumes:
+  db-data:
+  storage-data:
+  caddy-data:
+  caddy-config:
