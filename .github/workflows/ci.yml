@@ -28,6 +28,10 @@ jobs:
         run: pnpm messages
       - name: Version in step with package.json
         run: node scripts/check-version.mjs
+      # A lucide icon handed to a client component is a runtime 500 that both
+      # tsc and `next build` are perfectly happy with. Three times now.
+      - name: No component functions cross the client boundary
+        run: pnpm boundary
       - run: pnpm build
       - name: Performance budget (§20)
         run: pnpm budget

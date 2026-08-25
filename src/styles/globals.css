@@ -364,3 +364,34 @@ html[lang="fa"] {
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * A console takes the width; the shop keeps a reading measure.
+ *
+ * The shared `<main>` is capped at 72rem, which is right for a page somebody
+ * reads and wrong for one they work in — an admin table at that width wraps
+ * while half the screen sits empty. The staff shells mark themselves with
+ * `data-panel`, and `:has()` lets the ancestor respond without the server
+ * layout needing to know which route it is rendering.
+ */
+main:has([data-panel]) {
+  max-width: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-inline: 0;
+}
+
+/*
+ * The panel's own scroll container.
+ *
+ * `100dvh` rather than `vh`: on iOS the address bar is part of `vh`, so a
+ * sidebar sized against it is always a little taller than the screen and the
+ * last nav item hides under the browser chrome.
+ */
+@utility panel-rail {
+  position: sticky;
+  top: 3.5rem;
+  max-height: calc(100dvh - 3.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}

@@ -9,6 +9,7 @@ import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Link, usePathname } from "@/i18n/navigation";
+import { isPanelRoute } from "@/lib/panel-routes";
 import { cn } from "@/lib/utils";
 
 /**
@@ -37,6 +38,11 @@ export function Header({
   const tMenu = useTranslations("menu");
   const pathname = usePathname();
   const { setOpen } = useAppMenu();
+
+  // A staff panel gets `PanelTopBar` instead. Six links to buy currency across
+  // the top of a management console is the shop's furniture in somebody else's
+  // room.
+  if (isPanelRoute(pathname)) return null;
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink-300/40 bg-canvas/85 backdrop-blur-md">

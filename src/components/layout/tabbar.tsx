@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import * as React from "react";
 import { useAppMenu } from "@/components/layout/app-menu";
 import { Link, usePathname } from "@/i18n/navigation";
+import { isPanelRoute } from "@/lib/panel-routes";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,17 +21,13 @@ import { cn } from "@/lib/utils";
  * the twenty-odd destinations that previously existed only in a footer nobody
  * scrolled to.
  */
-const STAFF_PREFIXES = ["/office", "/admin"];
-
 export function TabBar() {
   const t = useTranslations("nav");
   const tMenu = useTranslations("menu");
   const pathname = usePathname();
   const { open, setOpen } = useAppMenu();
 
-  if (STAFF_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))) {
-    return null;
-  }
+  if (isPanelRoute(pathname)) return null;
 
   const side = [
     { href: "/", key: "home", icon: House },

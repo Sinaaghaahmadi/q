@@ -2101,7 +2101,49 @@
       "allEntities": "كلّ الكيانات",
       "empty": "لم يُعثَر على سجلّات.",
       "before": "قبل",
-      "after": "بعد"
+      "after": "بعد",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "مكتب صرافة",
+        "office_accounts": "حساب المكتب",
+        "office_account": "حساب المكتب",
+        "office_rate_config": "مسارات المكتب",
+        "settings": "إعدادات المنصّة",
+        "feature_flags": "مفاتيح الميزات",
+        "memberships": "صلاحيات المستخدمين",
+        "cms_content": "محتوى الموقع",
+        "profiles": "سجلّ العميل",
+        "orders": "طلب",
+        "kyc_submissions": "ملفّ التحقّق من الهوية",
+        "settlement_accounts": "حساب التسوية",
+        "coin_orders": "طلب مسكوكات",
+        "support_tickets": "تذكرة دعم",
+        "p2p_offers": "عرض في سوق الأفراد",
+        "p2p_trades": "صفقة في سوق الأفراد",
+        "rate_sources": "مصادر الأسعار",
+        "office": "مكتب صرافة",
+        "order": "طلب",
+        "p2p": "سوق الأفراد"
+      },
+      "verb": {
+        "insert": "أُنشئ",
+        "update": "عُدِّل",
+        "delete": "حُذف",
+        "retire": "أُحيل للتقاعد",
+        "provision": "أُنشئ",
+        "publish": "نُشر"
+      },
+      "named": {
+        "office_provision": "أُنشئ مكتب صرافة جديد",
+        "office_kyc": "روجعت هويّة مكتب صرافة",
+        "office_status": "تغيّرت حالة مكتب صرافة",
+        "order_force_transition": "غُيّرت حالة طلب يدوياً",
+        "impersonation_start": "بدأ العمل نيابةً عن مكتب صرافة",
+        "impersonation_end": "انتهى العمل نيابةً عن مكتب صرافة",
+        "p2p_offer_publish": "نُشر عرض في سوق الأفراد",
+        "p2p_trade_take": "أُخذت صفقة في سوق الأفراد",
+        "kyc_decision": "صدر قرار في ملفّ تحقّق من الهوية"
+      }
     },
     "settings": {
       "metaTitle": "إعدادات المنصّة",
@@ -2341,7 +2383,9 @@
         "settled": "الطلبات المكتملة هذا الشهر",
         "fees": "إيراد عمولات المنصّة هذا الشهر",
         "inFlight": "طلبات قيد التنفيذ",
-        "atRisk": "معرّضة لتجاوز الالتزام الزمني"
+        "atRisk": "معرّضة لتجاوز الالتزام الزمني",
+        "atRiskOf": "{counted} بقي لها أقلّ من 24 ساعة",
+        "noDeadlines": "لا مهلة مسجّلة على أيّ طلب مفتوح"
       },
       "hint": {
         "inFlight": "مفتوحة الآن وثمّة من ينتظرها.",
@@ -2368,7 +2412,10 @@
       "hours": "{value} س",
       "minutes": "{value} د",
       "noData": "—",
-      "noOrders": "لا شيء"
+      "noOrders": "لا شيء",
+      "corridorOnly": "جاء كلّ الحجم المسوّى من مسار واحد: <corridor></corridor>، بمجموع <amount></amount> تومان.",
+      "noComparison": "لا يوجد رقم من الشهر الماضي للمقارنة.",
+      "kpiLabel": "المؤشّرات الرئيسية"
     },
     "compliance": {
       "metaTitle": "الالتزام",
@@ -2805,6 +2852,18 @@
       "frozenSince": "مجمَّد منذ {date}",
       "frozenReasonLabel": "السبب المسجَّل",
       "notFrozen": "هذا الحساب مفتوح."
+    },
+    "attention": {
+      "title": "ما ينتظرك",
+      "allClear": "لا يوجد ما ينتظرك.",
+      "item": {
+        "atRisk": "طلبات قاربت مهلتها",
+        "disputes": "طلبات قيد النزاع",
+        "kyc": "ملفّات هوية بانتظار المراجعة",
+        "tickets": "تذاكر مفتوحة",
+        "coins": "طلبات مسكوكات بانتظار التأكيد",
+        "offices": "مكاتب لم تُفعّل بعد"
+      }
     }
   },
   "design": {
@@ -2975,5 +3034,13 @@
         "ordersEmpty": "لا طلبات"
       }
     }
+  },
+  "panel": {
+    "name": {
+      "admin": "لوحة الإدارة",
+      "office": "لوحة الصرافة"
+    },
+    "viewSite": "عرض الموقع",
+    "signOut": "تسجيل الخروج"
   }
 }

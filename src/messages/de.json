@@ -2101,7 +2101,49 @@
       "allEntities": "Alle Objekte",
       "empty": "Keine Einträge gefunden.",
       "before": "Vorher",
-      "after": "Nachher"
+      "after": "Nachher",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "Wechselstube",
+        "office_accounts": "Konto der Wechselstube",
+        "office_account": "Konto der Wechselstube",
+        "office_rate_config": "Strecken der Wechselstube",
+        "settings": "Plattform-Einstellungen",
+        "feature_flags": "Funktionsschalter",
+        "memberships": "Benutzerzugriff",
+        "cms_content": "Website-Inhalt",
+        "profiles": "Kundenakte",
+        "orders": "Auftrag",
+        "kyc_submissions": "Identitätsunterlagen",
+        "settlement_accounts": "Abwicklungskonto",
+        "coin_orders": "Münzauftrag",
+        "support_tickets": "Support-Ticket",
+        "p2p_offers": "Angebot unter Privatpersonen",
+        "p2p_trades": "Handel unter Privatpersonen",
+        "rate_sources": "Kursquellen",
+        "office": "Wechselstube",
+        "order": "Auftrag",
+        "p2p": "Markt unter Privatpersonen"
+      },
+      "verb": {
+        "insert": "angelegt",
+        "update": "geändert",
+        "delete": "entfernt",
+        "retire": "stillgelegt",
+        "provision": "angelegt",
+        "publish": "veröffentlicht"
+      },
+      "named": {
+        "office_provision": "Eine neue Wechselstube wurde angelegt",
+        "office_kyc": "Die Identität einer Wechselstube wurde geprüft",
+        "office_status": "Der Status einer Wechselstube hat sich geändert",
+        "order_force_transition": "Der Zustand eines Auftrags wurde von Hand geändert",
+        "impersonation_start": "Das Handeln im Namen einer Wechselstube hat begonnen",
+        "impersonation_end": "Das Handeln im Namen einer Wechselstube ist beendet",
+        "p2p_offer_publish": "Ein Angebot wurde auf dem Markt unter Privatpersonen veröffentlicht",
+        "p2p_trade_take": "Ein Handel unter Privatpersonen wurde angenommen",
+        "kyc_decision": "Über Identitätsunterlagen wurde entschieden"
+      }
     },
     "settings": {
       "metaTitle": "Plattform-Einstellungen",
@@ -2341,7 +2383,9 @@
         "settled": "Abgeschlossene Aufträge diesen Monat",
         "fees": "Provisionserlöse der Plattform diesen Monat",
         "inFlight": "Aufträge in Arbeit",
-        "atRisk": "Frist gefährdet"
+        "atRisk": "Frist gefährdet",
+        "atRiskOf": "{counted} mit weniger als 24 Stunden Frist",
+        "noDeadlines": "Auf keinem offenen Auftrag ist eine Frist vermerkt"
       },
       "hint": {
         "inFlight": "Gerade offen, jemand wartet darauf.",
@@ -2368,7 +2412,10 @@
       "hours": "{value} Std.",
       "minutes": "{value} Min.",
       "noData": "—",
-      "noOrders": "Keine"
+      "noOrders": "Keine",
+      "corridorOnly": "Das gesamte abgewickelte Volumen lief über eine Strecke: <corridor></corridor>, insgesamt <amount></amount> Toman.",
+      "noComparison": "Keine Zahl aus dem Vormonat zum Vergleich.",
+      "kpiLabel": "Kennzahlen"
     },
     "compliance": {
       "metaTitle": "Compliance",
@@ -2805,6 +2852,18 @@
       "frozenSince": "Eingefroren seit {date}",
       "frozenReasonLabel": "Erfasster Grund",
       "notFrozen": "Dieses Konto ist offen."
+    },
+    "attention": {
+      "title": "Wartet auf Sie",
+      "allClear": "Keine Warteschlange wartet auf Sie.",
+      "item": {
+        "atRisk": "Aufträge kurz vor der Frist",
+        "disputes": "Aufträge im Streitfall",
+        "kyc": "Identitätsunterlagen zur Prüfung",
+        "tickets": "offene Tickets",
+        "coins": "Münzanfragen zu bestätigen",
+        "offices": "noch nicht aktive Wechselstuben"
+      }
     }
   },
   "design": {
@@ -2975,5 +3034,13 @@
         "ordersEmpty": "Keine Aufträge"
       }
     }
+  },
+  "panel": {
+    "name": {
+      "admin": "Verwaltungskonsole",
+      "office": "Wechselstuben-Bereich"
+    },
+    "viewSite": "Website ansehen",
+    "signOut": "Abmelden"
   }
 }

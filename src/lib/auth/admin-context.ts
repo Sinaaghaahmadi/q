@@ -6,6 +6,15 @@ import type { ExchangeOffice, Impersonation } from "@/lib/supabase/types";
 
 export type AdminContext = {
   userId: string;
+  /**
+   * Who is signed in, for the console's top bar.
+   *
+   * An administrator who also holds an office seat can be in either panel, and
+   * "whose powers am I using right now" is the question behind most mistakes in
+   * a tool that can move other people's money. The session already carries the
+   * profile; not passing it through meant the console could not say.
+   */
+  fullName: string | null;
   seats: Seat[];
   impersonation: Impersonation | null;
   impersonatedOffice: Pick<ExchangeOffice, "id" | "legal_name_fa" | "legal_name_en"> | null;
@@ -41,6 +50,10 @@ export async function getAdminContext(): Promise<AdminContext | null> {
 
   return {
     userId: session.user.id,
+    // The Persian name first: this console is worked in Persian, and a staff
+    // member who filled in only the Latin field should still be named rather
+    // than left blank.
+    fullName: session.profile?.full_name_fa || session.profile?.full_name_latin || null,
     seats: session.memberships as Seat[],
     impersonation: impersonation ?? null,
     impersonatedOffice,

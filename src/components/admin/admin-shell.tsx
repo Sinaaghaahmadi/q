@@ -19,6 +19,7 @@ import { getTranslations } from "next-intl/server";
 import * as React from "react";
 import { versionLabel } from "@/lib/version";
 import { PanelNavLink } from "@/components/layout/panel-nav-link";
+import { PanelTopBar } from "@/components/layout/panel-top-bar";
 import { ImpersonationBanner } from "@/components/admin/impersonation-banner";
 import { can, type Capability, type Seat } from "@/lib/auth/can";
 import type { ExchangeOffice, Impersonation } from "@/lib/supabase/types";
@@ -94,6 +95,7 @@ export async function AdminShell({
   seats,
   impersonation,
   office,
+  who,
   title,
   description,
   actions,
@@ -102,6 +104,8 @@ export async function AdminShell({
   seats: readonly Seat[];
   impersonation?: Impersonation | null;
   office?: Pick<ExchangeOffice, "legal_name_fa" | "legal_name_en"> | null;
+  /** Who is signed in, for the top bar. */
+  who?: { name: string; role?: string } | null;
   title: string;
   description?: string;
   actions?: React.ReactNode;
@@ -115,25 +119,27 @@ export async function AdminShell({
   })).filter((group) => group.items.length > 0);
 
   return (
-    <div className="py-2">
+    <div data-panel className="min-h-dvh bg-canvas">
+      <PanelTopBar panel="admin" who={who?.name ?? t("nav.admin")} role={who?.role} />
+
       {impersonation ? (
-        <div className="mb-5">
+        <div className="mx-auto max-w-[110rem] px-4 pt-4 sm:px-6">
           <ImpersonationBanner session={impersonation} office={office ?? null} />
         </div>
       ) : null}
 
-      <div className="lg:grid lg:grid-cols-[15rem_1fr] lg:gap-8">
-        <nav aria-label={t("navLabel")} className="mb-5 lg:mb-0">
+      <div className="mx-auto max-w-[110rem] px-4 pb-16 sm:px-6 lg:grid lg:grid-cols-[15rem_1fr] lg:gap-8">
+        <nav aria-label={t("navLabel")} className="py-4 lg:panel-rail lg:py-6">
           {/* Below lg the groups flatten into one scrolling strip: a sidebar
               that eats half a phone screen is worse than no grouping at all. */}
           <div className="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
-            <ul className="flex min-w-max gap-1 rounded-2xl bg-ink-300/25 p-1 lg:min-w-0 lg:flex-col lg:gap-4 lg:bg-transparent lg:p-0">
+            <ul className="flex min-w-max gap-1 rounded-2xl bg-ink-300/25 p-1 lg:min-w-0 lg:flex-col lg:gap-5 lg:bg-transparent lg:p-0">
               {groups.map((group) => (
                 <li key={group.key} className="lg:space-y-1">
-                  <p className="hidden px-3 text-xs font-semibold tracking-wide text-ink-600 uppercase lg:block">
+                  <p className="hidden px-3 pb-1 text-[0.6875rem] font-semibold tracking-[0.08em] text-ink-600/80 uppercase lg:block">
                     {t(`group.${group.key}`)}
                   </p>
-                  <ul className="flex gap-1 lg:flex-col">
+                  <ul className="flex gap-1 lg:flex-col lg:gap-0.5">
                     {group.items.map((item) => (
                       <li key={item.href}>
                         <PanelNavLink
@@ -153,24 +159,27 @@ export async function AdminShell({
               ))}
             </ul>
           </div>
+
+          <p
+            className="mt-6 hidden px-3 font-mono text-[0.6875rem] text-ink-600/60 lg:block"
+            dir="ltr"
+          >
+            {versionLabel()}
+          </p>
         </nav>
 
-        <div className="min-w-0 space-y-6">
+        <div className="min-w-0 space-y-6 py-2 lg:py-6">
           <header className="flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
-              {description ? <p className="mt-1 text-sm text-ink-600">{description}</p> : null}
+            <div className="min-w-0">
+              <h1 className="text-xl font-bold tracking-tight sm:text-2xl">{title}</h1>
+              {description ? (
+                <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-600">{description}</p>
+              ) : null}
             </div>
-            {actions}
+            {actions ? <div className="flex shrink-0 items-center gap-2">{actions}</div> : null}
           </header>
 
           {children}
-
-          {/* Which build this panel is. The first question support asks and
-              the last thing a console usually tells you. */}
-          <p className="pt-2 text-end font-mono text-xs text-ink-600/70" dir="ltr">
-            {versionLabel()}
-          </p>
         </div>
       </div>
     </div>

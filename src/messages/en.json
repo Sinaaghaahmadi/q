@@ -1164,7 +1164,49 @@
       "allEntities": "All entities",
       "empty": "No records found.",
       "before": "Before",
-      "after": "After"
+      "after": "After",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "Exchange office",
+        "office_accounts": "Office account",
+        "office_account": "Office account",
+        "office_rate_config": "Office routes",
+        "settings": "Platform settings",
+        "feature_flags": "Feature switches",
+        "memberships": "User access",
+        "cms_content": "Site content",
+        "profiles": "Customer record",
+        "orders": "Order",
+        "kyc_submissions": "Identity submission",
+        "settlement_accounts": "Settlement account",
+        "coin_orders": "Coin order",
+        "support_tickets": "Support ticket",
+        "p2p_offers": "Peer offer",
+        "p2p_trades": "Peer trade",
+        "rate_sources": "Rate sources",
+        "office": "Exchange office",
+        "order": "Order",
+        "p2p": "Peer market"
+      },
+      "verb": {
+        "insert": "created",
+        "update": "changed",
+        "delete": "removed",
+        "retire": "retired",
+        "provision": "created",
+        "publish": "published"
+      },
+      "named": {
+        "office_provision": "A new exchange office was created",
+        "office_kyc": "An office's identity was reviewed",
+        "office_status": "An office's status changed",
+        "order_force_transition": "An order's state was changed by hand",
+        "impersonation_start": "Acting as an office started",
+        "impersonation_end": "Acting as an office ended",
+        "p2p_offer_publish": "An offer was published on the peer market",
+        "p2p_trade_take": "A peer trade was taken",
+        "kyc_decision": "An identity submission was decided"
+      }
     },
     "settings": {
       "metaTitle": "Platform settings",
@@ -1418,7 +1460,9 @@
         "settled": "Completed orders this month",
         "fees": "Platform fee revenue this month",
         "inFlight": "Orders in flight",
-        "atRisk": "At SLA risk"
+        "atRisk": "At SLA risk",
+        "atRiskOf": "{counted} with under 24 hours left",
+        "noDeadlines": "No deadline is recorded on any open order"
       },
       "hint": {
         "inFlight": "Open right now, with someone waiting on it.",
@@ -1445,7 +1489,10 @@
       "hours": "{value} h",
       "minutes": "{value} min",
       "noData": "—",
-      "noOrders": "None"
+      "noOrders": "None",
+      "corridorOnly": "All settled volume came through one route: <corridor></corridor>, <amount></amount> Toman in total.",
+      "noComparison": "No figure from last month to compare against.",
+      "kpiLabel": "Key figures"
     },
     "finance": {
       "metaTitle": "Ledger",
@@ -1746,6 +1793,18 @@
       "content": "The site's text: FAQ, announcements and the SMS and email templates, in both languages.",
       "settings": "Feature switches, platform settings and the business calendar.",
       "audit": "The audit log: every change anyone made, with who and when. Not editable."
+    },
+    "attention": {
+      "title": "Waiting for you",
+      "allClear": "No queue is waiting for you.",
+      "item": {
+        "atRisk": "orders close to their deadline",
+        "disputes": "orders in dispute",
+        "kyc": "identity submissions to review",
+        "tickets": "open tickets",
+        "coins": "coin requests to confirm",
+        "offices": "offices not yet active"
+      }
     }
   },
   "chat": {
@@ -2975,5 +3034,13 @@
       "title": "Open market",
       "body": "The price currencies actually change hands at in free trading, not the central bank's official rate. Every figure in this app is based on it."
     }
+  },
+  "panel": {
+    "name": {
+      "admin": "Admin panel",
+      "office": "Office panel"
+    },
+    "viewSite": "View the site",
+    "signOut": "Sign out"
   }
 }

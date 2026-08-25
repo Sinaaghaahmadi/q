@@ -1,11 +1,25 @@
-import { ShieldAlert } from "lucide-react";
+import {
+  AlertTriangle,
+  Banknote,
+  BadgeCheck,
+  Clock,
+  Coins,
+  Gavel,
+  LifeBuoy,
+  ShieldAlert,
+  TicketCheck,
+  TrendingUp,
+  Wallet,
+} from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { Attention, type AttentionItem } from "@/components/admin/attention";
 import { LiveFeed } from "@/components/admin/live-feed";
+import { MetricTile } from "@/components/admin/metric-tile";
 import { OfficeScorecards, type OfficeScore } from "@/components/admin/office-scorecards";
-import { ReportCards } from "@/components/admin/report-cards";
+
 import { StateBreakdown } from "@/components/admin/state-breakdown";
 import {
   CorridorMix,
@@ -18,6 +32,8 @@ import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
 import { can } from "@/lib/auth/can";
 import { gregorianToJalali, jalaliToGregorian } from "@/lib/date/jalali";
+import { formatAmount, formatDate, formatNumber, type AppLocale } from "@/lib/money/format";
+import { fromMinor } from "@/lib/money/minor";
 import { isTerminal } from "@/lib/orders/flow";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import type {
@@ -91,6 +107,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
   setRequestLocale(locale);
   const t = await getTranslations("admin.dashboard");
   const shell = await getTranslations("admin");
+  const fmt = locale as AppLocale;
 
   if (!isSupabaseConfigured()) {
     return (
@@ -167,6 +184,45 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
     mayAudit
       ? supabase.from("audit_log").select("*").order("created_at", { ascending: false }).limit(12)
       : null,
+  ]);
+
+  /*
+   * The queues, as counts.
+   *
+   * `head: true` with `count: "exact"` asks Postgres for the number and returns
+   * no rows — the panel needs "seven waiting", never the seven. Each is still
+   * filtered by row-level security, so a seat that cannot see a table gets zero
+   * rather than an error, which is the correct reading here: nothing in it is
+   * theirs to act on.
+   */
+  const [kycWaiting, ticketsOpen, officesPending, coinsWaiting] = await Promise.all([
+    supabase
+      .from("kyc_submissions")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "pending")
+      .is("deleted_at", null)
+      .then(({ count }) => count ?? 0),
+    supabase
+      .from("support_tickets")
+      .select("id", { count: "exact", head: true })
+      // `state`, not `status`, and the three that are somebody's to answer:
+      // `waiting_user` is the customer's turn, and counting it here would
+      // report work that is not ours as work we owe.
+      .in("state", ["open", "in_progress", "escalated"])
+      .is("deleted_at", null)
+      .then(({ count }) => count ?? 0),
+    supabase
+      .from("exchange_offices")
+      .select("id", { count: "exact", head: true })
+      .is("deleted_at", null)
+      .neq("status", "active")
+      .then(({ count }) => count ?? 0),
+    supabase
+      .from("coin_orders")
+      .select("id", { count: "exact", head: true })
+      .eq("state", "requested")
+      .is("deleted_at", null)
+      .then(({ count }) => count ?? 0),
   ]);
 
   const orders = (orderRows ?? []) as ReportLeg[];
@@ -353,28 +409,151 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
     })
     .sort((a, b) => b.volumeMinor - a.volumeMinor);
 
+  const disputedOpen = open.filter((order) => order.state === "disputed").length;
+
+  /*
+   * The queues, in the order they should be looked at.
+   *
+   * Deadlines first because somebody is already waiting past a promise;
+   * disputes next because money is frozen while one is open; then the things
+   * that are merely somebody's turn. `Attention` drops every zero and prints
+   * one line when they are all zero, so this list is the full set of what
+   * *could* ask rather than what is asking today.
+   */
+  const attention: AttentionItem[] = [
+    {
+      key: "atRisk",
+      href: "/admin/orders",
+      icon: Clock,
+      count: atRisk?.counted ?? 0,
+      severity: "urgent",
+    },
+    {
+      key: "disputes",
+      href: "/admin/orders",
+      icon: Gavel,
+      count: disputedOpen,
+      severity: "urgent",
+    },
+    { key: "kyc", href: "/admin/kyc", icon: BadgeCheck, count: kycWaiting, severity: "waiting" },
+    {
+      key: "tickets",
+      href: "/admin/tickets",
+      icon: TicketCheck,
+      count: ticketsOpen,
+      severity: "waiting",
+    },
+    { key: "coins", href: "/admin/orders", icon: Coins, count: coinsWaiting, severity: "waiting" },
+    {
+      key: "offices",
+      href: "/admin/exchanges",
+      icon: LifeBuoy,
+      count: officesPending,
+      severity: "info",
+    },
+  ];
+
+  /*
+   * Which powers this person is using, named.
+   *
+   * The strongest platform seat they hold, not the group the sidebar puts them
+   * in — "پلتفرم" told an administrator the name of a menu heading. Ordered
+   * deliberately: somebody holding both superadmin and support is here as a
+   * superadmin, and saying "پشتیبانی" would understate what a mistaken click
+   * can do.
+   */
+  const ROLE_RANK = [
+    "platform_superadmin",
+    "platform_admin",
+    "platform_compliance",
+    "platform_support",
+  ] as const;
+  const strongest = ROLE_RANK.find((role) =>
+    ctx.seats.some((seat) => seat.scope_type === "platform" && seat.role === role),
+  );
+  const seatLabel = strongest ? shell(`security.role.${strongest}`) : undefined;
+
+  const pct = (current: number, previous: number) =>
+    previous > 0 ? ((current - previous) / previous) * 100 : null;
+
+  const tomanOf = (minor: number) => formatAmount(fromMinor(minor, "IRT"), "IRT", fmt);
+  const countOf = (value: number) => formatNumber(value, fmt, { maximumFractionDigits: 0 });
+
+  const monthToDate = t("monthToDate", {
+    month: formatDate(thisMonthStart.toISOString(), fmt, { month: "long" }),
+    days: dayOfMonth,
+  });
+
   return (
     <AdminShell
       seats={ctx.seats}
       impersonation={ctx.impersonation}
       office={ctx.impersonatedOffice}
+      who={{ name: ctx.fullName ?? shell("nav.admin"), role: seatLabel }}
       title={t("title")}
       description={t("subtitle")}
     >
-      <ReportCards
-        volumeMinor={{ current: thisMonth?.volumeMinor ?? 0, previous: previousVolumeMinor }}
-        settled={{ current: thisMonth?.settled ?? 0, previous: previousSettled }}
-        inFlight={open.length}
-        atRisk={atRisk}
-        feesMinor={{ current: feesThisMonth, previous: feesLastMonth }}
-        month={{ start: thisMonthStart.toISOString(), day: dayOfMonth }}
-      />
+      <Attention items={attention} />
 
-      <VolumeChart months={months} />
-      <CorridorMix corridors={corridors} />
+      {/* Four tiles in one row, not five in a ragged three-and-two. The fifth
+          figure — settled count — belongs to volume and rides with it. */}
+      <section aria-label={t("kpiLabel")} className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <MetricTile
+          icon={<TrendingUp className="size-4" aria-hidden />}
+          label={t("card.volume")}
+          value={tomanOf(thisMonth?.volumeMinor ?? 0)}
+          unit={t("toman")}
+          delta={pct(thisMonth?.volumeMinor ?? 0, previousVolumeMinor)}
+          trend={months.map((month) => month.volumeMinor)}
+          hint="openMarket"
+          footnote={monthToDate}
+        />
+        <MetricTile
+          icon={<Wallet className="size-4" aria-hidden />}
+          label={t("card.fees")}
+          value={tomanOf(feesThisMonth)}
+          unit={t("toman")}
+          delta={pct(feesThisMonth, feesLastMonth)}
+          hint="commission"
+          footnote={monthToDate}
+        />
+        <MetricTile
+          icon={<Banknote className="size-4" aria-hidden />}
+          label={t("card.settled")}
+          value={countOf(thisMonth?.settled ?? 0)}
+          delta={pct(thisMonth?.settled ?? 0, previousSettled)}
+          trend={months.map((month) => month.settled)}
+          footnote={monthToDate}
+        />
+        <MetricTile
+          icon={<AlertTriangle className="size-4" aria-hidden />}
+          label={t("card.inFlight")}
+          value={countOf(open.length)}
+          tone={atRisk && atRisk.counted > 0 ? "risk" : "neutral"}
+          hint="sla"
+          footnote={
+            atRisk
+              ? t("card.atRiskOf", { counted: countOf(atRisk.counted) })
+              : t("card.noDeadlines")
+          }
+        />
+      </section>
+
+      {/* Two columns from `xl`: the trend and the mix are read together, and
+          stacking every panel made the console 2,000 pixels tall to say six
+          things. */}
+      <div className="grid items-start gap-4 xl:grid-cols-2">
+        <VolumeChart months={months} />
+        <CorridorMix corridors={corridors} />
+      </div>
+
       <OfficeScorecards scores={scores} />
 
-      <div className={mayAudit ? "grid gap-4 lg:grid-cols-[3fr_2fr]" : "grid gap-4"}>
+      <div
+        className={
+          mayAudit ? "grid items-start gap-4 xl:grid-cols-[3fr_2fr]" : "grid items-start gap-4"
+        }
+      >
         <StateBreakdown counts={[...byState.entries()]} total={orders.length} />
         {mayAudit ? <LiveFeed entries={(auditResult?.data ?? []) as AuditLogEntry[]} /> : null}
       </div>

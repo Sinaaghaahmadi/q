@@ -59,7 +59,13 @@ export function PanelNavLink({
           className={cn(
             "pressable flex min-w-0 flex-1 items-center gap-2 rounded-xl text-sm font-medium",
             compact ? "px-3 py-2" : "px-3.5 py-2.5",
-            active ? "bg-surface text-brand-700 shadow-sm" : "text-ink-600 hover:text-ink-900",
+            /* The active row used to be `bg-surface` — white on a white
+               sidebar, which is no marking at all on desktop. It carries the
+               brand tint and a leading rule now, so where you are is legible
+               from the corner of the eye. */
+            active
+              ? "bg-brand-50 font-semibold text-brand-700 shadow-[inset_2px_0_0_var(--brand-600)] rtl:shadow-[inset_-2px_0_0_var(--brand-600)] dark:text-brand-600"
+              : "text-ink-600 hover:bg-ink-300/20 hover:text-ink-900",
           )}
         >
           {children}
@@ -73,10 +79,15 @@ export function PanelNavLink({
           aria-controls={hintId}
           aria-label={`${hintLabel} — ${label}`}
           className={cn(
-            "pressable shrink-0 rounded-lg p-1.5",
+            /* Quiet by default. Fifteen of these at full contrast turned a
+               sidebar into a column of icons; they are still always present
+               and always reachable — a hover-only control does not exist on
+               the phone an operator holds — just no longer competing with the
+               destinations they explain. */
+            "pressable shrink-0 rounded-lg p-1.5 transition-colors",
             open
               ? "bg-brand-50 text-brand-700 dark:text-brand-600"
-              : "text-ink-600 hover:text-ink-900",
+              : "text-ink-300 hover:bg-ink-300/20 hover:text-ink-600",
           )}
         >
           <Info className="size-3.5" aria-hidden />

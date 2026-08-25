@@ -10,7 +10,7 @@ export type MonthBar = { start: string; volumeMinor: number; settled: number };
 export type CorridorSlice = { corridor: string; volumeMinor: number };
 
 const W = 560;
-const H = 170;
+const H = 128;
 const PAD_Y = 12;
 
 /**
@@ -78,8 +78,7 @@ export function VolumeChart({ months }: { months: MonthBar[] }) {
                 y1={PAD_Y + (H - PAD_Y * 2) * f}
                 y2={PAD_Y + (H - PAD_Y * 2) * f}
                 stroke="var(--ink-300)"
-                strokeOpacity="0.35"
-                strokeDasharray="2 5"
+                strokeOpacity="0.5"
               />
             ))}
             {months.map((month, index) => {
@@ -95,8 +94,21 @@ export function VolumeChart({ months }: { months: MonthBar[] }) {
                   width={width}
                   height={height}
                   rx="4"
+                  /* The month in progress is the faded one, and it is worth
+                     saying why because the obvious instinct is the opposite.
+                     Emphasis normally highlights "now" — but this bar is not
+                     comparable to the eleven beside it: it is three days of
+                     trading against eleven finished months. Drawn at full
+                     strength it reads as a collapse in volume, every month,
+                     on the second of the month. Fading it marks it as
+                     provisional, which is what it is.
+                     
+                     An earlier revision inverted this and made the current
+                     month the accent. On a board whose only settled month was
+                     Mordad, that de-emphasised the single bar carrying data
+                     and highlighted an empty one. */
                   fill="var(--brand-600)"
-                  fillOpacity={index === months.length - 1 ? "0.45" : "0.85"}
+                  fillOpacity={index === months.length - 1 ? "0.35" : "0.85"}
                 />
               );
             })}
@@ -147,6 +159,24 @@ export function CorridorMix({ corridors }: { corridors: CorridorSlice[] }) {
       <CardContent className="space-y-2.5">
         {total === 0 ? (
           <p className="text-sm text-ink-600">{t("noVolume")}</p>
+        ) : corridors.length === 1 && corridors[0] ? (
+          /* One corridor is not a mix, and a bar filled to 100% is the
+             one-bar bar chart — chart furniture around a fact that fits in a
+             sentence. It says the fact instead. */
+          <p className="text-sm leading-relaxed">
+            {t.rich("corridorOnly", {
+              corridor: () => (
+                <span className="font-mono font-semibold" dir="ltr">
+                  {corridors[0]?.corridor}
+                </span>
+              ),
+              amount: () => (
+                <span className="num font-semibold">
+                  {formatAmount(fromMinor(corridors[0]?.volumeMinor ?? 0, "IRT"), "IRT", locale)}
+                </span>
+              ),
+            })}
+          </p>
         ) : (
           <>
             {corridors.map((slice) => (

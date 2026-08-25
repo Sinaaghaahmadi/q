@@ -2101,7 +2101,49 @@
       "allEntities": "Toutes les entités",
       "empty": "Aucun enregistrement trouvé.",
       "before": "Avant",
-      "after": "Après"
+      "after": "Après",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "Bureau de change",
+        "office_accounts": "Compte du bureau",
+        "office_account": "Compte du bureau",
+        "office_rate_config": "Corridors du bureau",
+        "settings": "Paramètres de la plateforme",
+        "feature_flags": "Interrupteurs de fonctionnalités",
+        "memberships": "Accès des utilisateurs",
+        "cms_content": "Contenu du site",
+        "profiles": "Fiche client",
+        "orders": "Commande",
+        "kyc_submissions": "Dossier d'identité",
+        "settlement_accounts": "Compte de règlement",
+        "coin_orders": "Commande de pièces",
+        "support_tickets": "Ticket d'assistance",
+        "p2p_offers": "Offre entre particuliers",
+        "p2p_trades": "Échange entre particuliers",
+        "rate_sources": "Sources de taux",
+        "office": "Bureau de change",
+        "order": "Commande",
+        "p2p": "Marché entre particuliers"
+      },
+      "verb": {
+        "insert": "créé",
+        "update": "modifié",
+        "delete": "supprimé",
+        "retire": "retiré",
+        "provision": "créé",
+        "publish": "publié"
+      },
+      "named": {
+        "office_provision": "Un nouveau bureau de change a été créé",
+        "office_kyc": "L'identité d'un bureau a été examinée",
+        "office_status": "Le statut d'un bureau a changé",
+        "order_force_transition": "L'état d'une commande a été modifié à la main",
+        "impersonation_start": "Agir au nom d'un bureau a commencé",
+        "impersonation_end": "Agir au nom d'un bureau a pris fin",
+        "p2p_offer_publish": "Une offre a été publiée sur le marché entre particuliers",
+        "p2p_trade_take": "Un échange entre particuliers a été pris",
+        "kyc_decision": "Une décision a été rendue sur un dossier d'identité"
+      }
     },
     "settings": {
       "metaTitle": "Réglages de la plateforme",
@@ -2341,7 +2383,9 @@
         "settled": "Commandes abouties ce mois-ci",
         "fees": "Revenus de commission de la plateforme ce mois-ci",
         "inFlight": "Commandes en cours",
-        "atRisk": "Échéance menacée"
+        "atRisk": "Échéance menacée",
+        "atRiskOf": "{counted} à moins de 24 heures de l'échéance",
+        "noDeadlines": "Aucune échéance enregistrée sur une commande ouverte"
       },
       "hint": {
         "inFlight": "Ouvertes en ce moment, avec quelqu'un qui attend.",
@@ -2368,7 +2412,10 @@
       "hours": "{value} h",
       "minutes": "{value} min",
       "noData": "—",
-      "noOrders": "Aucune"
+      "noOrders": "Aucune",
+      "corridorOnly": "Tout le volume réglé est passé par un seul corridor : <corridor></corridor>, soit <amount></amount> tomans au total.",
+      "noComparison": "Aucun chiffre du mois dernier pour comparer.",
+      "kpiLabel": "Chiffres clés"
     },
     "compliance": {
       "metaTitle": "Conformité",
@@ -2805,6 +2852,18 @@
       "frozenSince": "Gelé depuis le {date}",
       "frozenReasonLabel": "Motif consigné",
       "notFrozen": "Ce compte est ouvert."
+    },
+    "attention": {
+      "title": "En attente de vous",
+      "allClear": "Aucune file ne vous attend.",
+      "item": {
+        "atRisk": "commandes proches de leur échéance",
+        "disputes": "commandes en litige",
+        "kyc": "dossiers d'identité à examiner",
+        "tickets": "tickets ouverts",
+        "coins": "demandes de pièces à confirmer",
+        "offices": "bureaux pas encore actifs"
+      }
     }
   },
   "design": {
@@ -2975,5 +3034,13 @@
         "ordersEmpty": "Aucune commande"
       }
     }
+  },
+  "panel": {
+    "name": {
+      "admin": "Console d'administration",
+      "office": "Panneau du bureau"
+    },
+    "viewSite": "Voir le site",
+    "signOut": "Se déconnecter"
   }
 }

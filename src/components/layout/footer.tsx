@@ -4,7 +4,8 @@ import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 import { useAppMenu } from "@/components/layout/app-menu";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
+import { isPanelRoute } from "@/lib/panel-routes";
 import { versionLabel } from "@/lib/version";
 
 /**
@@ -21,6 +22,11 @@ export function Footer() {
   const tMenu = useTranslations("menu");
   const tLegal = useTranslations("legal.titles");
   const { setOpen } = useAppMenu();
+  const pathname = usePathname();
+
+  // Not on a panel. A console ends where its content ends; a marketing footer
+  // under it is one more thing to scroll past on every screen.
+  if (isPanelRoute(pathname)) return null;
 
   return (
     <footer className="mt-14 border-t border-ink-300/40 bg-surface pb-24 md:pb-0">
