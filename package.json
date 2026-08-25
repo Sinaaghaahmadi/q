@@ -5,6 +5,7 @@
   "description": "Asameet — بستر هوشمند گفت‌وگو | Intelligent conversation platform (Telegram + Google Meet)",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/prepare-assets.mjs",
     "build": "next build",
     "start": "next start",
     "icons": "node scripts/generate-icons.mjs",
