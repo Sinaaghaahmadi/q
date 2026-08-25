@@ -89,10 +89,49 @@ blocks what, not by effort. Everything unticked is deliberately unticked — see
 unsticking an order, acting as an office, P2P limits, seeding demo data, key
 rotation and deployment.
 
+## Moving to the server
+
+The deployment is built and proved: `docs/deploy-architecture.md` says what
+runs where, `docs/deploy-runbook-fa.md` is the step-by-step for the owner, and
+`deploy/` holds the compose file and ten scripts, all shellcheck-clean and
+parsed in CI.
+
+- [ ] **Run `deploy/scripts/preflight.sh` on the new server before anything
+      else.** It changes nothing and answers the questions that cannot be
+      answered from anywhere but that machine — above all _which container
+      registry responds_, since Docker Hub refuses Iranian addresses and a
+      build that discovers this half way leaves the machine part-configured.
+- [ ] **Point the domain at the server and wait for `dig` to agree** before the
+      first deploy. Let's Encrypt issues a certificate by reaching the name; a
+      deploy run early fails at the certificate step and Caddy then backs off.
+- [ ] **Fill in `DOMAIN`, `ACME_EMAIL` and `KAVENEGAR_API_KEY`** in
+      `deploy/.env`, and keep a copy of that file somewhere off the machine.
+      Losing it means no session and no backup can be opened again.
+- [ ] **Migrate the data with `deploy/scripts/migrate-from-supabase.sh` and
+      check the two counts match.** KYC document _files_ are not copied by it —
+      only the rows pointing at them. Copy the bucket separately or accept that
+      old documents 404 until re-uploaded.
+- [ ] **Install an SSH key and re-run `harden.sh`.** It refuses to close
+      password logins until a key exists, so the first run leaves that door
+      open on purpose. Confirm the key works in a _second_ terminal before
+      closing the first.
+- [ ] **Copy a backup off the machine.** They are encrypted and verified
+      nightly, and they sit on the same disk as the database they protect.
+- [ ] **Set an external uptime check** on `https://<domain>/api/live`. The
+      built-in watchdog runs on the server and so cannot report the server
+      being down.
+
 ## Supabase auth settings, before offices are provisioned
 
-- [ ] **Turn on the phone provider** (Authentication → Providers → Phone) with the
-      Kavenegar credentials. Office logins are keyed to a phone number: the
+- [x] **The phone provider is on in the self-hosted stack.** This was the item
+      the hosted project could never satisfy — verified there as
+      `phone_provider_disabled`. The compose file sets
+      `GOTRUE_EXTERNAL_PHONE_ENABLED=true` and points GoTrue's SMS at
+      Kavenegar, and the running stack reports `external.phone: true`. It still
+      needs a real API key in `deploy/.env` before a message actually leaves.
+- [ ] ~~Turn on the phone provider in the hosted dashboard~~ — superseded by
+      the move to the server. Kept because it explains why office invitations
+      could not be taken up before: Office logins are keyed to a phone number: the
       invitation flow texts credentials to a destination number and the office
       signs in with that number the first time. Until the provider is on,
       `signInWithOtp({ phone })` fails and a provisioned office cannot take up

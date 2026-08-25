@@ -51,7 +51,7 @@ if [[ "$cores" != '?' && "$cores" -ge 4 ]]; then good "CPU: $cores cores"
 else note "CPU: $cores cores (4 recommended)"; fi
 
 if awk -v m="$mem_gb" 'BEGIN{exit !(m+0 >= 15)}'; then good "RAM: ${mem_gb} GB"
-else note "RAM: ${mem_gb} GB (16 recommended — the stack needs about 7 GB)"; fi
+else note "RAM: ${mem_gb} GB (16 recommended; measured ~0.6 GB idle, ~6 GB loaded, and the build is the peak)"; fi
 
 if [[ "$disk_gb" != '?' && "$disk_gb" -ge 60 ]]; then good "Disk free: ${disk_gb} GB"
 else note "Disk free: ${disk_gb} GB (100 recommended)"; fi

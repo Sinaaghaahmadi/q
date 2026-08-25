@@ -81,12 +81,30 @@ that check the caller's role themselves (`docs/decisions/0010`).
 
 ## Deploying
 
-`pnpm build` is all a host needs — it restores the webfonts, then runs
-`next build`. `.env.production` carries the publishable Supabase URL and key so
-a fresh deploy comes up wired to the database; real environment variables
-override it. See `docs/runbook.md` for the Vercel specifics, including the one
-prerequisite: the Vercel GitHub App has to be installed on the account before a
-repository can be linked.
+Two targets, and they are not alternatives — the second replaces the first.
+
+**A managed host** (what the preview runs on). `pnpm build` is all it needs; it
+restores the webfonts, then runs `next build`. `.env.production` carries the
+publishable Supabase URL and key so a fresh deploy comes up wired to the
+database. `docs/runbook.md` has the Vercel specifics.
+
+**One machine, everything on it** — `deploy/`. Nine containers: the app,
+Postgres, and the four Supabase services the browser talks to, behind Caddy.
+Self-hosted rather than managed because eighty components in this app call
+Supabase straight from the browser, and a customer in Iran cannot reach Paris
+to sign in. Start with `deploy/scripts/preflight.sh` on the target machine; it
+changes nothing and reports what that machine can actually do.
+
+    deploy/scripts/preflight.sh     what this server can reach — run first
+    deploy/scripts/bootstrap.sh     packages, docker, secrets, hardening, timers
+    deploy/scripts/deploy.sh        build, migrate in order, start, verify, roll back
+    deploy/scripts/backup.sh        encrypted, verified, pruned with a floor
+    deploy/scripts/restore.sh       --list, --drill, or the real thing
+    deploy/scripts/harden.sh        firewall, ssh, fail2ban, kernel, swap
+
+`docs/deploy-architecture.md` is what runs where and why;
+`docs/deploy-runbook-fa.md` is the same thing in Persian, written for an owner
+with no technical background.
 
 ## Docs
 
@@ -94,4 +112,7 @@ repository can be linked.
 - `docs/integrations/tgju.md` — verified endpoints, symbols, failure modes
 - `docs/brand.md` — the brand system as built (+ `/public/brand`)
 - `docs/runbook.md` — operations
+- `docs/deploy-architecture.md` — the self-hosted stack: what runs where, and the trust boundaries
+- `docs/deploy-runbook-fa.md` — راه‌اندازی روی سرور، گام به گام
+- `docs/launch-checklist.md` — what must be true before real money
 - `docs/decisions/` — ADRs

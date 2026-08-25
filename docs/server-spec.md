@@ -61,28 +61,46 @@ worse than no app.
 
 ## Size: 4 vCPU / 16 GB, and why not less
 
-The number that decides this is not the traffic. It is what has to run.
+The number that decides this is not the traffic. It is what has to run — and
+since this was first written, the stack has been built and measured rather than
+estimated.
 
-Today the app leans on managed Supabase for authentication, the REST layer over
-Postgres, realtime, and file storage. On your own server those become the
-self-hosted Supabase stack — around ten containers: Postgres, GoTrue (auth),
-PostgREST, Realtime, Storage, imgproxy, Kong, and the supporting pieces. Next.js
-runs beside them.
+The app leans on Supabase for authentication, the REST layer over Postgres,
+realtime and file storage. Every one of those is called **from the browser**, so
+on your own server they become the self-hosted Supabase stack, on the same
+origin as the site. `deploy/docker-compose.yml` is seven containers running
+(plus two more that are only started for the database console):
 
-| Component                         | Realistic resident memory |
-| --------------------------------- | ------------------------- |
-| Postgres (with useful buffers)    | 3–4 GB                    |
-| PostgREST + GoTrue + Realtime     | 1.5 GB                    |
-| Storage + imgproxy                | 1 GB                      |
-| Kong                              | 0.5 GB                    |
-| Next.js (two workers)             | 1.5–2 GB                  |
-| OS, logs, backups, build headroom | 2 GB                      |
+| Component                     | Measured, idle | Under load |
+| ----------------------------- | -------------- | ---------- |
+| Postgres                      | 120 MB         | 3–4 GB with useful buffers |
+| Realtime                      | 200 MB         | grows per open chat |
+| Storage                       | 115 MB         | + whatever a document upload holds |
+| Next.js                       | 75 MB          | 1–1.5 GB across workers |
+| PostgREST                     | 26 MB          | 200–400 MB under concurrency |
+| Caddy                         | 12 MB          | 100 MB terminating TLS at volume |
+| GoTrue                        | 10 MB          | 100 MB |
+| **Total**                     | **≈ 0.6 GB**   | **≈ 6 GB** |
 
-That is 10–11 GB before a single customer arrives. Supabase's own guidance calls
-4 GB the bare development minimum and 4 vCPU / 16 GB the production figure, and
-that matches the arithmetic above. **8 GB would boot and would be slow** — the
-first symptom is Postgres losing its cache to the container churn, and every
-page in the panels is a database read.
+Idle is far lower than the first estimate in this document — which said 10–11 GB
+and was arithmetic, not measurement. What actually decides the size is two other
+things:
+
+- **Postgres wants memory it is not using yet.** 120 MB idle is a database with
+  no working set. Every panel screen is a database read, and the first symptom
+  of too little memory is Postgres losing its cache and every page getting
+  slower at once.
+- **The build is the peak, not the serving.** `next build` on this app is the
+  hungriest thing that happens on the machine, and it happens on the machine
+  because the browser bundle has the domain compiled into it. That is a spike of
+  a couple of gigabytes on top of everything above, while the site is still
+  serving.
+
+So: **16 GB** is not needed to run the site. It is needed so that a deploy at
+2pm does not slow the site down for the customers using it, and so Postgres has
+room to keep the data it is asked for most. 8 GB would work and would need care
+— build during quiet hours, and watch the database cache. Below 8 GB the build
+is the thing that fails.
 
 Four cores rather than two: Next.js server-rendering is CPU-bound per request,
 and Postgres wants cores of its own for concurrent queries. Two cores means the
