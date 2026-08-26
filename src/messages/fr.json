@@ -432,27 +432,24 @@
     "appearance": "Langue et apparence",
     "version": "Version {version}",
     "group": {
-      "services": "Services",
+      "services": "Autres services",
       "account": "Mon compte",
       "staff": "Panneaux",
       "company": "Aide et contact",
       "legal": "Conditions et politiques"
     },
     "hint": {
-      "rates": "Prix en direct de toutes les devises",
-      "transfer": "Calculer et déposer un transfert",
       "coins": "Acheter des pièces et de l'or",
       "p2p": "Acheter et vendre directement entre particuliers",
-      "orders": "Commandes en cours et passées",
       "track": "Suivre une commande par sa référence, sans se connecter",
-      "profile": "Informations personnelles et sécurité du compte",
       "accounts": "Comptes de destination où l'argent arrive",
       "verify": "Compléter vos pièces d'identité",
       "alerts": "Être prévenu quand un prix atteint votre chiffre",
-      "signin": "Se connecter ou créer un compte",
       "office": "Pour le personnel des bureaux de change",
       "admin": "Pour les administrateurs de la plateforme"
-    }
+    },
+    "more": "Plus",
+    "signedOutNote": "Connectez-vous pour envoyer un transfert et voir vos commandes."
   },
   "glossary": {
     "open": "Ce que cela veut dire : {term}",
@@ -844,11 +841,6 @@
       "otpOn": "Connexion par code à usage unique",
       "totpSoon": "2FA bientôt"
     },
-    "referral": {
-      "title": "Votre code de parrainage",
-      "body": "Partagez-le et recevez une récompense après le premier transfert abouti de votre filleul.",
-      "copied": "Copié"
-    },
     "devices": {
       "title": "Activité de connexion",
       "body": "Les connexions et déconnexions les plus récentes sur votre compte.",
@@ -859,7 +851,6 @@
         "revoked": "Session révoquée"
       }
     },
-    "goAccounts": "Gérer les comptes",
     "signOut": "Se déconnecter",
     "rewards": {
       "tierTitle": "Votre palier",

@@ -78,13 +78,13 @@ export function Header({
             <LocaleSwitcher />
             <ThemeToggle />
           </span>
-          {/* The way into everything that is not one of the five links above.
-              Present at every width — on a phone it is the only nav besides
-              the tab bar, on a desktop it is where the old footer went. */}
+          {/* Everything the tab bar and these five links do not carry. On a
+              phone this is the only other way around; on a desktop it is where
+              the old four-column footer went. */}
           <button
             type="button"
             onClick={() => setOpen(true)}
-            aria-label={tMenu("title")}
+            aria-label={tMenu("more")}
             className="inline-flex size-9 items-center justify-center rounded-lg text-ink-600 transition-colors hover:bg-ink-300/20 hover:text-ink-900"
           >
             <Menu className="size-5" aria-hidden />

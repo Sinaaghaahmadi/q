@@ -403,11 +403,6 @@
       "otpOn": "One-time-code sign-in",
       "totpSoon": "2FA soon"
     },
-    "referral": {
-      "title": "Your referral code",
-      "body": "Share it and earn a reward after your friend's first completed transfer.",
-      "copied": "Copied"
-    },
     "devices": {
       "title": "Sign-in activity",
       "body": "The most recent sign-ins and sign-outs on your account.",
@@ -418,7 +413,6 @@
         "revoked": "Session revoked"
       }
     },
-    "goAccounts": "Manage accounts",
     "signOut": "Sign out",
     "rewards": {
       "tierTitle": "Your tier",
@@ -3044,27 +3038,24 @@
     "appearance": "Language and appearance",
     "version": "Version {version}",
     "group": {
-      "services": "Services",
+      "services": "Other services",
       "account": "My account",
       "staff": "Panels",
       "company": "Help and contact",
       "legal": "Terms and policies"
     },
     "hint": {
-      "rates": "Live prices for every currency",
-      "transfer": "Work out and place a transfer",
       "coins": "Buy gold coins and bullion",
       "p2p": "Buy and sell directly with other people",
-      "orders": "Orders in progress and past ones",
       "track": "Follow an order by reference, without signing in",
-      "profile": "Personal details and account security",
       "accounts": "Destination accounts money arrives in",
       "verify": "Finish your identity documents",
       "alerts": "Be told when a price reaches your number",
-      "signin": "Sign in or create an account",
       "office": "For exchange-office staff",
       "admin": "For platform administrators"
-    }
+    },
+    "more": "More",
+    "signedOutNote": "Sign in to send a transfer and see your orders."
   },
   "glossary": {
     "open": "What this means: {term}",

@@ -1,9 +1,7 @@
 "use client";
 
-import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
-import { useAppMenu } from "@/components/layout/app-menu";
 import { Link, usePathname } from "@/i18n/navigation";
 import { isPanelRoute } from "@/lib/panel-routes";
 import { versionLabel } from "@/lib/version";
@@ -21,7 +19,6 @@ export function Footer() {
   const t = useTranslations("footer");
   const tMenu = useTranslations("menu");
   const tLegal = useTranslations("legal.titles");
-  const { setOpen } = useAppMenu();
   const pathname = usePathname();
 
   // Not on a panel. A console ends where its content ends; a marketing footer
@@ -41,14 +38,6 @@ export function Footer() {
           <Link className="hover:text-ink-900" href="/legal/privacy">
             {tLegal("privacy")}
           </Link>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="inline-flex items-center gap-1.5 hover:text-ink-900"
-          >
-            <Menu className="size-3.5" aria-hidden />
-            {tMenu("title")}
-          </button>
         </nav>
 
         {/* Who wrote it, then which build it is. Both belong at the end of

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftRight, ChartNoAxesCombined, House, Menu, ReceiptText } from "lucide-react";
+import { ArrowLeftRight, ChartNoAxesCombined, CircleUser, House, ReceiptText } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 import { useAppMenu } from "@/components/layout/app-menu";
@@ -9,23 +9,26 @@ import { isPanelRoute } from "@/lib/panel-routes";
 import { cn } from "@/lib/utils";
 
 /**
- * Bottom tab bar: Home · Rates · Transfer (centre) · Orders · Menu.
+ * Bottom tab bar: Home · Rates · Transfer (centre) · Orders · Profile.
  *
  * The customer PWA's chrome, and only the customer's — it used to float over
  * the staff panels too, covering whichever action happened to be at the bottom
  * of the screen.
  *
- * The last slot used to be Profile and is now the menu. Profile has not
- * disappeared; it is the first entry inside, along with accounts, verification
- * and alerts. The trade is one tap on the profile page against a way to reach
- * the twenty-odd destinations that previously existed only in a footer nobody
- * scrolled to.
+ * The last slot was the menu, which is the wrong thing to give a permanent seat
+ * to: five slots are the five places somebody goes, and "a list of places" is
+ * not one of them. It is the profile now — the account, its saved accounts, its
+ * identity and its alerts — and everything that used to be behind that tab is
+ * behind the hamburger in the header, which is where a phone puts the rest.
+ *
+ * Signed out, the same slot says so and leads to sign-in. A tab labelled
+ * "profile" that bounces to a login wall is a tap that lied.
  */
+
 export function TabBar() {
   const t = useTranslations("nav");
-  const tMenu = useTranslations("menu");
   const pathname = usePathname();
-  const { open, setOpen } = useAppMenu();
+  const { signedIn } = useAppMenu();
 
   if (isPanelRoute(pathname)) return null;
 
@@ -33,7 +36,12 @@ export function TabBar() {
     { href: "/", key: "home", icon: House },
     { href: "/rates", key: "rates", icon: ChartNoAxesCombined },
   ] as const;
-  const side2 = [{ href: "/orders", key: "orders", icon: ReceiptText }] as const;
+  const side2 = [
+    { href: "/orders", key: "orders", icon: ReceiptText },
+    signedIn
+      ? ({ href: "/profile", key: "profile", icon: CircleUser } as const)
+      : ({ href: "/signin", key: "signin", icon: CircleUser } as const),
+  ] as const;
 
   const itemClass = (active: boolean) =>
     cn(
@@ -71,15 +79,6 @@ export function TabBar() {
           {side2.map((i) => (
             <Item key={i.href} href={i.href} k={i.key} Icon={i.icon} />
           ))}
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-expanded={open}
-            className={itemClass(open)}
-          >
-            <Menu className="size-5" strokeWidth={open ? 2.4 : 2} />
-            {tMenu("title")}
-          </button>
         </div>
       </div>
     </nav>

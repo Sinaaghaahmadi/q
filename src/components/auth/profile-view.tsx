@@ -1,9 +1,10 @@
 "use client";
 
-import { BadgeCheck, Clock3, Copy, Gift, LogOut, Smartphone } from "lucide-react";
+import { BadgeCheck, Bell, Clock3, LogOut, Smartphone, Wallet } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { SecurityScene } from "@/components/brand/scenes";
+import { NavGroup, NavRow } from "@/components/layout/nav-list";
 import { TwoFactor } from "@/components/auth/two-factor";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,9 +36,10 @@ export function ProfileView({
   isStaff?: boolean;
 }) {
   const t = useTranslations("profile");
+  const tNav = useTranslations("nav");
+  const tMenu = useTranslations("menu");
   const locale = useLocale() as AppLocale;
   const router = useRouter();
-  const [copied, setCopied] = React.useState(false);
 
   const status = profile?.kyc_status ?? "unverified";
 
@@ -80,6 +82,34 @@ export function ProfileView({
         </div>
       </Card>
 
+      {/*
+        The account's own destinations, as the grouped list a phone uses.
+        These three used to sit in the navigation sheet, which put "my saved
+        bank accounts" beside "about us" and "terms of service". They belong to
+        the person, so they live on the person's page — and the sheet is
+        shorter for it.
+      */}
+      <NavGroup title={tMenu("group.account")}>
+        <NavRow
+          href="/accounts"
+          label={tNav("accounts")}
+          hint={tMenu("hint.accounts")}
+          icon={<Wallet className="size-4.5" />}
+        />
+        <NavRow
+          href="/verify"
+          label={tNav("verify")}
+          hint={tMenu("hint.verify")}
+          icon={<BadgeCheck className="size-4.5" />}
+        />
+        <NavRow
+          href="/rates?alerts=1"
+          label={tMenu("alerts")}
+          hint={tMenu("hint.alerts")}
+          icon={<Bell className="size-4.5" />}
+        />
+      </NavGroup>
+
       {/* Security */}
       <Card className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center">
         <SecurityScene size={96} label={t("security.title")} />
@@ -101,33 +131,12 @@ export function ProfileView({
         </div>
       </Card>
 
-      {/* Referral */}
-      {profile?.referral_code ? (
-        <Card className="flex items-center gap-4 p-5">
-          <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:text-brand-600">
-            <Gift className="size-5" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold">{t("referral.title")}</p>
-            <p className="mt-0.5 text-xs leading-relaxed text-ink-600">{t("referral.body")}</p>
-          </div>
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={async () => {
-              await navigator.clipboard.writeText(profile.referral_code ?? "");
-              setCopied(true);
-              setTimeout(() => setCopied(false), 1800);
-            }}
-          >
-            <Copy className="size-4" />
-            <span className="num font-mono" dir="ltr">
-              {copied ? t("referral.copied") : profile.referral_code}
-            </span>
-          </Button>
-        </Card>
-      ) : null}
-
+      {/*
+        The referral card used to live here as well, printing the same code
+        with the same copy button that `TierAndReferral` prints further down.
+        One code, one place: the section that can also show how many invitations
+        have paid out kept it.
+      */}
       {/* Devices */}
       <Card className="p-5">
         <h2 className="text-sm font-semibold">{t("devices.title")}</h2>
@@ -154,15 +163,12 @@ export function ProfileView({
         </ul>
       </Card>
 
-      <div className="flex flex-wrap gap-3">
-        <Button asChild variant="secondary">
-          <Link href="/accounts">{t("goAccounts")}</Link>
-        </Button>
-        <Button variant="ghost" onClick={signOut}>
-          <LogOut className="size-4 rtl:-scale-x-100" />
-          {t("signOut")}
-        </Button>
-      </div>
+      {/* Only the way out. "Manage accounts" was a second door to the row at
+          the top of this page. */}
+      <Button variant="ghost" className="w-full sm:w-auto" onClick={signOut}>
+        <LogOut className="size-4 rtl:-scale-x-100" />
+        {t("signOut")}
+      </Button>
     </div>
   );
 }

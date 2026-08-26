@@ -432,27 +432,24 @@
     "appearance": "Sprache und Darstellung",
     "version": "Version {version}",
     "group": {
-      "services": "Leistungen",
+      "services": "Weitere Dienste",
       "account": "Mein Konto",
       "staff": "Bereiche",
       "company": "Hilfe und Kontakt",
       "legal": "Bedingungen und Richtlinien"
     },
     "hint": {
-      "rates": "Live-Kurse aller Währungen",
-      "transfer": "Überweisung berechnen und beauftragen",
       "coins": "Goldmünzen und Barren kaufen",
       "p2p": "Direkt mit anderen kaufen und verkaufen",
-      "orders": "Laufende und frühere Aufträge",
       "track": "Auftrag über die Nummer verfolgen, ohne Anmeldung",
-      "profile": "Persönliche Daten und Kontosicherheit",
       "accounts": "Zielkonten, auf denen das Geld ankommt",
       "verify": "Ausweisunterlagen abschließen",
       "alerts": "Bescheid bekommen, wenn ein Kurs Ihre Zahl erreicht",
-      "signin": "Anmelden oder Konto anlegen",
       "office": "Für Mitarbeitende der Wechselstuben",
       "admin": "Für Plattform-Administratoren"
-    }
+    },
+    "more": "Mehr",
+    "signedOutNote": "Melden Sie sich an, um eine Überweisung zu senden und Ihre Aufträge zu sehen."
   },
   "glossary": {
     "open": "Was das bedeutet: {term}",
@@ -844,11 +841,6 @@
       "otpOn": "Anmeldung mit Einmalcode",
       "totpSoon": "2FA folgt"
     },
-    "referral": {
-      "title": "Ihr Empfehlungscode",
-      "body": "Teilen Sie ihn und erhalten Sie eine Prämie, sobald die erste Überweisung Ihres Kontakts abgeschlossen ist.",
-      "copied": "Kopiert"
-    },
     "devices": {
       "title": "Anmeldeverlauf",
       "body": "Die jüngsten An- und Abmeldungen in Ihrem Konto.",
@@ -859,7 +851,6 @@
         "revoked": "Sitzung widerrufen"
       }
     },
-    "goAccounts": "Konten verwalten",
     "signOut": "Abmelden",
     "rewards": {
       "tierTitle": "Ihre Stufe",
