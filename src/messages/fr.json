@@ -112,6 +112,21 @@
           "body": "Échangez avec le bureau dès l'examen de la demande — avant que quoi que ce soit ne soit définitif."
         }
       }
+    },
+    "services": {
+      "title": "Autres services",
+      "coins": {
+        "title": "Pièces et or",
+        "body": "Achetez pièces et or au cours du jour"
+      },
+      "p2p": {
+        "title": "Marché entre particuliers",
+        "body": "Achat et vente directs entre utilisateurs"
+      },
+      "track": {
+        "title": "Suivre une commande",
+        "body": "Avec une référence, sans se connecter"
+      }
     }
   },
   "currencies": {
@@ -427,21 +442,16 @@
   },
   "menu": {
     "title": "Menu",
-    "track": "Suivre une commande",
     "alerts": "Alertes de prix",
     "appearance": "Langue et apparence",
     "version": "Version {version}",
     "group": {
-      "services": "Autres services",
       "account": "Mon compte",
       "staff": "Panneaux",
       "company": "Aide et contact",
       "legal": "Conditions et politiques"
     },
     "hint": {
-      "coins": "Acheter des pièces et de l'or",
-      "p2p": "Acheter et vendre directement entre particuliers",
-      "track": "Suivre une commande par sa référence, sans se connecter",
       "accounts": "Comptes de destination où l'argent arrive",
       "verify": "Compléter vos pièces d'identité",
       "alerts": "Être prévenu quand un prix atteint votre chiffre",

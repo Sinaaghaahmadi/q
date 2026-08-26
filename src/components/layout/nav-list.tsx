@@ -2,6 +2,7 @@
 
 import { ChevronLeft } from "lucide-react";
 import * as React from "react";
+import { AppTile, type TileHue } from "@/components/brand/app-tile";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +16,11 @@ import { cn } from "@/lib/utils";
  * of text rather than a thing to press. Here each group is one inset card,
  * hairlines separate the rows inside it, the icon sits in a tinted square, and
  * the chevron points the way the reader travels.
+ *
+ * The icon sits on an `AppTile` — the lit, domed square the 3D coin taught the
+ * rest of the product. A flat stroke in a pale square is legible only once you
+ * have read the label beside it, which is the opposite of what an icon in a
+ * menu is for.
  *
  * Icons arrive rendered (`icon={<Coins className="size-4.5" />}`) rather than
  * as components. Both callers happen to be client components today, but the
@@ -49,7 +55,7 @@ export function NavRow({
   label,
   hint,
   icon,
-  tone = "brand",
+  hue = "brand",
   onClick,
   className,
 }: {
@@ -58,7 +64,8 @@ export function NavRow({
   hint?: string;
   /** Already rendered. */
   icon: React.ReactNode;
-  tone?: "brand" | "neutral" | "danger";
+  /** Which of the seven tile hues carries this row's meaning. */
+  hue?: TileHue;
   onClick?: () => void;
   /** On the `<li>`, so a row can hide at a width where it is a duplicate. */
   className?: string;
@@ -77,19 +84,7 @@ export function NavRow({
           active ? "bg-brand-50/70" : "hover:bg-ink-300/12",
         )}
       >
-        <span
-          className={cn(
-            "flex size-9 shrink-0 items-center justify-center rounded-xl",
-            tone === "danger"
-              ? "bg-down/12 text-down-ink"
-              : tone === "neutral"
-                ? "bg-ink-300/25 text-ink-600"
-                : "bg-brand-50 text-brand-700 dark:text-brand-600",
-          )}
-          aria-hidden
-        >
-          {icon}
-        </span>
+        <AppTile hue={hue}>{icon}</AppTile>
         <span className="min-w-0 flex-1">
           <span
             className={cn(

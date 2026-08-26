@@ -95,18 +95,21 @@ export function ProfileView({
           label={tNav("accounts")}
           hint={tMenu("hint.accounts")}
           icon={<Wallet className="size-4.5" />}
+          hue="brand"
         />
         <NavRow
           href="/verify"
           label={tNav("verify")}
           hint={tMenu("hint.verify")}
           icon={<BadgeCheck className="size-4.5" />}
+          hue="indigo"
         />
         <NavRow
           href="/rates?alerts=1"
           label={tMenu("alerts")}
           hint={tMenu("hint.alerts")}
           icon={<Bell className="size-4.5" />}
+          hue="amber"
         />
       </NavGroup>
 

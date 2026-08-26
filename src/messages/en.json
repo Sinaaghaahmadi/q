@@ -153,6 +153,21 @@
           "body": "Chat with the office from the review stage — before anything is final."
         }
       }
+    },
+    "services": {
+      "title": "Other services",
+      "coins": {
+        "title": "Coins and gold",
+        "body": "Buy coins and gold at today's rate"
+      },
+      "p2p": {
+        "title": "Peer market",
+        "body": "Buy and sell directly between users"
+      },
+      "track": {
+        "title": "Track an order",
+        "body": "With a reference, without signing in"
+      }
     }
   },
   "ratesPage": {
@@ -3033,21 +3048,16 @@
   },
   "menu": {
     "title": "Menu",
-    "track": "Track an order",
     "alerts": "Rate alerts",
     "appearance": "Language and appearance",
     "version": "Version {version}",
     "group": {
-      "services": "Other services",
       "account": "My account",
       "staff": "Panels",
       "company": "Help and contact",
       "legal": "Terms and policies"
     },
     "hint": {
-      "coins": "Buy gold coins and bullion",
-      "p2p": "Buy and sell directly with other people",
-      "track": "Follow an order by reference, without signing in",
       "accounts": "Destination accounts money arrives in",
       "verify": "Finish your identity documents",
       "alerts": "Be told when a price reaches your number",

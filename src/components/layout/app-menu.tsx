@@ -1,21 +1,24 @@
 "use client";
 
 import {
-  Building2,
-  Coins,
   FileText,
-  Handshake,
-  Info,
   LifeBuoy,
+  Lock,
   Mail,
-  Map,
+  MessageSquareWarning,
   Palette,
-  ScrollText,
-  Shield,
+  Percent,
+  Route,
+  ScanSearch,
+  ShieldCheck,
   Sparkles,
+  Store,
+  Timer,
+  Users,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
+import { type TileHue } from "@/components/brand/app-tile";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { NavGroup, NavRow } from "@/components/layout/nav-list";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
@@ -93,9 +96,8 @@ interface Entry {
   href: string;
   label: string;
   icon: React.ReactNode;
+  hue: TileHue;
   hint?: string;
-  /** Extra classes on the row — used to hide a desktop-header duplicate. */
-  className?: string;
 }
 
 function Group({ title, entries }: { title: string; entries: Entry[] }) {
@@ -109,6 +111,7 @@ function Group({ title, entries }: { title: string; entries: Entry[] }) {
           label={entry.label}
           hint={entry.hint}
           icon={entry.icon}
+          hue={entry.hue}
         />
       ))}
     </NavGroup>
@@ -123,38 +126,20 @@ export function AppMenu() {
   const tFooter = useTranslations("footer");
 
   /*
-   * Deliberately not here: rates, transfer, orders and profile. All four are
-   * one thumb-reach away on the tab bar, and a menu that repeats the tab bar
-   * teaches people that the menu is where you go when you cannot find the tab.
+   * Deliberately not here: rates, transfer, orders and profile are tabs, and
+   * coins, the peer market and order tracking are on the home page, under
+   * "خدمات". A menu is for what has nowhere else to live — everything above is
+   * somewhere a thumb already reaches, and repeating it here teaches people
+   * that the menu is where you go when you cannot find the thing.
    */
-  const services: Entry[] = [
-    {
-      href: "/coins",
-      label: t("coins"),
-      icon: <Coins className="size-4.5" />,
-      hint: tMenu("hint.coins"),
-    },
-    {
-      href: "/p2p",
-      label: t("p2p"),
-      icon: <Handshake className="size-4.5" />,
-      hint: tMenu("hint.p2p"),
-    },
-    {
-      href: "/t",
-      label: tMenu("track"),
-      icon: <Map className="size-4.5" />,
-      hint: tMenu("hint.track"),
-    },
-  ];
-
   const staff: Entry[] = [
     ...(officeMember
       ? [
           {
             href: "/office",
             label: t("office"),
-            icon: <Building2 className="size-4.5" />,
+            icon: <Store className="size-4.5" />,
+            hue: "brand" as const,
             hint: tMenu("hint.office"),
           },
         ]
@@ -164,7 +149,8 @@ export function AppMenu() {
           {
             href: "/admin",
             label: t("admin"),
-            icon: <Shield className="size-4.5" />,
+            icon: <ShieldCheck className="size-4.5" />,
+            hue: "indigo" as const,
             hint: tMenu("hint.admin"),
           },
           // The component reference. Useful to whoever is building on this and
@@ -174,23 +160,43 @@ export function AppMenu() {
             href: "/design",
             label: tFooter("designSystem"),
             icon: <Palette className="size-4.5" />,
+            hue: "slate" as const,
           },
         ]
       : []),
   ];
 
   const company: Entry[] = [
-    { href: "/how", label: t("how"), icon: <Sparkles className="size-4.5" /> },
-    { href: "/why", label: t("why"), icon: <Info className="size-4.5" /> },
-    { href: "/about", label: t("about"), icon: <Building2 className="size-4.5" /> },
-    { href: "/contact", label: t("contact"), icon: <Mail className="size-4.5" /> },
-    { href: "/support", label: t("support"), icon: <LifeBuoy className="size-4.5" /> },
+    { href: "/how", label: t("how"), icon: <Route className="size-4.5" />, hue: "teal" },
+    { href: "/why", label: t("why"), icon: <Sparkles className="size-4.5" />, hue: "amber" },
+    { href: "/about", label: t("about"), icon: <Users className="size-4.5" />, hue: "sky" },
+    { href: "/contact", label: t("contact"), icon: <Mail className="size-4.5" />, hue: "sky" },
+    { href: "/support", label: t("support"), icon: <LifeBuoy className="size-4.5" />, hue: "teal" },
   ];
+
+  /*
+   * The legal set, told apart.
+   *
+   * Six identical document icons is a wall of paper, and the two rows people
+   * actually come for — what it costs, and what happens when it goes wrong —
+   * are the hardest to find in it. So each carries the shape of its subject and
+   * a hue that means something: money green, a promise about time amber, a
+   * complaint rose.
+   */
+  const LEGAL_LOOK: Record<(typeof LEGAL_SLUGS)[number], { icon: React.ReactNode; hue: TileHue }> =
+    {
+      terms: { icon: <FileText className="size-4.5" />, hue: "slate" },
+      privacy: { icon: <Lock className="size-4.5" />, hue: "indigo" },
+      aml: { icon: <ScanSearch className="size-4.5" />, hue: "amber" },
+      fees: { icon: <Percent className="size-4.5" />, hue: "brand" },
+      sla: { icon: <Timer className="size-4.5" />, hue: "amber" },
+      complaints: { icon: <MessageSquareWarning className="size-4.5" />, hue: "rose" },
+    };
 
   const legal: Entry[] = LEGAL_SLUGS.map((slug) => ({
     href: `/legal/${slug}`,
     label: tLegal(slug),
-    icon: slug === "fees" ? <ScrollText className="size-4.5" /> : <FileText className="size-4.5" />,
+    ...LEGAL_LOOK[slug],
   }));
 
   return (
@@ -214,7 +220,6 @@ export function AppMenu() {
       }
     >
       <div className="space-y-4 pb-2">
-        <Group title={tMenu("group.services")} entries={services} />
         <Group title={tMenu("group.staff")} entries={staff} />
         <Group title={tMenu("group.company")} entries={company} />
         <Group title={tMenu("group.legal")} entries={legal} />

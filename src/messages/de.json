@@ -112,6 +112,21 @@
           "body": "Sprechen Sie mit der Wechselstube schon ab der Prüfung — bevor irgendetwas endgültig ist."
         }
       }
+    },
+    "services": {
+      "title": "Weitere Dienste",
+      "coins": {
+        "title": "Münzen und Gold",
+        "body": "Münzen und Gold zum Tageskurs kaufen"
+      },
+      "p2p": {
+        "title": "Markt unter Privatpersonen",
+        "body": "Direkt zwischen Nutzenden kaufen und verkaufen"
+      },
+      "track": {
+        "title": "Auftrag verfolgen",
+        "body": "Mit einer Referenz, ohne Anmeldung"
+      }
     }
   },
   "currencies": {
@@ -427,21 +442,16 @@
   },
   "menu": {
     "title": "Menü",
-    "track": "Auftrag verfolgen",
     "alerts": "Kurswarnungen",
     "appearance": "Sprache und Darstellung",
     "version": "Version {version}",
     "group": {
-      "services": "Weitere Dienste",
       "account": "Mein Konto",
       "staff": "Bereiche",
       "company": "Hilfe und Kontakt",
       "legal": "Bedingungen und Richtlinien"
     },
     "hint": {
-      "coins": "Goldmünzen und Barren kaufen",
-      "p2p": "Direkt mit anderen kaufen und verkaufen",
-      "track": "Auftrag über die Nummer verfolgen, ohne Anmeldung",
       "accounts": "Zielkonten, auf denen das Geld ankommt",
       "verify": "Ausweisunterlagen abschließen",
       "alerts": "Bescheid bekommen, wenn ein Kurs Ihre Zahl erreicht",
