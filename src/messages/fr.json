@@ -593,7 +593,9 @@
       "tomanLeg": "Un côté est toujours en tomans",
       "fromCurrency": "Devise envoyée",
       "toCurrency": "Devise reçue"
-    }
+    },
+    "requoting": "Nouveau taux en cours…",
+    "requoteFailed": "Impossible d'obtenir un nouveau taux. Vérifiez votre connexion et réessayez."
   },
   "orders": {
     "metaTitle": "Commandes",

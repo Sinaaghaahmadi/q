@@ -593,7 +593,9 @@
       "tomanLeg": "Eine Seite ist immer Toman",
       "fromCurrency": "Währung, die Sie senden",
       "toCurrency": "Währung, die ankommt"
-    }
+    },
+    "requoting": "Neuer Kurs wird geholt …",
+    "requoteFailed": "Es konnte kein neuer Kurs geholt werden. Prüfen Sie die Verbindung und versuchen Sie es erneut."
   },
   "orders": {
     "metaTitle": "Aufträge",

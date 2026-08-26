@@ -49,7 +49,27 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
   const locale = useLocale() as AppLocale;
   const router = useRouter();
 
+  /*
+   * The lock is a deadline, not a counter.
+   *
+   * It used to be `useState(LOCK_SECONDS)` with an interval subtracting one a
+   * second, which is wrong twice. A background tab has its timers throttled, so
+   * a phone left in a pocket for twenty minutes came back still showing minutes
+   * left on a rate that had died — on the one screen where a stale price costs
+   * somebody money. And because the countdown was client state, nothing that
+   * produced a *new* quote ever reset it: `router.refresh()` deliberately keeps
+   * client state, so the "get a new rate" button re-rendered the page and left
+   * the clock sitting at 00:00 with both submit buttons still disabled. It did
+   * nothing a person could see, which is exactly how it was reported.
+   *
+   * A timestamp fixes both: the remaining seconds are derived from the wall
+   * clock on every tick, and starting a new lock is one assignment.
+   */
+  const [lockUntil, setLockUntil] = React.useState<number | null>(null);
   const [remaining, setRemaining] = React.useState(LOCK_SECONDS);
+  const [requoting, setRequoting] = React.useState(false);
+  const [requoteError, setRequoteError] = React.useState<string | null>(null);
+  const [refreshing, startRefresh] = React.useTransition();
   const [whyOpen, setWhyOpen] = React.useState(false);
   const [bandsOpen, setBandsOpen] = React.useState(false);
   const [gateOpen, setGateOpen] = React.useState(false);
@@ -91,7 +111,9 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
           receive_amount_minor: toMinor(quote.receiveAmount, to),
           locked_rate: String(quote.customerRateToman),
           rate_locked_at: new Date().toISOString(),
-          rate_expires_at: new Date(Date.now() + remaining * 1000).toISOString(),
+          // What is *left* of the countdown, carried onto the order — not a
+          // fresh fifteen minutes. The deadline is the honest source for it.
+          rate_expires_at: new Date(lockUntil ?? Date.now()).toISOString(),
           platform_fee_minor: toMinor(quote.platformFeeToman, "IRT"),
           office_fee_minor: toMinor(quote.officeFeeToman, "IRT"),
           spread_breakdown: quote.layers,
@@ -126,11 +148,60 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
     }
   }
 
+  /*
+   * A new quote is a new lock.
+   *
+   * This covers the two ways the numbers on this screen can change: the amount
+   * editor replaces the URL with a different amount, and a re-quote pulls a
+   * different rate. Both re-render this component while keeping its state, so
+   * without this an edited quote inherited the old countdown — and an edit made
+   * after expiry arrived already dead, with no way out but reloading the page.
+   *
+   * It also sets the first lock, on the client. Computing the deadline during
+   * server rendering would start the clock when the page was rendered rather
+   * than when it was seen, and hand the browser the server's clock besides.
+   */
+  const quoteKey = `${from}:${to}:${quote.sendAmount}:${quote.customerRateToman}`;
   React.useEffect(() => {
-    const id = setInterval(() => setRemaining((r) => Math.max(0, r - 1)), 1000);
-    return () => clearInterval(id);
-  }, []);
+    setLockUntil(Date.now() + LOCK_SECONDS * 1000);
+  }, [quoteKey]);
 
+  React.useEffect(() => {
+    if (lockUntil === null) return;
+    const tick = () => setRemaining(Math.max(0, Math.ceil((lockUntil - Date.now()) / 1000)));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [lockUntil]);
+
+  /**
+   * Get a new rate.
+   *
+   * `router.refresh()` alone is not enough and cannot even tell you it failed:
+   * it returns nothing, rejects nothing, and preserves client state, so a
+   * re-quote that never reached the server looked identical to one that did.
+   * The rates endpoint is asked first — it is the part that can answer "the
+   * server did not respond", and it leaves the server-side snapshot warm for
+   * the render that follows. Then the page re-renders with the new price, and
+   * the lock starts again whether or not the price actually moved: fifteen
+   * minutes is a promise about time, not about the number changing.
+   */
+  async function requote() {
+    setRequoteError(null);
+    setRequoting(true);
+    try {
+      const response = await fetch("/api/rates", { cache: "no-store" });
+      if (!response.ok) throw new Error(String(response.status));
+      setLockUntil(Date.now() + LOCK_SECONDS * 1000);
+      startRefresh(() => router.refresh());
+    } catch {
+      setRequoteError(t("requoteFailed"));
+    } finally {
+      setRequoting(false);
+    }
+  }
+
+  const busy = requoting || refreshing;
   const expired = remaining === 0;
   const mm = String(Math.floor(remaining / 60)).padStart(2, "0");
   const ss = String(remaining % 60).padStart(2, "0");
@@ -225,10 +296,15 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
             <p className="text-sm font-semibold">{expired ? t("lockExpired") : t("lockActive")}</p>
             <p className="max-w-sm text-xs leading-relaxed text-ink-600">{t("lockNote")}</p>
             {expired ? (
-              <Button size="sm" variant="soft" className="mt-2" onClick={() => router.refresh()}>
-                <RefreshCw className="size-4" />
-                {t("requote")}
-              </Button>
+              <>
+                <Button size="sm" variant="soft" className="mt-2" disabled={busy} onClick={requote}>
+                  <RefreshCw className={busy ? "size-4 animate-spin" : "size-4"} />
+                  {busy ? t("requoting") : t("requote")}
+                </Button>
+                {requoteError ? (
+                  <p className="mt-1.5 text-xs leading-relaxed text-down">{requoteError}</p>
+                ) : null}
+              </>
             ) : null}
           </div>
           <CountdownRing

@@ -238,7 +238,9 @@
       "tomanLeg": "One side is always Toman",
       "fromCurrency": "Currency you send",
       "toCurrency": "Currency they receive"
-    }
+    },
+    "requoting": "Getting a new rate…",
+    "requoteFailed": "Could not get a new rate. Check your connection and try again."
   },
   "pricing": {
     "total": "Total rate difference",
