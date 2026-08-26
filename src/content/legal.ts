@@ -90,7 +90,7 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
           ps: [
             "نرخ نمایش‌داده‌شده پیش از ثبت سفارش، نرخ میانگین بازار است و جنبهٔ اطلاع‌رسانی دارد.",
             "نرخ نهایی هنگام ثبت درخواست برای مدت اعلام‌شده قفل می‌شود و اجزای آن — نرخ پایه و کارمزد — پیش از تأیید نهایی، به تفکیک و به صورت کامل نمایش داده می‌شود. کاربر تا پیش از دیدن این تفکیک، هیچ تعهدی ندارد.",
-            "کارمزد این خدمت پلکانی است و بر پایهٔ مبلغ تومانی حواله محاسبه می‌شود: از ۱۵٪ برای پلهٔ نخست تا ۵٪ برای بالاترین پله. هر پله تنها بر سهم خودش از مبلغ اعمال می‌شود، بنابراین درصد کل با افزایش مبلغ کاهش می‌یابد و در هیچ نقطه‌ای از ۵٪ کمتر و از ۱۵٪ بیشتر نمی‌شود. جدول کامل پله‌ها در سند «تعرفه کارمزدها» آمده و همان اعداد پیش از تأیید هر حواله نمایش داده می‌شود.",
+            "کارمزد این خدمت پلکانی است و بر پایهٔ مبلغ تومانی حواله محاسبه می‌شود: از ۱۰٪ برای پلهٔ نخست تا ۳٪ برای بالاترین پله. هر پله تنها بر سهم خودش از مبلغ اعمال می‌شود، بنابراین درصد کل با افزایش مبلغ کاهش می‌یابد و در هیچ نقطه‌ای از ۳٪ کمتر و از ۱۰٪ بیشتر نمی‌شود. جدول کامل پله‌ها در سند «تعرفه کارمزدها» آمده و همان اعداد پیش از تأیید هر حواله نمایش داده می‌شود.",
             "این درصد، سقف کل هزینه‌ای است که کاربر می‌پردازد. اگر نرخ اعلام‌شده از سوی صرافی مجری با نرخ پایه تفاوت داشته باشد، معادل همان تفاوت از کارمزد پلکانی کسر می‌شود و بر مبلغ پرداختی کاربر افزوده نمی‌گردد. تقسیم کارمزد میان آسا و صرافی مجری بر مبلغ پرداختی کاربر اثری ندارد.",
             "پس از انقضای زمان قفل، نرخ تنها با تأیید مجدد کاربر به‌روزرسانی می‌شود.",
             "مبلغی که گیرنده دریافت می‌کند، همان عددی است که در پیش‌فاکتور نمایش داده شده، مگر در صورت تغییر مبلغ ارسالی توسط خود کاربر یا کسر کارمزد بانک واسط مقصد که خارج از کنترل پلتفرم و صرافی است و پیشاپیش اعلام می‌شود.",
@@ -231,7 +231,7 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
           ps: [
             "Rates shown before an order is placed are mid-market and informational.",
             "The final rate is locked at submission for the stated period, and its components — the base rate and the commission — are itemised in full before final confirmation. The user is under no obligation until that breakdown has been seen.",
-            "The commission for this service is banded and calculated on the Toman value of the transfer: from 15% on the first band down to 5% on the highest. Each band applies only to its own slice of the amount, so the overall percentage falls as the amount rises and at no point is it below 5% or above 15%. The full band table is set out in the fee schedule, and those same figures are shown before each transfer is confirmed.",
+            "The commission for this service is banded and calculated on the Toman value of the transfer: from 10% on the first band down to 3% on the highest. Each band applies only to its own slice of the amount, so the overall percentage falls as the amount rises and at no point is it below 3% or above 10%. The full band table is set out in the fee schedule, and those same figures are shown before each transfer is confirmed.",
             "That percentage is the ceiling on the entire cost to the user. Where the rate quoted by the executing exchange office differs from the base rate, the equivalent amount is deducted from the banded commission rather than added to what the user pays. How the commission is divided between Asa and the executing office has no effect on the amount the user pays.",
             "After the lock expires, the rate is updated only with the user's renewed acceptance.",
             "The amount the recipient receives is the amount shown on the quote, except where the user changes the amount sent, or where an intermediary bank at the destination deducts a charge outside the control of the platform and the office, which is disclosed in advance.",
@@ -443,13 +443,13 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
       version: V,
       updated: UPDATED,
       intro:
-        "کارمزد این خدمت یک عدد است و پیش از تأیید حواله می‌بینیدش: کارمزد صرافی، که پلکانی محاسبه می‌شود و بین ۵٪ تا ۱۵٪ مبلغ حواله است. هیچ مبلغ دیگری روی آن اضافه نمی‌شود.",
+        "کارمزد این خدمت یک عدد است و پیش از تأیید حواله می‌بینیدش: کارمزد صرافی، که پلکانی محاسبه می‌شود و بین ۳٪ تا ۱۰٪ مبلغ حواله است. هیچ مبلغ دیگری روی آن اضافه نمی‌شود.",
       sections: [
         {
           h: "پله‌های کارمزد",
           ps: [
-            "مبلغ حواله — به تومان — به پله‌ها تقسیم می‌شود و هر پله درصد خودش را دارد: تا ۲۰٬۰۰۰٬۰۰۰ تومان ۱۵٪؛ از ۲۰٬۰۰۰٬۰۰۰ تا ۱۰۰٬۰۰۰٬۰۰۰ تومان ۱۲٪؛ از ۱۰۰٬۰۰۰٬۰۰۰ تا ۳۰۰٬۰۰۰٬۰۰۰ تومان ۱۰٪؛ از ۳۰۰٬۰۰۰٬۰۰۰ تا ۱٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۸٪؛ از ۱٬۰۰۰٬۰۰۰٬۰۰۰ تا ۳٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۶٫۵٪؛ و بیشتر از ۳٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۵٪.",
-            "پلکانی بودن یعنی هر پله فقط روی سهم خودش از مبلغ حساب می‌شود، نه روی کل مبلغ. برای نمونه، در حواله‌ای به ارزش ۱۰۰٬۰۰۰٬۰۰۰ تومان، بیست میلیون اول با ۱۵٪ و هشتاد میلیون بعدی با ۱۲٪ محاسبه می‌شود؛ جمع کارمزد ۱۲٬۶۰۰٬۰۰۰ تومان، یعنی ۱۲٫۶٪ کل مبلغ.",
+            "مبلغ حواله — به تومان — به پله‌ها تقسیم می‌شود و هر پله درصد خودش را دارد: تا ۲۰٬۰۰۰٬۰۰۰ تومان ۱۰٪؛ از ۲۰٬۰۰۰٬۰۰۰ تا ۱۰۰٬۰۰۰٬۰۰۰ تومان ۸٪؛ از ۱۰۰٬۰۰۰٬۰۰۰ تا ۳۰۰٬۰۰۰٬۰۰۰ تومان ۶٫۵٪؛ از ۳۰۰٬۰۰۰٬۰۰۰ تا ۱٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۵٪؛ از ۱٬۰۰۰٬۰۰۰٬۰۰۰ تا ۳٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۴٪؛ و بیشتر از ۳٬۰۰۰٬۰۰۰٬۰۰۰ تومان ۳٪.",
+            "پلکانی بودن یعنی هر پله فقط روی سهم خودش از مبلغ حساب می‌شود، نه روی کل مبلغ. برای نمونه، در حواله‌ای به ارزش ۱۰۰٬۰۰۰٬۰۰۰ تومان، بیست میلیون اول با ۱۰٪ و هشتاد میلیون بعدی با ۸٪ محاسبه می‌شود؛ جمع کارمزد ۸٬۴۰۰٬۰۰۰ تومان، یعنی ۸٫۴٪ کل مبلغ.",
             "نتیجهٔ این روش دو چیز است: درصد کل با بالا رفتن مبلغ کم می‌شود، و مبلغ کارمزد با بالا رفتن مبلغ هیچ‌وقت کاهش پیدا نمی‌کند. یعنی هیچ نقطه‌ای وجود ندارد که فرستادن مبلغ بیشتر، کارمزد کمتری داشته باشد.",
             "درصد دقیق هر حواله، همراه با جدول کامل پله‌ها و اینکه حواله به کدام پله‌ها رسیده، پیش از تأیید در صفحهٔ پیش‌فاکتور نمایش داده می‌شود.",
           ],
@@ -482,13 +482,13 @@ export const LEGAL_CONTENT: Record<LegalSlug, Localized> = {
       version: V_EN,
       updated: UPDATED,
       intro:
-        "The cost of this service is one number, and you see it before you confirm: the exchange commission, worked out in bands, between 5% and 15% of the transfer. Nothing is added on top of it.",
+        "The cost of this service is one number, and you see it before you confirm: the exchange commission, worked out in bands, between 3% and 10% of the transfer. Nothing is added on top of it.",
       sections: [
         {
           h: "The bands",
           ps: [
-            "The transfer amount — in Toman — is cut into bands and each band has its own rate: up to 20,000,000 Toman, 15%; from 20,000,000 to 100,000,000, 12%; from 100,000,000 to 300,000,000, 10%; from 300,000,000 to 1,000,000,000, 8%; from 1,000,000,000 to 3,000,000,000, 6.5%; and above 3,000,000,000, 5%.",
-            "Banded means each rate applies only to its own slice of the amount, not to the whole. On a transfer worth 100,000,000 Toman the first twenty million is charged at 15% and the next eighty million at 12%; the commission is 12,600,000 Toman, which is 12.6% of the total.",
+            "The transfer amount — in Toman — is cut into bands and each band has its own rate: up to 20,000,000 Toman, 10%; from 20,000,000 to 100,000,000, 8%; from 100,000,000 to 300,000,000, 6.5%; from 300,000,000 to 1,000,000,000, 5%; from 1,000,000,000 to 3,000,000,000, 4%; and above 3,000,000,000, 3%.",
+            "Banded means each rate applies only to its own slice of the amount, not to the whole. On a transfer worth 100,000,000 Toman the first twenty million is charged at 10% and the next eighty million at 8%; the commission is 8,400,000 Toman, which is 8.4% of the total.",
             "Two things follow. The overall percentage falls as the amount rises, and the commission in Toman never falls as the amount rises — there is no point at which sending more money costs less.",
             "The exact percentage for a given transfer, the full band table, and which bands the transfer reached are all shown on the quote before you confirm.",
           ],

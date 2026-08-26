@@ -457,7 +457,7 @@
     },
     "commission": {
       "title": "Gestaffelte Provision",
-      "body": "Die einzigen Kosten einer Überweisung. Gestaffelt heißt: Ihr Betrag wird in Stufen zerlegt, und jede Stufe hat ihren Satz — die erste 15 %, höhere bis hinunter zu 5 %. Je mehr Sie senden, desto niedriger der Gesamtprozentsatz, während die Provision selbst durch einen größeren Betrag nie sinkt."
+      "body": "Die einzigen Kosten einer Überweisung. Gestaffelt heißt: Ihr Betrag wird in Stufen zerlegt, und jede Stufe hat ihren Satz — die erste 10 %, höhere bis hinunter zu 3 %. Je mehr Sie senden, desto niedriger der Gesamtprozentsatz, während die Provision selbst durch einen größeren Betrag nie sinkt."
     },
     "commissionCeiling": {
       "title": "Kostenobergrenze",

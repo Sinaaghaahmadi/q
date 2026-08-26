@@ -2964,7 +2964,7 @@
     },
     "commission": {
       "title": "Banded commission",
-      "body": "The only cost of a transfer. Banded means your amount is cut into slices and each slice has its own rate: the first is charged at 15%, higher ones down to 5%. The more you send, the lower the overall percentage — while the amount of commission never falls by sending more."
+      "body": "The only cost of a transfer. Banded means your amount is cut into slices and each slice has its own rate: the first is charged at 10%, higher ones down to 3%. The more you send, the lower the overall percentage — while the amount of commission never falls by sending more."
     },
     "commissionCeiling": {
       "title": "Cost ceiling",

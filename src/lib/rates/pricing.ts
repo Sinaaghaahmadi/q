@@ -8,7 +8,7 @@
  * The banded commission is a **ceiling on everything the customer pays**, not
  * one line among several. Whatever the rate markup already took is deducted
  * from it, so the total is the band percentage whatever the office has
- * configured, and "between 5% and 15%, less as you send more" holds at every
+ * configured, and "between 3% and 10%, less as you send more" holds at every
  * amount. What is left after the markup splits between the office and the
  * platform at `PLATFORM_SHARE`.
  *

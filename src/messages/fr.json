@@ -457,7 +457,7 @@
     },
     "commission": {
       "title": "Commission par tranches",
-      "body": "Le seul coût d'un transfert. Par tranches signifie que votre montant est découpé et que chaque tranche a son taux : la première à 15 %, les suivantes jusqu'à 5 %. Plus vous envoyez, plus le pourcentage global baisse — sans que le montant de la commission ne diminue jamais parce que vous envoyez plus."
+      "body": "Le seul coût d'un transfert. Par tranches signifie que votre montant est découpé et que chaque tranche a son taux : la première à 10 %, les suivantes jusqu'à 3 %. Plus vous envoyez, plus le pourcentage global baisse — sans que le montant de la commission ne diminue jamais parce que vous envoyez plus."
     },
     "commissionCeiling": {
       "title": "Plafond de coût",

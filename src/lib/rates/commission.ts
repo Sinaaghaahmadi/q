@@ -8,7 +8,7 @@
  * 11.9M, 101M at 10% is 10.1M — which is both unfair to the person just under
  * the line and an invitation to game the boundary. Banded slices make the total
  * rise monotonically while the effective percentage falls smoothly, so the
- * headline "between 5% and 15%, less as you send more" is literally true at
+ * headline "between 3% and 10%, less as you send more" is literally true at
  * every amount rather than true on average.
  *
  * The percentage this produces is a **ceiling on the whole cost**, not one
@@ -31,17 +31,29 @@ export interface CommissionBand {
  * dollar does.
  */
 export const COMMISSION_BANDS: CommissionBand[] = [
-  { upToToman: 20_000_000, pct: 15 },
-  { upToToman: 100_000_000, pct: 12 },
-  { upToToman: 300_000_000, pct: 10 },
-  { upToToman: 1_000_000_000, pct: 8 },
-  { upToToman: 3_000_000_000, pct: 6.5 },
-  { upToToman: null, pct: 5 },
+  { upToToman: 20_000_000, pct: 10 },
+  { upToToman: 100_000_000, pct: 8 },
+  { upToToman: 300_000_000, pct: 6.5 },
+  { upToToman: 1_000_000_000, pct: 5 },
+  { upToToman: 3_000_000_000, pct: 4 },
+  { upToToman: null, pct: 3 },
 ];
 
-/** The band edges of the schedule, as advertised. */
-export const COMMISSION_MAX_PCT = 15;
-export const COMMISSION_MIN_PCT = 5;
+/**
+ * The band edges of the schedule, as advertised.
+ *
+ * Every band moved two rungs down its own ladder: what was 15/12/10/8/6.5/5 is
+ * now 10/8/6.5/5/4/3, so a transfer that cost 15% costs 10% and the floor goes
+ * from 5% to 3%. The edges between the bands did not move — only the rate
+ * charged inside each — so nobody changes band because of this.
+ *
+ * These two constants are the only place the range is written down as numbers.
+ * Everything else — the fee schedule, the terms, the glossary, the calculator
+ * in both panels — reads the band table, so a future change is this file and
+ * the prose that quotes it, and nothing else.
+ */
+export const COMMISSION_MAX_PCT = 10;
+export const COMMISSION_MIN_PCT = 3;
 
 /**
  * The platform's share of the commission — a take-rate on the office's
@@ -68,7 +80,7 @@ export interface CommissionResult {
  *
  * `discountPct` is the loyalty tier's benefit, in percentage points off each
  * band. It is clamped at the published floor rather than allowed through it: a
- * schedule that says "between 5% and 15%" has to stay true for a platinum
+ * schedule that says "between 3% and 10%" has to stay true for a platinum
  * customer too, and a discount that quietly broke the lower bound would make
  * the fee document wrong rather than the customer lucky.
  *

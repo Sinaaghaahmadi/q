@@ -18,17 +18,17 @@ import {
 describe("banded commission", () => {
   it("charges the top band on a small transfer and nothing above it", () => {
     const c = commissionOn(1_000_000);
-    expect(c.effectivePct).toBeCloseTo(15, 9);
-    expect(c.toman).toBeCloseTo(150_000, 6);
+    expect(c.effectivePct).toBeCloseTo(10, 9);
+    expect(c.toman).toBeCloseTo(100_000, 6);
     expect(c.slices).toHaveLength(1);
   });
 
   it("charges each slice at its own band, not the whole amount at one rate", () => {
-    // 20M at 15% + 80M at 12% = 3,000,000 + 9,600,000
+    // 20M at 10% + 80M at 8% = 2,000,000 + 6,400,000
     const c = commissionOn(100_000_000);
-    expect(c.toman).toBeCloseTo(12_600_000, 6);
-    expect(c.effectivePct).toBeCloseTo(12.6, 9);
-    expect(c.slices.map((s) => s.pct)).toEqual([15, 12]);
+    expect(c.toman).toBeCloseTo(8_400_000, 6);
+    expect(c.effectivePct).toBeCloseTo(8.4, 9);
+    expect(c.slices.map((s) => s.pct)).toEqual([10, 8]);
   });
 
   it("never falls below the published floor or rises above the ceiling", () => {
@@ -66,16 +66,16 @@ describe("banded commission", () => {
   it("reports the next edge worth reaching, discount included", () => {
     const next = nextBand(50_000_000);
     expect(next?.atToman).toBe(100_000_000);
-    expect(next?.marginalPct).toBe(10);
-    expect(nextBand(50_000_000, 1)?.marginalPct).toBe(9);
+    expect(next?.marginalPct).toBe(6.5);
+    expect(nextBand(50_000_000, 1)?.marginalPct).toBe(5.5);
     expect(nextBand(5e9)).toBeNull();
   });
 
   it("takes a loyalty discount off each band, and stops at the published floor", () => {
     const plain = commissionOn(100_000_000);
     const silver = commissionOn(100_000_000, 0.5);
-    // 20M at 14.5% + 80M at 11.5% = 2.9M + 9.2M
-    expect(silver.toman).toBeCloseTo(12_100_000, 6);
+    // 20M at 9.5% + 80M at 7.5% = 1.9M + 6.0M
+    expect(silver.toman).toBeCloseTo(7_900_000, 6);
     expect(silver.toman).toBeLessThan(plain.toman);
     expect(silver.discountPct).toBe(0.5);
 
