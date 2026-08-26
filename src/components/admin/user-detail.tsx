@@ -2,6 +2,7 @@
 
 import { Info, Snowflake } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { formatAmount, formatDate, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
+import { createClient } from "@/lib/supabase/client";
 import { LOGINS_SHOWN, ORDERS_SHOWN } from "@/lib/admin/filters";
 import { stateTone } from "@/lib/orders/flow";
 import type { CurrencyCode } from "@/lib/rates/catalog";
@@ -79,6 +81,7 @@ export function UserDetail({
   logins,
   invited,
   invitedBy,
+  canFreeze,
 }: {
   profile: Profile;
   tier: Json | null;
@@ -87,10 +90,59 @@ export function UserDetail({
   logins: LoginEvent[];
   invited: ReferralRow[];
   invitedBy: ReferralRow | null;
+  /** Mirrors `profile_set_frozen`; the function is what actually refuses. */
+  canFreeze: boolean;
 }) {
   const t = useTranslations("admin.users");
   const states = useTranslations("orders.state");
   const locale = useLocale() as AppLocale;
+  const router = useRouter();
+
+  const frozen = profile.frozen_at !== null;
+  const [reason, setReason] = React.useState("");
+  const [freezing, setFreezing] = React.useState(false);
+  const [freezeError, setFreezeError] = React.useState<string | null>(null);
+
+  /**
+   * Freeze the account, or open it again.
+   *
+   * The reason travels with the call rather than being written separately: the
+   * function refuses without one and records it in the audit log, so "why is
+   * this account closed" survives the person who closed it. Both directions
+   * need one — reopening an account is the decision somebody will want
+   * explained later, and it is the one nobody thinks to write down.
+   */
+  async function setFrozen(next: boolean) {
+    if (reason.trim().length < 8) {
+      setFreezeError(t("freezeReasonTooShort"));
+      return;
+    }
+    setFreezing(true);
+    setFreezeError(null);
+    const supabase = createClient();
+    const { error } = await supabase.rpc("profile_set_frozen", {
+      p_user: profile.id,
+      p_frozen: next,
+      p_reason: reason.trim(),
+    });
+    setFreezing(false);
+    if (error) {
+      setFreezeError(
+        /written reason/i.test(error.message)
+          ? t("freezeReasonTooShort")
+          : /administrator or compliance/i.test(error.message)
+            ? t("freezeForbidden")
+            : /staff accounts/i.test(error.message)
+              ? t("freezeStaff")
+              : /already frozen|not frozen/i.test(error.message)
+                ? t("freezeStale")
+                : t("freezeFailed"),
+      );
+      return;
+    }
+    setReason("");
+    router.refresh();
+  }
 
   // An empty answer from `customer_tier` is not a customer with no history: read
   // as an object it would claim Standard, zero volume and top tier at once. So
@@ -349,43 +401,66 @@ export function UserDetail({
         )}
       </PanelSection>
 
-      {/*
-        Freezing would write `profiles.frozen_at` and `profiles.frozen_reason`,
-        but 0002_identity_access.sql gives `profiles` exactly one write policy —
-        `profiles_self_update`, scoped to `id = auth.uid()` — and there is no
-        SECURITY DEFINER entry point that does it on an administrator's behalf.
-        So the control is shown as what it is rather than as a button the
-        database would refuse: the operator learns the limit here instead of
-        after an error toast, and the shape is already in place for the day the
-        policy or the function arrives.
-      */}
-      <PanelSection title={t("freezeTitle")} hint={t("freezeHint")} bodyClassName="space-y-3">
+      <PanelSection
+        title={t("freezeTitle")}
+        hint={t("freezeHint")}
+        bodyClassName="space-y-3"
+        className={frozen ? "[--glass-tint:var(--down)]" : undefined}
+      >
         <p className="text-sm text-ink-600">{t("freezeBody")}</p>
 
-        <label className="block text-sm font-medium">
-          {t("freezeReason")}
-          <Input
-            disabled
-            className="mt-1.5"
-            placeholder={t("freezeReasonPlaceholder")}
-            defaultValue={profile.frozen_reason ?? ""}
-          />
-        </label>
+        {frozen ? (
+          <p className="flex items-start gap-1.5 rounded-xl bg-down/12 p-3 text-sm text-down-ink">
+            <Snowflake className="mt-0.5 size-4 shrink-0" aria-hidden />
+            <span>
+              {t("frozenSince", { date: formatDate(profile.frozen_at as string, locale) })}
+              {profile.frozen_reason ? ` — ${profile.frozen_reason}` : ""}
+            </span>
+          </p>
+        ) : null}
 
-        <div className="flex flex-wrap gap-2">
-          <Button variant="destructive" disabled>
-            <Snowflake className="size-4" aria-hidden />
-            {profile.frozen_at ? t("unfreeze") : t("freeze")}
-          </Button>
-          {profile.frozen_at ? null : (
-            <span className="self-center text-sm text-ink-600">{t("notFrozen")}</span>
-          )}
-        </div>
+        {canFreeze ? (
+          <>
+            <label className="block text-sm font-medium">
+              {t("freezeReason")}
+              <Input
+                className="mt-1.5"
+                placeholder={frozen ? t("unfreezeReasonPlaceholder") : t("freezeReasonPlaceholder")}
+                value={reason}
+                onChange={(event) => setReason(event.target.value)}
+              />
+              {/* Stated before the press, not after the refusal: the function
+                  requires eight characters and there is no reason to let
+                  somebody find that out by being turned down. */}
+              <span className="mt-1 block text-xs font-normal text-ink-600">
+                {t("freezeReasonRule")}
+              </span>
+            </label>
 
-        <p className="flex items-start gap-1.5 rounded-xl bg-info/12 p-3 text-sm text-info-ink">
-          <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
-          {t("freezeUnavailable")}
-        </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                variant={frozen ? "secondary" : "destructive"}
+                disabled={freezing || reason.trim().length < 8}
+                onClick={() => setFrozen(!frozen)}
+              >
+                <Snowflake className="size-4" aria-hidden />
+                {freezing ? t("freezeWorking") : frozen ? t("unfreeze") : t("freeze")}
+              </Button>
+              {frozen ? null : (
+                <span className="self-center text-sm text-ink-600">{t("notFrozen")}</span>
+              )}
+            </div>
+
+            {freezeError ? (
+              <p className="text-sm leading-relaxed text-down">{freezeError}</p>
+            ) : null}
+          </>
+        ) : (
+          <p className="flex items-start gap-1.5 rounded-xl bg-info/12 p-3 text-sm text-info-ink">
+            <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
+            {t("freezeForbidden")}
+          </p>
+        )}
       </PanelSection>
     </div>
   );

@@ -159,6 +159,7 @@ export default async function AdminUserDetailPage({
         logins={(logins ?? []) as LoginEvent[]}
         invited={(invited ?? []).map((row) => toRow(row, row.referee_id))}
         invitedBy={invitedBy ? toRow(invitedBy, invitedBy.referrer_id) : null}
+        canFreeze={can(ctx.seats, "account.freeze")}
       />
     </AdminShell>
   );

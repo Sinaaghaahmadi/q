@@ -18,6 +18,15 @@ const GRANTS = {
   "order.force": ["platform_admin", "platform_superadmin"],
   "order.on_behalf": ["platform_admin", "platform_superadmin"],
   "platform.audit": ["platform_compliance", "platform_admin", "platform_superadmin"],
+  /**
+   * Closing a customer's account. Compliance holds it alongside admin because
+   * freezing is the response to a sanctions hit and routing that through an
+   * administrator puts a second person between the finding and the act. Support
+   * does not: an agent who can freeze an account can lock somebody out of their
+   * own money over a disagreement. Mirrors `profile_set_frozen` in 0032 — the
+   * function is what actually decides; this only keeps the button honest.
+   */
+  "account.freeze": ["platform_compliance", "platform_admin", "platform_superadmin"],
   "platform.config": ["platform_admin", "platform_superadmin"],
   "platform.oversee": [
     "platform_support",

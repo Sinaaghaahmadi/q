@@ -1823,8 +1823,7 @@
       "freezeReasonPlaceholder": "Why is this account being frozen?",
       "freeze": "Freeze",
       "unfreeze": "Unfreeze",
-      "freezeUnavailable": "This panel cannot freeze an account. In 0002_identity_access.sql the only write policy on profiles is profiles_self_update, which admits the customer's own row and nothing else, and there is no SECURITY DEFINER function for it either. Until one of the two is added the control stays disabled: a button the database refuses is worse than no button.",
-      "frozenSince": "Frozen since {date}",
+      "frozenSince": "This account has been frozen since {date}.",
       "frozenReasonLabel": "Recorded reason",
       "notFrozen": "This account is open.",
       "identityHint": "This customer's name, number and identity-check status.",
@@ -1833,7 +1832,15 @@
       "destinationsHint": "The bank accounts this customer has saved to receive money into.",
       "loginsHint": "The most recent sign-ins on this account, with time and device.",
       "referralsHint": "People who signed up with this customer's code.",
-      "freezeHint": "Close the account. Until it is reopened this customer cannot place a new order."
+      "freezeHint": "Close the account. Until it is reopened this customer cannot place a new order.",
+      "freezeReasonRule": "At least 8 characters. This text stays in the audit log.",
+      "unfreezeReasonPlaceholder": "Why is this account being reopened?",
+      "freezeWorking": "Working…",
+      "freezeReasonTooShort": "The reason must be at least 8 characters.",
+      "freezeForbidden": "Only a platform administrator or a compliance officer can freeze an account.",
+      "freezeStaff": "Platform staff accounts are not frozen here; remove their access instead.",
+      "freezeStale": "This account changed while you were looking at it. Refresh the page.",
+      "freezeFailed": "That did not go through. Try again."
     },
     "hintLabel": "What is this section?",
     "hint": {

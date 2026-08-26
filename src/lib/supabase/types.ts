@@ -853,6 +853,11 @@ export type Database = {
         Args: { p_order: string; p_to: OrderState; p_reason: string };
         Returns: OrderState;
       };
+      /** Freeze or reopen a customer account, with a reason (migration 0032). */
+      profile_set_frozen: {
+        Args: { p_user: string; p_frozen: boolean; p_reason: string };
+        Returns: string | null;
+      };
       impersonation_start: {
         Args: { p_office: string; p_reason: string; p_minutes?: number };
         Returns: Impersonation;

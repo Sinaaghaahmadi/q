@@ -2937,8 +2937,7 @@
       "freezeReasonPlaceholder": "Pourquoi ce compte est-il gelé ?",
       "freeze": "Geler",
       "unfreeze": "Dégeler",
-      "freezeUnavailable": "Ce panneau ne peut pas geler un compte. Dans 0002_identity_access.sql, la seule politique d'écriture sur profiles est profiles_self_update, qui n'admet que la ligne du client lui-même, et il n'existe pas non plus de fonction SECURITY DEFINER pour cela. Tant que l'une des deux n'est pas ajoutée, la commande reste désactivée : un bouton que la base refuse est pire que pas de bouton du tout.",
-      "frozenSince": "Gelé depuis le {date}",
+      "frozenSince": "Ce compte est gelé depuis le {date}.",
       "frozenReasonLabel": "Motif consigné",
       "notFrozen": "Ce compte est ouvert.",
       "identityHint": "Le nom, le numéro et l'état de vérification d'identité de ce client.",
@@ -2947,7 +2946,15 @@
       "destinationsHint": "Les comptes bancaires que ce client a enregistrés pour recevoir de l'argent.",
       "loginsHint": "Les dernières connexions à ce compte, avec l'heure et l'appareil.",
       "referralsHint": "Les personnes inscrites avec le code de ce client.",
-      "freezeHint": "Fermer le compte. Tant qu'il n'est pas rouvert, ce client ne peut pas passer de nouvelle commande."
+      "freezeHint": "Fermer le compte. Tant qu'il n'est pas rouvert, ce client ne peut pas passer de nouvelle commande.",
+      "freezeReasonRule": "8 caractères au minimum. Ce texte reste au journal d'audit.",
+      "unfreezeReasonPlaceholder": "Pourquoi ce compte est-il rouvert ?",
+      "freezeWorking": "En cours…",
+      "freezeReasonTooShort": "Le motif doit faire au moins 8 caractères.",
+      "freezeForbidden": "Seul un administrateur de la plateforme ou un responsable conformité peut geler un compte.",
+      "freezeStaff": "Les comptes du personnel ne se gèlent pas ici ; retirez plutôt leurs accès.",
+      "freezeStale": "Ce compte a changé pendant que vous le regardiez. Actualisez la page.",
+      "freezeFailed": "L'opération n'a pas abouti. Réessayez."
     },
     "attention": {
       "title": "En attente de vous",

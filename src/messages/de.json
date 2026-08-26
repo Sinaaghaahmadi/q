@@ -2937,8 +2937,7 @@
       "freezeReasonPlaceholder": "Warum wird dieses Konto eingefroren?",
       "freeze": "Einfrieren",
       "unfreeze": "Freigeben",
-      "freezeUnavailable": "Dieser Bereich kann kein Konto einfrieren. In 0002_identity_access.sql ist die einzige Schreib-Policy auf profiles profiles_self_update, die nur die eigene Zeile zulässt, und eine SECURITY-DEFINER-Funktion dafür gibt es ebenfalls nicht. Bis eines von beidem hinzukommt, bleibt der Schalter deaktiviert: Ein Knopf, den die Datenbank verweigert, ist schlimmer als gar keiner.",
-      "frozenSince": "Eingefroren seit {date}",
+      "frozenSince": "Dieses Konto ist seit {date} gesperrt.",
       "frozenReasonLabel": "Erfasster Grund",
       "notFrozen": "Dieses Konto ist offen.",
       "identityHint": "Name, Nummer und Stand der Identitätsprüfung dieses Kunden.",
@@ -2947,7 +2946,15 @@
       "destinationsHint": "Die Bankkonten, die dieser Kunde zum Geldempfang hinterlegt hat.",
       "loginsHint": "Die jüngsten Anmeldungen bei diesem Konto, mit Zeit und Gerät.",
       "referralsHint": "Wer sich mit dem Code dieses Kunden angemeldet hat.",
-      "freezeHint": "Das Konto schließen. Bis es wieder geöffnet wird, kann dieser Kunde keinen neuen Auftrag aufgeben."
+      "freezeHint": "Das Konto schließen. Bis es wieder geöffnet wird, kann dieser Kunde keinen neuen Auftrag aufgeben.",
+      "freezeReasonRule": "Mindestens 8 Zeichen. Dieser Text bleibt im Prüfprotokoll.",
+      "unfreezeReasonPlaceholder": "Warum wird dieses Konto wieder geöffnet?",
+      "freezeWorking": "Wird ausgeführt …",
+      "freezeReasonTooShort": "Der Grund muss mindestens 8 Zeichen lang sein.",
+      "freezeForbidden": "Nur eine Plattform-Administration oder die Compliance kann ein Konto sperren.",
+      "freezeStaff": "Konten von Plattformmitarbeitenden werden hier nicht gesperrt; entziehen Sie stattdessen den Zugang.",
+      "freezeStale": "Dieses Konto hat sich geändert, während Sie es ansahen. Laden Sie die Seite neu.",
+      "freezeFailed": "Das hat nicht geklappt. Versuchen Sie es erneut."
     },
     "attention": {
       "title": "Wartet auf Sie",
