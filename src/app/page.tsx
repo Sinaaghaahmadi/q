@@ -16,6 +16,13 @@ function HomeInner() {
 
   useEffect(() => {
     const saved = restoreSession();
+    if (saved) login(saved);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Separate effect keyed on params: in static exports useSearchParams is
+  // empty on first render and populates after hydration.
+  useEffect(() => {
     const tab = params.get("tab") as AppTab | null;
     const mode = params.get("mode");
     if (mode === "messenger") {
@@ -24,14 +31,12 @@ function HomeInner() {
     } else if (tab && VALID_TABS.includes(tab)) {
       setTab(tab);
     }
-    if (saved) {
-      login(saved);
-    } else if (mode === "messenger" || tab) {
+    if ((mode === "messenger" || tab) && !restoreSession()) {
       // Deep link (PWA shortcut / Android app) without a session → prompt login
       setShowLoginModal(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params]);
 
   return (
     <>
