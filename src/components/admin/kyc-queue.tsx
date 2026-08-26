@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Link } from "@/i18n/navigation";
 import { formatDate, type AppLocale } from "@/lib/money/format";
 import { createClient } from "@/lib/supabase/client";
 import type { KycDocument, KycSubmission } from "@/lib/supabase/types";
@@ -63,9 +64,16 @@ export function KycQueue({ rows, reviewerId }: { rows: QueueRow[]; reviewerId: s
                     <UserCheck className="size-4" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">
+                    {/* The name opens the person's file. A reviewer deciding
+                        whether to trust a document wants their order history
+                        and their earlier submissions, and both are one page
+                        away — which until now meant a search box. */}
+                    <Link
+                      href={`/admin/users/${row.user_id}`}
+                      className="block truncate text-sm font-medium hover:text-brand-700 dark:hover:text-brand-600"
+                    >
                       {data.full_name_fa || data.full_name_latin || t("unnamed")}
-                    </p>
+                    </Link>
                     <p className="num text-xs text-ink-600">
                       {formatDate(row.submitted_at, locale, { dateStyle: "medium" })} ·{" "}
                       {t("documentCount", { count: row.documents.length })}

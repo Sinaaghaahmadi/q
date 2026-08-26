@@ -201,7 +201,8 @@ html[lang="fa"] {
      it degrades to a plain translucent surface where unsupported, and nothing
      animates the filter itself — only transform and opacity, which the
      compositor can do without the main thread. */
-  .glass {
+  .glass,
+  [data-panel] [data-card] {
     position: relative;
     isolation: isolate;
     border-radius: 1rem;
@@ -217,7 +218,8 @@ html[lang="fa"] {
       var(--shadow-e2),
       inset 0 1px 0 color-mix(in srgb, white 55%, transparent);
   }
-  .dark .glass {
+  .dark .glass,
+  .dark [data-panel] [data-card] {
     background:
       linear-gradient(
         160deg,
@@ -230,10 +232,36 @@ html[lang="fa"] {
       inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
   }
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-    .glass {
+    .glass,
+    [data-panel] [data-card] {
       backdrop-filter: blur(10px) saturate(1.35);
       -webkit-backdrop-filter: blur(10px) saturate(1.35);
     }
+  }
+
+  /* The default card surface (§2.5). In the stylesheet rather than on the
+     element so that the console's glass rule below can replace it: utilities
+     sit in a later layer than components and would win from the class list no
+     matter how specific the rule. A caller's own `bg-*`/`border-*` utility
+     still overrides both, deliberately — that is how a warning card is red. */
+  [data-card] {
+    border: 1px solid color-mix(in srgb, var(--ink-300) 55%, transparent);
+    background: var(--surface);
+    box-shadow: var(--shadow-e1);
+  }
+
+  /* Inside a console, a card *is* glass — the panels asked to be one material
+     and this is where that is said once rather than on every card. The tint is
+     neutral by default because a console is full of these and a green wash on
+     thirty surfaces is a mood, not information; a card that means something
+     (a broken ledger, a queue that is late) sets `--glass-tint` itself. */
+  [data-panel] [data-card] {
+    /* No tint by default, which the recipe reads as "no gradient at all" —
+       just the frosted surface and its border. A grey tint looked right on a
+       120-pixel rate box and, stretched down a 900-pixel settings card, drew a
+       dark band across the top that reads as a rendering fault. A card that
+       means something still sets its own tint and gets the wash. */
+    --glass-tint: transparent;
   }
 
   /* The highlight that makes it read as glass rather than as a grey box: a
@@ -289,6 +317,79 @@ html[lang="fa"] {
     }
   }
 
+  /* The same material at control scale.
+     `.glass` is built for a rate box: a 10px blur, a 16% tint and an e2 shadow
+     read well at 160×90 and look like a smudge at 36×144. So a control gets its
+     own recipe — half the tint, a tighter blur, an e1 shadow — and inherits the
+     one thing that actually makes glass legible at any size: the hairline of
+     light along the top edge, which is what a real bevel does to a real pane.
+
+     The tint comes from `--glass-tint` exactly as the boxes do, so a neutral
+     toolbar button, a brand-tinted action and a destructive one are the same
+     object holding three different colours rather than three components.
+
+     Hover brightens a pseudo-element's opacity rather than re-mixing the
+     background: a console can have thirty of these on screen, and animating a
+     colour function is main-thread work where animating opacity is not. */
+  .glass-control {
+    position: relative;
+    isolation: isolate;
+    background:
+      linear-gradient(
+        160deg,
+        color-mix(in srgb, var(--glass-tint, var(--brand-600)) 13%, transparent),
+        color-mix(in srgb, var(--glass-tint, var(--brand-600)) 3%, transparent) 64%
+      ),
+      color-mix(in srgb, var(--surface) 66%, transparent);
+    border: 1px solid color-mix(in srgb, var(--glass-tint, var(--brand-600)) 28%, transparent);
+    box-shadow:
+      var(--shadow-e1),
+      inset 0 1px 0 color-mix(in srgb, white 62%, transparent);
+  }
+  .glass-control::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: color-mix(in srgb, var(--glass-tint, var(--brand-600)) 14%, transparent);
+    opacity: 0;
+    transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @media (hover: hover) {
+    .glass-control:hover::before {
+      opacity: 1;
+    }
+  }
+  .glass-control:active::before {
+    opacity: 1;
+  }
+  /* Keyboard focus is the browser's ring, but the surface should answer too —
+     a focus ring on a translucent control is easy to lose against a busy page. */
+  .glass-control:focus-visible::before {
+    opacity: 1;
+  }
+  .dark .glass-control {
+    background:
+      linear-gradient(
+        160deg,
+        color-mix(in srgb, var(--glass-tint, var(--brand-600)) 20%, transparent),
+        color-mix(in srgb, var(--glass-tint, var(--brand-600)) 5%, transparent) 64%
+      ),
+      color-mix(in srgb, var(--surface) 54%, transparent);
+    border-color: color-mix(in srgb, var(--glass-tint, var(--brand-600)) 38%, transparent);
+    box-shadow:
+      var(--shadow-e1),
+      inset 0 1px 0 color-mix(in srgb, white 12%, transparent);
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .glass-control {
+      backdrop-filter: blur(8px) saturate(1.4);
+      -webkit-backdrop-filter: blur(8px) saturate(1.4);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .glass-sheen::after {
       animation: none;
@@ -298,6 +399,9 @@ html[lang="fa"] {
     .glass-lift:hover {
       transition: none;
       transform: none;
+    }
+    .glass-control::before {
+      transition: none;
     }
   }
 

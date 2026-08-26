@@ -40,7 +40,8 @@
     "compliance": "Asa is a marketplace for remittance between licensed exchange offices. It is not a custodial wallet holding your money, not a securities market, and it holds no deposits.",
     "legal": "Legal",
     "designSystem": "Design system",
-    "copyright": "© 2026 Asaex — All rights reserved."
+    "copyright": "© 2026 Asaex — All rights reserved.",
+    "builtBy": "Built by the Â Programming Group"
   },
   "legal": {
     "version": "Version {version}",
@@ -928,7 +929,9 @@
       "officeInactive": "That office isn't active.",
       "claimFailed": "The request could not be claimed.",
       "network": "Couldn't reach us. Try again."
-    }
+    },
+    "poolHint": "Orders no office has taken yet. Take one and it is yours to carry.",
+    "mineHint": "Orders you have taken, still in progress."
   },
   "admin": {
     "metaTitle": "Admin",
@@ -1026,7 +1029,13 @@
         "pending": "Pending",
         "rejected": "Rejected",
         "unverified": "Unchecked"
-      }
+      },
+      "reasonHint": "The reason you write here is recorded in the audit log and cannot be erased.",
+      "spreadsHint": "This office's fee and the gap between its buy and sell rates. It changes the price the customer sees.",
+      "accountsHint": "The cards and IBANs customers pay into.",
+      "balancesHint": "What this office's ledger accounts hold.",
+      "openSettlement": "Open settlement",
+      "openLedger": "Open the ledger"
     },
     "wizard": {
       "steps": {
@@ -1152,6 +1161,14 @@
         "terminal": "This order is already terminal; post a compensating action instead.",
         "forbidden": "This action is open to platform administrators only.",
         "failed": "Could not apply. Try again."
+      },
+      "clearFilter": "Clear this filter",
+      "unknownOffice": "Unknown office",
+      "narrow": {
+        "risk": "Less than a day to the deadline",
+        "corridor": "{corridor} corridor",
+        "unclaimed": "Unclaimed",
+        "office": "{office}"
       }
     },
     "audit": {
@@ -1206,7 +1223,8 @@
         "p2p_offer_publish": "An offer was published on the peer market",
         "p2p_trade_take": "A peer trade was taken",
         "kyc_decision": "An identity submission was decided"
-      }
+      },
+      "openRecord": "Open the record"
     },
     "settings": {
       "metaTitle": "Platform settings",
@@ -1216,7 +1234,9 @@
       "noFlags": "No flags defined.",
       "saveFailed": "Could not save. Try again.",
       "template": "Default office template",
-      "templateBody": "Every new office starts from these values; differences are shown on that office's own page."
+      "templateBody": "Every new office starts from these values; differences are shown on that office's own page.",
+      "flagsHint": "The switches that turn parts of the site on and off. Turning one off hides that section for everybody.",
+      "templateHint": "The values every new exchange office is created with. Each office can be changed individually afterwards."
     },
     "security": {
       "title": "Staff two-factor authentication",
@@ -1237,7 +1257,8 @@
         "platform_compliance": "Compliance",
         "platform_admin": "Administrator",
         "platform_superadmin": "Super administrator"
-      }
+      },
+      "sectionHint": "Whether platform staff must enter a one-time code to sign in, and where each account stands."
     },
     "support": {
       "metaTitle": "Support inbox",
@@ -1284,7 +1305,9 @@
         "filled": "Filled",
         "cancelled": "Cancelled",
         "removed": "Removed"
-      }
+      },
+      "disputesHint": "Peer-to-peer trades where the two sides did not agree, waiting on your ruling.",
+      "listingsHint": "The buy and sell listings users have posted on the peer-to-peer market."
     },
     "group": {
       "overview": "Overview",
@@ -1312,7 +1335,8 @@
         "unnamed": "No name",
         "unresolved": "Not resolved",
         "payload": "Raw match data",
-        "shown": "{count} hits; the list is capped at the 100 most recent."
+        "shown": "{count} hits; the list is capped at the 100 most recent.",
+        "hint": "Checks customer names against sanctions lists and holds every possible match for a person to decide."
       },
       "flags": {
         "title": "Flagged messages",
@@ -1330,7 +1354,8 @@
         },
         "open": "Open the thread",
         "noBody": "No text",
-        "shown": "{count} messages; the list is capped at the 100 most recent."
+        "shown": "{count} messages; the list is capped at the 100 most recent.",
+        "hint": "Messages the system found suspicious, waiting on your decision."
       },
       "thresholds": {
         "title": "Limits and tiers",
@@ -1352,7 +1377,8 @@
         "save": "Save",
         "saving": "One moment…",
         "saved": "Saved.",
-        "saveFailed": "Not saved. Try again."
+        "saveFailed": "Not saved. Try again.",
+        "hint": "The amount each customer tier may send, and the peer-to-peer limits. Changing a number here applies to every new order immediately."
       },
       "retention": {
         "title": "Retention",
@@ -1360,7 +1386,8 @@
         "audit": "The audit log (audit_log) is permanent. Rows can be neither edited nor deleted; a database trigger refuses both.",
         "ledger": "The ledger (ledger_entries) is permanent, under the same append-only rule. Every figure that moved stays.",
         "kyc": "KYC documents live in the private kyc-documents bucket. They are never public and open only through a 60-second signed link.",
-        "gap": "There is no automatic purge job. Nothing ages out on its own, so a retention window is a decision still to be written down."
+        "gap": "There is no automatic purge job. Nothing ages out on its own, so a retention window is a decision still to be written down.",
+        "hint": "What is kept, for how long, and when it is deleted."
       }
     },
     "content": {
@@ -1492,7 +1519,15 @@
       "noOrders": "None",
       "corridorOnly": "All settled volume came through one route: <corridor></corridor>, <amount></amount> Toman in total.",
       "noComparison": "No figure from last month to compare against.",
-      "kpiLabel": "Key figures"
+      "kpiLabel": "Key figures",
+      "sectionHint": {
+        "volume": "How much settled in each of the last twelve months. The current month is faded because it is not finished and is not comparable with the complete ones.",
+        "corridors": "Each corridor's share of settled volume. Tap a corridor to see its orders.",
+        "scores": "How each active office is doing: how many orders, how much money, how fast, how often on time, and how often it ended in a dispute."
+      },
+      "openLedger": "Open the ledger",
+      "openSettled": "See settled orders",
+      "openOffices": "Open the office list"
     },
     "finance": {
       "metaTitle": "Ledger",
@@ -1513,16 +1548,17 @@
         "emptyTitle": "Nothing to balance yet",
         "zeroBadge": "Balanced",
         "brokenBadge": "Out of balance",
-        "empty": "No ledger account has been opened yet."
+        "empty": "No ledger account has been opened yet.",
+        "hint": "The ledger's health check: in a correctly kept book, every currency totals exactly zero."
       },
       "escrow": {
         "title": "Funded into holding",
-        "hint": "Total Toman debited to the holding account since launch, less reversals. The office withdrawal leg is not posted yet, so this is cumulative funding, not a live escrow balance.",
+        "hint": "Money a customer has paid in that the platform holds until the currency is handed over.",
         "empty": "Nothing has been funded into holding yet."
       },
       "trial": {
         "title": "Trial balance",
-        "hint": "Each account's position is debits minus credits. A negative position is not a fault in itself; a payable account is supposed to sit in credit.",
+        "hint": "Debits and credits totalled across every account. A figure that is not zero means something was recorded wrongly.",
         "col": {
           "account": "Account",
           "owner": "Owner",
@@ -1547,11 +1583,11 @@
       },
       "fees": {
         "platformTitle": "Platform fee revenue",
-        "platformHint": "The last twelve months, Toman fee account only. A fee handed back in a refund is posted as a debit on the same account and is subtracted from that month; what you see is net revenue.",
+        "platformHint": "The fee income that reached the platform, month by month.",
         "total": "Twelve-month total",
         "empty": "No fee was posted in this window.",
         "officeTitle": "Office fee revenue",
-        "officeHint": "Each office's share of the fees over the same twelve months.",
+        "officeHint": "Each office's share of the fees. Tap an office to open its file.",
         "officeEmpty": "No office fee has been posted.",
         "col": {
           "office": "Office",
@@ -1561,7 +1597,7 @@
       },
       "txn": {
         "title": "Recent ledger transactions",
-        "hint": "One block per transaction, newest first. Reversal entries compensate a refund rather than move money afresh; reading them as ordinary movements is how a reconciliation goes wrong.",
+        "hint": "The most recent ledger entries, newest first.",
         "empty": "No ledger transaction has been posted yet.",
         "reversal": "Reversal",
         "reversalLine": "Reversal",
@@ -1571,7 +1607,8 @@
         "noMemo": "—",
         "unknownOwner": "Unknown owner",
         "shown": "Showing the {count} most recent transactions."
-      }
+      },
+      "openOffices": "Open the office list"
     },
     "rates": {
       "metaTitle": "Rates & spread",
@@ -1599,11 +1636,12 @@
           "source": "Source",
           "observed": "Observed"
         },
-        "empty": "This snapshot carries no rates."
+        "empty": "This snapshot carries no rates.",
+        "hint": "The rates customers are being shown right now, and when each was last updated."
       },
       "sources": {
         "title": "Rate providers",
-        "hint": "One row per registered source, exactly as it is stored in the database.",
+        "hint": "Where the rates are read from, and whether each source is healthy.",
         "readOnly": "A source cannot be switched on or off from this page: the database policy on the sources table grants read only, and has no policy for writes at all. The switches show the current state and are disabled; changing it today is a database migration. “Last success” and “Last error” are the stored columns, and no job writes them yet, so they stay empty even while a provider is answering — the freshness banner at the top of this page is what tells you whether the pipeline is working.",
         "col": {
           "name": "Name",
@@ -1624,7 +1662,7 @@
       },
       "bounds": {
         "title": "Platform spread floor and ceiling",
-        "hint": "The floor and ceiling this console measures every office's per-corridor spread against. They are a review aid: nothing rejects a spread outside them yet. Both are in basis points; 100 of them make one percent.",
+        "hint": "The narrowest and widest spread any office is allowed to set.",
         "floor": "Floor",
         "ceiling": "Ceiling",
         "means": "{bps} hundredths of a percent means {pct}%",
@@ -1639,7 +1677,7 @@
       },
       "spread": {
         "title": "Spread across offices",
-        "hint": "For each corridor, the lowest, median and highest distance from the base rate the active offices have set. An incomplete, suspended or archived office is left out, and so is an inactive corridor, since neither quotes anybody.",
+        "hint": "The offices' spreads side by side, for finding one that is expensive or unusual.",
         "notEnforced": "Until a floor and ceiling are saved, no row is marked as out of range.",
         "col": {
           "corridor": "Corridor",
@@ -1651,7 +1689,8 @@
         "empty": "No office has configured a corridor yet.",
         "belowFloor": "Below floor",
         "aboveCeiling": "Above ceiling"
-      }
+      },
+      "openOffices": "Open the office list"
     },
     "users": {
       "metaTitle": "Customers",
@@ -1774,7 +1813,14 @@
       "freezeUnavailable": "This panel cannot freeze an account. In 0002_identity_access.sql the only write policy on profiles is profiles_self_update, which admits the customer's own row and nothing else, and there is no SECURITY DEFINER function for it either. Until one of the two is added the control stays disabled: a button the database refuses is worse than no button.",
       "frozenSince": "Frozen since {date}",
       "frozenReasonLabel": "Recorded reason",
-      "notFrozen": "This account is open."
+      "notFrozen": "This account is open.",
+      "identityHint": "This customer's name, number and identity-check status.",
+      "tierHint": "This customer's tier, and the limits that tier sets for them.",
+      "ordersHint": "Every order this customer has placed. Tap a row to open it.",
+      "destinationsHint": "The bank accounts this customer has saved to receive money into.",
+      "loginsHint": "The most recent sign-ins on this account, with time and device.",
+      "referralsHint": "People who signed up with this customer's code.",
+      "freezeHint": "Close the account. Until it is reopened this customer cannot place a new order."
     },
     "hintLabel": "What is this section?",
     "hint": {
@@ -1805,7 +1851,14 @@
         "coins": "coin requests to confirm",
         "offices": "offices not yet active"
       }
-    }
+    },
+    "openSection": "Open this section",
+    "sectionHint": {
+      "byState": "Platform orders, grouped by the state they are in. Tap a bar to see those orders.",
+      "feed": "The most recent things staff have done, read from the audit log. Tap a line to open the record it is about."
+    },
+    "builtBy": "Built by the Â Programming Group",
+    "staffFallback": "Platform staff"
   },
   "chat": {
     "orderTitle": "Conversation with the office",
@@ -2136,7 +2189,9 @@
           "numberRequired": "Write the account number.",
           "forbidden": "You may not change this account.",
           "saveFailed": "Not saved. Try again."
-        }
+        },
+        "listHint": "The accounts customers pay into. Only active ones are shown to customers.",
+        "addHint": "Add another card or IBAN to receive money from customers."
       },
       "liquidity": {
         "metaTitle": "Liquidity",
@@ -2188,7 +2243,7 @@
         },
         "addTitle": "Add a corridor",
         "addCurrency": "Currency",
-        "addHint": "One side of a route is always Toman. A new route is saved with the platform's default figure — or zero where there is none — and switched off; set the figure in the list above, then activate it.",
+        "addHint": "Open a new corridor for this office.",
         "add": "Add corridor",
         "save": "Save",
         "saved": "Saved.",
@@ -2202,7 +2257,8 @@
           "saveFailed": "Not saved. Try again."
         },
         "emptyReadOnly": "No corridor has been defined yet.",
-        "amountUnknownCurrency": "This corridor's currency is not in the platform list, so no amount can be written for it."
+        "amountUnknownCurrency": "This corridor's currency is not in the platform list, so no amount can be written for it.",
+        "listHint": "The corridors this office works, and the rate on each."
       },
       "settings": {
         "metaTitle": "Office settings",
@@ -2226,7 +2282,8 @@
             "wed": "Wednesday",
             "thu": "Thursday",
             "fri": "Friday"
-          }
+          },
+          "hint": "The hours this office accepts orders. Outside them, orders wait in the queue."
         },
         "auto": {
           "title": "Auto-accept",
@@ -2235,7 +2292,8 @@
           "maxLabel": "Auto-accept ceiling",
           "maxHint": "In Toman. Empty means no ceiling is recorded.",
           "onFile": "On file: {amount} IRT",
-          "noLimit": "On file: no ceiling"
+          "noLimit": "On file: no ceiling",
+          "hint": "When on, orders up to the amount you set are accepted without anyone approving them."
         },
         "notify": {
           "title": "Where notices go",
@@ -2247,7 +2305,8 @@
           "smsLabel": "SMS",
           "smsHint": "The SMS preference, recorded on file.",
           "emailLabel": "Email",
-          "emailHint": "The email preference, recorded on file."
+          "emailHint": "The email preference, recorded on file.",
+          "hint": "How word of a new order reaches you."
         },
         "save": "Save",
         "saved": "Saved.",
@@ -2291,7 +2350,9 @@
         "gone": "This request is no longer available. The list has been refreshed.",
         "network": "No connection. Check it and try again."
       },
-      "poolClosed": "This office is not active, so no new requests are shown to claim. Its own work in progress is still listed here."
+      "poolClosed": "This office is not active, so no new requests are shown to claim. Its own work in progress is still listed here.",
+      "narrowCustomer": "History of customer {ref}",
+      "clearCustomer": "Back to the queue"
     },
     "customers": {
       "metaTitle": "Customers",
@@ -2373,7 +2434,8 @@
         "noSuchUser": "No Asaex account has that id.",
         "forbidden": "Only the office owner can do this.",
         "failed": "That did not go through. Try again."
-      }
+      },
+      "addHint": "Give a colleague access to the panel, and decide what they may do."
     },
     "reports": {
       "metaTitle": "Reports",
@@ -2400,7 +2462,9 @@
       "slaHint": "The share of completed orders closed before their deadline, across {count, number} orders that had one.",
       "noCompleted": "Nothing has completed yet.",
       "noSla": "No deadline was recorded for this period's orders.",
-      "chartEmptyLabel": "Bar chart of Toman volume by month, {from} to {to}. Nothing has completed in this period."
+      "chartEmptyLabel": "Bar chart of Toman volume by month, {from} to {to}. Nothing has completed in this period.",
+      "volumeSectionHint": "How much this office moved in each month.",
+      "corridorSectionHint": "Each corridor's share of this office's work."
     },
     "chat": {
       "metaTitle": "Messages",
@@ -2436,7 +2500,15 @@
       "reports": "Volume and fees over six months, completion speed and how well deadlines were met.",
       "settings": "Opening hours, auto-accept, and which number and email get the alerts.",
       "coins": "Requests to buy gold coins. Take one, price it, hand it over."
-    }
+    },
+    "builtBy": "Built by the Â Programming Group",
+    "group": {
+      "today": "Today",
+      "work": "Waiting work",
+      "money": "Money",
+      "office": "The office"
+    },
+    "waitingHint": "Orders that ask nothing of you and are waiting on the customer or the platform. Tap a reference to see what it is waiting for."
   },
   "toast": {
     "copied": "Copied",
@@ -2485,6 +2557,11 @@
       "body": "For many Iranians, sending currency still means trusting an unknown number on Telegram and hoping for the best. We think the same job can be done, with the same real exchange offices, but with a rate you can see, a route you can follow, and a clear answer to who is responsible.",
       "contact": "Talk to us",
       "how": "How a transfer works"
+    },
+    "built": {
+      "title": "Built and maintained",
+      "name": "The Â Programming Group",
+      "body": "This product is built and maintained by the Â Programming Group: from the database and the security layer to every screen you see on this site and in the office and admin panels."
     }
   },
   "contact": {
@@ -2735,7 +2812,8 @@
       "tooBig": "That file is larger than 512 kB.",
       "uploadFailed": "The upload did not go through. Please try again.",
       "saveFailed": "Could not save. Please try again."
-    }
+    },
+    "sectionHint": "The name, mark and details customers see for this office."
   },
   "adminOffice": {
     "decided": "Recorded.",
@@ -2756,7 +2834,8 @@
       "save": "Save details",
       "verify": "Verify identity",
       "reject": "Reject",
-      "note": "Once verified, the office can no longer change its registered owner or national code itself. Settlement accounts are matched against these."
+      "note": "Once verified, the office can no longer change its registered owner or national code itself. Settlement accounts are matched against these.",
+      "hint": "This office's identity documents and licence, and your decision on them."
     },
     "login": {
       "title": "Office panel login",
@@ -2774,7 +2853,8 @@
         "sent": "Text message sent.",
         "failed": "The message could not be sent. Pass the details on yourself.",
         "skipped": "No message was sent."
-      }
+      },
+      "hint": "The account the office signs into its own panel with."
     },
     "errors": {
       "nationalId": "That national code is not valid.",

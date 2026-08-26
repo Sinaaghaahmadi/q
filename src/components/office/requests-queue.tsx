@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, HandCoins } from "lucide-react";
+import { CircleAlert, HandCoins, X } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -39,7 +39,16 @@ const STALE_AFTER_MS = 2 * 60 * 60 * 1000;
  * settles it under a row lock, and the loser is told plainly rather than left
  * pressing a button that quietly does nothing.
  */
-export function RequestsQueue({ officeId, orders }: { officeId: string; orders: Order[] }) {
+export function RequestsQueue({
+  officeId,
+  orders,
+  customer,
+}: {
+  officeId: string;
+  orders: Order[];
+  /** Set when the list was opened from one customer's row, so it can say so. */
+  customer?: string | null;
+}) {
   const t = useTranslations("officePanel.requests");
   const states = useTranslations("orders.state");
   const locale = useLocale() as AppLocale;
@@ -126,6 +135,21 @@ export function RequestsQueue({ officeId, orders }: { officeId: string; orders: 
         </label>
       </div>
 
+      {/* Opened from the customers page rather than from the queue itself:
+          this is one person's whole history at this office, settled work
+          included, and a list that looked like the ordinary queue would be
+          read as "nothing is waiting". */}
+      {customer ? (
+        <Link
+          href="/office/requests"
+          className="glass-control pressable inline-flex items-center gap-1.5 self-start rounded-full px-3 py-1.5 text-sm font-medium text-brand-700 [--glass-tint:var(--brand-600)] dark:text-brand-600"
+        >
+          {t("narrowCustomer", { ref: customer.slice(0, 8) })}
+          <X className="size-3.5" aria-hidden />
+          <span className="sr-only">{t("clearCustomer")}</span>
+        </Link>
+      ) : null}
+
       {error ? (
         <p className="flex items-start gap-1.5 rounded-xl bg-down/12 p-3 text-sm text-down-ink">
           <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
@@ -177,9 +201,13 @@ export function RequestsQueue({ officeId, orders }: { officeId: string; orders: 
                       </span>
                     </td>
                     <td className="num px-4 py-3">
-                      <span className="font-mono text-xs text-ink-600" dir="ltr">
+                      <Link
+                        href={`/office/requests?customer=${order.customer_id}`}
+                        className="font-mono text-xs text-ink-600 hover:text-brand-700 dark:hover:text-brand-600"
+                        dir="ltr"
+                      >
                         {order.customer_id.slice(0, 8)}
-                      </span>
+                      </Link>
                     </td>
                     <td className="num px-4 py-3">
                       {stale ? (

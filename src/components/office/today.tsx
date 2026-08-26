@@ -10,6 +10,7 @@ import { EASE_IN } from "@/components/brand/scene";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
 import { formatAmount, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
@@ -107,7 +108,7 @@ export function Today({ officeId, jobs }: { officeId: string; jobs: TodayJob[] }
       ) : null}
 
       {todo.length === 0 && waiting.length === 0 ? (
-        <Card className="flex flex-col items-center gap-4 p-14 text-center">
+        <Card className="glass flex flex-col items-center gap-4 p-14 text-center [--glass-tint:var(--up)]">
           <Coffee className="size-10 text-brand-600" aria-hidden />
           <p className="text-lg font-semibold">{t("allClear")}</p>
           <p className="max-w-sm text-sm text-ink-600">{t("allClearBody")}</p>
@@ -141,7 +142,7 @@ export function Today({ officeId, jobs }: { officeId: string; jobs: TodayJob[] }
               exit={reduce ? undefined : { opacity: 0, scale: 0.98 }}
               transition={reduce ? undefined : { duration: 0.25, ease: EASE_IN }}
             >
-              <Card className="overflow-hidden">
+              <Card className="glass overflow-hidden [--glass-tint:var(--brand-600)]">
                 <div className="flex flex-wrap items-center gap-4 p-5 sm:p-6">
                   <CoinIcon code={action.step === "money_in" ? send : receive} size={56} />
                   <div className="min-w-0 flex-1">
@@ -242,12 +243,18 @@ export function Today({ officeId, jobs }: { officeId: string; jobs: TodayJob[] }
 
       {waiting.length > 0 ? (
         <div className="space-y-2">
-          <h2 className="text-sm font-semibold text-ink-600">{t("waitingTitle")}</h2>
+          <h2 className="flex items-center gap-1.5 text-sm font-semibold text-ink-600">
+            {t("waitingTitle")}
+            <InfoHint title={t("waitingTitle")} body={t("waitingHint")} />
+          </h2>
           {waiting.map((job) => {
             const who = waitingOn(job.order.state);
             const receive = job.order.receive_currency as CurrencyCode;
             return (
-              <Card key={job.order.id} className="flex flex-wrap items-center gap-3 p-4">
+              <Card
+                key={job.order.id}
+                className="glass flex flex-wrap items-center gap-3 p-4 [--glass-tint:var(--ink-600)]"
+              >
                 <CoinIcon code={receive} size={32} />
                 <p className="num flex-1 text-sm font-medium">
                   {formatAmount(
@@ -260,6 +267,16 @@ export function Today({ officeId, jobs }: { officeId: string; jobs: TodayJob[] }
                 <p className="text-sm text-ink-600">
                   {who ? t(`waiting.${who}`) : t("waiting.platform")}
                 </p>
+                {/* Nothing is asked of this office here, which is exactly why
+                    the row still has to open: "why is this one stuck" is the
+                    question a waiting list produces. */}
+                <Link
+                  href={`/orders/${job.order.id}`}
+                  className="num font-mono text-xs text-ink-600 hover:text-brand-700"
+                  dir="ltr"
+                >
+                  {job.order.public_ref}
+                </Link>
               </Card>
             );
           })}

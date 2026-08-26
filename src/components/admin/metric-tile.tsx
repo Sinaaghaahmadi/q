@@ -1,9 +1,10 @@
 "use client";
 
-import { ArrowDownRight, ArrowUpRight, Minus } from "lucide-react";
+import { ArrowDownRight, ArrowLeft, ArrowUpRight, Minus } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { InfoHint } from "@/components/ui/info-hint";
+import { Link } from "@/i18n/navigation";
 import { formatNumber, type AppLocale } from "@/lib/money/format";
 import { cn } from "@/lib/utils";
 
@@ -39,6 +40,8 @@ export function MetricTile({
   tone = "neutral",
   hint,
   footnote,
+  href,
+  footnoteHref,
 }: {
   /** The icon, already rendered: `<TrendingUp className="size-4" />`. */
   icon: React.ReactNode;
@@ -56,6 +59,10 @@ export function MetricTile({
   hint?: string;
   /** One short line, when the number needs a caveat rather than a definition. */
   footnote?: string;
+  /** The rows this figure was counted from. The tile becomes a link. */
+  href?: string;
+  /** A second way in, when the footnote names a narrower question than the tile. */
+  footnoteHref?: string;
 }) {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("admin.dashboard");
@@ -73,18 +80,40 @@ export function MetricTile({
   const DeltaIcon =
     direction === "up" ? ArrowUpRight : direction === "down" ? ArrowDownRight : Minus;
 
+  /*
+   * The tile is a way in, not a readout.
+   *
+   * "Four hundred million Toman settled this month" is the beginning of a
+   * question, and until now the console answered it with a full stop. The
+   * whole tile is the link — a small chevron in the corner would be the
+   * correct-looking choice and the wrong one, because the thing the eye lands
+   * on is the number, and that is what should be clickable.
+   *
+   * The `i` and the footnote link are siblings of the anchor rather than
+   * children of it. A button inside an anchor is invalid HTML and browsers
+   * resolve it by making one of the two unreachable; the definition and the
+   * narrower query both stay clickable because they sit outside.
+   */
   return (
     <div
       className={cn(
-        "relative flex flex-col gap-3 rounded-2xl border p-4 transition-shadow hover:shadow-e1",
+        "glass relative flex flex-col gap-3 rounded-2xl p-4",
+        href && "glass-lift pressable",
         tone === "risk"
-          ? "border-warn/40 bg-warn/[0.04]"
+          ? "[--glass-tint:var(--warn)]"
           : tone === "good"
-            ? "border-up/30 bg-up/[0.03]"
-            : "border-ink-300/50 bg-surface",
+            ? "[--glass-tint:var(--up)]"
+            : "[--glass-tint:transparent]",
       )}
     >
-      <div className="flex items-start gap-2.5">
+      {/* Stretched over the whole tile, under the two controls that must stay
+          reachable. `z-0` on the link and `relative z-1` on those keeps the
+          stacking honest without a wrapper element around each. */}
+      {href ? (
+        <Link href={href} className="absolute inset-0 z-0 rounded-2xl" aria-label={label} />
+      ) : null}
+
+      <div className="pointer-events-none flex items-start gap-2.5">
         <span
           className={cn(
             "flex size-8 shrink-0 items-center justify-center rounded-lg",
@@ -99,7 +128,7 @@ export function MetricTile({
         </span>
         <span className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 pt-1.5">
           <span className="text-xs font-medium text-ink-600">{label}</span>
-          {hint ? <InfoHint term={hint} /> : null}
+          {hint ? <InfoHint term={hint} className="pointer-events-auto relative z-10" /> : null}
         </span>
       </div>
 
@@ -133,7 +162,17 @@ export function MetricTile({
           able to pass two strings that said the same thing and get whichever
           the branch order happened to pick. */}
       {footnote ? (
-        <p className="text-[0.6875rem] leading-tight text-ink-600">{footnote}</p>
+        footnoteHref ? (
+          <Link
+            href={footnoteHref}
+            className="relative z-10 inline-flex items-center gap-1 self-start text-[0.6875rem] leading-tight font-medium text-warn-ink underline-offset-2 hover:underline"
+          >
+            {footnote}
+            <ArrowLeft className="size-3 shrink-0 ltr:rotate-180" aria-hidden />
+          </Link>
+        ) : (
+          <p className="text-[0.6875rem] leading-tight text-ink-600">{footnote}</p>
+        )
       ) : delta === null ? (
         <p className="text-[0.6875rem] leading-tight text-ink-600">{t("noComparison")}</p>
       ) : null}

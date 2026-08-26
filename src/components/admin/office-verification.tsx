@@ -4,10 +4,10 @@ import { BadgeCheck, CircleAlert, KeyRound, Send, ShieldAlert, ShieldQuestion } 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { OfficeLogo, officeLogoUrl } from "@/components/office/office-logo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { OFFICE_USERNAME_RE, suggestUsername } from "@/lib/auth/office-login";
@@ -92,111 +92,106 @@ export function OfficeVerification({ office }: { office: ExchangeOffice }) {
 
   return (
     <div className="space-y-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("identity.title")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-5">
-          <div className="flex flex-wrap items-center gap-4">
-            <OfficeLogo
-              name={office.display_name ?? office.legal_name_fa}
-              logoUrl={officeLogoUrl(office.logo_path)}
-              officeId={office.id}
-              size={64}
-            />
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-lg font-semibold">
-                {office.display_name ?? office.legal_name_fa}
-              </p>
-              <p className="truncate font-mono text-xs text-ink-600" dir="ltr">
-                {office.slug} · {office.license_no}
-              </p>
-            </div>
-            <StateBadge state={office.kyc_state} />
-          </div>
-
-          {office.kyc_reason ? (
-            <p className="rounded-xl bg-ink-300/20 p-3 text-sm leading-relaxed text-ink-600">
-              {office.kyc_reason}
+      <PanelSection title={t("identity.title")} hint={t("identity.hint")} bodyClassName="space-y-5">
+        <div className="flex flex-wrap items-center gap-4">
+          <OfficeLogo
+            name={office.display_name ?? office.legal_name_fa}
+            logoUrl={officeLogoUrl(office.logo_path)}
+            officeId={office.id}
+            size={64}
+          />
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-lg font-semibold">
+              {office.display_name ?? office.legal_name_fa}
             </p>
-          ) : null}
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block text-sm font-medium">
-              {t("identity.ownerName")}
-              <Input
-                className="mt-1.5"
-                value={ownerName}
-                disabled={busy}
-                onChange={(e) => setOwnerName(e.target.value)}
-              />
-            </label>
-            <label className="block text-sm font-medium">
-              {t("identity.nationalId")}
-              <Input
-                className="mt-1.5 font-mono"
-                dir="ltr"
-                inputMode="numeric"
-                maxLength={12}
-                value={nationalId}
-                disabled={busy}
-                onChange={(e) => setNationalId(e.target.value)}
-              />
-              <span
-                className={
-                  codeValid ? "mt-1 block text-xs text-ink-600" : "mt-1 block text-xs text-down"
-                }
-              >
-                {codeValid ? t("identity.nationalIdHint") : t("errors.nationalId")}
-              </span>
-            </label>
+            <p className="truncate font-mono text-xs text-ink-600" dir="ltr">
+              {office.slug} · {office.license_no}
+            </p>
           </div>
+          <StateBadge state={office.kyc_state} />
+        </div>
 
+        {office.kyc_reason ? (
+          <p className="rounded-xl bg-ink-300/20 p-3 text-sm leading-relaxed text-ink-600">
+            {office.kyc_reason}
+          </p>
+        ) : null}
+
+        <div className="grid gap-4 sm:grid-cols-2">
           <label className="block text-sm font-medium">
-            {t("identity.reason")}
+            {t("identity.ownerName")}
             <Input
               className="mt-1.5"
-              value={reason}
+              value={ownerName}
               disabled={busy}
-              placeholder={t("identity.reasonPlaceholder")}
-              onChange={(e) => setReason(e.target.value)}
+              onChange={(e) => setOwnerName(e.target.value)}
             />
           </label>
-
-          <div className="flex flex-wrap gap-2">
-            {identityChanged ? (
-              <Button variant="secondary" disabled={busy || !codeValid} onClick={saveIdentity}>
-                {t("identity.save")}
-              </Button>
-            ) : null}
-            <Button
-              disabled={busy || office.kyc_state === "verified"}
-              onClick={() => decide("verified")}
+          <label className="block text-sm font-medium">
+            {t("identity.nationalId")}
+            <Input
+              className="mt-1.5 font-mono"
+              dir="ltr"
+              inputMode="numeric"
+              maxLength={12}
+              value={nationalId}
+              disabled={busy}
+              onChange={(e) => setNationalId(e.target.value)}
+            />
+            <span
+              className={
+                codeValid ? "mt-1 block text-xs text-ink-600" : "mt-1 block text-xs text-down"
+              }
             >
-              <BadgeCheck className="size-4" aria-hidden />
-              {t("identity.verify")}
-            </Button>
-            <Button
-              variant="destructive"
-              disabled={busy || office.kyc_state === "rejected"}
-              onClick={() => decide("rejected")}
-            >
-              <ShieldAlert className="size-4" aria-hidden />
-              {t("identity.reject")}
-            </Button>
-          </div>
+              {codeValid ? t("identity.nationalIdHint") : t("errors.nationalId")}
+            </span>
+          </label>
+        </div>
 
-          <p className="text-xs leading-relaxed text-ink-600">{t("identity.note")}</p>
+        <label className="block text-sm font-medium">
+          {t("identity.reason")}
+          <Input
+            className="mt-1.5"
+            value={reason}
+            disabled={busy}
+            placeholder={t("identity.reasonPlaceholder")}
+            onChange={(e) => setReason(e.target.value)}
+          />
+        </label>
 
-          {error ? (
-            <p className="flex items-start gap-1.5 text-sm text-down">
-              <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-              {error}
-            </p>
+        <div className="flex flex-wrap gap-2">
+          {identityChanged ? (
+            <Button variant="secondary" disabled={busy || !codeValid} onClick={saveIdentity}>
+              {t("identity.save")}
+            </Button>
           ) : null}
-          {note && !error ? <p className="text-sm text-up">{note}</p> : null}
-        </CardContent>
-      </Card>
+          <Button
+            disabled={busy || office.kyc_state === "verified"}
+            onClick={() => decide("verified")}
+          >
+            <BadgeCheck className="size-4" aria-hidden />
+            {t("identity.verify")}
+          </Button>
+          <Button
+            variant="destructive"
+            disabled={busy || office.kyc_state === "rejected"}
+            onClick={() => decide("rejected")}
+          >
+            <ShieldAlert className="size-4" aria-hidden />
+            {t("identity.reject")}
+          </Button>
+        </div>
+
+        <p className="text-xs leading-relaxed text-ink-600">{t("identity.note")}</p>
+
+        {error ? (
+          <p className="flex items-start gap-1.5 text-sm text-down">
+            <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+            {error}
+          </p>
+        ) : null}
+        {note && !error ? <p className="text-sm text-up">{note}</p> : null}
+      </PanelSection>
 
       <IssueLogin office={office} />
     </div>
@@ -258,87 +253,82 @@ function IssueLogin({ office }: { office: ExchangeOffice }) {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{t("login.title")}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {issued ? (
-          <>
-            <dl className="space-y-2 rounded-xl border border-ink-300/55 p-4">
-              <div className="flex items-baseline justify-between gap-3">
-                <dt className="text-sm text-ink-600">{t("login.username")}</dt>
-                <dd className="font-mono text-sm" dir="ltr">
-                  {issued.username}
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-3">
-                <dt className="text-sm text-ink-600">{t("login.password")}</dt>
-                <dd className="font-mono text-base font-semibold" dir="ltr">
-                  {issued.password}
-                </dd>
-              </div>
-            </dl>
-            <p className="flex items-center gap-1.5 text-sm text-ink-600">
-              <Send className="size-4 shrink-0" aria-hidden />
-              {t(`login.sms.${issued.sms}`)}
-            </p>
-            <p className="rounded-xl bg-warn/10 p-3 text-sm leading-relaxed text-warn-ink">
-              {t("login.warning")}
-            </p>
-            <Button variant="secondary" onClick={() => setIssued(null)}>
-              {t("login.again")}
-            </Button>
-          </>
-        ) : (
-          <>
-            <p className="text-sm leading-relaxed text-ink-600">{t("login.body")}</p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="block text-sm font-medium">
-                {t("login.username")}
-                <Input
-                  className="mt-1.5 font-mono"
-                  dir="ltr"
-                  value={username}
-                  disabled={busy}
-                  onChange={(e) => setUsername(e.target.value.toLowerCase())}
-                />
-              </label>
-              <label className="block text-sm font-medium">
-                {t("login.phone")}
-                <Input
-                  className="mt-1.5 font-mono"
-                  dir="ltr"
-                  inputMode="tel"
-                  value={phone}
-                  disabled={busy}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </label>
+    <PanelSection title={t("login.title")} hint={t("login.hint")} bodyClassName="space-y-4">
+      {issued ? (
+        <>
+          <dl className="space-y-2 rounded-xl border border-ink-300/55 p-4">
+            <div className="flex items-baseline justify-between gap-3">
+              <dt className="text-sm text-ink-600">{t("login.username")}</dt>
+              <dd className="font-mono text-sm" dir="ltr">
+                {issued.username}
+              </dd>
             </div>
-            <label className="flex items-start gap-2.5">
-              <Switch checked={sendSms} onCheckedChange={setSendSms} disabled={busy} />
-              <span>
-                <span className="block text-sm font-medium">{t("login.sendSms")}</span>
-                <span className="block text-xs leading-relaxed text-ink-600">
-                  {t("login.sendSmsHint")}
-                </span>
-              </span>
+            <div className="flex items-baseline justify-between gap-3">
+              <dt className="text-sm text-ink-600">{t("login.password")}</dt>
+              <dd className="font-mono text-base font-semibold" dir="ltr">
+                {issued.password}
+              </dd>
+            </div>
+          </dl>
+          <p className="flex items-center gap-1.5 text-sm text-ink-600">
+            <Send className="size-4 shrink-0" aria-hidden />
+            {t(`login.sms.${issued.sms}`)}
+          </p>
+          <p className="rounded-xl bg-warn/10 p-3 text-sm leading-relaxed text-warn-ink">
+            {t("login.warning")}
+          </p>
+          <Button variant="secondary" onClick={() => setIssued(null)}>
+            {t("login.again")}
+          </Button>
+        </>
+      ) : (
+        <>
+          <p className="text-sm leading-relaxed text-ink-600">{t("login.body")}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block text-sm font-medium">
+              {t("login.username")}
+              <Input
+                className="mt-1.5 font-mono"
+                dir="ltr"
+                value={username}
+                disabled={busy}
+                onChange={(e) => setUsername(e.target.value.toLowerCase())}
+              />
             </label>
-            <Button disabled={!ready || busy} onClick={issue}>
-              <KeyRound className="size-4" aria-hidden />
-              {busy ? t("login.working") : t("login.cta")}
-            </Button>
-            {error ? (
-              <p className="flex items-start gap-1.5 text-sm text-down">
-                <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-                {error}
-              </p>
-            ) : null}
-          </>
-        )}
-      </CardContent>
-    </Card>
+            <label className="block text-sm font-medium">
+              {t("login.phone")}
+              <Input
+                className="mt-1.5 font-mono"
+                dir="ltr"
+                inputMode="tel"
+                value={phone}
+                disabled={busy}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </label>
+          </div>
+          <label className="flex items-start gap-2.5">
+            <Switch checked={sendSms} onCheckedChange={setSendSms} disabled={busy} />
+            <span>
+              <span className="block text-sm font-medium">{t("login.sendSms")}</span>
+              <span className="block text-xs leading-relaxed text-ink-600">
+                {t("login.sendSmsHint")}
+              </span>
+            </span>
+          </label>
+          <Button disabled={!ready || busy} onClick={issue}>
+            <KeyRound className="size-4" aria-hidden />
+            {busy ? t("login.working") : t("login.cta")}
+          </Button>
+          {error ? (
+            <p className="flex items-start gap-1.5 text-sm text-down">
+              <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+              {error}
+            </p>
+          ) : null}
+        </>
+      )}
+    </PanelSection>
   );
 }
 

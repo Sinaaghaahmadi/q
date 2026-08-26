@@ -4,8 +4,8 @@ import { CircleAlert, ShieldCheck, ShieldOff, TriangleAlert } from "lucide-react
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -67,96 +67,93 @@ export function StaffSecurity({ state }: { state: StaffMfaState }) {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <ShieldCheck className="size-4 text-brand-600" aria-hidden />
-          {t("title")}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="text-sm leading-relaxed text-ink-600">{t("body")}</p>
+    <PanelSection
+      icon={<ShieldCheck className="size-4" aria-hidden />}
+      title={t("title")}
+      hint={t("sectionHint")}
+      bodyClassName="space-y-4"
+    >
+      <p className="text-sm leading-relaxed text-ink-600">{t("body")}</p>
 
-        {!state.self_enrolled ? (
-          <p className="flex items-start gap-2 rounded-xl border border-warn/40 bg-warn/8 p-3 text-sm leading-relaxed">
-            <TriangleAlert className="mt-0.5 size-4 shrink-0 text-warn" aria-hidden />
-            <span>
-              {t("selfMissing")}{" "}
-              <Link href="/profile" className="font-medium underline underline-offset-4">
-                {t("selfMissingCta")}
-              </Link>
-            </span>
-          </p>
-        ) : null}
-
-        <div className="flex items-start justify-between gap-4 rounded-xl border border-ink-300/55 p-3">
-          <div className="min-w-0">
-            <p className="text-sm font-medium">{t("require")}</p>
-            <p className="mt-0.5 text-xs leading-relaxed text-ink-600">
-              {canRequire ? t("requireReady") : t("requireBlocked", { count: missing.length })}
-            </p>
-          </div>
-          <Switch
-            checked={state.required}
-            // Turning it *off* is never blocked: a safety catch that cannot be
-            // released is worse than the lockout it prevents.
-            disabled={busy || (!state.required && !canRequire)}
-            onCheckedChange={setRequired}
-            aria-label={t("require")}
-          />
-        </div>
-
-        <p className="text-sm text-ink-600">
-          {t("coverage", { covered, total: state.staff.length })}
+      {!state.self_enrolled ? (
+        <p className="flex items-start gap-2 rounded-xl border border-warn/40 bg-warn/8 p-3 text-sm leading-relaxed">
+          <TriangleAlert className="mt-0.5 size-4 shrink-0 text-warn" aria-hidden />
+          <span>
+            {t("selfMissing")}{" "}
+            <Link href="/profile" className="font-medium underline underline-offset-4">
+              {t("selfMissingCta")}
+            </Link>
+          </span>
         </p>
+      ) : null}
 
-        {state.staff.length === 0 ? (
-          <p className="text-sm text-ink-600">{t("empty")}</p>
-        ) : (
-          <ul className="space-y-2">
-            {state.staff.map((row) => (
-              <li
-                key={row.user_id}
-                className="flex flex-wrap items-center gap-2 rounded-xl border border-ink-300/55 p-3"
-              >
-                <span className="min-w-0 flex-1 text-sm font-medium">
-                  {row.full_name ?? t("unnamed")}
-                </span>
-                <span className="flex flex-wrap gap-1">
-                  {row.roles.map((role) => (
-                    <Badge key={role} variant="outline">
-                      {t.has(`role.${role}`) ? t(`role.${role}`) : role}
-                    </Badge>
-                  ))}
-                </span>
-                {row.enrolled ? (
-                  <Badge variant="up">
-                    <ShieldCheck className="size-3.5" aria-hidden />
-                    {t("enrolled")}
-                  </Badge>
-                ) : (
-                  <Badge variant="warn">
-                    <ShieldOff className="size-3.5" aria-hidden />
-                    {t("notEnrolled")}
-                  </Badge>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {error ? (
-          <p className="flex items-start gap-1.5 text-sm text-down">
-            <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-            <span>
-              {t("saveFailed")}
-              <span className="mt-0.5 block font-mono text-xs break-all opacity-80" dir="ltr">
-                {error}
-              </span>
-            </span>
+      <div className="flex items-start justify-between gap-4 rounded-xl border border-ink-300/55 p-3">
+        <div className="min-w-0">
+          <p className="text-sm font-medium">{t("require")}</p>
+          <p className="mt-0.5 text-xs leading-relaxed text-ink-600">
+            {canRequire ? t("requireReady") : t("requireBlocked", { count: missing.length })}
           </p>
-        ) : null}
-      </CardContent>
-    </Card>
+        </div>
+        <Switch
+          checked={state.required}
+          // Turning it *off* is never blocked: a safety catch that cannot be
+          // released is worse than the lockout it prevents.
+          disabled={busy || (!state.required && !canRequire)}
+          onCheckedChange={setRequired}
+          aria-label={t("require")}
+        />
+      </div>
+
+      <p className="text-sm text-ink-600">
+        {t("coverage", { covered, total: state.staff.length })}
+      </p>
+
+      {state.staff.length === 0 ? (
+        <p className="text-sm text-ink-600">{t("empty")}</p>
+      ) : (
+        <ul className="space-y-2">
+          {state.staff.map((row) => (
+            <li
+              key={row.user_id}
+              className="flex flex-wrap items-center gap-2 rounded-xl border border-ink-300/55 p-3"
+            >
+              <span className="min-w-0 flex-1 text-sm font-medium">
+                {row.full_name ?? t("unnamed")}
+              </span>
+              <span className="flex flex-wrap gap-1">
+                {row.roles.map((role) => (
+                  <Badge key={role} variant="outline">
+                    {t.has(`role.${role}`) ? t(`role.${role}`) : role}
+                  </Badge>
+                ))}
+              </span>
+              {row.enrolled ? (
+                <Badge variant="up">
+                  <ShieldCheck className="size-3.5" aria-hidden />
+                  {t("enrolled")}
+                </Badge>
+              ) : (
+                <Badge variant="warn">
+                  <ShieldOff className="size-3.5" aria-hidden />
+                  {t("notEnrolled")}
+                </Badge>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {error ? (
+        <p className="flex items-start gap-1.5 text-sm text-down">
+          <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>
+            {t("saveFailed")}
+            <span className="mt-0.5 block font-mono text-xs break-all opacity-80" dir="ltr">
+              {error}
+            </span>
+          </span>
+        </p>
+      ) : null}
+    </PanelSection>
   );
 }

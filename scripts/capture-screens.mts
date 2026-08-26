@@ -202,7 +202,11 @@ async function signIn(page: import("@playwright/test").Page, who: keyof typeof S
   await page.getByRole("radio").last().click();
   await page.locator("#signin-email").fill(account.email);
   await page.locator("#signin-password").fill(account.password);
-  await page.getByRole("button", { name: /.+/ }).last().click();
+  // Accepting the terms is a real condition of signing in, not decoration: the
+  // button stays disabled until the box is ticked, so a script that skips it
+  // waits twenty seconds for a navigation that was never going to happen.
+  await page.getByRole("checkbox").check();
+  await page.getByTestId("signin-submit").click();
   await page.waitForURL((url) => !url.pathname.includes("/signin"), { timeout: 20_000 });
 }
 

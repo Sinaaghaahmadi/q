@@ -1,5 +1,7 @@
 import "server-only";
 
+import { cache } from "react";
+
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "./types";
@@ -37,8 +39,15 @@ export async function createClient() {
   );
 }
 
-/** The signed-in user's profile, or null. Used to gate server components. */
-export async function getSessionProfile() {
+/**
+ * The signed-in user's profile, or null. Used to gate server components.
+ *
+ * Wrapped in `cache()` so the several callers in one render — the page's own
+ * gate, `getAdminContext`, and the shell that prints who is signed in — cost
+ * one round trip rather than three. React clears it per request, so this is a
+ * deduplicator and never a stale session.
+ */
+export const getSessionProfile = cache(async function getSessionProfile() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -58,7 +67,7 @@ export async function getSessionProfile() {
     .is("deleted_at", null);
 
   return { user, profile, memberships: memberships ?? [] };
-}
+});
 
 /** True when Supabase env vars are present — the app degrades gracefully without them. */
 export function isSupabaseConfigured() {

@@ -4,9 +4,9 @@ import { CircleAlert, Info, Plus, Save, TriangleAlert } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { CURRENCY_CODES } from "@/lib/rates/catalog";
@@ -169,169 +169,163 @@ export function AccountsEditor({
       <p className="text-sm leading-relaxed text-ink-600">{t("accounts.noDeleteNote")}</p>
       {!canManage ? <p className="text-sm text-ink-600">{t("accounts.readOnly")}</p> : null}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("accounts.listTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {accounts.length === 0 ? (
-            <p className="text-sm text-ink-600">{t("accounts.empty")}</p>
-          ) : (
-            accounts.map((account) => {
-              const draft = draftOf(account);
-              return (
-                <div key={account.id} className="space-y-3 rounded-xl border border-ink-300/55 p-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-sm" dir="ltr">
-                      {account.currency}
-                    </span>
-                    <span className="text-sm text-ink-600">
-                      {t(`accounts.kind.${account.kind}`)}
-                    </span>
-                    <Badge variant={account.is_public ? "up" : "neutral"}>
-                      {account.is_public
-                        ? t("accounts.badge.public")
-                        : t("accounts.badge.internal")}
-                    </Badge>
-                    {!account.active ? (
-                      <Badge variant="warn">{t("accounts.badge.inactive")}</Badge>
-                    ) : null}
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="block text-sm font-medium">
-                      {t("accounts.number")}
-                      <Input
-                        dir="ltr"
-                        className="mt-1.5 text-start font-mono text-xs"
-                        value={draft.number}
-                        disabled={!canManage}
-                        placeholder={t(`accounts.placeholder.${account.kind}`)}
-                        onChange={(e) =>
-                          setDrafts((d) => ({
-                            ...d,
-                            [account.id]: { ...draft, number: e.target.value },
-                          }))
-                        }
-                      />
-                    </label>
-                    <label className="block text-sm font-medium">
-                      {t("accounts.label")}
-                      <Input
-                        className="mt-1.5"
-                        value={draft.label}
-                        disabled={!canManage}
-                        placeholder={t("accounts.labelPlaceholder")}
-                        onChange={(e) =>
-                          setDrafts((d) => ({
-                            ...d,
-                            [account.id]: { ...draft, label: e.target.value },
-                          }))
-                        }
-                      />
-                    </label>
-                  </div>
-
-                  {canManage ? (
-                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                      <ToggleField
-                        label={t("accounts.publicLabel")}
-                        hint={t("accounts.publicHint")}
-                        checked={account.is_public}
-                        disabled={busy === account.id}
-                        onChange={(v) => toggle(account, "is_public", v)}
-                      />
-                      <ToggleField
-                        label={t("accounts.activeLabel")}
-                        hint={t("accounts.activeHint")}
-                        checked={account.active}
-                        disabled={busy === account.id}
-                        onChange={(v) => toggle(account, "active", v)}
-                      />
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="ms-auto"
-                        disabled={
-                          busy === account.id ||
-                          (draft.number === accountNumber(account.details) &&
-                            draft.label === (account.label ?? ""))
-                        }
-                        onClick={() => saveRow(account)}
-                      >
-                        <Save className="size-4" aria-hidden />
-                        {busy === account.id ? t("accounts.working") : t("accounts.save")}
-                      </Button>
-                    </div>
+      <PanelSection
+        title={t("accounts.listTitle")}
+        hint={t("accounts.listHint")}
+        bodyClassName="space-y-4"
+      >
+        {accounts.length === 0 ? (
+          <p className="text-sm text-ink-600">{t("accounts.empty")}</p>
+        ) : (
+          accounts.map((account) => {
+            const draft = draftOf(account);
+            return (
+              <div key={account.id} className="space-y-3 rounded-xl border border-ink-300/55 p-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-mono text-sm" dir="ltr">
+                    {account.currency}
+                  </span>
+                  <span className="text-sm text-ink-600">{t(`accounts.kind.${account.kind}`)}</span>
+                  <Badge variant={account.is_public ? "up" : "neutral"}>
+                    {account.is_public ? t("accounts.badge.public") : t("accounts.badge.internal")}
+                  </Badge>
+                  {!account.active ? (
+                    <Badge variant="warn">{t("accounts.badge.inactive")}</Badge>
                   ) : null}
                 </div>
-              );
-            })
-          )}
-        </CardContent>
-      </Card>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="block text-sm font-medium">
+                    {t("accounts.number")}
+                    <Input
+                      dir="ltr"
+                      className="mt-1.5 text-start font-mono text-xs"
+                      value={draft.number}
+                      disabled={!canManage}
+                      placeholder={t(`accounts.placeholder.${account.kind}`)}
+                      onChange={(e) =>
+                        setDrafts((d) => ({
+                          ...d,
+                          [account.id]: { ...draft, number: e.target.value },
+                        }))
+                      }
+                    />
+                  </label>
+                  <label className="block text-sm font-medium">
+                    {t("accounts.label")}
+                    <Input
+                      className="mt-1.5"
+                      value={draft.label}
+                      disabled={!canManage}
+                      placeholder={t("accounts.labelPlaceholder")}
+                      onChange={(e) =>
+                        setDrafts((d) => ({
+                          ...d,
+                          [account.id]: { ...draft, label: e.target.value },
+                        }))
+                      }
+                    />
+                  </label>
+                </div>
+
+                {canManage ? (
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <ToggleField
+                      label={t("accounts.publicLabel")}
+                      hint={t("accounts.publicHint")}
+                      checked={account.is_public}
+                      disabled={busy === account.id}
+                      onChange={(v) => toggle(account, "is_public", v)}
+                    />
+                    <ToggleField
+                      label={t("accounts.activeLabel")}
+                      hint={t("accounts.activeHint")}
+                      checked={account.active}
+                      disabled={busy === account.id}
+                      onChange={(v) => toggle(account, "active", v)}
+                    />
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="ms-auto"
+                      disabled={
+                        busy === account.id ||
+                        (draft.number === accountNumber(account.details) &&
+                          draft.label === (account.label ?? ""))
+                      }
+                      onClick={() => saveRow(account)}
+                    >
+                      <Save className="size-4" aria-hidden />
+                      {busy === account.id ? t("accounts.working") : t("accounts.save")}
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })
+        )}
+      </PanelSection>
 
       {canManage ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("accounts.addTitle")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="grid gap-3 sm:grid-cols-2">
-              <label className="block text-sm font-medium">
-                {t("accounts.currency")}
-                <select
-                  value={currency}
-                  onChange={(e) => setCurrency(e.target.value)}
-                  className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
-                >
-                  {CURRENCY_CODES.map((code) => (
-                    <option key={code} value={code}>
-                      {code}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className="block text-sm font-medium">
-                {t("accounts.kindLabel")}
-                <select
-                  value={kind}
-                  onChange={(e) => setKind(e.target.value as AccountKind)}
-                  className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
-                >
-                  {KINDS.map((k) => (
-                    <option key={k} value={k}>
-                      {t(`accounts.kind.${k}`)}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className="block text-sm font-medium">
-                {t("accounts.number")}
-                <Input
-                  dir="ltr"
-                  className="mt-1.5 text-start font-mono text-xs"
-                  value={newNumber}
-                  placeholder={t(`accounts.placeholder.${kind}`)}
-                  onChange={(e) => setNewNumber(e.target.value)}
-                />
-              </label>
-              <label className="block text-sm font-medium">
-                {t("accounts.label")}
-                <Input
-                  className="mt-1.5"
-                  value={newLabel}
-                  placeholder={t("accounts.labelPlaceholder")}
-                  onChange={(e) => setNewLabel(e.target.value)}
-                />
-              </label>
-            </div>
-            <Button disabled={busy !== null || newNumber.trim().length < 3} onClick={add}>
-              <Plus className="size-4" aria-hidden />
-              {busy === "new" ? t("accounts.working") : t("accounts.add")}
-            </Button>
-          </CardContent>
-        </Card>
+        <PanelSection
+          title={t("accounts.addTitle")}
+          hint={t("accounts.addHint")}
+          bodyClassName="space-y-3"
+        >
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block text-sm font-medium">
+              {t("accounts.currency")}
+              <select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+                className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
+              >
+                {CURRENCY_CODES.map((code) => (
+                  <option key={code} value={code}>
+                    {code}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="block text-sm font-medium">
+              {t("accounts.kindLabel")}
+              <select
+                value={kind}
+                onChange={(e) => setKind(e.target.value as AccountKind)}
+                className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
+              >
+                {KINDS.map((k) => (
+                  <option key={k} value={k}>
+                    {t(`accounts.kind.${k}`)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="block text-sm font-medium">
+              {t("accounts.number")}
+              <Input
+                dir="ltr"
+                className="mt-1.5 text-start font-mono text-xs"
+                value={newNumber}
+                placeholder={t(`accounts.placeholder.${kind}`)}
+                onChange={(e) => setNewNumber(e.target.value)}
+              />
+            </label>
+            <label className="block text-sm font-medium">
+              {t("accounts.label")}
+              <Input
+                className="mt-1.5"
+                value={newLabel}
+                placeholder={t("accounts.labelPlaceholder")}
+                onChange={(e) => setNewLabel(e.target.value)}
+              />
+            </label>
+          </div>
+          <Button disabled={busy !== null || newNumber.trim().length < 3} onClick={add}>
+            <Plus className="size-4" aria-hidden />
+            {busy === "new" ? t("accounts.working") : t("accounts.add")}
+          </Button>
+        </PanelSection>
       ) : null}
 
       {error ? (

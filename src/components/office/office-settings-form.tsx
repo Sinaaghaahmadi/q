@@ -4,8 +4,8 @@ import { CircleAlert, Lock, Save } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Link } from "@/i18n/navigation";
@@ -162,149 +162,142 @@ export function OfficeSettingsForm({
         </div>
       ) : null}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("settings.hours.title")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-sm text-ink-600">
-            {hoursOnFile.tz
-              ? t("settings.hours.body", { tz: hoursOnFile.tz })
-              : t("settings.hours.bodyUnknown")}
-          </p>
-          {DAYS.map((day) => (
-            <div key={day} className="flex flex-wrap items-end gap-3">
-              <span className="w-24 pb-3 text-sm font-medium">
-                {t(`settings.hours.day.${day}`)}
-              </span>
-              <label className="text-sm">
-                <span className="block text-xs text-ink-600">{t("settings.hours.open")}</span>
-                <Input
-                  dir="ltr"
-                  className="mt-1 w-32 text-start"
-                  type="time"
-                  value={week[day].open}
-                  disabled={!canWrite || week[day].closed}
-                  onChange={(e) =>
-                    setWeek((w) => ({ ...w, [day]: { ...w[day], open: e.target.value } }))
-                  }
-                />
-              </label>
-              <label className="text-sm">
-                <span className="block text-xs text-ink-600">{t("settings.hours.close")}</span>
-                <Input
-                  dir="ltr"
-                  className="mt-1 w-32 text-start"
-                  type="time"
-                  value={week[day].close}
-                  disabled={!canWrite || week[day].closed}
-                  onChange={(e) =>
-                    setWeek((w) => ({ ...w, [day]: { ...w[day], close: e.target.value } }))
-                  }
-                />
-              </label>
-              <span className="flex items-center gap-2 pb-3">
-                <Switch
-                  checked={week[day].closed}
-                  disabled={!canWrite}
-                  aria-label={`${t(`settings.hours.day.${day}`)} — ${t("settings.hours.closedLabel")}`}
-                  onCheckedChange={(v) =>
-                    setWeek((w) => ({ ...w, [day]: { ...w[day], closed: v } }))
-                  }
-                />
-                <span className="text-sm text-ink-600">{t("settings.hours.closedLabel")}</span>
-              </span>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+      <PanelSection
+        title={t("settings.hours.title")}
+        hint={t("settings.hours.hint")}
+        bodyClassName="space-y-3"
+      >
+        <p className="text-sm text-ink-600">
+          {hoursOnFile.tz
+            ? t("settings.hours.body", { tz: hoursOnFile.tz })
+            : t("settings.hours.bodyUnknown")}
+        </p>
+        {DAYS.map((day) => (
+          <div key={day} className="flex flex-wrap items-end gap-3">
+            <span className="w-24 pb-3 text-sm font-medium">{t(`settings.hours.day.${day}`)}</span>
+            <label className="text-sm">
+              <span className="block text-xs text-ink-600">{t("settings.hours.open")}</span>
+              <Input
+                dir="ltr"
+                className="mt-1 w-32 text-start"
+                type="time"
+                value={week[day].open}
+                disabled={!canWrite || week[day].closed}
+                onChange={(e) =>
+                  setWeek((w) => ({ ...w, [day]: { ...w[day], open: e.target.value } }))
+                }
+              />
+            </label>
+            <label className="text-sm">
+              <span className="block text-xs text-ink-600">{t("settings.hours.close")}</span>
+              <Input
+                dir="ltr"
+                className="mt-1 w-32 text-start"
+                type="time"
+                value={week[day].close}
+                disabled={!canWrite || week[day].closed}
+                onChange={(e) =>
+                  setWeek((w) => ({ ...w, [day]: { ...w[day], close: e.target.value } }))
+                }
+              />
+            </label>
+            <span className="flex items-center gap-2 pb-3">
+              <Switch
+                checked={week[day].closed}
+                disabled={!canWrite}
+                aria-label={`${t(`settings.hours.day.${day}`)} — ${t("settings.hours.closedLabel")}`}
+                onCheckedChange={(v) => setWeek((w) => ({ ...w, [day]: { ...w[day], closed: v } }))}
+              />
+              <span className="text-sm text-ink-600">{t("settings.hours.closedLabel")}</span>
+            </span>
+          </div>
+        ))}
+      </PanelSection>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("settings.auto.title")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-sm text-ink-600">{t("settings.auto.body")}</p>
-          <ToggleField
-            label={t("settings.auto.enabledLabel")}
-            checked={autoEnabled}
+      <PanelSection
+        title={t("settings.auto.title")}
+        hint={t("settings.auto.hint")}
+        bodyClassName="space-y-3"
+      >
+        <p className="text-sm text-ink-600">{t("settings.auto.body")}</p>
+        <ToggleField
+          label={t("settings.auto.enabledLabel")}
+          checked={autoEnabled}
+          disabled={!canWrite}
+          onChange={setAutoEnabled}
+        />
+        <label className="block max-w-xs text-sm font-medium">
+          {t("settings.auto.maxLabel")}
+          <Input
+            dir="ltr"
+            className="mt-1.5 text-start tabular-nums"
+            inputMode="decimal"
+            value={autoMax}
             disabled={!canWrite}
-            onChange={setAutoEnabled}
+            onChange={(e) => setAutoMax(e.target.value)}
           />
-          <label className="block max-w-xs text-sm font-medium">
-            {t("settings.auto.maxLabel")}
+          <span className="mt-1 block text-xs font-normal text-ink-600">
+            {t("settings.auto.maxHint")}
+          </span>
+          <span className="mt-0.5 block text-xs font-normal text-ink-600">
+            {autoOnFile.maxMinor === null
+              ? t("settings.auto.noLimit")
+              : t("settings.auto.onFile", {
+                  amount: formatAmount(fromMinor(autoOnFile.maxMinor, "IRT"), "IRT", locale),
+                })}
+          </span>
+        </label>
+      </PanelSection>
+
+      <PanelSection
+        title={t("settings.notify.title")}
+        hint={t("settings.notify.hint")}
+        bodyClassName="space-y-3"
+      >
+        <p className="text-sm text-ink-600">{t("settings.notify.body")}</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block text-sm font-medium">
+            {t("settings.notify.phone")}
             <Input
               dir="ltr"
-              className="mt-1.5 text-start tabular-nums"
-              inputMode="decimal"
-              value={autoMax}
+              className="mt-1.5 text-start font-mono text-xs"
+              type="tel"
+              value={contact.phone}
               disabled={!canWrite}
-              onChange={(e) => setAutoMax(e.target.value)}
+              placeholder={t("settings.notify.phonePlaceholder")}
+              onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
             />
-            <span className="mt-1 block text-xs font-normal text-ink-600">
-              {t("settings.auto.maxHint")}
-            </span>
-            <span className="mt-0.5 block text-xs font-normal text-ink-600">
-              {autoOnFile.maxMinor === null
-                ? t("settings.auto.noLimit")
-                : t("settings.auto.onFile", {
-                    amount: formatAmount(fromMinor(autoOnFile.maxMinor, "IRT"), "IRT", locale),
-                  })}
-            </span>
           </label>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("settings.notify.title")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-sm text-ink-600">{t("settings.notify.body")}</p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block text-sm font-medium">
-              {t("settings.notify.phone")}
-              <Input
-                dir="ltr"
-                className="mt-1.5 text-start font-mono text-xs"
-                type="tel"
-                value={contact.phone}
-                disabled={!canWrite}
-                placeholder={t("settings.notify.phonePlaceholder")}
-                onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
-              />
-            </label>
-            <label className="block text-sm font-medium">
-              {t("settings.notify.email")}
-              <Input
-                dir="ltr"
-                className="mt-1.5 text-start"
-                type="email"
-                value={contact.email}
-                disabled={!canWrite}
-                placeholder={t("settings.notify.emailPlaceholder")}
-                onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
-              />
-            </label>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <ToggleField
-              label={t("settings.notify.smsLabel")}
-              hint={t("settings.notify.smsHint")}
-              checked={contact.sms}
+          <label className="block text-sm font-medium">
+            {t("settings.notify.email")}
+            <Input
+              dir="ltr"
+              className="mt-1.5 text-start"
+              type="email"
+              value={contact.email}
               disabled={!canWrite}
-              onChange={(v) => setContact((c) => ({ ...c, sms: v }))}
+              placeholder={t("settings.notify.emailPlaceholder")}
+              onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
             />
-            <ToggleField
-              label={t("settings.notify.emailLabel")}
-              hint={t("settings.notify.emailHint")}
-              checked={contact.email_notice}
-              disabled={!canWrite}
-              onChange={(v) => setContact((c) => ({ ...c, email_notice: v }))}
-            />
-          </div>
-        </CardContent>
-      </Card>
+          </label>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <ToggleField
+            label={t("settings.notify.smsLabel")}
+            hint={t("settings.notify.smsHint")}
+            checked={contact.sms}
+            disabled={!canWrite}
+            onChange={(v) => setContact((c) => ({ ...c, sms: v }))}
+          />
+          <ToggleField
+            label={t("settings.notify.emailLabel")}
+            hint={t("settings.notify.emailHint")}
+            checked={contact.email_notice}
+            disabled={!canWrite}
+            onChange={(v) => setContact((c) => ({ ...c, email_notice: v }))}
+          />
+        </div>
+      </PanelSection>
 
       {canWrite ? (
         <Button disabled={busy} onClick={save}>

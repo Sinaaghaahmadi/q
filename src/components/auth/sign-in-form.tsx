@@ -424,6 +424,11 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
           <Button
             size="lg"
             className="w-full"
+            /* A stable hook for the screenshot script, which signs in through
+               this form rather than injecting a session. It used to reach the
+               button by "the last one on the page" and quietly started
+               pressing the footer's menu instead. */
+            data-testid="signin-submit"
             disabled={!identifierValid || busy}
             onClick={channel === "staff" ? submitPassword : requestCode}
           >

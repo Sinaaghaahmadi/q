@@ -175,7 +175,8 @@
     "compliance": "Asa est une place de marché de transfert entre bureaux de change agréés. Ce n'est pas un portefeuille qui détient votre argent, ni un marché de titres, et elle ne conserve aucun dépôt.",
     "legal": "Mentions légales",
     "designSystem": "Système de design",
-    "copyright": "© 2026 Asaex — Tous droits réservés."
+    "copyright": "© 2026 Asaex — Tous droits réservés.",
+    "builtBy": "Réalisé par le groupe de programmation Â"
   },
   "track": {
     "metaTitle": "Suivi de {ref}",
@@ -244,6 +245,11 @@
       "body": "Pour beaucoup d'Iraniens, envoyer des devises signifie encore faire confiance à un numéro inconnu sur Telegram et espérer que tout se passe bien. Nous pensons que le même travail peut se faire, avec les mêmes bureaux de change réels, mais avec un taux visible, un trajet suivable et une réponse claire à la question de savoir qui est responsable.",
       "contact": "Parlez-nous",
       "how": "Comment se déroule un transfert ?"
+    },
+    "built": {
+      "title": "Conception et maintenance",
+      "name": "Le groupe de programmation Â",
+      "body": "Ce produit est conçu et maintenu par le groupe de programmation Â : de la base de données et de la couche de sécurité à chaque écran que vous voyez sur ce site et dans les panneaux bureau et administration."
     }
   },
   "contact": {
@@ -1373,7 +1379,8 @@
       "tooBig": "Ce fichier dépasse 512 ko.",
       "uploadFailed": "L'envoi n'est pas passé. Réessayez.",
       "saveFailed": "Enregistrement impossible. Réessayez."
-    }
+    },
+    "sectionHint": "Le nom, la marque et les informations que les clients voient de ce bureau."
   },
   "office": {
     "metaTitle": "Panneau du bureau",
@@ -1395,7 +1402,9 @@
       "officeInactive": "Ce bureau n'est pas actif.",
       "claimFailed": "La demande n'a pas pu être prise.",
       "network": "Connexion impossible. Réessayez."
-    }
+    },
+    "poolHint": "Des commandes qu'aucun bureau n'a encore prises. Prenez-en une et elle est à vous.",
+    "mineHint": "Les commandes que vous avez prises, encore en cours."
   },
   "twoFactor": {
     "title": "Connexion en deux étapes",
@@ -1484,7 +1493,8 @@
       "save": "Enregistrer les informations",
       "verify": "Vérifier l'identité",
       "reject": "Refuser",
-      "note": "Une fois vérifié, le bureau ne peut plus modifier lui-même son propriétaire déclaré ni son code national. Les comptes de règlement sont rapprochés de ces informations."
+      "note": "Une fois vérifié, le bureau ne peut plus modifier lui-même son propriétaire déclaré ni son code national. Les comptes de règlement sont rapprochés de ces informations.",
+      "hint": "Les pièces d'identité et la licence de ce bureau, et votre décision à leur sujet."
     },
     "login": {
       "title": "Accès au panneau du bureau",
@@ -1502,7 +1512,8 @@
         "sent": "SMS envoyé.",
         "failed": "Le message n'a pas pu partir. Transmettez les informations vous-même.",
         "skipped": "Aucun message n'a été envoyé."
-      }
+      },
+      "hint": "Le compte avec lequel le bureau se connecte à son propre panneau."
     },
     "errors": {
       "nationalId": "Ce code national n'est pas valide.",
@@ -1703,7 +1714,9 @@
           "numberRequired": "Écrivez le numéro de compte.",
           "forbidden": "Vous n'avez pas le droit de modifier ce compte.",
           "saveFailed": "Non enregistré. Réessayez."
-        }
+        },
+        "listHint": "Les comptes sur lesquels les clients versent. Seuls les comptes actifs leur sont montrés.",
+        "addHint": "Ajouter une carte ou un IBAN pour recevoir l'argent des clients."
       },
       "liquidity": {
         "metaTitle": "Liquidité",
@@ -1755,7 +1768,9 @@
         "gone": "Cette demande n'est plus disponible. La liste a été rafraîchie.",
         "network": "Pas de connexion. Vérifiez-la et réessayez."
       },
-      "poolClosed": "Ce bureau n'est pas actif : aucune nouvelle demande n'est proposée. Son travail en cours reste néanmoins listé ici."
+      "poolClosed": "Ce bureau n'est pas actif : aucune nouvelle demande n'est proposée. Son travail en cours reste néanmoins listé ici.",
+      "narrowCustomer": "Historique du client {ref}",
+      "clearCustomer": "Retour à la file"
     },
     "chat": {
       "metaTitle": "Messages",
@@ -1856,7 +1871,8 @@
         "noSuchUser": "Aucun compte Asaex n'a cet identifiant.",
         "forbidden": "Seul le propriétaire du bureau peut le faire.",
         "failed": "Cela n'est pas passé. Réessayez."
-      }
+      },
+      "addHint": "Donner à un collègue l'accès au panneau, et décider de ce qu'il peut faire."
     },
     "reports": {
       "metaTitle": "Rapports",
@@ -1883,7 +1899,9 @@
       "slaHint": "La part des commandes abouties closes avant leur échéance, sur {count, number} commandes qui en avaient une.",
       "noCompleted": "Rien n'a encore abouti.",
       "noSla": "Aucune échéance n'a été consignée pour les commandes de cette période.",
-      "chartEmptyLabel": "Diagramme en barres du volume en tomans par mois, de {from} à {to}. Rien n'a abouti sur cette période."
+      "chartEmptyLabel": "Diagramme en barres du volume en tomans par mois, de {from} à {to}. Rien n'a abouti sur cette période.",
+      "volumeSectionHint": "Ce que ce bureau a déplacé chaque mois.",
+      "corridorSectionHint": "La part de chaque corridor dans l'activité de ce bureau."
     },
     "config": {
       "rates": {
@@ -1915,7 +1933,7 @@
         },
         "addTitle": "Ajouter un corridor",
         "addCurrency": "Devise",
-        "addHint": "Un côté d'un corridor est toujours en tomans. Un nouveau corridor est enregistré avec la valeur par défaut de la plateforme — ou zéro s'il n'y en a pas — et désactivé ; corrigez la valeur dans la liste ci-dessus, puis activez-le.",
+        "addHint": "Ouvrir un nouveau corridor pour ce bureau.",
         "add": "Ajouter le corridor",
         "save": "Enregistrer",
         "saved": "Enregistré.",
@@ -1929,7 +1947,8 @@
           "saveFailed": "Non enregistré. Réessayez."
         },
         "emptyReadOnly": "Aucun corridor n'a encore été défini.",
-        "amountUnknownCurrency": "La devise de ce corridor ne figure pas dans la liste de la plateforme ; aucun montant ne peut donc y être inscrit."
+        "amountUnknownCurrency": "La devise de ce corridor ne figure pas dans la liste de la plateforme ; aucun montant ne peut donc y être inscrit.",
+        "listHint": "Les corridors sur lesquels ce bureau travaille, et le cours de chacun."
       },
       "settings": {
         "metaTitle": "Réglages du bureau",
@@ -1953,7 +1972,8 @@
             "wed": "Mercredi",
             "thu": "Jeudi",
             "fri": "Vendredi"
-          }
+          },
+          "hint": "Les heures où ce bureau accepte des commandes. En dehors, les commandes attendent dans la file."
         },
         "auto": {
           "title": "Acceptation automatique",
@@ -1962,7 +1982,8 @@
           "maxLabel": "Plafond d'acceptation automatique",
           "maxHint": "En tomans. Vide signifie qu'aucun plafond n'est enregistré.",
           "onFile": "Enregistré : {amount} IRT",
-          "noLimit": "Enregistré : aucun plafond"
+          "noLimit": "Enregistré : aucun plafond",
+          "hint": "Une fois activé, les commandes jusqu'au montant fixé sont acceptées sans validation."
         },
         "notify": {
           "title": "Où vont les avis",
@@ -1974,7 +1995,8 @@
           "smsLabel": "SMS",
           "smsHint": "La préférence SMS, enregistrée au dossier.",
           "emailLabel": "E-mail",
-          "emailHint": "La préférence e-mail, enregistrée au dossier."
+          "emailHint": "La préférence e-mail, enregistrée au dossier.",
+          "hint": "Par quel moyen une nouvelle commande vous est signalée."
         },
         "save": "Enregistrer",
         "saved": "Enregistré.",
@@ -1987,7 +2009,15 @@
           "saveFailed": "Non enregistré. Réessayez."
         }
       }
-    }
+    },
+    "builtBy": "Réalisé par le groupe de programmation Â",
+    "group": {
+      "today": "Aujourd'hui",
+      "work": "Travail en attente",
+      "money": "Finances",
+      "office": "Le bureau"
+    },
+    "waitingHint": "Des commandes qui ne demandent rien de vous et attendent le client ou la plateforme. Touchez une référence pour voir ce qu'elle attend."
   },
   "admin": {
     "metaTitle": "Administration",
@@ -2089,6 +2119,14 @@
         "terminal": "Cette commande est déjà dans un état terminal ; passez plutôt une action compensatoire.",
         "forbidden": "Cette action est réservée aux administrateurs de la plateforme.",
         "failed": "Application impossible. Réessayez."
+      },
+      "clearFilter": "Retirer ce filtre",
+      "unknownOffice": "Bureau inconnu",
+      "narrow": {
+        "risk": "Moins d'un jour avant l'échéance",
+        "corridor": "Corridor {corridor}",
+        "unclaimed": "Non attribuée",
+        "office": "{office}"
       }
     },
     "audit": {
@@ -2143,7 +2181,8 @@
         "p2p_offer_publish": "Une offre a été publiée sur le marché entre particuliers",
         "p2p_trade_take": "Un échange entre particuliers a été pris",
         "kyc_decision": "Une décision a été rendue sur un dossier d'identité"
-      }
+      },
+      "openRecord": "Ouvrir l'enregistrement"
     },
     "settings": {
       "metaTitle": "Réglages de la plateforme",
@@ -2153,7 +2192,9 @@
       "noFlags": "Aucun interrupteur défini.",
       "saveFailed": "Enregistrement impossible. Réessayez.",
       "template": "Modèle de bureau par défaut",
-      "templateBody": "Chaque nouveau bureau part de ces valeurs ; les écarts apparaissent sur la page du bureau concerné."
+      "templateBody": "Chaque nouveau bureau part de ces valeurs ; les écarts apparaissent sur la page du bureau concerné.",
+      "flagsHint": "Les interrupteurs qui activent et désactivent des parties du site. En désactiver un masque cette section pour tout le monde.",
+      "templateHint": "Les valeurs avec lesquelles chaque nouveau bureau est créé. Chaque bureau reste modifiable individuellement ensuite."
     },
     "security": {
       "title": "Double authentification du personnel",
@@ -2174,7 +2215,8 @@
         "platform_compliance": "Conformité",
         "platform_admin": "Administrateur",
         "platform_superadmin": "Super-administrateur"
-      }
+      },
+      "sectionHint": "Si le personnel de la plateforme doit saisir un code à usage unique pour se connecter, et où en est chaque compte."
     },
     "support": {
       "metaTitle": "Boîte d'assistance",
@@ -2221,7 +2263,9 @@
         "filled": "Servie",
         "cancelled": "Annulée",
         "removed": "Retirée"
-      }
+      },
+      "disputesHint": "Les échanges entre particuliers dont les deux parties ne se sont pas entendues, en attente de votre arbitrage.",
+      "listingsHint": "Les annonces d'achat et de vente publiées par les utilisateurs sur le marché entre particuliers."
     },
     "exchanges": {
       "metaTitle": "Bureaux de change",
@@ -2273,7 +2317,13 @@
         "pending": "En attente",
         "rejected": "Refusé",
         "unverified": "Non contrôlé"
-      }
+      },
+      "reasonHint": "Le motif que vous écrivez ici est consigné dans le journal d'audit et ne peut être effacé.",
+      "spreadsHint": "La commission de ce bureau et l'écart entre ses cours d'achat et de vente. Cela change le prix que voit le client.",
+      "accountsHint": "Les cartes et IBAN sur lesquels les clients versent.",
+      "balancesHint": "Ce que détiennent les comptes de ce bureau au grand livre.",
+      "openSettlement": "Ouvrir le règlement",
+      "openLedger": "Ouvrir le grand livre"
     },
     "wizard": {
       "steps": {
@@ -2415,7 +2465,15 @@
       "noOrders": "Aucune",
       "corridorOnly": "Tout le volume réglé est passé par un seul corridor : <corridor></corridor>, soit <amount></amount> tomans au total.",
       "noComparison": "Aucun chiffre du mois dernier pour comparer.",
-      "kpiLabel": "Chiffres clés"
+      "kpiLabel": "Chiffres clés",
+      "sectionHint": {
+        "volume": "Le montant réglé chaque mois sur les douze derniers mois. Le mois en cours est estompé car il n'est pas terminé et n'est pas comparable aux mois complets.",
+        "corridors": "La part de chaque corridor dans le volume réglé. Touchez un corridor pour voir ses commandes.",
+        "scores": "Le bilan de chaque bureau actif : combien de commandes, quel montant, à quelle vitesse, dans quels délais, et combien ont fini en litige."
+      },
+      "openLedger": "Ouvrir le grand livre",
+      "openSettled": "Voir les commandes réglées",
+      "openOffices": "Ouvrir la liste des bureaux"
     },
     "compliance": {
       "metaTitle": "Conformité",
@@ -2436,7 +2494,8 @@
         "unnamed": "Sans nom",
         "unresolved": "Non tranché",
         "payload": "Données brutes de correspondance",
-        "shown": "{count} correspondances ; la liste est limitée aux 100 plus récentes."
+        "shown": "{count} correspondances ; la liste est limitée aux 100 plus récentes.",
+        "hint": "Compare les noms des clients aux listes de sanctions et retient chaque correspondance possible pour qu'une personne tranche."
       },
       "flags": {
         "title": "Messages signalés",
@@ -2454,7 +2513,8 @@
         },
         "open": "Ouvrir le fil",
         "noBody": "Aucun texte",
-        "shown": "{count} messages ; la liste est limitée aux 100 plus récents."
+        "shown": "{count} messages ; la liste est limitée aux 100 plus récents.",
+        "hint": "Les messages que le système a jugés suspects, en attente de votre décision."
       },
       "thresholds": {
         "title": "Limites et paliers",
@@ -2476,7 +2536,8 @@
         "save": "Enregistrer",
         "saving": "Un instant…",
         "saved": "Enregistré.",
-        "saveFailed": "Non enregistré. Réessayez."
+        "saveFailed": "Non enregistré. Réessayez.",
+        "hint": "Le montant autorisé pour chaque niveau de client et les limites du marché entre particuliers. Un chiffre modifié ici s'applique aussitôt à toute nouvelle commande."
       },
       "retention": {
         "title": "Conservation",
@@ -2484,7 +2545,8 @@
         "audit": "Le journal d'audit (audit_log) est permanent. Ses lignes ne peuvent être ni modifiées ni supprimées ; un déclencheur de base de données refuse les deux.",
         "ledger": "Le registre (ledger_entries) est permanent, sous la même règle d'ajout seul. Chaque chiffre qui a bougé reste.",
         "kyc": "Les documents d'identité vivent dans le bucket privé kyc-documents. Ils ne sont jamais publics et ne s'ouvrent que par un lien signé de 60 secondes.",
-        "gap": "Il n'y a pas de tâche de purge automatique. Rien ne s'efface tout seul, et une durée de conservation reste donc une décision à écrire."
+        "gap": "Il n'y a pas de tâche de purge automatique. Rien ne s'efface tout seul, et une durée de conservation reste donc une décision à écrire.",
+        "hint": "Ce qui est conservé, pendant combien de temps, et quand cela est supprimé."
       }
     },
     "rates": {
@@ -2513,11 +2575,12 @@
           "source": "Source",
           "observed": "Observé"
         },
-        "empty": "Cet instantané ne porte aucun taux."
+        "empty": "Cet instantané ne porte aucun taux.",
+        "hint": "Les cours actuellement montrés aux clients, et la dernière mise à jour de chacun."
       },
       "sources": {
         "title": "Fournisseurs de taux",
-        "hint": "Une ligne par source enregistrée, exactement telle qu'elle est stockée en base.",
+        "hint": "D'où les cours sont lus, et si chaque source se porte bien.",
         "readOnly": "Une source ne peut être activée ni désactivée depuis cette page : la politique de la base sur la table des sources n'accorde que la lecture et n'a aucune politique d'écriture. Les interrupteurs montrent l'état actuel et sont désactivés ; le changer aujourd'hui passe par une migration. « Dernier succès » et « Dernière erreur » sont des colonnes stockées qu'aucune tâche n'écrit encore : elles restent vides même quand un fournisseur répond — c'est le bandeau de fraîcheur en haut de cette page qui vous dit si la chaîne fonctionne.",
         "col": {
           "name": "Nom",
@@ -2538,7 +2601,7 @@
       },
       "bounds": {
         "title": "Plancher et plafond d'écart de la plateforme",
-        "hint": "Le plancher et le plafond auxquels cette console compare l'écart de chaque bureau, corridor par corridor. Ce sont des repères d'examen : rien ne rejette encore un écart au-delà. Les deux sont en centièmes de pour cent ; cent d'entre eux font un pour cent.",
+        "hint": "L'écart le plus étroit et le plus large qu'un bureau a le droit de fixer.",
         "floor": "Plancher",
         "ceiling": "Plafond",
         "means": "{bps} centièmes de pour cent, soit {pct} %",
@@ -2553,7 +2616,7 @@
       },
       "spread": {
         "title": "Écarts d'un bureau à l'autre",
-        "hint": "Pour chaque corridor, l'écart le plus bas, médian et le plus haut fixé par les bureaux actifs. Un bureau incomplet, suspendu ou archivé est écarté, tout comme un corridor inactif, puisque ni l'un ni l'autre ne tarife qui que ce soit.",
+        "hint": "Les écarts des bureaux côte à côte, pour repérer celui qui est cher ou inhabituel.",
         "notEnforced": "Tant qu'un plancher et un plafond ne sont pas enregistrés, aucune ligne n'est signalée hors limites.",
         "col": {
           "corridor": "Corridor",
@@ -2565,7 +2628,8 @@
         "empty": "Aucun bureau n'a encore configuré de corridor.",
         "belowFloor": "Sous le plancher",
         "aboveCeiling": "Au-dessus du plafond"
-      }
+      },
+      "openOffices": "Ouvrir la liste des bureaux"
     },
     "finance": {
       "metaTitle": "Registre",
@@ -2586,16 +2650,17 @@
         "emptyTitle": "Rien à équilibrer pour l'instant",
         "zeroBadge": "Équilibré",
         "brokenBadge": "En déséquilibre",
-        "empty": "Aucun compte du registre n'a encore été ouvert."
+        "empty": "Aucun compte du registre n'a encore été ouvert.",
+        "hint": "Le contrôle de santé du grand livre : dans une comptabilité juste, chaque devise totalise exactement zéro."
       },
       "escrow": {
         "title": "Versé en dépôt",
-        "hint": "Total des tomans débités au compte de dépôt depuis le lancement, déduction faite des annulations. Le volet du retrait par le bureau n'est pas encore comptabilisé : il s'agit donc d'un financement cumulé, pas d'un solde de séquestre en direct.",
+        "hint": "L'argent versé par un client que la plateforme conserve jusqu'à la remise de la devise.",
         "empty": "Rien n'a encore été versé en dépôt."
       },
       "trial": {
         "title": "Balance de vérification",
-        "hint": "La position de chaque compte est le débit moins le crédit. Une position négative n'est pas en soi une anomalie ; un compte de dettes est censé être créditeur.",
+        "hint": "Les débits et crédits totalisés sur tous les comptes. Un chiffre non nul signale une écriture erronée.",
         "col": {
           "account": "Compte",
           "owner": "Titulaire",
@@ -2620,11 +2685,11 @@
       },
       "fees": {
         "platformTitle": "Revenus de commission de la plateforme",
-        "platformHint": "Les douze derniers mois, compte de commissions en tomans uniquement. Une commission restituée lors d'un remboursement est passée au débit du même compte et se soustrait de ce mois-là ; ce que vous voyez est un revenu net.",
+        "platformHint": "Les commissions parvenues à la plateforme, mois par mois.",
         "total": "Total sur douze mois",
         "empty": "Aucune commission n'a été passée sur cette période.",
         "officeTitle": "Revenus de commission des bureaux",
-        "officeHint": "La part de chaque bureau dans les commissions sur les mêmes douze mois.",
+        "officeHint": "La part de commissions de chaque bureau. Touchez un bureau pour ouvrir son dossier.",
         "officeEmpty": "Aucune commission de bureau n'a été passée.",
         "col": {
           "office": "Bureau",
@@ -2634,7 +2699,7 @@
       },
       "txn": {
         "title": "Transactions récentes du registre",
-        "hint": "Un bloc par transaction, la plus récente en premier. Les écritures d'annulation compensent un remboursement au lieu de déplacer de l'argent à nouveau ; les lire comme des mouvements ordinaires est ce qui fait dérailler un rapprochement.",
+        "hint": "Les dernières écritures du grand livre, les plus récentes d'abord.",
         "empty": "Aucune transaction n'a encore été passée.",
         "reversal": "Annulation",
         "reversalLine": "Annulation",
@@ -2644,7 +2709,8 @@
         "noMemo": "—",
         "unknownOwner": "Titulaire inconnu",
         "shown": "Affichage des {count} transactions les plus récentes."
-      }
+      },
+      "openOffices": "Ouvrir la liste des bureaux"
     },
     "content": {
       "metaTitle": "Contenu",
@@ -2851,7 +2917,14 @@
       "freezeUnavailable": "Ce panneau ne peut pas geler un compte. Dans 0002_identity_access.sql, la seule politique d'écriture sur profiles est profiles_self_update, qui n'admet que la ligne du client lui-même, et il n'existe pas non plus de fonction SECURITY DEFINER pour cela. Tant que l'une des deux n'est pas ajoutée, la commande reste désactivée : un bouton que la base refuse est pire que pas de bouton du tout.",
       "frozenSince": "Gelé depuis le {date}",
       "frozenReasonLabel": "Motif consigné",
-      "notFrozen": "Ce compte est ouvert."
+      "notFrozen": "Ce compte est ouvert.",
+      "identityHint": "Le nom, le numéro et l'état de vérification d'identité de ce client.",
+      "tierHint": "Le niveau de ce client et les plafonds que ce niveau lui impose.",
+      "ordersHint": "Toutes les commandes passées par ce client. Touchez une ligne pour l'ouvrir.",
+      "destinationsHint": "Les comptes bancaires que ce client a enregistrés pour recevoir de l'argent.",
+      "loginsHint": "Les dernières connexions à ce compte, avec l'heure et l'appareil.",
+      "referralsHint": "Les personnes inscrites avec le code de ce client.",
+      "freezeHint": "Fermer le compte. Tant qu'il n'est pas rouvert, ce client ne peut pas passer de nouvelle commande."
     },
     "attention": {
       "title": "En attente de vous",
@@ -2864,7 +2937,14 @@
         "coins": "demandes de pièces à confirmer",
         "offices": "bureaux pas encore actifs"
       }
-    }
+    },
+    "openSection": "Ouvrir cette section",
+    "sectionHint": {
+      "byState": "Les commandes de la plateforme, par état. Touchez une barre pour voir ces commandes.",
+      "feed": "Les dernières actions du personnel, lues dans le journal d'audit. Touchez une ligne pour ouvrir l'enregistrement concerné."
+    },
+    "builtBy": "Réalisé par le groupe de programmation Â",
+    "staffFallback": "Personnel de la plateforme"
   },
   "design": {
     "metaTitle": "Système de design",

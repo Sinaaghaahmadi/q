@@ -64,3 +64,46 @@ export function describeAudit(action: string): AuditPhrase {
     notable,
   };
 }
+
+/**
+ * Where an audit row leads.
+ *
+ * A log entry names a thing that changed, and the thing that changed almost
+ * always has a screen. Until now the feed stated what happened and left the
+ * reader to go and find it — three navigations and a search box away from a
+ * line that already knew the answer. So each row is a link: to the record
+ * itself where one has a page, and otherwise to the audit trail filtered to
+ * that kind of record, which is the honest fallback rather than a dead row.
+ *
+ * Keyed on `entity_type`, which is the table name written by the triggers, so
+ * a table nobody has mapped here still lands somewhere useful.
+ */
+const ENTITY_PAGE: Record<string, (id: string) => string> = {
+  orders: (id) => `/orders/${id}`,
+  exchange_offices: (id) => `/admin/exchanges/${id}`,
+  profiles: (id) => `/admin/users/${id}`,
+};
+
+/** Sections that own a kind of record but have no page per row. */
+const ENTITY_SECTION: Record<string, string> = {
+  kyc_submissions: "/admin/kyc",
+  support_tickets: "/admin/tickets",
+  support_threads: "/admin/support",
+  p2p_offers: "/admin/p2p",
+  p2p_trades: "/admin/p2p",
+  coin_orders: "/admin/orders",
+  ledger_entries: "/admin/finance",
+  ledger_accounts: "/admin/finance",
+  office_settlement_accounts: "/admin/settlement",
+  beneficiary_accounts: "/admin/users",
+  feature_flags: "/admin/settings",
+  platform_settings: "/admin/settings",
+  content_blocks: "/admin/content",
+  rate_sources: "/admin/rates",
+};
+
+export function auditTarget(entityType: string, entityId: string | null): string {
+  const page = ENTITY_PAGE[entityType];
+  if (page && entityId) return page(entityId);
+  return ENTITY_SECTION[entityType] ?? `/admin/audit?entity=${encodeURIComponent(entityType)}`;
+}

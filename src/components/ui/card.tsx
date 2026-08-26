@@ -1,10 +1,26 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * The default surface.
+ *
+ * `data-card` is not decoration: inside a staff console (`[data-panel]`) the
+ * stylesheet swaps this solid surface for the glass one, so both panels are
+ * cut from the same material as their own controls and as the rate boxes on
+ * the customer side — without forty call sites each passing the same prop, and
+ * without the customer surface changing at all.
+ */
 export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("rounded-2xl border border-ink-300/55 bg-surface shadow-e1", className)}
+      data-card
+      /* Only the shape here. The surface itself — border, background, shadow —
+         is a `[data-card]` rule in the stylesheet, because Tailwind's utility
+         layer beats the components layer no matter the specificity, and a
+         `bg-surface` class on this element would win against the console's
+         glass rule and quietly undo it. A caller's own `bg-*` still overrides
+         both, which is the behaviour every existing caller expects. */
+      className={cn("rounded-2xl", className)}
       {...props}
     />
   );

@@ -4,9 +4,10 @@ import { CircleAlert, UserMinus, UserPlus } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { formatDate, type AppLocale } from "@/lib/money/format";
 import { createClient } from "@/lib/supabase/client";
@@ -176,46 +177,41 @@ export function TeamView({
       <p className="text-xs text-ink-600">{t("nameNote")}</p>
 
       {canManage ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("addTitle")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm leading-relaxed text-ink-600">{t("addBody")}</p>
+        <PanelSection title={t("addTitle")} hint={t("addHint")} bodyClassName="space-y-3">
+          <p className="text-sm leading-relaxed text-ink-600">{t("addBody")}</p>
 
-            <label className="block text-sm font-medium">
-              {t("userIdLabel")}
-              <Input
-                dir="ltr"
-                className="mt-1.5 font-mono"
-                placeholder="00000000-0000-0000-0000-000000000000"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
-              />
-            </label>
+          <label className="block text-sm font-medium">
+            {t("userIdLabel")}
+            <Input
+              dir="ltr"
+              className="mt-1.5 font-mono"
+              placeholder="00000000-0000-0000-0000-000000000000"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+            />
+          </label>
 
-            <label className="block text-sm font-medium">
-              {t("roleLabel")}
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value as OfficeRole)}
-                className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
-              >
-                {ROLES.map((r) => (
-                  <option key={r} value={r}>
-                    {t(`role.${r}`)}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="text-sm text-ink-600">{t(`roleMeaning.${role}`)}</p>
+          <label className="block text-sm font-medium">
+            {t("roleLabel")}
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value as OfficeRole)}
+              className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
+            >
+              {ROLES.map((r) => (
+                <option key={r} value={r}>
+                  {t(`role.${r}`)}
+                </option>
+              ))}
+            </select>
+          </label>
+          <p className="text-sm text-ink-600">{t(`roleMeaning.${role}`)}</p>
 
-            <Button disabled={busy !== null || userId.trim().length === 0} onClick={grant}>
-              <UserPlus className="size-4" aria-hidden />
-              {busy === "new" ? t("working") : t("grant")}
-            </Button>
-          </CardContent>
-        </Card>
+          <Button disabled={busy !== null || userId.trim().length === 0} onClick={grant}>
+            <UserPlus className="size-4" aria-hidden />
+            {busy === "new" ? t("working") : t("grant")}
+          </Button>
+        </PanelSection>
       ) : (
         <p className="text-sm text-ink-600">{t("readOnly")}</p>
       )}

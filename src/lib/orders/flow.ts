@@ -120,7 +120,15 @@ export function allPermitted(): { role: OrderActorRole; from: OrderState; to: Or
 }
 
 // Nothing leaves these: `allowed_transitions` returns an empty array for each.
-const TERMINAL: OrderState[] = ["completed", "cancelled", "refunded", "expired", "sla_breached"];
+/** The states nothing moves out of. Exported so a query can filter on them. */
+export const TERMINAL_STATES: readonly OrderState[] = [
+  "completed",
+  "cancelled",
+  "refunded",
+  "expired",
+  "sla_breached",
+];
+const TERMINAL: readonly OrderState[] = TERMINAL_STATES;
 export function isTerminal(state: OrderState): boolean {
   return TERMINAL.includes(state);
 }

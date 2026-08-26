@@ -4,9 +4,9 @@ import { CircleAlert, Eye, Power, Save } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { formatAmount, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
@@ -147,147 +147,137 @@ export function OfficeConfig({
         <span className="text-sm text-ink-600">{t("liveOrders", { count: orderCount })}</span>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("reasonTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-sm text-ink-600">{t("reasonBody")}</p>
-          <Input
-            aria-label={t("reasonTitle")}
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            placeholder={t("reasonPlaceholder")}
-          />
-          <div className="flex flex-wrap gap-2">
-            {office.status !== "active" ? (
-              <Button disabled={busy !== null} onClick={() => setStatus("active")}>
-                <Power className="size-4" aria-hidden />
-                {t("activate")}
-              </Button>
-            ) : (
-              <Button
-                variant="secondary"
-                disabled={busy !== null || reason.trim().length < 8}
-                onClick={() => setStatus("suspended")}
-              >
-                <Power className="size-4" aria-hidden />
-                {t("suspend")}
-              </Button>
-            )}
-            {canImpersonate ? (
-              <Button
-                variant="soft"
-                disabled={busy !== null || reason.trim().length < 8 || impersonatingHere}
-                onClick={impersonate}
-              >
-                <Eye className="size-4" aria-hidden />
-                {impersonatingHere ? t("alreadyImpersonating") : t("impersonate")}
-              </Button>
-            ) : null}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("spreads")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {rates.length === 0 ? (
-            <p className="text-sm text-ink-600">{t("noCorridors")}</p>
+      <PanelSection title={t("reasonTitle")} hint={t("reasonHint")} bodyClassName="space-y-3">
+        <p className="text-sm text-ink-600">{t("reasonBody")}</p>
+        <Input
+          aria-label={t("reasonTitle")}
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          placeholder={t("reasonPlaceholder")}
+        />
+        <div className="flex flex-wrap gap-2">
+          {office.status !== "active" ? (
+            <Button disabled={busy !== null} onClick={() => setStatus("active")}>
+              <Power className="size-4" aria-hidden />
+              {t("activate")}
+            </Button>
           ) : (
-            rates.map((row) => {
-              const base = baseline.get(row.corridor);
-              const overridden = base !== undefined && base !== row.spread_bps;
-              return (
-                <div key={row.id} className="flex flex-wrap items-end gap-2">
-                  <span className="w-28 font-mono text-sm" dir="ltr">
-                    {row.corridor}
-                  </span>
-                  <label className="w-28 text-sm">
-                    <span className="sr-only">{t("spreadBps")}</span>
-                    <Input
-                      dir="ltr"
-                      inputMode="numeric"
-                      value={spreads[row.id] ?? ""}
-                      onChange={(e) => setSpreads((s) => ({ ...s, [row.id]: e.target.value }))}
-                    />
-                  </label>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    disabled={busy !== null || spreads[row.id] === String(row.spread_bps)}
-                    onClick={() => saveSpread(row)}
-                  >
-                    <Save className="size-4" aria-hidden />
-                    {t("save")}
-                  </Button>
-                  {overridden ? (
-                    <Badge variant="info">{t("overridden", { base: base ?? 0 })}</Badge>
-                  ) : (
-                    <Badge variant="outline">{t("fromTemplate")}</Badge>
-                  )}
-                </div>
-              );
-            })
+            <Button
+              variant="secondary"
+              disabled={busy !== null || reason.trim().length < 8}
+              onClick={() => setStatus("suspended")}
+            >
+              <Power className="size-4" aria-hidden />
+              {t("suspend")}
+            </Button>
           )}
-        </CardContent>
-      </Card>
+          {canImpersonate ? (
+            <Button
+              variant="soft"
+              disabled={busy !== null || reason.trim().length < 8 || impersonatingHere}
+              onClick={impersonate}
+            >
+              <Eye className="size-4" aria-hidden />
+              {impersonatingHere ? t("alreadyImpersonating") : t("impersonate")}
+            </Button>
+          ) : null}
+        </div>
+      </PanelSection>
+
+      <PanelSection title={t("spreads")} hint={t("spreadsHint")} bodyClassName="space-y-3">
+        {rates.length === 0 ? (
+          <p className="text-sm text-ink-600">{t("noCorridors")}</p>
+        ) : (
+          rates.map((row) => {
+            const base = baseline.get(row.corridor);
+            const overridden = base !== undefined && base !== row.spread_bps;
+            return (
+              <div key={row.id} className="flex flex-wrap items-end gap-2">
+                <span className="w-28 font-mono text-sm" dir="ltr">
+                  {row.corridor}
+                </span>
+                <label className="w-28 text-sm">
+                  <span className="sr-only">{t("spreadBps")}</span>
+                  <Input
+                    dir="ltr"
+                    inputMode="numeric"
+                    value={spreads[row.id] ?? ""}
+                    onChange={(e) => setSpreads((s) => ({ ...s, [row.id]: e.target.value }))}
+                  />
+                </label>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  disabled={busy !== null || spreads[row.id] === String(row.spread_bps)}
+                  onClick={() => saveSpread(row)}
+                >
+                  <Save className="size-4" aria-hidden />
+                  {t("save")}
+                </Button>
+                {overridden ? (
+                  <Badge variant="info">{t("overridden", { base: base ?? 0 })}</Badge>
+                ) : (
+                  <Badge variant="outline">{t("fromTemplate")}</Badge>
+                )}
+              </div>
+            );
+          })
+        )}
+      </PanelSection>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("accounts")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {accounts.length === 0 ? (
-              <p className="text-sm text-ink-600">{t("noAccounts")}</p>
-            ) : (
-              <ul className="space-y-2 text-sm">
-                {accounts.map((a) => (
-                  <li key={a.id} className="flex items-center justify-between gap-3">
-                    <span className="font-mono" dir="ltr">
-                      {a.currency} · {t(`kind.${a.kind}`)}
-                    </span>
-                    <span className="truncate text-ink-600" dir="ltr">
-                      {accountNumber(a.details)}
-                    </span>
-                    {a.is_public ? <Badge variant="up">{t("publicAccount")}</Badge> : null}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </CardContent>
-        </Card>
+        <PanelSection
+          title={t("accounts")}
+          hint={t("accountsHint")}
+          href="/admin/settlement"
+          linkLabel={t("openSettlement")}
+        >
+          {accounts.length === 0 ? (
+            <p className="text-sm text-ink-600">{t("noAccounts")}</p>
+          ) : (
+            <ul className="space-y-2 text-sm">
+              {accounts.map((a) => (
+                <li key={a.id} className="flex items-center justify-between gap-3">
+                  <span className="font-mono" dir="ltr">
+                    {a.currency} · {t(`kind.${a.kind}`)}
+                  </span>
+                  <span className="truncate text-ink-600" dir="ltr">
+                    {accountNumber(a.details)}
+                  </span>
+                  {a.is_public ? <Badge variant="up">{t("publicAccount")}</Badge> : null}
+                </li>
+              ))}
+            </ul>
+          )}
+        </PanelSection>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("balances")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {balances.length === 0 ? (
-              <p className="text-sm text-ink-600">{t("noBalances")}</p>
-            ) : (
-              <ul className="space-y-2 text-sm">
-                {balances.map((b) => (
-                  <li key={b.id} className="flex items-center justify-between gap-3">
-                    <span className="font-mono" dir="ltr">
-                      {b.currency}
-                    </span>
-                    <span className="tabular-nums">
-                      {formatAmount(
-                        fromMinor(b.available_minor, b.currency as CurrencyCode),
-                        b.currency as CurrencyCode,
-                        locale,
-                      )}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </CardContent>
-        </Card>
+        <PanelSection
+          title={t("balances")}
+          hint={t("balancesHint")}
+          href="/admin/finance"
+          linkLabel={t("openLedger")}
+        >
+          {balances.length === 0 ? (
+            <p className="text-sm text-ink-600">{t("noBalances")}</p>
+          ) : (
+            <ul className="space-y-2 text-sm">
+              {balances.map((b) => (
+                <li key={b.id} className="flex items-center justify-between gap-3">
+                  <span className="font-mono" dir="ltr">
+                    {b.currency}
+                  </span>
+                  <span className="tabular-nums">
+                    {formatAmount(
+                      fromMinor(b.available_minor, b.currency as CurrencyCode),
+                      b.currency as CurrencyCode,
+                      locale,
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </PanelSection>
       </div>
 
       {error ? (

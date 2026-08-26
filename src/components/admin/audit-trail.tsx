@@ -1,10 +1,12 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { ArrowUpRight, Search } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { auditTarget } from "@/lib/admin/audit-language";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -112,6 +114,21 @@ export function AuditTrail({
                     })}
                   </time>
                 </button>
+
+                {/* Beside the diff, the thing the diff is about. The log
+                    already knows which record changed; making the reader
+                    carry the id to a search box was the whole friction. It
+                    is a sibling of the expand button rather than inside it,
+                    because an anchor nested in a button is unreachable. */}
+                <div className="mt-2 flex justify-end">
+                  <Link
+                    href={auditTarget(entry.entity_type, entry.entity_id)}
+                    className="inline-flex items-center gap-1 text-xs font-medium text-ink-600 underline-offset-2 hover:text-brand-700 hover:underline dark:hover:text-brand-600"
+                  >
+                    {t("openRecord")}
+                    <ArrowUpRight className="size-3.5 rtl:-scale-x-100" aria-hidden />
+                  </Link>
+                </div>
 
                 {expanded === entry.id ? (
                   <div className="mt-3 grid gap-3 border-t border-ink-300/40 pt-3 sm:grid-cols-2">

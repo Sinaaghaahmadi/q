@@ -423,14 +423,14 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
   const attention: AttentionItem[] = [
     {
       key: "atRisk",
-      href: "/admin/orders",
+      href: "/admin/orders?risk=1",
       icon: Clock,
       count: atRisk?.counted ?? 0,
       severity: "urgent",
     },
     {
       key: "disputes",
-      href: "/admin/orders",
+      href: "/admin/orders?state=disputed",
       icon: Gavel,
       count: disputedOpen,
       severity: "urgent",
@@ -443,7 +443,13 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
       count: ticketsOpen,
       severity: "waiting",
     },
-    { key: "coins", href: "/admin/orders", icon: Coins, count: coinsWaiting, severity: "waiting" },
+    {
+      key: "coins",
+      href: "/admin/orders?state=matching",
+      icon: Coins,
+      count: coinsWaiting,
+      severity: "waiting",
+    },
     {
       key: "offices",
       href: "/admin/exchanges",
@@ -452,26 +458,6 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
       severity: "info",
     },
   ];
-
-  /*
-   * Which powers this person is using, named.
-   *
-   * The strongest platform seat they hold, not the group the sidebar puts them
-   * in — "پلتفرم" told an administrator the name of a menu heading. Ordered
-   * deliberately: somebody holding both superadmin and support is here as a
-   * superadmin, and saying "پشتیبانی" would understate what a mistaken click
-   * can do.
-   */
-  const ROLE_RANK = [
-    "platform_superadmin",
-    "platform_admin",
-    "platform_compliance",
-    "platform_support",
-  ] as const;
-  const strongest = ROLE_RANK.find((role) =>
-    ctx.seats.some((seat) => seat.scope_type === "platform" && seat.role === role),
-  );
-  const seatLabel = strongest ? shell(`security.role.${strongest}`) : undefined;
 
   const pct = (current: number, previous: number) =>
     previous > 0 ? ((current - previous) / previous) * 100 : null;
@@ -489,7 +475,6 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
       seats={ctx.seats}
       impersonation={ctx.impersonation}
       office={ctx.impersonatedOffice}
-      who={{ name: ctx.fullName ?? shell("nav.admin"), role: seatLabel }}
       title={t("title")}
       description={t("subtitle")}
     >
@@ -501,6 +486,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
         <MetricTile
           icon={<TrendingUp className="size-4" aria-hidden />}
           label={t("card.volume")}
+          href="/admin/orders?state=completed"
           value={tomanOf(thisMonth?.volumeMinor ?? 0)}
           unit={t("toman")}
           delta={pct(thisMonth?.volumeMinor ?? 0, previousVolumeMinor)}
@@ -511,6 +497,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
         <MetricTile
           icon={<Wallet className="size-4" aria-hidden />}
           label={t("card.fees")}
+          href="/admin/finance"
           value={tomanOf(feesThisMonth)}
           unit={t("toman")}
           delta={pct(feesThisMonth, feesLastMonth)}
@@ -520,6 +507,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
         <MetricTile
           icon={<Banknote className="size-4" aria-hidden />}
           label={t("card.settled")}
+          href="/admin/orders?state=completed"
           value={countOf(thisMonth?.settled ?? 0)}
           delta={pct(thisMonth?.settled ?? 0, previousSettled)}
           trend={months.map((month) => month.settled)}
@@ -528,6 +516,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
         <MetricTile
           icon={<AlertTriangle className="size-4" aria-hidden />}
           label={t("card.inFlight")}
+          href="/admin/orders"
           value={countOf(open.length)}
           tone={atRisk && atRisk.counted > 0 ? "risk" : "neutral"}
           hint="sla"
@@ -536,6 +525,9 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
               ? t("card.atRiskOf", { counted: countOf(atRisk.counted) })
               : t("card.noDeadlines")
           }
+          /* Only when there is something to open. A link to an empty list is
+             a dead end dressed as a lead. */
+          footnoteHref={atRisk && atRisk.counted > 0 ? "/admin/orders?risk=1" : undefined}
         />
       </section>
 

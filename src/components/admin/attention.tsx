@@ -39,7 +39,7 @@ export async function Attention({ items }: { items: AttentionItem[] }) {
 
   if (live.length === 0) {
     return (
-      <section className="flex items-center gap-3 rounded-2xl border border-up/30 bg-up/[0.04] px-4 py-3.5">
+      <section className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5 [--glass-tint:var(--up)]">
         <CheckCircle2 className="size-5 shrink-0 text-up" aria-hidden />
         <p className="text-sm font-medium">{t("allClear")}</p>
       </section>
@@ -57,12 +57,12 @@ export async function Attention({ items }: { items: AttentionItem[] }) {
             <Link
               href={item.href}
               className={cn(
-                "group flex items-center gap-3 rounded-xl border p-3 transition-colors",
+                "glass glass-lift pressable group flex items-center gap-3 rounded-xl p-3",
                 item.severity === "urgent"
-                  ? "border-down/35 bg-down/[0.05] hover:bg-down/10"
+                  ? "[--glass-tint:var(--down)]"
                   : item.severity === "waiting"
-                    ? "border-warn/40 bg-warn/[0.05] hover:bg-warn/10"
-                    : "border-ink-300/50 bg-surface hover:bg-ink-300/10",
+                    ? "[--glass-tint:var(--warn)]"
+                    : "[--glass-tint:transparent]",
               )}
             >
               <span

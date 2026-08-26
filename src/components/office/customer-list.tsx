@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Link } from "@/i18n/navigation";
 import { formatAmount, formatDate, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
 
@@ -69,11 +70,22 @@ export function CustomerList({
             </thead>
             <tbody>
               {shown.map((customer) => (
-                <tr key={customer.id} className="border-b border-ink-300/25 last:border-0">
+                <tr
+                  key={customer.id}
+                  className="border-b border-ink-300/25 transition-colors last:border-0 hover:bg-ink-300/10"
+                >
                   <td className="px-4 py-3">
-                    <span className="num font-mono text-xs font-medium" dir="ltr">
+                    {/* The reference opens this customer's whole history at
+                        this office. It is the only handle an office has on a
+                        person — RLS keeps the name away from them — so it had
+                        better lead somewhere. */}
+                    <Link
+                      href={`/office/requests?customer=${customer.id}`}
+                      className="num font-mono text-xs font-medium hover:text-brand-700 dark:hover:text-brand-600"
+                      dir="ltr"
+                    >
                       {customer.id.slice(0, 8)}
-                    </span>
+                    </Link>
                   </td>
                   <td className="num px-4 py-3">{formatNumber(customer.orders, locale)}</td>
                   <td className="num px-4 py-3">

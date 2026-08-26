@@ -39,10 +39,13 @@ export async function generateMetadata({
 
 export default async function OfficeRequestsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ customer?: string }>;
 }) {
   const { locale } = await params;
+  const { customer } = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations("officePanel.requests");
   const shell = await getTranslations("officePanel");
@@ -76,24 +79,44 @@ export default async function OfficeRequestsPage({
   }
 
   const supabase = await createClient();
+
+  /*
+   * One customer, asked for by name from the customers page.
+   *
+   * The queue exists to answer "what needs doing", so it hides settled work —
+   * correctly, because a finished order is not a job. "What has this customer
+   * done with us" is the opposite question, and answering it from the same
+   * screen means dropping that exclusion and the unclaimed pool with it: an
+   * order nobody has taken belongs to no customer's history here.
+   */
   const [{ data: office }, { data: pool }, { data: mine }] = await Promise.all([
     supabase.from("exchange_offices").select("*").eq("id", officeId).maybeSingle(),
     // Oldest wait first in both halves: a queue that reorders itself by anything
     // else lets the request nobody wanted sink out of sight.
-    supabase
-      .from("orders")
-      .select("*")
-      .is("office_id", null)
-      .eq("state", "matching")
-      .order("state_since")
-      .limit(100),
-    supabase
-      .from("orders")
-      .select("*")
-      .eq("office_id", officeId)
-      .not("state", "in", SETTLED)
-      .order("state_since")
-      .limit(200),
+    customer
+      ? Promise.resolve({ data: [] as Order[] })
+      : supabase
+          .from("orders")
+          .select("*")
+          .is("office_id", null)
+          .eq("state", "matching")
+          .order("state_since")
+          .limit(100),
+    customer
+      ? supabase
+          .from("orders")
+          .select("*")
+          .eq("office_id", officeId)
+          .eq("customer_id", customer)
+          .order("created_at", { ascending: false })
+          .limit(200)
+      : supabase
+          .from("orders")
+          .select("*")
+          .eq("office_id", officeId)
+          .not("state", "in", SETTLED)
+          .order("state_since")
+          .limit(200),
   ]);
 
   const orders = [...((pool ?? []) as Order[]), ...((mine ?? []) as Order[])];
@@ -115,7 +138,7 @@ export default async function OfficeRequestsPage({
             {t("poolClosed")}
           </p>
         ) : null}
-        <RequestsQueue officeId={officeId} orders={orders} />
+        <RequestsQueue officeId={officeId} orders={orders} customer={customer ?? null} />
       </div>
     </OfficeShell>
   );

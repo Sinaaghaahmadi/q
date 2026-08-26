@@ -4,10 +4,10 @@ import { BadgeCheck, CircleAlert, ImageUp, ShieldAlert, ShieldQuestion } from "l
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { OfficeLogo, officeLogoUrl } from "@/components/office/office-logo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 import type { ExchangeOffice, Json } from "@/lib/supabase/types";
@@ -113,89 +113,79 @@ export function OfficeIdentityCard({
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{t("title")}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-5">
-        <div className="flex flex-wrap items-center gap-4">
-          <OfficeLogo
-            name={name}
-            logoUrl={officeLogoUrl(logoPath)}
-            officeId={office.id}
-            size={72}
-          />
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-lg font-semibold">{name}</p>
-            <p className="truncate text-sm text-ink-600">{office.legal_name_en}</p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              <VerificationBadge state={office.kyc_state} />
-              <Badge variant="neutral">{t(`status.${office.status}`)}</Badge>
-            </div>
+    <PanelSection title={t("title")} hint={t("sectionHint")} bodyClassName="space-y-5">
+      <div className="flex flex-wrap items-center gap-4">
+        <OfficeLogo name={name} logoUrl={officeLogoUrl(logoPath)} officeId={office.id} size={72} />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-lg font-semibold">{name}</p>
+          <p className="truncate text-sm text-ink-600">{office.legal_name_en}</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <VerificationBadge state={office.kyc_state} />
+            <Badge variant="neutral">{t(`status.${office.status}`)}</Badge>
           </div>
-
-          {canEdit ? (
-            <div>
-              <input
-                ref={fileRef}
-                type="file"
-                accept={ACCEPT}
-                className="sr-only"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) void upload(file);
-                  e.target.value = "";
-                }}
-              />
-              <Button variant="secondary" disabled={busy} onClick={() => fileRef.current?.click()}>
-                <ImageUp className="size-4" aria-hidden />
-                {logoPath ? t("changeLogo") : t("addLogo")}
-              </Button>
-              <p className="mt-1 text-xs text-ink-600">{t("logoHint")}</p>
-            </div>
-          ) : null}
         </div>
-
-        {office.kyc_state === "rejected" && office.kyc_reason ? (
-          <p className="rounded-xl bg-down/10 p-3 text-sm leading-relaxed text-down">
-            {office.kyc_reason}
-          </p>
-        ) : null}
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <label className="block text-sm font-medium">
-            {t("displayName")}
-            <Input
-              className="mt-1.5"
-              value={name}
-              disabled={!canEdit || busy}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <span className="mt-1 block text-xs text-ink-600">{t("displayNameHint")}</span>
-          </label>
-
-          <ReadOnly label={t("ownerName")} value={office.owner_name} />
-          <ReadOnly label={t("nationalId")} value={office.national_id} mono />
-          <ReadOnly label={t("licence")} value={office.license_no} mono />
-        </div>
-
-        <p className="text-xs leading-relaxed text-ink-600">{t("lockedNote")}</p>
 
         {canEdit ? (
-          <Button disabled={!nameChanged || busy} onClick={saveName}>
-            {busy ? t("working") : t("save")}
-          </Button>
+          <div>
+            <input
+              ref={fileRef}
+              type="file"
+              accept={ACCEPT}
+              className="sr-only"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) void upload(file);
+                e.target.value = "";
+              }}
+            />
+            <Button variant="secondary" disabled={busy} onClick={() => fileRef.current?.click()}>
+              <ImageUp className="size-4" aria-hidden />
+              {logoPath ? t("changeLogo") : t("addLogo")}
+            </Button>
+            <p className="mt-1 text-xs text-ink-600">{t("logoHint")}</p>
+          </div>
         ) : null}
+      </div>
 
-        {error ? (
-          <p className="flex items-start gap-1.5 text-sm text-down">
-            <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-            {error}
-          </p>
-        ) : null}
-        {note && !error ? <p className="text-sm text-up">{note}</p> : null}
-      </CardContent>
-    </Card>
+      {office.kyc_state === "rejected" && office.kyc_reason ? (
+        <p className="rounded-xl bg-down/10 p-3 text-sm leading-relaxed text-down">
+          {office.kyc_reason}
+        </p>
+      ) : null}
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block text-sm font-medium">
+          {t("displayName")}
+          <Input
+            className="mt-1.5"
+            value={name}
+            disabled={!canEdit || busy}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <span className="mt-1 block text-xs text-ink-600">{t("displayNameHint")}</span>
+        </label>
+
+        <ReadOnly label={t("ownerName")} value={office.owner_name} />
+        <ReadOnly label={t("nationalId")} value={office.national_id} mono />
+        <ReadOnly label={t("licence")} value={office.license_no} mono />
+      </div>
+
+      <p className="text-xs leading-relaxed text-ink-600">{t("lockedNote")}</p>
+
+      {canEdit ? (
+        <Button disabled={!nameChanged || busy} onClick={saveName}>
+          {busy ? t("working") : t("save")}
+        </Button>
+      ) : null}
+
+      {error ? (
+        <p className="flex items-start gap-1.5 text-sm text-down">
+          <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+          {error}
+        </p>
+      ) : null}
+      {note && !error ? <p className="text-sm text-up">{note}</p> : null}
+    </PanelSection>
   );
 }
 

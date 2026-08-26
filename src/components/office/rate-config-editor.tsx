@@ -4,9 +4,9 @@ import { CircleAlert, Plus, Save } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { InfoHint } from "@/components/ui/info-hint";
 import { Switch } from "@/components/ui/switch";
@@ -186,192 +186,186 @@ export function RateConfigEditor({
       <p className="text-sm leading-relaxed text-ink-600">{t("rates.templateNote")}</p>
       {!canManage ? <p className="text-sm text-ink-600">{t("rates.readOnly")}</p> : null}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("rates.listTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {rates.length === 0 ? (
-            <p className="text-sm text-ink-600">
-              {canManage ? t("rates.empty") : t("rates.emptyReadOnly")}
-            </p>
-          ) : (
-            rates.map((row) => {
-              const draft = draftOf(row);
-              const code = baseOf(row.corridor);
-              const base = baseline.get(row.corridor);
-              const spreadNow = parseSpread(draft.spread);
+      <PanelSection
+        title={t("rates.listTitle")}
+        hint={t("rates.listHint")}
+        bodyClassName="space-y-4"
+      >
+        {rates.length === 0 ? (
+          <p className="text-sm text-ink-600">
+            {canManage ? t("rates.empty") : t("rates.emptyReadOnly")}
+          </p>
+        ) : (
+          rates.map((row) => {
+            const draft = draftOf(row);
+            const code = baseOf(row.corridor);
+            const base = baseline.get(row.corridor);
+            const spreadNow = parseSpread(draft.spread);
 
-              return (
-                <div key={row.id} className="space-y-3 rounded-xl border border-ink-300/55 p-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-sm" dir="ltr">
-                      {row.corridor}
-                    </span>
-                    {base === undefined ? (
-                      <Badge variant="outline">{t("rates.badge.custom")}</Badge>
-                    ) : base === row.spread_bps ? (
-                      <Badge variant="neutral">{t("rates.badge.same")}</Badge>
-                    ) : (
-                      <Badge variant="info">{t("rates.badge.overridden")}</Badge>
-                    )}
-                    {!row.active ? <Badge variant="warn">{t("rates.badge.inactive")}</Badge> : null}
-                  </div>
+            return (
+              <div key={row.id} className="space-y-3 rounded-xl border border-ink-300/55 p-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-mono text-sm" dir="ltr">
+                    {row.corridor}
+                  </span>
+                  {base === undefined ? (
+                    <Badge variant="outline">{t("rates.badge.custom")}</Badge>
+                  ) : base === row.spread_bps ? (
+                    <Badge variant="neutral">{t("rates.badge.same")}</Badge>
+                  ) : (
+                    <Badge variant="info">{t("rates.badge.overridden")}</Badge>
+                  )}
+                  {!row.active ? <Badge variant="warn">{t("rates.badge.inactive")}</Badge> : null}
+                </div>
 
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="text-sm font-medium">
-                      {/* The hint is a button, so it sits beside the label
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="text-sm font-medium">
+                    {/* The hint is a button, so it sits beside the label
                           rather than inside it: a click inside a `<label>`
                           also drives the field the label points at. */}
-                      <span className="flex items-center gap-1.5">
-                        <label htmlFor={`spread-${row.corridor}`}>{t("rates.spreadLabel")}</label>
-                        <InfoHint term="rateMarkup" />
-                      </span>
-                      <Input
-                        id={`spread-${row.corridor}`}
-                        dir="ltr"
-                        className="mt-1.5 text-start"
-                        inputMode="numeric"
-                        value={draft.spread}
-                        disabled={!canManage}
-                        onChange={(e) => patchDraft(row, { spread: e.target.value })}
-                      />
-                      <span className="mt-1 block text-xs font-normal text-ink-600">
-                        {spreadNow !== null
-                          ? t("rates.spreadMeans", {
-                              bps: formatNumber(spreadNow, locale),
-                              pct: formatNumber(spreadNow / 100, locale, {
-                                minimumFractionDigits: 1,
-                                maximumFractionDigits: 2,
-                              }),
-                            })
-                          : t("rates.spreadHint")}
-                      </span>
-                      {base !== undefined ? (
-                        <span className="mt-0.5 block text-xs font-normal text-ink-600">
-                          {t("rates.templateSpread", { bps: formatNumber(base, locale) })}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <label className="block text-sm font-medium">
-                      {t("rates.cutoffLabel")}
-                      <Input
-                        dir="ltr"
-                        className="mt-1.5 text-start"
-                        type="time"
-                        value={draft.cutoff}
-                        disabled={!canManage}
-                        onChange={(e) => patchDraft(row, { cutoff: e.target.value })}
-                      />
-                      <span className="mt-1 block text-xs font-normal text-ink-600">
-                        {t("rates.cutoffHint")}
-                      </span>
-                    </label>
-
-                    <AmountField
-                      label={t("rates.minLabel")}
-                      hint={
-                        code ? t("rates.amountHint", { code }) : t("rates.amountUnknownCurrency")
-                      }
-                      onFile={
-                        row.min_amount_minor === null
-                          ? t("rates.noLimit")
-                          : code === null
-                            ? undefined
-                            : t("rates.onFile", {
-                                amount: formatAmount(
-                                  fromMinor(row.min_amount_minor, code),
-                                  code,
-                                  locale,
-                                ),
-                                code,
-                              })
-                      }
-                      value={draft.min}
-                      disabled={!canManage || code === null}
-                      onChange={(v) => patchDraft(row, { min: v })}
+                    <span className="flex items-center gap-1.5">
+                      <label htmlFor={`spread-${row.corridor}`}>{t("rates.spreadLabel")}</label>
+                      <InfoHint term="rateMarkup" />
+                    </span>
+                    <Input
+                      id={`spread-${row.corridor}`}
+                      dir="ltr"
+                      className="mt-1.5 text-start"
+                      inputMode="numeric"
+                      value={draft.spread}
+                      disabled={!canManage}
+                      onChange={(e) => patchDraft(row, { spread: e.target.value })}
                     />
-                    <AmountField
-                      label={t("rates.maxLabel")}
-                      hint={
-                        code ? t("rates.amountHint", { code }) : t("rates.amountUnknownCurrency")
-                      }
-                      onFile={
-                        row.max_amount_minor === null
-                          ? t("rates.noLimit")
-                          : code === null
-                            ? undefined
-                            : t("rates.onFile", {
-                                amount: formatAmount(
-                                  fromMinor(row.max_amount_minor, code),
-                                  code,
-                                  locale,
-                                ),
-                                code,
-                              })
-                      }
-                      value={draft.max}
-                      disabled={!canManage || code === null}
-                      onChange={(v) => patchDraft(row, { max: v })}
-                    />
+                    <span className="mt-1 block text-xs font-normal text-ink-600">
+                      {spreadNow !== null
+                        ? t("rates.spreadMeans", {
+                            bps: formatNumber(spreadNow, locale),
+                            pct: formatNumber(spreadNow / 100, locale, {
+                              minimumFractionDigits: 1,
+                              maximumFractionDigits: 2,
+                            }),
+                          })
+                        : t("rates.spreadHint")}
+                    </span>
+                    {base !== undefined ? (
+                      <span className="mt-0.5 block text-xs font-normal text-ink-600">
+                        {t("rates.templateSpread", { bps: formatNumber(base, locale) })}
+                      </span>
+                    ) : null}
                   </div>
 
-                  {canManage ? (
-                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                      <ToggleField
-                        label={t("rates.activeLabel")}
-                        hint={t("rates.activeHint")}
-                        checked={row.active}
-                        disabled={busy === row.id}
-                        onChange={(v) => setActive(row, v)}
-                      />
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="ms-auto"
-                        disabled={busy === row.id || !dirty(draft, row)}
-                        onClick={() => save(row)}
-                      >
-                        <Save className="size-4" aria-hidden />
-                        {busy === row.id ? t("rates.working") : t("rates.save")}
-                      </Button>
-                    </div>
-                  ) : null}
+                  <label className="block text-sm font-medium">
+                    {t("rates.cutoffLabel")}
+                    <Input
+                      dir="ltr"
+                      className="mt-1.5 text-start"
+                      type="time"
+                      value={draft.cutoff}
+                      disabled={!canManage}
+                      onChange={(e) => patchDraft(row, { cutoff: e.target.value })}
+                    />
+                    <span className="mt-1 block text-xs font-normal text-ink-600">
+                      {t("rates.cutoffHint")}
+                    </span>
+                  </label>
+
+                  <AmountField
+                    label={t("rates.minLabel")}
+                    hint={code ? t("rates.amountHint", { code }) : t("rates.amountUnknownCurrency")}
+                    onFile={
+                      row.min_amount_minor === null
+                        ? t("rates.noLimit")
+                        : code === null
+                          ? undefined
+                          : t("rates.onFile", {
+                              amount: formatAmount(
+                                fromMinor(row.min_amount_minor, code),
+                                code,
+                                locale,
+                              ),
+                              code,
+                            })
+                    }
+                    value={draft.min}
+                    disabled={!canManage || code === null}
+                    onChange={(v) => patchDraft(row, { min: v })}
+                  />
+                  <AmountField
+                    label={t("rates.maxLabel")}
+                    hint={code ? t("rates.amountHint", { code }) : t("rates.amountUnknownCurrency")}
+                    onFile={
+                      row.max_amount_minor === null
+                        ? t("rates.noLimit")
+                        : code === null
+                          ? undefined
+                          : t("rates.onFile", {
+                              amount: formatAmount(
+                                fromMinor(row.max_amount_minor, code),
+                                code,
+                                locale,
+                              ),
+                              code,
+                            })
+                    }
+                    value={draft.max}
+                    disabled={!canManage || code === null}
+                    onChange={(v) => patchDraft(row, { max: v })}
+                  />
                 </div>
-              );
-            })
-          )}
-        </CardContent>
-      </Card>
+
+                {canManage ? (
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <ToggleField
+                      label={t("rates.activeLabel")}
+                      hint={t("rates.activeHint")}
+                      checked={row.active}
+                      disabled={busy === row.id}
+                      onChange={(v) => setActive(row, v)}
+                    />
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="ms-auto"
+                      disabled={busy === row.id || !dirty(draft, row)}
+                      onClick={() => save(row)}
+                    >
+                      <Save className="size-4" aria-hidden />
+                      {busy === row.id ? t("rates.working") : t("rates.save")}
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })
+        )}
+      </PanelSection>
 
       {canManage ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("rates.addTitle")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-ink-600">{t("rates.addHint")}</p>
-            <label className="block max-w-xs text-sm font-medium">
-              {t("rates.addCurrency")}
-              <select
-                value={newCode}
-                onChange={(e) => setNewCode(e.target.value)}
-                className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
-              >
-                {FOREIGN_CODES.map((code) => (
-                  <option key={code} value={code}>
-                    {code}-IRT
-                  </option>
-                ))}
-              </select>
-            </label>
-            <Button disabled={busy !== null} onClick={add}>
-              <Plus className="size-4" aria-hidden />
-              {busy === "new" ? t("rates.working") : t("rates.add")}
-            </Button>
-          </CardContent>
-        </Card>
+        <PanelSection
+          title={t("rates.addTitle")}
+          hint={t("rates.addHint")}
+          bodyClassName="space-y-3"
+        >
+          <p className="text-sm text-ink-600">{t("rates.addHint")}</p>
+          <label className="block max-w-xs text-sm font-medium">
+            {t("rates.addCurrency")}
+            <select
+              value={newCode}
+              onChange={(e) => setNewCode(e.target.value)}
+              className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
+            >
+              {FOREIGN_CODES.map((code) => (
+                <option key={code} value={code}>
+                  {code}-IRT
+                </option>
+              ))}
+            </select>
+          </label>
+          <Button disabled={busy !== null} onClick={add}>
+            <Plus className="size-4" aria-hidden />
+            {busy === "new" ? t("rates.working") : t("rates.add")}
+          </Button>
+        </PanelSection>
       ) : null}
 
       {error ? (

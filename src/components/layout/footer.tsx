@@ -51,7 +51,11 @@ export function Footer() {
           </button>
         </nav>
 
-        <p className="ms-auto font-mono" dir="ltr">
+        {/* Who wrote it, then which build it is. Both belong at the end of
+            the line rather than in a heading: a reader looking for either
+            knows to look at the bottom of a page. */}
+        <p className="ms-auto">{t("builtBy")}</p>
+        <p className="font-mono" dir="ltr">
           {tMenu("version", { version: versionLabel() })}
         </p>
       </div>

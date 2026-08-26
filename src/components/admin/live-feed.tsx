@@ -3,8 +3,9 @@
 import { ShieldAlert } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import * as React from "react";
-import { describeAudit } from "@/lib/admin/audit-language";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { auditTarget, describeAudit } from "@/lib/admin/audit-language";
+import { PanelSection } from "@/components/layout/panel-section";
+import { Link } from "@/i18n/navigation";
 import type { AuditLogEntry } from "@/lib/supabase/types";
 import { cn } from "@/lib/utils";
 
@@ -57,19 +58,27 @@ export function LiveFeed({ entries }: { entries: AuditLogEntry[] }) {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{t("feed")}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {entries.length === 0 ? (
-          <p className="text-sm text-ink-600">{t("noActivity")}</p>
-        ) : (
-          <ol className="-my-1.5 divide-y divide-ink-300/30">
-            {entries.map((entry) => {
-              const { text, notable } = phrase(entry.action);
-              return (
-                <li key={entry.id} className="flex items-start gap-2.5 py-2 text-sm">
+    <PanelSection
+      title={t("feed")}
+      hint={t("sectionHint.feed")}
+      href="/admin/audit"
+      linkLabel={t("audit.title")}
+    >
+      {entries.length === 0 ? (
+        <p className="text-sm text-ink-600">{t("noActivity")}</p>
+      ) : (
+        <ol className="-my-1.5 divide-y divide-ink-300/30">
+          {entries.map((entry) => {
+            const { text, notable } = phrase(entry.action);
+            return (
+              <li key={entry.id}>
+                {/* The whole line opens the record it is about. A feed that
+                      names a forced transition and then makes you go and find
+                      the order is a notification, not a console. */}
+                <Link
+                  href={auditTarget(entry.entity_type, entry.entity_id)}
+                  className="pressable -mx-2 flex items-start gap-2.5 rounded-lg px-2 py-2 text-sm transition-colors hover:bg-ink-300/15"
+                >
                   <span
                     className={cn(
                       "mt-1 flex size-4 shrink-0 items-center justify-center",
@@ -104,12 +113,12 @@ export function LiveFeed({ entries }: { entries: AuditLogEntry[] }) {
                       minute: "2-digit",
                     })}
                   </time>
-                </li>
-              );
-            })}
-          </ol>
-        )}
-      </CardContent>
-    </Card>
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </PanelSection>
   );
 }

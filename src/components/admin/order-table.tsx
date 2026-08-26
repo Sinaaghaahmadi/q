@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, Gavel } from "lucide-react";
+import { CircleAlert, Gavel, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -28,11 +28,14 @@ export function AdminOrderTable({
   offices,
   canForce,
   activeState,
+  narrowed,
 }: {
   orders: Order[];
   offices: Pick<ExchangeOffice, "id" | "legal_name_fa" | "legal_name_en">[];
   canForce: boolean;
   activeState: string | null;
+  /** The filters arrived at from a dashboard link, so the page can say so. */
+  narrowed: { corridor: string | null; office: string | null; risk: boolean };
 }) {
   const t = useTranslations("admin.orders");
   const states = useTranslations("orders.state");
@@ -85,10 +88,31 @@ export function AdminOrderTable({
     router.refresh();
   }
 
+  /*
+   * What this list has been narrowed to, in one phrase.
+   *
+   * The office is named rather than shown as a uuid, because the point of the
+   * link was that a manager recognised the office — printing the key back at
+   * them undoes that.
+   */
+  const narrow = narrowed.risk
+    ? t("narrow.risk")
+    : narrowed.corridor
+      ? t("narrow.corridor", { corridor: narrowed.corridor })
+      : narrowed.office === "unclaimed"
+        ? t("narrow.unclaimed")
+        : narrowed.office
+          ? t("narrow.office", { office: officeName.get(narrowed.office) ?? narrowed.office })
+          : null;
+
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2">
-        <FilterChip href="/admin/orders" label={t("all")} active={activeState === null} />
+      <div className="flex flex-wrap items-center gap-2">
+        <FilterChip
+          href="/admin/orders"
+          label={t("all")}
+          active={activeState === null && !narrow}
+        />
         {(["matching", "irt_funded", "disputed", "completed"] as OrderState[]).map((s) => (
           <FilterChip
             key={s}
@@ -97,6 +121,21 @@ export function AdminOrderTable({
             active={activeState === s}
           />
         ))}
+
+        {/* Arrived from a link rather than from these chips: say which
+            question this list is answering and offer the way back out. A
+            filtered table that looks identical to the whole table is how
+            somebody concludes the platform has eleven orders. */}
+        {narrow ? (
+          <Link
+            href="/admin/orders"
+            className="glass-control pressable inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-brand-700 [--glass-tint:var(--brand-600)] dark:text-brand-600"
+          >
+            {narrow}
+            <X className="size-3.5" aria-hidden />
+            <span className="sr-only">{t("clearFilter")}</span>
+          </Link>
+        ) : null}
       </div>
 
       {orders.length === 0 ? (
@@ -116,7 +155,10 @@ export function AdminOrderTable({
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={order.id} className="border-b border-ink-300/25 last:border-0">
+                <tr
+                  key={order.id}
+                  className="border-b border-ink-300/25 transition-colors last:border-0 hover:bg-ink-300/10"
+                >
                   <td className="px-4 py-3">
                     <Link
                       href={`/orders/${order.id}`}
@@ -132,7 +174,14 @@ export function AdminOrderTable({
                     ) : null}
                   </td>
                   <td className="px-4 py-3 font-mono text-xs">
-                    <span dir="ltr">{order.corridor}</span>
+                    <Link
+                      href={`/admin/orders?corridor=${encodeURIComponent(order.corridor)}`}
+                      className="hover:text-brand-700 dark:hover:text-brand-600"
+                      dir="ltr"
+                      title={t("narrow.corridor", { corridor: order.corridor })}
+                    >
+                      {order.corridor}
+                    </Link>
                   </td>
                   <td className="px-4 py-3 tabular-nums">
                     {formatAmount(
@@ -143,15 +192,31 @@ export function AdminOrderTable({
                     {order.send_currency}
                   </td>
                   <td className="px-4 py-3 text-ink-600">
-                    {order.office_id ? (officeName.get(order.office_id) ?? "—") : t("unclaimed")}
+                    {order.office_id ? (
+                      <Link
+                        href={`/admin/exchanges/${order.office_id}`}
+                        className="hover:text-brand-700 dark:hover:text-brand-600"
+                      >
+                        {officeName.get(order.office_id) ?? t("unknownOffice")}
+                      </Link>
+                    ) : (
+                      <Link
+                        href="/admin/orders?office=unclaimed"
+                        className="hover:text-brand-700 dark:hover:text-brand-600"
+                      >
+                        {t("unclaimed")}
+                      </Link>
+                    )}
                   </td>
                   <td className="px-4 py-3">
-                    <Badge variant={stateTone(order.state)}>{states(order.state)}</Badge>
+                    <Link href={`/admin/orders?state=${order.state}`} className="inline-block">
+                      <Badge variant={stateTone(order.state)}>{states(order.state)}</Badge>
+                    </Link>
                   </td>
                   <td className="px-4 py-3 text-end">
                     {canForce && !isTerminal(order.state) ? (
                       <Button
-                        variant="ghost"
+                        variant="glass"
                         size="sm"
                         onClick={() => {
                           setOpen(open === order.id ? null : order.id);
@@ -211,7 +276,7 @@ export function AdminOrderTable({
             >
               {busy ? t("working") : t("confirmForce")}
             </Button>
-            <Button variant="ghost" onClick={() => setOpen(null)}>
+            <Button variant="glass" onClick={() => setOpen(null)}>
               {t("cancel")}
             </Button>
           </div>
@@ -233,8 +298,10 @@ function FilterChip({ href, label, active }: { href: string; label: string; acti
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-        active ? "bg-brand-solid text-white" : "bg-ink-300/25 text-ink-600 hover:text-ink-900"
+      className={`pressable rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+        active
+          ? "bg-brand-solid text-white shadow-e1"
+          : "glass-control text-ink-600 [--glass-tint:var(--ink-600)] hover:text-ink-900"
       }`}
     >
       {label}

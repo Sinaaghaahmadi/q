@@ -1,4 +1,4 @@
-import { Compass, HeartHandshake, LifeBuoy, Megaphone, PenTool, Users } from "lucide-react";
+import { Code2, Compass, HeartHandshake, LifeBuoy, Megaphone, PenTool, Users } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
@@ -51,6 +51,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{t(`crafts.${key}.body`)}</p>
           </Card>
         ))}
+      </section>
+
+      {/* Who wrote the software, named. A product that moves other people's
+          money should say whose hands it came out of, on a page a reader can
+          find rather than only in a commit log. */}
+      <section className="glass rounded-3xl p-6 [--glass-tint:var(--brand-600)] sm:p-8">
+        <span className="flex size-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:text-brand-600">
+          <Code2 className="size-5" aria-hidden />
+        </span>
+        <h2 className="mt-4 text-lg font-semibold">{t("built.title")}</h2>
+        <p className="mt-1 text-base font-semibold text-brand-700 dark:text-brand-600">
+          {t("built.name")}
+        </p>
+        <p className="mt-2 max-w-2xl leading-relaxed text-ink-600">{t("built.body")}</p>
       </section>
 
       <section className="rounded-3xl bg-surface p-6 shadow-e1 sm:p-8">

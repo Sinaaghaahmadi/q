@@ -175,7 +175,8 @@
     "compliance": "Asa ist ein Überweisungsmarktplatz zwischen lizenzierten Wechselstuben. Es ist keine Wallet, die Ihr Geld verwahrt, kein Wertpapiermarkt, und es werden keine Einlagen gehalten.",
     "legal": "Rechtliches",
     "designSystem": "Designsystem",
-    "copyright": "© 2026 Asaex — Alle Rechte vorbehalten."
+    "copyright": "© 2026 Asaex — Alle Rechte vorbehalten.",
+    "builtBy": "Entwickelt von der Programmiergruppe Â"
   },
   "track": {
     "metaTitle": "Verfolgung von {ref}",
@@ -244,6 +245,11 @@
       "body": "Für viele Iranerinnen und Iraner heißt Geld senden noch immer, einer unbekannten Nummer auf Telegram zu vertrauen und auf das Beste zu hoffen. Wir glauben, dieselbe Aufgabe lässt sich erledigen, mit denselben echten Wechselstuben, aber mit einem sichtbaren Kurs, einem verfolgbaren Weg und einer klaren Antwort darauf, wer verantwortlich ist.",
       "contact": "Sprechen Sie mit uns",
       "how": "Wie läuft ein Transfer ab?"
+    },
+    "built": {
+      "title": "Entwicklung und Pflege",
+      "name": "Die Programmiergruppe Â",
+      "body": "Dieses Produkt wird von der Programmiergruppe Â entwickelt und gepflegt: von der Datenbank und der Sicherheitsschicht bis zu jedem Bildschirm auf dieser Website und in den Büro- und Verwaltungspanels."
     }
   },
   "contact": {
@@ -1373,7 +1379,8 @@
       "tooBig": "Diese Datei ist größer als 512 kB.",
       "uploadFailed": "Der Upload ging nicht durch. Bitte erneut versuchen.",
       "saveFailed": "Speichern nicht möglich. Bitte erneut versuchen."
-    }
+    },
+    "sectionHint": "Name, Zeichen und Angaben, die Kunden von diesem Büro sehen."
   },
   "office": {
     "metaTitle": "Bereich der Wechselstube",
@@ -1395,7 +1402,9 @@
       "officeInactive": "Diese Wechselstube ist nicht aktiv.",
       "claimFailed": "Die Anfrage konnte nicht übernommen werden.",
       "network": "Keine Verbindung. Versuchen Sie es erneut."
-    }
+    },
+    "poolHint": "Aufträge, die noch kein Büro übernommen hat. Übernehmen Sie einen, dann gehört er Ihnen.",
+    "mineHint": "Aufträge, die Sie übernommen haben und die noch laufen."
   },
   "twoFactor": {
     "title": "Anmeldung in zwei Schritten",
@@ -1484,7 +1493,8 @@
       "save": "Angaben speichern",
       "verify": "Identität bestätigen",
       "reject": "Ablehnen",
-      "note": "Nach der Bestätigung kann die Wechselstube ihre eingetragene Inhaberschaft und Kennnummer nicht mehr selbst ändern. Abwicklungskonten werden gegen diese Angaben abgeglichen."
+      "note": "Nach der Bestätigung kann die Wechselstube ihre eingetragene Inhaberschaft und Kennnummer nicht mehr selbst ändern. Abwicklungskonten werden gegen diese Angaben abgeglichen.",
+      "hint": "Die Ausweispapiere und die Lizenz dieses Büros, und Ihre Entscheidung dazu."
     },
     "login": {
       "title": "Zugang zum Bereich der Wechselstube",
@@ -1502,7 +1512,8 @@
         "sent": "SMS gesendet.",
         "failed": "Die Nachricht ließ sich nicht senden. Geben Sie die Angaben selbst weiter.",
         "skipped": "Es wurde keine Nachricht gesendet."
-      }
+      },
+      "hint": "Das Konto, mit dem sich das Büro in seinem eigenen Panel anmeldet."
     },
     "errors": {
       "nationalId": "Diese Kennnummer ist ungültig.",
@@ -1703,7 +1714,9 @@
           "numberRequired": "Schreiben Sie die Kontonummer.",
           "forbidden": "Sie dürfen dieses Konto nicht ändern.",
           "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
-        }
+        },
+        "listHint": "Die Konten, auf die Kunden einzahlen. Kunden sehen nur die aktiven.",
+        "addHint": "Eine weitere Karte oder IBAN hinzufügen, um Geld von Kunden zu empfangen."
       },
       "liquidity": {
         "metaTitle": "Liquidität",
@@ -1755,7 +1768,9 @@
         "gone": "Diese Anfrage ist nicht mehr verfügbar. Die Liste wurde aufgefrischt.",
         "network": "Keine Verbindung. Prüfen Sie sie und versuchen Sie es erneut."
       },
-      "poolClosed": "Diese Wechselstube ist nicht aktiv, daher werden keine neuen Anfragen zur Übernahme gezeigt. Ihre laufende Arbeit steht weiterhin hier."
+      "poolClosed": "Diese Wechselstube ist nicht aktiv, daher werden keine neuen Anfragen zur Übernahme gezeigt. Ihre laufende Arbeit steht weiterhin hier.",
+      "narrowCustomer": "Verlauf von Kunde {ref}",
+      "clearCustomer": "Zurück zur Warteschlange"
     },
     "chat": {
       "metaTitle": "Nachrichten",
@@ -1856,7 +1871,8 @@
         "noSuchUser": "Kein Asaex-Konto hat diese Kennung.",
         "forbidden": "Das kann nur die Inhaberschaft.",
         "failed": "Das ging nicht durch. Versuchen Sie es erneut."
-      }
+      },
+      "addHint": "Einer Kollegin oder einem Kollegen Zugang zum Panel geben und festlegen, was sie oder er darf."
     },
     "reports": {
       "metaTitle": "Berichte",
@@ -1883,7 +1899,9 @@
       "slaHint": "Der Anteil abgeschlossener Aufträge, die vor ihrer Frist geschlossen wurden, über {count, number} Aufträge mit Frist.",
       "noCompleted": "Bisher wurde nichts abgeschlossen.",
       "noSla": "Für die Aufträge dieses Zeitraums wurde keine Frist erfasst.",
-      "chartEmptyLabel": "Balkendiagramm des Toman-Volumens nach Monat, {from} bis {to}. In diesem Zeitraum wurde nichts abgeschlossen."
+      "chartEmptyLabel": "Balkendiagramm des Toman-Volumens nach Monat, {from} bis {to}. In diesem Zeitraum wurde nichts abgeschlossen.",
+      "volumeSectionHint": "Wie viel dieses Büro in jedem Monat bewegt hat.",
+      "corridorSectionHint": "Der Anteil jedes Korridors an der Arbeit dieses Büros."
     },
     "config": {
       "rates": {
@@ -1915,7 +1933,7 @@
         },
         "addTitle": "Strecke anlegen",
         "addCurrency": "Währung",
-        "addHint": "Eine Seite einer Strecke ist immer Toman. Eine neue Strecke wird mit dem Standardwert der Plattform — oder mit null, wo es keinen gibt — und ausgeschaltet gespeichert; setzen Sie den Wert in der Liste oben und schalten Sie sie dann ein.",
+        "addHint": "Einen neuen Korridor für dieses Büro öffnen.",
         "add": "Strecke anlegen",
         "save": "Speichern",
         "saved": "Gespeichert.",
@@ -1929,7 +1947,8 @@
           "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
         },
         "emptyReadOnly": "Es ist noch keine Strecke angelegt.",
-        "amountUnknownCurrency": "Die Währung dieser Strecke steht nicht in der Liste der Plattform, daher lässt sich kein Betrag dafür eintragen."
+        "amountUnknownCurrency": "Die Währung dieser Strecke steht nicht in der Liste der Plattform, daher lässt sich kein Betrag dafür eintragen.",
+        "listHint": "Die Korridore, auf denen dieses Büro arbeitet, und der Kurs auf jedem."
       },
       "settings": {
         "metaTitle": "Einstellungen der Wechselstube",
@@ -1953,7 +1972,8 @@
             "wed": "Mittwoch",
             "thu": "Donnerstag",
             "fri": "Freitag"
-          }
+          },
+          "hint": "Die Zeiten, zu denen dieses Büro Aufträge annimmt. Außerhalb warten Aufträge in der Schlange."
         },
         "auto": {
           "title": "Automatische Annahme",
@@ -1962,7 +1982,8 @@
           "maxLabel": "Obergrenze der automatischen Annahme",
           "maxHint": "In Toman. Leer heißt: keine Obergrenze erfasst.",
           "onFile": "Hinterlegt: {amount} IRT",
-          "noLimit": "Hinterlegt: keine Obergrenze"
+          "noLimit": "Hinterlegt: keine Obergrenze",
+          "hint": "Eingeschaltet werden Aufträge bis zum festgelegten Betrag ohne Freigabe angenommen."
         },
         "notify": {
           "title": "Wohin Hinweise gehen",
@@ -1974,7 +1995,8 @@
           "smsLabel": "SMS",
           "smsHint": "Die SMS-Einstellung, im Datensatz hinterlegt.",
           "emailLabel": "E-Mail",
-          "emailHint": "Die E-Mail-Einstellung, im Datensatz hinterlegt."
+          "emailHint": "Die E-Mail-Einstellung, im Datensatz hinterlegt.",
+          "hint": "Auf welchem Weg Sie von einem neuen Auftrag erfahren."
         },
         "save": "Speichern",
         "saved": "Gespeichert.",
@@ -1987,7 +2009,15 @@
           "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
         }
       }
-    }
+    },
+    "builtBy": "Entwickelt von der Programmiergruppe Â",
+    "group": {
+      "today": "Heute",
+      "work": "Wartende Arbeit",
+      "money": "Finanzen",
+      "office": "Das Büro"
+    },
+    "waitingHint": "Aufträge, die nichts von Ihnen verlangen und auf die Kundschaft oder die Plattform warten. Tippen Sie auf eine Referenz, um zu sehen, worauf sie wartet."
   },
   "admin": {
     "metaTitle": "Verwaltung",
@@ -2089,6 +2119,14 @@
         "terminal": "Dieser Auftrag ist bereits im Endzustand; buchen Sie stattdessen eine Gegenbewegung.",
         "forbidden": "Diese Handlung steht nur Plattform-Administratoren offen.",
         "failed": "Anwenden nicht möglich. Versuchen Sie es erneut."
+      },
+      "clearFilter": "Diesen Filter entfernen",
+      "unknownOffice": "Unbekanntes Büro",
+      "narrow": {
+        "risk": "Weniger als ein Tag bis zur Frist",
+        "corridor": "Korridor {corridor}",
+        "unclaimed": "Nicht übernommen",
+        "office": "{office}"
       }
     },
     "audit": {
@@ -2143,7 +2181,8 @@
         "p2p_offer_publish": "Ein Angebot wurde auf dem Markt unter Privatpersonen veröffentlicht",
         "p2p_trade_take": "Ein Handel unter Privatpersonen wurde angenommen",
         "kyc_decision": "Über Identitätsunterlagen wurde entschieden"
-      }
+      },
+      "openRecord": "Datensatz öffnen"
     },
     "settings": {
       "metaTitle": "Plattform-Einstellungen",
@@ -2153,7 +2192,9 @@
       "noFlags": "Keine Schalter angelegt.",
       "saveFailed": "Speichern nicht möglich. Versuchen Sie es erneut.",
       "template": "Standardvorlage für Wechselstuben",
-      "templateBody": "Jede neue Wechselstube startet von diesen Werten; Abweichungen erscheinen auf ihrer eigenen Seite."
+      "templateBody": "Jede neue Wechselstube startet von diesen Werten; Abweichungen erscheinen auf ihrer eigenen Seite.",
+      "flagsHint": "Die Schalter, mit denen Teile der Website an- und ausgehen. Wird einer ausgeschaltet, ist dieser Bereich für alle verborgen.",
+      "templateHint": "Die Werte, mit denen jedes neue Wechselbüro angelegt wird. Jedes Büro lässt sich danach einzeln ändern."
     },
     "security": {
       "title": "Zwei-Faktor-Anmeldung für Mitarbeitende",
@@ -2174,7 +2215,8 @@
         "platform_compliance": "Compliance",
         "platform_admin": "Administration",
         "platform_superadmin": "Oberste Administration"
-      }
+      },
+      "sectionHint": "Ob Plattformmitarbeitende zum Anmelden einen Einmalcode eingeben müssen, und wie es um jedes Konto steht."
     },
     "support": {
       "metaTitle": "Support-Eingang",
@@ -2221,7 +2263,9 @@
         "filled": "Ausgeführt",
         "cancelled": "Storniert",
         "removed": "Entfernt"
-      }
+      },
+      "disputesHint": "Geschäfte unter Privatpersonen, bei denen sich beide Seiten nicht einig wurden und die auf Ihren Schiedsspruch warten.",
+      "listingsHint": "Die Kauf- und Verkaufsanzeigen, die Nutzende im Markt unter Privatpersonen eingestellt haben."
     },
     "exchanges": {
       "metaTitle": "Wechselstuben",
@@ -2273,7 +2317,13 @@
         "pending": "Ausstehend",
         "rejected": "Abgelehnt",
         "unverified": "Nicht kontrolliert"
-      }
+      },
+      "reasonHint": "Der Grund, den Sie hier schreiben, wird im Prüfprotokoll festgehalten und lässt sich nicht löschen.",
+      "spreadsHint": "Die Gebühr dieses Büros und der Abstand zwischen seinem An- und Verkaufskurs. Das verändert den Preis, den der Kunde sieht.",
+      "accountsHint": "Die Karten und IBANs, auf die Kunden einzahlen.",
+      "balancesHint": "Was die Konten dieses Büros im Hauptbuch halten.",
+      "openSettlement": "Abrechnung öffnen",
+      "openLedger": "Hauptbuch öffnen"
     },
     "wizard": {
       "steps": {
@@ -2415,7 +2465,15 @@
       "noOrders": "Keine",
       "corridorOnly": "Das gesamte abgewickelte Volumen lief über eine Strecke: <corridor></corridor>, insgesamt <amount></amount> Toman.",
       "noComparison": "Keine Zahl aus dem Vormonat zum Vergleich.",
-      "kpiLabel": "Kennzahlen"
+      "kpiLabel": "Kennzahlen",
+      "sectionHint": {
+        "volume": "Wie viel in jedem der letzten zwölf Monate abgewickelt wurde. Der laufende Monat ist blass, weil er noch nicht abgeschlossen und mit den vollen Monaten nicht vergleichbar ist.",
+        "corridors": "Der Anteil jedes Korridors am abgewickelten Volumen. Tippen Sie auf einen Korridor, um seine Aufträge zu sehen.",
+        "scores": "Wie es um jedes aktive Wechselbüro steht: wie viele Aufträge, welcher Betrag, wie schnell, wie oft fristgerecht und wie oft im Streit geendet."
+      },
+      "openLedger": "Hauptbuch öffnen",
+      "openSettled": "Abgewickelte Aufträge ansehen",
+      "openOffices": "Büroliste öffnen"
     },
     "compliance": {
       "metaTitle": "Compliance",
@@ -2436,7 +2494,8 @@
         "unnamed": "Ohne Namen",
         "unresolved": "Nicht entschieden",
         "payload": "Rohdaten des Treffers",
-        "shown": "{count} Treffer; die Liste ist auf die 100 jüngsten begrenzt."
+        "shown": "{count} Treffer; die Liste ist auf die 100 jüngsten begrenzt.",
+        "hint": "Gleicht Kundennamen mit Sanktionslisten ab und hält jeden möglichen Treffer zurück, bis ein Mensch entscheidet."
       },
       "flags": {
         "title": "Gemeldete Nachrichten",
@@ -2454,7 +2513,8 @@
         },
         "open": "Strang öffnen",
         "noBody": "Kein Text",
-        "shown": "{count} Nachrichten; die Liste ist auf die 100 jüngsten begrenzt."
+        "shown": "{count} Nachrichten; die Liste ist auf die 100 jüngsten begrenzt.",
+        "hint": "Nachrichten, die das System als verdächtig eingestuft hat und die auf Ihre Entscheidung warten."
       },
       "thresholds": {
         "title": "Grenzen und Stufen",
@@ -2476,7 +2536,8 @@
         "save": "Speichern",
         "saving": "Einen Moment…",
         "saved": "Gespeichert.",
-        "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut.",
+        "hint": "Der Betrag, den jede Kundenstufe senden darf, und die Grenzen des Marktes unter Privatpersonen. Eine hier geänderte Zahl gilt sofort für jeden neuen Auftrag."
       },
       "retention": {
         "title": "Aufbewahrung",
@@ -2484,7 +2545,8 @@
         "audit": "Das Prüfprotokoll (audit_log) ist dauerhaft. Seine Zeilen lassen sich weder ändern noch löschen; ein Datenbank-Trigger verweigert beides.",
         "ledger": "Das Buchungsjournal (ledger_entries) ist ebenfalls dauerhaft, unter derselben Nur-Anfügen-Regel. Jede bewegte Zahl bleibt.",
         "kyc": "Ausweisunterlagen liegen im privaten Bucket kyc-documents. Sie sind nie öffentlich und öffnen sich nur über einen 60 Sekunden gültigen signierten Link.",
-        "gap": "Es gibt keinen automatischen Löschlauf. Nichts verfällt von selbst, und eine Aufbewahrungsfrist ist damit eine Entscheidung, die noch aufgeschrieben werden muss."
+        "gap": "Es gibt keinen automatischen Löschlauf. Nichts verfällt von selbst, und eine Aufbewahrungsfrist ist damit eine Entscheidung, die noch aufgeschrieben werden muss.",
+        "hint": "Was aufbewahrt wird, wie lange, und wann es gelöscht wird."
       }
     },
     "rates": {
@@ -2513,11 +2575,12 @@
           "source": "Quelle",
           "observed": "Beobachtet"
         },
-        "empty": "Diese Aufnahme trägt keine Kurse."
+        "empty": "Diese Aufnahme trägt keine Kurse.",
+        "hint": "Die Kurse, die den Kunden gerade angezeigt werden, und wann jeder zuletzt aktualisiert wurde."
       },
       "sources": {
         "title": "Kursanbieter",
-        "hint": "Eine Zeile je erfasster Quelle, genau so, wie sie in der Datenbank steht.",
+        "hint": "Woher die Kurse gelesen werden und ob jede Quelle gesund ist.",
         "readOnly": "Eine Quelle lässt sich von dieser Seite aus weder ein- noch ausschalten: Die Datenbank-Policy auf der Quellentabelle gewährt nur Lesen und hat für Schreiben überhaupt keine Policy. Die Schalter zeigen den aktuellen Stand und sind deaktiviert; das heute zu ändern ist eine Datenbank-Migration. „Letzter Erfolg“ und „Letzter Fehler“ sind gespeicherte Spalten, die noch kein Prozess beschreibt, also bleiben sie leer, selbst wenn ein Anbieter antwortet — ob die Kette arbeitet, sagt Ihnen das Frischebanner oben auf dieser Seite.",
         "col": {
           "name": "Name",
@@ -2538,7 +2601,7 @@
       },
       "bounds": {
         "title": "Unter- und Obergrenze des Aufschlags",
-        "hint": "Die Unter- und Obergrenze, an der diese Konsole den Aufschlag jeder Wechselstube je Strecke misst. Sie sind eine Prüfhilfe: Noch weist nichts einen Aufschlag außerhalb zurück. Beide stehen in Hundertstelprozent; hundert davon sind ein Prozent.",
+        "hint": "Der engste und der weiteste Abstand, den ein Büro festlegen darf.",
         "floor": "Untergrenze",
         "ceiling": "Obergrenze",
         "means": "{bps} Hundertstelprozent bedeuten {pct} %",
@@ -2553,7 +2616,7 @@
       },
       "spread": {
         "title": "Aufschläge im Vergleich der Wechselstuben",
-        "hint": "Je Strecke der niedrigste, mittlere und höchste Aufschlag, den die aktiven Wechselstuben gesetzt haben. Unvollständige, ausgesetzte und archivierte Wechselstuben bleiben außen vor, ebenso inaktive Strecken, denn keine davon nennt jemandem einen Preis.",
+        "hint": "Die Abstände der Büros nebeneinander, um ein teures oder auffälliges zu finden.",
         "notEnforced": "Solange keine Unter- und Obergrenze gespeichert ist, wird keine Zeile als außerhalb der Spanne markiert.",
         "col": {
           "corridor": "Strecke",
@@ -2565,7 +2628,8 @@
         "empty": "Noch hat keine Wechselstube eine Strecke eingerichtet.",
         "belowFloor": "Unter der Untergrenze",
         "aboveCeiling": "Über der Obergrenze"
-      }
+      },
+      "openOffices": "Büroliste öffnen"
     },
     "finance": {
       "metaTitle": "Buchungsjournal",
@@ -2586,16 +2650,17 @@
         "emptyTitle": "Noch nichts auszugleichen",
         "zeroBadge": "Ausgeglichen",
         "brokenBadge": "Nicht ausgeglichen",
-        "empty": "Es wurde noch kein Journalkonto eröffnet."
+        "empty": "Es wurde noch kein Journalkonto eröffnet.",
+        "hint": "Die Gesundheitsprüfung des Hauptbuchs: in einer sauber geführten Buchhaltung ergibt jede Währung exakt null."
       },
       "escrow": {
         "title": "In Verwahrung eingezahlt",
-        "hint": "Summe der seit dem Start auf das Verwahrkonto gebuchten Toman, abzüglich Stornierungen. Die Abrufseite der Wechselstuben wird noch nicht gebucht, also ist dies eine kumulierte Einzahlung, kein laufender Treuhandbestand.",
+        "hint": "Geld, das ein Kunde eingezahlt hat und das die Plattform bis zur Übergabe der Währung hält.",
         "empty": "Es wurde noch nichts in Verwahrung eingezahlt."
       },
       "trial": {
         "title": "Rohbilanz",
-        "hint": "Die Position jedes Kontos ist Soll minus Haben. Eine negative Position ist für sich kein Fehler; ein Verbindlichkeitskonto soll im Haben stehen.",
+        "hint": "Soll und Haben über alle Konten summiert. Eine Zahl ungleich null heißt, dass etwas falsch gebucht wurde.",
         "col": {
           "account": "Konto",
           "owner": "Inhaber",
@@ -2620,11 +2685,11 @@
       },
       "fees": {
         "platformTitle": "Provisionserlöse der Plattform",
-        "platformHint": "Die letzten zwölf Monate, nur das Toman-Provisionskonto. Eine bei einer Erstattung zurückgegebene Provision wird auf demselben Konto im Soll gebucht und von jenem Monat abgezogen; was Sie sehen, ist der Nettoerlös.",
+        "platformHint": "Die Gebühreneinnahmen der Plattform, Monat für Monat.",
         "total": "Summe über zwölf Monate",
         "empty": "In diesem Zeitraum wurde keine Provision gebucht.",
         "officeTitle": "Provisionserlöse der Wechselstuben",
-        "officeHint": "Der Anteil jeder Wechselstube an den Provisionen über dieselben zwölf Monate.",
+        "officeHint": "Der Gebührenanteil jedes Büros. Tippen Sie ein Büro an, um seine Akte zu öffnen.",
         "officeEmpty": "Es wurde keine Provision einer Wechselstube gebucht.",
         "col": {
           "office": "Wechselstube",
@@ -2634,7 +2699,7 @@
       },
       "txn": {
         "title": "Jüngste Buchungen",
-        "hint": "Ein Block je Transaktion, die jüngste zuerst. Stornobuchungen gleichen eine Erstattung aus, statt erneut Geld zu bewegen; sie als gewöhnliche Bewegungen zu lesen ist der Weg zu einem falschen Abgleich.",
+        "hint": "Die jüngsten Buchungen im Hauptbuch, die neuesten zuerst.",
         "empty": "Es wurde noch keine Buchung erfasst.",
         "reversal": "Storno",
         "reversalLine": "Storno",
@@ -2644,7 +2709,8 @@
         "noMemo": "—",
         "unknownOwner": "Unbekannter Inhaber",
         "shown": "Es werden die {count} jüngsten Transaktionen gezeigt."
-      }
+      },
+      "openOffices": "Büroliste öffnen"
     },
     "content": {
       "metaTitle": "Inhalte",
@@ -2851,7 +2917,14 @@
       "freezeUnavailable": "Dieser Bereich kann kein Konto einfrieren. In 0002_identity_access.sql ist die einzige Schreib-Policy auf profiles profiles_self_update, die nur die eigene Zeile zulässt, und eine SECURITY-DEFINER-Funktion dafür gibt es ebenfalls nicht. Bis eines von beidem hinzukommt, bleibt der Schalter deaktiviert: Ein Knopf, den die Datenbank verweigert, ist schlimmer als gar keiner.",
       "frozenSince": "Eingefroren seit {date}",
       "frozenReasonLabel": "Erfasster Grund",
-      "notFrozen": "Dieses Konto ist offen."
+      "notFrozen": "Dieses Konto ist offen.",
+      "identityHint": "Name, Nummer und Stand der Identitätsprüfung dieses Kunden.",
+      "tierHint": "Die Stufe dieses Kunden und die Grenzen, die diese Stufe ihm setzt.",
+      "ordersHint": "Jeder Auftrag dieses Kunden. Tippen Sie eine Zeile an, um sie zu öffnen.",
+      "destinationsHint": "Die Bankkonten, die dieser Kunde zum Geldempfang hinterlegt hat.",
+      "loginsHint": "Die jüngsten Anmeldungen bei diesem Konto, mit Zeit und Gerät.",
+      "referralsHint": "Wer sich mit dem Code dieses Kunden angemeldet hat.",
+      "freezeHint": "Das Konto schließen. Bis es wieder geöffnet wird, kann dieser Kunde keinen neuen Auftrag aufgeben."
     },
     "attention": {
       "title": "Wartet auf Sie",
@@ -2864,7 +2937,14 @@
         "coins": "Münzanfragen zu bestätigen",
         "offices": "noch nicht aktive Wechselstuben"
       }
-    }
+    },
+    "openSection": "Diesen Abschnitt öffnen",
+    "sectionHint": {
+      "byState": "Die Aufträge der Plattform, nach Status gruppiert. Tippen Sie auf einen Balken, um diese Aufträge zu sehen.",
+      "feed": "Die jüngsten Handlungen der Mitarbeitenden, gelesen aus dem Prüfprotokoll. Tippen Sie auf eine Zeile, um den betreffenden Datensatz zu öffnen."
+    },
+    "builtBy": "Entwickelt von der Programmiergruppe Â",
+    "staffFallback": "Plattform-Mitarbeitende"
   },
   "design": {
     "metaTitle": "Design-System",

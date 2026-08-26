@@ -4,6 +4,7 @@ import { CircleAlert, Inbox } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { InfoHint } from "@/components/ui/info-hint";
 import { CoinIcon } from "@/components/brand/coin";
 import { MatchingScene } from "@/components/brand/scenes";
 import { Badge } from "@/components/ui/badge";
@@ -119,14 +120,17 @@ export function OfficeInbox({
       ) : null}
 
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold">{t("pool")}</h2>
+        <h2 className="flex items-center gap-1.5 text-sm font-semibold">
+          {t("pool")}
+          <InfoHint title={t("pool")} body={t("poolHint")} />
+        </h2>
         {pool.length === 0 ? (
           <Card className="flex flex-col items-center gap-3 p-8 text-center">
             <MatchingScene size={120} label={t("poolEmpty")} />
             <p className="text-sm text-ink-600">{t("poolEmpty")}</p>
           </Card>
         ) : (
-          <Card className="divide-y divide-ink-300/40">
+          <Card className="glass divide-y divide-ink-300/40 [--glass-tint:var(--brand-600)]">
             {pool.map((order) => (
               <Line
                 key={order.id}
@@ -143,7 +147,10 @@ export function OfficeInbox({
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold">{t("mine")}</h2>
+        <h2 className="flex items-center gap-1.5 text-sm font-semibold">
+          {t("mine")}
+          <InfoHint title={t("mine")} body={t("mineHint")} />
+        </h2>
         {mine.length === 0 ? (
           <Card className="flex items-center gap-3 p-6 text-sm text-ink-600">
             <Inbox className="size-5 shrink-0" />

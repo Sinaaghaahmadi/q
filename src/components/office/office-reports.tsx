@@ -2,7 +2,8 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PanelSection } from "@/components/layout/panel-section";
+import { Card } from "@/components/ui/card";
 import { formatAmount, formatDate, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
 
@@ -107,102 +108,100 @@ export function OfficeReports({
         />
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("volumeTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {/* Time reads left→right in both locales, as it does on the rate chart. */}
-          <div dir="ltr">
-            <svg
-              viewBox={`0 0 ${W} ${H}`}
-              className="h-auto w-full"
-              role="img"
-              aria-label={chartLabel}
-            >
-              {[0.25, 0.5, 0.75].map((f) => (
-                <line
-                  key={f}
-                  x1={0}
-                  x2={W}
-                  y1={PAD_Y + (H - PAD_Y * 2) * f}
-                  y2={PAD_Y + (H - PAD_Y * 2) * f}
-                  stroke="var(--ink-300)"
-                  strokeOpacity="0.35"
-                  strokeDasharray="2 5"
-                />
-              ))}
-              {months.map((month, index) => {
-                const slot = W / months.length;
-                const width = slot * 0.5;
-                const full = H - PAD_Y * 2;
-                const height = max > 0 ? (full * month.volumeMinor) / max : 0;
-                return (
-                  <rect
-                    key={month.start}
-                    x={slot * index + (slot - width) / 2}
-                    y={PAD_Y + full - height}
-                    width={width}
-                    height={height}
-                    rx="4"
-                    fill="var(--brand-600)"
-                    fillOpacity={index === months.length - 1 ? "0.45" : "0.85"}
-                  />
-                );
-              })}
+      <PanelSection
+        title={t("volumeTitle")}
+        hint={t("volumeSectionHint")}
+        bodyClassName="space-y-3"
+      >
+        {/* Time reads left→right in both locales, as it does on the rate chart. */}
+        <div dir="ltr">
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            className="h-auto w-full"
+            role="img"
+            aria-label={chartLabel}
+          >
+            {[0.25, 0.5, 0.75].map((f) => (
               <line
+                key={f}
                 x1={0}
                 x2={W}
-                y1={H - PAD_Y}
-                y2={H - PAD_Y}
+                y1={PAD_Y + (H - PAD_Y * 2) * f}
+                y2={PAD_Y + (H - PAD_Y * 2) * f}
                 stroke="var(--ink-300)"
-                strokeOpacity="0.7"
+                strokeOpacity="0.35"
+                strokeDasharray="2 5"
               />
-            </svg>
-
-            <div
-              className="mt-1.5 grid gap-1 text-center"
-              style={{ gridTemplateColumns: `repeat(${months.length}, minmax(0, 1fr))` }}
-            >
-              {months.map((month) => (
-                <div key={month.start} dir={locale === "fa" ? "rtl" : "ltr"}>
-                  <p className="text-xs font-medium">{monthLabel(month.start)}</p>
-                  <p className="num text-[0.6875rem] text-ink-600">
-                    {t("monthOrders", { count: month.orders })}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <p className="text-xs text-ink-600">{t("volumeHint")}</p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("corridorTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2.5">
-          {corridors.map((slice) => (
-            <div key={slice.corridor} className="flex items-center gap-3">
-              <span className="w-24 shrink-0 font-mono text-xs" dir="ltr">
-                {slice.corridor}
-              </span>
-              <span className="h-2 flex-1 overflow-hidden rounded-full bg-ink-300/40">
-                <span
-                  className="block h-full rounded-full bg-brand-600"
-                  style={{ width: `${Math.max(4, (slice.orders / totalOrders) * 100)}%` }}
+            ))}
+            {months.map((month, index) => {
+              const slot = W / months.length;
+              const width = slot * 0.5;
+              const full = H - PAD_Y * 2;
+              const height = max > 0 ? (full * month.volumeMinor) / max : 0;
+              return (
+                <rect
+                  key={month.start}
+                  x={slot * index + (slot - width) / 2}
+                  y={PAD_Y + full - height}
+                  width={width}
+                  height={height}
+                  rx="4"
+                  fill="var(--brand-600)"
+                  fillOpacity={index === months.length - 1 ? "0.45" : "0.85"}
                 />
-              </span>
-              <span className="num w-12 shrink-0 text-end text-sm">
-                {formatNumber(slice.orders, locale)}
-              </span>
-            </div>
-          ))}
-          <p className="text-xs text-ink-600">{t("corridorHint")}</p>
-        </CardContent>
-      </Card>
+              );
+            })}
+            <line
+              x1={0}
+              x2={W}
+              y1={H - PAD_Y}
+              y2={H - PAD_Y}
+              stroke="var(--ink-300)"
+              strokeOpacity="0.7"
+            />
+          </svg>
+
+          <div
+            className="mt-1.5 grid gap-1 text-center"
+            style={{ gridTemplateColumns: `repeat(${months.length}, minmax(0, 1fr))` }}
+          >
+            {months.map((month) => (
+              <div key={month.start} dir={locale === "fa" ? "rtl" : "ltr"}>
+                <p className="text-xs font-medium">{monthLabel(month.start)}</p>
+                <p className="num text-[0.6875rem] text-ink-600">
+                  {t("monthOrders", { count: month.orders })}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="text-xs text-ink-600">{t("volumeHint")}</p>
+      </PanelSection>
+
+      <PanelSection
+        title={t("corridorTitle")}
+        hint={t("corridorSectionHint")}
+        bodyClassName="space-y-2.5"
+      >
+        {corridors.map((slice) => (
+          <div key={slice.corridor} className="flex items-center gap-3">
+            <span className="w-24 shrink-0 font-mono text-xs" dir="ltr">
+              {slice.corridor}
+            </span>
+            <span className="h-2 flex-1 overflow-hidden rounded-full bg-ink-300/40">
+              <span
+                className="block h-full rounded-full bg-brand-600"
+                style={{ width: `${Math.max(4, (slice.orders / totalOrders) * 100)}%` }}
+              />
+            </span>
+            <span className="num w-12 shrink-0 text-end text-sm">
+              {formatNumber(slice.orders, locale)}
+            </span>
+          </div>
+        ))}
+        <p className="text-xs text-ink-600">{t("corridorHint")}</p>
+      </PanelSection>
     </div>
   );
 }

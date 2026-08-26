@@ -17,11 +17,12 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
-import { versionLabel } from "@/lib/version";
+import { PanelCredit } from "@/components/layout/panel-credit";
 import { PanelNavLink } from "@/components/layout/panel-nav-link";
 import { PanelTopBar } from "@/components/layout/panel-top-bar";
 import { ImpersonationBanner } from "@/components/admin/impersonation-banner";
 import { can, type Capability, type Seat } from "@/lib/auth/can";
+import { getSessionProfile } from "@/lib/supabase/server";
 import type { ExchangeOffice, Impersonation } from "@/lib/supabase/types";
 
 /**
@@ -91,11 +92,25 @@ const GROUPS = [
   items: readonly { href: string; key: string; icon: typeof Building2; need: Capability }[];
 }[];
 
+/**
+ * Which platform seat to print in the top bar.
+ *
+ * Ordered deliberately: somebody holding both superadmin and support is here
+ * as a superadmin, and saying "پشتیبانی" would understate what a mistaken
+ * click can do. It is the seat, not the sidebar group they happen to be in —
+ * "پلتفرم" told an administrator the name of a menu heading.
+ */
+const ROLE_RANK = [
+  "platform_superadmin",
+  "platform_admin",
+  "platform_compliance",
+  "platform_support",
+] as const;
+
 export async function AdminShell({
   seats,
   impersonation,
   office,
-  who,
   title,
   description,
   actions,
@@ -104,14 +119,30 @@ export async function AdminShell({
   seats: readonly Seat[];
   impersonation?: Impersonation | null;
   office?: Pick<ExchangeOffice, "legal_name_fa" | "legal_name_en"> | null;
-  /** Who is signed in, for the top bar. */
-  who?: { name: string; role?: string } | null;
   title: string;
   description?: string;
   actions?: React.ReactNode;
   children: React.ReactNode;
 }) {
   const t = await getTranslations("admin");
+
+  /*
+   * Who is signed in, read here rather than passed in.
+   *
+   * It used to be a prop, and sixteen of the seventeen admin routes did not
+   * pass it — so every page except the dashboard printed the raw fallback key
+   * where a person's name belongs. A frame that needs a fact should fetch the
+   * fact; `getSessionProfile` is deduplicated per request, so this costs
+   * nothing on top of the gate the page already ran.
+   */
+  const session = await getSessionProfile();
+  const strongest = ROLE_RANK.find((role) =>
+    seats.some((seat) => seat.scope_type === "platform" && seat.role === role),
+  );
+  const who = {
+    name: session?.profile?.full_name_fa || session?.profile?.full_name_latin || t("staffFallback"),
+    role: strongest ? t(`security.role.${strongest}`) : undefined,
+  };
 
   const groups = GROUPS.map((group) => ({
     key: group.key,
@@ -120,7 +151,7 @@ export async function AdminShell({
 
   return (
     <div data-panel className="min-h-dvh bg-canvas">
-      <PanelTopBar panel="admin" who={who?.name ?? t("nav.admin")} role={who?.role} />
+      <PanelTopBar panel="admin" who={who.name} role={who.role} />
 
       {impersonation ? (
         <div className="mx-auto max-w-[110rem] px-4 pt-4 sm:px-6">
@@ -160,12 +191,7 @@ export async function AdminShell({
             </ul>
           </div>
 
-          <p
-            className="mt-6 hidden px-3 font-mono text-[0.6875rem] text-ink-600/60 lg:block"
-            dir="ltr"
-          >
-            {versionLabel()}
-          </p>
+          <PanelCredit className="mt-6 hidden lg:block" builtBy={t("builtBy")} />
         </nav>
 
         <div className="min-w-0 space-y-6 py-2 lg:py-6">
@@ -180,6 +206,8 @@ export async function AdminShell({
           </header>
 
           {children}
+
+          <PanelCredit className="lg:hidden" builtBy={t("builtBy")} />
         </div>
       </div>
     </div>

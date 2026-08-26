@@ -4,7 +4,7 @@ import { CircleAlert } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Switch } from "@/components/ui/switch";
 import { createClient } from "@/lib/supabase/client";
 import type { FeatureFlag, Json } from "@/lib/supabase/types";
@@ -39,56 +39,46 @@ export function FeatureFlags({ flags, defaults }: { flags: FeatureFlag[]; defaul
 
   return (
     <div className="grid gap-4 lg:grid-cols-2">
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("flags")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {flags.length === 0 ? (
-            <p className="text-sm text-ink-600">{t("noFlags")}</p>
-          ) : (
-            flags.map((flag) => (
-              <div key={flag.id} className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <p className="font-mono text-sm" dir="ltr">
-                    {flag.key}
-                  </p>
-                  {flag.description ? (
-                    <p className="text-sm text-ink-600">{flag.description}</p>
-                  ) : null}
-                </div>
-                <Switch
-                  checked={flag.enabled}
-                  disabled={busy === flag.id}
-                  onCheckedChange={(next) => toggle(flag, next)}
-                  aria-label={flag.key}
-                />
+      <PanelSection title={t("flags")} hint={t("flagsHint")} bodyClassName="space-y-4">
+        {flags.length === 0 ? (
+          <p className="text-sm text-ink-600">{t("noFlags")}</p>
+        ) : (
+          flags.map((flag) => (
+            <div key={flag.id} className="flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <p className="font-mono text-sm" dir="ltr">
+                  {flag.key}
+                </p>
+                {flag.description ? (
+                  <p className="text-sm text-ink-600">{flag.description}</p>
+                ) : null}
               </div>
-            ))
-          )}
-          {error ? (
-            <p className="flex items-start gap-1.5 text-sm text-down">
-              <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-              {error}
-            </p>
-          ) : null}
-        </CardContent>
-      </Card>
+              <Switch
+                checked={flag.enabled}
+                disabled={busy === flag.id}
+                onCheckedChange={(next) => toggle(flag, next)}
+                aria-label={flag.key}
+              />
+            </div>
+          ))
+        )}
+        {error ? (
+          <p className="flex items-start gap-1.5 text-sm text-down">
+            <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+            {error}
+          </p>
+        ) : null}
+      </PanelSection>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("template")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="mb-3 text-sm text-ink-600">{t("templateBody")}</p>
-          <pre
-            dir="ltr"
-            className="max-h-80 overflow-auto rounded-xl bg-canvas p-3 font-mono text-[0.6875rem] leading-relaxed"
-          >
-            {JSON.stringify(defaults ?? {}, null, 2)}
-          </pre>
-        </CardContent>
-      </Card>
+      <PanelSection title={t("template")} hint={t("templateHint")}>
+        <p className="mb-3 text-sm text-ink-600">{t("templateBody")}</p>
+        <pre
+          dir="ltr"
+          className="max-h-80 overflow-auto rounded-xl bg-canvas p-3 font-mono text-[0.6875rem] leading-relaxed"
+        >
+          {JSON.stringify(defaults ?? {}, null, 2)}
+        </pre>
+      </PanelSection>
     </div>
   );
 }
