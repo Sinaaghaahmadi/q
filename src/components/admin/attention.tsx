@@ -1,6 +1,7 @@
 import { CheckCircle2, ChevronLeft, type LucideIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
@@ -48,8 +49,9 @@ export async function Attention({ items }: { items: AttentionItem[] }) {
 
   return (
     <section aria-labelledby="attention-heading" className="space-y-2.5">
-      <h2 id="attention-heading" className="text-sm font-semibold">
+      <h2 id="attention-heading" className="flex items-center gap-1.5 text-sm font-semibold">
         {t("title")}
+        <InfoHint title={t("title")} body={t("hint")} />
       </h2>
       <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
         {live.map((item) => (

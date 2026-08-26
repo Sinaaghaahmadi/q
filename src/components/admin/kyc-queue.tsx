@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CircleAlert, Eye, FileCheck2, ShieldQuestion, UserCheck } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
+import { InfoHint } from "@/components/ui/info-hint";
 import { EASE_IN } from "@/components/brand/scene";
 import { ReviewScene } from "@/components/brand/scenes";
 import { Badge } from "@/components/ui/badge";
@@ -186,8 +187,9 @@ function ReviewDialog({
         {row ? (
           <div className="space-y-5 overflow-y-auto p-5 pe-12">
             <div>
-              <DialogTitle className="text-lg font-semibold">
+              <DialogTitle className="flex items-center gap-1.5 text-lg font-semibold">
                 {data.full_name_fa || t("unnamed")}
+                <InfoHint title={t("reviewTitle")} body={t("reviewHint")} align="end" />
               </DialogTitle>
               <p className="num mt-1 text-xs text-ink-600">
                 {formatDate(row.submitted_at, locale, { dateStyle: "long" })}

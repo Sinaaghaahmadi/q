@@ -1,6 +1,7 @@
 import { CircleAlert, CircleCheck, Scale, TriangleAlert } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
+import { InfoHint } from "@/components/ui/info-hint";
 import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -288,7 +289,13 @@ function TrialBalance({ rows }: { rows: TrialRow[] }) {
       ) : (
         groups.map((group) => (
           <section key={group.ownerType} className="space-y-3">
-            <h3 className="text-sm font-semibold">{t(`owner.${group.ownerType}`)}</h3>
+            <h3 className="flex items-center gap-1.5 text-sm font-semibold">
+              {t(`owner.${group.ownerType}`)}
+              <InfoHint
+                title={t(`owner.${group.ownerType}`)}
+                body={t(`ownerHint.${group.ownerType}`)}
+              />
+            </h3>
             {group.currencies.map((bucket) => (
               <div key={bucket.currency} className="overflow-x-auto">
                 <table className="w-full min-w-[34rem] text-sm">

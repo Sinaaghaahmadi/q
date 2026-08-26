@@ -4,6 +4,7 @@ import { CircleAlert, Gavel, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -239,7 +240,10 @@ export function AdminOrderTable({
 
       {current ? (
         <Card className="space-y-3 p-5">
-          <h2 className="font-semibold">{t("forceTitle", { ref: current.public_ref })}</h2>
+          <h2 className="flex items-center gap-1.5 font-semibold">
+            {t("forceTitle", { ref: current.public_ref })}
+            <InfoHint title={t("force")} body={t("forceHint")} />
+          </h2>
           <p className="text-sm text-ink-600">{t("forceBody")}</p>
 
           <label className="block text-sm font-medium">

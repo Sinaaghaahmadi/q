@@ -4,6 +4,7 @@ import { CircleAlert, Eye, EyeOff, Languages, Plus, Save } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -60,10 +61,24 @@ export function ContentEditor({
       </TabsList>
 
       <TabsContent value="cms">
-        <CmsSection rows={cms} />
+        <PanelSection
+          title={t("tab.cms")}
+          hint={t("tab.cmsHint")}
+          bodyClassName="space-y-4"
+          className="mt-4"
+        >
+          <CmsSection rows={cms} />
+        </PanelSection>
       </TabsContent>
       <TabsContent value="templates">
-        <TemplateSection rows={templates} />
+        <PanelSection
+          title={t("tab.templates")}
+          hint={t("tab.templatesHint")}
+          bodyClassName="space-y-4"
+          className="mt-4"
+        >
+          <TemplateSection rows={templates} />
+        </PanelSection>
       </TabsContent>
     </Tabs>
   );

@@ -907,7 +907,9 @@
       "fourEyes": "Four-eyes: the reviewer who recommended cannot also approve.",
       "actionFailed": "We couldn't record that decision. Try again.",
       "network": "Couldn't reach us. Try again."
-    }
+    },
+    "reviewTitle": "Reviewing documents",
+    "reviewHint": "Look at this customer's documents and approve or reject. Every decision needs two people: the second cannot be the first."
   },
   "office": {
     "metaTitle": "Office panel",
@@ -1169,7 +1171,8 @@
         "corridor": "{corridor} corridor",
         "unclaimed": "Unclaimed",
         "office": "{office}"
-      }
+      },
+      "forceHint": "Move an order's state by hand when the normal flow is stuck. The reason you write is kept in the audit log and cannot be erased."
     },
     "audit": {
       "metaTitle": "Audit log",
@@ -1398,7 +1401,9 @@
       "loadFailedBody": "The read from the database did not complete, so we cannot say what is stored. Reload the page; if it keeps happening, tell the engineering team.",
       "tab": {
         "cms": "Site content",
-        "templates": "Message wording"
+        "templates": "Message wording",
+        "cmsHint": "The site's pages and copy. Until a piece is published it is only visible here.",
+        "templatesHint": "The SMS and email wordings the system sends by itself. Every template needs writing in every language."
       },
       "locale": {
         "fa": "Persian",
@@ -1608,7 +1613,13 @@
         "unknownOwner": "Unknown owner",
         "shown": "Showing the {count} most recent transactions."
       },
-      "openOffices": "Open the office list"
+      "openOffices": "Open the office list",
+      "ownerHint": {
+        "platform": "The platform's own accounts; the fees that reached us are here.",
+        "intermediate": "Money in transit that has not reached anyone yet — such as Toman held until the currency is handed over.",
+        "office": "Each office's account with the platform: what it is owed or owes for settlement and fees.",
+        "customer": "Each customer's account with the platform; in a correctly kept book it usually sits in debit until their order finishes."
+      }
     },
     "rates": {
       "metaTitle": "Rates & spread",
@@ -1850,7 +1861,8 @@
         "tickets": "open tickets",
         "coins": "coin requests to confirm",
         "offices": "offices not yet active"
-      }
+      },
+      "hint": "The queues somebody is waiting on right now, most urgent first. When they are all empty, one line says so."
     },
     "openSection": "Open this section",
     "sectionHint": {
@@ -2210,7 +2222,9 @@
         "truncated": "The ledger is larger than one read; these figures cover its most recent part.",
         "empty": "No currency has been set up for this office yet.",
         "noAccessTitle": "No access to the office's money",
-        "noAccessBody": "Seeing the office's money needs the finance, owner, or viewer role. If you need this page, ask the office owner to change your role."
+        "noAccessBody": "Seeing the office's money needs the finance, owner, or viewer role. If you need this page, ask the office owner to change your role.",
+        "currencyHint": "What the platform's ledger says this office holds in this currency. It is the sum of every entry, not a figure anyone typed in.",
+        "openSettlement": "Open settlement"
       }
     },
     "config": {
@@ -2741,7 +2755,8 @@
       "ceiling": "Daily ceiling (Toman)",
       "ceilingHint": "Optional. So you know when it is full.",
       "cta": "Add account",
-      "working": "Saving…"
+      "working": "Saving…",
+      "hint": "Add another card or IBAN. The number is checked as you type and the bank is recognised from it."
     },
     "list": {
       "title": "Settlement accounts",
@@ -2749,7 +2764,9 @@
       "noHolder": "No holder name",
       "ceiling": "Daily ceiling {amount}",
       "retire": "Ceiling full",
-      "retired": "Retired"
+      "retired": "Retired",
+      "hint": "The cards and IBANs settlement money is paid into. A retired account stops being offered but is never erased from the history.",
+      "openOffice": "Open the office file"
     },
     "match": {
       "verified": "Matched",
@@ -2877,7 +2894,8 @@
       "tooShort": "A password needs at least {min, number} characters.",
       "mismatch": "The two passwords do not match.",
       "failed": "That did not save. Please try again."
-    }
+    },
+    "hint": "Set a new password for this account. The one the platform gave you is for a single use."
   },
   "coins": {
     "metaTitle": "Buy gold coins — Asaex",
@@ -2952,6 +2970,10 @@
     "errors": {
       "taken": "Another office has already taken this request.",
       "failed": "That did not go through. Please try again."
+    },
+    "hint": {
+      "office": "Coin purchase requests that reached this office. Enter the unit price and move the step forward.",
+      "platform": "Every coin purchase request on the platform, including the ones no office has taken."
     }
   },
   "twoFactor": {

@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpCircle, CircleAlert, Clock3 } from "lucide-react";
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useNow, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
@@ -54,6 +54,11 @@ export function TicketQueue({
 }) {
   const t = useTranslations("tickets");
   const format = useFormatter();
+  /* An explicit `now`, so "seven minutes ago" is measured against a moment
+     both sides of the render agree on. Left to itself next-intl reaches
+     for the environment's clock and says so on the console, once per
+     row. It ticks every minute, which is the granularity shown. */
+  const now = useNow({ updateInterval: 60_000 });
   const router = useRouter();
   const toast = useToast();
 
@@ -148,7 +153,7 @@ export function TicketQueue({
                     <p className="mt-1.5 truncate font-medium">{row.subject}</p>
                     <p className="mt-0.5 text-xs text-ink-600">
                       {t("filedBy", { name: row.openerName ?? t("someone") })} ·{" "}
-                      {format.relativeTime(new Date(row.created_at))}
+                      {format.relativeTime(new Date(row.created_at), now)}
                       {scope === "platform" && row.officeName ? ` · ${row.officeName}` : ""}
                     </p>
 

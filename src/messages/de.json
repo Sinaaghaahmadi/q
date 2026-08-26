@@ -1201,7 +1201,8 @@
       "ceiling": "Tageslimit (Toman)",
       "ceilingHint": "Optional. Damit Sie sehen, wann es erreicht ist.",
       "cta": "Konto anlegen",
-      "working": "Wird gespeichert…"
+      "working": "Wird gespeichert…",
+      "hint": "Eine weitere Karte oder IBAN hinzufügen. Die Nummer wird beim Tippen geprüft und die Bank daraus erkannt."
     },
     "list": {
       "title": "Abwicklungskonten",
@@ -1209,7 +1210,9 @@
       "noHolder": "Kein Inhabername",
       "ceiling": "Tageslimit {amount}",
       "retire": "Limit erreicht",
-      "retired": "Stillgelegt"
+      "retired": "Stillgelegt",
+      "hint": "Die Karten und IBANs, auf die Abrechnungsgeld gezahlt wird. Ein stillgelegtes Konto wird nicht mehr angeboten, aber nie aus der Historie gelöscht.",
+      "openOffice": "Büroakte öffnen"
     },
     "match": {
       "verified": "Übereinstimmend",
@@ -1445,7 +1448,8 @@
       "tooShort": "Ein Passwort braucht mindestens {min, number} Zeichen.",
       "mismatch": "Die beiden Passwörter stimmen nicht überein.",
       "failed": "Das wurde nicht gespeichert. Bitte erneut versuchen."
-    }
+    },
+    "hint": "Vergeben Sie ein neues Passwort für dieses Konto. Das von der Plattform ausgegebene gilt nur einmal."
   },
   "coinQueue": {
     "metaTitle": "Goldmünzen — Bereich der Wechselstube",
@@ -1472,6 +1476,10 @@
     "errors": {
       "taken": "Eine andere Wechselstube hat diese Anfrage bereits übernommen.",
       "failed": "Das ging nicht durch. Bitte erneut versuchen."
+    },
+    "hint": {
+      "office": "Münzkaufanfragen, die dieses Büro erreicht haben. Tragen Sie den Stückpreis ein und bringen Sie den Schritt voran.",
+      "platform": "Alle Münzkaufanfragen der Plattform, auch die, die kein Büro übernommen hat."
     }
   },
   "adminOffice": {
@@ -1578,7 +1586,9 @@
       "fourEyes": "Vier Augen: Wer empfiehlt, gibt nicht selbst frei.",
       "actionFailed": "Diese Entscheidung ließ sich nicht erfassen. Versuchen Sie es erneut.",
       "network": "Keine Verbindung. Versuchen Sie es erneut."
-    }
+    },
+    "reviewTitle": "Unterlagen prüfen",
+    "reviewHint": "Sehen Sie sich die Unterlagen dieser Kundin an und nehmen Sie an oder lehnen Sie ab. Jede Entscheidung braucht zwei Personen: die zweite darf nicht die erste sein."
   },
   "officePanel": {
     "metaTitle": "Die Arbeit von heute",
@@ -1735,7 +1745,9 @@
         "truncated": "Das Journal ist größer als ein Lesevorgang; diese Zahlen decken seinen jüngsten Teil ab.",
         "empty": "Für diese Wechselstube ist noch keine Währung eingerichtet.",
         "noAccessTitle": "Kein Zugriff auf das Geld der Wechselstube",
-        "noAccessBody": "Das Geld der Wechselstube zu sehen erfordert die Rolle Finanzen, Inhaberschaft oder Einsicht. Brauchen Sie diese Seite, bitten Sie die Inhaberschaft, Ihre Rolle zu ändern."
+        "noAccessBody": "Das Geld der Wechselstube zu sehen erfordert die Rolle Finanzen, Inhaberschaft oder Einsicht. Brauchen Sie diese Seite, bitten Sie die Inhaberschaft, Ihre Rolle zu ändern.",
+        "currencyHint": "Was das Hauptbuch der Plattform diesem Büro in dieser Währung zuschreibt. Es ist die Summe aller Buchungen, keine eingetippte Zahl.",
+        "openSettlement": "Abrechnung öffnen"
       }
     },
     "requests": {
@@ -2127,7 +2139,8 @@
         "corridor": "Korridor {corridor}",
         "unclaimed": "Nicht übernommen",
         "office": "{office}"
-      }
+      },
+      "forceHint": "Den Status eines Auftrags von Hand verschieben, wenn der normale Ablauf feststeckt. Der Grund, den Sie schreiben, bleibt im Prüfprotokoll und lässt sich nicht löschen."
     },
     "audit": {
       "metaTitle": "Prüfprotokoll",
@@ -2710,7 +2723,13 @@
         "unknownOwner": "Unbekannter Inhaber",
         "shown": "Es werden die {count} jüngsten Transaktionen gezeigt."
       },
-      "openOffices": "Büroliste öffnen"
+      "openOffices": "Büroliste öffnen",
+      "ownerHint": {
+        "platform": "Die eigenen Konten der Plattform; die bei uns eingegangenen Gebühren stehen hier.",
+        "intermediate": "Geld unterwegs, das noch bei niemandem angekommen ist — etwa Toman, die bis zur Übergabe der Währung gehalten werden.",
+        "office": "Das Konto jedes Büros bei der Plattform: was ihm für Abrechnung und Gebühren zusteht oder was es schuldet.",
+        "customer": "Das Konto jeder Kundin bei der Plattform; in einer sauberen Buchhaltung steht es meist im Soll, bis der Auftrag fertig ist."
+      }
     },
     "content": {
       "metaTitle": "Inhalte",
@@ -2720,7 +2739,9 @@
       "loadFailedBody": "Der Lesevorgang aus der Datenbank wurde nicht fertig, wir können also nicht sagen, was hinterlegt ist. Laden Sie die Seite neu; hält es an, sagen Sie dem Entwicklungsteam Bescheid.",
       "tab": {
         "cms": "Website-Inhalte",
-        "templates": "Nachrichtentexte"
+        "templates": "Nachrichtentexte",
+        "cmsHint": "Die Seiten und Texte der Website. Solange ein Text nicht veröffentlicht ist, sieht man ihn nur hier.",
+        "templatesHint": "Die SMS- und E-Mail-Formulierungen, die das System selbst verschickt. Jede Vorlage muss in jeder Sprache geschrieben sein."
       },
       "locale": {
         "fa": "Persisch",
@@ -2936,7 +2957,8 @@
         "tickets": "offene Tickets",
         "coins": "Münzanfragen zu bestätigen",
         "offices": "noch nicht aktive Wechselstuben"
-      }
+      },
+      "hint": "Die Warteschlangen, auf die gerade jemand wartet, die dringendsten zuerst. Sind alle leer, sagt das eine Zeile."
     },
     "openSection": "Diesen Abschnitt öffnen",
     "sectionHint": {

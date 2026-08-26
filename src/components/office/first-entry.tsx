@@ -4,6 +4,7 @@ import { CircleAlert, KeyRound } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { InfoHint } from "@/components/ui/info-hint";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -115,7 +116,10 @@ export function FirstEntry({ pendingInvitationId }: { pendingInvitationId?: stri
           <KeyRound className="size-5 text-brand-600" aria-hidden />
         </span>
         <div>
-          <h2 className="font-semibold">{t("title")}</h2>
+          <h2 className="flex items-center gap-1.5 font-semibold">
+            {t("title")}
+            <InfoHint title={t("title")} body={t("hint")} />
+          </h2>
           <p className="text-sm leading-relaxed text-ink-600">{t("body")}</p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Clock, LifeBuoy } from "lucide-react";
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useNow, useTranslations } from "next-intl";
 import * as React from "react";
 import { Conversation as ConversationView } from "@/components/chat/conversation";
 import { Badge } from "@/components/ui/badge";
@@ -102,6 +102,11 @@ export function OfficeChatInbox({
 function Row({ thread, openThread }: { thread: ChatThread; openThread: string | null }) {
   const t = useTranslations("officePanel.chat");
   const format = useFormatter();
+  /* An explicit `now`, so "seven minutes ago" is measured against a moment
+     both sides of the render agree on. Left to itself next-intl reaches
+     for the environment's clock and says so on the console, once per
+     row. It ticks every minute, which is the granularity shown. */
+  const now = useNow({ updateInterval: 60_000 });
 
   return (
     <Link
@@ -129,7 +134,7 @@ function Row({ thread, openThread }: { thread: ChatThread; openThread: string | 
       <p className="mt-1 flex items-center gap-1.5 text-xs text-ink-600">
         <Clock className="size-3" aria-hidden />
         {thread.lastMessageAt
-          ? format.relativeTime(new Date(thread.lastMessageAt))
+          ? format.relativeTime(new Date(thread.lastMessageAt), now)
           : t("noMessages")}
       </p>
     </Link>

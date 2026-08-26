@@ -1,7 +1,7 @@
 "use client";
 
 import { CircleAlert, HandCoins, X } from "lucide-react";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useFormatter, useLocale, useNow, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
@@ -53,6 +53,11 @@ export function RequestsQueue({
   const states = useTranslations("orders.state");
   const locale = useLocale() as AppLocale;
   const format = useFormatter();
+  /* An explicit `now`, so "seven minutes ago" is measured against a moment
+     both sides of the render agree on. Left to itself next-intl reaches
+     for the environment's clock and says so on the console, once per
+     row. It ticks every minute, which is the granularity shown. */
+  const now = useNow({ updateInterval: 60_000 });
   const router = useRouter();
 
   const [scope, setScope] = React.useState<"all" | "action">("all");
@@ -211,9 +216,9 @@ export function RequestsQueue({
                     </td>
                     <td className="num px-4 py-3">
                       {stale ? (
-                        <Badge variant="warn">{format.relativeTime(since)}</Badge>
+                        <Badge variant="warn">{format.relativeTime(since, now)}</Badge>
                       ) : (
-                        <span className="text-ink-600">{format.relativeTime(since)}</span>
+                        <span className="text-ink-600">{format.relativeTime(since, now)}</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-end">

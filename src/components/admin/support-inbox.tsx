@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Clock, UserCheck } from "lucide-react";
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useNow, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Conversation as ConversationView } from "@/components/chat/conversation";
@@ -36,6 +36,11 @@ export function SupportInbox({
 }) {
   const t = useTranslations("admin.support");
   const format = useFormatter();
+  /* An explicit `now`, so "seven minutes ago" is measured against a moment
+     both sides of the render agree on. Left to itself next-intl reaches
+     for the environment's clock and says so on the console, once per
+     row. It ticks every minute, which is the granularity shown. */
+  const now = useNow({ updateInterval: 60_000 });
   const router = useRouter();
   const [busy, setBusy] = React.useState(false);
 
@@ -103,7 +108,7 @@ export function SupportInbox({
                   <p className="mt-1 flex items-center gap-1.5 text-xs text-ink-600">
                     <Clock className="size-3" aria-hidden />
                     {c.last_message_at
-                      ? format.relativeTime(new Date(c.last_message_at))
+                      ? format.relativeTime(new Date(c.last_message_at), now)
                       : t("noMessages")}
                     {c.assigned_to ? (
                       <>

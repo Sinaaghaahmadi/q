@@ -16,7 +16,7 @@ import { BankMark } from "@/components/banks/bank-mark";
 import { BankPicker } from "@/components/settlement/bank-picker";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PanelSection } from "@/components/layout/panel-section";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { TERMS_VERSION } from "@/content/legal-version";
@@ -173,181 +173,178 @@ export function SettlementView({
       <p className="text-sm leading-relaxed text-ink-600">{t("intro")}</p>
 
       {groups.map((group) => (
-        <Card key={group.officeId}>
-          <CardHeader>
-            <CardTitle>{scope === "platform" ? group.officeName : t("list.title")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {group.accounts.length === 0 ? (
-              <p className="text-sm text-ink-600">{t("list.empty")}</p>
-            ) : (
-              <ul className="list-rise space-y-2.5">
-                {group.accounts.map((account, i) => (
-                  <li key={account.id} style={{ "--i": i } as React.CSSProperties}>
-                    <AccountRow
-                      account={account}
-                      locale={locale}
-                      canManage={canManage}
-                      busy={busy}
-                      onRetire={() => retire(account)}
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </CardContent>
-        </Card>
+        <PanelSection
+          key={group.officeId}
+          title={scope === "platform" ? group.officeName : t("list.title")}
+          hint={t("list.hint")}
+          href={scope === "platform" ? `/admin/exchanges/${group.officeId}` : undefined}
+          linkLabel={scope === "platform" ? t("list.openOffice") : undefined}
+          bodyClassName="space-y-3"
+        >
+          {group.accounts.length === 0 ? (
+            <p className="text-sm text-ink-600">{t("list.empty")}</p>
+          ) : (
+            <ul className="list-rise space-y-2.5">
+              {group.accounts.map((account, i) => (
+                <li key={account.id} style={{ "--i": i } as React.CSSProperties}>
+                  <AccountRow
+                    account={account}
+                    locale={locale}
+                    canManage={canManage}
+                    busy={busy}
+                    onRetire={() => retire(account)}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+        </PanelSection>
       ))}
 
       {canManage ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("add.title")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-5">
-            {scope === "platform" && groups.length > 1 ? (
-              <label className="block text-sm font-medium">
-                {t("add.office")}
-                <select
-                  value={officeId}
-                  onChange={(e) => setOfficeId(e.target.value)}
-                  className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
-                >
-                  {groups.map((g) => (
-                    <option key={g.officeId} value={g.officeId}>
-                      {g.officeName}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            ) : null}
-
-            <fieldset>
-              <legend className="text-sm font-medium">{t("add.kind")}</legend>
-              <div className="mt-2 flex gap-2">
-                {(["card", "iban"] as const).map((k) => (
-                  <button
-                    key={k}
-                    type="button"
-                    aria-pressed={kind === k}
-                    onClick={() => {
-                      setKind(k);
-                      setNumber("");
-                    }}
-                    className={cn(
-                      "pressable flex flex-1 items-center justify-center gap-2 rounded-xl border p-3 text-sm font-medium",
-                      kind === k
-                        ? "border-brand-600 bg-brand-50 text-brand-700"
-                        : "border-ink-300 text-ink-600",
-                    )}
-                  >
-                    {k === "card" ? (
-                      <CreditCard className="size-4" aria-hidden />
-                    ) : (
-                      <Landmark className="size-4" aria-hidden />
-                    )}
-                    {t(`add.kind_${k}`)}
-                  </button>
+        <PanelSection title={t("add.title")} hint={t("add.hint")} bodyClassName="space-y-5">
+          {scope === "platform" && groups.length > 1 ? (
+            <label className="block text-sm font-medium">
+              {t("add.office")}
+              <select
+                value={officeId}
+                onChange={(e) => setOfficeId(e.target.value)}
+                className="mt-1.5 h-11 w-full rounded-xl border border-ink-300 bg-surface px-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
+              >
+                {groups.map((g) => (
+                  <option key={g.officeId} value={g.officeId}>
+                    {g.officeName}
+                  </option>
                 ))}
-              </div>
-            </fieldset>
+              </select>
+            </label>
+          ) : null}
 
-            <div>
-              <p className="mb-2 text-sm font-medium">{t("bank.label")}</p>
-              <BankPicker value={bankId} onChange={setBankId} detected={detected} />
-              {bankDisagrees ? (
-                <p className="mt-2 flex items-start gap-1.5 text-xs text-warn-ink">
-                  <TriangleAlert className="mt-0.5 size-3.5 shrink-0" aria-hidden />
-                  {t("bank.disagrees")}
-                </p>
-              ) : null}
+          <fieldset>
+            <legend className="text-sm font-medium">{t("add.kind")}</legend>
+            <div className="mt-2 flex gap-2">
+              {(["card", "iban"] as const).map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  aria-pressed={kind === k}
+                  onClick={() => {
+                    setKind(k);
+                    setNumber("");
+                  }}
+                  className={cn(
+                    "pressable flex flex-1 items-center justify-center gap-2 rounded-xl border p-3 text-sm font-medium",
+                    kind === k
+                      ? "border-brand-600 bg-brand-50 text-brand-700"
+                      : "border-ink-300 text-ink-600",
+                  )}
+                >
+                  {k === "card" ? (
+                    <CreditCard className="size-4" aria-hidden />
+                  ) : (
+                    <Landmark className="size-4" aria-hidden />
+                  )}
+                  {t(`add.kind_${k}`)}
+                </button>
+              ))}
             </div>
+          </fieldset>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              <label className="block text-sm font-medium">
-                {t(`add.number_${kind}`)}
-                <Input
-                  dir="ltr"
-                  inputMode="numeric"
-                  className="mt-1.5 text-start font-mono"
-                  value={number}
-                  placeholder={kind === "card" ? "6037 9915 2123 4504" : "IR82 0540 1026 8002 …"}
-                  onChange={(e) => setNumber(e.target.value)}
-                />
-                {number.trim() !== "" && !numberValid ? (
-                  <span className="mt-1 block text-xs text-down">{t(`errors.number_${kind}`)}</span>
-                ) : null}
-              </label>
-
-              <label className="block text-sm font-medium">
-                {t("add.holder")}
-                <Input
-                  className="mt-1.5"
-                  value={holder}
-                  placeholder={t("add.holderPlaceholder")}
-                  onChange={(e) => setHolder(e.target.value)}
-                />
-              </label>
-
-              <label className="block text-sm font-medium">
-                {t("add.code")}
-                <Input
-                  dir="ltr"
-                  inputMode="numeric"
-                  maxLength={12}
-                  className="mt-1.5 text-start font-mono"
-                  value={code}
-                  placeholder="0084575905"
-                  onChange={(e) => setCode(e.target.value)}
-                />
-                {!codeValid ? (
-                  <span className="mt-1 block text-xs text-down">{t("errors.code")}</span>
-                ) : (
-                  <span className="mt-1 block text-xs text-ink-600">{t("add.codeHint")}</span>
-                )}
-              </label>
-
-              <label className="block text-sm font-medium">
-                {t("add.ceiling")}
-                <Input
-                  dir="ltr"
-                  inputMode="numeric"
-                  className="mt-1.5 text-start font-mono"
-                  value={daily}
-                  placeholder="500000000"
-                  onChange={(e) => setDaily(e.target.value)}
-                />
-                <span className="mt-1 block text-xs text-ink-600">{t("add.ceilingHint")}</span>
-              </label>
-            </div>
-
-            {mismatch ? (
-              <MismatchGate
-                reason={mismatch}
-                accepted={accepted}
-                busy={busy}
-                onAccept={setAccepted}
-                onConfirm={() => submit(true)}
-                onCancel={() => {
-                  setMismatch(null);
-                  setAccepted(false);
-                }}
-              />
-            ) : (
-              <Button disabled={!ready || busy} onClick={() => submit(false)}>
-                <Plus className="size-4" aria-hidden />
-                {busy ? t("add.working") : t("add.cta")}
-              </Button>
-            )}
-
-            {error ? (
-              <p className="flex items-start gap-1.5 text-sm text-down">
-                <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-                {error}
+          <div>
+            <p className="mb-2 text-sm font-medium">{t("bank.label")}</p>
+            <BankPicker value={bankId} onChange={setBankId} detected={detected} />
+            {bankDisagrees ? (
+              <p className="mt-2 flex items-start gap-1.5 text-xs text-warn-ink">
+                <TriangleAlert className="mt-0.5 size-3.5 shrink-0" aria-hidden />
+                {t("bank.disagrees")}
               </p>
             ) : null}
-          </CardContent>
-        </Card>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block text-sm font-medium">
+              {t(`add.number_${kind}`)}
+              <Input
+                dir="ltr"
+                inputMode="numeric"
+                className="mt-1.5 text-start font-mono"
+                value={number}
+                placeholder={kind === "card" ? "6037 9915 2123 4504" : "IR82 0540 1026 8002 …"}
+                onChange={(e) => setNumber(e.target.value)}
+              />
+              {number.trim() !== "" && !numberValid ? (
+                <span className="mt-1 block text-xs text-down">{t(`errors.number_${kind}`)}</span>
+              ) : null}
+            </label>
+
+            <label className="block text-sm font-medium">
+              {t("add.holder")}
+              <Input
+                className="mt-1.5"
+                value={holder}
+                placeholder={t("add.holderPlaceholder")}
+                onChange={(e) => setHolder(e.target.value)}
+              />
+            </label>
+
+            <label className="block text-sm font-medium">
+              {t("add.code")}
+              <Input
+                dir="ltr"
+                inputMode="numeric"
+                maxLength={12}
+                className="mt-1.5 text-start font-mono"
+                value={code}
+                placeholder="0084575905"
+                onChange={(e) => setCode(e.target.value)}
+              />
+              {!codeValid ? (
+                <span className="mt-1 block text-xs text-down">{t("errors.code")}</span>
+              ) : (
+                <span className="mt-1 block text-xs text-ink-600">{t("add.codeHint")}</span>
+              )}
+            </label>
+
+            <label className="block text-sm font-medium">
+              {t("add.ceiling")}
+              <Input
+                dir="ltr"
+                inputMode="numeric"
+                className="mt-1.5 text-start font-mono"
+                value={daily}
+                placeholder="500000000"
+                onChange={(e) => setDaily(e.target.value)}
+              />
+              <span className="mt-1 block text-xs text-ink-600">{t("add.ceilingHint")}</span>
+            </label>
+          </div>
+
+          {mismatch ? (
+            <MismatchGate
+              reason={mismatch}
+              accepted={accepted}
+              busy={busy}
+              onAccept={setAccepted}
+              onConfirm={() => submit(true)}
+              onCancel={() => {
+                setMismatch(null);
+                setAccepted(false);
+              }}
+            />
+          ) : (
+            <Button disabled={!ready || busy} onClick={() => submit(false)}>
+              <Plus className="size-4" aria-hidden />
+              {busy ? t("add.working") : t("add.cta")}
+            </Button>
+          )}
+
+          {error ? (
+            <p className="flex items-start gap-1.5 text-sm text-down">
+              <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+              {error}
+            </p>
+          ) : null}
+        </PanelSection>
       ) : (
         <p className="text-sm text-ink-600">{t("readOnly")}</p>
       )}

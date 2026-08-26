@@ -7,7 +7,8 @@ import * as React from "react";
 import { GoldIcon } from "@/components/brand/gold";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PanelSection } from "@/components/layout/panel-section";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { COINS, type CoinCode } from "@/lib/coins/catalog";
 import { formatAmount, toLatinDigits, type AppLocale } from "@/lib/money/format";
@@ -109,126 +110,119 @@ export function CoinQueue({
     <div className="space-y-4">
       <p className="text-sm leading-relaxed text-ink-600">{tq(`intro.${scope}`)}</p>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{tq("title")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <ul className="list-rise space-y-3">
-            {orders.map((order, i) => {
-              const code = order.product as CoinCode;
-              const known = code in COINS;
-              const next = NEXT[order.state];
-              const unclaimed = order.office_id === null;
-              const priceDraft =
-                prices[order.id] ?? String(order.unit_price_minor ?? order.quoted_unit_minor);
+      <PanelSection title={tq("title")} hint={tq(`hint.${scope}`)} bodyClassName="space-y-3">
+        <ul className="list-rise space-y-3">
+          {orders.map((order, i) => {
+            const code = order.product as CoinCode;
+            const known = code in COINS;
+            const next = NEXT[order.state];
+            const unclaimed = order.office_id === null;
+            const priceDraft =
+              prices[order.id] ?? String(order.unit_price_minor ?? order.quoted_unit_minor);
 
-              return (
-                <li
-                  key={order.id}
-                  style={{ "--i": i } as React.CSSProperties}
-                  className="space-y-3 rounded-xl border border-ink-300/55 p-4"
-                >
-                  <div className="flex flex-wrap items-center gap-3">
-                    {known ? <GoldIcon code={code} size={40} /> : null}
-                    <div className="min-w-0 flex-1">
-                      <p className="font-semibold">
-                        {known ? t(`products.${code}`) : order.product} ×{" "}
-                        {order.quantity.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-                      </p>
-                      <p className="font-mono text-xs text-ink-600" dir="ltr">
-                        {order.public_ref}
-                      </p>
-                    </div>
-                    <Badge variant={TONE[order.state]}>{t(`state.${order.state}`)}</Badge>
-                  </div>
-
-                  <dl className="grid gap-2 text-sm sm:grid-cols-2">
-                    <div className="flex justify-between gap-2">
-                      <dt className="text-ink-600">{tq("quoted")}</dt>
-                      <dd className="num">
-                        {formatAmount(order.quoted_unit_minor, "IRT", locale)}
-                      </dd>
-                    </div>
-                    <div className="flex justify-between gap-2">
-                      <dt className="text-ink-600">{tq("total")}</dt>
-                      <dd className="num font-semibold">
-                        {formatAmount(order.total_minor, "IRT", locale)}
-                      </dd>
-                    </div>
-                  </dl>
-
-                  {order.pickup_note ? (
-                    <p className="text-sm text-ink-600">
-                      {tq("pickup")}: {order.pickup_note}
+            return (
+              <li
+                key={order.id}
+                style={{ "--i": i } as React.CSSProperties}
+                className="space-y-3 rounded-xl border border-ink-300/55 p-4"
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  {known ? <GoldIcon code={code} size={40} /> : null}
+                  <div className="min-w-0 flex-1">
+                    <p className="font-semibold">
+                      {known ? t(`products.${code}`) : order.product} ×{" "}
+                      {order.quantity.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
                     </p>
-                  ) : null}
+                    <p className="font-mono text-xs text-ink-600" dir="ltr">
+                      {order.public_ref}
+                    </p>
+                  </div>
+                  <Badge variant={TONE[order.state]}>{t(`state.${order.state}`)}</Badge>
+                </div>
 
-                  {canAct ? (
-                    <div className="flex flex-wrap items-end gap-2">
-                      {unclaimed ? (
-                        <Button disabled={busy === order.id} onClick={() => claim(order)}>
-                          <HandCoins className="size-4" aria-hidden />
-                          {tq("claim")}
-                        </Button>
-                      ) : order.state === "requested" ? (
-                        <>
-                          <label className="text-sm font-medium">
-                            {tq("firmPrice")}
-                            <Input
-                              dir="ltr"
-                              inputMode="numeric"
-                              className="mt-1.5 w-48 font-mono"
-                              value={priceDraft}
-                              onChange={(e) =>
-                                setPrices((p) => ({
-                                  ...p,
-                                  [order.id]: toLatinDigits(e.target.value).replace(/\D/g, ""),
-                                }))
-                              }
-                            />
-                          </label>
-                          <Button
-                            disabled={busy === order.id || priceDraft === ""}
-                            onClick={() => advance(order, "confirmed", priceDraft)}
-                          >
-                            {tq("confirm")}
-                          </Button>
-                        </>
-                      ) : next ? (
-                        <Button disabled={busy === order.id} onClick={() => advance(order, next)}>
-                          {tq(`advance.${next}`)}
-                        </Button>
-                      ) : null}
+                <dl className="grid gap-2 text-sm sm:grid-cols-2">
+                  <div className="flex justify-between gap-2">
+                    <dt className="text-ink-600">{tq("quoted")}</dt>
+                    <dd className="num">{formatAmount(order.quoted_unit_minor, "IRT", locale)}</dd>
+                  </div>
+                  <div className="flex justify-between gap-2">
+                    <dt className="text-ink-600">{tq("total")}</dt>
+                    <dd className="num font-semibold">
+                      {formatAmount(order.total_minor, "IRT", locale)}
+                    </dd>
+                  </div>
+                </dl>
 
-                      {order.state !== "collected" && order.state !== "cancelled" ? (
+                {order.pickup_note ? (
+                  <p className="text-sm text-ink-600">
+                    {tq("pickup")}: {order.pickup_note}
+                  </p>
+                ) : null}
+
+                {canAct ? (
+                  <div className="flex flex-wrap items-end gap-2">
+                    {unclaimed ? (
+                      <Button disabled={busy === order.id} onClick={() => claim(order)}>
+                        <HandCoins className="size-4" aria-hidden />
+                        {tq("claim")}
+                      </Button>
+                    ) : order.state === "requested" ? (
+                      <>
+                        <label className="text-sm font-medium">
+                          {tq("firmPrice")}
+                          <Input
+                            dir="ltr"
+                            inputMode="numeric"
+                            className="mt-1.5 w-48 font-mono"
+                            value={priceDraft}
+                            onChange={(e) =>
+                              setPrices((p) => ({
+                                ...p,
+                                [order.id]: toLatinDigits(e.target.value).replace(/\D/g, ""),
+                              }))
+                            }
+                          />
+                        </label>
                         <Button
-                          variant="ghost"
-                          disabled={busy === order.id}
-                          onClick={() => advance(order, "cancelled", tq("cancelledByOffice"))}
+                          disabled={busy === order.id || priceDraft === ""}
+                          onClick={() => advance(order, "confirmed", priceDraft)}
                         >
-                          {tq("cancel")}
+                          {tq("confirm")}
                         </Button>
-                      ) : null}
-                    </div>
-                  ) : null}
+                      </>
+                    ) : next ? (
+                      <Button disabled={busy === order.id} onClick={() => advance(order, next)}>
+                        {tq(`advance.${next}`)}
+                      </Button>
+                    ) : null}
 
-                  {order.cancel_reason ? (
-                    <p className="text-sm text-ink-600">{order.cancel_reason}</p>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
+                    {order.state !== "collected" && order.state !== "cancelled" ? (
+                      <Button
+                        variant="ghost"
+                        disabled={busy === order.id}
+                        onClick={() => advance(order, "cancelled", tq("cancelledByOffice"))}
+                      >
+                        {tq("cancel")}
+                      </Button>
+                    ) : null}
+                  </div>
+                ) : null}
 
-          {error ? (
-            <p className="flex items-start gap-1.5 text-sm text-down">
-              <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
-              {error}
-            </p>
-          ) : null}
-        </CardContent>
-      </Card>
+                {order.cancel_reason ? (
+                  <p className="text-sm text-ink-600">{order.cancel_reason}</p>
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
+
+        {error ? (
+          <p className="flex items-start gap-1.5 text-sm text-down">
+            <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+            {error}
+          </p>
+        ) : null}
+      </PanelSection>
     </div>
   );
 }

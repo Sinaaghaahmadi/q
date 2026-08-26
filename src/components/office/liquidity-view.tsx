@@ -1,10 +1,12 @@
 "use client";
 
-import { Landmark, TriangleAlert } from "lucide-react";
+import { ArrowUpRight, Landmark, TriangleAlert } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { Card } from "@/components/ui/card";
+import { InfoHint } from "@/components/ui/info-hint";
+import { Link } from "@/i18n/navigation";
 import { formatAmount, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
 import { isCurrencyCode, type CurrencyCode } from "@/lib/rates/catalog";
@@ -64,6 +66,17 @@ export function LiquidityView({
                 <span className="font-mono text-sm" dir="ltr">
                   {currency}
                 </span>
+                <InfoHint title={currency} body={t("liquidity.currencyHint")} />
+                {/* Where a shortfall is actually fixed. A position that reads
+                    low is a settlement question, and the page that answers it
+                    was two clicks and a memory away. */}
+                <Link
+                  href="/office/settlement"
+                  className="ms-auto inline-flex items-center gap-1 text-xs font-medium text-ink-600 underline-offset-2 hover:text-brand-700 hover:underline dark:hover:text-brand-600"
+                >
+                  {t("liquidity.openSettlement")}
+                  <ArrowUpRight className="size-3.5 rtl:-scale-x-100" aria-hidden />
+                </Link>
               </div>
 
               <div className="border-t border-ink-300/40 pt-3">
