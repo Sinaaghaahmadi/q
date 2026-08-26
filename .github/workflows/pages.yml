@@ -6,16 +6,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,11 +22,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-
-      - name: Enable GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - run: npm ci --no-audit --no-fund
 
@@ -45,16 +38,13 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /q
           NEXT_PUBLIC_APP_URL: https://sinaaghaahmadi.github.io/q
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
+      - name: Disable Jekyll processing
+        run: touch out/.nojekyll
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: true
+          commit_message: "Deploy static demo"
