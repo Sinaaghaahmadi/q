@@ -1,12 +1,17 @@
 import type { NextConfig } from "next";
 
-// STATIC_EXPORT=1 builds the serverless-free static demo (GitHub Pages);
-// default build targets Vercel / self-hosted Node (standalone output).
+// Build targets:
+//   STATIC_EXPORT=1 → serverless-free static demo (GitHub Pages)
+//   VERCEL=1        → Vercel's own builder (must NOT use standalone output:
+//                     it relocates the node-file-trace manifests and the
+//                     builder then fails with ENOENT next-server.js.nft.json)
+//   otherwise       → self-hosted Node/Docker, which needs standalone
 const isStatic = process.env.STATIC_EXPORT === "1";
+const isVercel = process.env.VERCEL === "1";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
-  output: isStatic ? "export" : "standalone",
+  ...(isStatic ? { output: "export" as const } : isVercel ? {} : { output: "standalone" as const }),
   ...(basePath ? { basePath } : {}),
   ...(isStatic
     ? {}

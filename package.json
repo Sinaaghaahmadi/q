@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/prepare-assets.mjs",
-    "build": "next build",
+    "build": "next build && node scripts/postbuild-nft-guard.mjs",
     "start": "next start",
     "icons": "node scripts/generate-icons.mjs",
     "chat-service": "node mini-services/chat-service/index.js",
