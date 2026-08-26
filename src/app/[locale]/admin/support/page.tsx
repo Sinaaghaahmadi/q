@@ -40,6 +40,7 @@ export default async function AdminSupportPage({
     return (
       <EmptyState
         icon={LifeBuoy}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -53,6 +54,7 @@ export default async function AdminSupportPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

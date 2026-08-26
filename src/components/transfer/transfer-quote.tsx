@@ -1,9 +1,10 @@
 "use client";
 
-import { CircleHelp, RefreshCw, TrendingDown } from "lucide-react";
+import { CircleHelp, RefreshCw, Send, TrendingDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
 import { RateStatus } from "@/components/rates/rate-status";
 import { CommissionBreakdown } from "@/components/transfer/commission-breakdown";
@@ -279,13 +280,13 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold">{t("title")}</h1>
-          <p className="mt-1 text-sm text-ink-600">{t("subtitle")}</p>
-        </div>
-        <RateStatus snapshot={snapshot} />
-      </div>
+      <PageHeading
+        hue="brand"
+        icon={<Send />}
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={<RateStatus snapshot={snapshot} />}
+      />
 
       <QuoteEditor from={from} to={to} amount={quote.sendAmount} />
 

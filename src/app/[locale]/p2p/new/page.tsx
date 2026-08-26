@@ -2,6 +2,7 @@ import { Handshake, ShieldAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfferComposer } from "@/components/p2p/offer-composer";
 import { redirect } from "@/i18n/navigation";
@@ -28,6 +29,7 @@ export default async function NewOfferPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={Handshake}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -46,6 +48,7 @@ export default async function NewOfferPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("compose.verifyTitle")}
         description={t("compose.verifyBody")}
         ctaLabel={t("compose.verifyCta")}
@@ -59,10 +62,12 @@ export default async function NewOfferPage({ params }: { params: Promise<{ local
 
   return (
     <div className="mx-auto max-w-xl space-y-5 py-4">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{t("compose.title")}</h1>
-        <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("compose.subtitle")}</p>
-      </div>
+      <PageHeading
+        hue="teal"
+        icon={<Handshake />}
+        title={t("compose.title")}
+        subtitle={t("compose.subtitle")}
+      />
       <OfferComposer limits={limits ?? null} />
     </div>
   );

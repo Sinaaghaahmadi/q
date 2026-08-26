@@ -40,6 +40,7 @@ export default async function OfficeChatPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="slate"
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -57,6 +58,7 @@ export default async function OfficeChatPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="indigo"
         title={shell("notAMemberTitle")}
         description={shell("notAMemberBody")}
         ctaLabel={shell("backHome")}

@@ -2994,7 +2994,8 @@
       "coins": "3D-Währungssymbole",
       "charts": "Diagramme",
       "motion": "Bewegung",
-      "scenes": "Animierte Illustration"
+      "scenes": "Animierte Illustration",
+      "tiles": "Icon-Kacheln"
     },
     "brand": {
       "description": "Die Asaex-Marke baut den Buchstaben A aus zwei sich kreuzenden Währungsströmen — sie liest sich zugleich als A, als das Pfeilpaar des Wechsels (⇄) und als fließendes Wasser.",
@@ -3145,6 +3146,30 @@
         "matching": "Wechselstube wird zugeordnet",
         "ordersEmpty": "Keine Aufträge"
       }
+    },
+    "tiles": {
+      "description": "Dieselbe Lichtführung wie bei der Münze, auf einem abgerundeten Quadrat: Licht von oben, eine Haarlinie an der Oberkante, Glanz über der oberen Hälfte und ein Schatten in der Farbe der Kachel selbst.",
+      "hueTitle": "Sieben Farben, sieben Bedeutungen",
+      "sizeTitle": "Drei Größen",
+      "sizeBody": "md neben einer Listenzeile, lg auf einer Karte oder einem Seitentitel, xl allein auf einer leeren Seite.",
+      "usageTitle": "Drei Einsatzformen",
+      "rule": "Farbregel: Die Farbe trägt Bedeutung, nicht Geschmack — sieben decken das ganze Produkt ab, eine achte steht für eine Bedeutung, die noch keinen Namen hat. Das Icon kommt fertig gerendert an (icon={<Wallet />}): Eine lucide-Komponente als Prop überquert die Server-Client-Grenze nicht und reißt die Seite mit einem 500er mit.",
+      "hue": {
+        "brand": "Geld",
+        "indigo": "Befugnis",
+        "sky": "Personen",
+        "teal": "Hilfe",
+        "amber": "Achtung",
+        "slate": "Dokumente",
+        "rose": "Beschwerde"
+      },
+      "navTitle": "Listenzeilen",
+      "navAccounts": "Meine Konten",
+      "navAccountsHint": "Gespeicherte IBANs und Karten",
+      "navAlerts": "Kurs-Alarme",
+      "navAlertsHint": "Sag Bescheid, wenn der Kurs da ist",
+      "headingTitle": "Kontosicherheit",
+      "headingBody": "Zwei-Schritt-Anmeldung und aktive Geräte."
     }
   },
   "panel": {

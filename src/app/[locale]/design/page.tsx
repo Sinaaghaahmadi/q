@@ -1,8 +1,19 @@
+import {
+  Bell,
+  FileText,
+  LifeBuoy,
+  MessageSquareWarning,
+  ShieldCheck,
+  Users,
+  Wallet,
+} from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { AppTile, TileHeading, type TileHue } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
 import { LogoLockup, LogoMark } from "@/components/brand/logo";
+import { NavGroup, NavRow } from "@/components/layout/nav-list";
 import { ChartsDemo } from "@/components/design/charts-demo";
 import { MotionLab } from "@/components/design/motion-lab";
 import { ScenesDemo } from "@/components/design/scenes-demo";
@@ -47,6 +58,17 @@ function Section({
   );
 }
 
+/** One icon per hue, chosen for the meaning rather than for the shape. */
+const TILE_SWATCHES: { hue: TileHue; icon: React.ReactNode }[] = [
+  { hue: "brand", icon: <Wallet /> },
+  { hue: "indigo", icon: <ShieldCheck /> },
+  { hue: "sky", icon: <Users /> },
+  { hue: "teal", icon: <LifeBuoy /> },
+  { hue: "amber", icon: <Bell /> },
+  { hue: "slate", icon: <FileText /> },
+  { hue: "rose", icon: <MessageSquareWarning /> },
+];
+
 export default async function DesignPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -60,6 +82,7 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
     "components",
     "validation",
     "coins",
+    "tiles",
     "scenes",
     "charts",
     "motion",
@@ -275,6 +298,78 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
           </div>
         </Card>
         <p className="text-xs leading-relaxed text-ink-600">{t("coins.rule")}</p>
+      </Section>
+
+      {/* ── Icon tiles ────────────────────────────────────────────────────── */}
+      <Section id="tiles" title={t("sections.tiles")} description={t("tiles.description")}>
+        <Card className="space-y-8 p-6">
+          <div>
+            <h3 className="text-sm font-semibold">{t("tiles.hueTitle")}</h3>
+            <div className="mt-4 grid grid-cols-4 gap-x-4 gap-y-6 sm:grid-cols-7">
+              {TILE_SWATCHES.map(({ hue, icon }) => (
+                <div key={hue} className="flex flex-col items-center gap-2 text-center">
+                  <AppTile hue={hue} size="lg">
+                    {icon}
+                  </AppTile>
+                  <span className="text-[0.6875rem] leading-tight font-medium text-ink-600">
+                    {t(`tiles.hue.${hue}`)}
+                  </span>
+                  <span className="font-mono text-[0.625rem] text-ink-600/70" dir="ltr">
+                    {hue}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-ink-300/40 pt-6">
+            <h3 className="text-sm font-semibold">{t("tiles.sizeTitle")}</h3>
+            <p className="mt-1 text-sm text-ink-600">{t("tiles.sizeBody")}</p>
+            <div className="mt-4 flex items-end gap-5">
+              {(["md", "lg", "xl"] as const).map((size) => (
+                <div key={size} className="flex flex-col items-center gap-2">
+                  <AppTile hue="brand" size={size}>
+                    <Wallet />
+                  </AppTile>
+                  <span className="font-mono text-[0.625rem] text-ink-600" dir="ltr">
+                    {size}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+
+        {/* The three places it appears, side by side, because the tile is not a
+            component so much as a habit: a row, a card heading, a page title. */}
+        <h3 className="text-sm font-semibold">{t("tiles.usageTitle")}</h3>
+        <div className="grid gap-4 md:grid-cols-2">
+          <NavGroup title={t("tiles.navTitle")}>
+            <NavRow
+              href="/accounts"
+              label={t("tiles.navAccounts")}
+              hint={t("tiles.navAccountsHint")}
+              icon={<Wallet />}
+              hue="brand"
+            />
+            <NavRow
+              href="/rates?alerts=1"
+              label={t("tiles.navAlerts")}
+              hint={t("tiles.navAlertsHint")}
+              icon={<Bell />}
+              hue="amber"
+            />
+          </NavGroup>
+          <Card className="space-y-4 p-5">
+            <TileHeading
+              hue="indigo"
+              icon={<ShieldCheck />}
+              title={t("tiles.headingTitle")}
+              subtitle={t("tiles.headingBody")}
+            />
+          </Card>
+        </div>
+        <p className="text-xs leading-relaxed text-ink-600">{t("tiles.rule")}</p>
       </Section>
 
       {/* ── Animated illustration ─────────────────────────────────────────── */}

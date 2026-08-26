@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
+import { LEGAL_LOOK } from "@/components/brand/legal-look";
 import { Badge } from "@/components/ui/badge";
 import { LEGAL_CONTENT, LEGAL_SLUGS, type LegalSlug } from "@/content/legal";
 import { routing } from "@/i18n/routing";
@@ -44,7 +46,14 @@ export default async function LegalPage({
   return (
     <article className="mx-auto max-w-2xl space-y-8 py-4">
       <header className="space-y-3">
-        <h1 className="text-2xl font-bold">{titles(slug as LegalSlug)}</h1>
+        {/* The same tile as the row in the menu that opened this: fees is the
+            green percent, the complaints policy the rose one. Six documents
+            that look identical are six documents nobody can tell apart. */}
+        <PageHeading
+          hue={LEGAL_LOOK[slug as LegalSlug].hue}
+          icon={LEGAL_LOOK[slug as LegalSlug].icon}
+          title={titles(slug as LegalSlug)}
+        />
         <p className="leading-relaxed text-ink-600">{doc.intro}</p>
         <p className="flex flex-wrap items-center gap-2 text-xs text-ink-600">
           <Badge variant="outline">{t("version", { version: doc.version })}</Badge>

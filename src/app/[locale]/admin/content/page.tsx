@@ -34,6 +34,7 @@ export default async function AdminContentPage({
     return (
       <EmptyState
         icon={FileText}
+        hue="slate"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -47,6 +48,7 @@ export default async function AdminContentPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}
@@ -86,6 +88,7 @@ export default async function AdminContentPage({
       {cmsError || templateError ? (
         <EmptyState
           icon={FileText}
+          hue="slate"
           title={t("content.loadFailedTitle")}
           description={t("content.loadFailedBody")}
         />

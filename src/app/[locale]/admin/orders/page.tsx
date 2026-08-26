@@ -43,6 +43,7 @@ export default async function AdminOrdersPage({
     return (
       <EmptyState
         icon={Receipt}
+        hue="brand"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -56,6 +57,7 @@ export default async function AdminOrdersPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

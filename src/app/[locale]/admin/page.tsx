@@ -113,6 +113,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -126,6 +127,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={shell("forbiddenTitle")}
         description={shell("forbiddenBody")}
         ctaLabel={shell("backHome")}

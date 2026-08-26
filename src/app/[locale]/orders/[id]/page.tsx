@@ -41,7 +41,9 @@ export default async function OrderDetailPage({
   const appLocale = (await getLocale()) as AppLocale;
 
   if (!isSupabaseConfigured()) {
-    return <EmptyState icon={Compass} title={t("notFound")} description={t("emptyBody")} />;
+    return (
+      <EmptyState icon={Compass} hue="sky" title={t("notFound")} description={t("emptyBody")} />
+    );
   }
 
   const session = await getSessionProfile();
@@ -61,7 +63,9 @@ export default async function OrderDetailPage({
     .maybeSingle();
 
   if (!order) {
-    return <EmptyState icon={Compass} title={t("notFound")} description={t("emptyBody")} />;
+    return (
+      <EmptyState icon={Compass} hue="sky" title={t("notFound")} description={t("emptyBody")} />
+    );
   }
 
   const [{ data: events }, { data: role }, { data: office }] = await Promise.all([

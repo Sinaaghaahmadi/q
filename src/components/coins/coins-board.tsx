@@ -1,9 +1,10 @@
 "use client";
 
-import { CircleAlert, Minus, Plus, TriangleAlert } from "lucide-react";
+import { CircleAlert, CircleDollarSign, Minus, Plus, TriangleAlert } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { GoldIcon } from "@/components/brand/gold";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { Badge } from "@/components/ui/badge";
@@ -67,10 +68,12 @@ export function CoinsBoard({
 
   return (
     <div className="space-y-5">
-      <div>
-        <h1 className="text-2xl font-bold">{t("title")}</h1>
-        <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
-      </div>
+      <PageHeading
+        hue="amber"
+        icon={<CircleDollarSign />}
+        title={t("title")}
+        subtitle={t("subtitle")}
+      />
 
       {snapshot.stale ? (
         <p className="flex items-start gap-2 rounded-xl bg-warn/12 p-3 text-sm text-warn-ink">

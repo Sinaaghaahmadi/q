@@ -21,6 +21,12 @@ export default async function OfflinePage({ params }: { params: Promise<{ locale
   const t = await getTranslations("offline");
 
   return (
-    <EmptyState icon={WifiOff} title={t("title")} description={t("body")} ctaLabel={t("cta")} />
+    <EmptyState
+      icon={WifiOff}
+      hue="slate"
+      title={t("title")}
+      description={t("body")}
+      ctaLabel={t("cta")}
+    />
   );
 }

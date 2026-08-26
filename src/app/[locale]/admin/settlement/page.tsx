@@ -37,6 +37,7 @@ export default async function AdminSettlementPage({
     return (
       <EmptyState
         icon={Landmark}
+        hue="brand"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -50,6 +51,7 @@ export default async function AdminSettlementPage({
     return (
       <EmptyState
         icon={Landmark}
+        hue="brand"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

@@ -2994,7 +2994,8 @@
       "coins": "Icônes de devises en 3D",
       "charts": "Graphiques",
       "motion": "Mouvement",
-      "scenes": "Illustration animée"
+      "scenes": "Illustration animée",
+      "tiles": "Tuiles d'icônes"
     },
     "brand": {
       "description": "La marque Asaex forme la lettre A à partir de deux flux de devises qui se croisent — se lisant à la fois comme un A, comme la paire de flèches du change (⇄) et comme de l'eau qui coule.",
@@ -3145,6 +3146,30 @@
         "matching": "Attribution d'un bureau",
         "ordersEmpty": "Aucune commande"
       }
+    },
+    "tiles": {
+      "description": "L'éclairage de la pièce appliqué à un carré arrondi : lumière du dessus, filet clair sur l'arête haute, reflet sur la moitié supérieure et ombre teintée de la couleur de la tuile.",
+      "hueTitle": "Sept teintes, sept sens",
+      "sizeTitle": "Trois tailles",
+      "sizeBody": "md à côté d'une ligne de liste, lg sur une carte ou un titre de page, xl seule sur un écran vide.",
+      "usageTitle": "Trois formes d'usage",
+      "rule": "Règle de couleur : la teinte porte un sens, pas un goût — sept suffisent à tout le produit, et une huitième signale un sens que personne n'a encore nommé. L'icône arrive déjà rendue (icon={<Wallet />}) : un composant lucide passé en prop ne franchit pas la frontière serveur-client et fait tomber la page en 500.",
+      "hue": {
+        "brand": "Argent",
+        "indigo": "Autorité",
+        "sky": "Personnes",
+        "teal": "Aide",
+        "amber": "Vigilance",
+        "slate": "Documents",
+        "rose": "Litige"
+      },
+      "navTitle": "Lignes de liste",
+      "navAccounts": "Mes comptes",
+      "navAccountsHint": "IBAN et cartes enregistrés",
+      "navAlerts": "Alertes de prix",
+      "navAlertsHint": "Prévenez-moi au bon prix",
+      "headingTitle": "Sécurité du compte",
+      "headingBody": "Connexion en deux étapes et appareils actifs."
     }
   },
   "panel": {

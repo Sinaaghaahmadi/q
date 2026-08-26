@@ -42,6 +42,7 @@ export default async function TrackPage({
     return (
       <EmptyState
         icon={Compass}
+        hue="sky"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -57,6 +58,7 @@ export default async function TrackPage({
     return (
       <EmptyState
         icon={Compass}
+        hue="sky"
         title={t("throttledTitle")}
         description={t("throttledBody")}
         ctaLabel={t("backHome")}
@@ -68,6 +70,7 @@ export default async function TrackPage({
     return (
       <EmptyState
         icon={Compass}
+        hue="sky"
         title={t("notFoundTitle")}
         description={t("notFoundBody")}
         ctaLabel={t("backHome")}

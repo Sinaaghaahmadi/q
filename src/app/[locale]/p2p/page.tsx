@@ -2,6 +2,7 @@ import { Handshake } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { OfferBoard } from "@/components/p2p/offer-board";
 import { VisibilityGuide } from "@/components/p2p/visibility-guide";
 import { EmptyState } from "@/components/layout/empty-state";
@@ -34,6 +35,7 @@ export default async function P2pBoardPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={Handshake}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -75,10 +77,7 @@ export default async function P2pBoardPage({ params }: { params: Promise<{ local
 
   return (
     <div className="space-y-10 py-4">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
-      </div>
+      <PageHeading hue="teal" icon={<Handshake />} title={t("title")} subtitle={t("subtitle")} />
 
       <OfferBoard
         offers={rows}

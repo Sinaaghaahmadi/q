@@ -4,6 +4,7 @@ import { Building2, Plus } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { OfficeLogo, officeLogoUrl } from "@/components/office/office-logo";
+import { AppTile } from "@/components/brand/app-tile";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -39,7 +40,9 @@ export function OfficeList({
 
       {offices.length === 0 ? (
         <Card className="flex flex-col items-center gap-3 p-10 text-center">
-          <Building2 className="size-8 text-brand-600" aria-hidden />
+          <AppTile hue="slate" size="lg">
+            <Building2 />
+          </AppTile>
           <p className="text-sm text-ink-600">{t("empty")}</p>
         </Card>
       ) : (

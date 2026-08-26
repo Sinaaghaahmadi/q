@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
 import { EASE_IN } from "@/components/brand/scene";
+import { AppTile } from "@/components/brand/app-tile";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -109,7 +110,9 @@ export function Today({ officeId, jobs }: { officeId: string; jobs: TodayJob[] }
 
       {todo.length === 0 && waiting.length === 0 ? (
         <Card className="glass flex flex-col items-center gap-4 p-14 text-center [--glass-tint:var(--up)]">
-          <Coffee className="size-10 text-brand-600" aria-hidden />
+          <AppTile hue="teal" size="xl">
+            <Coffee />
+          </AppTile>
           <p className="text-lg font-semibold">{t("allClear")}</p>
           <p className="max-w-sm text-sm text-ink-600">{t("allClearBody")}</p>
         </Card>

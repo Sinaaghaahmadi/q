@@ -28,6 +28,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ locale:
     return (
       <EmptyState
         icon={ShieldCheck}
+        hue="indigo"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}

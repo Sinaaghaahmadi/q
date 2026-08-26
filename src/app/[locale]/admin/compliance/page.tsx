@@ -42,6 +42,7 @@ export default async function AdminCompliancePage({
     return (
       <EmptyState
         icon={ScrollText}
+        hue="slate"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -55,6 +56,7 @@ export default async function AdminCompliancePage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

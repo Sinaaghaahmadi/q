@@ -41,6 +41,7 @@ export default async function AdminExchangeDetailPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="slate"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -54,6 +55,7 @@ export default async function AdminExchangeDetailPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

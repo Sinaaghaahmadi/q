@@ -48,10 +48,30 @@ tokens, never the series color.
   tones (gold/silver/bronze + brand-green for IRT), embossed glyph. Shipped
   as inline SVG in-app (crisp at any size) **plus** exported `.svg` and
   1×/2×/3× `.webp` under `/public/icons/currency` for embeds/sprites.
+- **App tiles:** the same rig applied to a rounded square
+  (`src/components/brand/app-tile.tsx`, `.app-tile` in `globals.css`) — light
+  from above, a hairline along the top edge, a gloss over the upper half, a
+  specular ellipse, and a shadow cast in the tile's own colour. It carries a
+  lucide glyph in white, and it is what marks a *place*: a row in the
+  navigation list, a card heading, a page title, an empty screen.
+  - **Seven hues, seven meanings**, not fourteen decorative ones: `brand`
+    money, `indigo` authority and security, `sky` people and contact, `teal`
+    help and guidance, `amber` caution and time, `slate` paperwork, `rose`
+    harm and complaint. An eighth hue means a meaning nobody has named yet.
+  - **Three sizes**: `md` (36 px) beside a list row, `lg` (48 px) on a card or
+    a page title, `xl` (64 px) alone on an empty screen.
+  - **Four shapes of use**: `AppTile` bare, `NavRow` (a list row), `TileHeading`
+    (a card heading), `PageHeading` (a page title). `EmptyState` and
+    `PanelSection` take one internally.
+  - The glyph arrives **already rendered** (`icon={<Wallet />}`): a lucide
+    component passed as a prop cannot cross from a server component to a client
+    one, and takes the page down with a runtime 500 that neither `tsc` nor
+    `next build` catches.
 - **The boundary:** 3D is for currencies, product concepts, and spot
   illustrations. Functional micro-UI (chevrons, close, search, form
   affordances) stays a 2 px line set (lucide) — 3D at 16 px is noise, not
-  polish.
+  polish. A lucide glyph *inside* a tile is the one crossing: the tile is the
+  object, the stroke is only its label.
 - Roadmap: true rendered (blender/spline) coin + feature set replaces the
   generated rig at the same filenames when produced; Lottie/Rive narrative
   animations land with the flows that need them (Phase 2+).

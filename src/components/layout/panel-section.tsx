@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import * as React from "react";
+import { AppTile, type TileHue } from "@/components/brand/app-tile";
 import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -29,6 +30,7 @@ import { cn } from "@/lib/utils";
  */
 export function PanelSection({
   icon,
+  iconHue,
   title,
   hint,
   href,
@@ -42,6 +44,8 @@ export function PanelSection({
 }: {
   /** A rendered element, never a component — functions do not cross to a client. */
   icon?: React.ReactNode;
+  /** Which of the seven tile hues the section's icon carries. */
+  iconHue?: TileHue;
   title: string;
   /** One sentence on what this section is for, already translated. */
   hint: string;
@@ -84,14 +88,9 @@ export function PanelSection({
           headerClassName,
         )}
       >
-        {icon ? (
-          <span
-            className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:text-brand-600"
-            aria-hidden
-          >
-            {icon}
-          </span>
-        ) : null}
+        {/* The same lit tile the customer surface uses, so a section header
+            in a panel and a row in the app menu are recognisably one product. */}
+        {icon ? <AppTile hue={iconHue}>{icon}</AppTile> : null}
 
         <div className="flex min-w-0 items-center gap-1.5">
           {heading}

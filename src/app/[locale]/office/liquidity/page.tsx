@@ -48,6 +48,7 @@ export default async function OfficeLiquidityPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="slate"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -66,6 +67,7 @@ export default async function OfficeLiquidityPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="indigo"
         title={t("notAMemberTitle")}
         description={t("notAMemberBody")}
         ctaLabel={t("backHome")}
@@ -84,6 +86,7 @@ export default async function OfficeLiquidityPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={tm("liquidity.noAccessTitle")}
         description={tm("liquidity.noAccessBody")}
         ctaLabel={t("backHome")}

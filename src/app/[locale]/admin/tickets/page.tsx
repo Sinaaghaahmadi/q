@@ -45,6 +45,7 @@ export default async function AdminTicketsPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={admin("unavailableTitle")}
         description={admin("unavailableBody")}
         ctaLabel={admin("backHome")}
@@ -58,6 +59,7 @@ export default async function AdminTicketsPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={admin("forbiddenTitle")}
         description={admin("forbiddenBody")}
         ctaLabel={admin("backHome")}

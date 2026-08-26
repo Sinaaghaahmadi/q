@@ -65,6 +65,7 @@ export default async function AdminRatesPage({ params }: { params: Promise<{ loc
     return (
       <EmptyState
         icon={Percent}
+        hue="brand"
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -78,6 +79,7 @@ export default async function AdminRatesPage({ params }: { params: Promise<{ loc
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={shell("forbiddenTitle")}
         description={shell("forbiddenBody")}
         ctaLabel={shell("backHome")}

@@ -5,6 +5,7 @@ import { CircleAlert, Eye, FileCheck2, ShieldQuestion, UserCheck } from "lucide-
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { InfoHint } from "@/components/ui/info-hint";
+import { AppTile } from "@/components/brand/app-tile";
 import { EASE_IN } from "@/components/brand/scene";
 import { ReviewScene } from "@/components/brand/scenes";
 import { Badge } from "@/components/ui/badge";
@@ -61,9 +62,9 @@ export function KycQueue({ rows, reviewerId }: { rows: QueueRow[]; reviewerId: s
                   transition={reduce ? undefined : { duration: 0.3, ease: EASE_IN }}
                   className="flex flex-wrap items-center gap-3 px-4 py-3.5"
                 >
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 dark:text-brand-600">
-                    <UserCheck className="size-4" />
-                  </span>
+                  <AppTile hue="indigo">
+                    <UserCheck />
+                  </AppTile>
                   <div className="min-w-0 flex-1">
                     {/* The name opens the person's file. A reviewer deciding
                         whether to trust a document wants their order history

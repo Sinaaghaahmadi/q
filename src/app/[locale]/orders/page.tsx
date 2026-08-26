@@ -2,6 +2,7 @@ import { ReceiptText } from "lucide-react";
 import type { Metadata } from "next";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
 import { OrdersEmptyScene } from "@/components/brand/scenes";
 import { EmptyState } from "@/components/layout/empty-state";
@@ -37,6 +38,7 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
     return (
       <EmptyState
         icon={ReceiptText}
+        hue="brand"
         title={t("emptyTitle")}
         description={t("emptyBody")}
         ctaLabel={t("cta")}
@@ -75,10 +77,7 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
 
   return (
     <div className="space-y-5 py-4">
-      <div>
-        <h1 className="text-2xl font-bold">{t("title")}</h1>
-        <p className="mt-1 text-sm text-ink-600">{t("subtitle")}</p>
-      </div>
+      <PageHeading hue="brand" icon={<ReceiptText />} title={t("title")} subtitle={t("subtitle")} />
 
       <div className="grid gap-3">
         {orders.map((order) => (

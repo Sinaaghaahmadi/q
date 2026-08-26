@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { TeamMap } from "@/components/about/team-map";
+import { AppTile } from "@/components/brand/app-tile";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
@@ -19,12 +20,12 @@ export async function generateMetadata({
 
 /** The six disciplines the seventeen are spread across. */
 const CRAFTS = [
-  { key: "product", icon: PenTool },
-  { key: "marketing", icon: Megaphone },
-  { key: "bizdev", icon: Compass },
-  { key: "strategy", icon: Users },
-  { key: "support", icon: LifeBuoy },
-  { key: "people", icon: HeartHandshake },
+  { key: "product", icon: PenTool, hue: "brand" },
+  { key: "marketing", icon: Megaphone, hue: "amber" },
+  { key: "bizdev", icon: Compass, hue: "sky" },
+  { key: "strategy", icon: Users, hue: "indigo" },
+  { key: "support", icon: LifeBuoy, hue: "teal" },
+  { key: "people", icon: HeartHandshake, hue: "rose" },
 ] as const;
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -42,11 +43,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <TeamMap />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {CRAFTS.map(({ key, icon: Icon }) => (
+        {CRAFTS.map(({ key, icon: Icon, hue }) => (
           <Card key={key} className="p-5">
-            <span className="flex size-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:text-brand-600">
-              <Icon className="size-5" aria-hidden />
-            </span>
+            <AppTile hue={hue} size="lg">
+              <Icon />
+            </AppTile>
             <h2 className="mt-4 text-sm font-semibold">{t(`crafts.${key}.title`)}</h2>
             <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{t(`crafts.${key}.body`)}</p>
           </Card>
@@ -57,9 +58,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           money should say whose hands it came out of, on a page a reader can
           find rather than only in a commit log. */}
       <section className="glass rounded-3xl p-6 [--glass-tint:var(--brand-600)] sm:p-8">
-        <span className="flex size-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:text-brand-600">
-          <Code2 className="size-5" aria-hidden />
-        </span>
+        <AppTile hue="slate" size="lg">
+          <Code2 />
+        </AppTile>
         <h2 className="mt-4 text-lg font-semibold">{t("built.title")}</h2>
         <p className="mt-1 text-base font-semibold text-brand-700 dark:text-brand-600">
           {t("built.name")}

@@ -28,6 +28,7 @@ export default async function AccountsPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={Wallet}
+        hue="brand"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}

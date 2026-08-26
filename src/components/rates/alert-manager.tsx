@@ -1,8 +1,9 @@
 "use client";
 
-import { Bell, BellOff, CircleAlert, Trash2 } from "lucide-react";
+import { Bell, BellOff, BellRing, CircleAlert, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
+import { AppTile } from "@/components/brand/app-tile";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -179,7 +180,9 @@ export function AlertManager({
               key={alert.id}
               className="flex flex-wrap items-center gap-2 rounded-xl border border-ink-300/55 p-3"
             >
-              <Bell className="size-4 shrink-0 text-brand-600" aria-hidden />
+              <AppTile hue={alert.last_fired_at ? "slate" : "amber"}>
+                {alert.last_fired_at ? <BellRing /> : <Bell />}
+              </AppTile>
               <span className="flex-1 text-sm">
                 {t(`summary.${alert.direction}`, {
                   amount: formatRate(alert.threshold, locale),
@@ -199,8 +202,10 @@ export function AlertManager({
           ))}
         </ul>
       ) : alerts ? (
-        <p className="flex items-center gap-2 text-sm text-ink-600">
-          <BellOff className="size-4 shrink-0" aria-hidden />
+        <p className="flex items-center gap-2.5 text-sm text-ink-600">
+          <AppTile hue="slate">
+            <BellOff />
+          </AppTile>
           {t("none")}
         </p>
       ) : null}

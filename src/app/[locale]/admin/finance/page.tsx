@@ -85,6 +85,7 @@ export default async function AdminFinancePage({
     return (
       <EmptyState
         icon={Wallet}
+        hue="brand"
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -98,6 +99,7 @@ export default async function AdminFinancePage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={shell("forbiddenTitle")}
         description={shell("forbiddenBody")}
         ctaLabel={shell("backHome")}

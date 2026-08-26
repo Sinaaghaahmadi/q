@@ -4,6 +4,7 @@ import { Handshake, Plus, ShieldCheck, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
+import { AppTile } from "@/components/brand/app-tile";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { InfoHint } from "@/components/ui/info-hint";
@@ -43,28 +44,37 @@ export function OfferBoard({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <Button asChild disabled={!verified}>
           <Link href={verified ? "/p2p/new" : "/verify"}>
             <Plus className="size-4" aria-hidden />
             {verified ? t("postOffer") : t("verifyToPost")}
           </Link>
         </Button>
-        <span className="flex-1" />
-        <FilterChip label={t("allPairs")} active={pair === "all"} onClick={() => setPair("all")} />
-        {pairs.map((code) => (
+        {/* One group, so the pairs wrap together onto their own line rather
+            than leaving a single chip stranded beside the button. */}
+        <div className="flex flex-wrap items-center gap-2">
           <FilterChip
-            key={code}
-            label={code}
-            active={pair === code}
-            onClick={() => setPair(code)}
+            label={t("allPairs")}
+            active={pair === "all"}
+            onClick={() => setPair("all")}
           />
-        ))}
+          {pairs.map((code) => (
+            <FilterChip
+              key={code}
+              label={code}
+              active={pair === code}
+              onClick={() => setPair(code)}
+            />
+          ))}
+        </div>
       </div>
 
       {shown.length === 0 ? (
         <Card className="flex flex-col items-center gap-3 p-12 text-center">
-          <Handshake className="size-8 text-brand-600" aria-hidden />
+          <AppTile hue="teal" size="lg">
+            <Handshake />
+          </AppTile>
           <p className="text-sm text-ink-600">{t("empty")}</p>
         </Card>
       ) : (

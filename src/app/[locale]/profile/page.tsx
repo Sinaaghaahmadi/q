@@ -29,6 +29,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
     return (
       <EmptyState
         icon={UserRound}
+        hue="sky"
         title={t("emptyTitle")}
         description={t("emptyBody")}
         ctaLabel={t("cta")}

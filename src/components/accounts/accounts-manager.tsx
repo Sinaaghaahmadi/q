@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Archive, CircleCheck, CircleX, Landmark, Plus } from "lucide-react";
+import { Archive, CircleCheck, CircleX, Landmark, Plus, Wallet } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { EASE_IN } from "@/components/brand/scene";
 import { AccountsScene } from "@/components/brand/scenes";
 import { CoinIcon } from "@/components/brand/coin";
@@ -53,16 +54,18 @@ export function AccountsManager({ initial }: { initial: BeneficiaryAccount[] }) 
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold">{t("title")}</h1>
-          <p className="mt-1 max-w-xl text-sm text-ink-600">{t("subtitle")}</p>
-        </div>
-        <Button onClick={() => setOpen(true)}>
-          <Plus className="size-4" />
-          {t("add")}
-        </Button>
-      </div>
+      <PageHeading
+        hue="brand"
+        icon={<Wallet />}
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={
+          <Button onClick={() => setOpen(true)}>
+            <Plus className="size-4" />
+            {t("add")}
+          </Button>
+        }
+      />
 
       {accounts.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 p-10 text-center">

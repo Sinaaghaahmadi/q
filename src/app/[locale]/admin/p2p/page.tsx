@@ -30,6 +30,7 @@ export default async function AdminP2pPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={Handshake}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -43,6 +44,7 @@ export default async function AdminP2pPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

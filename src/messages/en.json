@@ -479,7 +479,8 @@
       "coins": "3D currency icons",
       "charts": "Charts",
       "motion": "Motion",
-      "scenes": "Animated illustration"
+      "scenes": "Animated illustration",
+      "tiles": "Icon tiles"
     },
     "brand": {
       "description": "The Asaex mark builds the letter A from two crossing currency flows — reading at once as an A, the exchange arrow-pair (⇄), and flowing water.",
@@ -630,6 +631,30 @@
         "matching": "Matching an office",
         "ordersEmpty": "No orders"
       }
+    },
+    "tiles": {
+      "description": "The coin's lighting rig on a rounded square: light from above, a hairline along the top edge, a gloss over the upper half, and a shadow cast in the tile's own colour.",
+      "hueTitle": "Seven hues, seven meanings",
+      "sizeTitle": "Three sizes",
+      "sizeBody": "md beside a list row, lg on a card or a page title, xl alone on an empty screen.",
+      "usageTitle": "Three shapes of use",
+      "rule": "Colour rule: the hue carries meaning rather than taste — seven cover the whole product, and an eighth means a meaning nobody has named yet. The icon arrives already rendered (icon={<Wallet />}): a lucide component passed as a prop cannot cross from a server component to a client one, and takes the page down with a 500 when it tries.",
+      "hue": {
+        "brand": "Money",
+        "indigo": "Authority",
+        "sky": "People",
+        "teal": "Help",
+        "amber": "Caution",
+        "slate": "Paperwork",
+        "rose": "Harm"
+      },
+      "navTitle": "List rows",
+      "navAccounts": "My accounts",
+      "navAccountsHint": "Saved IBANs and cards",
+      "navAlerts": "Price alerts",
+      "navAlertsHint": "Tell me when it reaches a price",
+      "headingTitle": "Account security",
+      "headingBody": "Two-step sign-in and active devices."
     }
   },
   "auth": {

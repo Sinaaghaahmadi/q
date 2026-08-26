@@ -37,6 +37,7 @@ export default async function AdminAuditPage({
     return (
       <EmptyState
         icon={FileClock}
+        hue="slate"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -50,6 +51,7 @@ export default async function AdminAuditPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

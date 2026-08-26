@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
+import { AppTile } from "@/components/brand/app-tile";
 import { Card } from "@/components/ui/card";
 
 /**
@@ -21,10 +22,12 @@ import { Card } from "@/components/ui/card";
  */
 export async function HowItWorks({ heading = "h2" }: { heading?: "h1" | "h2" }) {
   const t = await getTranslations("home.how");
+  // Three hues rather than three greens: the steps are a sequence, and a
+  // sequence drawn in one colour is a list.
   const steps = [
-    { icon: FileCheck2, key: "1" },
-    { icon: HandCoins, key: "2" },
-    { icon: ShieldCheck, key: "3" },
+    { icon: FileCheck2, key: "1", hue: "sky" },
+    { icon: HandCoins, key: "2", hue: "brand" },
+    { icon: ShieldCheck, key: "3", hue: "indigo" },
   ] as const;
 
   const Heading = heading;
@@ -38,14 +41,14 @@ export async function HowItWorks({ heading = "h2" }: { heading?: "h1" | "h2" }) 
       </Heading>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
       <div className="mt-6 grid gap-4 md:grid-cols-3">
-        {steps.map(({ icon: Icon, key }, index) => (
+        {steps.map(({ icon: Icon, key, hue }, index) => (
           <Card key={key} className="relative p-6">
             <span className="num absolute end-5 top-5 text-3xl font-bold text-ink-300/70">
               {index + 1}
             </span>
-            <span className="flex size-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:text-brand-600">
-              <Icon className="size-6" aria-hidden />
-            </span>
+            <AppTile hue={hue} size="lg">
+              <Icon />
+            </AppTile>
             <h3 className="mt-4 text-base font-semibold">{t(`steps.${key}.title`)}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{t(`steps.${key}.body`)}</p>
           </Card>
@@ -60,10 +63,10 @@ export async function TrustSection({ heading = "h2" }: { heading?: "h1" | "h2" }
   const t = await getTranslations("home.trust");
 
   const features = [
-    { icon: Landmark, key: "licensed" },
-    { icon: LockKeyhole, key: "rateLock" },
-    { icon: Clock3, key: "sla" },
-    { icon: MessagesSquare, key: "chat" },
+    { icon: Landmark, key: "licensed", hue: "indigo" },
+    { icon: LockKeyhole, key: "rateLock", hue: "brand" },
+    { icon: Clock3, key: "sla", hue: "amber" },
+    { icon: MessagesSquare, key: "chat", hue: "teal" },
   ] as const;
   const Heading = heading;
 
@@ -78,9 +81,11 @@ export async function TrustSection({ heading = "h2" }: { heading?: "h1" | "h2" }
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
       </div>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {features.map(({ icon: Icon, key }) => (
+        {features.map(({ icon: Icon, key, hue }) => (
           <div key={key} className="rounded-2xl border border-ink-300/50 p-5">
-            <Icon className="size-5 text-brand-600" aria-hidden />
+            <AppTile hue={hue}>
+              <Icon />
+            </AppTile>
             <h3 className="mt-3 text-sm font-semibold">{t(`items.${key}.title`)}</h3>
             <p className="mt-1 text-sm leading-relaxed text-ink-600">{t(`items.${key}.body`)}</p>
           </div>

@@ -1,9 +1,18 @@
 "use client";
 
-import { ArrowUpDown, Bell, Check, RotateCcw, Search } from "lucide-react";
+import {
+  ArrowUpDown,
+  Bell,
+  ChartCandlestick,
+  Check,
+  RotateCcw,
+  Search,
+  SearchX,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import * as React from "react";
+import { AppTile, PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { HistoryChart } from "@/components/rates/history-chart";
@@ -105,19 +114,23 @@ export function RatesView({
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold">{t("ratesPage.title")}</h1>
-          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+      <PageHeading
+        hue="brand"
+        icon={<ChartCandlestick />}
+        title={t("ratesPage.title")}
+        subtitle={
+          <span className="flex flex-wrap items-center gap-1.5">
             {t("ratesPage.subtitle")}
             <InfoHint term="openMarket" />
-          </p>
-        </div>
-        <span className="flex items-center gap-2">
-          <RateStatus snapshot={snapshot} />
-          <InfoHint term="refresh" />
-        </span>
-      </div>
+          </span>
+        }
+        action={
+          <>
+            <RateStatus snapshot={snapshot} />
+            <InfoHint term="refresh" />
+          </>
+        }
+      />
 
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative w-full max-w-sm flex-1">
@@ -154,7 +167,12 @@ export function RatesView({
       ) : null}
 
       {sorted.length === 0 ? (
-        <Card className="p-8 text-center text-sm text-ink-600">{t("ratesPage.noResults")}</Card>
+        <Card className="flex flex-col items-center gap-3 p-8 text-center">
+          <AppTile hue="slate" size="lg">
+            <SearchX />
+          </AppTile>
+          <p className="text-sm text-ink-600">{t("ratesPage.noResults")}</p>
+        </Card>
       ) : (
         <ul className="grid gap-2.5">
           {sorted.map((code, index) => (

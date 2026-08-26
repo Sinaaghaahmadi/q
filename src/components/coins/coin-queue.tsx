@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { GoldIcon } from "@/components/brand/gold";
+import { AppTile } from "@/components/brand/app-tile";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PanelSection } from "@/components/layout/panel-section";
@@ -100,7 +101,9 @@ export function CoinQueue({
   if (orders.length === 0) {
     return (
       <Card className="flex flex-col items-center gap-3 p-10 text-center">
-        <Coins className="size-8 text-brand-600" aria-hidden />
+        <AppTile hue="amber" size="lg">
+          <Coins />
+        </AppTile>
         <p className="text-sm text-ink-600">{tq("empty")}</p>
       </Card>
     );

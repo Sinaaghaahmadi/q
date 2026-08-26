@@ -54,6 +54,7 @@ export default async function AdminUserDetailPage({
     return (
       <EmptyState
         icon={Users}
+        hue="sky"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -67,6 +68,7 @@ export default async function AdminUserDetailPage({
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

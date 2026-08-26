@@ -30,6 +30,7 @@ export default async function AdminKycPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -46,6 +47,7 @@ export default async function AdminKycPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={ShieldAlert}
+        hue="indigo"
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

@@ -37,6 +37,7 @@ export default async function TradePage({
     return (
       <EmptyState
         icon={Handshake}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}

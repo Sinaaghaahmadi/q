@@ -36,6 +36,7 @@ export default async function OfficeAccountsPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="slate"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -54,6 +55,7 @@ export default async function OfficeAccountsPage({
     return (
       <EmptyState
         icon={Building2}
+        hue="indigo"
         title={t("notAMemberTitle")}
         description={t("notAMemberBody")}
         ctaLabel={t("backHome")}

@@ -2,6 +2,7 @@ import { LifeBuoy } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { PageHeading } from "@/components/brand/app-tile";
 import { Conversation } from "@/components/chat/conversation";
 import { EmptyState } from "@/components/layout/empty-state";
 import { Card } from "@/components/ui/card";
@@ -30,6 +31,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
     return (
       <EmptyState
         icon={LifeBuoy}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -50,6 +52,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
     return (
       <EmptyState
         icon={LifeBuoy}
+        hue="teal"
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -61,10 +64,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
 
   return (
     <div className="mx-auto max-w-2xl space-y-5 py-4">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("subtitle")}</p>
-      </div>
+      <PageHeading hue="teal" icon={<LifeBuoy />} title={t("title")} subtitle={t("subtitle")} />
 
       <Card className="p-5">
         <Conversation

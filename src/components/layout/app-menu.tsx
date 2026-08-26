@@ -1,24 +1,10 @@
 "use client";
 
-import {
-  FileText,
-  LifeBuoy,
-  Lock,
-  Mail,
-  MessageSquareWarning,
-  Palette,
-  Percent,
-  Route,
-  ScanSearch,
-  ShieldCheck,
-  Sparkles,
-  Store,
-  Timer,
-  Users,
-} from "lucide-react";
+import { LifeBuoy, Mail, Palette, Route, ShieldCheck, Sparkles, Store, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 import { type TileHue } from "@/components/brand/app-tile";
+import { LEGAL_LOOK } from "@/components/brand/legal-look";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { NavGroup, NavRow } from "@/components/layout/nav-list";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
@@ -173,25 +159,6 @@ export function AppMenu() {
     { href: "/contact", label: t("contact"), icon: <Mail className="size-4.5" />, hue: "sky" },
     { href: "/support", label: t("support"), icon: <LifeBuoy className="size-4.5" />, hue: "teal" },
   ];
-
-  /*
-   * The legal set, told apart.
-   *
-   * Six identical document icons is a wall of paper, and the two rows people
-   * actually come for — what it costs, and what happens when it goes wrong —
-   * are the hardest to find in it. So each carries the shape of its subject and
-   * a hue that means something: money green, a promise about time amber, a
-   * complaint rose.
-   */
-  const LEGAL_LOOK: Record<(typeof LEGAL_SLUGS)[number], { icon: React.ReactNode; hue: TileHue }> =
-    {
-      terms: { icon: <FileText className="size-4.5" />, hue: "slate" },
-      privacy: { icon: <Lock className="size-4.5" />, hue: "indigo" },
-      aml: { icon: <ScanSearch className="size-4.5" />, hue: "amber" },
-      fees: { icon: <Percent className="size-4.5" />, hue: "brand" },
-      sla: { icon: <Timer className="size-4.5" />, hue: "amber" },
-      complaints: { icon: <MessageSquareWarning className="size-4.5" />, hue: "rose" },
-    };
 
   const legal: Entry[] = LEGAL_SLUGS.map((slug) => ({
     href: `/legal/${slug}`,
