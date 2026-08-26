@@ -8,7 +8,10 @@
 ## ۰. دموی استاتیک رایگان (GitHub Pages) — همیشه فعال
 
 گیت‌هاب اکشن `Deploy Static Demo (GitHub Pages)` با هر push یک نسخه کاملاً استاتیک
-می‌سازد و در `https://sinaaghaahmadi.github.io/q/` منتشر می‌کند:
+می‌سازد و روی برنچ `gh-pages` منتشر می‌کند؛ آدرس نهایی: `https://sinaaghaahmadi.github.io/q/`
+
+**فعال‌سازی یک‌باره (فقط بار اول، توسط ادمین مخزن):**
+Settings → Pages → Build and deployment → Source: *Deploy from a branch* → Branch: `gh-pages` / `(root)` → Save
 
 - بدون هیچ سرور یا کلیدی کار می‌کند — لایه `src/lib/client-api.ts` همه درخواست‌های
   `/api/*` را با همان store دمو **داخل مرورگر** پاسخ می‌دهد.

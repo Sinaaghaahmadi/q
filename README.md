@@ -24,8 +24,9 @@
 
 ## دموی زنده
 
-- **دموی عمومی (GitHub Pages، رایگان):** https://sinaaghaahmadi.github.io/q/ — نسخه استاتیک با داده دمو در مرورگر
-- **نسخه کامل (Vercel):** با اتصال مخزن به Vercel هر push خودکار دیپلوی می‌شود (شامل API واقعی و دستیار هوش مصنوعی)
+- **دموی عمومی (GitHub Pages، رایگان):** https://sinaaghaahmadi.github.io/q/
+  - فعال‌سازی یک‌باره: **Settings → Pages → Branch: `gh-pages` → Save** — از آن پس هر push خودکار منتشر می‌شود (workflow «Deploy Static Demo»)
+- **نسخه کامل (Vercel):** پروژه‌های متصل به مخزن با هر push خودکار build می‌گیرند (شامل API واقعی و دستیار هوش مصنوعی)
 
 ## اجرای محلی
 
