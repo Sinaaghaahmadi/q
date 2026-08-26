@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Asameet — بستر هوشمند گفت‌وگو | Intelligent conversation platform (Telegram + Google Meet)",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/prepare-assets.mjs",
