@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch } from "@/lib/client-api";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
@@ -67,14 +69,14 @@ export function MessengerView() {
 
   const { data: usersData } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => (await fetch("/api/users")).json() as Promise<{ users: User[] }>,
+    queryFn: async () => (await apiFetch("/api/users")).json() as Promise<{ users: User[] }>,
   });
   const users = useMemo(() => new Map((usersData?.users ?? []).map((u) => [u.id, u])), [usersData]);
 
   const { data: chatsData } = useQuery({
     queryKey: ["chats", currentUser?.id],
     queryFn: async () =>
-      (await fetch(`/api/chats?userId=${currentUser?.id}`)).json() as Promise<{ chats: Chat[] }>,
+      (await apiFetch(`/api/chats?userId=${currentUser?.id}`)).json() as Promise<{ chats: Chat[] }>,
     enabled: !!currentUser,
   });
   const chats = useMemo(() => chatsData?.chats ?? [], [chatsData]);
@@ -82,7 +84,7 @@ export function MessengerView() {
   const { data: messagesData } = useQuery({
     queryKey: ["messages", activeChatId],
     queryFn: async () =>
-      (await fetch(`/api/chats/${activeChatId}/messages`)).json() as Promise<{ messages: Message[] }>,
+      (await apiFetch(`/api/chats/${activeChatId}/messages`)).json() as Promise<{ messages: Message[] }>,
     enabled: !!activeChatId,
     refetchInterval: 5000,
   });
@@ -101,7 +103,7 @@ export function MessengerView() {
 
   const sendMessage = useMutation({
     mutationFn: async (payload: { content: string; replyToId: string | null }) => {
-      const res = await fetch(`/api/chats/${activeChatId}/messages`, {
+      const res = await apiFetch(`/api/chats/${activeChatId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ senderId: currentUser?.id, ...payload }),
@@ -121,7 +123,7 @@ export function MessengerView() {
           setTimeout(() => setPeerTyping(true), 900);
           typingTimer.current = setTimeout(() => {
             setPeerTyping(false);
-            void fetch(`/api/chats/${chat.id}/messages`, {
+            void apiFetch(`/api/chats/${chat.id}/messages`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -141,7 +143,7 @@ export function MessengerView() {
 
   const messageAction = useMutation({
     mutationFn: async (payload: { messageId: string; action: string; emoji?: string }) => {
-      await fetch(`/api/chats/${activeChatId}/messages`, {
+      await apiFetch(`/api/chats/${activeChatId}/messages`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...payload, userId: currentUser?.id }),
@@ -152,7 +154,7 @@ export function MessengerView() {
 
   const createGroup = useMutation({
     mutationFn: async () => {
-      const res = await fetch("/api/chats", {
+      const res = await apiFetch("/api/chats", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

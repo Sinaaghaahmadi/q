@@ -1,14 +1,13 @@
-/* Asameet service worker — offline shell + static asset caching. */
-const CACHE = "asameet-v1";
+/* Asameet service worker — offline shell + static asset caching.
+   All asset URLs are relative to the SW location so it works at the domain
+   root (Vercel/self-hosted) and under a base path (GitHub Pages). */
+const CACHE = "asameet-v2";
 const STATIC_ASSETS = [
-  "/",
-  "/manifest.webmanifest",
-  "/logo.svg",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-  "/fonts/Vazirmatn-Regular.woff2",
-  "/fonts/Vazirmatn-Medium.woff2",
-  "/fonts/Vazirmatn-Bold.woff2",
+  "./",
+  "manifest.webmanifest",
+  "logo.svg",
+  "icons/icon-192.png",
+  "icons/icon-512.png",
 ];
 
 self.addEventListener("install", (event) => {
@@ -35,14 +34,11 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
   // API requests: network only (fresh data)
-  if (url.pathname.startsWith("/api/")) return;
+  if (url.pathname.includes("/api/")) return;
 
-  // Static assets: cache-first; pages: network-first with cache fallback
   const isStatic =
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.startsWith("/fonts/") ||
-    url.pathname.startsWith("/icons/") ||
-    /\.(png|svg|woff2|webmanifest|ico)$/.test(url.pathname);
+    url.pathname.includes("/_next/static/") ||
+    /\.(png|svg|woff2|webmanifest|ico|css|js)$/.test(url.pathname);
 
   if (isStatic) {
     event.respondWith(
@@ -64,7 +60,9 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE).then((cache) => cache.put(request, copy));
           return res;
         })
-        .catch(() => caches.match(request).then((cached) => cached || caches.match("/")))
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match(new URL("./", self.location).href))
+        )
     );
   }
 });

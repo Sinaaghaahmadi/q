@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch } from "@/lib/client-api";
+
 import { useState } from "react";
 import { GraduationCap, Loader2, ShieldCheck, User as UserIcon } from "lucide-react";
 import { toast } from "sonner";
@@ -27,7 +29,7 @@ export function LoginModal() {
   async function doLogin(user: string, pass?: string) {
     setLoading(user);
     try {
-      const res = await fetch("/api/auth", {
+      const res = await apiFetch("/api/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(pass === undefined ? { username: user } : { username: user, password: pass }),

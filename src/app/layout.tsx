@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import "./fonts.css";
 import "./globals.css";
 import { ClientProviders } from "@/components/shared/client-providers";
+
+const bp = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://asameet.vercel.app"),
@@ -8,13 +11,13 @@ export const metadata: Metadata = {
   description:
     "آسامیت؛ پیام‌رسانی، تماس صوتی و تصویری، جلسات آنلاین، کلاس مجازی و دستیار هوش مصنوعی — همه در یک بستر امن و روان.",
   applicationName: "Asameet",
-  manifest: "/manifest.webmanifest",
+  manifest: `${bp}/manifest.webmanifest`,
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: `${bp}/favicon.svg`, type: "image/svg+xml" },
+      { url: `${bp}/icons/favicon-32.png`, sizes: "32x32", type: "image/png" },
     ],
-    apple: "/icons/apple-touch-icon.png",
+    apple: `${bp}/icons/apple-touch-icon.png`,
   },
   appleWebApp: {
     capable: true,

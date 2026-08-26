@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch, openExport } from "@/lib/client-api";
+
 import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -51,24 +53,24 @@ export function AdminView() {
 
   const { data: statsData } = useQuery({
     queryKey: ["admin-stats"],
-    queryFn: async () => (await fetch("/api/admin/stats")).json() as Promise<{ stats: AdminStats }>,
+    queryFn: async () => (await apiFetch("/api/admin/stats")).json() as Promise<{ stats: AdminStats }>,
     refetchInterval: 15000,
   });
 
   const { data: usersData } = useQuery({
     queryKey: ["admin-users"],
-    queryFn: async () => (await fetch("/api/admin/users")).json() as Promise<{ users: User[] }>,
+    queryFn: async () => (await apiFetch("/api/admin/users")).json() as Promise<{ users: User[] }>,
   });
 
   const { data: serverData } = useQuery({
     queryKey: ["admin-server"],
-    queryFn: async () => (await fetch("/api/admin/server")).json() as Promise<{ metrics: ServerMetrics }>,
+    queryFn: async () => (await apiFetch("/api/admin/server")).json() as Promise<{ metrics: ServerMetrics }>,
     refetchInterval: 10000,
   });
 
   const toggleUser = useMutation({
     mutationFn: async ({ userId, action }: { userId: string; action: "suspend" | "activate" }) => {
-      await fetch("/api/admin/users", {
+      await apiFetch("/api/admin/users", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, action }),
@@ -84,7 +86,7 @@ export function AdminView() {
     mutationFn: async (file: File) => {
       const fd = new FormData();
       fd.append("file", file);
-      const res = await fetch("/api/admin/import", { method: "POST", body: fd });
+      const res = await apiFetch("/api/admin/import", { method: "POST", body: fd });
       return res.json() as Promise<{ imported: number; skipped: number }>;
     },
     onSuccess: (data) => {
@@ -221,7 +223,7 @@ export function AdminView() {
                 <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t("admin.searchUsers")} className="ps-9" aria-label={t("admin.searchUsers")} />
               </div>
               {exports.map((ex) => (
-                <Button key={ex.kind} variant="glass" size="sm" onClick={() => window.open(`/api/admin/export?kind=${ex.kind}`, "_blank")}>
+                <Button key={ex.kind} variant="glass" size="sm" onClick={() => openExport(ex.kind)}>
                   <FileSpreadsheet className="size-4 text-emerald-600" />
                   {ex.label}
                 </Button>
@@ -229,7 +231,7 @@ export function AdminView() {
               <Button variant="glass" size="sm" onClick={() => fileRef.current?.click()}>
                 <Upload className="size-4 text-primary" /> {t("admin.importExcel")}
               </Button>
-              <Button variant="ghost" size="sm" onClick={() => window.open("/api/admin/export?kind=sample", "_blank")}>
+              <Button variant="ghost" size="sm" onClick={() => openExport("sample")}>
                 <Download className="size-4" /> {t("admin.downloadSample")}
               </Button>
               <input

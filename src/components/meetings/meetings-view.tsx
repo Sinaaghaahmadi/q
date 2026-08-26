@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch } from "@/lib/client-api";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
@@ -52,17 +54,17 @@ export function MeetingsView() {
 
   const { data: meetingsData } = useQuery({
     queryKey: ["meetings"],
-    queryFn: async () => (await fetch("/api/meetings")).json() as Promise<{ meetings: Meeting[] }>,
+    queryFn: async () => (await apiFetch("/api/meetings")).json() as Promise<{ meetings: Meeting[] }>,
   });
 
   const { data: usersData } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => (await fetch("/api/users")).json() as Promise<{ users: User[] }>,
+    queryFn: async () => (await apiFetch("/api/users")).json() as Promise<{ users: User[] }>,
   });
 
   const createMeeting = useMutation({
     mutationFn: async () => {
-      const res = await fetch("/api/meetings", {
+      const res = await apiFetch("/api/meetings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, type, hostId: currentUser?.id }),
@@ -79,7 +81,7 @@ export function MeetingsView() {
 
   const joinMeeting = useMutation({
     mutationFn: async (id: string) => {
-      await fetch(`/api/meetings/${id}`, {
+      await apiFetch(`/api/meetings/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "join", userId: currentUser?.id }),
@@ -109,7 +111,7 @@ export function MeetingsView() {
         meeting={activeMeeting}
         users={usersData?.users ?? []}
         onLeave={() => {
-          void fetch(`/api/meetings/${activeMeeting.id}`, {
+          void apiFetch(`/api/meetings/${activeMeeting.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ action: "leave", userId: currentUser.id }),
@@ -268,7 +270,7 @@ function MeetingRoom({ meeting, users, onLeave }: { meeting: Meeting; users: Use
 
   const toggleRecording = useMutation({
     mutationFn: async () => {
-      await fetch(`/api/meetings/${meeting.id}`, {
+      await apiFetch(`/api/meetings/${meeting.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: meeting.isRecording ? "stop-recording" : "start-recording" }),
@@ -491,7 +493,7 @@ function AiAssistantPanel({
   const generate = useMutation({
     mutationFn: async () => {
       const transcript = chatLog.map((m) => `${m.sender}: ${m.text}`).join("\n");
-      const res = await fetch("/api/ai", {
+      const res = await apiFetch("/api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mode, meetingTitle: meeting.title, transcript, topic, locale }),

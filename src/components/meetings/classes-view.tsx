@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch } from "@/lib/client-api";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -44,17 +46,17 @@ export function ClassesView() {
 
   const { data: classesData } = useQuery({
     queryKey: ["classes"],
-    queryFn: async () => (await fetch("/api/classes")).json() as Promise<{ classes: ClassSession[] }>,
+    queryFn: async () => (await apiFetch("/api/classes")).json() as Promise<{ classes: ClassSession[] }>,
   });
 
   const { data: usersData } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => (await fetch("/api/users")).json() as Promise<{ users: User[] }>,
+    queryFn: async () => (await apiFetch("/api/users")).json() as Promise<{ users: User[] }>,
   });
 
   const createClass = useMutation({
     mutationFn: async () => {
-      const res = await fetch("/api/classes", {
+      const res = await apiFetch("/api/classes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, teacherId: currentUser?.id }),
@@ -71,7 +73,7 @@ export function ClassesView() {
 
   const joinClass = useMutation({
     mutationFn: async (id: string) => {
-      await fetch("/api/classes", {
+      await apiFetch("/api/classes", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ classId: id, action: "join", userId: currentUser?.id }),
@@ -98,7 +100,7 @@ export function ClassesView() {
         cls={activeClass}
         users={usersData?.users ?? []}
         onLeave={() => {
-          void fetch("/api/classes", {
+          void apiFetch("/api/classes", {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ classId: activeClass.id, action: "leave", userId: currentUser.id }),
@@ -202,7 +204,7 @@ function ClassRoom({ cls, users, onLeave }: { cls: ClassSession; users: User[]; 
 
   const setAttendance = useMutation({
     mutationFn: async ({ userId, present }: { userId: string; present: boolean }) => {
-      await fetch("/api/classes", {
+      await apiFetch("/api/classes", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ classId: cls.id, action: "attendance", userId, present }),

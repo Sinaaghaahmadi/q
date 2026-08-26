@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch } from "@/lib/client-api";
+
 import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
@@ -43,14 +45,14 @@ export function CallsView() {
 
   const { data: usersData } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => (await fetch("/api/users")).json() as Promise<{ users: User[] }>,
+    queryFn: async () => (await apiFetch("/api/users")).json() as Promise<{ users: User[] }>,
   });
   const users = useMemo(() => new Map((usersData?.users ?? []).map((u) => [u.id, u])), [usersData]);
 
   const { data: callsData } = useQuery({
     queryKey: ["calls", currentUser?.id],
     queryFn: async () =>
-      (await fetch(`/api/calls?userId=${currentUser?.id}`)).json() as Promise<{ calls: Call[] }>,
+      (await apiFetch(`/api/calls?userId=${currentUser?.id}`)).json() as Promise<{ calls: Call[] }>,
     enabled: !!currentUser,
   });
 
@@ -62,7 +64,7 @@ export function CallsView() {
 
   const startCall = useMutation({
     mutationFn: async ({ peer, type }: { peer: User; type: "audio" | "video" }) => {
-      const res = await fetch("/api/calls", {
+      const res = await apiFetch("/api/calls", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type, initiatorId: currentUser?.id, peerId: peer.id }),
@@ -81,7 +83,7 @@ export function CallsView() {
   const endCall = useMutation({
     mutationFn: async () => {
       if (!active) return;
-      await fetch("/api/calls", {
+      await apiFetch("/api/calls", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ callId: active.call.id, duration: seconds }),

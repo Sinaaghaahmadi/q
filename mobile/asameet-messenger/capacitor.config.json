@@ -3,7 +3,7 @@
   "appName": "آسامیت پیام‌رسان",
   "webDir": "www",
   "server": {
-    "url": "https://asameet.vercel.app/?mode=messenger",
+    "url": "https://sinaaghaahmadi.github.io/q/?mode=messenger",
     "cleartext": false
   },
   "android": {
