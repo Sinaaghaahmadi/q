@@ -8,7 +8,7 @@ on:
         required: false
         default: "https://sinaaghaahmadi.github.io/q"
   push:
-    branches: [main]
+    branches: [main, claude/asameet-messaging-platform-hv7npi]
     paths:
       - "mobile/**"
       - ".github/workflows/android.yml"
