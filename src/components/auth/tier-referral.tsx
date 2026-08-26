@@ -4,10 +4,11 @@ import { Check, Copy, Gift, TrendingUp } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { TileHeading } from "@/components/brand/app-tile";
 import { useToast } from "@/components/ui/toast";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { formatAmount, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor } from "@/lib/money/minor";
@@ -83,14 +84,9 @@ export function TierAndReferral({
 
   return (
     <div className="grid gap-4 lg:grid-cols-2">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="size-4 text-brand-600" aria-hidden />
-            {t("tierTitle")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
+      <Card className="space-y-4 p-5">
+        <TileHeading hue="brand" icon={<TrendingUp />} title={t("tierTitle")} />
+        <div className="space-y-3">
           <div className="flex items-center justify-between gap-3">
             <Badge variant="brand">{t(`tier.${current.tier ?? "standard"}`)}</Badge>
             <span className="text-sm text-ink-600">
@@ -130,19 +126,17 @@ export function TierAndReferral({
               {t("volume", { amount: formatAmount(fromMinor(volume, "IRT"), "IRT", locale) })}
             </p>
           </div>
-        </CardContent>
+        </div>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Gift className="size-4 text-brand-600" aria-hidden />
-            {t("referralTitle")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-sm text-ink-600">{t("referralBody")}</p>
-
+      <Card className="space-y-4 p-5">
+        <TileHeading
+          hue="rose"
+          icon={<Gift />}
+          title={t("referralTitle")}
+          subtitle={t("referralBody")}
+        />
+        <div className="space-y-3">
           {referralCode ? (
             <div className="flex items-center gap-2">
               <code className="flex-1 rounded-xl bg-canvas px-3 py-2.5 font-mono text-sm" dir="ltr">
@@ -184,7 +178,7 @@ export function TierAndReferral({
               ) : null}
             </div>
           ) : null}
-        </CardContent>
+        </div>
       </Card>
     </div>
   );

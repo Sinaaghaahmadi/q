@@ -53,3 +53,43 @@ export function AppTile({
     </span>
   );
 }
+
+/**
+ * A section heading with its tile.
+ *
+ * The profile page is a stack of cards, and a card whose title is bare text
+ * reads as a paragraph with a bold first line. The same tile the menu rows
+ * carry marks each one as a *place* — and it costs nothing, because the icon
+ * and the hue already exist for that idea elsewhere in the product.
+ */
+export function TileHeading({
+  hue,
+  icon,
+  title,
+  subtitle,
+  action,
+  className,
+}: {
+  hue?: TileHue;
+  /** Already rendered. */
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: React.ReactNode;
+  action?: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("flex items-start gap-3.5", className)}>
+      <AppTile hue={hue} size="lg">
+        {icon}
+      </AppTile>
+      <div className="min-w-0 flex-1 pt-0.5">
+        <h2 className="text-sm font-semibold">{title}</h2>
+        {subtitle ? (
+          <div className="mt-1 text-sm leading-relaxed text-ink-600">{subtitle}</div>
+        ) : null}
+      </div>
+      {action ? <div className="shrink-0">{action}</div> : null}
+    </div>
+  );
+}

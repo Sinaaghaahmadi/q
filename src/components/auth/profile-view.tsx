@@ -1,9 +1,22 @@
 "use client";
 
-import { BadgeCheck, Bell, Clock3, LogOut, Smartphone, Wallet } from "lucide-react";
+import {
+  BadgeCheck,
+  Bell,
+  Clock3,
+  FileWarning,
+  History,
+  Hourglass,
+  LogOut,
+  ShieldAlert,
+  ShieldCheck,
+  Smartphone,
+  UserRound,
+  Wallet,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
-import { SecurityScene } from "@/components/brand/scenes";
+import { AppTile, TileHeading, type TileHue } from "@/components/brand/app-tile";
 import { NavGroup, NavRow } from "@/components/layout/nav-list";
 import { TwoFactor } from "@/components/auth/two-factor";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +35,21 @@ const KYC_VARIANT = {
   rejected: "down",
   unverified: "neutral",
 } as const;
+
+/**
+ * The identity tile says the state before the badge beside it is read.
+ *
+ * One icon with a coloured chip next to it makes the reader do the work twice —
+ * find the chip, then read it. An hourglass, a warning page and a struck shield
+ * are three different objects, and at a glance that *is* the answer.
+ */
+const KYC_TILE: Record<keyof typeof KYC_VARIANT, { hue: TileHue; icon: React.ReactNode }> = {
+  approved: { hue: "brand", icon: <BadgeCheck /> },
+  pending: { hue: "amber", icon: <Hourglass /> },
+  more_info_needed: { hue: "amber", icon: <FileWarning /> },
+  rejected: { hue: "rose", icon: <ShieldAlert /> },
+  unverified: { hue: "slate", icon: <UserRound /> },
+};
 
 export function ProfileView({
   profile,
@@ -59,9 +87,9 @@ export function ProfileView({
       {/* Identity status */}
       <Card className="p-5">
         <div className="flex items-start gap-4">
-          <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:text-brand-600">
-            <BadgeCheck className="size-5" />
-          </span>
+          <AppTile hue={KYC_TILE[status].hue} size="lg">
+            {KYC_TILE[status].icon}
+          </AppTile>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <p className="text-sm font-semibold">
@@ -113,24 +141,29 @@ export function ProfileView({
         />
       </NavGroup>
 
-      {/* Security */}
-      <Card className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center">
-        <SecurityScene size={96} label={t("security.title")} />
-        <div className="flex-1">
-          <h2 className="text-sm font-semibold">{t("security.title")}</h2>
-          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm leading-relaxed text-ink-600">
-            {t("security.body")}
-            <InfoHint term="twoFactor" />
-          </p>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <Badge variant="up">
-              <Smartphone className="size-3.5" />
-              {t("security.otpOn")}
-            </Badge>
-          </div>
-          <div className="mt-4 border-t border-ink-300/40 pt-4">
-            <TwoFactor isStaff={isStaff} />
-          </div>
+      {/* Security. The 96px illustration that opened this card was a second
+          visual language on a page that now speaks in tiles, and it took the
+          room the control underneath it needed. */}
+      <Card className="space-y-4 p-5">
+        <TileHeading
+          hue="indigo"
+          icon={<ShieldCheck />}
+          title={t("security.title")}
+          subtitle={
+            <span className="flex flex-wrap items-center gap-1.5">
+              {t("security.body")}
+              <InfoHint term="twoFactor" />
+            </span>
+          }
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge variant="up">
+            <Smartphone className="size-3.5" />
+            {t("security.otpOn")}
+          </Badge>
+        </div>
+        <div className="border-t border-ink-300/40 pt-4">
+          <TwoFactor isStaff={isStaff} />
         </div>
       </Card>
 
@@ -142,9 +175,13 @@ export function ProfileView({
       */}
       {/* Devices */}
       <Card className="p-5">
-        <h2 className="text-sm font-semibold">{t("devices.title")}</h2>
-        <p className="mt-1 text-sm text-ink-600">{t("devices.body")}</p>
-        <ul className="mt-3 divide-y divide-ink-300/40">
+        <TileHeading
+          hue="slate"
+          icon={<History />}
+          title={t("devices.title")}
+          subtitle={t("devices.body")}
+        />
+        <ul className="mt-4 divide-y divide-ink-300/40">
           {events.length === 0 ? (
             <li className="py-3 text-sm text-ink-600">{t("devices.none")}</li>
           ) : (
@@ -166,12 +203,19 @@ export function ProfileView({
         </ul>
       </Card>
 
-      {/* Only the way out. "Manage accounts" was a second door to the row at
-          the top of this page. */}
-      <Button variant="ghost" className="w-full sm:w-auto" onClick={signOut}>
-        <LogOut className="size-4 rtl:-scale-x-100" />
-        {t("signOut")}
-      </Button>
+      {/* The way out, shaped like the rows above it rather than like a button
+          floating under them. "Manage accounts" used to sit here too — a second
+          door to the first row at the top of this page. */}
+      <button
+        type="button"
+        onClick={signOut}
+        className="pressable flex w-full items-center gap-3 rounded-2xl border border-ink-300/50 bg-surface px-3.5 py-3 text-start transition-colors hover:bg-down/8"
+      >
+        <AppTile hue="rose">
+          <LogOut className="rtl:-scale-x-100" />
+        </AppTile>
+        <span className="flex-1 text-sm font-medium text-down-ink">{t("signOut")}</span>
+      </button>
     </div>
   );
 }
