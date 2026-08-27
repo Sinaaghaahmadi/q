@@ -160,7 +160,7 @@ export function OfferBoard({
       {/* Where the rial actually changes hands: a counter at a licensed
           office, not a promise between two strangers. */}
       <div className="flex items-start gap-3">
-        <CashPickupScene size={80} className="hidden sm:block" />
+        <CashPickupScene size={68} />
         <p className="flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
           {t("escrowNote")}
           <InfoHint term="escrow" />

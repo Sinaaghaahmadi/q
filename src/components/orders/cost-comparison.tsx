@@ -60,7 +60,7 @@ export function CostComparison({
 
   return (
     <Card className="flex items-start gap-3.5 p-5">
-      <SavingsScene size={76} className="hidden sm:block" />
+      <SavingsScene size={68} />
       <div className="min-w-0 flex-1 space-y-2">
         <h2 className="flex items-center gap-2 text-sm font-semibold">
           <Scale className="size-4 text-brand-600" aria-hidden />

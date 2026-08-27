@@ -68,7 +68,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
       <PageHeading hue="teal" icon={<LifeBuoy />} title={t("title")} subtitle={t("subtitle")} />
 
       <Card className="flex items-start gap-4 p-5">
-        <HelpScene size={92} className="hidden sm:block" />
+        <HelpScene size={76} />
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold">{t("howTitle")}</h2>
           <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("howBody")}</p>
