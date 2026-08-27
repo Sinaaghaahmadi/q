@@ -24,7 +24,8 @@
     "budget": "node scripts/check-budget.mjs",
     "messages:merge": "node scripts/merge-messages.mjs",
     "messages": "node scripts/check-messages.mjs",
-    "boundary": "node scripts/check-client-boundary.mjs"
+    "boundary": "node scripts/check-client-boundary.mjs",
+    "pwa": "node scripts/check-pwa.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
