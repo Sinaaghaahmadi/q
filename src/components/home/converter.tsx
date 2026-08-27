@@ -5,6 +5,7 @@ import { ArrowDownUp, MoveLeft, MoveRight } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { CurrencyPicker } from "@/components/home/currency-picker";
+import { ConversionScene } from "@/components/brand/scenes/market";
 import { RateStatus } from "@/components/rates/rate-status";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -115,7 +116,10 @@ export function Converter({ initialSnapshot, className }: ConverterProps) {
   return (
     <Card className={cn("relative overflow-hidden p-5 shadow-e2 sm:p-6", className)}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-base font-semibold">{t("title")}</h2>
+        <h2 className="flex items-center gap-2.5 text-base font-semibold">
+          <ConversionScene size={44} />
+          {t("title")}
+        </h2>
         <span className="flex items-center gap-2">
           <RateStatus snapshot={snapshot} />
           <InfoHint term="refresh" />

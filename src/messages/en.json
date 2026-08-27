@@ -1970,7 +1970,9 @@
     "subtitle": "Your message goes straight to the support queue. We answer within one business day.",
     "unavailableTitle": "Not available in this environment",
     "unavailableBody": "The database is not reachable. Try again in a moment.",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "howTitle": "How support works",
+    "howBody": "Your message reaches the support team and is answered right here; the conversation stays with you."
   },
   "p2p": {
     "metaTitle": "P2P marketplace",
@@ -2763,7 +2765,8 @@
     "errors": {
       "failed": "That did not go through. Try again.",
       "alreadyEscalated": "This ticket is already with the platform."
-    }
+    },
+    "allAnswered": "Every ticket has been answered."
   },
   "banks": {
     "melli": "Bank Melli",
@@ -3204,5 +3207,11 @@
     },
     "viewSite": "View the site",
     "signOut": "Sign out"
+  },
+  "pwa": {
+    "title": "Put Asa on your home screen",
+    "body": "It opens like an app, starts faster, and shows the last rates even offline.",
+    "cta": "Add to home screen",
+    "dismiss": "No thanks"
   }
 }

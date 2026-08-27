@@ -13,6 +13,7 @@ import { formatAmount, formatNumber, type AppLocale } from "@/lib/money/format";
 import { fromMinor, toMinor } from "@/lib/money/minor";
 import type { CurrencyCode } from "@/lib/rates/catalog";
 import { createClient } from "@/lib/supabase/client";
+import { ReputationScene } from "@/components/brand/scenes/market";
 import type { P2pOffer, Reputation } from "@/lib/supabase/types";
 
 export function OfferDetail({
@@ -112,7 +113,12 @@ export function OfferDetail({
               value={`${formatAmount(fromMinor(offer.min_slice_minor, have), have, locale)} ${have}`}
             />
           ) : null}
-          <Row label={t("makerLabel")} value={makerName ?? t("anonymousMaker")} />
+          <div className="flex items-center gap-3 py-3">
+            <ReputationScene size={64} />
+            <div className="min-w-0 flex-1">
+              <Row label={t("makerLabel")} value={makerName ?? t("anonymousMaker")} />
+            </div>
+          </div>
           <Row
             label={t("reputationLabel")}
             value={

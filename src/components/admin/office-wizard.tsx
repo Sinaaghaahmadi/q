@@ -8,6 +8,7 @@ import * as React from "react";
 import { EASE_IN } from "@/components/brand/scene";
 import { ProgressRail } from "@/components/kyc/progress-rail";
 import { Button } from "@/components/ui/button";
+import { OnboardOfficeScene } from "@/components/brand/scenes/staff";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -256,9 +257,14 @@ export function OfficeWizard({ defaults }: { defaults: Json | null }) {
       />
 
       <Card className="overflow-hidden">
-        <div className="border-b border-ink-300/40 bg-canvas/60 px-6 py-5">
-          <h2 className="text-lg font-bold">{t(`steps.${stepKey}.title`)}</h2>
-          <p className="mt-1 text-sm leading-relaxed text-ink-600">{t(`steps.${stepKey}.body`)}</p>
+        <div className="flex items-start gap-4 border-b border-ink-300/40 bg-canvas/60 px-6 py-5">
+          <OnboardOfficeScene size={72} className="hidden sm:block" />
+          <div className="min-w-0 flex-1">
+            <h2 className="text-lg font-bold">{t(`steps.${stepKey}.title`)}</h2>
+            <p className="mt-1 text-sm leading-relaxed text-ink-600">
+              {t(`steps.${stepKey}.body`)}
+            </p>
+          </div>
         </div>
 
         <AnimatePresence mode="wait" initial={false}>

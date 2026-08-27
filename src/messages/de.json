@@ -439,7 +439,9 @@
     "subtitle": "Ihre Nachricht geht direkt an das Support-Team. Wir antworten innerhalb eines Werktags.",
     "unavailableTitle": "In dieser Umgebung nicht verfügbar",
     "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
-    "backHome": "Zurück zur Startseite"
+    "backHome": "Zurück zur Startseite",
+    "howTitle": "So funktioniert der Support",
+    "howBody": "Ihre Nachricht erreicht das Support-Team und wird hier beantwortet; der Verlauf bleibt bei Ihnen."
   },
   "menu": {
     "title": "Menü",
@@ -1305,7 +1307,8 @@
     "errors": {
       "failed": "Das ging nicht durch. Versuchen Sie es erneut.",
       "alreadyEscalated": "Dieses Ticket liegt bereits bei der Plattform."
-    }
+    },
+    "allAnswered": "Alle Tickets wurden beantwortet."
   },
   "coins": {
     "metaTitle": "Goldmünzen kaufen — Asaex",
@@ -3204,5 +3207,11 @@
     },
     "viewSite": "Website ansehen",
     "signOut": "Abmelden"
+  },
+  "pwa": {
+    "title": "Asa auf den Startbildschirm legen",
+    "body": "Öffnet sich wie eine App, startet schneller und zeigt die letzten Kurse auch offline.",
+    "cta": "Zum Startbildschirm hinzufügen",
+    "dismiss": "Nein danke"
   }
 }

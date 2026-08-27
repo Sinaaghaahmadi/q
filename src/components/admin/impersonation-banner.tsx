@@ -4,6 +4,7 @@ import { Eye, LogOut } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { ImpersonationScene } from "@/components/brand/scenes/staff";
 import { Button } from "@/components/ui/button";
 import { useNow } from "@/lib/hooks/use-now";
 import { createClient } from "@/lib/supabase/client";
@@ -44,7 +45,8 @@ export function ImpersonationBanner({
       role="status"
       className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border-2 border-warn/40 bg-warn/10 px-4 py-3"
     >
-      <Eye className="size-5 shrink-0 text-warn" aria-hidden />
+      <ImpersonationScene size={56} />
+      <Eye className="size-5 shrink-0 text-warn sm:hidden" aria-hidden />
       <p className="text-sm font-medium">
         {name ? t("actingAs", { office: name }) : t("actingAsUnknown")}
       </p>

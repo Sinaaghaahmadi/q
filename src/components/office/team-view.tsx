@@ -4,6 +4,7 @@ import { CircleAlert, UserMinus, UserPlus } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { TeamScene } from "@/components/brand/scenes/staff";
 import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -207,10 +208,13 @@ export function TeamView({
           </label>
           <p className="text-sm text-ink-600">{t(`roleMeaning.${role}`)}</p>
 
-          <Button disabled={busy !== null || userId.trim().length === 0} onClick={grant}>
-            <UserPlus className="size-4" aria-hidden />
-            {busy === "new" ? t("working") : t("grant")}
-          </Button>
+          <div className="flex items-center gap-3">
+            <TeamScene size={72} className="hidden sm:block" />
+            <Button disabled={busy !== null || userId.trim().length === 0} onClick={grant}>
+              <UserPlus className="size-4" aria-hidden />
+              {busy === "new" ? t("working") : t("grant")}
+            </Button>
+          </div>
         </PanelSection>
       ) : (
         <p className="text-sm text-ink-600">{t("readOnly")}</p>

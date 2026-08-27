@@ -4,19 +4,22 @@ import {
   BadgeCheck,
   Bell,
   Clock3,
-  FileWarning,
   History,
-  Hourglass,
   LogOut,
-  ShieldAlert,
   ShieldCheck,
   Smartphone,
-  UserRound,
   Wallet,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
-import { AppTile, TileHeading, type TileHue } from "@/components/brand/app-tile";
+import { AppTile, TileHeading } from "@/components/brand/app-tile";
+import { ReviewScene } from "@/components/brand/scenes/core";
+import {
+  MoreInfoScene,
+  PhoneVerifiedScene,
+  RejectedScene,
+  VerifiedScene,
+} from "@/components/brand/scenes/identity";
 import { NavGroup, NavRow } from "@/components/layout/nav-list";
 import { TwoFactor } from "@/components/auth/two-factor";
 import { Badge } from "@/components/ui/badge";
@@ -43,12 +46,15 @@ const KYC_VARIANT = {
  * find the chip, then read it. An hourglass, a warning page and a struck shield
  * are three different objects, and at a glance that *is* the answer.
  */
-const KYC_TILE: Record<keyof typeof KYC_VARIANT, { hue: TileHue; icon: React.ReactNode }> = {
-  approved: { hue: "brand", icon: <BadgeCheck /> },
-  pending: { hue: "amber", icon: <Hourglass /> },
-  more_info_needed: { hue: "amber", icon: <FileWarning /> },
-  rejected: { hue: "rose", icon: <ShieldAlert /> },
-  unverified: { hue: "slate", icon: <UserRound /> },
+const KYC_SCENE: Record<
+  keyof typeof KYC_VARIANT,
+  React.ComponentType<{ size?: number; label?: string }>
+> = {
+  approved: VerifiedScene,
+  pending: ReviewScene,
+  more_info_needed: MoreInfoScene,
+  rejected: RejectedScene,
+  unverified: PhoneVerifiedScene,
 };
 
 export function ProfileView({
@@ -70,6 +76,7 @@ export function ProfileView({
   const router = useRouter();
 
   const status = profile?.kyc_status ?? "unverified";
+  const IdentityStatusScene = KYC_SCENE[status];
 
   async function signOut() {
     await fetch("/api/auth/signout", { method: "POST" });
@@ -87,9 +94,7 @@ export function ProfileView({
       {/* Identity status */}
       <Card className="p-5">
         <div className="flex items-start gap-4">
-          <AppTile hue={KYC_TILE[status].hue} size="lg">
-            {KYC_TILE[status].icon}
-          </AppTile>
+          <IdentityStatusScene size={96} label={t(`kyc.${status}`)} />
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <p className="text-sm font-semibold">

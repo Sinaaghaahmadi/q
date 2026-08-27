@@ -11,6 +11,7 @@ import {
   LivenessScene,
   ReviewScene,
 } from "@/components/brand/scenes/core";
+import { LimitsScene } from "@/components/brand/scenes/banking";
 import { ProgressRail } from "@/components/kyc/progress-rail";
 import { DocumentReader, type DocumentFacts } from "@/components/kyc/document-reader";
 import { UploadTile, type PreparedFile } from "@/components/kyc/upload-tile";
@@ -445,6 +446,9 @@ export function KycWizard({
                   <p className="mx-auto max-w-md text-sm leading-relaxed text-ink-600">
                     {t("steps.review.next")}
                   </p>
+                  {/* The reason any of this was asked for: the ceiling moves
+                      once the review comes back. */}
+                  <LimitsScene size={112} className="mx-auto" />
                 </>
               ) : (
                 <div className="space-y-3 text-start">

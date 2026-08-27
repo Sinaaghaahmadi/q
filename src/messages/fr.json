@@ -439,7 +439,9 @@
     "subtitle": "Votre message arrive directement à l'équipe d'assistance. Nous répondons sous un jour ouvré.",
     "unavailableTitle": "Indisponible dans cet environnement",
     "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
-    "backHome": "Retour à l'accueil"
+    "backHome": "Retour à l'accueil",
+    "howTitle": "Comment fonctionne l'assistance",
+    "howBody": "Votre message parvient à l'équipe d'assistance et reçoit une réponse ici même ; la conversation vous reste acquise."
   },
   "menu": {
     "title": "Menu",
@@ -1305,7 +1307,8 @@
     "errors": {
       "failed": "Cela n'est pas passé. Réessayez.",
       "alreadyEscalated": "Ce ticket est déjà chez la plateforme."
-    }
+    },
+    "allAnswered": "Tous les tickets ont reçu une réponse."
   },
   "coins": {
     "metaTitle": "Acheter des pièces d'or — Asaex",
@@ -3204,5 +3207,11 @@
     },
     "viewSite": "Voir le site",
     "signOut": "Se déconnecter"
+  },
+  "pwa": {
+    "title": "Ajoutez Asa à votre écran d'accueil",
+    "body": "Elle s'ouvre comme une application, démarre plus vite et affiche les derniers taux même hors ligne.",
+    "cta": "Ajouter à l'écran d'accueil",
+    "dismiss": "Non merci"
   }
 }

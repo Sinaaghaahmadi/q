@@ -3,6 +3,7 @@
 import { Scale } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
+import { SavingsScene } from "@/components/brand/scenes/rewards";
 import { Card } from "@/components/ui/card";
 import { InfoHint } from "@/components/ui/info-hint";
 import { formatNumber, type AppLocale } from "@/lib/money/format";
@@ -58,21 +59,24 @@ export function CostComparison({
   const pct = ((fees + rateShare) / tomanLeg) * 100;
 
   return (
-    <Card className="space-y-2 p-5">
-      <h2 className="flex items-center gap-2 text-sm font-semibold">
-        <Scale className="size-4 text-brand-600" aria-hidden />
-        {t("title")}
-        <InfoHint term="commission" />
-      </h2>
-      <p className="num text-sm leading-relaxed text-ink-600">
-        {t("body", {
-          toman: formatNumber(Math.round(totalToman), locale),
-          pct: formatNumber(pct, locale, { maximumFractionDigits: 2 }),
-        })}
-      </p>
-      <p className="num text-xs text-ink-600">
-        {t("basis", { mid: formatNumber(mid, locale, { maximumFractionDigits: 0 }) })}
-      </p>
+    <Card className="flex items-start gap-3.5 p-5">
+      <SavingsScene size={76} className="hidden sm:block" />
+      <div className="min-w-0 flex-1 space-y-2">
+        <h2 className="flex items-center gap-2 text-sm font-semibold">
+          <Scale className="size-4 text-brand-600" aria-hidden />
+          {t("title")}
+          <InfoHint term="commission" />
+        </h2>
+        <p className="num text-sm leading-relaxed text-ink-600">
+          {t("body", {
+            toman: formatNumber(Math.round(totalToman), locale),
+            pct: formatNumber(pct, locale, { maximumFractionDigits: 2 }),
+          })}
+        </p>
+        <p className="num text-xs text-ink-600">
+          {t("basis", { mid: formatNumber(mid, locale, { maximumFractionDigits: 0 }) })}
+        </p>
+      </div>
     </Card>
   );
 }

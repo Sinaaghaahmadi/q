@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { Converter } from "@/components/home/converter";
 import { RateStrip } from "@/components/home/rate-strip";
+import { InstallCard } from "@/components/layout/install-card";
 import { HomeServices } from "@/components/home/services";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
@@ -66,6 +67,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <RateStrip initialSnapshot={snapshot} />
 
       <HomeServices />
+
+      <InstallCard />
     </div>
   );
 }

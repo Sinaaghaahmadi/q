@@ -4,6 +4,7 @@ import { CircleHelp, RefreshCw, Send, TrendingDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { RateLockScene } from "@/components/brand/scenes/money";
 import { PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
 import { RateStatus } from "@/components/rates/rate-status";
@@ -293,6 +294,9 @@ export function TransferQuote({ quote, from, to, snapshot, gate, accounts }: Tra
       <Card className="overflow-hidden">
         {/* Rate lock preview: visible countdown, one-tap re-quote. */}
         <div className="flex items-center justify-between gap-4 border-b border-ink-300/40 bg-canvas/60 p-5">
+          {/* Hidden on a phone, where the countdown ring and the sentence
+              already fill the row. */}
+          {expired ? null : <RateLockScene size={76} className="hidden sm:block" />}
           <div className="space-y-1">
             <p className="text-sm font-semibold">{expired ? t("lockExpired") : t("lockActive")}</p>
             <p className="max-w-sm text-xs leading-relaxed text-ink-600">{t("lockNote")}</p>

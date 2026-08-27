@@ -4,6 +4,8 @@ import { Handshake, Plus, ShieldCheck, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
+
+import { CashPickupScene } from "@/components/brand/scenes/money";
 import { AppTile } from "@/components/brand/app-tile";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -155,10 +157,15 @@ export function OfferBoard({
         </ul>
       )}
 
-      <p className="flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
-        {t("escrowNote")}
-        <InfoHint term="escrow" />
-      </p>
+      {/* Where the rial actually changes hands: a counter at a licensed
+          office, not a promise between two strangers. */}
+      <div className="flex items-start gap-3">
+        <CashPickupScene size={80} className="hidden sm:block" />
+        <p className="flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+          {t("escrowNote")}
+          <InfoHint term="escrow" />
+        </p>
+      </div>
     </div>
   );
 }

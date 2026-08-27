@@ -4,6 +4,7 @@ import { ArrowUpCircle, CircleAlert, Clock3 } from "lucide-react";
 import { useFormatter, useNow, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { TicketAnsweredScene } from "@/components/brand/scenes/support";
 import { TicketScene } from "@/components/brand/scenes/support";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -128,8 +129,14 @@ export function TicketQueue({
 
       {visible.length === 0 ? (
         <Card className="flex flex-col items-center gap-3 p-8 text-center">
-          <TicketScene size={120} label={t("empty")} />
-          <p className="text-sm text-ink-600">{t("empty")}</p>
+          {/* Nothing open because everything was answered is a different day
+              from nothing filed at all. */}
+          {rows.length > 0 ? (
+            <TicketAnsweredScene size={120} label={t("allAnswered")} />
+          ) : (
+            <TicketScene size={120} label={t("empty")} />
+          )}
+          <p className="text-sm text-ink-600">{rows.length > 0 ? t("allAnswered") : t("empty")}</p>
         </Card>
       ) : (
         <div className="list-rise space-y-3">

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
+import { FailedLegScene } from "@/components/brand/scenes/money";
 import { actionsFor, needsReason } from "@/lib/orders/flow";
 import { createClient } from "@/lib/supabase/client";
 import type { OrderActorRole, OrderState } from "@/lib/supabase/types";
@@ -89,6 +90,12 @@ export function OrderActions({
             className="mt-2 w-full rounded-xl border border-ink-300 bg-surface p-3 text-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-600/25 focus:outline-none"
           />
         </div>
+      ) : null}
+
+      {/* The money has left and the recipient has not confirmed: if something
+          went wrong, this is where it gets said. */}
+      {state === "foreign_leg_sent" && actions.includes("disputed") ? (
+        <FailedLegScene size={84} className="mx-auto" />
       ) : null}
 
       <div className="flex flex-wrap gap-2">

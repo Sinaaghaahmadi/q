@@ -2,6 +2,7 @@ import { LifeBuoy } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { HelpScene } from "@/components/brand/scenes/support";
 import { PageHeading } from "@/components/brand/app-tile";
 import { Conversation } from "@/components/chat/conversation";
 import { EmptyState } from "@/components/layout/empty-state";
@@ -65,6 +66,14 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
   return (
     <div className="mx-auto max-w-2xl space-y-5 py-4">
       <PageHeading hue="teal" icon={<LifeBuoy />} title={t("title")} subtitle={t("subtitle")} />
+
+      <Card className="flex items-start gap-4 p-5">
+        <HelpScene size={92} className="hidden sm:block" />
+        <div className="min-w-0 flex-1">
+          <h2 className="text-sm font-semibold">{t("howTitle")}</h2>
+          <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("howBody")}</p>
+        </div>
+      </Card>
 
       <Card className="p-5">
         <Conversation
