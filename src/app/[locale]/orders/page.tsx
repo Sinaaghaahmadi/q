@@ -4,10 +4,8 @@ import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
-import { OrdersEmptyScene } from "@/components/brand/scenes";
 import { EmptyState } from "@/components/layout/empty-state";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link, redirect } from "@/i18n/navigation";
 import { formatAmount, formatDate, type AppLocale } from "@/lib/money/format";
@@ -34,18 +32,18 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
   const t = await getTranslations("orders");
   const appLocale = (await getLocale()) as AppLocale;
 
-  if (!isSupabaseConfigured()) {
-    return (
-      <EmptyState
-        icon={ReceiptText}
-        hue="brand"
-        title={t("emptyTitle")}
-        description={t("emptyBody")}
-        ctaLabel={t("cta")}
-        ctaHref="/transfer/new"
-      />
-    );
-  }
+  const empty = (
+    <EmptyState
+      icon={ReceiptText}
+      hue="brand"
+      title={t("emptyTitle")}
+      description={t("emptyBody")}
+      ctaLabel={t("cta")}
+      ctaHref="/transfer/new"
+    />
+  );
+
+  if (!isSupabaseConfigured()) return empty;
 
   const session = await getSessionProfile();
   if (!session?.user) {
@@ -62,18 +60,7 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
     .order("created_at", { ascending: false })
     .limit(50);
 
-  if (!orders || orders.length === 0) {
-    return (
-      <div className="mx-auto flex max-w-md flex-col items-center py-16 text-center">
-        <OrdersEmptyScene size={150} label={t("emptyTitle")} />
-        <h1 className="mt-6 text-xl font-bold">{t("emptyTitle")}</h1>
-        <p className="mt-2 text-sm leading-relaxed text-ink-600">{t("emptyBody")}</p>
-        <Button asChild className="mt-6">
-          <Link href="/transfer/new">{t("cta")}</Link>
-        </Button>
-      </div>
-    );
-  }
+  if (!orders || orders.length === 0) return empty;
 
   return (
     <div className="space-y-5 py-4">

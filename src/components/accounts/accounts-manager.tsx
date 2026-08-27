@@ -4,9 +4,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Archive, CircleCheck, CircleX, Landmark, Plus, Wallet } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
-import { PageHeading } from "@/components/brand/app-tile";
+import { AppTile, PageHeading } from "@/components/brand/app-tile";
 import { EASE_IN } from "@/components/brand/scene";
-import { AccountsScene } from "@/components/brand/scenes";
 import { CoinIcon } from "@/components/brand/coin";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -69,7 +68,11 @@ export function AccountsManager({ initial }: { initial: BeneficiaryAccount[] }) 
 
       {accounts.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 p-10 text-center">
-          <AccountsScene size={140} label={t("emptyTitle")} />
+          {/* Same tile as the page title above it and the row in the profile
+              that leads here, rather than a third drawing of a bank. */}
+          <AppTile hue="brand" size="xl">
+            <Wallet />
+          </AppTile>
           <div>
             <h2 className="text-lg font-semibold">{t("emptyTitle")}</h2>
             <p className="mx-auto mt-1 max-w-sm text-sm leading-relaxed text-ink-600">
