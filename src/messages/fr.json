@@ -3134,14 +3134,40 @@
     "scenes": {
       "description": "Chaque scène repose sur un même dispositif : le disque teinté de la marque, l'ombre de contact, et la même épaisseur de trait et silhouette de pièce que le logo et les icônes de devises. SVG + Framer Motion, quelques ko chacune, entièrement statiques sous le réglage de réduction des animations.",
       "replay": "Tout rejouer",
-      "items": {
-        "otp": "Réception d'un code à usage unique",
-        "identity": "Saisie des informations",
-        "document": "Scan et tampon du document",
-        "liveness": "Photo en direct",
-        "review": "En cours d'examen",
-        "success": "Abouti",
-        "matching": "Attribution d'un bureau"
+      "count": "{count} scènes",
+      "groups": {
+        "onboarding": {
+          "title": "Connexion et vérification d'identité",
+          "body": "Du code à usage unique au verdict qui revient : accepté, complément demandé, ou refusé."
+        },
+        "order": {
+          "title": "Le cycle du transfert",
+          "body": "Chaque état que traverse un transfert — du devis au paiement du bénéficiaire, et les trajets qui finissent mal."
+        },
+        "banking": {
+          "title": "Comptes et rails bancaires",
+          "body": "Un numéro vérifié, une carte conservée, et le plafond que l'identité relève."
+        },
+        "market": {
+          "title": "Le marché",
+          "body": "Le tableau des taux, l'alerte de prix, l'or, et le marché entre particuliers."
+        },
+        "rewards": {
+          "title": "Niveau et récompenses",
+          "body": "Les deux endroits où ce produit paie le client, et non l'inverse."
+        },
+        "support": {
+          "title": "Conversation et aide",
+          "body": "Chaque transfert porte un fil de discussion ; voici les formes qu'il prend."
+        },
+        "staff": {
+          "title": "Panneaux bureau et plateforme",
+          "body": "De l'autre côté du guichet : la boîte de réception, les taux du jour, la trésorerie, le règlement et la piste d'audit."
+        },
+        "states": {
+          "title": "États vides et erreurs",
+          "body": "Une liste vide, une porte qui n'est pas la vôtre, une mauvaise adresse, et plus de réseau — quatre messages, quatre dessins."
+        }
       }
     },
     "tiles": {

@@ -3,7 +3,7 @@
 import { ArrowRight, CircleCheck } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
-import { OtpScene, SuccessScene } from "@/components/brand/scenes";
+import { OtpScene, SuccessScene } from "@/components/brand/scenes/core";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

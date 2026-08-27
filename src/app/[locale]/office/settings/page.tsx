@@ -2,6 +2,7 @@ import { Building2 } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { MaintenanceScene, NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfficeIdentityCard } from "@/components/office/office-identity-card";
 import { OfficeSettingsForm } from "@/components/office/office-settings-form";
@@ -37,7 +38,7 @@ export default async function OfficeSettingsPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="slate"
+        scene={MaintenanceScene}
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -56,7 +57,7 @@ export default async function OfficeSettingsPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("notAMemberTitle")}
         description={t("notAMemberBody")}
         ctaLabel={t("backHome")}
@@ -78,7 +79,7 @@ export default async function OfficeSettingsPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("notAMemberTitle")}
         description={t("notAMemberBody")}
         ctaLabel={t("backHome")}

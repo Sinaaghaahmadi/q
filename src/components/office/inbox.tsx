@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import { InfoHint } from "@/components/ui/info-hint";
 import { CoinIcon } from "@/components/brand/coin";
-import { MatchingScene } from "@/components/brand/scenes";
+import { MatchingScene } from "@/components/brand/scenes/core";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";

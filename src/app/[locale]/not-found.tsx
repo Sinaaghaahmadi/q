@@ -1,6 +1,7 @@
 import { Compass } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import * as React from "react";
+import { NotFoundScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 
 export default async function NotFound() {
@@ -8,7 +9,7 @@ export default async function NotFound() {
   return (
     <EmptyState
       icon={Compass}
-      hue="sky"
+      scene={NotFoundScene}
       title={t("title")}
       description={t("body")}
       ctaLabel={t("cta")}

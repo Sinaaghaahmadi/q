@@ -8,6 +8,13 @@ import { Link } from "@/i18n/navigation";
 interface EmptyStateProps {
   icon: LucideIcon;
   /**
+   * An animated scene, for the screens where the emptiness is a *moment* —
+   * a wrong address, a lost connection, a door that is not yours — rather
+   * than a list that will fill up on its own. When present it replaces the
+   * tile; `icon` stays required so every caller has a fallback shape.
+   */
+  scene?: React.ComponentType<{ size?: number; label?: string }>;
+  /**
    * Which of the seven tile hues this emptiness means. A list with nothing in
    * it yet is not the same event as a door that is not yours, and the colour
    * says which before the sentence under it is read.
@@ -37,6 +44,7 @@ interface EmptyStateProps {
  */
 export function EmptyState({
   icon: Icon,
+  scene: SceneComponent,
   hue = "brand",
   title,
   description,
@@ -46,9 +54,13 @@ export function EmptyState({
 }: EmptyStateProps) {
   return (
     <div className="mx-auto flex max-w-md flex-col items-center py-16 text-center">
-      <AppTile hue={hue} size="xl">
-        <Icon />
-      </AppTile>
+      {SceneComponent ? (
+        <SceneComponent size={148} label={title} />
+      ) : (
+        <AppTile hue={hue} size="xl">
+          <Icon />
+        </AppTile>
+      )}
       <h1 className="mt-6 text-xl font-bold">{title}</h1>
       <p className="mt-2 text-sm leading-relaxed text-ink-600">{description}</p>
       {phaseLabel ? (

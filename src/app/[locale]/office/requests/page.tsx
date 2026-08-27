@@ -2,6 +2,7 @@ import { Building2, CircleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { MaintenanceScene, NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfficeShell } from "@/components/office/office-shell";
 import { RequestsQueue } from "@/components/office/requests-queue";
@@ -54,7 +55,7 @@ export default async function OfficeRequestsPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="slate"
+        scene={MaintenanceScene}
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -72,7 +73,7 @@ export default async function OfficeRequestsPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="indigo"
+        scene={NoAccessScene}
         title={shell("notAMemberTitle")}
         description={shell("notAMemberBody")}
         ctaLabel={shell("backHome")}

@@ -619,14 +619,40 @@
     "scenes": {
       "description": "Every scene is built on one rig: the brand-tinted disc, the contact shadow, and the same stroke weight and coin silhouette as the logo and currency icons. SVG + Framer Motion, a few KB each, fully static under the OS reduce-motion setting.",
       "replay": "Replay all",
-      "items": {
-        "otp": "Receiving a one-time code",
-        "identity": "Filling in details",
-        "document": "Document scan & stamp",
-        "liveness": "Live photo",
-        "review": "Under review",
-        "success": "Completed",
-        "matching": "Matching an office"
+      "count": "{count} scenes",
+      "groups": {
+        "onboarding": {
+          "title": "Signing in and proving who you are",
+          "body": "From the one-time code to the verdict that comes back: approved, more needed, or refused."
+        },
+        "order": {
+          "title": "The order machine",
+          "body": "Every state a transfer takes — from the quote to the recipient being paid, and the paths that do not end well."
+        },
+        "banking": {
+          "title": "Accounts and bank rails",
+          "body": "An account number being checked, a card kept for next time, and the ceiling identity raises."
+        },
+        "market": {
+          "title": "The market",
+          "body": "The rate board, a price alert, gold, and the peer-to-peer side."
+        },
+        "rewards": {
+          "title": "Tier and rewards",
+          "body": "The two places this product pays the customer rather than the other way round."
+        },
+        "support": {
+          "title": "Conversation and help",
+          "body": "Every transfer has a thread attached; these are the shapes it takes."
+        },
+        "staff": {
+          "title": "Office and platform panels",
+          "body": "The other side of the counter: the inbox, the day's rates, the float, settlement, and the audit trail."
+        },
+        "states": {
+          "title": "Empty and error states",
+          "body": "An empty list, a door that is not yours, a wrong address, and no network — four different messages, four different drawings."
+        }
       }
     },
     "tiles": {

@@ -11,6 +11,7 @@ import {
   type TrialRow,
   type TxnLine,
 } from "@/components/admin/finance-view";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -99,7 +100,7 @@ export default async function AdminFinancePage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={shell("forbiddenTitle")}
         description={shell("forbiddenBody")}
         ctaLabel={shell("backHome")}

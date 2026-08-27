@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Mail, ShieldCheck, Smartphone } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
-import { OtpScene, SuccessScene } from "@/components/brand/scenes";
+import { OtpScene, SuccessScene } from "@/components/brand/scenes/core";
 import { EASE_IN } from "@/components/brand/scene";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

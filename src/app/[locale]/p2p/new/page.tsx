@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { PageHeading } from "@/components/brand/app-tile";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfferComposer } from "@/components/p2p/offer-composer";
 import { redirect } from "@/i18n/navigation";
@@ -48,7 +49,7 @@ export default async function NewOfferPage({ params }: { params: Promise<{ local
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("compose.verifyTitle")}
         description={t("compose.verifyBody")}
         ctaLabel={t("compose.verifyCta")}

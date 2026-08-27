@@ -10,7 +10,7 @@ import {
   IdentityScene,
   LivenessScene,
   ReviewScene,
-} from "@/components/brand/scenes";
+} from "@/components/brand/scenes/core";
 import { ProgressRail } from "@/components/kyc/progress-rail";
 import { DocumentReader, type DocumentFacts } from "@/components/kyc/document-reader";
 import { UploadTile, type PreparedFile } from "@/components/kyc/upload-tile";

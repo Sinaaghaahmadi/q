@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { UserDetail, type ReferralRow } from "@/components/admin/user-detail";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { LOGINS_SHOWN, ORDERS_SHOWN } from "@/lib/admin/filters";
 import { redirect } from "@/i18n/navigation";
@@ -68,7 +69,7 @@ export default async function AdminUserDetailPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

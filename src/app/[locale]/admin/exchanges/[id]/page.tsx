@@ -6,6 +6,7 @@ import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { OfficeConfig } from "@/components/admin/office-config";
 import { OfficeVerification } from "@/components/admin/office-verification";
+import { MaintenanceScene, NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -41,7 +42,7 @@ export default async function AdminExchangeDetailPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="slate"
+        scene={MaintenanceScene}
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -55,7 +56,7 @@ export default async function AdminExchangeDetailPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

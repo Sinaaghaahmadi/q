@@ -7,7 +7,7 @@ import * as React from "react";
 import { InfoHint } from "@/components/ui/info-hint";
 import { AppTile } from "@/components/brand/app-tile";
 import { EASE_IN } from "@/components/brand/scene";
-import { ReviewScene } from "@/components/brand/scenes";
+import { ReviewScene } from "@/components/brand/scenes/core";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";

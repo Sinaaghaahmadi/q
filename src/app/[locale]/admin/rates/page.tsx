@@ -9,6 +9,7 @@ import {
   type OfficeRef,
   type SpreadBounds,
 } from "@/components/admin/rates-admin";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { CommissionSchedule } from "@/components/pricing/commission-schedule";
 import { SPREAD_BOUNDS_KEY } from "@/lib/admin/filters";
@@ -79,7 +80,7 @@ export default async function AdminRatesPage({ params }: { params: Promise<{ loc
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={shell("forbiddenTitle")}
         description={shell("forbiddenBody")}
         ctaLabel={shell("backHome")}

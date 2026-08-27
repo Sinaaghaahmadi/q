@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ContentEditor } from "@/components/admin/content-editor";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -48,7 +49,7 @@ export default async function AdminContentPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

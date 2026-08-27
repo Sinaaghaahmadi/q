@@ -8,6 +8,7 @@ import {
   type FlaggedMessage,
   type SanctionsRow,
 } from "@/components/admin/compliance-view";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { THRESHOLD_KEYS } from "@/lib/admin/filters";
 import { redirect } from "@/i18n/navigation";
@@ -56,7 +57,7 @@ export default async function AdminCompliancePage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

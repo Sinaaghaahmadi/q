@@ -4,6 +4,7 @@ import { Check, Clock, ShieldCheck } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
+import { OrderStateScene } from "@/components/orders/state-scene";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { InfoHint } from "@/components/ui/info-hint";
@@ -62,7 +63,13 @@ export function PublicStatus({ status }: { status: PublicStatusPayload }) {
         <p className="font-mono text-xs text-ink-600" dir="ltr">
           {status.public_ref}
         </p>
-        <CoinIcon code={receive} size={64} className="mx-auto" />
+        {/* The state, drawn, above the amount. A recipient tracking a transfer
+            has no account here and often no shared language with the sender —
+            the picture is the part of this page that always lands. */}
+        <div className="flex justify-center">
+          <OrderStateScene state={status.state} size={104} label={states(status.state)} />
+        </div>
+        <CoinIcon code={receive} size={56} className="mx-auto" />
         <div>
           <p className="text-sm text-ink-600">{t("arriving")}</p>
           <p className="num mt-1 text-3xl font-bold">

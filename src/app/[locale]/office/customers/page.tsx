@@ -2,6 +2,7 @@ import { Building2 } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { MaintenanceScene, NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { CustomerList, type CustomerRow } from "@/components/office/customer-list";
 import { OfficeShell } from "@/components/office/office-shell";
@@ -52,7 +53,7 @@ export default async function OfficeCustomersPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="slate"
+        scene={MaintenanceScene}
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -70,7 +71,7 @@ export default async function OfficeCustomersPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="indigo"
+        scene={NoAccessScene}
         title={shell("notAMemberTitle")}
         description={shell("notAMemberBody")}
         ctaLabel={shell("backHome")}

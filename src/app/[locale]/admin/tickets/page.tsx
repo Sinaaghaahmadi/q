@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { TicketQueue } from "@/components/support/ticket-queue";
 import { redirect } from "@/i18n/navigation";
@@ -45,7 +46,7 @@ export default async function AdminTicketsPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={admin("unavailableTitle")}
         description={admin("unavailableBody")}
         ctaLabel={admin("backHome")}
@@ -59,7 +60,7 @@ export default async function AdminTicketsPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={admin("forbiddenTitle")}
         description={admin("forbiddenBody")}
         ctaLabel={admin("backHome")}

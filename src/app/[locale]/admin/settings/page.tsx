@@ -5,6 +5,7 @@ import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { FeatureFlags } from "@/components/admin/feature-flags";
 import { StaffSecurity, type StaffMfaState } from "@/components/admin/staff-security";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -49,7 +50,7 @@ export default async function AdminSettingsPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

@@ -3134,14 +3134,40 @@
     "scenes": {
       "description": "Jede Szene steht auf demselben Gerüst: die markenfarbene Scheibe, der Kontaktschatten und dieselbe Strichstärke und Münzsilhouette wie Logo und Währungssymbole. SVG mit Framer Motion, je wenige kB, unter der Systemeinstellung zur Bewegungsreduktion vollständig statisch.",
       "replay": "Alle erneut abspielen",
-      "items": {
-        "otp": "Einmalcode wird empfangen",
-        "identity": "Angaben ausfüllen",
-        "document": "Dokument scannen und stempeln",
-        "liveness": "Live-Foto",
-        "review": "In Prüfung",
-        "success": "Abgeschlossen",
-        "matching": "Wechselstube wird zugeordnet"
+      "count": "{count} Szenen",
+      "groups": {
+        "onboarding": {
+          "title": "Anmeldung und Identitätsprüfung",
+          "body": "Vom Einmalcode bis zum Bescheid: bestätigt, Unterlagen fehlen, oder abgelehnt."
+        },
+        "order": {
+          "title": "Der Ablauf einer Überweisung",
+          "body": "Jeder Zustand, den eine Überweisung durchläuft — vom Angebot bis zur Auszahlung, und die Wege, die nicht gut enden."
+        },
+        "banking": {
+          "title": "Konten und Bankwege",
+          "body": "Eine geprüfte Kontonummer, eine gespeicherte Karte, und das Limit, das die Identität anhebt."
+        },
+        "market": {
+          "title": "Der Markt",
+          "body": "Die Kurstafel, der Kurs-Alarm, Gold, und der Markt zwischen Privatpersonen."
+        },
+        "rewards": {
+          "title": "Stufe und Prämien",
+          "body": "Die zwei Stellen, an denen dieses Produkt an den Kunden zahlt statt umgekehrt."
+        },
+        "support": {
+          "title": "Gespräch und Hilfe",
+          "body": "Zu jeder Überweisung gehört ein Gesprächsfaden; das sind seine Formen."
+        },
+        "staff": {
+          "title": "Wechselstuben- und Plattform-Panel",
+          "body": "Die andere Seite des Schalters: Posteingang, Tageskurse, Liquidität, Abrechnung und Prüfspur."
+        },
+        "states": {
+          "title": "Leere Zustände und Fehler",
+          "body": "Eine leere Liste, eine Tür, die nicht deine ist, eine falsche Adresse, und kein Netz — vier Meldungen, vier Zeichnungen."
+        }
       }
     },
     "tiles": {

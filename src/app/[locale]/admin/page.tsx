@@ -27,6 +27,7 @@ import {
   type CorridorSlice,
   type MonthBar,
 } from "@/components/admin/volume-chart";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/auth/admin-context";
@@ -113,7 +114,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={shell("unavailableTitle")}
         description={shell("unavailableBody")}
         ctaLabel={shell("backHome")}
@@ -127,7 +128,7 @@ export default async function AdminHomePage({ params }: { params: Promise<{ loca
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={shell("forbiddenTitle")}
         description={shell("forbiddenBody")}
         ctaLabel={shell("backHome")}

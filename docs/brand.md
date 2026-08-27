@@ -52,7 +52,7 @@ tokens, never the series color.
   (`src/components/brand/app-tile.tsx`, `.app-tile` in `globals.css`) — light
   from above, a hairline along the top edge, a gloss over the upper half, a
   specular ellipse, and a shadow cast in the tile's own colour. It carries a
-  lucide glyph in white, and it is what marks a *place*: a row in the
+  lucide glyph in white, and it is what marks a _place_: a row in the
   navigation list, a card heading, a page title, an empty screen.
   - **Seven hues, seven meanings**, not fourteen decorative ones: `brand`
     money, `indigo` authority and security, `sky` people and contact, `teal`
@@ -67,10 +67,30 @@ tokens, never the series color.
     component passed as a prop cannot cross from a server component to a client
     one, and takes the page down with a runtime 500 that neither `tsc` nor
     `next build` catches.
+- **Animated scenes (68):** `src/components/brand/scenes/` — one rig
+  (`scene.tsx`: brand-tinted disc, contact shadow, 120×120 field, the logo's
+  rounded 3-unit stroke) and one kit of recurring objects (`_kit.tsx`: the
+  handset, the sheet of paper, the bank card, the counter, the vault, the
+  person). SVG + Framer Motion, a few KB each, colour only from tokens, static
+  under `prefers-reduced-motion`.
+  - **Split by subject, not by screen**, because the same drawing serves both
+    sides of the counter: `core` (sign-in and the KYC wizard), `identity` (the
+    verdicts), `money` (the order machine), `banking`, `market`, `rewards`,
+    `support`, `staff`, `states`.
+  - **A scene marks a moment; a tile marks a place or a void.** An order that
+    is waiting for a deposit is a moment. A row in a menu is a place. A list
+    that will fill up on its own is a void, and keeps its tile.
+  - **Import the leaf module, never the barrel.** Every scene module is a
+    client module, so one name taken from `@/components/brand/scenes` pulls all
+    68 into that route — which put three admin routes over the performance
+    budget the first time these were wired. `pnpm budget` is what catches it.
+  - `OrderStateScene` maps all 18 order states to a scene, exhaustively, so a
+    state added to the machine without a drawing fails the build rather than
+    rendering a blank card at somebody whose money is mid-transfer.
 - **The boundary:** 3D is for currencies, product concepts, and spot
   illustrations. Functional micro-UI (chevrons, close, search, form
   affordances) stays a 2 px line set (lucide) — 3D at 16 px is noise, not
-  polish. A lucide glyph *inside* a tile is the one crossing: the tile is the
+  polish. A lucide glyph _inside_ a tile is the one crossing: the tile is the
   object, the stroke is only its label.
 - Roadmap: true rendered (blender/spline) coin + feature set replaces the
   generated rig at the same filenames when produced; Lottie/Rive narrative

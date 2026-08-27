@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { AdminUserTable, type AccessFilter, type UserRow } from "@/components/admin/user-table";
+import { NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { KYC_STATUSES } from "@/lib/admin/filters";
 import { redirect } from "@/i18n/navigation";
@@ -70,7 +71,7 @@ export default async function AdminUsersPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("forbiddenTitle")}
         description={t("forbiddenBody")}
         ctaLabel={t("backHome")}

@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
+import { SearchEmptyScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OrderChat } from "@/components/chat/order-chat";
 import { CostComparison } from "@/components/orders/cost-comparison";
 import { ShareStatus } from "@/components/orders/share-status";
 import { OrderActions } from "@/components/orders/order-actions";
+import { OrderStateScene } from "@/components/orders/state-scene";
 import { OrderTimeline } from "@/components/orders/order-timeline";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -42,7 +44,12 @@ export default async function OrderDetailPage({
 
   if (!isSupabaseConfigured()) {
     return (
-      <EmptyState icon={Compass} hue="sky" title={t("notFound")} description={t("emptyBody")} />
+      <EmptyState
+        icon={Compass}
+        scene={SearchEmptyScene}
+        title={t("notFound")}
+        description={t("emptyBody")}
+      />
     );
   }
 
@@ -64,7 +71,12 @@ export default async function OrderDetailPage({
 
   if (!order) {
     return (
-      <EmptyState icon={Compass} hue="sky" title={t("notFound")} description={t("emptyBody")} />
+      <EmptyState
+        icon={Compass}
+        scene={SearchEmptyScene}
+        title={t("notFound")}
+        description={t("emptyBody")}
+      />
     );
   }
 
@@ -96,8 +108,14 @@ export default async function OrderDetailPage({
         <Badge variant={stateTone(order.state)}>{t(`state.${order.state}`)}</Badge>
       </div>
 
-      <Card className="p-5">
-        <p className="text-sm leading-relaxed text-ink-600">{t(`stateBody.${order.state}`)}</p>
+      {/* The state, drawn. Eighteen states and a sentence each is a lot to
+          read on a phone while worrying about money; the picture says which
+          one this is before the sentence is. */}
+      <Card className="flex items-center gap-4 p-5">
+        <OrderStateScene state={order.state} size={92} />
+        <p className="flex-1 text-sm leading-relaxed text-ink-600">
+          {t(`stateBody.${order.state}`)}
+        </p>
       </Card>
 
       {/* The two legs */}

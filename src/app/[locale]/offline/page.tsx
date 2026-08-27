@@ -2,6 +2,7 @@ import { WifiOff } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { OfflineScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 
 export async function generateMetadata({
@@ -23,7 +24,7 @@ export default async function OfflinePage({ params }: { params: Promise<{ locale
   return (
     <EmptyState
       icon={WifiOff}
-      hue="slate"
+      scene={OfflineScene}
       title={t("title")}
       description={t("body")}
       ctaLabel={t("cta")}

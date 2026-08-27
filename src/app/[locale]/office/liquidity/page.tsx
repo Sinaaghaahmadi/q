@@ -2,6 +2,7 @@ import { Building2, ShieldAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
+import { MaintenanceScene, NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { LiquidityView, type LedgerPosition } from "@/components/office/liquidity-view";
 import { OfficeShell } from "@/components/office/office-shell";
@@ -48,7 +49,7 @@ export default async function OfficeLiquidityPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="slate"
+        scene={MaintenanceScene}
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -67,7 +68,7 @@ export default async function OfficeLiquidityPage({
     return (
       <EmptyState
         icon={Building2}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("notAMemberTitle")}
         description={t("notAMemberBody")}
         ctaLabel={t("backHome")}
@@ -86,7 +87,7 @@ export default async function OfficeLiquidityPage({
     return (
       <EmptyState
         icon={ShieldAlert}
-        hue="indigo"
+        scene={NoAccessScene}
         title={tm("liquidity.noAccessTitle")}
         description={tm("liquidity.noAccessBody")}
         ctaLabel={t("backHome")}

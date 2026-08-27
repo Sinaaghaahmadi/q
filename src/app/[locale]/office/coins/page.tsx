@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { CoinQueue } from "@/components/coins/coin-queue";
+import { MaintenanceScene, NoAccessScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { OfficeShell } from "@/components/office/office-shell";
 import { redirect } from "@/i18n/navigation";
@@ -33,7 +34,7 @@ export default async function OfficeCoinsPage({ params }: { params: Promise<{ lo
     return (
       <EmptyState
         icon={Building2}
-        hue="slate"
+        scene={MaintenanceScene}
         title={t("unavailableTitle")}
         description={t("unavailableBody")}
         ctaLabel={t("backHome")}
@@ -50,7 +51,7 @@ export default async function OfficeCoinsPage({ params }: { params: Promise<{ lo
     return (
       <EmptyState
         icon={Building2}
-        hue="indigo"
+        scene={NoAccessScene}
         title={t("notAMemberTitle")}
         description={t("notAMemberBody")}
         ctaLabel={t("backHome")}
