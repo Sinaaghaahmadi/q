@@ -39,6 +39,10 @@ pnpm-debug.log*
 
 # Throwaway verification scripts — kept out of the repo, not out of the way.
 scripts/tmp/
+# throwaway capture/verification scripts, run from the repo root so they can
+# resolve @playwright/test — never part of the project
+*.tmp.mjs
+*.tmp.mts
 
 # Python bytecode from the throwaway message-editing scripts
 __pycache__/
