@@ -69,18 +69,22 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
       <div className="grid gap-3">
         {orders.map((order) => (
           <Link key={order.id} href={`/orders/${order.id}`}>
-            <Card className="flex flex-wrap items-center gap-4 p-4 transition-shadow hover:shadow-e2">
+            <Card className="flex items-center gap-3 p-4 transition-shadow hover:shadow-e2">
               <CoinIcon code={order.send_currency as CurrencyCode} size={38} />
               <div className="min-w-0 flex-1">
-                <p className="num font-mono text-sm font-semibold" dir="ltr">
+                <p className="num truncate font-mono text-sm font-semibold" dir="ltr">
                   {order.public_ref}
                 </p>
-                <p className="num mt-0.5 text-xs text-ink-600">
+                <p className="num mt-0.5 truncate text-xs text-ink-600">
                   {formatDate(order.created_at, appLocale, { dateStyle: "medium" })}
                 </p>
               </div>
-              <div className="text-end">
-                <p className="num text-sm font-semibold">
+              {/* A column rather than a fourth item in a wrapping row: at 412 px
+                  the state badge pushed the reference and the date into a
+                  sliver, and a Persian date in a sliver breaks one word to a
+                  line. Amounts above, state under them, nothing wraps. */}
+              <div className="flex shrink-0 flex-col items-end gap-1 text-end">
+                <p className="num text-sm font-semibold whitespace-nowrap">
                   {formatAmount(
                     fromMinor(order.send_amount_minor, order.send_currency as CurrencyCode),
                     order.send_currency as CurrencyCode,
@@ -90,7 +94,7 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
                     {order.send_currency}
                   </span>
                 </p>
-                <p className="num mt-0.5 text-xs text-ink-600">
+                <p className="num text-xs whitespace-nowrap text-ink-600">
                   →{" "}
                   {formatAmount(
                     fromMinor(order.receive_amount_minor, order.receive_currency as CurrencyCode),
@@ -99,8 +103,10 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
                   )}{" "}
                   <span dir="ltr">{order.receive_currency}</span>
                 </p>
+                <Badge variant={stateTone(order.state)} className="mt-0.5">
+                  {t(`state.${order.state}`)}
+                </Badge>
               </div>
-              <Badge variant={stateTone(order.state)}>{t(`state.${order.state}`)}</Badge>
             </Card>
           </Link>
         ))}
