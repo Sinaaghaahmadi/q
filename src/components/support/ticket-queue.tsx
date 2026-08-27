@@ -4,6 +4,7 @@ import { ArrowUpCircle, CircleAlert, Clock3 } from "lucide-react";
 import { useFormatter, useNow, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { TicketScene } from "@/components/brand/scenes/support";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -126,7 +127,10 @@ export function TicketQueue({
       />
 
       {visible.length === 0 ? (
-        <Card className="p-8 text-center text-sm text-ink-600">{t("empty")}</Card>
+        <Card className="flex flex-col items-center gap-3 p-8 text-center">
+          <TicketScene size={120} label={t("empty")} />
+          <p className="text-sm text-ink-600">{t("empty")}</p>
+        </Card>
       ) : (
         <div className="list-rise space-y-3">
           {visible.map((row, index) => {

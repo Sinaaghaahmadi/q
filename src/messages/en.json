@@ -192,7 +192,8 @@
     "reorderReset": "Reset order",
     "reorderHint": "Drag a box, or use the up and down buttons, to arrange the currencies your way. The order is kept on this device.",
     "moveUp": "Move {currency} up",
-    "moveDown": "Move {currency} down"
+    "moveDown": "Move {currency} down",
+    "noHistory": "No history has been recorded for this currency yet."
   },
   "transfer": {
     "metaTitle": "New transfer",
@@ -3092,7 +3093,8 @@
       "tooMany": "You can keep up to 20 alerts at a time.",
       "signIn": "Please sign in first.",
       "failed": "That did not save. Please try again."
-    }
+    },
+    "firedNote": "One of your alerts reached its target and the message went out."
   },
   "menu": {
     "title": "Menu",

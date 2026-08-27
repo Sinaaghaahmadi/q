@@ -4,6 +4,7 @@ import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import * as React from "react";
 import { PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
+import { OrdersEmptyScene } from "@/components/brand/scenes/states";
 import { EmptyState } from "@/components/layout/empty-state";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -35,6 +36,7 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
   const empty = (
     <EmptyState
       icon={ReceiptText}
+      scene={OrdersEmptyScene}
       hue="brand"
       title={t("emptyTitle")}
       description={t("emptyBody")}

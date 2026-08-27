@@ -4,6 +4,7 @@ import { CircleAlert, Plus, Save } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { RateSheetScene } from "@/components/brand/scenes/staff";
 import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -192,9 +193,12 @@ export function RateConfigEditor({
         bodyClassName="space-y-4"
       >
         {rates.length === 0 ? (
-          <p className="text-sm text-ink-600">
-            {canManage ? t("rates.empty") : t("rates.emptyReadOnly")}
-          </p>
+          <div className="flex flex-col items-center gap-3 py-4 text-center">
+            <RateSheetScene size={120} />
+            <p className="text-sm text-ink-600">
+              {canManage ? t("rates.empty") : t("rates.emptyReadOnly")}
+            </p>
+          </div>
         ) : (
           rates.map((row) => {
             const draft = draftOf(row);

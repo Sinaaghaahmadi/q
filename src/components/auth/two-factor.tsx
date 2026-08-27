@@ -4,6 +4,7 @@ import { CircleAlert, Copy, ShieldCheck, ShieldOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { TwoFactorScene } from "@/components/brand/scenes/identity";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -183,7 +184,20 @@ export function TwoFactor({ isStaff }: { isStaff: boolean }) {
         )}
       </div>
 
-      <p className="text-sm leading-relaxed text-ink-600">{isStaff ? t("bodyStaff") : t("body")}</p>
+      {/* Only while it is off: once it is on, the badge above says so and a
+          drawing of an authenticator is just furniture. */}
+      {enabled || enrolling ? (
+        <p className="text-sm leading-relaxed text-ink-600">
+          {isStaff ? t("bodyStaff") : t("body")}
+        </p>
+      ) : (
+        <div className="flex items-start gap-3.5">
+          <TwoFactorScene size={92} />
+          <p className="pt-1 text-sm leading-relaxed text-ink-600">
+            {isStaff ? t("bodyStaff") : t("body")}
+          </p>
+        </div>
+      )}
 
       {enrolling ? (
         <div className="space-y-3 rounded-xl border border-ink-300/55 p-4">

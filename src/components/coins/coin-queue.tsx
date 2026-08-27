@@ -1,11 +1,11 @@
 "use client";
 
-import { CircleAlert, Coins, HandCoins } from "lucide-react";
+import { CircleAlert, HandCoins } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { GoldIcon } from "@/components/brand/gold";
-import { AppTile } from "@/components/brand/app-tile";
+import { GoldCoinScene } from "@/components/brand/scenes/market";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PanelSection } from "@/components/layout/panel-section";
@@ -101,9 +101,7 @@ export function CoinQueue({
   if (orders.length === 0) {
     return (
       <Card className="flex flex-col items-center gap-3 p-10 text-center">
-        <AppTile hue="amber" size="lg">
-          <Coins />
-        </AppTile>
+        <GoldCoinScene size={128} label={tq("empty")} />
         <p className="text-sm text-ink-600">{tq("empty")}</p>
       </Card>
     );

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { PageHeading } from "@/components/brand/app-tile";
+import { GoldVaultScene } from "@/components/brand/scenes/market";
 import { GoldIcon } from "@/components/brand/gold";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { Badge } from "@/components/ui/badge";
@@ -238,7 +239,10 @@ function BuyForm({
   if (reference) {
     return (
       <div className="space-y-4">
-        <p className="text-sm leading-relaxed">{t("request.placed")}</p>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <GoldVaultScene size={128} label={t("request.placed")} />
+          <p className="text-sm leading-relaxed">{t("request.placed")}</p>
+        </div>
         <p
           className="rounded-xl bg-brand-50/70 p-4 text-center font-mono text-lg font-semibold"
           dir="ltr"

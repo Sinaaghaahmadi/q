@@ -5,6 +5,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { auditTarget } from "@/lib/admin/audit-language";
+import { AuditScene } from "@/components/brand/scenes/staff";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -80,7 +81,10 @@ export function AuditTrail({
       </form>
 
       {entries.length === 0 ? (
-        <Card className="p-10 text-center text-sm text-ink-600">{t("empty")}</Card>
+        <Card className="flex flex-col items-center gap-3 p-10 text-center">
+          <AuditScene size={128} label={t("empty")} />
+          <p className="text-sm text-ink-600">{t("empty")}</p>
+        </Card>
       ) : (
         <ol className="space-y-2">
           {entries.map((entry) => (

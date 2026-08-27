@@ -1,10 +1,15 @@
 "use client";
 
-import { Check, Copy, Gift, TrendingUp } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
-import { TileHeading } from "@/components/brand/app-tile";
+import {
+  ReferralScene,
+  RewardPaidScene,
+  TierScene,
+  TierUpScene,
+} from "@/components/brand/scenes/rewards";
 import { useToast } from "@/components/ui/toast";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -85,7 +90,12 @@ export function TierAndReferral({
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       <Card className="space-y-4 p-5">
-        <TileHeading hue="brand" icon={<TrendingUp />} title={t("tierTitle")} />
+        {/* At the top tier the climb is over — that is a different picture
+            from the one that shows a step still ahead. */}
+        <div className="flex items-start gap-3.5">
+          {toNext === null ? <TierUpScene size={84} /> : <TierScene size={84} />}
+          <h2 className="pt-1 text-sm font-semibold">{t("tierTitle")}</h2>
+        </div>
         <div className="space-y-3">
           <div className="flex items-center justify-between gap-3">
             <Badge variant="brand">{t(`tier.${current.tier ?? "standard"}`)}</Badge>
@@ -130,12 +140,13 @@ export function TierAndReferral({
       </Card>
 
       <Card className="space-y-4 p-5">
-        <TileHeading
-          hue="rose"
-          icon={<Gift />}
-          title={t("referralTitle")}
-          subtitle={t("referralBody")}
-        />
+        <div className="flex items-start gap-3.5">
+          {rewarded > 0 ? <RewardPaidScene size={84} /> : <ReferralScene size={84} />}
+          <div className="min-w-0 flex-1 pt-1">
+            <h2 className="text-sm font-semibold">{t("referralTitle")}</h2>
+            <p className="mt-1 text-sm leading-relaxed text-ink-600">{t("referralBody")}</p>
+          </div>
+        </div>
         <div className="space-y-3">
           {referralCode ? (
             <div className="flex items-center gap-2">

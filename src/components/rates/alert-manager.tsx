@@ -4,6 +4,7 @@ import { Bell, BellOff, BellRing, CircleAlert, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 import { AppTile } from "@/components/brand/app-tile";
+import { AlertFiredScene, RateAlertScene } from "@/components/brand/scenes/market";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -121,7 +122,8 @@ export function AlertManager({
 
   if (!signedIn) {
     return (
-      <div className="space-y-3">
+      <div className="flex flex-col items-center gap-3 py-2 text-center">
+        <RateAlertScene size={112} label={t("signInFirst")} />
         <p className="text-sm leading-relaxed text-ink-600">{t("signInFirst")}</p>
         <Button asChild size="sm">
           <Link href="/signin?next=/rates">{t("signIn")}</Link>
@@ -130,9 +132,20 @@ export function AlertManager({
     );
   }
 
+  // One drawing when something has actually happened, not one per row: an
+  // alert that fired is the reason this sheet is open.
+  const fired = (alerts ?? []).some((a) => a.last_fired_at);
+
   return (
     <div className="space-y-4">
       <p className="text-sm leading-relaxed text-ink-600">{t("body")}</p>
+
+      {fired ? (
+        <div className="flex items-center gap-3 rounded-xl bg-brand-50/60 p-3 dark:bg-brand-50/40">
+          <AlertFiredScene size={72} />
+          <p className="text-sm leading-relaxed">{t("firedNote")}</p>
+        </div>
+      ) : null}
 
       <div className="flex flex-wrap items-end gap-2">
         <fieldset>

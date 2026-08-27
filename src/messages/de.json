@@ -182,7 +182,8 @@
     "reorderReset": "Reihenfolge zurücksetzen",
     "reorderHint": "Ziehen Sie eine Karte oder nutzen Sie die Pfeiltasten, um die Währungen nach Ihrem Bedarf zu ordnen. Die Reihenfolge bleibt auf diesem Gerät gespeichert.",
     "moveUp": "{currency} nach oben",
-    "moveDown": "{currency} nach unten"
+    "moveDown": "{currency} nach unten",
+    "noHistory": "Für diese Währung wurde noch kein Verlauf aufgezeichnet."
   },
   "footer": {
     "brand": "Asaex",
@@ -970,7 +971,8 @@
       "tooMany": "Sie können höchstens 20 Warnungen gleichzeitig behalten.",
       "signIn": "Bitte melden Sie sich zuerst an.",
       "failed": "Das wurde nicht gespeichert. Bitte erneut versuchen."
-    }
+    },
+    "firedNote": "Einer Ihrer Alarme hat seinen Zielkurs erreicht und die Nachricht ging raus."
   },
   "banks": {
     "melli": "Bank Melli",

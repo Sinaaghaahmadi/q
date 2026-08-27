@@ -4,6 +4,7 @@ import { ArrowUpRight, Landmark, TriangleAlert } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import * as React from "react";
 import { CoinIcon } from "@/components/brand/coin";
+import { LiquidityScene } from "@/components/brand/scenes/staff";
 import { Card } from "@/components/ui/card";
 import { InfoHint } from "@/components/ui/info-hint";
 import { Link } from "@/i18n/navigation";
@@ -55,7 +56,10 @@ export function LiquidityView({
       </div>
 
       {currencies.length === 0 ? (
-        <Card className="p-10 text-center text-sm text-ink-600">{t("liquidity.empty")}</Card>
+        <Card className="flex flex-col items-center gap-3 p-10 text-center">
+          <LiquidityScene size={128} label={t("liquidity.empty")} />
+          <p className="text-sm text-ink-600">{t("liquidity.empty")}</p>
+        </Card>
       ) : (
         currencies.map((currency) => {
           const rows = positions.filter((p) => p.currency === currency);

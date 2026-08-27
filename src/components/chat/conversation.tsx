@@ -5,6 +5,7 @@ import { CircleAlert, Lock, Send, ShieldAlert } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import * as React from "react";
 import { EASE_IN } from "@/components/brand/scene";
+import { ChatScene } from "@/components/brand/scenes/support";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
@@ -167,7 +168,10 @@ export function Conversation({
           })}
         </AnimatePresence>
         {messages.length === 0 ? (
-          <p className="py-8 text-center text-sm text-ink-600">{t("empty")}</p>
+          <div className="flex flex-col items-center gap-2 py-8 text-center">
+            <ChatScene size={112} label={t("empty")} />
+            <p className="text-sm text-ink-600">{t("empty")}</p>
+          </div>
         ) : null}
         <div ref={endRef} />
       </ol>

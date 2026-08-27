@@ -1,19 +1,12 @@
 "use client";
 
-import {
-  ArrowUpDown,
-  Bell,
-  ChartCandlestick,
-  Check,
-  RotateCcw,
-  Search,
-  SearchX,
-} from "lucide-react";
+import { ArrowUpDown, Bell, ChartCandlestick, Check, RotateCcw, Search } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import * as React from "react";
-import { AppTile, PageHeading } from "@/components/brand/app-tile";
+import { PageHeading } from "@/components/brand/app-tile";
 import { CoinIcon } from "@/components/brand/coin";
+import { RateBoardScene, TrendScene } from "@/components/brand/scenes/market";
 import { ChangeChip } from "@/components/rates/change-chip";
 import { HistoryChart } from "@/components/rates/history-chart";
 import { RateBox } from "@/components/rates/rate-box";
@@ -168,9 +161,9 @@ export function RatesView({
 
       {sorted.length === 0 ? (
         <Card className="flex flex-col items-center gap-3 p-8 text-center">
-          <AppTile hue="slate" size="lg">
-            <SearchX />
-          </AppTile>
+          {/* Searching and finding nothing is a moment, not a list waiting to
+              fill — so it gets the drawing rather than the tile. */}
+          <RateBoardScene size={128} label={t("ratesPage.noResults")} />
           <p className="text-sm text-ink-600">{t("ratesPage.noResults")}</p>
         </Card>
       ) : (
@@ -251,6 +244,11 @@ export function RatesView({
 
               {detailPoints.length > 1 ? (
                 <HistoryChart points={detailPoints} code={detail ?? undefined} />
+              ) : detailHistory ? (
+                <div className="flex flex-col items-center gap-2 py-6 text-center">
+                  <TrendScene size={112} label={t("ratesPage.noHistory")} />
+                  <p className="text-sm text-ink-600">{t("ratesPage.noHistory")}</p>
+                </div>
               ) : (
                 <Skeleton className="h-52 w-full" />
               )}

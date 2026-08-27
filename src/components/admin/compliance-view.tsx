@@ -4,6 +4,7 @@ import { CircleAlert, MessageSquareWarning, Save, ShieldQuestion } from "lucide-
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { ComplianceScene } from "@/components/brand/scenes/staff";
 import { PanelSection } from "@/components/layout/panel-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -189,7 +190,10 @@ export function ComplianceView({
       <PanelSection title={t("flags.title")} hint={t("flags.hint")} bodyClassName="space-y-3">
         <p className="text-sm text-ink-600">{t("flags.body")}</p>
         {flagged.length === 0 ? (
-          <p className="text-sm text-ink-600">{t("flags.empty")}</p>
+          <div className="flex flex-col items-center gap-3 py-4 text-center">
+            <ComplianceScene size={120} />
+            <p className="text-sm text-ink-600">{t("flags.empty")}</p>
+          </div>
         ) : (
           <>
             <ol className="space-y-2">

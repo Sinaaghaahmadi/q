@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { InboxScene } from "@/components/brand/scenes/staff";
 import { Card } from "@/components/ui/card";
 import { Segmented } from "@/components/ui/segmented";
 import { Link } from "@/i18n/navigation";
@@ -163,8 +164,11 @@ export function RequestsQueue({
       ) : null}
 
       {shown.length === 0 ? (
-        <Card className="p-10 text-center text-sm text-ink-600">
-          {orders.length === 0 ? t("empty") : t("emptyFiltered")}
+        <Card className="flex flex-col items-center gap-3 p-10 text-center">
+          <InboxScene size={128} />
+          <p className="text-sm text-ink-600">
+            {orders.length === 0 ? t("empty") : t("emptyFiltered")}
+          </p>
         </Card>
       ) : (
         <Card className="overflow-x-auto">

@@ -4,7 +4,13 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Archive, CircleCheck, CircleX, Landmark, Plus, Wallet } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
-import { AppTile, PageHeading } from "@/components/brand/app-tile";
+import {
+  AccountsScene,
+  BankCardScene,
+  BankRailsScene,
+  IbanScene,
+} from "@/components/brand/scenes/banking";
+import { PageHeading } from "@/components/brand/app-tile";
 import { EASE_IN } from "@/components/brand/scene";
 import { CoinIcon } from "@/components/brand/coin";
 import { Badge } from "@/components/ui/badge";
@@ -68,11 +74,7 @@ export function AccountsManager({ initial }: { initial: BeneficiaryAccount[] }) 
 
       {accounts.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 p-10 text-center">
-          {/* Same tile as the page title above it and the row in the profile
-              that leads here, rather than a third drawing of a bank. */}
-          <AppTile hue="brand" size="xl">
-            <Wallet />
-          </AppTile>
+          <AccountsScene size={140} label={t("emptyTitle")} />
           <div>
             <h2 className="text-lg font-semibold">{t("emptyTitle")}</h2>
             <p className="mx-auto mt-1 max-w-sm text-sm leading-relaxed text-ink-600">
@@ -251,12 +253,21 @@ function AddAccountDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent variant="sheet" className="p-0 sm:max-w-lg">
-        <div className="border-b border-ink-300/40 p-5 pe-12">
-          <DialogTitle className="text-base font-semibold">{t("addTitle")}</DialogTitle>
-          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
-            {t("addBody")}
-            <InfoHint term="iban" />
-          </p>
+        <div className="flex items-start gap-3 border-b border-ink-300/40 p-5 pe-12">
+          {kind === "card" ? (
+            <BankCardScene size={76} />
+          ) : kind === "swift" ? (
+            <BankRailsScene size={76} />
+          ) : (
+            <IbanScene size={76} />
+          )}
+          <div className="min-w-0 flex-1">
+            <DialogTitle className="text-base font-semibold">{t("addTitle")}</DialogTitle>
+            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink-600">
+              {t("addBody")}
+              <InfoHint term="iban" />
+            </p>
+          </div>
         </div>
 
         <div className="space-y-4 overflow-y-auto p-5">
