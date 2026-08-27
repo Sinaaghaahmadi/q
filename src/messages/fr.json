@@ -3141,10 +3141,7 @@
         "liveness": "Photo en direct",
         "review": "En cours d'examen",
         "success": "Abouti",
-        "accounts": "Comptes enregistrés",
-        "security": "Sécurité du compte",
-        "matching": "Attribution d'un bureau",
-        "ordersEmpty": "Aucune commande"
+        "matching": "Attribution d'un bureau"
       }
     },
     "tiles": {

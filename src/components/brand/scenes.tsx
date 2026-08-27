@@ -335,72 +335,6 @@ export function SuccessScene({ size, className, label }: SceneProps) {
   );
 }
 
-/** Saved destination accounts. */
-export function AccountsScene({ size, className, label }: SceneProps) {
-  return (
-    <Scene size={size} className={className} label={label}>
-      <Rise delay={0.15}>
-        <rect
-          x="26"
-          y="40"
-          width="60"
-          height="38"
-          rx="8"
-          fill="var(--brand-50)"
-          stroke={LINE}
-          strokeWidth="2.5"
-        />
-      </Rise>
-      <Rise delay={0.05}>
-        <rect
-          x="34"
-          y="50"
-          width="60"
-          height="38"
-          rx="8"
-          fill="var(--surface)"
-          stroke={LINE}
-          strokeWidth="3"
-        />
-        <rect x="34" y="59" width="60" height="7" fill={BRAND} opacity="0.85" />
-        <rect x="41" y="73" width="22" height="4" rx="2" fill={LINE} />
-        <rect x="68" y="73" width="12" height="4" rx="2" fill={LINE} />
-      </Rise>
-      <Rise delay={0.45}>
-        <circle cx="88" cy="44" r="11" fill={BRAND} />
-        <path d="M88 39v10M83 44h10" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" />
-      </Rise>
-    </Scene>
-  );
-}
-
-/** Security / two-factor settings. */
-export function SecurityScene({ size, className, label }: SceneProps) {
-  return (
-    <Scene size={size} className={className} label={label}>
-      <Rise delay={0.05}>
-        <path
-          d="M60 24l26 10v22c0 17-11 29-26 34-15-5-26-17-26-34V34l26-10Z"
-          fill="var(--surface)"
-          stroke={LINE}
-          strokeWidth="3"
-        />
-      </Rise>
-      <Rise delay={0.3}>
-        <rect x="49" y="55" width="22" height="17" rx="4" fill={BRAND} />
-        <path
-          d="M53 55v-5a7 7 0 0 1 14 0v5"
-          stroke={BRAND}
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <circle cx="60" cy="63" r="2.6" fill="#fff" />
-      </Rise>
-    </Scene>
-  );
-}
-
 /** Matching a request with an exchange office — the Phase-3 wait state. */
 export function MatchingScene({ size, className, label }: SceneProps) {
   return (
@@ -441,29 +375,6 @@ export function MatchingScene({ size, className, label }: SceneProps) {
         <SceneCoin cx={60} cy={16} r={7.5} tone="gold" glyph="$" />
         <SceneCoin cx={104} cy={60} r={7.5} tone="brand" glyph="ت" />
       </Orbit>
-    </Scene>
-  );
-}
-
-/** Empty order history. */
-export function OrdersEmptyScene({ size, className, label }: SceneProps) {
-  return (
-    <Scene size={size} className={className} label={label}>
-      <Rise delay={0.05}>
-        <path
-          d="M38 24h34l12 12v58a4 4 0 0 1-4 4H38a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4Z"
-          fill="var(--surface)"
-          stroke={LINE}
-          strokeWidth="3"
-        />
-        <path d="M72 24v12h12" stroke={LINE} strokeWidth="3" strokeLinejoin="round" fill="none" />
-      </Rise>
-      <DrawPath d="M45 54h28" delay={0.3} width={3} color={LINE} />
-      <DrawPath d="M45 64h20" delay={0.42} width={3} color={LINE} />
-      <Rise delay={0.6}>
-        <circle cx="72" cy="80" r="13" fill="var(--brand-50)" stroke={BRAND} strokeWidth="2.5" />
-        <path d="M72 74v12M66 80h12" stroke={BRAND} strokeWidth="3" strokeLinecap="round" />
-      </Rise>
     </Scene>
   );
 }

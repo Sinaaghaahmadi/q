@@ -3141,10 +3141,7 @@
         "liveness": "Live-Foto",
         "review": "In Prüfung",
         "success": "Abgeschlossen",
-        "accounts": "Gespeicherte Konten",
-        "security": "Kontosicherheit",
-        "matching": "Wechselstube wird zugeordnet",
-        "ordersEmpty": "Keine Aufträge"
+        "matching": "Wechselstube wird zugeordnet"
       }
     },
     "tiles": {

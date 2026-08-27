@@ -3,15 +3,12 @@
 import { useTranslations } from "next-intl";
 import * as React from "react";
 import {
-  AccountsScene,
   DocumentScene,
   IdentityScene,
   LivenessScene,
   MatchingScene,
-  OrdersEmptyScene,
   OtpScene,
   ReviewScene,
-  SecurityScene,
   SuccessScene,
 } from "@/components/brand/scenes";
 import { Button } from "@/components/ui/button";
@@ -24,13 +21,19 @@ const SCENES = [
   { key: "liveness", Component: LivenessScene },
   { key: "review", Component: ReviewScene },
   { key: "success", Component: SuccessScene },
-  { key: "accounts", Component: AccountsScene },
-  { key: "security", Component: SecurityScene },
   { key: "matching", Component: MatchingScene },
-  { key: "ordersEmpty", Component: OrdersEmptyScene },
 ] as const;
 
-/** The animated illustration set, replayable so the motion can be judged. */
+/**
+ * The animated illustration set, replayable so the motion can be judged.
+ *
+ * Seven, not ten. An empty order list, an empty account list and the security
+ * card were drawn here and nowhere else once those three screens moved to the
+ * app tile — and a reference page that shows art the product does not use
+ * teaches the wrong thing about what the product looks like. What is left
+ * marks a *moment*: a code arriving, the four steps of proving who you are, a
+ * review waiting, a request being matched.
+ */
 export function ScenesDemo() {
   const t = useTranslations("design.scenes");
   const [generation, setGeneration] = React.useState(0);

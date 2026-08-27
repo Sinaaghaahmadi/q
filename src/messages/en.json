@@ -626,10 +626,7 @@
         "liveness": "Live photo",
         "review": "Under review",
         "success": "Completed",
-        "accounts": "Saved accounts",
-        "security": "Account security",
-        "matching": "Matching an office",
-        "ordersEmpty": "No orders"
+        "matching": "Matching an office"
       }
     },
     "tiles": {
