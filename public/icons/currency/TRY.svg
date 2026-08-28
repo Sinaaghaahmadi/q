@@ -1,0 +1,24 @@
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TRY">
+  <defs>
+    <radialGradient id="xTRY-face" cx="0.34" cy="0.28" r="0.95">
+      <stop offset="0" stop-color="#f2f6f9"/>
+      <stop offset="0.62" stop-color="#bfc9d3"/>
+      <stop offset="1" stop-color="#8593a1"/>
+    </radialGradient>
+    <linearGradient id="xTRY-edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8593a1"/>
+      <stop offset="1" stop-color="#66737f"/>
+    </linearGradient>
+    <filter id="xTRY-blur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+  </defs>
+  <ellipse cx="32" cy="57.2" rx="17.5" ry="3.4" fill="#0a0f14" opacity="0.20" filter="url(#xTRY-blur)"/>
+  <ellipse cx="32" cy="33.6" rx="24" ry="22.4" fill="url(#xTRY-edge)"/>
+  <ellipse cx="32" cy="30.4" rx="24" ry="22.4" fill="url(#xTRY-face)"/>
+  <ellipse cx="32" cy="30.4" rx="19.2" ry="17.9" fill="none" stroke="#9aa7b3" stroke-opacity="0.8" stroke-width="1.5"/>
+  <ellipse cx="32" cy="30.4" rx="19.2" ry="17.9" fill="none" stroke="#f2f6f9" stroke-opacity="0.55" stroke-width="0.8" stroke-dasharray="3 100" stroke-dashoffset="-22"/>
+  <text x="32.9" y="31.3" text-anchor="middle" dominant-baseline="central" font-family="Vazirmatn, Inter, system-ui, sans-serif" font-weight="700" font-size="23" fill="#66737f" opacity="0.85">₺</text>
+  <text x="31.6" y="30" text-anchor="middle" dominant-baseline="central" font-family="Vazirmatn, Inter, system-ui, sans-serif" font-weight="700" font-size="23" fill="#ffffff">₺</text>
+  <ellipse cx="22" cy="18" rx="9" ry="5.4" fill="#ffffff" opacity="0.32" filter="url(#xTRY-blur)" transform="rotate(-28 22 18)"/>
+</svg>

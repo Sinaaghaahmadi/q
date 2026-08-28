@@ -1,0 +1,953 @@
+/**
+ * Hand-maintained schema types for the tables and functions the app actually
+ * touches. Regenerate the full set with `supabase gen types typescript` once
+ * the CLI is in CI; until then this stays deliberately small and honest about
+ * Phase-2 surface area, while still typing every call site.
+ */
+
+export type Json = string | number | boolean | null | { [key: string]: Json } | Json[];
+
+export type KycStatus = "unverified" | "pending" | "approved" | "rejected" | "more_info_needed";
+
+export type AppRole =
+  | "customer"
+  | "office_viewer"
+  | "office_operator"
+  | "office_finance"
+  | "office_owner"
+  | "platform_support"
+  | "platform_compliance"
+  | "platform_admin"
+  | "platform_superadmin";
+
+export type Profile = {
+  id: string;
+  full_name_fa: string | null;
+  full_name_latin: string | null;
+  phone: string | null;
+  phone_verified_at: string | null;
+  email: string | null;
+  locale: string;
+  theme: string;
+  national_code: string | null;
+  dob: string | null;
+  nationality: string | null;
+  address: Json | null;
+  kyc_status: KycStatus;
+  risk_tier: number;
+  referral_code: string | null;
+  frozen_at: string | null;
+  frozen_reason: string | null;
+  /** False while an account is still on the password it was provisioned with. */
+  password_set_by_user: boolean;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type Membership = {
+  id: string;
+  user_id: string;
+  role: AppRole;
+  scope_type: "platform" | "office";
+  scope_id: string | null;
+  created_at: string;
+  deleted_at: string | null;
+};
+
+export type KycSubmission = {
+  id: string;
+  user_id: string;
+  status: KycStatus;
+  submitted_at: string;
+  decided_at: string | null;
+  decided_by: string | null;
+  second_approver: string | null;
+  recommended_by: string | null;
+  recommended_at: string | null;
+  recommendation: KycStatus | null;
+  reason: string | null;
+  data: Json;
+  version: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type KycDocumentKind = "passport" | "national_id" | "selfie" | "proof_of_address";
+
+export type KycDocument = {
+  id: string;
+  submission_id: string;
+  kind: KycDocumentKind;
+  storage_path: string;
+  mime: string;
+  sha256: string;
+  ocr: Json | null;
+  expires_at: string | null;
+  created_at: string;
+};
+
+export type AccountKind = "sheba" | "card" | "iban" | "swift" | "cash_pickup";
+
+export type BeneficiaryAccount = {
+  id: string;
+  user_id: string;
+  nickname: string;
+  currency: string;
+  country: string;
+  kind: AccountKind;
+  details: Record<string, string>;
+  holder_name: string;
+  is_third_party: boolean;
+  verification_state: "unverified" | "pending" | "verified" | "rejected";
+  archived_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LoginEvent = {
+  id: string;
+  user_id: string;
+  kind: "sign_in" | "sign_out" | "revoked";
+  ip: string | null;
+  user_agent: string | null;
+  device_label: string | null;
+  created_at: string;
+};
+
+export type AuditLogEntry = {
+  id: string;
+  actor_id: string | null;
+  actor_role: string | null;
+  action: string;
+  entity_type: string;
+  entity_id: string | null;
+  before: Json | null;
+  after: Json | null;
+  reason: string | null;
+  ip: string | null;
+  created_at: string;
+};
+
+export type LegalAcceptance = {
+  id: string;
+  user_id: string;
+  document: string;
+  version: string;
+  accepted_at: string;
+  ip: string | null;
+};
+
+export type OrderState =
+  | "draft"
+  | "submitted"
+  | "matching"
+  | "office_review"
+  | "accepted"
+  | "awaiting_irt_funding"
+  | "irt_funded"
+  | "foreign_leg_pending"
+  | "foreign_leg_sent"
+  | "recipient_confirmed"
+  | "irt_released"
+  | "completed"
+  | "on_hold"
+  | "info_needed"
+  | "disputed"
+  | "cancelled"
+  | "refunded"
+  | "expired"
+  | "sla_breached";
+
+/** The party a caller is, relative to one order. Null means "not a party". */
+export type OrderActorRole = "customer" | "office" | "platform";
+
+export type Order = {
+  id: string;
+  public_ref: string;
+  customer_id: string;
+  office_id: string | null;
+  corridor: string;
+  send_currency: string;
+  send_amount_minor: number;
+  receive_currency: string;
+  receive_amount_minor: number;
+  locked_rate: string;
+  /** The public mid at lock time, for the cost comparison (§17.11). */
+  benchmark_rate: string | null;
+  rate_locked_at: string;
+  rate_expires_at: string;
+  platform_fee_minor: number;
+  office_fee_minor: number;
+  spread_breakdown: Json;
+  source_account_id: string | null;
+  destination_account_id: string | null;
+  state: OrderState;
+  state_since: string;
+  due_at: string | null;
+  sla_target_at: string | null;
+  version: number;
+  purpose_of_transfer: string | null;
+  notes: string | null;
+  cancelled_reason: string | null;
+  /** True when the order carries a P2P trade rather than a brokered transfer (§9). */
+  is_p2p: boolean;
+  p2p_trade_id: string | null;
+  origin: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type OrderEvent = {
+  id: string;
+  /** Insertion order. created_at is the transaction clock and repeats. */
+  seq: number;
+  order_id: string;
+  from_state: OrderState | null;
+  to_state: OrderState;
+  actor_id: string | null;
+  actor_role: string | null;
+  reason: string | null;
+  attachment_path: string | null;
+  meta: Json;
+  created_at: string;
+};
+
+export type OrderDocumentKind = "irt_receipt" | "swift_mt103" | "foreign_receipt" | "invoice";
+
+export type OrderDocument = {
+  id: string;
+  order_id: string;
+  kind: OrderDocumentKind;
+  storage_path: string;
+  uploaded_by: string | null;
+  verified_by: string | null;
+  verified_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type OfficeKyc = "unverified" | "pending" | "verified" | "rejected";
+
+export type ExchangeOffice = {
+  id: string;
+  slug: string;
+  legal_name_fa: string;
+  legal_name_en: string;
+  /** The short name customers see; the legal names stay for contracts. */
+  display_name: string | null;
+  license_no: string;
+  country: string;
+  city: string | null;
+  status: "draft" | "active" | "suspended" | "archived";
+  /** Registered owner and national code — what settlement matches against. */
+  owner_name: string | null;
+  national_id: string | null;
+  owner_phone: string | null;
+  /** Object path in the `office-logos` bucket; null means show the initial. */
+  logo_path: string | null;
+  /** Whether the platform has verified who this office is. Not the lifecycle. */
+  kyc_state: OfficeKyc;
+  kyc_reason: string | null;
+  kyc_decided_by: string | null;
+  kyc_decided_at: string | null;
+  branding: Json;
+  contact: Json;
+  working_hours: Json;
+  corridors: Json;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type AccountMatch = "verified" | "unverified" | "mismatch";
+
+export type OfficeAccount = {
+  id: string;
+  office_id: string;
+  currency: string;
+  kind: "iban" | "card" | "swift" | "cash";
+  details: Json;
+  is_public: boolean;
+  active: boolean;
+  label: string | null;
+  /** Which bank, from `IRANIAN_BANKS`. Null on accounts provisioned before 0022. */
+  bank_id: string | null;
+  holder_name: string | null;
+  holder_national_code: string | null;
+  match_state: AccountMatch;
+  mismatch_reason: string | null;
+  /** Null means no ceiling was recorded, not that there is none. */
+  daily_ceiling_minor: number | null;
+  monthly_ceiling_minor: number | null;
+  /** Set when the account is taken out of use; the row is never deleted. */
+  retired_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type CoinState = "requested" | "confirmed" | "paid" | "ready" | "collected" | "cancelled";
+
+export type CoinOrder = {
+  id: string;
+  public_ref: string | null;
+  customer_id: string;
+  /** Null while the request is still in the unclaimed pool. */
+  office_id: string | null;
+  /** A code from `src/lib/coins/catalog.ts`. */
+  product: string;
+  quantity: number;
+  /** What the customer was shown when they asked. Never what they will pay. */
+  quoted_unit_minor: number;
+  /** Fixed by the office at confirmation. Null before that. */
+  unit_price_minor: number | null;
+  total_minor: number;
+  state: CoinState;
+  state_since: string;
+  pickup_note: string | null;
+  cancel_reason: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type CoinEvent = {
+  id: number;
+  coin_order_id: string;
+  from_state: CoinState | null;
+  to_state: CoinState;
+  actor_id: string | null;
+  note: string | null;
+  created_at: string;
+};
+
+export type PriceAlert = {
+  id: string;
+  user_id: string;
+  /** "USD-IRT" — the same shape `rate_snapshots.pair` uses. */
+  pair: string;
+  direction: "above" | "below";
+  threshold: number;
+  channels: string[];
+  active: boolean;
+  /** Set when the alert last sent, and what keeps it quiet for six hours after. */
+  last_fired_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type SettlementAcceptance = {
+  id: string;
+  account_id: string;
+  accepted_by: string;
+  mismatch_reason: string;
+  terms_version: string;
+  ip: string | null;
+  user_agent: string | null;
+  created_at: string;
+};
+
+export type OfficeRateConfig = {
+  id: string;
+  office_id: string;
+  corridor: string;
+  spread_bps: number;
+  min_amount_minor: number | null;
+  max_amount_minor: number | null;
+  cutoff_time: string | null;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type OfficeBalance = {
+  id: string;
+  office_id: string;
+  currency: string;
+  available_minor: number;
+  reserved_minor: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+/** One live "acting as this office" session (§16.3). */
+export type Impersonation = {
+  id: string;
+  actor_id: string;
+  office_id: string;
+  reason: string;
+  started_at: string;
+  expires_at: string;
+  ended_at: string | null;
+  created_at: string;
+};
+
+export type FeatureFlag = {
+  id: string;
+  key: string;
+  description: string | null;
+  enabled: boolean;
+  rules: Json;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LedgerEntry = {
+  id: string;
+  txn_id: string;
+  ledger_account_id: string;
+  direction: "debit" | "credit";
+  amount_minor: number;
+  currency: string;
+  order_id: string | null;
+  memo: string | null;
+  created_at: string;
+};
+
+export type ConversationKind = "order" | "p2p" | "support";
+export type SupportSegment = "customer" | "p2p" | "office";
+
+export type Conversation = {
+  id: string;
+  kind: ConversationKind;
+  subject_id: string | null;
+  segment: SupportSegment | null;
+  status: "open" | "pending" | "resolved" | "archived";
+  assigned_to: string | null;
+  last_message_at: string | null;
+  sla_due_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type ConversationParticipant = {
+  id: string;
+  conversation_id: string;
+  user_id: string;
+  role: string;
+  last_read_at: string | null;
+  muted: boolean;
+  created_at: string;
+  deleted_at: string | null;
+};
+
+export type TicketState =
+  "open" | "in_progress" | "waiting_user" | "escalated" | "resolved" | "closed";
+
+export type TicketPriority = "low" | "normal" | "high" | "urgent";
+
+export type TicketCategory = "order" | "payment" | "kyc" | "p2p" | "account" | "office" | "other";
+
+/** A support thread somebody is accountable for (migration 0021). */
+export type SupportTicket = {
+  id: string;
+  public_ref: string;
+  conversation_id: string;
+  opened_by: string;
+  category: TicketCategory;
+  subject: string;
+  state: TicketState;
+  priority: TicketPriority;
+  order_id: string | null;
+  /** The office that owes the first answer. Null means the platform does. */
+  office_id: string | null;
+  assigned_to: string | null;
+  first_response_at: string | null;
+  resolved_at: string | null;
+  escalated_at: string | null;
+  escalation_reason: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+/** Append-only: who moved the ticket, when, and why. */
+export type TicketEvent = {
+  id: string;
+  ticket_id: string;
+  actor_id: string | null;
+  actor_role: string | null;
+  kind: string;
+  from_state: TicketState | null;
+  to_state: TicketState | null;
+  note: string | null;
+  created_at: string;
+};
+
+export type Message = {
+  id: string;
+  conversation_id: string;
+  sender_id: string | null;
+  body: string | null;
+  attachments: Json;
+  is_internal_note: boolean;
+  /** Soft compliance signals from `message_flags` — never a block (§10). */
+  flags: Json;
+  revision_of: string | null;
+  created_at: string;
+};
+
+export type P2pOffer = {
+  id: string;
+  user_id: string;
+  side: "have" | "want";
+  have_currency: string;
+  want_currency: string;
+  amount_minor: number;
+  min_slice_minor: number | null;
+  max_slice_minor: number | null;
+  rate_mode: "fixed" | "market_offset";
+  rate_value: string;
+  terms: string | null;
+  expires_at: string | null;
+  status: "open" | "paused" | "filled" | "cancelled" | "removed";
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type P2pTrade = {
+  id: string;
+  offer_id: string;
+  taker_id: string;
+  maker_id: string;
+  amount_minor: number;
+  agreed_rate: string;
+  escrow_office_id: string | null;
+  state: string;
+  order_id: string | null;
+  dispute_id: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type Reputation = {
+  user_id: string;
+  trades_completed: number;
+  completion_rate: string;
+  avg_release_seconds: number | null;
+  rating_avg: string | null;
+  badges: Json;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Currency = { code: string; decimals: number; created_at: string };
+
+export type Referral = {
+  id: string;
+  referrer_id: string;
+  referee_id: string;
+  code: string;
+  /** Set when the referee's first order completes (§17.9), never on signup. */
+  rewarded_at: string | null;
+  created_at: string;
+};
+
+export type CmsContent = {
+  id: string;
+  key: string;
+  locale: string;
+  type: "page" | "faq" | "banner" | "announcement";
+  title: string;
+  body: string;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type NotificationTemplate = {
+  id: string;
+  key: string;
+  locale: string;
+  channel: "inapp" | "push" | "sms" | "email";
+  subject: string | null;
+  body: string;
+  variables: Json;
+  updated_by: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type BusinessCalendarDay = {
+  id: string;
+  country: string;
+  date: string;
+  is_holiday: boolean;
+  half_day: boolean;
+  name: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type RateSource = {
+  id: string;
+  name: string;
+  kind: "tgju" | "frankfurter" | "manual" | "demo";
+  config: Json;
+  active: boolean;
+  last_ok_at: string | null;
+  last_error: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LedgerAccount = {
+  id: string;
+  owner_type: "platform" | "office" | "customer" | "suspense";
+  owner_id: string | null;
+  currency: string;
+  code: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type SanctionsHit = {
+  id: string;
+  user_id: string;
+  list: string;
+  match_score: string;
+  payload: Json;
+  resolved_by: string | null;
+  resolution: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type PlatformSetting = {
+  key: string;
+  value: Json;
+  updated_by: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+/** Row + the Insert/Update shapes PostgREST accepts for it. */
+type Table<Row, Required extends keyof Row = never> = {
+  Row: Row;
+  Insert: Partial<Row> & Pick<Row, Required>;
+  Update: Partial<Row>;
+  Relationships: [];
+};
+
+/**
+ * Declared as a type alias, not an interface: supabase-js checks the schema
+ * against `Record<string, GenericTable>`, and only anonymous object types get
+ * the implicit index signature that check needs — an interface silently
+ * degrades every query result to `never`.
+ */
+export type Database = {
+  public: {
+    Tables: {
+      profiles: Table<Profile>;
+      memberships: Table<Membership>;
+      kyc_submissions: Table<KycSubmission, "user_id">;
+      kyc_documents: Table<
+        KycDocument,
+        "submission_id" | "kind" | "storage_path" | "mime" | "sha256"
+      >;
+      beneficiary_accounts: Table<
+        BeneficiaryAccount,
+        "user_id" | "nickname" | "currency" | "country" | "kind" | "holder_name"
+      >;
+      login_events: Table<LoginEvent, "user_id" | "kind">;
+      audit_log: Table<AuditLogEntry, "action" | "entity_type">;
+      legal_acceptances: Table<LegalAcceptance, "user_id" | "document" | "version">;
+      orders: Table<
+        Order,
+        | "customer_id"
+        | "corridor"
+        | "send_currency"
+        | "send_amount_minor"
+        | "receive_currency"
+        | "receive_amount_minor"
+        | "locked_rate"
+        | "rate_locked_at"
+        | "rate_expires_at"
+      >;
+      order_events: Table<OrderEvent>;
+      order_documents: Table<OrderDocument, "order_id" | "kind" | "storage_path">;
+      exchange_offices: Table<ExchangeOffice>;
+      office_accounts: Table<OfficeAccount, "office_id" | "currency" | "kind">;
+      price_alerts: Table<PriceAlert, "user_id" | "pair" | "direction" | "threshold">;
+      coin_orders: Table<CoinOrder, "customer_id" | "product" | "quantity" | "quoted_unit_minor">;
+      coin_events: Table<CoinEvent, "coin_order_id" | "to_state">;
+      settlement_acceptances: Table<
+        SettlementAcceptance,
+        "account_id" | "accepted_by" | "mismatch_reason" | "terms_version"
+      >;
+      office_rate_config: Table<OfficeRateConfig, "office_id" | "corridor">;
+      office_balances: Table<OfficeBalance, "office_id" | "currency">;
+      impersonations: Table<Impersonation>;
+      feature_flags: Table<FeatureFlag, "key">;
+      ledger_entries: Table<LedgerEntry>;
+      conversations: Table<Conversation, "kind">;
+      conversation_participants: Table<ConversationParticipant, "conversation_id" | "user_id">;
+      messages: Table<Message, "conversation_id">;
+      p2p_offers: Table<P2pOffer>;
+      p2p_trades: Table<P2pTrade>;
+      reputation: Table<Reputation, "user_id">;
+      currencies: Table<Currency, "code" | "decimals">;
+      referrals: Table<Referral, "referrer_id" | "referee_id" | "code">;
+      cms_content: Table<CmsContent, "key" | "locale" | "type" | "title" | "body">;
+      notification_templates: Table<NotificationTemplate, "key" | "locale" | "channel" | "body">;
+      business_calendar: Table<BusinessCalendarDay, "country" | "date">;
+      rate_sources: Table<RateSource>;
+      ledger_accounts: Table<LedgerAccount>;
+      sanctions_hits: Table<SanctionsHit>;
+      settings: Table<PlatformSetting, "key" | "value">;
+      support_tickets: Table<
+        SupportTicket,
+        "public_ref" | "conversation_id" | "opened_by" | "category" | "subject"
+      >;
+      ticket_events: Table<TicketEvent, "ticket_id" | "kind">;
+    };
+    Views: Record<string, never>;
+    Functions: {
+      rate_snapshot_record: {
+        Args: { p_rows: Json };
+        Returns: number;
+      };
+      /** Coverage roster plus the switch, for /admin/settings (migration 0030). */
+      staff_mfa_state: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      /** Refuses to turn the requirement on while any staff account lacks a factor. */
+      staff_mfa_require_set: {
+        Args: { p_on: boolean };
+        Returns: boolean;
+      };
+      coin_order_create: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      coin_order_advance: {
+        Args: { p_order: string; p_to: CoinState; p_note?: string | null };
+        Returns: CoinState;
+      };
+      coin_order_claim: {
+        Args: { p_order: string; p_office: string };
+        Returns: undefined;
+      };
+      office_login_identity: {
+        Args: { p_username: string; p_password: string };
+        Returns: { email: string | null; phone: string | null }[];
+      };
+      office_invitation_create: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      office_invitation_pending: {
+        Args: Record<string, never>;
+        Returns: {
+          id: string;
+          office_id: string;
+          office_name: string;
+          username: string;
+          role: AppRole;
+        }[];
+      };
+      office_invitation_claim: {
+        Args: { p_invitation: string };
+        Returns: { office_id: string; username: string; secret: string | null }[];
+      };
+      admin_decide_office_kyc: {
+        Args: { p_office: string; p_decision: OfficeKyc; p_reason?: string | null };
+        Returns: OfficeKyc;
+      };
+      admin_update_office: {
+        Args: { p_office: string; p_patch: Json };
+        Returns: undefined;
+      };
+      password_choice_settled: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
+      office_account_add: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      office_account_retire: {
+        Args: { p_account: string; p_reason?: string | null };
+        Returns: undefined;
+      };
+      ticket_open: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      ticket_set_state: {
+        Args: { p_ticket: string; p_state: TicketState; p_note?: string | null };
+        Returns: TicketState;
+      };
+      ticket_escalate: {
+        Args: { p_ticket: string; p_reason?: string | null };
+        Returns: undefined;
+      };
+      ticket_response_hours: {
+        Args: Record<string, never>;
+        Returns: number;
+      };
+      otp_rate_check: {
+        Args: { p_phone: string; p_ip?: string | null };
+        Returns: Json;
+      };
+      kyc_recommend: {
+        Args: { p_submission: string; p_recommendation: KycStatus; p_reason?: string | null };
+        Returns: undefined;
+      };
+      kyc_decide: {
+        Args: { p_submission: string; p_decision: KycStatus; p_reason?: string | null };
+        Returns: undefined;
+      };
+      order_advance: {
+        Args: { p_order: string; p_to: OrderState; p_reason?: string | null };
+        Returns: OrderState;
+      };
+      order_claim: {
+        Args: { p_order: string; p_office: string };
+        Returns: OrderState;
+      };
+      order_actor_role: {
+        Args: { p_order: string };
+        Returns: OrderActorRole | null;
+      };
+      allowed_transitions: {
+        Args: { s: OrderState };
+        Returns: OrderState[];
+      };
+      admin_create_office: {
+        Args: { p_office: Json };
+        Returns: string;
+      };
+      admin_set_office_status: {
+        Args: { p_office: string; p_status: string; p_reason?: string | null };
+        Returns: string;
+      };
+      admin_set_office_member: {
+        Args: { p_office: string; p_user: string; p_role: AppRole; p_grant?: boolean };
+        Returns: undefined;
+      };
+      admin_create_order_on_behalf: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      order_force_transition: {
+        Args: { p_order: string; p_to: OrderState; p_reason: string };
+        Returns: OrderState;
+      };
+      /** Freeze or reopen a customer account, with a reason (migration 0032). */
+      profile_set_frozen: {
+        Args: { p_user: string; p_frozen: boolean; p_reason: string };
+        Returns: string | null;
+      };
+      impersonation_start: {
+        Args: { p_office: string; p_reason: string; p_minutes?: number };
+        Returns: Impersonation;
+      };
+      impersonation_end: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
+      active_impersonation: {
+        Args: Record<string, never>;
+        Returns: Impersonation | null;
+      };
+      office_defaults: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      conversation_for_order: {
+        Args: { p_order: string };
+        Returns: string;
+      };
+      conversation_for_support: {
+        Args: Record<string, never>;
+        Returns: string;
+      };
+      message_send: {
+        Args: { p_conversation: string; p_body: string; p_internal?: boolean };
+        Returns: string;
+      };
+      conversation_mark_read: {
+        Args: { p_conversation: string };
+        Returns: undefined;
+      };
+      support_set_state: {
+        Args: { p_conversation: string; p_status?: string | null; p_assign?: boolean };
+        Returns: undefined;
+      };
+      p2p_offer_publish: {
+        Args: { p_payload: Json };
+        Returns: string;
+      };
+      p2p_offer_close: {
+        Args: { p_offer: string; p_reason?: string | null };
+        Returns: undefined;
+      };
+      p2p_trade_take: {
+        Args: { p_offer: string; p_amount_minor: number; p_agreed_rate: number };
+        Returns: string;
+      };
+      p2p_trade_dispute: {
+        Args: { p_trade: string; p_reason: string };
+        Returns: undefined;
+      };
+      p2p_rate: {
+        Args: { p_trade: string; p_score: number; p_comment?: string | null };
+        Returns: undefined;
+      };
+      p2p_limits: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      conversation_for_trade: {
+        Args: { p_trade: string };
+        Returns: string;
+      };
+      order_public_status: {
+        Args: { p_ref: string };
+        Returns: Json;
+      };
+      customer_tier: {
+        Args: { p_user?: string | null };
+        Returns: Json;
+      };
+      customer_tiers: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      cost_benchmark: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      office_step: {
+        Args: { p_order: string; p_step: string; p_reason?: string | null };
+        Returns: OrderState;
+      };
+      referral_claim: {
+        Args: { p_code: string };
+        Returns: boolean;
+      };
+    };
+    Enums: { app_role: AppRole; kyc_status: KycStatus; order_state: OrderState };
+    CompositeTypes: Record<string, never>;
+  };
+};

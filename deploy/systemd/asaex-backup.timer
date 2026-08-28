@@ -1,0 +1,12 @@
+[Unit]
+Description=Run the Asaex backup every night
+
+[Timer]
+# 03:20, Tehran. Quiet, and after midnight settlement has finished.
+OnCalendar=*-*-* 03:20:00
+Persistent=true
+# Without this, every machine on the same image backs up at the same second.
+RandomizedDelaySec=600
+
+[Install]
+WantedBy=timers.target

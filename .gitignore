@@ -1,38 +1,55 @@
 # dependencies
-node_modules/
-.pnp
-.pnp.js
+/node_modules
+.pnpm-store
 
 # next.js
-.next/
-out/
-build/
+/.next/
+/out/
 next-env.d.ts
 
-# database
-db/*.db
-db/*.db-journal
-prisma/*.db
+# serwist (generated service worker)
+/public/sw.js
+/public/sw.js.map
+/public/swe-worker*.js
+
+# production
+/build
 
 # misc
 .DS_Store
 *.pem
-*.log
-npm-debug.log*
+/artifacts
 
-# env
+# debug
+npm-debug.log*
+pnpm-debug.log*
+
+# env files — never commit real secrets
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# vercel
-.vercel
+.env.*.local
 
 # typescript
 *.tsbuildinfo
 
-# android build outputs
-mobile/**/android/
-mobile/**/node_modules/
+# testing
+/coverage
+/playwright-report
+/test-results
+
+# Throwaway verification scripts — kept out of the repo, not out of the way.
+scripts/tmp/
+# throwaway capture/verification scripts, run from the repo root so they can
+# resolve @playwright/test — never part of the project
+*.tmp.mjs
+*.tmp.mts
+
+# Python bytecode from the throwaway message-editing scripts
+__pycache__/
+
+# The deployment's secrets. Generated on the server by
+# deploy/scripts/gen-secrets.sh and never committed — it holds the JWT signing
+# key, the database password and the backup passphrase.
+deploy/.env
+deploy/.env.*
+!deploy/.env.example

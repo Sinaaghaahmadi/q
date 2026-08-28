@@ -1,0 +1,3217 @@
+{
+  "meta": {
+    "brand": "Asaex",
+    "title": "Asaex — Devisentransfer, ganz einfach",
+    "description": "Ein Überweisungsmarktplatz zwischen lizenzierten Wechselstuben. Live-Kurse, transparente Gebühren, beaufsichtigte Abwicklung — meist innerhalb eines Werktags."
+  },
+  "nav": {
+    "home": "Start",
+    "primary": "Hauptnavigation",
+    "rates": "Kurse",
+    "transfer": "Transfer",
+    "orders": "Aufträge",
+    "profile": "Profil",
+    "startTransfer": "Transfer starten",
+    "accounts": "Konten",
+    "signin": "Anmelden",
+    "verify": "Verifizierung",
+    "office": "Wechselstube",
+    "admin": "Verwaltung",
+    "support": "Hilfe",
+    "p2p": "P2P-Markt",
+    "how": "So funktioniert es",
+    "why": "Warum Asa",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "coins": "Gold und Münzen"
+  },
+  "locale": {
+    "label": "Sprache"
+  },
+  "theme": {
+    "label": "Darstellung",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht",
+    "body": "Prüfen Sie die Adresse oder beginnen Sie auf der Startseite. Hat die App selbst Sie hierher gebracht, sagen Sie uns über die Hilfe Bescheid.",
+    "cta": "Zurück zur Startseite"
+  },
+  "offline": {
+    "metaTitle": "Offline",
+    "title": "Sie sind offline",
+    "body": "Die zwischengespeicherte App-Hülle ist verfügbar, und die zuletzt geladenen Kurse werden mit ihrem Zeitstempel angezeigt. Alles aktualisiert sich, sobald die Verbindung zurück ist.",
+    "cta": "Erneut versuchen"
+  },
+  "converter": {
+    "title": "Schnell umrechnen",
+    "youSend": "Sie senden",
+    "recipientGets": "Empfänger erhält",
+    "swap": "Währungen tauschen",
+    "fromCurrency": "Ausgangswährung",
+    "toCurrency": "Zielwährung",
+    "pickCurrency": "Währung wählen",
+    "searchCurrency": "Name oder Code suchen…",
+    "popular": "Häufig genutzt",
+    "all": "Alle Währungen",
+    "noResults": "Keine Währung passt zu dieser Suche.",
+    "unitRate": "1 {from} ≈ {rate} {toUnit}",
+    "toman": "Toman",
+    "midRateNote": "Mittelkurs; der endgültige Kurs und die Gebühren werden beim Absenden des Transfers einzeln aufgeführt.",
+    "cta": "Weiter zum Transfer",
+    "tomanLegNote": "Bei der Schnellumrechnung ist eine Seite immer Toman."
+  },
+  "home": {
+    "metaTitle": "Live-Kurse und Transfers",
+    "stripTitle": "Live-Kurse auf den wichtigsten Korridoren",
+    "allRates": "Alle Kurse",
+    "hero": {
+      "title": "Devisentransfer, ganz einfach",
+      "ctaPrimary": "Transfer starten",
+      "ctaSecondary": "Kurse ansehen"
+    },
+    "how": {
+      "title": "Wie läuft ein Transfer ab?",
+      "subtitle": "Drei klare Schritte; bei jedem wissen Sie, was gerade passiert ist und was als Nächstes kommt.",
+      "steps": {
+        "1": {
+          "title": "Absenden und Kurs festhalten",
+          "body": "Sie legen Betrag und Zielkonto fest; der Kurs wird fünfzehn Minuten festgehalten und geeignete Wechselstuben sehen Ihre Anfrage."
+        },
+        "2": {
+          "title": "Wechselstube nimmt an, Toman wird eingezahlt",
+          "body": "Eine Wechselstube übernimmt die Anfrage und der Chat öffnet sich. Der Toman-Teil wird im beaufsichtigten Ablauf der Plattform eingezahlt und beidseitig bestätigt."
+        },
+        "3": {
+          "title": "Devisenausführung und Freigabe",
+          "body": "Die Wechselstube führt den Devisentransfer aus und lädt den Nachweis hoch; nach bestätigtem Eingang wird der Toman freigegeben und Ihr Beleg erstellt."
+        }
+      }
+    },
+    "trust": {
+      "title": "Warum Asa?",
+      "subtitle": "Keine Zahl bleibt verborgen: Grundkurs, Kursunterschied und jede Gebühr werden vor Ihrer Bestätigung einzeln aufgeführt.",
+      "counter": "{count} Transfers diese Woche abgeschlossen",
+      "items": {
+        "licensed": {
+          "title": "Nur lizenzierte Wechselstuben",
+          "body": "Jede Wechselstube zeigt ihre Lizenznummer und ihr öffentliches Profil, mit nachverfolgter Leistung — Geschwindigkeit und Bewertungen."
+        },
+        "rateLock": {
+          "title": "Kurs fünfzehn Minuten fest",
+          "body": "Ein bestätigter Kurs gilt bis zum Ende des Countdowns; danach ändert er sich nur mit Ihrer erneuten Zustimmung."
+        },
+        "sla": {
+          "title": "Eine klare Fristzusage",
+          "body": "Ziel ist ein Werktag, die vertragliche Obergrenze drei; Verzögerungen werden automatisch nachverfolgt."
+        },
+        "chat": {
+          "title": "Sprechen, bevor es verbindlich ist",
+          "body": "Sprechen Sie mit der Wechselstube schon ab der Prüfung — bevor irgendetwas endgültig ist."
+        }
+      }
+    },
+    "services": {
+      "title": "Weitere Dienste",
+      "coins": {
+        "title": "Münzen und Gold",
+        "body": "Münzen und Gold zum Tageskurs kaufen"
+      },
+      "p2p": {
+        "title": "Markt unter Privatpersonen",
+        "body": "Direkt zwischen Nutzenden kaufen und verkaufen"
+      },
+      "track": {
+        "title": "Auftrag verfolgen",
+        "body": "Mit einer Referenz, ohne Anmeldung"
+      }
+    }
+  },
+  "currencies": {
+    "IRT": "Iranischer Toman",
+    "USD": "US-Dollar",
+    "EUR": "Euro",
+    "GBP": "Britisches Pfund",
+    "AED": "VAE-Dirham",
+    "TRY": "Türkische Lira",
+    "IQD": "Irakischer Dinar",
+    "AZN": "Aserbaidschanischer Manat",
+    "AMD": "Armenischer Dram",
+    "GEL": "Georgischer Lari",
+    "RUB": "Russischer Rubel",
+    "AFN": "Afghani",
+    "PKR": "Pakistanische Rupie",
+    "TMT": "Turkmenischer Manat",
+    "OMR": "Omanischer Rial",
+    "KWD": "Kuwaitischer Dinar",
+    "QAR": "Katar-Riyal",
+    "SAR": "Saudi-Riyal",
+    "CAD": "Kanadischer Dollar",
+    "CNY": "Chinesischer Yuan"
+  },
+  "rates": {
+    "status": {
+      "loading": "Kurse werden geladen…",
+      "live": "Live-Kurs",
+      "updated": "Aktualisiert {ago}",
+      "degraded": "Aktualisierung verspätet",
+      "demo": "Ersatzkurs"
+    }
+  },
+  "ratesPage": {
+    "metaTitle": "Live-Wechselkurse",
+    "title": "Kurse",
+    "subtitle": "Live-Preise in Toman, Veränderung über 24 Stunden und der Trend über 30 Tage — Quelle: freier Markt (tgju).",
+    "search": "Währung suchen…",
+    "noResults": "Keine Währung passt zu dieser Suche.",
+    "favorite": "{currency} zu Favoriten hinzufügen",
+    "unfavorite": "{currency} aus Favoriten entfernen",
+    "range30": "30 T",
+    "range90": "90 T",
+    "range180": "180 T",
+    "alertCta": "Kursalarm",
+    "alertTitle": "Kursalarme",
+    "alertBody": "Sobald es Konten gibt, können Sie je Währung eine Schwelle setzen und per SMS, E-Mail oder Push benachrichtigt werden.",
+    "high24h": "Hoch 24 Std.",
+    "low24h": "Tief 24 Std.",
+    "chartSummary": "{code} über die letzten {days} Tage, von {from} bis {to} Toman.",
+    "reorder": "Neu ordnen",
+    "reorderDone": "Fertig",
+    "reorderReset": "Reihenfolge zurücksetzen",
+    "reorderHint": "Ziehen Sie eine Karte oder nutzen Sie die Pfeiltasten, um die Währungen nach Ihrem Bedarf zu ordnen. Die Reihenfolge bleibt auf diesem Gerät gespeichert.",
+    "moveUp": "{currency} nach oben",
+    "moveDown": "{currency} nach unten",
+    "noHistory": "Für diese Währung wurde noch kein Verlauf aufgezeichnet."
+  },
+  "footer": {
+    "brand": "Asaex",
+    "tagline": "Devisentransfer, ganz einfach. Sie stellen eine Anfrage, eine lizenzierte Wechselstube führt sie aus, und jeder Schritt läuft unter Aufsicht der Plattform.",
+    "compliance": "Asa ist ein Überweisungsmarktplatz zwischen lizenzierten Wechselstuben. Es ist keine Wallet, die Ihr Geld verwahrt, kein Wertpapiermarkt, und es werden keine Einlagen gehalten.",
+    "legal": "Rechtliches",
+    "designSystem": "Designsystem",
+    "copyright": "© 2026 Asaex — Alle Rechte vorbehalten.",
+    "builtBy": "Entwickelt von der Programmiergruppe Â"
+  },
+  "track": {
+    "metaTitle": "Verfolgung von {ref}",
+    "arriving": "Unterwegs zum Empfänger",
+    "milestone": {
+      "accepted": "Die Wechselstube hat angenommen",
+      "funded": "Der Toman liegt bei der Wechselstube",
+      "sent": "Der Devisentransfer wurde gesendet",
+      "done": "Eingang bestätigt und abgerechnet"
+    },
+    "handledBy": "Bearbeitet von {office}.",
+    "dueBy": "Zugesagt bis {date}",
+    "privacyNote": "Diese Seite zeigt nur den Status — keine Namen, keine Kontonummern, keine Gebühren.",
+    "cta": "Selbst einen senden?",
+    "ctaLink": "Asaex ansehen",
+    "notFoundTitle": "Kein Transfer mit dieser Nummer",
+    "notFoundBody": "Prüfen Sie die Referenz; sie sieht aus wie ASA-XXXXXX.",
+    "throttledTitle": "Gleich noch einmal versuchen",
+    "throttledBody": "Es gibt gerade sehr viele Verfolgungsanfragen.",
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Diese Vorschau ist nicht mit einer Datenbank verbunden.",
+    "backHome": "Zurück zur Startseite",
+    "share": {
+      "title": "Verfolgung für den Empfänger",
+      "body": "Senden Sie diesen Link an die empfangende Person. Sie sieht den Status ohne Konto, und der Link trägt weder Namen noch Kontonummer.",
+      "copy": "Kopieren",
+      "copied": "Kopiert"
+    }
+  },
+  "about": {
+    "metaTitle": "Über uns",
+    "title": "Siebzehn Menschen, weltweit, an einer Sache",
+    "lede": "Wir sind ein Team von siebzehn Menschen, vollständig remote, aus allen Ecken der Welt — von Teheran und Dubai bis Berlin und Toronto. Kein Büro bringt uns zusammen, aber eine Sache tut es: dass das Senden von Geld für eine iranische Familie so einfach wird wie das Senden einer Nachricht. Aus Liebe zu Iran, und für das Iran, das als Nächstes entsteht.",
+    "map": {
+      "alt": "Eine Weltkarte mit neun Markierungen, alle mit Teheran verbunden, mit Arbeit, die sich auf den Strecken dazwischen bewegt.",
+      "caption": "Neun Punkte auf einer Karte, siebzehn Menschen dahinter — und eine gemeinsame Strecke."
+    },
+    "crafts": {
+      "product": {
+        "title": "Produktdesign",
+        "body": "Jeder Bildschirm, den Sie sehen, ist hier entstanden: vom Transferablauf bis zum Panel, auf dem eine Wechselstube ihre Arbeit mit vier Tastendrücken erledigt."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "body": "Unsere Aufgabe ist zu sagen, was dieses Produkt ist, ohne zu übertreiben. Die versprochene Zahl ist die Zahl, die beim Empfänger ankommt."
+      },
+      "bizdev": {
+        "title": "Geschäftsentwicklung",
+        "body": "Wir bauen das Netz lizenzierter Wechselstuben auf und öffnen die nächsten Korridore."
+      },
+      "strategy": {
+        "title": "Strategie",
+        "body": "Wir entscheiden, welcher Korridor als Nächstes öffnet — und was wir bewusst nicht bauen."
+      },
+      "support": {
+        "title": "Hilfe",
+        "body": "Wenn ein Transfer hängt, antwortet auf der anderen Seite ein Mensch — kein Bot."
+      },
+      "people": {
+        "title": "Personal",
+        "body": "Ein Team über acht Zeitzonen hält nicht von allein zusammen. Das ist die Arbeit von jemandem."
+      }
+    },
+    "mission": {
+      "title": "Warum wir das tun",
+      "body": "Für viele Iranerinnen und Iraner heißt Geld senden noch immer, einer unbekannten Nummer auf Telegram zu vertrauen und auf das Beste zu hoffen. Wir glauben, dieselbe Aufgabe lässt sich erledigen, mit denselben echten Wechselstuben, aber mit einem sichtbaren Kurs, einem verfolgbaren Weg und einer klaren Antwort darauf, wer verantwortlich ist.",
+      "contact": "Sprechen Sie mit uns",
+      "how": "Wie läuft ein Transfer ab?"
+    },
+    "built": {
+      "title": "Entwicklung und Pflege",
+      "name": "Die Programmiergruppe Â",
+      "body": "Dieses Produkt wird von der Programmiergruppe Â entwickelt und gepflegt: von der Datenbank und der Sicherheitsschicht bis zu jedem Bildschirm auf dieser Website und in den Büro- und Verwaltungspanels."
+    }
+  },
+  "contact": {
+    "metaTitle": "Kontakt",
+    "title": "Stimmt etwas nicht? Sagen Sie es uns.",
+    "lede": "Schreiben Sie Ihre Nachricht und senden Sie sie ab. Für die Nachverfolgung brauchen wir nur eine bestätigte Telefonnummer — keine Registrierung, kein weiteres Formular. Jedes Ticket bekommt eine Referenz und bleibt bis zum Ende verfolgbar.",
+    "categoryLabel": "Worum geht es?",
+    "categories": {
+      "order": "Ein Transfer",
+      "payment": "Zahlung",
+      "kyc": "Identitätsprüfung",
+      "p2p": "P2P-Markt",
+      "account": "Mein Konto",
+      "office": "Eine Wechselstube",
+      "other": "Etwas anderes"
+    },
+    "subjectLabel": "In einer Zeile",
+    "subjectPlaceholder": "z. B.: Meine Toman-Zahlung wurde nicht erfasst",
+    "bodyLabel": "Was passiert ist",
+    "bodyPlaceholder": "Je mehr Sie schreiben, desto schneller die Antwort: Auftragsreferenz, Datum, Betrag.",
+    "bodyHint": "Wenn Sie eine Auftragsreferenz haben, geben Sie sie an.",
+    "phoneLabel": "Telefonnummer",
+    "phoneHint": "Wir senden einen Code. Ihre Nachricht bleibt hier und geht nach der Bestätigung raus.",
+    "submit": "Senden und Code erhalten",
+    "submitSignedIn": "Ticket eröffnen",
+    "working": "Wird gesendet…",
+    "verify": {
+      "title": "Code eingeben",
+      "body": "Ein sechsstelliger Code ging an {phone}. Ihre Nachricht ist geschrieben und bereit.",
+      "codeLabel": "Bestätigungscode",
+      "cta": "Bestätigen und eröffnen",
+      "working": "Wird eröffnet…",
+      "back": "Nachricht oder Nummer ändern"
+    },
+    "done": {
+      "title": "Ticket eröffnet",
+      "body": "Das ist Ihre Ticketreferenz. Jede Statusänderung lässt sich damit verfolgen.",
+      "cta": "Unterhaltung öffnen"
+    },
+    "promises": {
+      "tracked": {
+        "title": "Alles nachverfolgbar",
+        "body": "Jedes Ticket hat eine Referenz, einen Status und eine Historie. Sie sehen, wer daran gearbeitet hat und wann."
+      },
+      "answered": {
+        "title": "Antwort binnen 24 Stunden",
+        "body": "Die zuständige Wechselstube hat 24 Stunden. Die Zeit bis zur ersten Antwort wird erfasst und gemessen."
+      },
+      "escalates": {
+        "title": "Wenn niemand antwortet",
+        "body": "Nach 24 Stunden Schweigen können Sie das Ticket an die Plattform eskalieren. Die Plattform steht über der Wechselstube."
+      }
+    },
+    "errors": {
+      "invalidPhone": "Diese Telefonnummer ist nicht gültig.",
+      "rateLimited": "Zu viele Anfragen. Versuchen Sie es gleich noch einmal.",
+      "sendFailed": "Der Code konnte nicht gesendet werden.",
+      "invalidCode": "Dieser Code stimmt nicht.",
+      "cooldown": "Sie haben in der letzten Stunde zu viele Tickets eröffnet.",
+      "failed": "Das Ticket konnte nicht eröffnet werden. Versuchen Sie es erneut.",
+      "network": "Der Server ist nicht erreichbar."
+    }
+  },
+  "toast": {
+    "copied": "Kopiert",
+    "copyFailed": "Kopieren nicht möglich. Markieren Sie den Text von Hand.",
+    "saved": "Gespeichert",
+    "sent": "Gesendet",
+    "failed": "Das hat nicht geklappt. Versuchen Sie es erneut.",
+    "offline": "Sie sind offline. Es werden die zuletzt bekannten Daten angezeigt."
+  },
+  "auth": {
+    "legalNote": "Die Anmeldung in diesem Panel gilt als vollständige Annahme der <terms>Nutzungsbedingungen</terms>, der <privacy>Datenschutzerklärung</privacy> und der <aml>Geldwäsche-Richtlinie</aml>.",
+    "metaTitle": "Anmelden",
+    "title": "Bei Asaex anmelden",
+    "body": "Geben Sie Ihre Mobilnummer ein, dann schicken wir Ihnen einen Einmalcode per SMS. Haben Sie noch kein Konto, wird dabei eines angelegt.",
+    "codeTitle": "Geben Sie Ihren Einmalcode ein",
+    "codeBody": "Wir haben einen sechsstelligen Code an {phone} geschickt. Er gilt zwei Minuten.",
+    "sentTitle": "Anmeldelink gesendet",
+    "sentBody": "Wir haben einen Anmeldelink an {email} geschickt. Öffnen Sie ihn, und Sie sind drin.",
+    "doneTitle": "Willkommen",
+    "doneBody": "Weiter zum nächsten Schritt…",
+    "channel": {
+      "phone": "Mobil",
+      "email": "E-Mail",
+      "staff": "Mitarbeitende"
+    },
+    "phoneLabel": "Mobilnummer",
+    "phoneHint": "Beginnen Sie mit 09 oder schreiben Sie sie mit +98.",
+    "emailHint": "Die Anmeldung per E-Mail steht Kundinnen und Kunden außerhalb des Iran offen.",
+    "emailLabel": "E-Mail-Adresse",
+    "sending": "Wird gesendet…",
+    "cta": "Weiter",
+    "codeLabel": "Einmalcode",
+    "verifying": "Wird geprüft…",
+    "verifyCta": "Prüfen und anmelden",
+    "changeNumber": "Nummer ändern",
+    "resendIn": "Erneut senden in {clock}",
+    "resend": "Neuen Code senden",
+    "checkInbox": "Sehen Sie in Ihrem Posteingang nach",
+    "changeEmail": "E-Mail ändern",
+    "scene": {
+      "otp": "Einmalcode wird empfangen",
+      "done": "Angemeldet"
+    },
+    "errors": {
+      "rateLimited": "Das sind viele Anfragen. Versuchen Sie es in etwa {minutes, number} Minuten erneut.",
+      "smsUnavailable": "Der SMS-Versand ist in dieser Umgebung noch nicht aktiv. Melden Sie sich vorerst per E-Mail an — die Anmeldung per Mobilnummer schaltet sich frei, sobald das Gateway angebunden ist.",
+      "invalidPhone": "Diese Mobilnummer sieht nicht richtig aus — geben Sie eine elfstellige iranische Nummer ein.",
+      "authUnavailable": "Die Anmeldung ist in dieser Umgebung nicht eingerichtet.",
+      "sendFailed": "Der Code wurde nicht gesendet. Versuchen Sie es gleich noch einmal.",
+      "network": "Keine Verbindung. Prüfen Sie Ihr Netz und versuchen Sie es erneut.",
+      "invalidCode": "Dieser Code ist falsch oder abgelaufen — fordern Sie einen neuen an.",
+      "notStaff": "Dieses Konto hat auf keinen Bereich Zugriff.",
+      "invalidCredentials": "Diese E-Mail und dieses Passwort passen nicht zusammen."
+    },
+    "channelLabel": "Anmeldeverfahren",
+    "staffHint": "Wechselstuben melden sich mit einem Benutzernamen an, Plattform-Mitarbeitende mit einer E-Mail-Adresse.",
+    "passwordLabel": "Passwort",
+    "staffCta": "Bereich öffnen",
+    "staffIdLabel": "Benutzername oder E-Mail",
+    "totpPrompt": "Geben Sie den sechsstelligen Code aus Ihrer Authenticator-App ein.",
+    "totpLabel": "Code des zweiten Schritts",
+    "totpCta": "Anmelden",
+    "totpLost": "Kommen Sie nicht an Ihre Authenticator-App, wenden Sie sich an die Plattform-Administration.",
+    "legalRequired": "Sie müssen die Bedingungen annehmen, um fortzufahren."
+  },
+  "legal": {
+    "version": "Version {version}",
+    "updated": "Zuletzt aktualisiert: {date}",
+    "titles": {
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutzerklärung",
+      "aml": "Geldwäschepräventions-Richtlinie",
+      "fees": "Gebührenübersicht",
+      "sla": "Zeitzusage und Erstattung",
+      "complaints": "Beschwerdeverfahren"
+    }
+  },
+  "pricing": {
+    "total": "Kursunterschied gesamt",
+    "layers": {
+      "platform_floor": "Untergrenze der Plattform",
+      "corridor_default": "Grundunterschied der Strecke",
+      "office_markup": "Aufschlag der Wechselstube",
+      "tier_discount": "Stufenrabatt",
+      "promo": "Aktionscode"
+    },
+    "bands": {
+      "intro": "Der Betrag wird in Stufen zerlegt, und jede Stufe hat ihren eigenen Satz. Die unteren Stufen werden immer voll berechnet: Wer mehr sendet, senkt den Gesamtprozentsatz, ohne dass die Provision selbst je kleiner wird.",
+      "between": "Von {from} bis {to} Toman",
+      "above": "Über {from} Toman",
+      "notReached": "Nicht erreicht",
+      "toman": "Toman",
+      "total": "Provision gesamt"
+    },
+    "schedule": {
+      "title": "Gestaffelte Provision",
+      "tryLabel": "Betrag eingeben und die Provision dazu sehen",
+      "commission": "Provision",
+      "effective": "Gesamtsatz",
+      "marginal": "Höchste erreichte Stufe",
+      "officeShare": "Anteil der Wechselstube",
+      "ceilingNote": "Dieser Prozentsatz ist die Obergrenze für alles, was der Kunde zahlt. Weicht der Kurs einer Wechselstube vom Grundkurs ab, wird genau dieser Betrag von der Provision abgezogen und nicht auf den Kundenpreis aufgeschlagen.",
+      "splitNote": "Der Anteil der Plattform beträgt {pct} % der Provision, der Rest geht an die ausführende Wechselstube. Diese Aufteilung ändert nichts an dem, was der Kunde zahlt."
+    }
+  },
+  "support": {
+    "metaTitle": "Hilfe",
+    "title": "Hilfe",
+    "subtitle": "Ihre Nachricht geht direkt an das Support-Team. Wir antworten innerhalb eines Werktags.",
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "backHome": "Zurück zur Startseite",
+    "howTitle": "So funktioniert der Support",
+    "howBody": "Ihre Nachricht erreicht das Support-Team und wird hier beantwortet; der Verlauf bleibt bei Ihnen."
+  },
+  "menu": {
+    "title": "Menü",
+    "alerts": "Kurswarnungen",
+    "appearance": "Sprache und Darstellung",
+    "version": "Version {version}",
+    "group": {
+      "account": "Mein Konto",
+      "staff": "Bereiche",
+      "company": "Hilfe und Kontakt",
+      "legal": "Bedingungen und Richtlinien"
+    },
+    "hint": {
+      "accounts": "Zielkonten, auf denen das Geld ankommt",
+      "verify": "Ausweisunterlagen abschließen",
+      "alerts": "Bescheid bekommen, wenn ein Kurs Ihre Zahl erreicht",
+      "office": "Für Mitarbeitende der Wechselstuben",
+      "admin": "Für Plattform-Administratoren"
+    },
+    "more": "Mehr",
+    "signedOutNote": "Melden Sie sich an, um eine Überweisung zu senden und Ihre Aufträge zu sehen."
+  },
+  "glossary": {
+    "open": "Was das bedeutet: {term}",
+    "close": "Schließen",
+    "midRate": {
+      "title": "Marktgrundkurs",
+      "body": "Die Mitte zwischen dem An- und dem Verkaufskurs einer Währung am freien Markt, in genau diesem Moment. Weder Ihr Kaufpreis noch Ihr Verkaufspreis, sondern die Mitte — und jede Zahl hier geht davon aus, damit Sie unsere mit jeder anderen vergleichen können."
+    },
+    "commission": {
+      "title": "Gestaffelte Provision",
+      "body": "Die einzigen Kosten einer Überweisung. Gestaffelt heißt: Ihr Betrag wird in Stufen zerlegt, und jede Stufe hat ihren Satz — die erste 10 %, höhere bis hinunter zu 3 %. Je mehr Sie senden, desto niedriger der Gesamtprozentsatz, während die Provision selbst durch einen größeren Betrag nie sinkt."
+    },
+    "commissionCeiling": {
+      "title": "Kostenobergrenze",
+      "body": "Der angezeigte Prozentsatz ist alles, was Sie zahlen. Setzt eine Wechselstube den Kurs etwas abseits des Grundkurses an, wird genau dieser Betrag von ihrer Provision abgezogen; auf diese Zahl kommt nichts obendrauf."
+    },
+    "rateMarkup": {
+      "title": "Kursunterschied",
+      "body": "Manche Wechselstuben nennen statt einer eigenen Gebühr einen Kurs leicht über oder unter dem Grundkurs. Das sind keine zusätzlichen Kosten: Es wird von derselben gestaffelten Provision abgezogen."
+    },
+    "rateLock": {
+      "title": "Kursbindung",
+      "body": "Wenn Sie eine Überweisung öffnen, wird der Kurs fünfzehn Minuten lang für Sie gehalten. Bis der Countdown abläuft, geht Sie nichts an, was der Markt tut. Danach sehen Sie einen frischen Kurs und bestätigen erneut."
+    },
+    "refresh": {
+      "title": "Kursaktualisierung",
+      "body": "Die Kurse aktualisieren sich alle 30 Sekunden von selbst, und sind seit dem letzten mehr als 20 Sekunden vergangen, werden sie geholt, sobald Sie zur Seite zurückkehren. Die Uhrzeit der letzten Aktualisierung steht immer neben dem Kurs."
+    },
+    "identity": {
+      "title": "Identitätsprüfung",
+      "body": "Die Bestätigung, dass Sie sind, wer Sie sagen: eine Mobilnummer, ein Ausweisdokument und ein Live-Foto. Das Geldwäschegesetz verlangt es bei Devisenüberweisungen, und ohne das können wir Ihren Auftrag keiner Wechselstube übergeben."
+    },
+    "iban": {
+      "title": "IBAN (Sheba)",
+      "body": "Die 24-stellige Kennung des Bankkontos, die mit IR beginnt. Ihre Zeichen tragen eine Prüfrechnung: Vertippen Sie sich, sagen wir es Ihnen hier, statt das Geld auf ein falsches Konto laufen zu lassen."
+    },
+    "destinationAccount": {
+      "title": "Zielkonto",
+      "body": "Das Konto, auf dem das Geld ankommen soll — Ihres oder das der Person, an die Sie senden. Einmal gespeichert, danach nur noch ausgewählt."
+    },
+    "escrow": {
+      "title": "Sichere Verwahrung",
+      "body": "Beim direkten Handel zwischen zwei Personen bleibt das Geld bei der Plattform, bis beide Seiten ihren Teil erfüllt haben, und wird dann freigegeben. Keine Seite gibt etwas heraus, bevor die andere geliefert hat."
+    },
+    "p2p": {
+      "title": "Markt unter Privatpersonen",
+      "body": "Der Ort, an dem Menschen direkt miteinander handeln und die Plattform nur die sichere Mitte ist. Den Preis setzen die beiden Seiten selbst, innerhalb einer erlaubten Spanne um den Marktkurs."
+    },
+    "settlement": {
+      "title": "Abwicklung",
+      "body": "Der Schritt, in dem Geld tatsächlich zwischen Konten bewegt wird. Jede Abwicklung hat einen Beleg und steht in Ihrem Auftrag."
+    },
+    "twoFactor": {
+      "title": "Anmeldung in zwei Schritten",
+      "body": "Neben dem Passwort ein sechsstelliger Code, der sich alle dreißig Sekunden in einer App auf Ihrem Telefon ändert. Selbst wer Ihr Passwort kennt, kommt ohne dieses Telefon nicht hinein."
+    },
+    "otp": {
+      "title": "Einmalcode",
+      "body": "Ein per SMS geschickter Code, der nur wenige Minuten gilt. Er ersetzt ein festes Passwort, sodass nichts mehr da ist, was gestohlen werden könnte."
+    },
+    "sla": {
+      "title": "Zeitzusage",
+      "body": "Was wir zur Dauer zusagen: derselbe Werktag als Ziel, drei Werktage als vertragliches Maximum. Danach beginnt die Nachverfolgung automatisch."
+    },
+    "corridor": {
+      "title": "Währungsstrecke",
+      "body": "Ein Paar aus Ausgangs- und Zielwährung — etwa Toman zu Dirham. Jede Strecke hat ihre eigenen Wechselstuben und Bedingungen."
+    },
+    "bubble": {
+      "title": "Aufgeld der Münze",
+      "body": "Der Abstand zwischen dem Preis einer Münze und dem Wert des Goldes darin. Bei hoher Nachfrage wird der Abstand größer; die angezeigte Zahl ist genau dieser Abstand."
+    },
+    "install": {
+      "title": "Auf dem Telefon installieren",
+      "body": "Sie können dies wie eine App auf den Startbildschirm Ihres Telefons legen, ohne einen App-Store. Danach zeigt es die letzten Kurse auch ohne Verbindung."
+    },
+    "openMarket": {
+      "title": "Freier Markt",
+      "body": "Der Preis, zu dem Währungen im freien Handel tatsächlich den Besitzer wechseln, nicht der amtliche Kurs der Zentralbank. Alle Zahlen in dieser App beruhen darauf."
+    }
+  },
+  "transfer": {
+    "metaTitle": "Neue Überweisung",
+    "title": "Überweisungsangebot",
+    "subtitle": "Jeder Preisbestandteil, bevor Sie bestätigen — keine versteckten Kosten.",
+    "toman": "Toman",
+    "lockActive": "Ihr Kurs ist festgehalten",
+    "lockExpired": "Die Kursbindung ist abgelaufen",
+    "lockNote": "Ein bestätigter Kurs gilt fünfzehn Minuten. Läuft er ab, liefert ein Tippen ein frisches Angebot und zeigt den Unterschied deutlich an.",
+    "requote": "Neuen Kurs holen",
+    "youSend": "Sie senden",
+    "rateUsed": "Angewandter Kurs",
+    "rateValue": "{rate} Toman je {code}",
+    "whyThisRate": "Warum dieser Kurs?",
+    "recipientGets": "Empfänger erhält",
+    "confirmCta": "Bestätigen und fortfahren",
+    "back": "Zurück",
+    "slaNote": "Zeitrahmen: üblicherweise innerhalb eines Werktags erledigt; die vertragliche Obergrenze liegt bei drei Werktagen, gezählt nach dem iranischen und dem Werktagskalender des Ziellandes.",
+    "whyBody": "Der Grundkurs (der Mittelkurs des Marktes) liegt bei {rate} Toman je {code}. Darauf werden folgende Kursunterschiede angewandt:",
+    "creating": "Auftrag wird angelegt…",
+    "destination": "Zielkonto",
+    "createErrors": {
+      "signedOut": "Ihre Sitzung ist beendet. Bitte melden Sie sich erneut an.",
+      "failed": "Der Auftrag konnte nicht angelegt werden. Versuchen Sie es erneut.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    },
+    "gate": {
+      "anonymous": {
+        "title": "Zum Absenden anmelden",
+        "body": "Melden Sie sich per Mobilnummer oder E-Mail an. Haben Sie noch kein Konto, legt derselbe Weg eines an.",
+        "cta": "Anmelden"
+      },
+      "unverified": {
+        "title": "Zuerst ist die Identitätsprüfung nötig",
+        "body": "Die Prüfung erfolgt ein einziges Mal und dauert unter fünf Minuten. Danach läuft das Absenden einer Überweisung ohne Unterbrechung.",
+        "cta": "Prüfung starten"
+      },
+      "no_accounts": {
+        "title": "Noch kein Zielkonto",
+        "body": "Für diese Währung ist kein Konto gespeichert. Legen Sie eines an, dann wählen Sie es beim Absenden nur noch aus.",
+        "cta": "Konto hinzufügen"
+      },
+      "ready": {
+        "title": "Bereit zum Absenden",
+        "body": "Alles ist vorbereitet.",
+        "cta": "Weiter"
+      }
+    },
+    "commission": "Provision der Wechselstube",
+    "commissionRate": "{pct} % der Überweisung",
+    "howCommission": "Wie kommt diese Zahl zustande?",
+    "nextBand": "Erhöhen Sie den Betrag auf {amount} Toman, dann sinkt die Provision auf {pct} %.",
+    "edit": {
+      "title": "Betrag und Währung",
+      "recalculating": "Wird neu berechnet…",
+      "youSend": "Sie senden",
+      "recipientCurrency": "Empfänger erhält",
+      "tomanLeg": "Eine Seite ist immer Toman",
+      "fromCurrency": "Währung, die Sie senden",
+      "toCurrency": "Währung, die ankommt"
+    },
+    "requoting": "Neuer Kurs wird geholt …",
+    "requoteFailed": "Es konnte kein neuer Kurs geholt werden. Prüfen Sie die Verbindung und versuchen Sie es erneut."
+  },
+  "orders": {
+    "metaTitle": "Aufträge",
+    "emptyTitle": "Noch keine Aufträge",
+    "emptyBody": "Sobald Sie die erste Überweisung beauftragen, erscheint hier der laufende Verlauf jedes Auftrags — mit dem Countdown der Zeitzusage und dem Chat mit Ihrer Wechselstube.",
+    "cta": "Überweisung starten",
+    "title": "Aufträge",
+    "subtitle": "Jede Überweisung mit eigener Nummer und dem vollständigen Verlauf jedes Schritts.",
+    "ref": "Auftragsnummer",
+    "created": "Angelegt",
+    "youSend": "Sie senden",
+    "recipientGets": "Empfänger erhält",
+    "office": "Wechselstube",
+    "officeUnassigned": "Noch keine Wechselstube",
+    "timeline": "Verlauf",
+    "noEvents": "Bisher ist nichts geschehen.",
+    "by": "von {role}",
+    "actorRole": {
+      "customer": "dem Kunden",
+      "office": "der Wechselstube",
+      "platform": "der Plattform"
+    },
+    "detailTitle": "Auftrag {ref}",
+    "notFound": "Diesen Auftrag gibt es nicht, oder Sie haben keinen Zugriff darauf.",
+    "rateLocked": "Festgehaltener Kurs",
+    "fees": "Gebühren",
+    "actions": "Was Sie tun können",
+    "noActions": "In diesem Schritt wird nichts von Ihnen gebraucht.",
+    "reasonLabel": "Notiz (optional)",
+    "reasonRequired": "Notiz (erforderlich)",
+    "working": "Wird erfasst…",
+    "actionFailed": "Diese Änderung konnte nicht erfasst werden.",
+    "errors": {
+      "notVerified": "Ihre Identität muss geprüft sein, bevor Sie eine Überweisung absenden können.",
+      "noDestination": "Es ist kein Zielkonto ausgewählt.",
+      "rateExpired": "Der festgehaltene Kurs ist abgelaufen — holen Sie einen neuen.",
+      "notPermitted": "Diese Handlung steht Ihnen in diesem Schritt nicht zu.",
+      "funded": "Ein bereits eingezahlter Auftrag wird erstattet, nicht storniert."
+    },
+    "state": {
+      "draft": "Nicht abgesendet",
+      "submitted": "Abgesendet",
+      "matching": "Wartet auf eine Wechselstube",
+      "office_review": "Wird von der Wechselstube geprüft",
+      "accepted": "Angenommen",
+      "awaiting_irt_funding": "Wartet auf Ihre Toman",
+      "irt_funded": "Toman eingezahlt",
+      "foreign_leg_pending": "Devisenteil in Arbeit",
+      "foreign_leg_sent": "Devisenteil versandt",
+      "recipient_confirmed": "Eingang bestätigt",
+      "irt_released": "Toman freigegeben",
+      "completed": "Abgeschlossen",
+      "on_hold": "Angehalten",
+      "info_needed": "Weitere Angaben nötig",
+      "disputed": "Im Streitfall",
+      "cancelled": "Storniert",
+      "refunded": "Erstattet",
+      "expired": "Abgelaufen",
+      "sla_breached": "Zeitzusage überschritten"
+    },
+    "stateBody": {
+      "draft": "Dieser Auftrag ist noch nicht abgesendet.",
+      "submitted": "Abgesendet und in der Warteschlange zu den geeigneten Wechselstuben.",
+      "matching": "Geeignete Wechselstuben können Ihre Anfrage sehen.",
+      "office_review": "Eine Wechselstube hat die Anfrage übernommen und prüft sie.",
+      "accepted": "Die Wechselstube hat angenommen. Als Nächstes wird der Toman-Teil eingezahlt.",
+      "awaiting_irt_funding": "Überweisen Sie den Toman-Betrag und laden Sie den Beleg hoch.",
+      "irt_funded": "Die Toman liegen in beaufsichtigter Verwahrung; die Wechselstube ist noch nicht bezahlt.",
+      "foreign_leg_pending": "Die Wechselstube führt die Devisenüberweisung aus.",
+      "foreign_leg_sent": "Sie ist unterwegs. Bestätigen Sie, sobald sie ankommt.",
+      "recipient_confirmed": "Der Eingang ist bestätigt; als Nächstes werden die Toman freigegeben.",
+      "irt_released": "Die Toman wurden an die Wechselstube freigegeben.",
+      "completed": "Diese Überweisung ist abgeschlossen.",
+      "on_hold": "Vorerst angehalten; der Grund steht im Verlauf.",
+      "info_needed": "Die Wechselstube hat weitere Angaben angefordert.",
+      "disputed": "Wird geprüft und bis zur Klärung eingefroren.",
+      "cancelled": "Dieser Auftrag wurde storniert.",
+      "refunded": "Der Toman-Betrag wurde zurückgezahlt.",
+      "expired": "Für diesen Auftrag ist die Zeit abgelaufen.",
+      "sla_breached": "Über der Frist und eskaliert."
+    },
+    "act": {
+      "submitted": "Anfrage absenden",
+      "cancelled": "Auftrag stornieren",
+      "recipient_confirmed": "Ich habe es erhalten",
+      "disputed": "Streitfall eröffnen",
+      "office_review": "Übernehmen und prüfen",
+      "accepted": "Anfrage annehmen",
+      "info_needed": "Weitere Angaben anfordern",
+      "awaiting_irt_funding": "Bereit für die Toman",
+      "irt_funded": "Eingang der Toman bestätigen",
+      "foreign_leg_pending": "Devisenteil starten",
+      "foreign_leg_sent": "Devisenteil als versandt markieren",
+      "irt_released": "Toman freigeben",
+      "completed": "Auftrag schließen",
+      "on_hold": "Anhalten",
+      "refunded": "Erstatten",
+      "sla_breached": "Überschreitung der Zeitzusage erfassen"
+    },
+    "cost": {
+      "title": "Was diese Überweisung gekostet hat",
+      "body": "Insgesamt {toman} Toman wurden von dieser Überweisung abgezogen — {pct} % davon.",
+      "basis": "Marktgrundkurs im Moment der Kursbindung: {mid} Toman."
+    }
+  },
+  "kyc": {
+    "metaTitle": "Identitätsprüfung",
+    "unavailableTitle": "Die Identitätsprüfung ist in dieser Umgebung nicht aktiv",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "backHome": "Zurück zur Startseite",
+    "steps": {
+      "identity": {
+        "rail": "Identität",
+        "title": "Ihre Angaben",
+        "body": "Wir erheben das ein einziges Mal. Nach der Freigabe verwalten Sie nur noch Ihre Zielkonten."
+      },
+      "document": {
+        "rail": "Dokument",
+        "title": "Ausweisdokument",
+        "body": "Fotografieren Sie Ihren Personalausweis oder Reisepass bei gleichmäßigem Licht ohne Spiegelung. Die Bildqualität wird gleich hier geprüft."
+      },
+      "liveness": {
+        "rail": "Selfie",
+        "title": "Live-Foto",
+        "body": "Machen Sie ein einfaches Selfie, damit wir bestätigen können, dass das Dokument Ihnen gehört."
+      },
+      "review": {
+        "rail": "Prüfung",
+        "title": "Prüfen und absenden",
+        "body": "Sehen Sie alles noch einmal durch, bevor Sie es senden.",
+        "pending": "Ihre Unterlagen sind da und warten auf die Prüfung. Das dauert meist weniger als einen Werktag.",
+        "badge": "In Prüfung",
+        "next": "Wir teilen Ihnen das Ergebnis per SMS und in der App mit. Ist ein Dokument unleserlich, sagen wir genau, welches und warum."
+      }
+    },
+    "fields": {
+      "nameFa": "Vollständiger Name (auf Persisch)",
+      "nameFaPlaceholder": "علی رضایی",
+      "nameLatin": "Name in lateinischer Schrift",
+      "nationality": "Staatsangehörigkeit",
+      "iranian": "Iranisch",
+      "other": "Nicht iranisch",
+      "nationalCode": "Nationale Kennnummer",
+      "nationalCodeHint": "Zehn Ziffern, genau wie auf Ihrem Personalausweis gedruckt.",
+      "nationalCodeInvalid": "Ungültige Kennnummer — die Prüfziffer passt nicht zum Rest.",
+      "dob": "Geburtsdatum",
+      "dobHint": "Geben Sie es im persischen Kalender an; das gregorianische Datum wird ebenfalls gespeichert.",
+      "year": "Jahr",
+      "month": "Monat",
+      "day": "Tag",
+      "city": "Stadt",
+      "cityPlaceholder": "Teheran",
+      "postalCode": "Postleitzahl",
+      "address": "Adresse",
+      "addressPlaceholder": "Straße, Gasse, Nummer, Wohnung"
+    },
+    "doc": {
+      "nationalId": "Personalausweis",
+      "passport": "Reisepass",
+      "passportPage": "Datenseite des Passes",
+      "front": "Vorderseite",
+      "back": "Rückseite",
+      "label": "Art des Dokuments",
+      "hint": "Das ganze Dokument ins Bild, ohne Spiegelung und ohne Finger auf dem Text.",
+      "privacy": "Dokumente liegen in verschlüsseltem, privatem Speicher; nur das Compliance-Team sieht sie, über einen kurzlebigen Link, und jeder Aufruf wird ins Prüfprotokoll geschrieben."
+    },
+    "liveness": {
+      "label": "Selfie",
+      "hint": "Ihr ganzes Gesicht im Bild, dem Licht zugewandt.",
+      "tip1": "Sonnenbrille, Maske und Kopfbedeckung abnehmen.",
+      "tip2": "Halten Sie den Hintergrund schlicht und frei von hartem Licht.",
+      "tip3": "Halten Sie das Dokument so, dass sein Text lesbar bleibt."
+    },
+    "upload": {
+      "choose": "Foto auswählen oder aufnehmen",
+      "ok": "Sieht gut aus",
+      "retake": "Neu aufnehmen",
+      "readFailed": "Diese Datei ließ sich nicht lesen — wählen Sie ein JPG- oder PNG-Bild.",
+      "verdict": {
+        "blurry": "Das Foto ist unscharf. Halten Sie die Kamera ruhig und versuchen Sie es erneut.",
+        "glare": "Eine Spiegelung liegt über dem Dokument. Ändern Sie den Winkel leicht.",
+        "dark": "Das Foto ist zu dunkel. Versuchen Sie es an einem helleren Ort.",
+        "small": "Die Auflösung ist zu gering. Gehen Sie näher heran und fotografieren Sie in höherer Qualität."
+      }
+    },
+    "back": "Zurück",
+    "next": "Weiter",
+    "submit": "Zur Prüfung einreichen",
+    "submitting": "Wird gesendet…",
+    "errors": {
+      "signedOut": "Ihre Sitzung ist beendet. Bitte melden Sie sich erneut an.",
+      "submitFailed": "Diese Einreichung ließ sich nicht ablegen. Versuchen Sie es gleich noch einmal.",
+      "uploadFailed": "Der Upload des Dokuments wurde nicht fertig. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    },
+    "ocr": {
+      "title": "Vom Dokument einlesen",
+      "body": "Trägt Ihr Dokument eine maschinenlesbare Zone — ein Reisepass oder ein internationaler Ausweis —, können wir die Angaben aus dem eben aufgenommenen Foto lesen. Das Foto verlässt Ihr Telefon nie: Das Lesen geschieht vollständig auf diesem Gerät.",
+      "read": "Einlesen",
+      "working": "Wird gelesen…",
+      "verified": "Geprüft",
+      "verifiedBody": "Jede ICAO-Prüfziffer dieser Felder wurde neu berechnet und stimmte. Wäre etwas falsch gelesen worden, stünde hier gar nichts.",
+      "field": {
+        "name": "Name",
+        "dob": "Geburtsdatum",
+        "nationality": "Staatsangehörigkeit",
+        "number": "Dokumentnummer"
+      },
+      "mismatch": "Das Gelesene weicht von Ihrer Eingabe ab (farbig markiert). Stimmt das Dokument, nutzen Sie die Schaltfläche unten; haben Sie bewusst einen anderen Namen eingetragen, lassen Sie es so.",
+      "expired": "Dieses Dokument ist am {date} abgelaufen.",
+      "apply": "Ins Formular übernehmen",
+      "appliedLabel": "Ins Formular übernommen",
+      "errors": {
+        "no-zone": "Keine maschinenlesbare Zone gefunden. Achten Sie darauf, dass die ganze Passseite flach im Bild liegt und die beiden Zeilen unten nicht abgeschnitten sind.",
+        "failed": "Das Einlesen wurde nicht fertig. Sie können die Angaben von Hand eintragen.",
+        "unsupported": "Dieser Browser kann das nicht. Bitte tragen Sie die Angaben von Hand ein."
+      }
+    }
+  },
+  "profile": {
+    "metaTitle": "Profil",
+    "emptyTitle": "Ihr Konto",
+    "emptyBody": "Melden Sie sich an, um Prüfstatus, Bankkonten und Sicherheitseinstellungen zu sehen.",
+    "cta": "Zurück zur Startseite",
+    "title": "Ihr Konto",
+    "subtitle": "Prüfstatus, Sicherheit und Ihre Geräte.",
+    "unnamed": "Ohne Namen",
+    "kyc": {
+      "unverified": "Nicht geprüft",
+      "pending": "In Prüfung",
+      "approved": "Geprüft",
+      "rejected": "Abgelehnt",
+      "more_info_needed": "Weitere Angaben nötig"
+    },
+    "kycBody": {
+      "unverified": "Eine Überweisung zu beauftragen setzt eine einmalige Identitätsprüfung voraus. Sie dauert unter fünf Minuten.",
+      "pending": "Ihre Unterlagen warten auf die Prüfung — meist weniger als ein Werktag.",
+      "approved": "Ihre Identität ist geprüft. Von hier an verwalten Sie nur noch Zielkonten.",
+      "rejected": "Ihre Einreichung wurde abgelehnt. Der Grund steht in der Nachricht, die wir geschickt haben; Sie können es erneut versuchen.",
+      "more_info_needed": "Für den Abschluss der Prüfung brauchen wir etwas mehr Angaben oder ein deutlicheres Dokument."
+    },
+    "startKyc": "Prüfung starten",
+    "security": {
+      "title": "Kontosicherheit",
+      "body": "Ihre Anmeldung ist durch einen Einmalcode geschützt. Die Anmeldung in zwei Schritten steht ebenfalls bereit und ist für Mitarbeitende von Wechselstuben und Plattform Pflicht.",
+      "otpOn": "Anmeldung mit Einmalcode",
+      "totpSoon": "2FA folgt"
+    },
+    "devices": {
+      "title": "Anmeldeverlauf",
+      "body": "Die jüngsten An- und Abmeldungen in Ihrem Konto.",
+      "none": "Bisher wurde keine Aktivität erfasst.",
+      "kind": {
+        "sign_in": "Angemeldet",
+        "sign_out": "Abgemeldet",
+        "revoked": "Sitzung widerrufen"
+      }
+    },
+    "signOut": "Abmelden",
+    "rewards": {
+      "tierTitle": "Ihre Stufe",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Silber",
+        "gold": "Gold",
+        "platinum": "Platin"
+      },
+      "feeIs": "{pct} Prozentpunkte weniger Provision",
+      "toNext": "Noch {amount} Toman bis zur Stufe {tier}",
+      "topTier": "Sie sind auf der höchsten Stufe.",
+      "volume": "Abgeschlossenes Volumen: {amount} Toman",
+      "referralTitle": "Freunde einladen",
+      "referralBody": "Die Prämie kommt, wenn die erste Überweisung Ihres Kontakts abgeschlossen ist — nicht schon bei der Anmeldung.",
+      "copy": "Kopieren",
+      "copied": "Kopiert",
+      "invitedCount": "{invited, number} eingeladen · {rewarded, number} belohnt",
+      "haveACode": "Haben Sie einen Code?",
+      "apply": "Einlösen",
+      "claimOk": "Code eingelöst.",
+      "claimRefused": "Dieser Code wurde nicht angenommen — vielleicht haben Sie schon einen, oder bereits eine Überweisung abgeschlossen."
+    }
+  },
+  "accounts": {
+    "metaTitle": "Meine Konten",
+    "title": "Ausgangs- und Zielkonten",
+    "subtitle": "Die Konten, mit denen Sie senden und empfangen. Die Prüfung hier ist echt, nicht kosmetisch.",
+    "add": "Konto hinzufügen",
+    "addFirst": "Legen Sie Ihr erstes Konto an",
+    "emptyTitle": "Noch keine Konten gespeichert",
+    "emptyBody": "Legen Sie ein Sheba, eine Karte oder ein internationales Konto an, dann wählen Sie es beim Start einer Überweisung nur noch aus.",
+    "unavailableTitle": "Die Kontoverwaltung ist in dieser Umgebung nicht aktiv",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "backHome": "Zurück zur Startseite",
+    "thirdParty": "Dritte Person",
+    "ownAccount": "Meines",
+    "archive": "Archivieren",
+    "kind": {
+      "sheba": "Sheba",
+      "card": "Karte",
+      "iban": "IBAN",
+      "swift": "SWIFT",
+      "cash_pickup": "Barauszahlung"
+    },
+    "addTitle": "Konto hinzufügen",
+    "addBody": "Wählen Sie die Kontoart und geben Sie die Kennung ein — wir prüfen sie beim Tippen.",
+    "identifier": {
+      "sheba": "Sheba-Nummer",
+      "card": "Kartennummer",
+      "iban": "IBAN",
+      "swift": "SWIFT-/BIC-Code"
+    },
+    "hint": {
+      "sheba": "IR gefolgt von 24 Ziffern; Leerzeichen stören nicht.",
+      "card": "Die 16 Ziffern auf der Karte; die Bank wird automatisch erkannt.",
+      "iban": "Die IBAN des Ziellandes, beginnend mit dessen zweibuchstabigem Code.",
+      "swift": "8 oder 11 Zeichen, etwa BKMTIRTH."
+    },
+    "invalid": {
+      "sheba": "Ungültiges Sheba — die Prüfziffern passen nicht.",
+      "card": "Ungültige Kartennummer — eine Ziffer stimmt nicht.",
+      "iban": "Ungültige IBAN — Länge oder Prüfziffern sind falsch.",
+      "swift": "Ungültiger SWIFT-Code — 8 oder 11 lateinische Zeichen sind nötig."
+    },
+    "valid": "Die Kontokennung ist gültig",
+    "validBank": "Gültig — {bank}",
+    "bankName": "Name der Bank",
+    "bankPlaceholder": "Bank des Empfängers",
+    "nickname": "Bezeichnung",
+    "nicknamePlaceholder": "z. B. Konto für Studiengebühren",
+    "holder": "Kontoinhaber",
+    "holderPlaceholder": "Genau so, wie die Bank es führt",
+    "currency": "Währung des Kontos",
+    "thirdPartyLabel": "Dieses Konto gehört nicht mir",
+    "thirdPartyHint": "Überweisungen an Dritte brauchen eine ausdrückliche Erklärung und die Freigabe der Compliance.",
+    "save": "Konto speichern",
+    "saving": "Wird gespeichert…",
+    "errors": {
+      "signedOut": "Ihre Sitzung ist beendet. Bitte melden Sie sich erneut an.",
+      "saveFailed": "Dieses Konto ließ sich nicht speichern. Versuchen Sie es erneut.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    }
+  },
+  "alerts": {
+    "title": "Kurswarnung {currency}",
+    "body": "Wir sagen Bescheid, sobald der Kurs die von Ihnen genannte Zahl überschreitet.",
+    "when": "Wenn der Kurs geht",
+    "direction": {
+      "above": "über",
+      "below": "unter"
+    },
+    "threshold": "Kurs (Toman)",
+    "add": "Warnung anlegen",
+    "none": "Für diese Währung gibt es noch keine Warnung.",
+    "fired": "Gesendet",
+    "remove": "Warnung entfernen",
+    "summary": {
+      "above": "Wenn er über {amount} Toman steigt",
+      "below": "Wenn er unter {amount} Toman fällt"
+    },
+    "deliveryNote": "Warnungen werden in der Datenbank gegen den zuletzt erfassten Kurs geprüft und erscheinen in dieser App. Der SMS-Versand schaltet sich frei, sobald das Gateway angebunden ist.",
+    "signInFirst": "Für eine Kurswarnung brauchen Sie ein Konto.",
+    "signIn": "Anmelden",
+    "errors": {
+      "threshold": "Das ist keine gültige Zahl.",
+      "tooMany": "Sie können höchstens 20 Warnungen gleichzeitig behalten.",
+      "signIn": "Bitte melden Sie sich zuerst an.",
+      "failed": "Das wurde nicht gespeichert. Bitte erneut versuchen."
+    },
+    "firedNote": "Einer Ihrer Alarme hat seinen Zielkurs erreicht und die Nachricht ging raus."
+  },
+  "banks": {
+    "melli": "Bank Melli",
+    "sepah": "Bank Sepah",
+    "mellat": "Bank Mellat",
+    "tejarat": "Bank Tejarat",
+    "saderat": "Bank Saderat",
+    "keshavarzi": "Bank Keshavarzi",
+    "maskan": "Bank Maskan",
+    "refah": "Bank Refah",
+    "parsian": "Parsian Bank",
+    "pasargad": "Pasargad Bank",
+    "saman": "Saman Bank",
+    "eghtesadNovin": "Bank Eghtesad Novin",
+    "ansar": "Ansar Bank",
+    "postbank": "Postbank",
+    "ayandeh": "Ayandeh Bank",
+    "shahr": "Shahr Bank",
+    "day": "Day Bank",
+    "sina": "Sina Bank",
+    "sarmayeh": "Sarmayeh Bank",
+    "tosee": "Bank Tosee Ta'avon"
+  },
+  "chat": {
+    "orderTitle": "Gespräch mit der Wechselstube",
+    "orderBody": "Fragen Sie, bevor Sie sich festlegen. Sie und die Wechselstube sehen dieses Gespräch beide.",
+    "notYet": "Solange keine Wechselstube den Auftrag übernommen hat, ist niemand auf der anderen Seite.",
+    "unavailable": "Dieses Gespräch ist nicht verfügbar.",
+    "empty": "Bisher wurde nichts gesagt.",
+    "placeholder": "Nachricht schreiben…",
+    "send": "Senden",
+    "sending": "Wird gesendet…",
+    "someone": "Jemand",
+    "system": "System",
+    "internalNote": "Interne Notiz — der Kunde sieht sie nicht",
+    "asInternalNote": "Als interne Notiz",
+    "offPlatformWarning": "Die Abwicklung findet immer innerhalb der Plattform statt; eine Zahlung außerhalb kostet Sie das Buchungsjournal und das Streitverfahren.",
+    "flag": {
+      "off_platform": "Schlägt eine Abwicklung außerhalb der Plattform vor",
+      "account_number": "Kontonummer im Text",
+      "contact": "Kontaktdaten im Text"
+    },
+    "errors": {
+      "tooLong": "Diese Nachricht ist länger als erlaubt.",
+      "notParticipant": "Sie gehören nicht zu diesem Gespräch.",
+      "failed": "Senden nicht möglich. Versuchen Sie es erneut."
+    }
+  },
+  "p2p": {
+    "metaTitle": "Markt unter Privatpersonen",
+    "title": "Markt unter Privatpersonen",
+    "subtitle": "Handeln Sie direkt mit einer anderen Person — der Toman-Teil wird innerhalb der Plattform abgewickelt, beaufsichtigt von einer zugelassenen Wechselstube als neutraler Bestätigerin.",
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "backHome": "Zurück zur Startseite",
+    "postOffer": "Angebot einstellen",
+    "verifyToPost": "Zum Einstellen Identität prüfen lassen",
+    "allPairs": "Alle",
+    "empty": "Noch keine offenen Angebote.",
+    "sells": "Verkauft {code}",
+    "buys": "Kauft {code}",
+    "perUnit": " Toman je {code}",
+    "anonymousMaker": "Geprüfte Handelspartei",
+    "newTrader": "Neu im Handel",
+    "tradesDone": "{count, number} Geschäfte abgeschlossen",
+    "yours": "Ihr Angebot",
+    "escrowNote": "Der Toman-Teil wird innerhalb der Plattform unter Aufsicht einer Wechselstube abgewickelt; was außerhalb geschieht, ist nicht gedeckt.",
+    "rateLabel": "Kurs (Toman je {code})",
+    "minSliceLabel": "Kleinste Teilmenge",
+    "makerLabel": "Anbietende Seite",
+    "reputationLabel": "Bisherige Geschäfte",
+    "reputationValue": "{count, number} Geschäfte · {rate} % abgeschlossen",
+    "status": {
+      "open": "Offen",
+      "paused": "Pausiert",
+      "filled": "Ausgeführt",
+      "cancelled": "Storniert",
+      "removed": "Entfernt"
+    },
+    "alreadyTaken": "Sie haben zu diesem Angebot bereits ein laufendes Geschäft.",
+    "openTrade": "Geschäft öffnen",
+    "yourOwnOffer": "Das ist Ihr eigenes Angebot.",
+    "verifyToTake": "Ein Angebot anzunehmen setzt eine geprüfte Identität voraus.",
+    "verifyCta": "Identität prüfen lassen",
+    "signInCta": "Anmelden",
+    "takeTitle": "Dieses Angebot annehmen",
+    "sliceLabel": "Betrag ({code})",
+    "takeSummary": "Toman-Teil: {toman} IRT, von der Wechselstube gehalten, bis beide Seiten bestätigt haben.",
+    "take": "Geschäft starten",
+    "taking": "Wird gestartet…",
+    "errors": {
+      "ownOffer": "Ihr eigenes Angebot können Sie nicht annehmen.",
+      "belowMin": "Das liegt unter der kleinsten Teilmenge dieses Angebots.",
+      "aboveMax": "Das liegt über der größten Teilmenge dieses Angebots.",
+      "notEnoughLeft": "So viel ist von diesem Angebot nicht mehr übrig.",
+      "noEscrow": "Zurzeit deckt keine aktive Wechselstube diese Strecke ab.",
+      "ceiling": "Das liegt über der Obergrenze Ihrer Prüfstufe.",
+      "unverified": "Lassen Sie zuerst Ihre Identität prüfen.",
+      "closed": "Dieses Angebot ist nicht mehr offen.",
+      "failed": "Konnte nicht abgeschlossen werden. Versuchen Sie es erneut.",
+      "outsideBand": "Dieser Preis liegt mehr als 7 % vom Marktkurs entfernt. Bringen Sie ihn zurück in die Spanne."
+    },
+    "compose": {
+      "metaTitle": "Angebot einstellen",
+      "title": "Angebot einstellen",
+      "subtitle": "Eine Seite ist immer Toman. Den Kurs setzen Sie; die Abwicklung beaufsichtigt eine Wechselstube.",
+      "verifyTitle": "Ein Angebot einzustellen setzt eine geprüfte Identität voraus",
+      "verifyBody": "Das ist eine Bedingung, keine Vorliebe: Die Gegenseite muss wissen, mit wem sie handelt.",
+      "verifyCta": "Prüfung starten",
+      "direction": "Was möchten Sie tun?",
+      "sell": "Ich habe {code} und will Toman",
+      "buy": "Ich habe Toman und will {code}",
+      "currency": "Währung",
+      "amount": "Betrag ({code})",
+      "rate": "Ihr Kurs (Toman je {code})",
+      "marketHint": "Der Markt steht bei {rate} Toman.",
+      "useMarket": "Marktkurs übernehmen",
+      "minSlice": "Mindestbetrag je Geschäft",
+      "terms": "Bedingungen",
+      "termsPlaceholder": "z. B. SEPA-Überweisung, am selben Werktag",
+      "summary": "Sie bieten {have} gegen {want} zu {rate} Toman.",
+      "escrowNote": "Nach der Zuteilung hält die Wechselstube die Toman und gibt sie frei, sobald der Devisenteil bestätigt ist.",
+      "publish": "Angebot veröffentlichen",
+      "publishing": "Wird veröffentlicht…",
+      "errors": {
+        "duplicate": "Für dieses Paar haben Sie bereits ein offenes Angebot; bearbeiten Sie es stattdessen.",
+        "tooMany": "Sie haben die Höchstzahl offener Angebote erreicht.",
+        "cooldown": "Zu viele Angebote in der letzten Stunde.",
+        "ceiling": "Das liegt über der Obergrenze Ihrer Prüfstufe.",
+        "unverified": "Lassen Sie zuerst Ihre Identität prüfen.",
+        "corridor": "Eine Seite eines Angebots muss Toman sein.",
+        "failed": "Veröffentlichen nicht möglich. Versuchen Sie es erneut."
+      }
+    },
+    "trade": {
+      "metaTitle": "Geschäft unter Privatpersonen",
+      "title": "Geschäft unter Privatpersonen",
+      "youAreMaker": "Sie haben dieses Angebot eingestellt.",
+      "youAreTaker": "Sie haben dieses Angebot angenommen.",
+      "tomanLeg": "Toman-Teil",
+      "foreignLeg": "Devisenteil",
+      "agreedRate": "Vereinbarter Kurs",
+      "escrowOffice": "Treuhänderische Wechselstube",
+      "noEscrow": "Noch nicht zugewiesen",
+      "escrowExplainer": "Die Wechselstube ist nicht Partei des Geschäfts; sie bestätigt die Toman-Einzahlung und die Devisenüberweisung und erhält dafür eine Treuhandgebühr.",
+      "openOrder": "Abwicklung öffnen",
+      "chatTitle": "Gespräch zum Geschäft",
+      "chatBody": "Die Gegenseite und die treuhänderische Wechselstube sehen es, und es wird als Beweismittel für Streitfälle aufbewahrt.",
+      "rateTitle": "Bewerten Sie die Gegenseite",
+      "rateBody": "Ihre Bewertung erscheint in deren öffentlicher Bilanz.",
+      "stars": "{count, number} Sterne",
+      "alreadyRated": "Sie haben dieses Geschäft bereits bewertet.",
+      "disputeTitle": "Streitfall eröffnen",
+      "disputeBody": "Das Geschäft wird eingefroren, und die Compliance der Plattform prüft beide Seiten.",
+      "disputePlaceholder": "Was ist geschehen? (mindestens 8 Zeichen)",
+      "raiseDispute": "Streitfall eröffnen",
+      "reasonRequired": "Eine schriftliche Begründung von mindestens 8 Zeichen ist erforderlich.",
+      "failed": "Konnte nicht abgeschlossen werden. Versuchen Sie es erneut."
+    },
+    "rateBadge": "{rate} je {code}",
+    "dial": {
+      "title": "Preis und wie schnell Sie handeln",
+      "bodySell": "Sie dürfen bis zu {pct} % unter dem Marktkurs verkaufen. Je günstiger Sie gehen, desto weiter oben steht Ihr Angebot und desto eher findet eine kaufende Seite es.",
+      "bodyBuy": "Sie dürfen bis zu {pct} % über dem Marktkurs kaufen. Je mehr Sie zahlen, desto eher kommen Verkaufende zu Ihrem Angebot.",
+      "atMarket": "Marktkurs",
+      "off": "{pct, number} %",
+      "marketNow": "Markt jetzt",
+      "yourPrice": "Ihr Preis",
+      "difference": "Abstand",
+      "below": "darunter",
+      "above": "darüber",
+      "fasterSell": "Zu diesem Preis stehen Sie vor Angeboten, die zum Marktkurs ausgeschrieben sind.",
+      "fasterBuy": "Zu diesem Preis sind Sie für Verkaufende attraktiver als die übrigen.",
+      "outside": "Mehr als {pct, number} % Abstand zum Markt wird nicht angenommen. Bringen Sie den Preis zurück in die Spanne."
+    },
+    "visibility": {
+      "title": "Wie werde ich zuerst gesehen?",
+      "subtitle": "Die Reihenfolge der Angebote ist nicht zufällig. Diese vier Dinge entscheiden über Ihren Platz in der Liste.",
+      "items": {
+        "price": {
+          "title": "Ein schärferer Preis",
+          "body": "Der stärkste Hebel. Sie haben bis zu 7 % Spielraum auf jeder Seite des Marktes; jeder Schritt auf die Gegenseite zu bringt Sie nach oben."
+        },
+        "reputation": {
+          "title": "Eine gute Bewertung",
+          "body": "Ihre Bewertung entsteht aus abgeschlossenen Geschäften. Ein sauber und pünktlich erfülltes Geschäft hebt Ihr nächstes Angebot."
+        },
+        "speed": {
+          "title": "Schnelle Antworten",
+          "body": "Ihre durchschnittliche Antwortzeit ist sichtbar. Die Leute gehen zu dem, der am schnellsten antwortet."
+        },
+        "clarity": {
+          "title": "Klare Bedingungen",
+          "body": "Sagen Sie, wie und wo Sie abwickeln. Ein Angebot mit klaren Bedingungen wird weit seltener übergangen."
+        }
+      }
+    }
+  },
+  "settlement": {
+    "metaTitle": "Abwicklung — Bereich der Wechselstube",
+    "adminMetaTitle": "Abwicklung — Verwaltungskonsole",
+    "title": "Abwicklung",
+    "subtitle": "Die Karten und IBANs, auf denen Sie Geld empfangen. Ist eine voll, legen Sie hier eine weitere an.",
+    "adminSubtitle": "Die Abwicklungskarten und IBANs jeder Wechselstube und wie jede davon übereinstimmt.",
+    "intro": "Jede iranische Karte hat ein tägliches und ein monatliches Empfangslimit. Ist es erreicht, kommen Kundenzahlungen nicht mehr an und Überweisungen bleiben liegen. Deshalb können Sie selbst eine neue Karte oder IBAN anlegen, ohne zu warten.",
+    "readOnly": "Ein Konto anzulegen oder stillzulegen erfordert Finanzrechte.",
+    "unavailableTitle": "Noch nicht verfügbar",
+    "unavailableBody": "Die Datenbankverbindung ist nicht eingerichtet.",
+    "forbiddenTitle": "Sie haben keinen Zugriff",
+    "forbiddenBody": "Dieser Bereich ist für Administratoren, die Wechselstuben einrichten.",
+    "backHome": "Zurück zur Startseite",
+    "bank": {
+      "label": "Bank",
+      "search": "Bank suchen",
+      "noMatch": "Keine Bank passt zu diesem Namen.",
+      "detected": "Aus der IBAN abgeleitet",
+      "disagrees": "Die eingegebene IBAN gehört zu einer anderen Bank. Eines von beiden stimmt nicht — bitte prüfen."
+    },
+    "add": {
+      "title": "Konto hinzufügen",
+      "office": "Wechselstube",
+      "kind": "Kontoart",
+      "kind_card": "Bankkarte",
+      "kind_iban": "IBAN",
+      "number_card": "Kartennummer (16 Ziffern)",
+      "number_iban": "IBAN",
+      "holder": "Name des Kontoinhabers",
+      "holderPlaceholder": "Wie bei der Bank hinterlegt",
+      "code": "Nationale Kennnummer des Inhabers",
+      "codeHint": "Wird mit der für die Wechselstube hinterlegten verglichen.",
+      "ceiling": "Tageslimit (Toman)",
+      "ceilingHint": "Optional. Damit Sie sehen, wann es erreicht ist.",
+      "cta": "Konto anlegen",
+      "working": "Wird gespeichert…",
+      "hint": "Eine weitere Karte oder IBAN hinzufügen. Die Nummer wird beim Tippen geprüft und die Bank daraus erkannt."
+    },
+    "list": {
+      "title": "Abwicklungskonten",
+      "empty": "Noch keine Konten.",
+      "noHolder": "Kein Inhabername",
+      "ceiling": "Tageslimit {amount}",
+      "retire": "Limit erreicht",
+      "retired": "Stillgelegt",
+      "hint": "Die Karten und IBANs, auf die Abrechnungsgeld gezahlt wird. Ein stillgelegtes Konto wird nicht mehr angeboten, aber nie aus der Historie gelöscht.",
+      "openOffice": "Büroakte öffnen"
+    },
+    "match": {
+      "verified": "Übereinstimmend",
+      "unverified": "Nicht geprüft",
+      "mismatch": "Haftung übernommen"
+    },
+    "mismatch": {
+      "title": "Name oder Kennnummer stimmen nicht überein",
+      "reason": {
+        "noCode": "Für diesen Kontoinhaber wurde keine Kennnummer angegeben.",
+        "codeDiffers": "Die Kennnummer des Inhabers weicht von der für diese Wechselstube hinterlegten ab.",
+        "nameDiffers": "Der Name des Inhabers weicht vom eingetragenen Namen der Wechselstube ab.",
+        "unknown": "Die Angaben zu diesem Konto stimmen nicht mit den hinterlegten überein."
+      },
+      "body": "Sie dürfen fortfahren, dann liegt die volle Verantwortung für diese Überweisung jedoch bei Ihnen — jeder Verlust, jede Verzögerung, jede Sperre und jede ausbleibende Rückzahlung. Diese Übernahme wird mit Ihrem Namen, der Uhrzeit und dem Grund festgehalten.",
+      "checkbox": "Ich übernehme die Verantwortung für diese Überweisung nach § 7 der",
+      "termsLink": "Nutzungsbedingungen",
+      "cancel": "Abbrechen und berichtigen",
+      "confirm": "Ich übernehme sie — weiter"
+    },
+    "errors": {
+      "number_card": "Diese Kartennummer ist ungültig. Sechzehn Ziffern mit gültiger Prüfziffer.",
+      "number_iban": "Diese IBAN ist ungültig. IR gefolgt von 24 Ziffern.",
+      "code": "Diese Kennnummer ist ungültig.",
+      "saveFailed": "Speichern nicht möglich. Bitte erneut versuchen.",
+      "forbidden": "Sie gehören dieser Wechselstube nicht an.",
+      "holderRequired": "Der Name des Kontoinhabers ist erforderlich.",
+      "numberRequired": "Eine Kontonummer ist erforderlich."
+    }
+  },
+  "tickets": {
+    "officeTitle": "Support-Tickets",
+    "officeSubtitle": "Tickets, deren erste Antwort Ihnen zusteht. Antworten Sie nicht innerhalb von {hours, number} Stunden, kann die Kundschaft an die Plattform eskalieren.",
+    "adminTitle": "Tickets der Plattform",
+    "adminSubtitle": "Alle Tickets, auch die, auf denen eine Wechselstube sitzt. Die Plattform steht über der Wechselstube und kann jedes übernehmen. Das Zeitfenster der Wechselstube beträgt {hours, number} Stunden.",
+    "filterLabel": "Anzeigen",
+    "filters": {
+      "live": "Offen",
+      "escalated": "Eskaliert",
+      "all": "Alle"
+    },
+    "empty": "In dieser Ansicht gibt es keine Tickets.",
+    "filedBy": "von {name}",
+    "someone": "eine Kundin oder ein Kunde",
+    "awaitingFirstReply": "noch keine erste Antwort",
+    "overdue": "{hours, number} Stunden ohne Antwort",
+    "state": {
+      "open": "Offen",
+      "in_progress": "In Bearbeitung",
+      "waiting_user": "Wartet auf die Kundschaft",
+      "escalated": "Eskaliert",
+      "resolved": "Gelöst",
+      "closed": "Geschlossen"
+    },
+    "priority": {
+      "low": "Niedrig",
+      "normal": "Normal",
+      "high": "Hoch",
+      "urgent": "Dringend"
+    },
+    "category": {
+      "order": "Überweisung",
+      "payment": "Zahlung",
+      "kyc": "Identität",
+      "p2p": "Privathandel",
+      "account": "Konto",
+      "office": "Wechselstube",
+      "other": "Sonstiges"
+    },
+    "actions": {
+      "take": "Übernehmen",
+      "resolve": "Lösen",
+      "reopen": "Wieder öffnen",
+      "handOver": "An die Plattform geben",
+      "pullUp": "Von der Wechselstube übernehmen"
+    },
+    "moved": {
+      "open": "Ticket wieder geöffnet",
+      "in_progress": "Sie haben das Ticket übernommen",
+      "waiting_user": "Wartet auf die Kundschaft",
+      "escalated": "An die Plattform eskaliert",
+      "resolved": "Ticket gelöst",
+      "closed": "Ticket geschlossen"
+    },
+    "errors": {
+      "failed": "Das ging nicht durch. Versuchen Sie es erneut.",
+      "alreadyEscalated": "Dieses Ticket liegt bereits bei der Plattform."
+    },
+    "allAnswered": "Alle Tickets wurden beantwortet."
+  },
+  "coins": {
+    "metaTitle": "Goldmünzen kaufen — Asaex",
+    "title": "Goldmünzen",
+    "subtitle": "Live-Preise für iranische Goldmünzen und Barren. Sie fragen an, die Wechselstube bestätigt, Sie holen es persönlich ab.",
+    "perUnit": "je Stück",
+    "fine": "{grams} g Feingold",
+    "premium": "Aufgeld {pct} %",
+    "buy": "Anfragen",
+    "noPrice": "Kein Preis verfügbar.",
+    "staleNotice": "Diese Preise wurden nicht aufgefrischt; der Markt ist womöglich geschlossen. Fragen Sie bei der Wechselstube nach, bevor Sie danach handeln.",
+    "demoNotice": "Die Preisquelle für Münzen ist noch nicht angebunden, daher lassen sich von dieser Seite keine Anfragen stellen. Der Kauf öffnet sich hier, sobald sie es ist.",
+    "disclaimer": "Der gezeigte Preis folgt dem freien Markt; den festen Preis nennt die Wechselstube bei der Bestätigung. Das Aufgeld ist der Betrag, um den eine Münze mehr kostet als das Gold in ihr.",
+    "products": {
+      "EMAMI": "Emami-Münze (ganz)",
+      "BAHAR": "Bahar Azadi (altes Muster)",
+      "NIM": "Halbe Münze",
+      "ROB": "Viertelmünze",
+      "GERAMI": "Grammmünze",
+      "GERAM18": "Ein Gramm, 18 Karat",
+      "MESGHAL": "Mesghal Gold"
+    },
+    "request": {
+      "title": "Kaufanfrage",
+      "notPaidYet": "Noch wird nichts abgebucht. Die Wechselstube prüft ihren Bestand, nennt einen festen Preis, und die Zahlung kommt danach.",
+      "quantity": "Menge",
+      "fewer": "Weniger",
+      "more": "Mehr",
+      "pickup": "Wo abholen (optional)",
+      "pickupPlaceholder": "z. B. die Filiale Vanak",
+      "estimate": "Geschätzte Summe",
+      "cta": "Anfrage senden",
+      "working": "Wird gesendet…",
+      "placed": "Ihre Anfrage ist eingegangen.",
+      "next": "Die Wechselstube bestätigt Bestand und festen Preis in Kürze. Verfolgen Sie das unter Ihren Aufträgen.",
+      "done": "Verstanden",
+      "failed": "Das wurde nicht gesendet. Bitte erneut versuchen.",
+      "signInFirst": "Sie müssen sich anmelden, bevor Sie Münzen anfragen können.",
+      "signIn": "Anmelden"
+    },
+    "state": {
+      "requested": "Wartet auf eine Wechselstube",
+      "confirmed": "Bestätigt — wartet auf Zahlung",
+      "paid": "Bezahlt",
+      "ready": "Abholbereit",
+      "collected": "Abgeholt",
+      "cancelled": "Storniert"
+    }
+  },
+  "officeIdentity": {
+    "title": "Angaben zur Wechselstube",
+    "displayName": "Angezeigter Name",
+    "displayNameHint": "Diesen Namen sehen Ihre Kundinnen und Kunden.",
+    "ownerName": "Eingetragene Inhaberschaft",
+    "nationalId": "Nationale Kennnummer",
+    "licence": "Lizenznummer",
+    "notSet": "Nicht gesetzt",
+    "lockedNote": "Sobald die Identität geprüft ist, können eingetragene Inhaberschaft, Kennnummer und Lizenznummer nur noch von der Plattform geändert werden. Eröffnen Sie ein Ticket, um sie zu berichtigen.",
+    "addLogo": "Logo hinzufügen",
+    "changeLogo": "Logo ändern",
+    "logoHint": "PNG, JPG, WebP oder SVG bis 512 kB.",
+    "logoSaved": "Logo gespeichert.",
+    "saved": "Gespeichert.",
+    "save": "Speichern",
+    "working": "Wird gespeichert…",
+    "kyc": {
+      "verified": "Identität geprüft",
+      "pending": "In Prüfung",
+      "rejected": "Nicht geprüft",
+      "unverified": "Nicht kontrolliert"
+    },
+    "status": {
+      "draft": "Unvollständig",
+      "active": "Aktiv",
+      "suspended": "Ausgesetzt",
+      "archived": "Archiviert"
+    },
+    "errors": {
+      "tooBig": "Diese Datei ist größer als 512 kB.",
+      "uploadFailed": "Der Upload ging nicht durch. Bitte erneut versuchen.",
+      "saveFailed": "Speichern nicht möglich. Bitte erneut versuchen."
+    },
+    "sectionHint": "Name, Zeichen und Angaben, die Kunden von diesem Büro sehen."
+  },
+  "office": {
+    "metaTitle": "Bereich der Wechselstube",
+    "title": "Bereich der Wechselstube",
+    "subtitle": "{office} — offene Anfragen und die Aufträge, die Sie halten.",
+    "pool": "Nicht übernommene Anfragen",
+    "poolEmpty": "Gerade gibt es keine offenen Anfragen.",
+    "mine": "Aufträge dieser Wechselstube",
+    "mineEmpty": "Sie haben noch nichts übernommen.",
+    "claim": "Übernehmen",
+    "claiming": "Wird übernommen…",
+    "unavailableTitle": "Der Bereich der Wechselstube ist in dieser Umgebung nicht aktiv",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "notAMemberTitle": "Sie gehören keiner Wechselstube an",
+    "notAMemberBody": "Dieser Bereich ist für Mitarbeitende zugelassener Wechselstuben. Sollten Sie Zugang haben, bitten Sie die Inhaberschaft der Wechselstube, Sie hinzuzufügen.",
+    "backHome": "Zurück zur Startseite",
+    "errors": {
+      "alreadyClaimed": "Eine andere Wechselstube war mit dieser Anfrage schneller.",
+      "officeInactive": "Diese Wechselstube ist nicht aktiv.",
+      "claimFailed": "Die Anfrage konnte nicht übernommen werden.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    },
+    "poolHint": "Aufträge, die noch kein Büro übernommen hat. Übernehmen Sie einen, dann gehört er Ihnen.",
+    "mineHint": "Aufträge, die Sie übernommen haben und die noch laufen."
+  },
+  "twoFactor": {
+    "title": "Anmeldung in zwei Schritten",
+    "on": "An",
+    "off": "Aus",
+    "body": "Ist das eingeschaltet, verlangt die Anmeldung neben Ihrem Passwort auch einen sechsstelligen Code aus Ihrer Authenticator-App.",
+    "bodyStaff": "Für Konten von Plattform-Mitarbeitenden Pflicht. Bis Sie den Code eingeben, öffnet die Datenbank Ihre Verwaltungsrechte nicht.",
+    "enable": "Einschalten",
+    "scan": "Scannen Sie das mit Ihrer Authenticator-App",
+    "qrAlt": "QR-Code für Ihre Authenticator-App",
+    "orType": "Oder geben Sie diesen Schlüssel von Hand ein:",
+    "copy": "Schlüssel kopieren",
+    "copied": "Kopiert",
+    "codeLabel": "Sechsstelliger Code aus der App",
+    "confirm": "Bestätigen und einschalten",
+    "cancel": "Abbrechen",
+    "codeToDisable": "Geben Sie zum Ausschalten einen aktuellen Code ein",
+    "disable": "Ausschalten",
+    "working": "Bitte warten…",
+    "errors": {
+      "enrollFailed": "Die Einrichtung ließ sich nicht starten. Bitte erneut versuchen.",
+      "verifyFailed": "Das ließ sich nicht bestätigen. Bitte erneut versuchen.",
+      "wrongCode": "Dieser Code stimmt nicht. Prüfen Sie auch die Uhr Ihres Geräts.",
+      "disableFailed": "Ausschalten nicht möglich. Bitte erneut versuchen."
+    }
+  },
+  "firstEntry": {
+    "claiming": "Ihr Zugang wird eingerichtet…",
+    "title": "Wählen Sie ein eigenes Passwort",
+    "body": "Sie haben sich mit einem für Sie erzeugten Passwort angemeldet. Behalten Sie es, oder wählen Sie ein eigenes.",
+    "password": "Neues Passwort",
+    "confirm": "Neues Passwort wiederholen",
+    "cta": "Passwort setzen",
+    "skip": "Jetzt nicht",
+    "skipHint": "Mit „jetzt nicht“ behalten Sie das Passwort, das Sie erhalten haben. Diese Meldung erscheint nicht wieder.",
+    "working": "Wird gespeichert…",
+    "errors": {
+      "tooShort": "Ein Passwort braucht mindestens {min, number} Zeichen.",
+      "mismatch": "Die beiden Passwörter stimmen nicht überein.",
+      "failed": "Das wurde nicht gespeichert. Bitte erneut versuchen."
+    },
+    "hint": "Vergeben Sie ein neues Passwort für dieses Konto. Das von der Plattform ausgegebene gilt nur einmal."
+  },
+  "coinQueue": {
+    "metaTitle": "Goldmünzen — Bereich der Wechselstube",
+    "title": "Münzanfragen",
+    "subtitle": "Anfragen zum Goldkauf. Übernehmen, bepreisen, übergeben.",
+    "intro": {
+      "office": "Anfragen ohne zugewiesene Wechselstube können Sie übernehmen. Danach tragen Sie den festen Preis ein, und die Kundschaft sieht ihn.",
+      "platform": "Jede Münzanfrage auf der Plattform."
+    },
+    "empty": "Noch keine Anfragen.",
+    "quoted": "Der Kundschaft genannt",
+    "total": "Summe",
+    "pickup": "Abholung",
+    "firmPrice": "Fester Preis je Stück (Toman)",
+    "claim": "Diese Anfrage übernehmen",
+    "confirm": "Bestand und Preis bestätigen",
+    "cancel": "Abbrechen",
+    "cancelledByOffice": "Die Wechselstube hat diese Anfrage storniert.",
+    "advance": {
+      "paid": "Das Geld ist da",
+      "ready": "Es ist bereit",
+      "collected": "Übergeben"
+    },
+    "errors": {
+      "taken": "Eine andere Wechselstube hat diese Anfrage bereits übernommen.",
+      "failed": "Das ging nicht durch. Bitte erneut versuchen."
+    },
+    "hint": {
+      "office": "Münzkaufanfragen, die dieses Büro erreicht haben. Tragen Sie den Stückpreis ein und bringen Sie den Schritt voran.",
+      "platform": "Alle Münzkaufanfragen der Plattform, auch die, die kein Büro übernommen hat."
+    }
+  },
+  "adminOffice": {
+    "decided": "Erfasst.",
+    "saved": "Gespeichert.",
+    "kyc": {
+      "verified": "Identität geprüft",
+      "pending": "In Prüfung",
+      "rejected": "Nicht geprüft",
+      "unverified": "Nicht kontrolliert"
+    },
+    "identity": {
+      "title": "Identität der Wechselstube",
+      "ownerName": "Eingetragene Inhaberschaft",
+      "nationalId": "Kennnummer der Inhaberschaft",
+      "nationalIdHint": "Die Grundlage der Prüfung, wem eine Abwicklungskarte oder IBAN gehört.",
+      "reason": "Notiz",
+      "reasonPlaceholder": "Für eine Ablehnung ist ein Grund erforderlich.",
+      "save": "Angaben speichern",
+      "verify": "Identität bestätigen",
+      "reject": "Ablehnen",
+      "note": "Nach der Bestätigung kann die Wechselstube ihre eingetragene Inhaberschaft und Kennnummer nicht mehr selbst ändern. Abwicklungskonten werden gegen diese Angaben abgeglichen.",
+      "hint": "Die Ausweispapiere und die Lizenz dieses Büros, und Ihre Entscheidung dazu."
+    },
+    "login": {
+      "title": "Zugang zum Bereich der Wechselstube",
+      "body": "Erzeugen Sie neuen Benutzernamen und neues Passwort und senden Sie beides per SMS an die gewünschte Nummer. Ein früherer, nicht eingelöster Zugang wird damit hinfällig.",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "phone": "Zielrufnummer",
+      "sendSms": "Per SMS senden",
+      "sendSmsHint": "Ist das aus, erscheinen die Angaben nur auf diesem Bildschirm.",
+      "cta": "Zugang erzeugen",
+      "working": "Wird erzeugt…",
+      "again": "Weiteren Zugang erzeugen",
+      "warning": "Das Passwort wird einmal angezeigt und lässt sich danach nicht wiederherstellen.",
+      "sms": {
+        "sent": "SMS gesendet.",
+        "failed": "Die Nachricht ließ sich nicht senden. Geben Sie die Angaben selbst weiter.",
+        "skipped": "Es wurde keine Nachricht gesendet."
+      },
+      "hint": "Das Konto, mit dem sich das Büro in seinem eigenen Panel anmeldet."
+    },
+    "errors": {
+      "nationalId": "Diese Kennnummer ist ungültig.",
+      "reasonRequired": "Eine Ablehnung braucht eine schriftliche Begründung von mindestens 8 Zeichen.",
+      "usernameTaken": "Dieser Benutzername ist bereits vergeben.",
+      "saveFailed": "Das ging nicht durch. Bitte erneut versuchen."
+    }
+  },
+  "adminKyc": {
+    "metaTitle": "Identitätsprüfung",
+    "title": "Warteschlange der Identitätsprüfung",
+    "subtitle": "Jeder Fall braucht zwei Unterschriften: eine Person empfiehlt, eine zweite gibt frei. Niemand kann die eigene Empfehlung freigeben.",
+    "emptyTitle": "Die Warteschlange ist leer",
+    "emptyBody": "Nichts wartet auf Prüfung.",
+    "unavailableTitle": "Dieser Bereich ist in der aktuellen Umgebung nicht aktiv",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "forbiddenTitle": "Sie haben keinen Zugriff",
+    "forbiddenBody": "Die Identitätsprüfung steht nur den Rollen Compliance und Plattform-Administration offen.",
+    "backHome": "Zurück zur Startseite",
+    "unnamed": "Ohne Namen",
+    "documentCount": "{count, number} Dokumente",
+    "awaitingYou": "Wartet auf Ihre Freigabe",
+    "awaitingOther": "Wartet auf eine zweite prüfende Person",
+    "needsFirst": "Braucht eine erste Prüfung",
+    "review": "Prüfen",
+    "documents": "Dokumente",
+    "documentsNote": "Jeder Aufruf läuft über einen 60 Sekunden gültigen signierten Link und wird ins Prüfprotokoll geschrieben; Ihre Prüf-Kennung wird auf das Bild gestempelt.",
+    "openDocument": "Öffnen",
+    "docKind": {
+      "national_id": "Personalausweis",
+      "passport": "Reisepass",
+      "selfie": "Selfie",
+      "proof_of_address": "Adressnachweis"
+    },
+    "checklist": "Prüfliste",
+    "checks": {
+      "legible": "Der gesamte Text auf dem Dokument ist lesbar.",
+      "nameMatch": "Der Name auf dem Dokument stimmt mit dem angegebenen überein.",
+      "notExpired": "Das Dokument ist noch gültig.",
+      "selfieMatch": "Das Selfie passt zum Foto auf dem Dokument.",
+      "noTamper": "Kein Anzeichen von Manipulation oder Bearbeitung."
+    },
+    "reason": "Notiz zur Entscheidung",
+    "reasonPlaceholder": "Bei Ablehnung oder Nachforderung schreiben Sie einen klaren Grund — genau dieser Text wird der Kundschaft gezeigt.",
+    "fourEyesTitle": "Vier-Augen-Freigabe",
+    "fourEyesFirst": "Sie prüfen als Erste oder Erster. Ihre Empfehlung wird festgehalten, und der Fall geht zur endgültigen Entscheidung an eine weitere prüfende Person.",
+    "fourEyesSecond": "Die erste prüfende Person hat ihre Empfehlung festgehalten. Die endgültige Entscheidung liegt bei Ihnen.",
+    "fourEyesOwn": "Sie haben in diesem Fall die Empfehlung abgegeben; die endgültige Freigabe muss von einer anderen Person kommen.",
+    "recommendApprove": "Freigabe empfehlen",
+    "recommendMoreInfo": "Weitere Angaben anfordern",
+    "recommendReject": "Ablehnung empfehlen",
+    "approve": "Freigeben",
+    "reject": "Ablehnen",
+    "fields": {
+      "nameLatin": "Name in lateinischer Schrift",
+      "nationalCode": "Nationale Kennnummer",
+      "dob": "Geburtsdatum",
+      "nationality": "Staatsangehörigkeit"
+    },
+    "errors": {
+      "documentDenied": "Sie dürfen dieses Dokument nicht einsehen.",
+      "fourEyes": "Vier Augen: Wer empfiehlt, gibt nicht selbst frei.",
+      "actionFailed": "Diese Entscheidung ließ sich nicht erfassen. Versuchen Sie es erneut.",
+      "network": "Keine Verbindung. Versuchen Sie es erneut."
+    },
+    "reviewTitle": "Unterlagen prüfen",
+    "reviewHint": "Sehen Sie sich die Unterlagen dieser Kundin an und nehmen Sie an oder lehnen Sie ab. Jede Entscheidung braucht zwei Personen: die zweite darf nicht die erste sein."
+  },
+  "officePanel": {
+    "metaTitle": "Die Arbeit von heute",
+    "title": "Die Arbeit von heute",
+    "subtitle": "Eine Karte, eine Aufgabe. Der grüne Knopf macht den nächsten Schritt.",
+    "navLabel": "Bereiche der Wechselstube",
+    "nav": {
+      "today": "Heute",
+      "requests": "Anfragen",
+      "chat": "Nachrichten",
+      "accounts": "Konten",
+      "liquidity": "Bestände",
+      "rates": "Kurse",
+      "customers": "Kundschaft",
+      "team": "Team",
+      "reports": "Berichte",
+      "settings": "Einstellungen",
+      "tickets": "Tickets",
+      "settlement": "Abwicklung",
+      "coins": "Münzen"
+    },
+    "status": {
+      "draft": "Noch nicht in Betrieb",
+      "active": "Aktiv",
+      "suspended": "Ausgesetzt",
+      "archived": "Archiviert"
+    },
+    "unknownOffice": "Wechselstube",
+    "allClear": "Nichts mehr zu tun",
+    "allClearBody": "Jede neue Anfrage erscheint hier.",
+    "aCustomer": "eine Kundin oder ein Kunde",
+    "beat": "Schritt {n, number} von 4",
+    "working": "Einen Moment…",
+    "sendTo": "Diesen Betrag senden an",
+    "copy": "Kopieren",
+    "somethingWrong": "Stimmt etwas nicht?",
+    "whatIsWrong": "Was ist schiefgegangen?",
+    "notePlaceholder": "z. B. der Zahlungsbeleg ist unleserlich",
+    "askCustomer": "Die Kundschaft fragen",
+    "pause": "Vorerst anhalten",
+    "nevermind": "Doch nicht",
+    "waitingTitle": "Warten auf andere — nichts zu tun",
+    "waiting": {
+      "recipient": "Wartet auf die Bestätigung der empfangenden Seite",
+      "customer": "Wartet auf die Kundschaft",
+      "platform": "Bei der Plattform"
+    },
+    "act": {
+      "claim": "Die nehme ich",
+      "accept": "Ich nehme an",
+      "money_in": "Die Toman sind da",
+      "sent": "Ich habe die Devisen gesendet",
+      "settle": "Abgewickelt"
+    },
+    "line": {
+      "claim": "Neue Anfrage von {name}",
+      "accept": "{name} wartet auf Ihre Antwort",
+      "money_in": "Das sollte auf Ihrem Konto eingehen — von {name}",
+      "sent": "Senden Sie dies an {name}",
+      "settle": "Die empfangende Seite hat bestätigt; schließen Sie ab"
+    },
+    "errors": {
+      "alreadyClaimed": "Eine andere Wechselstube war schneller.",
+      "needNote": "Schreiben Sie eine kurze Notiz.",
+      "failed": "Das ging nicht durch. Drücken Sie erneut."
+    },
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "notAMemberTitle": "Sie gehören zu keiner Wechselstube",
+    "notAMemberBody": "Sollten Sie Zugang zu einer Wechselstube haben, wenden Sie sich an den Support.",
+    "backHome": "Zurück zur Startseite",
+    "hintLabel": "Wofür ist dieser Bereich?",
+    "hint": {
+      "today": "Die Arbeit von heute. Jede Karte ist eine Überweisung, und der grüne Knopf macht das Nächste. Wenn Sie nur diesen Bildschirm öffnen, reicht das.",
+      "requests": "Überweisungen, die noch keine Wechselstube übernommen hat und die Sie übernehmen können, dazu Ihre eigenen. Für die vollständige Liste und die Suche.",
+      "tickets": "Beschwerden und Fragen der Kundschaft, deren erste Antwort Ihnen zusteht. Bleiben 24 Stunden ohne Antwort, kann eskaliert werden.",
+      "chat": "Alle Gespräche an einem Ort: Nachrichten zu jeder Überweisung und Support-Nachrichten.",
+      "accounts": "Ihre Karten- und IBAN-Nummern, die die Kundschaft beim Einzahlen sieht. „Öffentlich“ heißt, die Kundschaft kann sie sehen.",
+      "liquidity": "Ihr Bestand in jeder Währung, aus dem Buchungsjournal. Um zu sehen, wie viel Toman und wie viel Devisen Sie halten.",
+      "rates": "Je Strecke: der Kursunterschied und der kleinste und größte Betrag, den Sie annehmen.",
+      "customers": "Die Kundschaft, die mit Ihnen zu tun hatte, und der Stand ihrer Identitätsprüfung.",
+      "team": "Kolleginnen und Kollegen mit Zugang zu diesem Bereich. Sie können Zugang geben oder entziehen.",
+      "settlement": "Erreicht eine Karte ihr Limit, legen Sie hier eine neue Karte oder IBAN an, damit Zahlungen weiter eingehen.",
+      "reports": "Volumen und Provisionen über sechs Monate, Abschlussgeschwindigkeit und Einhaltung der Fristen.",
+      "settings": "Öffnungszeiten, automatische Annahme und die Nummer und E-Mail-Adresse, an die Hinweise gehen.",
+      "coins": "Anfragen zum Kauf von Goldmünzen. Übernehmen, bepreisen, übergeben."
+    },
+    "money": {
+      "accounts": {
+        "metaTitle": "Abwicklungskonten",
+        "title": "Abwicklungskonten",
+        "subtitle": "Die Konten, auf die Ihre Kundschaft einzahlt.",
+        "noPublicTitle": "Kein öffentliches Konto",
+        "noPublicBody": "Solange nicht mindestens ein Konto — in irgendeiner Währung — sowohl öffentlich als auch aktiv ist, kann die Wechselstube nicht auf aktiv gesetzt werden.",
+        "noIrtTitle": "Kein öffentliches IRT-Konto",
+        "noIrtBody": "Treuhandarbeit im Privathandel geht nur an eine Wechselstube mit einem öffentlichen, aktiven IRT-Konto. Andere Aufträge brauchen keines.",
+        "noDeleteNote": "Konten werden nie gelöscht; die Aufzeichnung früherer Zahlungen muss bleiben. Deaktivieren Sie ein Konto, das Sie nicht mehr wollen.",
+        "readOnly": "Konten zu ändern erfordert in dieser Wechselstube die Rolle Finanzen oder Inhaberschaft.",
+        "empty": "Es wurde noch kein Konto angelegt.",
+        "listTitle": "Hinterlegte Konten",
+        "addTitle": "Konto hinzufügen",
+        "currency": "Währung",
+        "kindLabel": "Kontoart",
+        "kind": {
+          "iban": "Sheba oder IBAN",
+          "card": "Karte",
+          "swift": "SWIFT",
+          "cash": "Bargeld"
+        },
+        "number": "Kontonummer",
+        "placeholder": {
+          "iban": "IR06 0120 0000 0000 1234 5678 90",
+          "card": "6037 9911 2345 6789",
+          "swift": "BKMTIRTH",
+          "cash": "Name des Schalters oder der Filiale"
+        },
+        "label": "Name des Kontos",
+        "labelPlaceholder": "z. B. Bank Mellat, Hauptfiliale",
+        "publicLabel": "Der Kundschaft zeigen",
+        "publicHint": "Macht dieses Konto für die Kundschaft sichtbar.",
+        "activeLabel": "Aktiv",
+        "activeHint": "Ein inaktives Konto wird bei neuen Aufträgen nicht verwendet.",
+        "add": "Konto anlegen",
+        "save": "Speichern",
+        "saved": "Gespeichert.",
+        "working": "Einen Moment…",
+        "badge": {
+          "public": "Öffentlich",
+          "internal": "Intern",
+          "inactive": "Inaktiv"
+        },
+        "errors": {
+          "numberRequired": "Schreiben Sie die Kontonummer.",
+          "forbidden": "Sie dürfen dieses Konto nicht ändern.",
+          "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        },
+        "listHint": "Die Konten, auf die Kunden einzahlen. Kunden sehen nur die aktiven.",
+        "addHint": "Eine weitere Karte oder IBAN hinzufügen, um Geld von Kunden zu empfangen."
+      },
+      "liquidity": {
+        "metaTitle": "Liquidität",
+        "title": "Liquidität",
+        "subtitle": "Die Position dieser Wechselstube im Journal, nach Währung.",
+        "holding": "Abwicklungsgeld bleibt in Verwahrung der Plattform, bis es abgerufen wird. Was Sie hier sehen, ist Ihr Anteil daran, nicht Geld, das schon auf dem Bankkonto der Wechselstube liegt.",
+        "readOnly": "Diese Seite ist nur lesbar; sie berichtet, was das Journal erfasst hat, und ändert nichts.",
+        "position": "Position im Journal",
+        "positionHint": "Haben minus Soll.",
+        "code": {
+          "irt_fees": "Provisionen",
+          "irt_settlement": "Abwicklung"
+        },
+        "noPosition": "Im Journal ist nichts erfasst.",
+        "ledgerHidden": "Das Journal sehen nur Plattform-Mitarbeitende.",
+        "truncated": "Das Journal ist größer als ein Lesevorgang; diese Zahlen decken seinen jüngsten Teil ab.",
+        "empty": "Für diese Wechselstube ist noch keine Währung eingerichtet.",
+        "noAccessTitle": "Kein Zugriff auf das Geld der Wechselstube",
+        "noAccessBody": "Das Geld der Wechselstube zu sehen erfordert die Rolle Finanzen, Inhaberschaft oder Einsicht. Brauchen Sie diese Seite, bitten Sie die Inhaberschaft, Ihre Rolle zu ändern.",
+        "currencyHint": "Was das Hauptbuch der Plattform diesem Büro in dieser Währung zuschreibt. Es ist die Summe aller Buchungen, keine eingetippte Zahl.",
+        "openSettlement": "Abrechnung öffnen"
+      }
+    },
+    "requests": {
+      "metaTitle": "Anfragen",
+      "title": "Anfragen",
+      "subtitle": "Nicht übernommene Anfragen und die laufende Arbeit dieser Wechselstube, in einer Liste.",
+      "scopeLabel": "Welche Anfragen",
+      "scope": {
+        "all": "Alle",
+        "action": "Brauchen Ihr Zutun"
+      },
+      "corridorLabel": "Strecke",
+      "allCorridors": "Alle Strecken",
+      "col": {
+        "corridor": "Strecke",
+        "amount": "Betrag",
+        "customer": "Kundschaft",
+        "waiting": "Wartezeit",
+        "action": "Handlung"
+      },
+      "unnamed": "Ohne Namen",
+      "claim": "Übernehmen",
+      "working": "Einen Moment…",
+      "empty": "Nichts in Arbeit.",
+      "emptyFiltered": "Nichts passt zu diesen Filtern.",
+      "errors": {
+        "alreadyClaimed": "Eine andere Wechselstube war schneller. Die Liste wurde aufgefrischt.",
+        "inactive": "Diese Wechselstube ist nicht aktiv und kann derzeit keine Anfragen übernehmen.",
+        "failed": "Das ging nicht durch. Versuchen Sie es erneut.",
+        "gone": "Diese Anfrage ist nicht mehr verfügbar. Die Liste wurde aufgefrischt.",
+        "network": "Keine Verbindung. Prüfen Sie sie und versuchen Sie es erneut."
+      },
+      "poolClosed": "Diese Wechselstube ist nicht aktiv, daher werden keine neuen Anfragen zur Übernahme gezeigt. Ihre laufende Arbeit steht weiterhin hier.",
+      "narrowCustomer": "Verlauf von Kunde {ref}",
+      "clearCustomer": "Zurück zur Warteschlange"
+    },
+    "chat": {
+      "metaTitle": "Nachrichten",
+      "title": "Nachrichten",
+      "subtitle": "Die Gespräche zu den Aufträgen dieser Wechselstube und Ihre eigenen Stränge mit dem Asaex-Support.",
+      "sectionOrders": "Aufträge",
+      "sectionSupport": "Asaex-Support",
+      "supportThread": "Support-Strang",
+      "pickThread": "Wählen Sie ein Gespräch aus der Liste.",
+      "empty": "Noch keine Gespräche, an denen Sie beteiligt sind. Hier erscheinen nur Stränge, zu denen Sie hinzugefügt wurden.",
+      "noMessages": "Keine Nachrichten",
+      "unknownOrder": "Auftrag",
+      "notesHint": "Eine interne Notiz wird der Kundschaft nie gezeigt — nur diese Wechselstube und die Plattform sehen sie.",
+      "status": {
+        "open": "Offen",
+        "pending": "Ausstehend",
+        "resolved": "Geschlossen",
+        "archived": "Archiviert"
+      }
+    },
+    "customers": {
+      "metaTitle": "Kundschaft",
+      "title": "Kundschaft",
+      "subtitle": "Menschen, die mit dieser Wechselstube zu tun hatten.",
+      "searchLabel": "Kundschaft suchen",
+      "searchPlaceholder": "Name",
+      "col": {
+        "name": "Name",
+        "orders": "Aufträge",
+        "volume": "Summe",
+        "last": "Letzter Auftrag",
+        "kyc": "Prüfung",
+        "ref": "Kundennummer"
+      },
+      "toman": "Toman",
+      "unnamed": "Ohne Namen",
+      "volumeHint": "Die Summe zählt nur abgeschlossene Aufträge.",
+      "privacy": "Eine Wechselstube sieht Namen und Prüfstand, sonst nichts.",
+      "empty": "Noch keine Kundschaft.",
+      "emptyFiltered": "Niemand passt zu diesem Namen.",
+      "kyc": {
+        "unverified": "Nicht geprüft",
+        "pending": "In Prüfung",
+        "approved": "Geprüft",
+        "rejected": "Abgelehnt",
+        "more_info_needed": "Weitere Angaben nötig",
+        "unknown": "Unbekannt"
+      },
+      "search": {
+        "label": "Nach Kundennummer suchen",
+        "placeholder": "Kundennummer"
+      },
+      "identityNote": "Der Name ist der Wechselstube nicht zugänglich; jede Person wird über dieselbe Nummer geführt, die auch in der Anfrageliste steht.",
+      "truncated": "Diese Wechselstube hat sehr viele Aufträge; Zahlen und Summen decken die jüngsten {count} ab.",
+      "noMatch": "Zu dieser Nummer passt niemand."
+    },
+    "team": {
+      "metaTitle": "Team",
+      "title": "Team",
+      "subtitle": "Der Zugang zu diesem Bereich. Hier steht nur Ihr eigener Platz; der einer Kollegin oder eines Kollegen ist von dieser Seite aus nicht lesbar.",
+      "col": {
+        "person": "Person",
+        "role": "Rolle",
+        "since": "Seit",
+        "action": "Handlung"
+      },
+      "role": {
+        "office_viewer": "Einsicht",
+        "office_operator": "Bedienung",
+        "office_finance": "Finanzen",
+        "office_owner": "Inhaberschaft"
+      },
+      "roleMeaning": {
+        "office_viewer": "Liest den Bereich und ändert nichts.",
+        "office_operator": "Bearbeitet die Aufträge des Tages.",
+        "office_finance": "Die Aufträge des Tages, dazu Konten und Bestände.",
+        "office_owner": "Alles, auch diese Seite."
+      },
+      "you": "Sie",
+      "unnamed": "Ohne Namen",
+      "nameNote": "Ein Name erscheint nur dort, wo die Plattform Ihnen das Profil zu lesen erlaubt; alle anderen stehen mit ihrer Benutzerkennung.",
+      "empty": "In dieser Wechselstube wurden noch keine Plätze vergeben.",
+      "readOnly": "Nur die Inhaberschaft kann ändern, wer Zugang hat.",
+      "addTitle": "Kollegin oder Kollegen hinzufügen",
+      "addBody": "Ein Asaex-Konto muss bereits bestehen. Von hier geht keine E-Mail — fragen Sie nach der Benutzerkennung und fügen Sie sie ein.",
+      "userIdLabel": "Benutzerkennung",
+      "roleLabel": "Rolle",
+      "grant": "Zugang geben",
+      "revoke": "Zugang entziehen",
+      "revokeConfirm": "Diesen Zugang entziehen?",
+      "revokeYes": "Ja, entziehen",
+      "cancel": "Doch nicht",
+      "working": "Einen Moment…",
+      "granted": "Zugang gegeben.",
+      "revoked": "Zugang entzogen.",
+      "errors": {
+        "badId": "Das ist keine Benutzerkennung. Sie muss vollständig sein.",
+        "noSuchUser": "Kein Asaex-Konto hat diese Kennung.",
+        "forbidden": "Das kann nur die Inhaberschaft.",
+        "failed": "Das ging nicht durch. Versuchen Sie es erneut."
+      },
+      "addHint": "Einer Kollegin oder einem Kollegen Zugang zum Panel geben und festlegen, was sie oder er darf."
+    },
+    "reports": {
+      "metaTitle": "Berichte",
+      "title": "Berichte",
+      "subtitle": "Volumen und Leistung dieser Wechselstube über die letzten sechs Monate.",
+      "empty": "Diese Wechselstube hat aus den letzten sechs Monaten keine Aufträge.",
+      "stat": {
+        "orders": "Aufträge",
+        "volume": "Volumen in Toman",
+        "completion": "Durchschnittliche Bearbeitungsdauer",
+        "sla": "Vor der Frist geliefert"
+      },
+      "toman": "Toman",
+      "hours": "{value} Stunden",
+      "minutes": "{value} Minuten",
+      "noData": "Noch keine Daten",
+      "volumeTitle": "Monatsvolumen",
+      "volumeHint": "Das Volumen zählt nur abgeschlossene Aufträge; die Auftragszahl umfasst alles, was in dem Monat eingereicht wurde. Der letzte Monat läuft noch, deshalb ist sein Balken blass gezeichnet.",
+      "chartLabel": "Balkendiagramm des Toman-Volumens nach Monat, {from} bis {to}. Höchster Monat {peak} mit {max} Toman.",
+      "monthOrders": "{count, number} Aufträge",
+      "corridorTitle": "Strecken",
+      "corridorHint": "Der Anteil jeder Strecke an den Aufträgen dieses Zeitraums.",
+      "completionHint": "Vom ersten Ereignis eines Auftrags bis zu seinem Abschluss, über {count, number} abgeschlossene Aufträge.",
+      "slaHint": "Der Anteil abgeschlossener Aufträge, die vor ihrer Frist geschlossen wurden, über {count, number} Aufträge mit Frist.",
+      "noCompleted": "Bisher wurde nichts abgeschlossen.",
+      "noSla": "Für die Aufträge dieses Zeitraums wurde keine Frist erfasst.",
+      "chartEmptyLabel": "Balkendiagramm des Toman-Volumens nach Monat, {from} bis {to}. In diesem Zeitraum wurde nichts abgeschlossen.",
+      "volumeSectionHint": "Wie viel dieses Büro in jedem Monat bewegt hat.",
+      "corridorSectionHint": "Der Anteil jedes Korridors an der Arbeit dieses Büros."
+    },
+    "config": {
+      "rates": {
+        "metaTitle": "Strecken und Kursunterschied",
+        "title": "Strecken und Kursunterschied",
+        "subtitle": "Für jede Strecke dürfen Sie einen Kurs nennen, der leicht vom Grundkurs abweicht. Dieser Unterschied ist kein Aufschlag: Er kommt aus der gestaffelten Provision oben, sodass sich für die Kundschaft nichts ändert und Ihr Anteil an der Provision wächst. Mindest- und Höchstbetrag sowie eine Annahmeschlusszeit werden ebenfalls erfasst.",
+        "readOnly": "Strecken zu ändern erfordert in dieser Wechselstube die Rolle Inhaberschaft. Für Sie ist diese Seite nur lesbar.",
+        "templateNote": "Die Plattform hat für jede Strecke einen Standardwert. Wo Ihrer abweicht, steht „abweichend“ — dasselbe sieht die Plattform.",
+        "listTitle": "Die Strecken dieser Wechselstube",
+        "empty": "Es ist noch keine Strecke angelegt. Legen Sie unten eine an.",
+        "spreadLabel": "Abstand zum Grundkurs",
+        "spreadMeans": "{bps} Hundertstelprozent — also {pct} % Abstand zum Grundkurs",
+        "spreadHint": "Schreiben Sie die Zahl in Hundertstelprozent; 100 ist ein Prozent. 150 bedeutet anderthalb Prozent.",
+        "templateSpread": "Standard der Plattform: {bps}",
+        "minLabel": "Kleinster Betrag",
+        "maxLabel": "Größter Betrag",
+        "amountHint": "In {code}. Leer heißt: keine Grenze.",
+        "onFile": "Hinterlegt: {amount} {code}",
+        "noLimit": "Hinterlegt: keine Grenze",
+        "cutoffLabel": "Täglicher Annahmeschluss",
+        "cutoffHint": "Der für diese Strecke erfasste Annahmeschluss.",
+        "activeLabel": "Aktiv",
+        "activeHint": "Eine inaktive Strecke wird übersprungen, wenn die Plattform eine treuhänderische Wechselstube wählt; offene Aufträge bleiben, wo sie sind.",
+        "badge": {
+          "same": "Wie der Standard",
+          "overridden": "Abweichend",
+          "custom": "Nicht in der Vorlage",
+          "inactive": "Inaktiv"
+        },
+        "addTitle": "Strecke anlegen",
+        "addCurrency": "Währung",
+        "addHint": "Einen neuen Korridor für dieses Büro öffnen.",
+        "add": "Strecke anlegen",
+        "save": "Speichern",
+        "saved": "Gespeichert.",
+        "working": "Einen Moment…",
+        "errors": {
+          "spreadRange": "Das muss eine ganze Zahl zwischen 0 und 2000 sein (null bis zwanzig Prozent).",
+          "amountInvalid": "Schreiben Sie den Betrag in Ziffern.",
+          "amountOrder": "Der kleinste Betrag darf nicht größer sein als der größte.",
+          "duplicate": "Diese Strecke ist bereits angelegt.",
+          "forbidden": "Nicht gespeichert: Strecken darf nur die Inhaberschaft schreiben.",
+          "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        },
+        "emptyReadOnly": "Es ist noch keine Strecke angelegt.",
+        "amountUnknownCurrency": "Die Währung dieser Strecke steht nicht in der Liste der Plattform, daher lässt sich kein Betrag dafür eintragen.",
+        "listHint": "Die Korridore, auf denen dieses Büro arbeitet, und der Kurs auf jedem."
+      },
+      "settings": {
+        "metaTitle": "Einstellungen der Wechselstube",
+        "title": "Einstellungen der Wechselstube",
+        "subtitle": "Öffnungszeiten, automatische Annahme und wohin Hinweise gehen.",
+        "lockedTitle": "Diese drei Einstellungen schreibt die Wechselstube nicht",
+        "lockedBody": "Schreibzugriffe auf den Datensatz der Wechselstube nimmt nur die Plattform an. Sie können die aktuellen Werte hier lesen und die gewünschte Änderung an den Support schicken.",
+        "supportCta": "Support anschreiben",
+        "hours": {
+          "title": "Öffnungszeiten",
+          "body": "Die Zeiten gelten in {tz}.",
+          "bodyUnknown": "Für diese Wechselstube ist keine Zeitzone erfasst; die Zeiten gelten als Ortszeit der Wechselstube.",
+          "open": "Öffnet",
+          "close": "Schließt",
+          "closedLabel": "Geschlossen",
+          "day": {
+            "sat": "Samstag",
+            "sun": "Sonntag",
+            "mon": "Montag",
+            "tue": "Dienstag",
+            "wed": "Mittwoch",
+            "thu": "Donnerstag",
+            "fri": "Freitag"
+          },
+          "hint": "Die Zeiten, zu denen dieses Büro Aufträge annimmt. Außerhalb warten Aufträge in der Schlange."
+        },
+        "auto": {
+          "title": "Automatische Annahme",
+          "body": "Das wird erfasst; auf Aufträge angewandt wird die automatische Annahme noch nicht.",
+          "enabledLabel": "Automatische Annahme",
+          "maxLabel": "Obergrenze der automatischen Annahme",
+          "maxHint": "In Toman. Leer heißt: keine Obergrenze erfasst.",
+          "onFile": "Hinterlegt: {amount} IRT",
+          "noLimit": "Hinterlegt: keine Obergrenze",
+          "hint": "Eingeschaltet werden Aufträge bis zum festgelegten Betrag ohne Freigabe angenommen."
+        },
+        "notify": {
+          "title": "Wohin Hinweise gehen",
+          "body": "Diese Angaben stehen im Datensatz der Wechselstube; gesendet wird an sie noch nichts.",
+          "phone": "Telefon",
+          "phonePlaceholder": "+982188001122",
+          "email": "E-Mail",
+          "emailPlaceholder": "office@example.com",
+          "smsLabel": "SMS",
+          "smsHint": "Die SMS-Einstellung, im Datensatz hinterlegt.",
+          "emailLabel": "E-Mail",
+          "emailHint": "Die E-Mail-Einstellung, im Datensatz hinterlegt.",
+          "hint": "Auf welchem Weg Sie von einem neuen Auftrag erfahren."
+        },
+        "save": "Speichern",
+        "saved": "Gespeichert.",
+        "working": "Einen Moment…",
+        "errors": {
+          "timeOrder": "Die Schließzeit muss nach der Öffnungszeit liegen.",
+          "timeMissing": "Tragen Sie für einen nicht geschlossenen Tag beide Zeiten ein.",
+          "amountInvalid": "Schreiben Sie die Obergrenze in Ziffern.",
+          "forbidden": "Nicht gespeichert: Schreibzugriffe auf den Datensatz nimmt nur die Plattform an. Schicken Sie die Änderung an den Support.",
+          "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+        }
+      }
+    },
+    "builtBy": "Entwickelt von der Programmiergruppe Â",
+    "group": {
+      "today": "Heute",
+      "work": "Wartende Arbeit",
+      "money": "Finanzen",
+      "office": "Das Büro"
+    },
+    "waitingHint": "Aufträge, die nichts von Ihnen verlangen und auf die Kundschaft oder die Plattform warten. Tippen Sie auf eine Referenz, um zu sehen, worauf sie wartet."
+  },
+  "admin": {
+    "metaTitle": "Verwaltung",
+    "title": "Überblick über die Plattform",
+    "subtitle": "Jeder Auftrag, jede Wechselstube und jede erfasste Änderung.",
+    "navLabel": "Verwaltungsbereiche",
+    "nav": {
+      "dashboard": "Überblick",
+      "exchanges": "Wechselstuben",
+      "orders": "Aufträge",
+      "kyc": "Identität",
+      "settings": "Einstellungen",
+      "audit": "Prüfprotokoll",
+      "support": "Support",
+      "p2p": "Privathandel",
+      "users": "Kundschaft",
+      "compliance": "Compliance",
+      "finance": "Finanzen",
+      "rates": "Kurse",
+      "content": "Inhalte",
+      "tickets": "Tickets",
+      "settlement": "Abwicklung"
+    },
+    "unavailableTitle": "In dieser Umgebung nicht verfügbar",
+    "unavailableBody": "Die Datenbank ist nicht erreichbar. Versuchen Sie es gleich noch einmal.",
+    "forbiddenTitle": "Sie haben keinen Zugriff",
+    "forbiddenBody": "Der Verwaltungsbereich steht nur Plattform-Rollen offen.",
+    "backHome": "Zurück zur Startseite",
+    "byState": "Aufträge nach Zustand",
+    "noOrders": "Noch keine Aufträge.",
+    "feed": "Laufende Aktivität",
+    "noActivity": "Bisher nichts erfasst.",
+    "officeCount": "{active} von {total} Wechselstuben aktiv.",
+    "stats": {
+      "gmv": "Abgewickeltes Volumen",
+      "settled": "Abgeschlossene Aufträge",
+      "live": "Aufträge in Arbeit",
+      "atRisk": "Frist gefährdet"
+    },
+    "impersonation": {
+      "actingAs": "Sie handeln im Namen von {office}.",
+      "actingAsUnknown": "Sie handeln im Namen einer Wechselstube.",
+      "reason": "Grund: {reason}",
+      "endsIn": "Endet automatisch in {time}",
+      "expired": "Diese Sitzung ist abgelaufen.",
+      "end": "Sitzung beenden"
+    },
+    "group": {
+      "overview": "Überblick",
+      "operations": "Betrieb",
+      "people": "Menschen und Compliance",
+      "money": "Geld",
+      "platform": "Plattform"
+    },
+    "hintLabel": "Wofür ist dieser Bereich?",
+    "hint": {
+      "dashboard": "Die Plattform auf einen Blick: abgewickeltes Volumen, Provisionen, laufende Aufträge und wie jede Wechselstube arbeitet. Die Seite, die man morgens zuerst öffnet.",
+      "orders": "Jeder Auftrag auf der Plattform. Einen feststeckenden können Sie von Hand weiterbewegen, mit einem Grund im Datensatz.",
+      "exchanges": "Eine Wechselstube anlegen, ihre Strecken und Provisionen setzen und in ihrem Namen handeln, wenn sie nicht reagiert.",
+      "p2p": "Angebote und Geschäfte im Privathandel und die Schlichtung von Streitfällen.",
+      "support": "Die Support-Warteschlangen, getrennt nach Art des Gesprächs.",
+      "tickets": "Jedes Ticket, auch die, auf denen eine Wechselstube sitzt. Die Plattform steht darüber, Sie können jedes übernehmen.",
+      "users": "Die gesamte Kundschaft. Eine Zeile zu öffnen zeigt Verlauf, Stufe und Anmeldungen.",
+      "kyc": "Die Prüfschlange für Ausweisunterlagen von Kundschaft und Wechselstuben. Freigabe oder Ablehnung liegt bei Ihnen.",
+      "compliance": "Sanktionsabgleich, gemeldete Nachrichten sowie die Schwellen für Stufen und Privathandel.",
+      "finance": "Das Buchungsjournal, Kontostände und der Abgleich.",
+      "settlement": "Abwicklungskarten und IBANs jeder Wechselstube und ihr Stand gegenüber dem Limit.",
+      "rates": "Der Zustand der Kursquellen und wie die Aufschläge der Wechselstuben zueinander stehen.",
+      "content": "Die Texte der Website: FAQ, Ankündigungen sowie SMS- und E-Mail-Vorlagen, in beiden Sprachen.",
+      "settings": "Funktionsschalter, Plattform-Einstellungen und der Werktagskalender.",
+      "audit": "Das Prüfprotokoll: jede Änderung, von wem und wann. Nicht bearbeitbar."
+    },
+    "orders": {
+      "metaTitle": "Alle Aufträge",
+      "title": "Aufträge",
+      "subtitle": "Jeder Auftrag, in jeder Wechselstube. Einen Übergang zu erzwingen verlangt eine schriftliche Begründung.",
+      "all": "Alle",
+      "empty": "Kein Auftrag passt zu diesem Filter.",
+      "unclaimed": "Nicht übernommen",
+      "onBehalf": "Im Namen von",
+      "force": "Erzwingen",
+      "forceTitle": "{ref} in einen neuen Zustand zwingen",
+      "forceBody": "Das übergeht die Rollenmatrix, nicht das Journal: Eine Erstattung bucht Gegenbuchungen, statt Zeilen zu löschen.",
+      "targetState": "Zielzustand",
+      "reason": "Begründung (mindestens 8 Zeichen)",
+      "confirmForce": "Anwenden",
+      "cancel": "Abbrechen",
+      "working": "Wird angewandt…",
+      "col": {
+        "ref": "Auftragsnummer",
+        "corridor": "Strecke",
+        "amount": "Betrag",
+        "office": "Wechselstube",
+        "state": "Zustand",
+        "action": "Handlung"
+      },
+      "errors": {
+        "reason": "Eine schriftliche Begründung von mindestens 8 Zeichen ist erforderlich.",
+        "terminal": "Dieser Auftrag ist bereits im Endzustand; buchen Sie stattdessen eine Gegenbewegung.",
+        "forbidden": "Diese Handlung steht nur Plattform-Administratoren offen.",
+        "failed": "Anwenden nicht möglich. Versuchen Sie es erneut."
+      },
+      "clearFilter": "Diesen Filter entfernen",
+      "unknownOffice": "Unbekanntes Büro",
+      "narrow": {
+        "risk": "Weniger als ein Tag bis zur Frist",
+        "corridor": "Korridor {corridor}",
+        "unclaimed": "Nicht übernommen",
+        "office": "{office}"
+      },
+      "forceHint": "Den Status eines Auftrags von Hand verschieben, wenn der normale Ablauf feststeckt. Der Grund, den Sie schreiben, bleibt im Prüfprotokoll und lässt sich nicht löschen."
+    },
+    "audit": {
+      "metaTitle": "Prüfprotokoll",
+      "title": "Prüfprotokoll",
+      "subtitle": "Unveränderlich und nicht löschbar. Jede Konfigurationsänderung und jede Verwaltungshandlung, mit Vorher und Nachher.",
+      "searchPlaceholder": "Handlungen durchsuchen",
+      "search": "Suchen",
+      "entity": "Objekt",
+      "allEntities": "Alle Objekte",
+      "empty": "Keine Einträge gefunden.",
+      "before": "Vorher",
+      "after": "Nachher",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "Wechselstube",
+        "office_accounts": "Konto der Wechselstube",
+        "office_account": "Konto der Wechselstube",
+        "office_rate_config": "Strecken der Wechselstube",
+        "settings": "Plattform-Einstellungen",
+        "feature_flags": "Funktionsschalter",
+        "memberships": "Benutzerzugriff",
+        "cms_content": "Website-Inhalt",
+        "profiles": "Kundenakte",
+        "orders": "Auftrag",
+        "kyc_submissions": "Identitätsunterlagen",
+        "settlement_accounts": "Abwicklungskonto",
+        "coin_orders": "Münzauftrag",
+        "support_tickets": "Support-Ticket",
+        "p2p_offers": "Angebot unter Privatpersonen",
+        "p2p_trades": "Handel unter Privatpersonen",
+        "rate_sources": "Kursquellen",
+        "office": "Wechselstube",
+        "order": "Auftrag",
+        "p2p": "Markt unter Privatpersonen"
+      },
+      "verb": {
+        "insert": "angelegt",
+        "update": "geändert",
+        "delete": "entfernt",
+        "retire": "stillgelegt",
+        "provision": "angelegt",
+        "publish": "veröffentlicht"
+      },
+      "named": {
+        "office_provision": "Eine neue Wechselstube wurde angelegt",
+        "office_kyc": "Die Identität einer Wechselstube wurde geprüft",
+        "office_status": "Der Status einer Wechselstube hat sich geändert",
+        "order_force_transition": "Der Zustand eines Auftrags wurde von Hand geändert",
+        "impersonation_start": "Das Handeln im Namen einer Wechselstube hat begonnen",
+        "impersonation_end": "Das Handeln im Namen einer Wechselstube ist beendet",
+        "p2p_offer_publish": "Ein Angebot wurde auf dem Markt unter Privatpersonen veröffentlicht",
+        "p2p_trade_take": "Ein Handel unter Privatpersonen wurde angenommen",
+        "kyc_decision": "Über Identitätsunterlagen wurde entschieden"
+      },
+      "openRecord": "Datensatz öffnen"
+    },
+    "settings": {
+      "metaTitle": "Plattform-Einstellungen",
+      "title": "Einstellungen",
+      "subtitle": "Zwei-Faktor-Anmeldung für Mitarbeitende, Funktionsschalter und die Standardvorlage für Wechselstuben.",
+      "flags": "Funktionsschalter",
+      "noFlags": "Keine Schalter angelegt.",
+      "saveFailed": "Speichern nicht möglich. Versuchen Sie es erneut.",
+      "template": "Standardvorlage für Wechselstuben",
+      "templateBody": "Jede neue Wechselstube startet von diesen Werten; Abweichungen erscheinen auf ihrer eigenen Seite.",
+      "flagsHint": "Die Schalter, mit denen Teile der Website an- und ausgehen. Wird einer ausgeschaltet, ist dieser Bereich für alle verborgen.",
+      "templateHint": "Die Werte, mit denen jedes neue Wechselbüro angelegt wird. Jedes Büro lässt sich danach einzeln ändern."
+    },
+    "security": {
+      "title": "Zwei-Faktor-Anmeldung für Mitarbeitende",
+      "body": "Jedes Konto von Plattform-Mitarbeitenden kann eine Authenticator-App anbinden. Solange die Pflicht aus ist, ist ein fehlender zweiter Faktor nur ein Hinweis; ist sie an, erreicht kein Mitarbeitendenkonto die Konsole oder die Datenbank ohne sechsstelligen Code.",
+      "selfMissing": "Ihr eigenes Konto hat noch keinen zweiten Faktor. Die Pflicht einzuschalten, bevor Sie sich eintragen, würde Sie aus der Konsole aussperren.",
+      "selfMissingCta": "Auf Ihrer Kontoseite einrichten",
+      "require": "Einen zweiten Faktor von allen Mitarbeitenden verlangen",
+      "requireReady": "Alle Mitarbeitendenkonten haben einen zweiten Faktor; das Einschalten sperrt niemanden aus.",
+      "requireBlocked": "{count, plural, one {# Mitarbeitendenkonto hat} other {# Mitarbeitendenkonten haben}} noch keinen zweiten Faktor. Der Schalter bleibt aus, bis alle einen haben — sonst ist in dem Moment jede Administration ausgesperrt, auch wer umgelegt hat.",
+      "coverage": "{covered, number} von {total, number} Mitarbeitendenkonten haben einen zweiten Faktor.",
+      "empty": "Es sind keine Mitarbeitendenkonten erfasst.",
+      "unnamed": "Ohne Namen",
+      "enrolled": "Eingetragen",
+      "notEnrolled": "Kein zweiter Faktor",
+      "saveFailed": "Die Änderung wurde nicht gespeichert.",
+      "role": {
+        "platform_support": "Support",
+        "platform_compliance": "Compliance",
+        "platform_admin": "Administration",
+        "platform_superadmin": "Oberste Administration"
+      },
+      "sectionHint": "Ob Plattformmitarbeitende zum Anmelden einen Einmalcode eingeben müssen, und wie es um jedes Konto steht."
+    },
+    "support": {
+      "metaTitle": "Support-Eingang",
+      "title": "Support",
+      "subtitle": "Drei getrennte Warteschlangen: Kundschaft, Privathandel, Wechselstuben. Jede mit eigener Uhr.",
+      "segment": {
+        "customer": "Kundschaft",
+        "p2p": "Privathandel",
+        "office": "Wechselstuben"
+      },
+      "status": {
+        "open": "Offen",
+        "pending": "Ausstehend",
+        "resolved": "Gelöst",
+        "archived": "Archiviert"
+      },
+      "emptyQueue": "Diese Warteschlange ist leer.",
+      "pickThread": "Wählen Sie ein Gespräch aus der Liste.",
+      "noMessages": "Keine Nachrichten",
+      "assignToMe": "Mir zuweisen",
+      "assignedToYou": "Ihnen zugewiesen",
+      "assigned": "Zugewiesen",
+      "resolve": "Lösen"
+    },
+    "p2p": {
+      "metaTitle": "Privathandel",
+      "title": "Markt unter Privatpersonen",
+      "subtitle": "Moderation der Angebote und Schlichtung von Streitfällen.",
+      "openOffers": "Offene Angebote",
+      "liveTrades": "Laufende Geschäfte",
+      "disputes": "Offene Streitfälle",
+      "disputesTitle": "Streitfälle, die auf eine Entscheidung warten",
+      "resolve": "Entscheiden",
+      "listings": "Angebote",
+      "noListings": "Noch keine Angebote.",
+      "tradesOnOffer": "{count, number} Geschäfte",
+      "remove": "Entfernen",
+      "removeReason": "Grund für die Entfernung (mindestens 8 Zeichen)",
+      "confirmRemove": "Angebot entfernen",
+      "removeFailed": "Entfernen nicht möglich. Versuchen Sie es erneut.",
+      "status": {
+        "open": "Offen",
+        "paused": "Pausiert",
+        "filled": "Ausgeführt",
+        "cancelled": "Storniert",
+        "removed": "Entfernt"
+      },
+      "disputesHint": "Geschäfte unter Privatpersonen, bei denen sich beide Seiten nicht einig wurden und die auf Ihren Schiedsspruch warten.",
+      "listingsHint": "Die Kauf- und Verkaufsanzeigen, die Nutzende im Markt unter Privatpersonen eingestellt haben."
+    },
+    "exchanges": {
+      "metaTitle": "Wechselstuben",
+      "title": "Wechselstuben",
+      "subtitle": "Wechselstuben anlegen, einrichten und aussetzen. Jede Änderung wird mit ihrem Grund erfasst.",
+      "provision": "Wechselstube anlegen",
+      "empty": "Noch keine Wechselstuben.",
+      "liveOrders": "{count, number} Aufträge in Arbeit",
+      "status": {
+        "draft": "Unvollständig",
+        "active": "Aktiv",
+        "suspended": "Ausgesetzt",
+        "archived": "Archiviert"
+      },
+      "kind": {
+        "card": "Karte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Bargeld"
+      },
+      "reasonTitle": "Grund für diese Handlung",
+      "reasonBody": "Eine Wechselstube auszusetzen und in ihrem Namen zu handeln verlangen beide eine schriftliche Begründung; derselbe Text landet im Prüfprotokoll.",
+      "reasonPlaceholder": "z. B. Prüfung einer Kundenbeschwerde über eine verspätete Abwicklung",
+      "activate": "Aktivieren",
+      "suspend": "Aussetzen",
+      "impersonate": "Im Namen dieser Wechselstube handeln",
+      "alreadyImpersonating": "Sie handeln bereits im Namen dieser Wechselstube",
+      "spreads": "Provisionen und Kursunterschied",
+      "spreadBps": "Kursunterschied, in Hundertstelprozent",
+      "noCorridors": "Keine Strecken eingerichtet.",
+      "save": "Speichern",
+      "saved": "Gespeichert.",
+      "overridden": "Abweichend (Standard {base, number})",
+      "fromTemplate": "Aus der Vorlage",
+      "accounts": "Abwicklungskonten",
+      "noAccounts": "Keine Konten erfasst.",
+      "publicAccount": "Der Kundschaft gezeigt",
+      "balances": "Bestände",
+      "noBalances": "Keine Bestände erfasst.",
+      "errors": {
+        "spreadRange": "Der Kursunterschied muss zwischen 0 und 2000 Hundertstelprozent liegen (0–20 %).",
+        "saveFailed": "Speichern nicht möglich. Versuchen Sie es erneut.",
+        "reasonRequired": "Eine schriftliche Begründung von mindestens 8 Zeichen ist erforderlich.",
+        "noAccount": "Eine Wechselstube kann ohne öffentliches Abwicklungskonto nicht in Betrieb gehen.",
+        "superadminOnly": "Im Namen einer Wechselstube zu handeln steht nur der obersten Administration offen."
+      },
+      "kyc": {
+        "verified": "Geprüft",
+        "pending": "Ausstehend",
+        "rejected": "Abgelehnt",
+        "unverified": "Nicht kontrolliert"
+      },
+      "reasonHint": "Der Grund, den Sie hier schreiben, wird im Prüfprotokoll festgehalten und lässt sich nicht löschen.",
+      "spreadsHint": "Die Gebühr dieses Büros und der Abstand zwischen seinem An- und Verkaufskurs. Das verändert den Preis, den der Kunde sieht.",
+      "accountsHint": "Die Karten und IBANs, auf die Kunden einzahlen.",
+      "balancesHint": "Was die Konten dieses Büros im Hauptbuch halten.",
+      "openSettlement": "Abrechnung öffnen",
+      "openLedger": "Hauptbuch öffnen"
+    },
+    "wizard": {
+      "steps": {
+        "legal": {
+          "title": "Rechtliche Angaben",
+          "body": "Eingetragener Name, Lizenznummer und das eindeutige Kürzel der Wechselstube."
+        },
+        "corridors": {
+          "title": "Strecken",
+          "body": "Welche Strecken sie übernimmt und zu welchem Aufschlag. Die Vorgaben kommen aus der Plattform-Vorlage."
+        },
+        "accounts": {
+          "title": "Abwicklungskonten",
+          "body": "Das Konto, auf das die Kundschaft Toman einzahlt, dazu etwaige Fremdwährungskonten."
+        },
+        "review": {
+          "title": "Prüfen",
+          "body": "Eine Transaktion, einmal. Entweder gelingt alles oder nichts."
+        },
+        "access": {
+          "title": "Zugang zur Wechselstube",
+          "body": "Benutzername und Passwort für den Bereich und die Nummer, an die beides geht."
+        }
+      },
+      "fields": {
+        "nameFa": "Eingetragener Name (auf Persisch)",
+        "nameEn": "Eingetragener Name (auf Englisch)",
+        "slug": "Kürzel",
+        "slugHint": "Kleinbuchstaben, Ziffern und Bindestriche; wird in Adressen verwendet.",
+        "licence": "Lizenznummer",
+        "city": "Stadt",
+        "reason": "Grund der Anlage",
+        "corridor": "Strecke",
+        "spread": "Aufschlag",
+        "currency": "Währung",
+        "kind": "Kontoart",
+        "accountNumber": "Kontonummer",
+        "displayName": "Angezeigter Name",
+        "displayNameHint": "Diesen Namen sieht die Kundschaft.",
+        "ownerName": "Eingetragene Inhaberschaft",
+        "ownerNameHint": "Woran Abwicklungskonten abgeglichen werden.",
+        "nationalId": "Kennnummer der Inhaberschaft",
+        "nationalIdHint": "Die Grundlage der Prüfung, wem Karte und IBAN gehören.",
+        "username": "Benutzername",
+        "usernameHint": "Kleinbuchstaben, Ziffern, Punkte und Bindestriche.",
+        "phone": "Zielrufnummer",
+        "phoneHint": "Damit meldet sie sich beim ersten Mal an.",
+        "ownPassword": "Ich gebe das Passwort selbst ein",
+        "ownPasswordHint": "Sonst wird ein sicheres erzeugt.",
+        "password": "Passwort",
+        "sendSms": "Per SMS an die Zielrufnummer senden",
+        "sendSmsHint": "Ist das aus, erscheinen die Angaben nur auf diesem Bildschirm."
+      },
+      "kinds": {
+        "card": "Karte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Bargeld"
+      },
+      "addCorridor": "Strecke hinzufügen",
+      "addAccount": "Konto hinzufügen",
+      "remove": "Entfernen",
+      "spreadHint": "Der Aufschlag steht in Hundertstelprozent: 90 bedeutet 0,9 %.",
+      "accountHint": "Mindestens ein Toman-Konto ist nötig; ohne es kann die Wechselstube nicht in Betrieb gehen.",
+      "back": "Zurück",
+      "next": "Weiter",
+      "saveDraft": "Speichern ohne zu aktivieren",
+      "activate": "Anlegen und aktivieren",
+      "working": "Wird angelegt…",
+      "failed": "Die Wechselstube ließ sich nicht anlegen. Versuchen Sie es erneut.",
+      "errors": {
+        "slug": "Das Kürzel muss aus 3 bis 40 Kleinbuchstaben, Ziffern oder Bindestrichen bestehen.",
+        "slugTaken": "Dieses Kürzel ist bereits vergeben.",
+        "names": "Beide eingetragenen Namen sind erforderlich.",
+        "licence": "Eine Lizenznummer ist erforderlich.",
+        "forbidden": "Eine Wechselstube anzulegen steht nur Plattform-Administratoren offen.",
+        "noAccount": "Die Wechselstube wurde angelegt, aber nicht aktiviert: Sie hat kein öffentliches Abwicklungskonto.",
+        "nationalId": "Diese Kennnummer ist ungültig.",
+        "usernameTaken": "Dieser Benutzername ist bereits vergeben.",
+        "inviteFailed": "Die Wechselstube wurde angelegt, der Zugang nicht. Versuchen Sie es von ihrer Seite aus erneut."
+      },
+      "accessNote": "Sie können diesen Schritt leer lassen und den Zugang später erzeugen. Geben Sie kein Passwort ein, wird eines erzeugt.",
+      "issued": {
+        "title": "Die Wechselstube hat einen Zugang",
+        "body": "Diese Angaben werden ein einziges Mal gezeigt.",
+        "warning": "Nach diesem Bildschirm lässt sich das Passwort nicht wiederherstellen. Geht es verloren, erzeugen Sie einen neuen Zugang.",
+        "copy": "Benutzername und Passwort kopieren",
+        "copied": "Kopiert",
+        "done": "Zur Wechselstube",
+        "sms": {
+          "sent": "Per SMS an die Zielrufnummer gesendet.",
+          "failed": "Die Nachricht ließ sich nicht senden. Geben Sie die Angaben selbst weiter.",
+          "skipped": "Es wurde keine Nachricht gesendet."
+        }
+      }
+    },
+    "dashboard": {
+      "metaTitle": "Führungsberichte",
+      "title": "Führungsberichte",
+      "subtitle": "Abgewickeltes Volumen, Provisionserlöse und wie jede Wechselstube über die letzten zwölf Monate arbeitet. Jede Zahl ist aus den Aufträgen, ihren Ereignissen und dem Journal gezählt.",
+      "toman": "Toman",
+      "vsLastMonth": "gegenüber demselben Zeitraum im Vormonat",
+      "noBase": "Der Vormonat hat keine Zahl zum Vergleich.",
+      "monthToDate": "{month}, seit Monatsbeginn ({days, plural, one {# Tag} other {# Tage}}).",
+      "card": {
+        "volume": "Abgewickeltes Volumen diesen Monat",
+        "settled": "Abgeschlossene Aufträge diesen Monat",
+        "fees": "Provisionserlöse der Plattform diesen Monat",
+        "inFlight": "Aufträge in Arbeit",
+        "atRisk": "Frist gefährdet",
+        "atRiskOf": "{counted} mit weniger als 24 Stunden Frist",
+        "noDeadlines": "Auf keinem offenen Auftrag ist eine Frist vermerkt"
+      },
+      "hint": {
+        "inFlight": "Gerade offen, jemand wartet darauf.",
+        "atRisk": "Fällig in unter 24 Stunden oder bereits überfällig.",
+        "noDeadlines": "Noch trägt kein offener Auftrag eine Frist."
+      },
+      "volumeTitle": "Abgewickeltes Volumen nach Monat",
+      "volumeHint": "Ein Auftrag zählt in dem Monat, in dem er abgewickelt wurde, nicht in dem, in dem er eröffnet wurde. Die letzte Spalte ist der laufende Monat und noch unvollständig.",
+      "chartLabel": "Balkendiagramm des abgewickelten Volumens von {from} bis {to}. Der höchste Monat war {peak} mit {max} Toman.",
+      "corridorTitle": "Anteil der Strecken am Volumen",
+      "corridorHint": "Der Anteil bemisst sich am Toman-Volumen der in den letzten zwölf Monaten abgewickelten Aufträge.",
+      "noVolume": "In diesem Zeitraum wurde noch nichts abgewickelt.",
+      "scoreTitle": "Leistungsübersicht der Wechselstuben",
+      "scoreHint": "Nur aktive Wechselstuben, über die letzten zwölf Monate, nach Volumen sortiert. Die durchschnittliche Dauer ist der Abstand zwischen Eröffnung und Abschlussereignis eines Auftrags.",
+      "scoreEmpty": "Keine aktiven Wechselstuben.",
+      "col": {
+        "office": "Wechselstube",
+        "orders": "Aufträge",
+        "volume": "Volumen (Toman)",
+        "completion": "Ø Dauer",
+        "sla": "Pünktlich",
+        "disputes": "Streitquote"
+      },
+      "hours": "{value} Std.",
+      "minutes": "{value} Min.",
+      "noData": "—",
+      "noOrders": "Keine",
+      "corridorOnly": "Das gesamte abgewickelte Volumen lief über eine Strecke: <corridor></corridor>, insgesamt <amount></amount> Toman.",
+      "noComparison": "Keine Zahl aus dem Vormonat zum Vergleich.",
+      "kpiLabel": "Kennzahlen",
+      "sectionHint": {
+        "volume": "Wie viel in jedem der letzten zwölf Monate abgewickelt wurde. Der laufende Monat ist blass, weil er noch nicht abgeschlossen und mit den vollen Monaten nicht vergleichbar ist.",
+        "corridors": "Der Anteil jedes Korridors am abgewickelten Volumen. Tippen Sie auf einen Korridor, um seine Aufträge zu sehen.",
+        "scores": "Wie es um jedes aktive Wechselbüro steht: wie viele Aufträge, welcher Betrag, wie schnell, wie oft fristgerecht und wie oft im Streit geendet."
+      },
+      "openLedger": "Hauptbuch öffnen",
+      "openSettled": "Abgewickelte Aufträge ansehen",
+      "openOffices": "Büroliste öffnen"
+    },
+    "compliance": {
+      "metaTitle": "Compliance",
+      "title": "Compliance",
+      "subtitle": "Sanktionsabgleich, gemeldete Nachrichten, Geldwäscheschwellen und Aufbewahrungsfristen.",
+      "sanctions": {
+        "title": "Sanktionsabgleich",
+        "gapBadge": "Offene Lücke",
+        "gapTitle": "Der Sanktionsabgleich ist noch an keine Quelle angebunden",
+        "gapBody": "Die Tabelle sanctions_hits existiert, aber kein Dienst schreibt hinein. Eine leere Liste hier heißt, dass niemand abgeglichen wurde — nicht, dass niemand auf einer Sanktionsliste steht. Die Lücke ist in docs/security-review.md festgehalten und muss geschlossen sein, bevor echtes Geld fließt.",
+        "col": {
+          "person": "Person",
+          "list": "Liste",
+          "score": "Trefferwert",
+          "created": "Wann",
+          "resolution": "Entscheidung"
+        },
+        "unnamed": "Ohne Namen",
+        "unresolved": "Nicht entschieden",
+        "payload": "Rohdaten des Treffers",
+        "shown": "{count} Treffer; die Liste ist auf die 100 jüngsten begrenzt.",
+        "hint": "Gleicht Kundennamen mit Sanktionslisten ab und hält jeden möglichen Treffer zurück, bis ein Mensch entscheidet."
+      },
+      "flags": {
+        "title": "Gemeldete Nachrichten",
+        "body": "Das sind Hinweise, nie eine Sperre: Die Nachricht erreichte ihre Leserschaft genau so, wie sie geschrieben war.",
+        "empty": "Keine gemeldeten Nachrichten.",
+        "name": {
+          "off_platform": "Außerhalb der Plattform",
+          "account_number": "Kontonummer im Text",
+          "contact": "Kontaktdaten"
+        },
+        "kind": {
+          "order": "Auftragsstrang",
+          "p2p": "Privathandels-Strang",
+          "support": "Support-Strang"
+        },
+        "open": "Strang öffnen",
+        "noBody": "Kein Text",
+        "shown": "{count} Nachrichten; die Liste ist auf die 100 jüngsten begrenzt.",
+        "hint": "Nachrichten, die das System als verdächtig eingestuft hat und die auf Ihre Entscheidung warten."
+      },
+      "thresholds": {
+        "title": "Grenzen und Stufen",
+        "body": "Beide Zeilen werden aus der Einstellungstabelle gelesen und dorthin zurückgeschrieben. Speichern bleibt gesperrt, bis der Text als JSON durchgeht.",
+        "keys": {
+          "p2p_limits": {
+            "label": "Grenzen im Privathandel",
+            "hint": "Offene Angebote je Person, Angebote je Stunde und die Toman-Obergrenze eines einzelnen Geschäfts nach Risikostufe."
+          },
+          "customer_tiers": {
+            "label": "Kundenstufen",
+            "hint": "Die Volumenschwelle jeder Stufe und der Provisionsrabatt, der dazugehört."
+          }
+        },
+        "editorLabel": "Wert von {key}",
+        "missing": "Dieser Schlüssel steht nicht in der Einstellungstabelle.",
+        "invalid": "Das ist kein gültiges JSON.",
+        "readOnly": "Diese Werte zu ändern gehört zur Rolle Plattform-Administration; hier sind sie nur lesbar.",
+        "save": "Speichern",
+        "saving": "Einen Moment…",
+        "saved": "Gespeichert.",
+        "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut.",
+        "hint": "Der Betrag, den jede Kundenstufe senden darf, und die Grenzen des Marktes unter Privatpersonen. Eine hier geänderte Zahl gilt sofort für jeden neuen Auftrag."
+      },
+      "retention": {
+        "title": "Aufbewahrung",
+        "body": "Was aufbewahrt wird, und wie lange.",
+        "audit": "Das Prüfprotokoll (audit_log) ist dauerhaft. Seine Zeilen lassen sich weder ändern noch löschen; ein Datenbank-Trigger verweigert beides.",
+        "ledger": "Das Buchungsjournal (ledger_entries) ist ebenfalls dauerhaft, unter derselben Nur-Anfügen-Regel. Jede bewegte Zahl bleibt.",
+        "kyc": "Ausweisunterlagen liegen im privaten Bucket kyc-documents. Sie sind nie öffentlich und öffnen sich nur über einen 60 Sekunden gültigen signierten Link.",
+        "gap": "Es gibt keinen automatischen Löschlauf. Nichts verfällt von selbst, und eine Aufbewahrungsfrist ist damit eine Entscheidung, die noch aufgeschrieben werden muss.",
+        "hint": "Was aufbewahrt wird, wie lange, und wann es gelöscht wird."
+      }
+    },
+    "rates": {
+      "metaTitle": "Kurse und Aufschlag",
+      "title": "Kurse und Aufschlag",
+      "subtitle": "Woher die Kurse kommen, welche Quellen erfasst sind, und die Unter- und Obergrenze, an der diese Konsole die Aufschläge der Wechselstuben misst.",
+      "snapshot": {
+        "title": "Aktuelle Kursaufnahme",
+        "degradedTitle": "Diese Aufnahme ist nicht frisch",
+        "degradedBody": "Die Hauptquelle hat nicht geantwortet, oder ihre jüngste Beobachtung ist älter als das zugelassene Fenster. Prüfen Sie Quelle und Beobachtungszeit unten, bevor Sie danach jemandem einen Preis nennen oder einen Streitfall entscheiden.",
+        "staleBadge": "Veraltete Kurse",
+        "okTitle": "Die Aufnahme ist frisch",
+        "okBody": "Die Hauptquelle hat geantwortet, und ihre jüngste Beobachtung liegt im zugelassenen Fenster.",
+        "source": "Quelle",
+        "observed": "An der Quelle beobachtet",
+        "fetched": "Von uns abgerufen",
+        "sourceName": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "demo": "Ersatzquelle"
+        },
+        "col": {
+          "pair": "Paar",
+          "mid": "Mitte (Toman)",
+          "change": "Veränderung 24 Std.",
+          "source": "Quelle",
+          "observed": "Beobachtet"
+        },
+        "empty": "Diese Aufnahme trägt keine Kurse.",
+        "hint": "Die Kurse, die den Kunden gerade angezeigt werden, und wann jeder zuletzt aktualisiert wurde."
+      },
+      "sources": {
+        "title": "Kursanbieter",
+        "hint": "Woher die Kurse gelesen werden und ob jede Quelle gesund ist.",
+        "readOnly": "Eine Quelle lässt sich von dieser Seite aus weder ein- noch ausschalten: Die Datenbank-Policy auf der Quellentabelle gewährt nur Lesen und hat für Schreiben überhaupt keine Policy. Die Schalter zeigen den aktuellen Stand und sind deaktiviert; das heute zu ändern ist eine Datenbank-Migration. „Letzter Erfolg“ und „Letzter Fehler“ sind gespeicherte Spalten, die noch kein Prozess beschreibt, also bleiben sie leer, selbst wenn ein Anbieter antwortet — ob die Kette arbeitet, sagt Ihnen das Frischebanner oben auf dieser Seite.",
+        "col": {
+          "name": "Name",
+          "kind": "Art",
+          "state": "Zustand",
+          "lastOk": "Letzter Erfolg",
+          "lastError": "Letzter Fehler"
+        },
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "empty": "Es wurde noch keine Quelle erfasst.",
+        "kind": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "manual": "Manuell",
+          "demo": "Ersatz"
+        }
+      },
+      "bounds": {
+        "title": "Unter- und Obergrenze des Aufschlags",
+        "hint": "Der engste und der weiteste Abstand, den ein Büro festlegen darf.",
+        "floor": "Untergrenze",
+        "ceiling": "Obergrenze",
+        "means": "{bps} Hundertstelprozent bedeuten {pct} %",
+        "missing": "Es ist noch nichts hinterlegt. Die Zahlen unten sind ein Vorschlag für den Anfang; bis sie gespeichert sind, markiert diese Seite nichts als außerhalb der Spanne.",
+        "unreadable": "Unter diesem Schlüssel ist ein Wert hinterlegt, der sich nicht als Unter- und Obergrenze lesen lässt, also wird keine Zeile daran gemessen. Die Felder unten zeigen den Anfangsvorschlag statt des Gespeicherten, und Speichern ersetzt den hinterlegten Wert.",
+        "save": "Speichern",
+        "saving": "Wird gespeichert…",
+        "saved": "Gespeichert.",
+        "saveFailed": "Nicht gespeichert.",
+        "invalid": "Die Untergrenze muss null oder größer sein, die Obergrenze größer als die Untergrenze, und die Obergrenze darf {max} Hundertstelprozent nicht überschreiten — die Aufschlags-Editoren der Wechselstuben lehnen Höheres ab. Beide sind ganze Zahlen.",
+        "updated": "Zuletzt geändert: {at}"
+      },
+      "spread": {
+        "title": "Aufschläge im Vergleich der Wechselstuben",
+        "hint": "Die Abstände der Büros nebeneinander, um ein teures oder auffälliges zu finden.",
+        "notEnforced": "Solange keine Unter- und Obergrenze gespeichert ist, wird keine Zeile als außerhalb der Spanne markiert.",
+        "col": {
+          "corridor": "Strecke",
+          "offices": "Wechselstuben",
+          "min": "Niedrigster",
+          "median": "Mittlerer",
+          "max": "Höchster"
+        },
+        "empty": "Noch hat keine Wechselstube eine Strecke eingerichtet.",
+        "belowFloor": "Unter der Untergrenze",
+        "aboveCeiling": "Über der Obergrenze"
+      },
+      "openOffices": "Büroliste öffnen"
+    },
+    "finance": {
+      "metaTitle": "Buchungsjournal",
+      "title": "Journal und Abgleich",
+      "subtitle": "Die Rohbilanz, die Provisionserlöse und die jüngsten Buchungen. Das Journal kennt nur Anfügen; nichts auf dieser Seite bearbeitet es.",
+      "toman": "Toman",
+      "partialTitle": "Die Rohbilanz deckt nur einen Teil des Journals ab",
+      "partialBody": "Diese Seite hat die {count} jüngsten Buchungen gelesen; ältere sind nicht in der Summe. Ist die Summe nicht null, wurde vielleicht eine Transaktion an dieser Grenze zerschnitten — und nicht das Journal ist im Ungleichgewicht.",
+      "failedTitle": "Das Journal ließ sich nicht lesen",
+      "failedBody": "Das Lesen des Journals ist fehlgeschlagen. Was unten steht, ist unvollständig und womöglich gar nichts; bis das Lesen gelingt, sagt diese Seite nichts darüber, ob das Journal ausgeglichen ist.",
+      "balance": {
+        "zeroTitle": "Das Journal ist ausgeglichen",
+        "zeroBody": "In jeder Währung entsprechen Soll und Haben einander. Das ist der einzige zulässige Zustand einer doppelten Buchführung.",
+        "brokenTitle": "Das Journal ist nicht ausgeglichen",
+        "brokenBody": "Die Differenz unten ist echt und muss verfolgt werden. Sie ist weder gerundet noch versteckt; bis sie null erreicht, ist der Abgleich nicht abgeschlossen.",
+        "unknownTitle": "Diese Summe ist kein Urteil",
+        "unknownBody": "Die Summe unten deckt nur die Buchungen ab, die diese Seite lesen konnte. Eine Zahl ungleich null heißt für sich genommen nicht, dass das Journal im Ungleichgewicht ist; lesen Sie sie zusammen mit dem Hinweis oben.",
+        "emptyTitle": "Noch nichts auszugleichen",
+        "zeroBadge": "Ausgeglichen",
+        "brokenBadge": "Nicht ausgeglichen",
+        "empty": "Es wurde noch kein Journalkonto eröffnet.",
+        "hint": "Die Gesundheitsprüfung des Hauptbuchs: in einer sauber geführten Buchhaltung ergibt jede Währung exakt null."
+      },
+      "escrow": {
+        "title": "In Verwahrung eingezahlt",
+        "hint": "Geld, das ein Kunde eingezahlt hat und das die Plattform bis zur Übergabe der Währung hält.",
+        "empty": "Es wurde noch nichts in Verwahrung eingezahlt."
+      },
+      "trial": {
+        "title": "Rohbilanz",
+        "hint": "Soll und Haben über alle Konten summiert. Eine Zahl ungleich null heißt, dass etwas falsch gebucht wurde.",
+        "col": {
+          "account": "Konto",
+          "owner": "Inhaber",
+          "entries": "Buchungen",
+          "net": "Position"
+        },
+        "subtotal": "Gruppensumme",
+        "remainder": "{count} weitere Konten",
+        "noOwner": "—"
+      },
+      "owner": {
+        "platform": "Plattform",
+        "office": "Wechselstuben",
+        "customer": "Kundschaft",
+        "suspense": "Verwahrkonto"
+      },
+      "code": {
+        "irt_holding": "Toman-Verwahrung",
+        "irt_payable": "Toman-Verbindlichkeiten",
+        "irt_fees": "Toman-Provisionen",
+        "irt_settlement": "Abwicklung der Wechselstuben"
+      },
+      "fees": {
+        "platformTitle": "Provisionserlöse der Plattform",
+        "platformHint": "Die Gebühreneinnahmen der Plattform, Monat für Monat.",
+        "total": "Summe über zwölf Monate",
+        "empty": "In diesem Zeitraum wurde keine Provision gebucht.",
+        "officeTitle": "Provisionserlöse der Wechselstuben",
+        "officeHint": "Der Gebührenanteil jedes Büros. Tippen Sie ein Büro an, um seine Akte zu öffnen.",
+        "officeEmpty": "Es wurde keine Provision einer Wechselstube gebucht.",
+        "col": {
+          "office": "Wechselstube",
+          "fees": "Provisionen"
+        },
+        "unknownOffice": "Entfernte Wechselstube"
+      },
+      "txn": {
+        "title": "Jüngste Buchungen",
+        "hint": "Die jüngsten Buchungen im Hauptbuch, die neuesten zuerst.",
+        "empty": "Es wurde noch keine Buchung erfasst.",
+        "reversal": "Storno",
+        "reversalLine": "Storno",
+        "noOrder": "Kein Auftrag",
+        "debit": "Soll",
+        "credit": "Haben",
+        "noMemo": "—",
+        "unknownOwner": "Unbekannter Inhaber",
+        "shown": "Es werden die {count} jüngsten Transaktionen gezeigt."
+      },
+      "openOffices": "Büroliste öffnen",
+      "ownerHint": {
+        "platform": "Die eigenen Konten der Plattform; die bei uns eingegangenen Gebühren stehen hier.",
+        "intermediate": "Geld unterwegs, das noch bei niemandem angekommen ist — etwa Toman, die bis zur Übergabe der Währung gehalten werden.",
+        "office": "Das Konto jedes Büros bei der Plattform: was ihm für Abrechnung und Gebühren zusteht oder was es schuldet.",
+        "customer": "Das Konto jeder Kundin bei der Plattform; in einer sauberen Buchhaltung steht es meist im Soll, bis der Auftrag fertig ist."
+      }
+    },
+    "content": {
+      "metaTitle": "Inhalte",
+      "title": "Inhalte und Nachrichten",
+      "subtitle": "Seiten, FAQ, Banner und Ankündigungen sowie die Formulierungen für SMS und E-Mail — jeweils auf Persisch und Englisch.",
+      "loadFailedTitle": "Die Inhalte ließen sich nicht lesen",
+      "loadFailedBody": "Der Lesevorgang aus der Datenbank wurde nicht fertig, wir können also nicht sagen, was hinterlegt ist. Laden Sie die Seite neu; hält es an, sagen Sie dem Entwicklungsteam Bescheid.",
+      "tab": {
+        "cms": "Website-Inhalte",
+        "templates": "Nachrichtentexte",
+        "cmsHint": "Die Seiten und Texte der Website. Solange ein Text nicht veröffentlicht ist, sieht man ihn nur hier.",
+        "templatesHint": "Die SMS- und E-Mail-Formulierungen, die das System selbst verschickt. Jede Vorlage muss in jeder Sprache geschrieben sein."
+      },
+      "locale": {
+        "fa": "Persisch",
+        "en": "Englisch"
+      },
+      "edit": "Bearbeiten",
+      "close": "Schließen",
+      "save": "Speichern",
+      "saved": "Gespeichert.",
+      "create": "Anlegen",
+      "cancel": "Abbrechen",
+      "working": "Einen Moment…",
+      "errors": {
+        "keyRequired": "Schreiben Sie den Schlüssel mit lateinischen Buchstaben, Ziffern, Punkten, Binde- oder Unterstrichen.",
+        "titleRequired": "Schreiben Sie einen Titel.",
+        "bodyRequired": "Schreiben Sie den Text.",
+        "duplicate": "Diesen Schlüssel gibt es in dieser Sprache bereits.",
+        "forbidden": "Nicht gespeichert: Inhalte zu schreiben steht nur Plattform-Administratoren offen.",
+        "saveFailed": "Nicht gespeichert. Versuchen Sie es erneut."
+      },
+      "cms": {
+        "noDelete": "Zeilen werden nie gelöscht; die Datenbank verweigert es. Ein Inhalt wird durch Zurückziehen außer Dienst gestellt — noch zeigt keine Seite CMS-Inhalte an, Veröffentlichen markiert eine Zeile also als bereit, statt sie auf die Website zu stellen.",
+        "gapWarning": "{count, plural, one {Ein Schlüssel ist nur in einer Sprache geschrieben.} other {# Schlüssel sind nur in einer Sprache geschrieben.}}",
+        "allTranslated": "Jeder Schlüssel ist in beiden Sprachen geschrieben.",
+        "newKey": "Neuer Schlüssel",
+        "keyLabel": "Schlüssel",
+        "keyHint": "Der Name, unter dem dieser Inhalt abgelegt ist — faq.fees, legal.terms.",
+        "keyPlaceholder": "faq.fees",
+        "typeLabel": "Art",
+        "localeLabel": "Sprache",
+        "titleLabel": "Titel",
+        "bodyLabel": "Text",
+        "bodyHint": "Reiner Text. Was Sie schreiben, wird so gespeichert.",
+        "draftNote": "Neue Inhalte werden unveröffentlicht gespeichert. Veröffentlichen ist ein eigener Schritt und markiert die Zeile heute nur als bereit.",
+        "missing": "Kein {locale}",
+        "addTranslation": "{locale} hinzufügen",
+        "published": "Veröffentlicht",
+        "draft": "Unveröffentlicht",
+        "publishedOn": "Veröffentlicht am {date}",
+        "updatedOn": "Bearbeitet am {date}",
+        "publish": "Veröffentlichen",
+        "unpublish": "Zurückziehen",
+        "empty": "Noch keine Inhalte.",
+        "type": {
+          "page": "Seite",
+          "faq": "FAQ",
+          "banner": "Banner",
+          "announcement": "Ankündigung"
+        }
+      },
+      "templates": {
+        "intro": "Hier stehen die Formulierungen je Nachrichtenschlüssel und Kanal. Noch liest kein Versanddienst diese Tabelle, eine Änderung ändert also den hinterlegten Text, nicht eine Nachricht, die jemand erhält. Neue Schlüssel entstehen nicht auf diesem Bildschirm.",
+        "gapWarning": "{count, plural, one {Eine Nachricht ist nur in einer Sprache geschrieben.} other {# Nachrichten sind nur in einer Sprache geschrieben.}}",
+        "allTranslated": "Jede Nachricht ist in beiden Sprachen geschrieben.",
+        "subjectLabel": "Betreff",
+        "subjectHint": "Für E-Mail. SMS und In-App-Nachrichten haben keinen Betreff.",
+        "noSubject": "Kein Betreff",
+        "bodyLabel": "Text",
+        "bodyHint": "Schreiben Sie Variablen mit den neben dem Text angegebenen Namen.",
+        "variablesTitle": "Angegebene Variablen",
+        "noVariables": "Keine Variablen angegeben.",
+        "previewTitle": "Vorschau",
+        "previewHint": "Jede Variable erscheint unter ihrem eigenen Namen. Von hier wird nichts versendet.",
+        "undeclared": "Diese Namen stehen im Text, sind aber nicht angegeben: {names}",
+        "missing": "Kein {locale}",
+        "addTranslation": "{locale} hinzufügen",
+        "empty": "Noch keine Formulierungen.",
+        "channel": {
+          "inapp": "In der App",
+          "push": "Push",
+          "sms": "SMS",
+          "email": "E-Mail"
+        }
+      }
+    },
+    "users": {
+      "metaTitle": "Kundschaft",
+      "title": "Kundschaft",
+      "subtitle": "Alle Kundinnen und Kunden der Plattform. Suche nach Name oder Telefonnummer.",
+      "searchLabel": "Nach Name oder Telefonnummer suchen",
+      "searchPlaceholder": "Name oder Telefon",
+      "search": "Suchen",
+      "kycFilter": "Prüfung",
+      "kycAll": "Alle Zustände",
+      "accessFilter": "Kontozugang",
+      "accessAll": "Alle",
+      "accessFrozen": "Eingefroren",
+      "accessOpen": "Offen",
+      "kyc": {
+        "unverified": "Nicht geprüft",
+        "pending": "In Prüfung",
+        "approved": "Freigegeben",
+        "rejected": "Abgelehnt",
+        "more_info_needed": "Weitere Unterlagen nötig"
+      },
+      "col": {
+        "name": "Name",
+        "phone": "Telefon",
+        "kyc": "Prüfung",
+        "risk": "Risiko",
+        "access": "Zugang",
+        "orders": "Aufträge",
+        "volume": "Volumen",
+        "joined": "Dabei seit"
+      },
+      "unnamed": "Ohne Namen",
+      "notSet": "Nicht gesetzt",
+      "risk": "Stufe {tier}",
+      "frozenBadge": "Eingefroren",
+      "openBadge": "Offen",
+      "toman": "Toman",
+      "empty": "Noch keine Kundschaft.",
+      "emptyFiltered": "Niemand passt zu diesen Filtern.",
+      "shown": "{count} Personen; die Liste ist auf die 200 jüngsten begrenzt.",
+      "volumeHint": "Das Volumen ist nur der Toman-Teil abgeschlossener Aufträge.",
+      "totalsTruncated": "Nicht jeder Auftrag hinter dieser Liste wurde gelesen; die Spalten Aufträge und Volumen sind zu niedrig. Grenzen Sie die Suche ein, um sie vollständig zu sehen.",
+      "detailMetaTitle": "Kundenakte",
+      "identityTitle": "Identität",
+      "identity": {
+        "nameFa": "Name (auf Persisch)",
+        "nameLatin": "Name (in lateinischer Schrift)",
+        "phone": "Telefon",
+        "email": "E-Mail",
+        "nationalCode": "Nationale Kennnummer",
+        "dob": "Geburtsdatum",
+        "nationality": "Staatsangehörigkeit",
+        "kyc": "Prüfung",
+        "risk": "Risikostufe",
+        "referralCode": "Empfehlungscode",
+        "joined": "Dabei seit"
+      },
+      "phoneVerified": "Geprüft",
+      "phoneUnverified": "Nicht geprüft",
+      "tierTitle": "Kundenstufe",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Silber",
+        "gold": "Gold",
+        "platinum": "Platin"
+      },
+      "tierFee": "Auf dieser Stufe kommen {pct} Prozentpunkte von der gestaffelten Provision herunter.",
+      "tierVolume": "Abgeschlossenes Volumen",
+      "tierToNext": "{amount} Toman bis zur Stufe {tier}",
+      "tierTop": "Höchste Stufe; eine weitere gibt es nicht.",
+      "tierUnavailable": "Die Stufe dieser Person ließ sich nicht lesen; Volumen und Rabatt bleiben verborgen, bis eine Antwort kommt.",
+      "ordersTitle": "Aufträge",
+      "orderCol": {
+        "ref": "Auftragsnummer",
+        "corridor": "Strecke",
+        "amount": "Betrag",
+        "state": "Zustand",
+        "created": "Datum"
+      },
+      "noOrders": "Noch keine Aufträge.",
+      "ordersCapped": "Diese Liste ist auf die {count} jüngsten Aufträge begrenzt; das Volumen oben deckt jeden abgeschlossenen ab.",
+      "destinationsTitle": "Zielkonten",
+      "noDestinations": "Kein Zielkonto gespeichert.",
+      "kind": {
+        "sheba": "Sheba",
+        "card": "Karte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash_pickup": "Barauszahlung"
+      },
+      "verification": {
+        "unverified": "Nicht kontrolliert",
+        "pending": "Ausstehend",
+        "verified": "Geprüft",
+        "rejected": "Abgelehnt"
+      },
+      "thirdParty": "Dritte Person",
+      "archived": "Archiviert",
+      "loginsTitle": "Anmeldeverlauf",
+      "loginKind": {
+        "sign_in": "Anmeldung",
+        "sign_out": "Abmeldung",
+        "revoked": "Sitzung widerrufen"
+      },
+      "noLogins": "Es sind keine Anmeldeereignisse erfasst.",
+      "loginsCapped": "Diese Liste ist auf die {count} jüngsten Ereignisse begrenzt.",
+      "unknownDevice": "Unbekannt",
+      "referralsTitle": "Empfehlungen",
+      "invitedBy": "Eingeladen von {name} mit dem Code {code}",
+      "invitedByNobody": "Ist ohne fremden Empfehlungscode dazugekommen.",
+      "noReferrals": "Hat niemanden geworben.",
+      "rewarded": "Prämie erhalten",
+      "rewardPending": "Wartet auf den ersten abgeschlossenen Auftrag",
+      "freezeTitle": "Konto einfrieren",
+      "freezeBody": "Einfrieren schließt die Profilbearbeitung für diese Person und verlangt eine schriftliche Begründung.",
+      "freezeReason": "Grund",
+      "freezeReasonPlaceholder": "Warum wird dieses Konto eingefroren?",
+      "freeze": "Einfrieren",
+      "unfreeze": "Freigeben",
+      "frozenSince": "Dieses Konto ist seit {date} gesperrt.",
+      "frozenReasonLabel": "Erfasster Grund",
+      "notFrozen": "Dieses Konto ist offen.",
+      "identityHint": "Name, Nummer und Stand der Identitätsprüfung dieses Kunden.",
+      "tierHint": "Die Stufe dieses Kunden und die Grenzen, die diese Stufe ihm setzt.",
+      "ordersHint": "Jeder Auftrag dieses Kunden. Tippen Sie eine Zeile an, um sie zu öffnen.",
+      "destinationsHint": "Die Bankkonten, die dieser Kunde zum Geldempfang hinterlegt hat.",
+      "loginsHint": "Die jüngsten Anmeldungen bei diesem Konto, mit Zeit und Gerät.",
+      "referralsHint": "Wer sich mit dem Code dieses Kunden angemeldet hat.",
+      "freezeHint": "Das Konto schließen. Bis es wieder geöffnet wird, kann dieser Kunde keinen neuen Auftrag aufgeben.",
+      "freezeReasonRule": "Mindestens 8 Zeichen. Dieser Text bleibt im Prüfprotokoll.",
+      "unfreezeReasonPlaceholder": "Warum wird dieses Konto wieder geöffnet?",
+      "freezeWorking": "Wird ausgeführt …",
+      "freezeReasonTooShort": "Der Grund muss mindestens 8 Zeichen lang sein.",
+      "freezeForbidden": "Nur eine Plattform-Administration oder die Compliance kann ein Konto sperren.",
+      "freezeStaff": "Konten von Plattformmitarbeitenden werden hier nicht gesperrt; entziehen Sie stattdessen den Zugang.",
+      "freezeStale": "Dieses Konto hat sich geändert, während Sie es ansahen. Laden Sie die Seite neu.",
+      "freezeFailed": "Das hat nicht geklappt. Versuchen Sie es erneut."
+    },
+    "attention": {
+      "title": "Wartet auf Sie",
+      "allClear": "Keine Warteschlange wartet auf Sie.",
+      "item": {
+        "atRisk": "Aufträge kurz vor der Frist",
+        "disputes": "Aufträge im Streitfall",
+        "kyc": "Identitätsunterlagen zur Prüfung",
+        "tickets": "offene Tickets",
+        "coins": "Münzanfragen zu bestätigen",
+        "offices": "noch nicht aktive Wechselstuben"
+      },
+      "hint": "Die Warteschlangen, auf die gerade jemand wartet, die dringendsten zuerst. Sind alle leer, sagt das eine Zeile."
+    },
+    "openSection": "Diesen Abschnitt öffnen",
+    "sectionHint": {
+      "byState": "Die Aufträge der Plattform, nach Status gruppiert. Tippen Sie auf einen Balken, um diese Aufträge zu sehen.",
+      "feed": "Die jüngsten Handlungen der Mitarbeitenden, gelesen aus dem Prüfprotokoll. Tippen Sie auf eine Zeile, um den betreffenden Datensatz zu öffnen."
+    },
+    "builtBy": "Entwickelt von der Programmiergruppe Â",
+    "staffFallback": "Plattform-Mitarbeitende"
+  },
+  "design": {
+    "metaTitle": "Design-System",
+    "badge": "Grundlage",
+    "title": "Das Design-System von Asaex",
+    "intro": "Jedes Token, jede Komponente und jede Bewegung verweist auf diese Seite — in beiden Sprachen und beiden Themen. So bleiben die drei Produktoberflächen (Kunden-App, Bereich der Wechselstube, Verwaltungsbereich) stimmig.",
+    "tocLabel": "Abschnitte",
+    "sections": {
+      "brand": "Marke und Logo",
+      "colors": "Farben",
+      "type": "Typografie",
+      "layout": "Abstände, Radien, Erhebung",
+      "components": "Komponenten",
+      "validation": "Finanzielle Prüfung",
+      "coins": "3D-Währungssymbole",
+      "charts": "Diagramme",
+      "motion": "Bewegung",
+      "scenes": "Animierte Illustration",
+      "tiles": "Icon-Kacheln"
+    },
+    "brand": {
+      "description": "Die Asaex-Marke baut den Buchstaben A aus zwei sich kreuzenden Währungsströmen — sie liest sich zugleich als A, als das Pfeilpaar des Wechsels (⇄) und als fließendes Wasser.",
+      "markSizes": "Lesbar vom 16-Pixel-Favicon bis zum Gebäudeschild",
+      "lockup": "Wortmarke mit Zeichen — im Persischen steht das Zeichen rechts",
+      "mono": "Einfarbige Fassung für Stempel, Belege und Markenflächen",
+      "rules": {
+        "clearspace": "Schutzraum: die Punzenhöhe des Zeichens, auf allen vier Seiten",
+        "minsize": "Mindestgröße: 16 px digital / 8 mm im Druck",
+        "never": "Niemals: verzerren, drehen, Schlagschatten hinzufügen oder außerhalb der Palette einfärben",
+        "rtl": "Wird bei Rechts-nach-links-Schrift nicht gespiegelt; die Reihenfolge der Wortmarke bestimmt, wo das Zeichen steht"
+      }
+    },
+    "colors": {
+      "description": "Ein einziger tiefgrüner Akzent — Vertrauen und persisches Bilderbe, bewusst abseits vom Blau jeder Fintech.",
+      "note": "Die Farbe für Auf und Ab ist nie das einzige Signal; ein Pfeil und ein ausdrückliches + oder − begleiten sie immer (eine Anforderung der Barrierefreiheit bei Farbsehschwäche).",
+      "use": {
+        "brand600": "Hauptakzent, Handlungsknöpfe, aktive Zustände",
+        "brand700": "Überfahren / Drücken",
+        "brand50": "Getönte Flächen, ausgewählte Zeilen",
+        "ink900": "Haupttext",
+        "ink600": "Nebentext",
+        "ink300": "Ränder, Trenner",
+        "surface": "Karten",
+        "canvas": "Seitenhintergrund",
+        "up": "Kurs steigt",
+        "down": "Kurs fällt",
+        "warn": "Ausstehend / Achtung",
+        "info": "Hinweis"
+      }
+    },
+    "type": {
+      "description": "Persisch in Vazirmatn (Zeilenabstand 1,75), Englisch in Inter (1,6). Angezeigte Ziffern sind im Persischen persisch; Eingabefelder und Kennungen bleiben lateinisch, und jede Ziffer ist tabellarisch.",
+      "sample": "Währung, ganz einfach — آسا",
+      "numeralsFa": "Persische Anzeigeziffern + tabellarische Ziffern",
+      "numeralsEn": "Lateinische Ziffern im englischen Kontext"
+    },
+    "layout": {
+      "description": "Abstände nur aus der Skala 4/8/12/16/24/32/48/64; Radien 8/12/16/24; genau drei weiche Erhebungsstufen.",
+      "spacing": "Abstandsskala (px)",
+      "radius": "Eckradien (px)",
+      "elevation": "Drei Erhebungsstufen"
+    },
+    "components": {
+      "description": "Die Bausteine der Oberfläche: Knöpfe, Zustandsabzeichen, Eingabefelder und Ladegerüste — mit Berührflächen von mindestens 44 px.",
+      "primary": "Primär",
+      "secondary": "Sekundär",
+      "soft": "Weich",
+      "ghost": "Transparent",
+      "destructive": "Zerstörend",
+      "disabled": "Deaktiviert",
+      "badgeBrand": "Marke",
+      "badgeUp": "▲ +0,42 %",
+      "badgeDown": "▼ −0,85 %",
+      "badgeWarn": "Ausstehend",
+      "badgeInfo": "Hinweis",
+      "badgeNeutral": "Neutral",
+      "inputPlaceholder": "Ein gewöhnliches Eingabefeld…",
+      "inputInvalid": "Ungültige Eingabe"
+    },
+    "validation": {
+      "description": "Die Prüfung ist echt, nicht kosmetisch: Sheba über mod-97, Karten über Luhn mit Bankermittlung aus der BIN, und die nationale Kennnummer über ihre Prüfziffer.",
+      "sheba": {
+        "label": "Sheba (IBAN)",
+        "hint": "IR + 24 Ziffern; Leerzeichen erlaubt",
+        "ok": "Gültiges Sheba",
+        "err": {
+          "format": "Das ist kein Sheba-Format — es beginnt mit IR und danach nur Ziffern.",
+          "length": "Ein Sheba braucht nach IR genau 24 Ziffern.",
+          "checksum": "Die Prüfziffern des Sheba stimmen nicht — prüfen Sie die Nummer noch einmal."
+        }
+      },
+      "card": {
+        "label": "Kartennummer",
+        "hint": "16 Ziffern; die Bank wird aus den ersten sechs erkannt",
+        "ok": "Gültige Kartennummer",
+        "okBank": "Gültige Karte — {bank}",
+        "err": {
+          "format": "Eine Kartennummer hat genau 16 Ziffern.",
+          "checksum": "Die Prüfsumme der Karte geht nicht auf — eine Ziffer stimmt nicht."
+        }
+      },
+      "nid": {
+        "label": "Nationale Kennnummer",
+        "hint": "10 Ziffern mit Prüfziffer",
+        "ok": "Gültige Kennnummer",
+        "err": "Ungültige Kennnummer — prüfen Sie die Ziffern noch einmal."
+      },
+      "banks": {
+        "melli": "Bank Melli",
+        "sepah": "Bank Sepah",
+        "mellat": "Bank Mellat",
+        "tejarat": "Tejarat Bank",
+        "saderat": "Bank Saderat",
+        "keshavarzi": "Keshavarzi Bank",
+        "maskan": "Bank Maskan",
+        "refah": "Refah Bank",
+        "parsian": "Parsian Bank",
+        "pasargad": "Bank Pasargad",
+        "saman": "Saman Bank",
+        "eghtesadNovin": "EN Bank",
+        "ansar": "Ansar Bank",
+        "postbank": "Post Bank",
+        "ayandeh": "Ayandeh Bank",
+        "shahr": "Shahr Bank",
+        "day": "Day Bank",
+        "sina": "Sina Bank",
+        "sarmayeh": "Sarmayeh Bank",
+        "tosee": "Tose'e Ta'avon Bank"
+      }
+    },
+    "coins": {
+      "description": "Zwanzig Währungen, eine Lichtsetzung: Kamera bei 45°, Hauptlicht oben links, weicher Kontaktschatten und das Währungszeichen erhaben auf der Fläche.",
+      "rule": "Die Grenzregel: 3D-Symbole sind für Währungen und Produktbegriffe; die funktionale Mikro-Oberfläche (Pfeile, Schließen, Suchen) bleibt ein sauberer 2-px-Strichsatz — 3D bei 16 px ist Lärm, nicht Feinschliff."
+    },
+    "charts": {
+      "description": "Eine Reihe, 2 px Linie, zurückgenommenes Raster, Fadenkreuz mit Tooltip. Werttexte tragen immer die Tinten-Token, nie die Farbe der Reihe; die Zeitachse bleibt in beiden Sprachen von links nach rechts.",
+      "history": "90-Tage-Verlauf mit Fadenkreuz",
+      "sparkUp": "Sparkline, steigender Trend",
+      "sparkDown": "Sparkline, fallender Trend",
+      "note": "Die Richtung trägt immer Pfeil und Vorzeichen, damit Farbe nie das einzige Signal ist."
+    },
+    "motion": {
+      "description": "Bewegung ist hier eine Produkteigenschaft, keine Dekoration: 150–350 ms für Rückmeldung, 600–1200 ms für erzählende Momente; nur Transformation und Deckkraft.",
+      "rules": "Unter der Systemeinstellung „Bewegung reduzieren“ wird alles statisch, und keine Animation blockiert je eine Eingabe oder verzögert eine Geldhandlung.",
+      "logoDraw": "Logo-Zeichnung beim Start (700 ms)",
+      "replay": "Erneut abspielen",
+      "swap": "Federnder Tausch im Umrechner",
+      "digitRoll": "Ziffernrollen beim Kurswechsel",
+      "tick": "Einen Kurswechsel simulieren",
+      "countdown": "Countdown-Ring der Kursbindung",
+      "countdownNote": "Unter 60 s wird er bernsteinfarben und pulsiert",
+      "skeleton": "Ladegerüst (1,6 s Schimmern)",
+      "skeletonNote": "Auf das endgültige Layout abgestimmt, damit kein Versatz entsteht"
+    },
+    "scenes": {
+      "description": "Jede Szene steht auf demselben Gerüst: die markenfarbene Scheibe, der Kontaktschatten und dieselbe Strichstärke und Münzsilhouette wie Logo und Währungssymbole. SVG mit Framer Motion, je wenige kB, unter der Systemeinstellung zur Bewegungsreduktion vollständig statisch.",
+      "replay": "Alle erneut abspielen",
+      "count": "{count} Szenen",
+      "groups": {
+        "onboarding": {
+          "title": "Anmeldung und Identitätsprüfung",
+          "body": "Vom Einmalcode bis zum Bescheid: bestätigt, Unterlagen fehlen, oder abgelehnt."
+        },
+        "order": {
+          "title": "Der Ablauf einer Überweisung",
+          "body": "Jeder Zustand, den eine Überweisung durchläuft — vom Angebot bis zur Auszahlung, und die Wege, die nicht gut enden."
+        },
+        "banking": {
+          "title": "Konten und Bankwege",
+          "body": "Eine geprüfte Kontonummer, eine gespeicherte Karte, und das Limit, das die Identität anhebt."
+        },
+        "market": {
+          "title": "Der Markt",
+          "body": "Die Kurstafel, der Kurs-Alarm, Gold, und der Markt zwischen Privatpersonen."
+        },
+        "rewards": {
+          "title": "Stufe und Prämien",
+          "body": "Die zwei Stellen, an denen dieses Produkt an den Kunden zahlt statt umgekehrt."
+        },
+        "support": {
+          "title": "Gespräch und Hilfe",
+          "body": "Zu jeder Überweisung gehört ein Gesprächsfaden; das sind seine Formen."
+        },
+        "staff": {
+          "title": "Wechselstuben- und Plattform-Panel",
+          "body": "Die andere Seite des Schalters: Posteingang, Tageskurse, Liquidität, Abrechnung und Prüfspur."
+        },
+        "states": {
+          "title": "Leere Zustände und Fehler",
+          "body": "Eine leere Liste, eine Tür, die nicht deine ist, eine falsche Adresse, und kein Netz — vier Meldungen, vier Zeichnungen."
+        }
+      }
+    },
+    "tiles": {
+      "description": "Dieselbe Lichtführung wie bei der Münze, auf einem abgerundeten Quadrat: Licht von oben, eine Haarlinie an der Oberkante, Glanz über der oberen Hälfte und ein Schatten in der Farbe der Kachel selbst.",
+      "hueTitle": "Sieben Farben, sieben Bedeutungen",
+      "sizeTitle": "Drei Größen",
+      "sizeBody": "md neben einer Listenzeile, lg auf einer Karte oder einem Seitentitel, xl allein auf einer leeren Seite.",
+      "usageTitle": "Drei Einsatzformen",
+      "rule": "Farbregel: Die Farbe trägt Bedeutung, nicht Geschmack — sieben decken das ganze Produkt ab, eine achte steht für eine Bedeutung, die noch keinen Namen hat. Das Icon kommt fertig gerendert an (icon={<Wallet />}): Eine lucide-Komponente als Prop überquert die Server-Client-Grenze nicht und reißt die Seite mit einem 500er mit.",
+      "hue": {
+        "brand": "Geld",
+        "indigo": "Befugnis",
+        "sky": "Personen",
+        "teal": "Hilfe",
+        "amber": "Achtung",
+        "slate": "Dokumente",
+        "rose": "Beschwerde"
+      },
+      "navTitle": "Listenzeilen",
+      "navAccounts": "Meine Konten",
+      "navAccountsHint": "Gespeicherte IBANs und Karten",
+      "navAlerts": "Kurs-Alarme",
+      "navAlertsHint": "Sag Bescheid, wenn der Kurs da ist",
+      "headingTitle": "Kontosicherheit",
+      "headingBody": "Zwei-Schritt-Anmeldung und aktive Geräte."
+    }
+  },
+  "panel": {
+    "name": {
+      "admin": "Verwaltungskonsole",
+      "office": "Wechselstuben-Bereich"
+    },
+    "viewSite": "Website ansehen",
+    "signOut": "Abmelden"
+  },
+  "pwa": {
+    "title": "Asa auf den Startbildschirm legen",
+    "body": "Öffnet sich wie eine App, startet schneller und zeigt die letzten Kurse auch offline.",
+    "cta": "Zum Startbildschirm hinzufügen",
+    "dismiss": "Nein danke"
+  }
+}

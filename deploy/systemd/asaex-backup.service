@@ -1,0 +1,13 @@
+[Unit]
+Description=Asaex nightly backup
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/asaex
+ExecStart=/opt/asaex/deploy/scripts/backup.sh
+# A backup that hangs must not block the next one forever.
+TimeoutStartSec=30min
+Nice=10
+IOSchedulingClass=idle

@@ -1,0 +1,3217 @@
+{
+  "meta": {
+    "brand": "Asaex",
+    "title": "Asaex — Currency, made effortless",
+    "description": "A remittance marketplace between licensed exchange offices. Live rates, transparent fees, supervised settlement — usually within one business day."
+  },
+  "theme": {
+    "label": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "label": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "primary": "Primary navigation",
+    "rates": "Rates",
+    "transfer": "Transfer",
+    "orders": "Orders",
+    "profile": "Profile",
+    "startTransfer": "Start a transfer",
+    "accounts": "Accounts",
+    "signin": "Sign in",
+    "verify": "Verify",
+    "office": "Office",
+    "admin": "Admin",
+    "support": "Support",
+    "p2p": "P2P",
+    "how": "How it works",
+    "why": "Why Asa",
+    "about": "About us",
+    "contact": "Contact",
+    "coins": "Gold coins"
+  },
+  "footer": {
+    "brand": "Asaex",
+    "tagline": "Currency, made effortless. You submit a transfer request, a licensed exchange office executes it, and every step runs under platform supervision.",
+    "compliance": "Asa is a marketplace for remittance between licensed exchange offices. It is not a custodial wallet holding your money, not a securities market, and it holds no deposits.",
+    "legal": "Legal",
+    "designSystem": "Design system",
+    "copyright": "© 2026 Asaex — All rights reserved.",
+    "builtBy": "Built by the Â Programming Group"
+  },
+  "legal": {
+    "version": "Version {version}",
+    "updated": "Last updated: {date}",
+    "titles": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "aml": "AML Policy",
+      "fees": "Fee Schedule",
+      "sla": "SLA & Refunds",
+      "complaints": "Complaints Procedure"
+    }
+  },
+  "rates": {
+    "status": {
+      "loading": "Fetching rates…",
+      "live": "Live rate",
+      "updated": "Updated {ago}",
+      "degraded": "Updating late",
+      "demo": "Fallback price"
+    }
+  },
+  "currencies": {
+    "IRT": "Iranian Toman",
+    "USD": "US Dollar",
+    "EUR": "Euro",
+    "GBP": "British Pound",
+    "AED": "UAE Dirham",
+    "TRY": "Turkish Lira",
+    "IQD": "Iraqi Dinar",
+    "AZN": "Azerbaijani Manat",
+    "AMD": "Armenian Dram",
+    "GEL": "Georgian Lari",
+    "RUB": "Russian Ruble",
+    "AFN": "Afghan Afghani",
+    "PKR": "Pakistani Rupee",
+    "TMT": "Turkmen Manat",
+    "OMR": "Omani Rial",
+    "KWD": "Kuwaiti Dinar",
+    "QAR": "Qatari Riyal",
+    "SAR": "Saudi Riyal",
+    "CAD": "Canadian Dollar",
+    "CNY": "Chinese Yuan"
+  },
+  "converter": {
+    "title": "Quick convert",
+    "youSend": "You send",
+    "recipientGets": "Recipient gets",
+    "swap": "Swap currencies",
+    "fromCurrency": "Source currency",
+    "toCurrency": "Destination currency",
+    "pickCurrency": "Pick a currency",
+    "searchCurrency": "Search name or code…",
+    "popular": "Popular",
+    "all": "All currencies",
+    "noResults": "No currency matches that search.",
+    "unitRate": "1 {from} ≈ {rate} {toUnit}",
+    "toman": "Toman",
+    "midRateNote": "This figure is based on the market rate; the final rate and commission are shown before you confirm.",
+    "cta": "Continue to transfer",
+    "tomanLegNote": "In a quick conversion one side is always Toman."
+  },
+  "home": {
+    "metaTitle": "Live rates & transfers",
+    "stripTitle": "Live rates on the main routes",
+    "allRates": "All rates",
+    "hero": {
+      "title": "Currency transfer, made simple",
+      "ctaPrimary": "Start a transfer",
+      "ctaSecondary": "See rates"
+    },
+    "how": {
+      "title": "How a transfer works",
+      "subtitle": "Three clear steps; at each one you know what just happened and what comes next.",
+      "steps": {
+        "1": {
+          "title": "Submit & lock the rate",
+          "body": "Set the amount and destination account; the rate locks for 15 minutes and eligible exchange offices see your request."
+        },
+        "2": {
+          "title": "Office accepts, Toman funds",
+          "body": "An office claims the request and chat opens. The Toman leg is funded inside the platform's supervised flow and confirmed by both sides."
+        },
+        "3": {
+          "title": "Foreign leg & release",
+          "body": "The office executes the foreign transfer and uploads proof; once receipt is confirmed, the Toman releases and your receipt is issued."
+        }
+      }
+    },
+    "trust": {
+      "title": "Why Asaex?",
+      "subtitle": "No number is hidden: the base rate, the rate difference and every fee are itemised before you confirm.",
+      "counter": "{count} transfers completed this week",
+      "items": {
+        "licensed": {
+          "title": "Licensed offices only",
+          "body": "Every office shows its license number and public profile, with tracked performance — speed and ratings."
+        },
+        "rateLock": {
+          "title": "15-minute rate lock",
+          "body": "A confirmed rate holds until the countdown ends; after that it changes only with your re-acceptance."
+        },
+        "sla": {
+          "title": "A clear time commitment",
+          "body": "The target is one business day, the contractual cap three; delays are chased automatically."
+        },
+        "chat": {
+          "title": "Talk before it's binding",
+          "body": "Chat with the office from the review stage — before anything is final."
+        }
+      }
+    },
+    "services": {
+      "title": "Other services",
+      "coins": {
+        "title": "Coins and gold",
+        "body": "Buy coins and gold at today's rate"
+      },
+      "p2p": {
+        "title": "Peer market",
+        "body": "Buy and sell directly between users"
+      },
+      "track": {
+        "title": "Track an order",
+        "body": "With a reference, without signing in"
+      }
+    }
+  },
+  "ratesPage": {
+    "metaTitle": "Live currency rates",
+    "title": "Rates",
+    "subtitle": "Live prices in Toman, the 24-hour change and the 30-day trend, based on the open market.",
+    "search": "Search currencies…",
+    "noResults": "No currency matches that search.",
+    "favorite": "Add {currency} to favorites",
+    "unfavorite": "Remove {currency} from favorites",
+    "range30": "30d",
+    "range90": "90d",
+    "range180": "180d",
+    "alertCta": "Price alert",
+    "alertTitle": "Price alerts",
+    "alertBody": "Once accounts arrive you can set a threshold per currency and get notified by SMS, email, or app push.",
+    "high24h": "24h high",
+    "low24h": "24h low",
+    "chartSummary": "{code} over the last {days, number} days, from {from} to {to} Toman.",
+    "reorder": "Reorder",
+    "reorderDone": "Done",
+    "reorderReset": "Reset order",
+    "reorderHint": "Drag a box, or use the up and down buttons, to arrange the currencies your way. The order is kept on this device.",
+    "moveUp": "Move {currency} up",
+    "moveDown": "Move {currency} down",
+    "noHistory": "No history has been recorded for this currency yet."
+  },
+  "transfer": {
+    "metaTitle": "New transfer",
+    "title": "Transfer quote",
+    "subtitle": "Every price component, before you confirm — no hidden costs.",
+    "toman": "Toman",
+    "lockActive": "Your rate is locked",
+    "lockExpired": "The rate lock expired",
+    "lockNote": "A confirmed rate stays valid for 15 minutes. If it expires, one tap gets a fresh quote and shows the delta clearly.",
+    "requote": "Get a fresh rate",
+    "youSend": "You send",
+    "rateUsed": "Rate used",
+    "rateValue": "{rate} Toman per {code}",
+    "whyThisRate": "Why this rate?",
+    "recipientGets": "Recipient gets",
+    "confirmCta": "Confirm & continue",
+    "back": "Back",
+    "slaNote": "Timing: usually completed within one business day; the contractual cap is three business days, counted on the Iranian and destination-country business calendars.",
+    "whyBody": "The base rate (the mid-market rate) is {rate} Toman per {code}. These rate differences are applied on top:",
+    "creating": "Creating the order…",
+    "destination": "Destination account",
+    "createErrors": {
+      "signedOut": "Your session ended. Please sign in again.",
+      "failed": "The order could not be created. Try again.",
+      "network": "Couldn't reach us. Try again."
+    },
+    "gate": {
+      "anonymous": {
+        "title": "Sign in to submit",
+        "body": "Sign in by mobile or email. If you don't have an account yet, this creates one.",
+        "cta": "Sign in"
+      },
+      "unverified": {
+        "title": "Verification is needed first",
+        "body": "Verification happens once, ever, and takes under five minutes. After that, submitting a transfer is uninterrupted.",
+        "cta": "Start verification"
+      },
+      "no_accounts": {
+        "title": "No destination account yet",
+        "body": "You have no saved account for this currency. Add one and you'll simply pick it when you submit.",
+        "cta": "Add an account"
+      },
+      "ready": {
+        "title": "Ready to submit",
+        "body": "Everything is in place.",
+        "cta": "Continue"
+      }
+    },
+    "commission": "Exchange commission",
+    "commissionRate": "{pct}% of the transfer",
+    "howCommission": "How was this worked out?",
+    "nextBand": "Raise the amount to {amount} Toman and the commission falls to {pct}%.",
+    "edit": {
+      "title": "Amount and currency",
+      "recalculating": "Working it out again…",
+      "youSend": "You send",
+      "recipientCurrency": "Recipient gets",
+      "tomanLeg": "One side is always Toman",
+      "fromCurrency": "Currency you send",
+      "toCurrency": "Currency they receive"
+    },
+    "requoting": "Getting a new rate…",
+    "requoteFailed": "Could not get a new rate. Check your connection and try again."
+  },
+  "pricing": {
+    "total": "Total rate difference",
+    "layers": {
+      "platform_floor": "Platform floor",
+      "corridor_default": "Base route difference",
+      "office_markup": "Office markup",
+      "tier_discount": "Tier discount",
+      "promo": "Promo code"
+    },
+    "bands": {
+      "intro": "The amount is cut into steps and each step has its own rate. Lower steps are always charged in full, so sending more brings the overall percentage down while never reducing the commission itself.",
+      "between": "From {from} to {to} Toman",
+      "above": "Above {from} Toman",
+      "notReached": "Not reached",
+      "toman": "Toman",
+      "total": "Total commission"
+    },
+    "schedule": {
+      "title": "Banded commission",
+      "tryLabel": "Enter a transfer amount to see its commission",
+      "commission": "Commission",
+      "effective": "Overall rate",
+      "marginal": "Top band reached",
+      "officeShare": "Office's share",
+      "ceilingNote": "This percentage is the ceiling on the customer's whole cost. Where an office's quoted rate differs from the base rate, that much comes off the commission rather than being added to what the customer pays.",
+      "splitNote": "The platform's share is {pct}% of the commission and the rest goes to the executing office. That split has no effect on what the customer pays."
+    }
+  },
+  "orders": {
+    "metaTitle": "Orders",
+    "emptyTitle": "No orders yet",
+    "emptyBody": "Once you place your first transfer, each order's live timeline — with the time-commitment countdown and the chat with your office — appears here.",
+    "cta": "Start a transfer",
+    "title": "Orders",
+    "subtitle": "Every transfer with its own reference, and the full timeline of each step.",
+    "ref": "Reference",
+    "created": "Created",
+    "youSend": "You send",
+    "recipientGets": "Recipient gets",
+    "office": "Exchange office",
+    "officeUnassigned": "No office yet",
+    "timeline": "Timeline",
+    "noEvents": "Nothing has happened yet.",
+    "by": "by {role}",
+    "actorRole": {
+      "customer": "the customer",
+      "office": "the office",
+      "platform": "the platform"
+    },
+    "detailTitle": "Order {ref}",
+    "notFound": "No such order, or you don't have access to it.",
+    "rateLocked": "Locked rate",
+    "fees": "Fees",
+    "actions": "What you can do",
+    "noActions": "Nothing is needed from you at this step.",
+    "reasonLabel": "Note (optional)",
+    "reasonRequired": "Note (required)",
+    "working": "Recording…",
+    "actionFailed": "That change could not be recorded.",
+    "errors": {
+      "notVerified": "Your identity has to be verified before you can submit a transfer.",
+      "noDestination": "No destination account is selected.",
+      "rateExpired": "The locked rate has expired — get a fresh one.",
+      "notPermitted": "That action isn't yours to take at this step.",
+      "funded": "A funded order is refunded, never cancelled."
+    },
+    "state": {
+      "draft": "Not submitted",
+      "submitted": "Submitted",
+      "matching": "Waiting for an office",
+      "office_review": "Under office review",
+      "accepted": "Accepted",
+      "awaiting_irt_funding": "Awaiting your Toman",
+      "irt_funded": "Toman funded",
+      "foreign_leg_pending": "Foreign leg in progress",
+      "foreign_leg_sent": "Foreign leg sent",
+      "recipient_confirmed": "Receipt confirmed",
+      "irt_released": "Toman released",
+      "completed": "Completed",
+      "on_hold": "On hold",
+      "info_needed": "More information needed",
+      "disputed": "In dispute",
+      "cancelled": "Cancelled",
+      "refunded": "Refunded",
+      "expired": "Expired",
+      "sla_breached": "SLA breached"
+    },
+    "stateBody": {
+      "draft": "This order hasn't been submitted yet.",
+      "submitted": "Submitted, and queued to reach eligible exchange offices.",
+      "matching": "Eligible offices can see your request.",
+      "office_review": "An office has claimed the request and is reviewing it.",
+      "accepted": "The office accepted. Funding the Toman leg is next.",
+      "awaiting_irt_funding": "Transfer the Toman amount and upload the receipt.",
+      "irt_funded": "The Toman is in supervised holding; the office has not been paid yet.",
+      "foreign_leg_pending": "The office is executing the foreign transfer.",
+      "foreign_leg_sent": "It's on its way. Confirm once it arrives.",
+      "recipient_confirmed": "Receipt is confirmed; releasing the Toman is next.",
+      "irt_released": "The Toman has been released to the office.",
+      "completed": "This transfer is closed.",
+      "on_hold": "Paused for now; the reason is in the timeline.",
+      "info_needed": "The office has asked for more information.",
+      "disputed": "Under review, and frozen until it's resolved.",
+      "cancelled": "This order was cancelled.",
+      "refunded": "The Toman amount was returned.",
+      "expired": "This order ran out of time.",
+      "sla_breached": "Past the time limit and escalated."
+    },
+    "act": {
+      "submitted": "Submit the request",
+      "cancelled": "Cancel the order",
+      "recipient_confirmed": "I've received it",
+      "disputed": "Open a dispute",
+      "office_review": "Claim and review",
+      "accepted": "Accept the request",
+      "info_needed": "Ask for more information",
+      "awaiting_irt_funding": "Ready for the Toman",
+      "irt_funded": "Confirm the Toman arrived",
+      "foreign_leg_pending": "Start the foreign leg",
+      "foreign_leg_sent": "Mark the foreign leg sent",
+      "irt_released": "Release the Toman",
+      "completed": "Close the order",
+      "on_hold": "Put on hold",
+      "refunded": "Refund",
+      "sla_breached": "Record an SLA breach"
+    },
+    "cost": {
+      "title": "What this transfer cost",
+      "body": "{toman} Toman came off this transfer in total — {pct}% of it.",
+      "basis": "Market base rate when the rate was locked: {mid} Toman."
+    }
+  },
+  "profile": {
+    "metaTitle": "Profile",
+    "emptyTitle": "Your account",
+    "emptyBody": "Sign in to see your verification status, bank accounts and security settings.",
+    "cta": "Back to home",
+    "title": "Your account",
+    "subtitle": "Verification status, security, and your devices.",
+    "unnamed": "Unnamed",
+    "kyc": {
+      "unverified": "Not verified",
+      "pending": "Under review",
+      "approved": "Verified",
+      "rejected": "Rejected",
+      "more_info_needed": "More info needed"
+    },
+    "kycBody": {
+      "unverified": "Submitting a transfer needs a one-time verification. It takes under five minutes.",
+      "pending": "Your documents are queued for review — usually under one business day.",
+      "approved": "Your identity is verified. From here you only manage destination accounts.",
+      "rejected": "Your submission was rejected. The reason is in the message we sent; you can re-apply.",
+      "more_info_needed": "We need a little more information or a clearer document to finish the review."
+    },
+    "startKyc": "Start verification",
+    "security": {
+      "title": "Account security",
+      "body": "Your sign-in is protected by a one-time code. Two-step sign-in is available as well, and is required for exchange-office and platform staff.",
+      "otpOn": "One-time-code sign-in",
+      "totpSoon": "2FA soon"
+    },
+    "devices": {
+      "title": "Sign-in activity",
+      "body": "The most recent sign-ins and sign-outs on your account.",
+      "none": "No activity recorded yet.",
+      "kind": {
+        "sign_in": "Signed in",
+        "sign_out": "Signed out",
+        "revoked": "Session revoked"
+      }
+    },
+    "signOut": "Sign out",
+    "rewards": {
+      "tierTitle": "Your tier",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum"
+      },
+      "feeIs": "{pct} percentage points off the commission",
+      "toNext": "{amount} Toman more to reach {tier}",
+      "topTier": "You are at the top tier.",
+      "volume": "Completed volume: {amount} Toman",
+      "referralTitle": "Invite a friend",
+      "referralBody": "The reward lands when your friend's first transfer completes — not when they sign up.",
+      "copy": "Copy",
+      "copied": "Copied",
+      "invitedCount": "{invited, number} invited · {rewarded, number} rewarded",
+      "haveACode": "Have a code?",
+      "apply": "Apply",
+      "claimOk": "Code applied.",
+      "claimRefused": "That code was not accepted — you may already have one, or already completed a transfer."
+    }
+  },
+  "offline": {
+    "metaTitle": "Offline",
+    "title": "You're offline",
+    "body": "The cached app shell is available and the last fetched rates are shown with their timestamp. Everything refreshes automatically once you reconnect.",
+    "cta": "Try again"
+  },
+  "notFound": {
+    "title": "That page doesn't exist",
+    "body": "Check the address or start from home; if the app itself brought you here, we'd love to hear about it via support.",
+    "cta": "Back to home"
+  },
+  "design": {
+    "metaTitle": "Design system",
+    "badge": "Phase 0 — Foundation",
+    "title": "The Asaex design system",
+    "intro": "Every token, component, and motion references this page — in both languages and both themes. It is how the three product surfaces (customer PWA, office panel, admin panel) stay coherent.",
+    "tocLabel": "Sections",
+    "sections": {
+      "brand": "Brand & logo",
+      "colors": "Colors",
+      "type": "Typography",
+      "layout": "Spacing, radius, elevation",
+      "components": "Components",
+      "validation": "Financial validation",
+      "coins": "3D currency icons",
+      "charts": "Charts",
+      "motion": "Motion",
+      "scenes": "Animated illustration",
+      "tiles": "Icon tiles"
+    },
+    "brand": {
+      "description": "The Asaex mark builds the letter A from two crossing currency flows — reading at once as an A, the exchange arrow-pair (⇄), and flowing water.",
+      "markSizes": "Legible from a 16px favicon up to a building sign",
+      "lockup": "Wordmark lockup — in Persian the mark sits on the right",
+      "mono": "Single-color version for stamps, receipts, and brand surfaces",
+      "rules": {
+        "clearspace": "Clear space: the mark's counter height, on all four sides",
+        "minsize": "Minimum size: 16px digital / 8mm print",
+        "never": "Never: stretch, rotate, add drop shadows, or recolor outside the palette",
+        "rtl": "Not mirrored in RTL; the lockup order places the mark"
+      }
+    },
+    "colors": {
+      "description": "One deep green accent — trust plus Persian visual heritage, deliberately away from every fintech's blue.",
+      "note": "Up/down colors are never the only signal; an arrow glyph and an explicit +/− always ride along (a color-vision accessibility requirement).",
+      "use": {
+        "brand600": "Primary accent, CTAs, active states",
+        "brand700": "Hover / press",
+        "brand50": "Tinted surfaces, selected rows",
+        "ink900": "Primary text",
+        "ink600": "Secondary text",
+        "ink300": "Borders, dividers",
+        "surface": "Cards",
+        "canvas": "Page background",
+        "up": "Rate increase",
+        "down": "Rate decrease",
+        "warn": "Pending / attention",
+        "info": "Informational"
+      }
+    },
+    "type": {
+      "description": "Persian in Vazirmatn (1.75 leading), English in Inter (1.6). Display numerals are Persian in fa; inputs and identifiers stay Latin, and every figure is tabular.",
+      "sample": "Currency, made effortless — آسا",
+      "numeralsFa": "Persian display numerals + tabular figures",
+      "numeralsEn": "Latin numerals in English contexts"
+    },
+    "layout": {
+      "description": "Spacing only from the 4/8/12/16/24/32/48/64 scale; radii 8/12/16/24; exactly three soft elevation levels.",
+      "spacing": "Spacing scale (px)",
+      "radius": "Corner radii (px)",
+      "elevation": "Three elevation levels"
+    },
+    "components": {
+      "description": "Interface primitives: buttons, status badges, inputs, and loading skeletons — with touch targets of at least 44px.",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "soft": "Soft",
+      "ghost": "Ghost",
+      "destructive": "Destructive",
+      "disabled": "Disabled",
+      "badgeBrand": "Brand",
+      "badgeUp": "▲ +0.42%",
+      "badgeDown": "▼ −0.85%",
+      "badgeWarn": "Pending",
+      "badgeInfo": "Info",
+      "badgeNeutral": "Neutral",
+      "inputPlaceholder": "A regular input…",
+      "inputInvalid": "Invalid input"
+    },
+    "validation": {
+      "description": "Validation is real, not cosmetic: Sheba via mod-97, cards via Luhn with BIN→bank lookup, and the national code via its check digit.",
+      "sheba": {
+        "label": "Sheba (IBAN)",
+        "hint": "IR + 24 digits; spaces allowed",
+        "ok": "Valid Sheba",
+        "err": {
+          "format": "That's not a Sheba format — it starts with IR followed by digits only.",
+          "length": "A Sheba needs exactly 24 digits after IR.",
+          "checksum": "The Sheba check digits don't match — re-check the number."
+        }
+      },
+      "card": {
+        "label": "Card number",
+        "hint": "16 digits; the bank is detected from the first six",
+        "ok": "Valid card number",
+        "okBank": "Valid card — {bank}",
+        "err": {
+          "format": "A card number is exactly 16 digits.",
+          "checksum": "The card checksum fails — one digit is off."
+        }
+      },
+      "nid": {
+        "label": "National code",
+        "hint": "10 digits with a check digit",
+        "ok": "Valid national code",
+        "err": "Invalid national code — re-check the digits."
+      },
+      "banks": {
+        "melli": "Bank Melli",
+        "sepah": "Bank Sepah",
+        "mellat": "Bank Mellat",
+        "tejarat": "Tejarat Bank",
+        "saderat": "Bank Saderat",
+        "keshavarzi": "Keshavarzi Bank",
+        "maskan": "Bank Maskan",
+        "refah": "Refah Bank",
+        "parsian": "Parsian Bank",
+        "pasargad": "Bank Pasargad",
+        "saman": "Saman Bank",
+        "eghtesadNovin": "EN Bank",
+        "ansar": "Ansar Bank",
+        "postbank": "Post Bank",
+        "ayandeh": "Ayandeh Bank",
+        "shahr": "Shahr Bank",
+        "day": "Day Bank",
+        "sina": "Sina Bank",
+        "sarmayeh": "Sarmayeh Bank",
+        "tosee": "Tose'e Ta'avon Bank"
+      }
+    },
+    "coins": {
+      "description": "Twenty currencies, one lighting rig: 45° camera, top-left key light, soft contact shadow, and the currency glyph embossed on the face.",
+      "rule": "The boundary rule: 3D icons are for currencies and product concepts; functional micro-UI (chevrons, close, search) stays a clean 2px line set — 3D at 16px is noise, not polish."
+    },
+    "charts": {
+      "description": "Single series, 2px line, recessive grid, crosshair with tooltip. Value text always wears ink tokens, never the series color; the time axis stays left-to-right in both locales.",
+      "history": "90-day history with crosshair",
+      "sparkUp": "Sparkline, positive trend",
+      "sparkDown": "Sparkline, negative trend",
+      "note": "Direction always pairs an arrow + sign so color is never the only signal."
+    },
+    "motion": {
+      "description": "Motion is a product feature here, not decoration: 150–350ms for feedback, 600–1200ms for narrative moments; transform and opacity only.",
+      "rules": "Under the OS \"reduce motion\" setting everything collapses to static, and no animation ever blocks interaction or delays a money action.",
+      "logoDraw": "Logo draw on launch (700ms)",
+      "replay": "Replay",
+      "swap": "Converter spring swap",
+      "digitRoll": "Digit roll on rate ticks",
+      "tick": "Simulate a rate tick",
+      "countdown": "Rate-lock countdown ring",
+      "countdownNote": "Below 60s it turns amber and pulses",
+      "skeleton": "Loading skeleton (1.6s shimmer)",
+      "skeletonNote": "Matched to the final layout so layout shift stays at zero"
+    },
+    "scenes": {
+      "description": "Every scene is built on one rig: the brand-tinted disc, the contact shadow, and the same stroke weight and coin silhouette as the logo and currency icons. SVG + Framer Motion, a few KB each, fully static under the OS reduce-motion setting.",
+      "replay": "Replay all",
+      "count": "{count} scenes",
+      "groups": {
+        "onboarding": {
+          "title": "Signing in and proving who you are",
+          "body": "From the one-time code to the verdict that comes back: approved, more needed, or refused."
+        },
+        "order": {
+          "title": "The order machine",
+          "body": "Every state a transfer takes — from the quote to the recipient being paid, and the paths that do not end well."
+        },
+        "banking": {
+          "title": "Accounts and bank rails",
+          "body": "An account number being checked, a card kept for next time, and the ceiling identity raises."
+        },
+        "market": {
+          "title": "The market",
+          "body": "The rate board, a price alert, gold, and the peer-to-peer side."
+        },
+        "rewards": {
+          "title": "Tier and rewards",
+          "body": "The two places this product pays the customer rather than the other way round."
+        },
+        "support": {
+          "title": "Conversation and help",
+          "body": "Every transfer has a thread attached; these are the shapes it takes."
+        },
+        "staff": {
+          "title": "Office and platform panels",
+          "body": "The other side of the counter: the inbox, the day's rates, the float, settlement, and the audit trail."
+        },
+        "states": {
+          "title": "Empty and error states",
+          "body": "An empty list, a door that is not yours, a wrong address, and no network — four different messages, four different drawings."
+        }
+      }
+    },
+    "tiles": {
+      "description": "The coin's lighting rig on a rounded square: light from above, a hairline along the top edge, a gloss over the upper half, and a shadow cast in the tile's own colour.",
+      "hueTitle": "Seven hues, seven meanings",
+      "sizeTitle": "Three sizes",
+      "sizeBody": "md beside a list row, lg on a card or a page title, xl alone on an empty screen.",
+      "usageTitle": "Three shapes of use",
+      "rule": "Colour rule: the hue carries meaning rather than taste — seven cover the whole product, and an eighth means a meaning nobody has named yet. The icon arrives already rendered (icon={<Wallet />}): a lucide component passed as a prop cannot cross from a server component to a client one, and takes the page down with a 500 when it tries.",
+      "hue": {
+        "brand": "Money",
+        "indigo": "Authority",
+        "sky": "People",
+        "teal": "Help",
+        "amber": "Caution",
+        "slate": "Paperwork",
+        "rose": "Harm"
+      },
+      "navTitle": "List rows",
+      "navAccounts": "My accounts",
+      "navAccountsHint": "Saved IBANs and cards",
+      "navAlerts": "Price alerts",
+      "navAlertsHint": "Tell me when it reaches a price",
+      "headingTitle": "Account security",
+      "headingBody": "Two-step sign-in and active devices."
+    }
+  },
+  "auth": {
+    "metaTitle": "Sign in",
+    "title": "Sign in to Asaex",
+    "body": "Enter your mobile number and we'll text you a one-time code. If you don't have an account yet, this creates one.",
+    "codeTitle": "Enter your one-time code",
+    "codeBody": "We texted a six-digit code to {phone}. It's valid for two minutes.",
+    "sentTitle": "Sign-in link sent",
+    "sentBody": "We sent a sign-in link to {email}. Open it and you're in.",
+    "doneTitle": "Welcome",
+    "doneBody": "Taking you to the next step…",
+    "channel": {
+      "phone": "Mobile",
+      "email": "Email",
+      "staff": "Staff"
+    },
+    "phoneLabel": "Mobile number",
+    "phoneHint": "Start with 09, or write it as +98.",
+    "emailHint": "Email sign-in is available to customers outside Iran.",
+    "emailLabel": "Email address",
+    "sending": "Sending…",
+    "cta": "Continue",
+    "legalNote": "Signing in means accepting Asa's <terms>terms of use</terms>, <privacy>privacy policy</privacy> and <aml>anti-money-laundering policy</aml>. Tick this to continue.",
+    "codeLabel": "One-time code",
+    "verifying": "Checking…",
+    "verifyCta": "Verify & sign in",
+    "changeNumber": "Change number",
+    "resendIn": "Resend in {clock}",
+    "resend": "Send a new code",
+    "checkInbox": "Check your inbox",
+    "changeEmail": "Change email",
+    "scene": {
+      "otp": "Receiving a one-time code",
+      "done": "Signed in"
+    },
+    "errors": {
+      "rateLimited": "That's a lot of requests. Try again in about {minutes, number} minutes.",
+      "smsUnavailable": "SMS delivery isn't live on this environment yet. Sign in by email for now — mobile sign-in switches on the moment the gateway is connected.",
+      "invalidPhone": "That mobile number doesn't look right — enter an 11-digit Iranian number.",
+      "authUnavailable": "Sign-in isn't configured on this environment.",
+      "sendFailed": "The code didn't send. Try again in a moment.",
+      "network": "Couldn't reach us. Check your connection and try again.",
+      "invalidCode": "That code is wrong or has expired — request a fresh one.",
+      "notStaff": "That account has no panel access.",
+      "invalidCredentials": "That email and password do not match."
+    },
+    "channelLabel": "Sign-in method",
+    "staffHint": "Exchange offices sign in with a username; platform staff with an email.",
+    "passwordLabel": "Password",
+    "staffCta": "Open the panel",
+    "staffIdLabel": "Username or email",
+    "totpPrompt": "Enter the six-digit code from your authenticator app.",
+    "totpLabel": "Two-step code",
+    "totpCta": "Sign in",
+    "totpLost": "If you cannot reach your authenticator app, contact the platform administrator.",
+    "legalRequired": "You need to accept the terms before continuing."
+  },
+  "kyc": {
+    "metaTitle": "Verification",
+    "unavailableTitle": "Verification isn't live on this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "backHome": "Back to home",
+    "steps": {
+      "identity": {
+        "rail": "Identity",
+        "title": "Your details",
+        "body": "We collect this once. After approval you only ever manage your destination accounts."
+      },
+      "document": {
+        "rail": "Document",
+        "title": "Identity document",
+        "body": "Photograph your national ID or passport in even light with no glare. Image quality is checked right here."
+      },
+      "liveness": {
+        "rail": "Selfie",
+        "title": "Live photo",
+        "body": "Take a simple selfie so we can confirm the document is yours."
+      },
+      "review": {
+        "rail": "Review",
+        "title": "Review & submit",
+        "body": "Check everything once before you send it.",
+        "pending": "Your documents are in and queued for review. It usually takes under one business day.",
+        "badge": "Under review",
+        "next": "We'll tell you the outcome by SMS and in-app. If a document is unreadable, we'll say exactly which one and why."
+      }
+    },
+    "fields": {
+      "nameFa": "Full name (Persian)",
+      "nameFaPlaceholder": "علی رضایی",
+      "nameLatin": "Name in Latin script",
+      "nationality": "Nationality",
+      "iranian": "Iranian",
+      "other": "Non-Iranian",
+      "nationalCode": "National code",
+      "nationalCodeHint": "10 digits, exactly as printed on your national ID card.",
+      "nationalCodeInvalid": "Invalid national code — the check digit doesn't match the rest.",
+      "dob": "Date of birth",
+      "dobHint": "Enter it in the Jalali calendar; the record also keeps the Gregorian date.",
+      "year": "Year",
+      "month": "Month",
+      "day": "Day",
+      "city": "City",
+      "cityPlaceholder": "Tehran",
+      "postalCode": "Postal code",
+      "address": "Address",
+      "addressPlaceholder": "Street, alley, number, unit"
+    },
+    "doc": {
+      "nationalId": "National ID card",
+      "passport": "Passport",
+      "passportPage": "Passport data page",
+      "front": "Front",
+      "back": "Back",
+      "label": "Document type",
+      "hint": "Fit the whole document in frame, with no glare and no finger over the text.",
+      "privacy": "Documents live in encrypted private storage; only the compliance team sees them, through a short-lived link, with every view written to the audit log."
+    },
+    "liveness": {
+      "label": "Selfie",
+      "hint": "Your whole face in frame, facing the light.",
+      "tip1": "Remove sunglasses, masks and hats.",
+      "tip2": "Keep the background plain and free of harsh light.",
+      "tip3": "If you're holding the document, keep its text readable."
+    },
+    "upload": {
+      "choose": "Choose or take a photo",
+      "ok": "Looks good",
+      "retake": "Retake",
+      "readFailed": "We couldn't read that file — choose a JPG or PNG image.",
+      "verdict": {
+        "blurry": "The photo is out of focus. Hold the camera still and try again.",
+        "glare": "There's glare across the document. Shift the angle slightly.",
+        "dark": "The photo is too dark. Try again somewhere brighter.",
+        "small": "The resolution is too low. Move closer and shoot at higher quality."
+      }
+    },
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit for review",
+    "submitting": "Sending…",
+    "errors": {
+      "signedOut": "Your session ended. Please sign in again.",
+      "submitFailed": "We couldn't file that submission. Try again in a moment.",
+      "uploadFailed": "The document upload didn't finish. Check your connection and try again.",
+      "network": "Couldn't reach us. Try again."
+    },
+    "ocr": {
+      "title": "Read it from the document",
+      "body": "If your document has a machine-readable zone — a passport, or an international ID card — we can read the details from the photo you just took. The photo never leaves your phone; the reading happens entirely on this device.",
+      "read": "Read",
+      "working": "Reading…",
+      "verified": "Checked",
+      "verifiedBody": "Every ICAO check digit on these fields was recomputed and agreed. Had anything been misread, nothing would be shown here at all.",
+      "field": {
+        "name": "Name",
+        "dob": "Date of birth",
+        "nationality": "Nationality",
+        "number": "Document number"
+      },
+      "mismatch": "What was read differs from what you typed (marked in colour). If the document is right, use the button below; if you deliberately entered a different name, leave it.",
+      "expired": "This document expired on {date}.",
+      "apply": "Put this in the form",
+      "appliedLabel": "Added to the form",
+      "errors": {
+        "no-zone": "No machine-readable zone found. Make sure the whole passport page is flat in the frame and the two lines along the bottom are not cut off.",
+        "failed": "The reading did not finish. You can enter the details by hand.",
+        "unsupported": "This browser cannot do it. Please enter the details by hand."
+      }
+    }
+  },
+  "accounts": {
+    "metaTitle": "My accounts",
+    "title": "Source & destination accounts",
+    "subtitle": "The accounts you use to send and receive. Validation here is real, not cosmetic.",
+    "add": "Add account",
+    "addFirst": "Add your first account",
+    "emptyTitle": "No accounts saved yet",
+    "emptyBody": "Add a Sheba, card, or international account and you'll simply pick it when you start a transfer.",
+    "unavailableTitle": "Account management isn't live on this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "backHome": "Back to home",
+    "thirdParty": "Third party",
+    "ownAccount": "Mine",
+    "archive": "Archive",
+    "kind": {
+      "sheba": "Sheba",
+      "card": "Card",
+      "iban": "IBAN",
+      "swift": "SWIFT",
+      "cash_pickup": "Cash pickup"
+    },
+    "addTitle": "Add an account",
+    "addBody": "Pick the account type and enter its identifier — we check it as you type.",
+    "identifier": {
+      "sheba": "Sheba number",
+      "card": "Card number",
+      "iban": "IBAN",
+      "swift": "SWIFT / BIC code"
+    },
+    "hint": {
+      "sheba": "IR followed by 24 digits; spaces are fine.",
+      "card": "The 16 digits on the card; the bank is detected automatically.",
+      "iban": "The destination country's IBAN, starting with its two-letter code.",
+      "swift": "8 or 11 characters, e.g. BKMTIRTH."
+    },
+    "invalid": {
+      "sheba": "Invalid Sheba — the check digits don't match.",
+      "card": "Invalid card number — one digit is off.",
+      "iban": "Invalid IBAN — the length or check digits are wrong.",
+      "swift": "Invalid SWIFT code — 8 or 11 Latin characters are required."
+    },
+    "valid": "Account identifier is valid",
+    "validBank": "Valid — {bank}",
+    "bankName": "Bank name",
+    "bankPlaceholder": "Destination bank",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "e.g. Tuition account",
+    "holder": "Account holder",
+    "holderPlaceholder": "Exactly as the bank has it",
+    "currency": "Account currency",
+    "thirdPartyLabel": "This account isn't mine",
+    "thirdPartyHint": "Third-party transfers need an explicit declaration and compliance approval.",
+    "save": "Save account",
+    "saving": "Saving…",
+    "errors": {
+      "signedOut": "Your session ended. Please sign in again.",
+      "saveFailed": "We couldn't save that account. Try again.",
+      "network": "Couldn't reach us. Try again."
+    }
+  },
+  "adminKyc": {
+    "metaTitle": "KYC review",
+    "title": "KYC review queue",
+    "subtitle": "Every case needs two signatures: one reviewer recommends, a second approves. Nobody can approve their own recommendation.",
+    "emptyTitle": "The queue is empty",
+    "emptyBody": "Nothing is waiting for review.",
+    "unavailableTitle": "This section isn't live on the current environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "forbiddenTitle": "You don't have access",
+    "forbiddenBody": "KYC review is open to compliance and platform-admin roles only.",
+    "backHome": "Back to home",
+    "unnamed": "Unnamed",
+    "documentCount": "{count, number} documents",
+    "awaitingYou": "Awaiting your approval",
+    "awaitingOther": "Awaiting a second reviewer",
+    "needsFirst": "Needs a first review",
+    "review": "Review",
+    "documents": "Documents",
+    "documentsNote": "Each view uses a 60-second signed link and is written to the audit log; your reviewer id is stamped on the image.",
+    "openDocument": "Open",
+    "docKind": {
+      "national_id": "National ID",
+      "passport": "Passport",
+      "selfie": "Selfie",
+      "proof_of_address": "Proof of address"
+    },
+    "checklist": "Review checklist",
+    "checks": {
+      "legible": "All text on the document is legible.",
+      "nameMatch": "The name on the document matches the declared name.",
+      "notExpired": "The document is still within its validity date.",
+      "selfieMatch": "The selfie matches the photo on the document.",
+      "noTamper": "No sign of tampering or editing."
+    },
+    "reason": "Decision note",
+    "reasonPlaceholder": "For a rejection or an information request, write a clear reason — this exact text is shown to the customer.",
+    "fourEyesTitle": "Four-eyes approval",
+    "fourEyesFirst": "You are the first reviewer. Your recommendation is recorded and the case goes to another reviewer for the final decision.",
+    "fourEyesSecond": "The first reviewer has recorded their recommendation. The final decision is yours.",
+    "fourEyesOwn": "You made the recommendation on this case; the final approval has to come from a different reviewer.",
+    "recommendApprove": "Recommend approval",
+    "recommendMoreInfo": "Request more information",
+    "recommendReject": "Recommend rejection",
+    "approve": "Approve",
+    "reject": "Reject",
+    "fields": {
+      "nameLatin": "Latin name",
+      "nationalCode": "National code",
+      "dob": "Date of birth",
+      "nationality": "Nationality"
+    },
+    "errors": {
+      "documentDenied": "You aren't permitted to view this document.",
+      "fourEyes": "Four-eyes: the reviewer who recommended cannot also approve.",
+      "actionFailed": "We couldn't record that decision. Try again.",
+      "network": "Couldn't reach us. Try again."
+    },
+    "reviewTitle": "Reviewing documents",
+    "reviewHint": "Look at this customer's documents and approve or reject. Every decision needs two people: the second cannot be the first."
+  },
+  "office": {
+    "metaTitle": "Office panel",
+    "title": "Office panel",
+    "subtitle": "{office} — open requests, and the orders you hold.",
+    "pool": "Unclaimed requests",
+    "poolEmpty": "No open requests right now.",
+    "mine": "This office's orders",
+    "mineEmpty": "You haven't claimed anything yet.",
+    "claim": "Claim",
+    "claiming": "Claiming…",
+    "unavailableTitle": "The office panel isn't live on this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "notAMemberTitle": "You're not a member of any office",
+    "notAMemberBody": "This section is for staff of licensed exchange offices. If you should have access, ask the office owner to add you.",
+    "backHome": "Back to home",
+    "errors": {
+      "alreadyClaimed": "Another office claimed this request first.",
+      "officeInactive": "That office isn't active.",
+      "claimFailed": "The request could not be claimed.",
+      "network": "Couldn't reach us. Try again."
+    },
+    "poolHint": "Orders no office has taken yet. Take one and it is yours to carry.",
+    "mineHint": "Orders you have taken, still in progress."
+  },
+  "admin": {
+    "metaTitle": "Admin",
+    "title": "Platform overview",
+    "subtitle": "Every order, every office, and every change that was recorded.",
+    "navLabel": "Admin sections",
+    "nav": {
+      "dashboard": "Overview",
+      "exchanges": "Offices",
+      "orders": "Orders",
+      "kyc": "Identity",
+      "settings": "Settings",
+      "audit": "Audit",
+      "support": "Support",
+      "p2p": "P2P",
+      "users": "Customers",
+      "compliance": "Compliance",
+      "finance": "Finance",
+      "rates": "Rates",
+      "content": "Content",
+      "tickets": "Tickets",
+      "settlement": "Settlement"
+    },
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "forbiddenTitle": "You do not have access",
+    "forbiddenBody": "The admin panel is open to platform roles only.",
+    "backHome": "Back to home",
+    "byState": "Orders by state",
+    "noOrders": "No orders yet.",
+    "feed": "Live activity",
+    "noActivity": "Nothing recorded yet.",
+    "officeCount": "{active} active of {total} exchange offices.",
+    "stats": {
+      "gmv": "Settled volume",
+      "settled": "Completed orders",
+      "live": "Orders in flight",
+      "atRisk": "At SLA risk"
+    },
+    "impersonation": {
+      "actingAs": "You are acting as {office}.",
+      "actingAsUnknown": "You are acting as an exchange office.",
+      "reason": "Reason: {reason}",
+      "endsIn": "Ends automatically in {time}",
+      "expired": "This session has expired.",
+      "end": "End session"
+    },
+    "exchanges": {
+      "metaTitle": "Exchange offices",
+      "title": "Exchange offices",
+      "subtitle": "Create, configure and suspend offices. Every change is recorded with its reason.",
+      "provision": "Provision an office",
+      "empty": "No exchange offices yet.",
+      "liveOrders": "{count, number} orders in flight",
+      "status": {
+        "draft": "Incomplete",
+        "active": "Active",
+        "suspended": "Suspended",
+        "archived": "Archived"
+      },
+      "kind": {
+        "card": "Card",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Cash"
+      },
+      "reasonTitle": "Reason for this action",
+      "reasonBody": "Suspending an office and standing in for one both need a written reason; the same text lands in the audit log.",
+      "reasonPlaceholder": "e.g. investigating a customer complaint about settlement delay",
+      "activate": "Activate",
+      "suspend": "Suspend",
+      "impersonate": "Act as this office",
+      "alreadyImpersonating": "Already acting as this office",
+      "spreads": "Fees and rate difference (spread)",
+      "spreadBps": "Rate difference, in hundredths of a percent",
+      "noCorridors": "No corridors configured.",
+      "save": "Save",
+      "saved": "Saved.",
+      "overridden": "Overridden (default {base, number})",
+      "fromTemplate": "From template",
+      "accounts": "Settlement accounts",
+      "noAccounts": "No accounts recorded.",
+      "publicAccount": "Shown to customers",
+      "balances": "Balances",
+      "noBalances": "No balances recorded.",
+      "errors": {
+        "spreadRange": "The rate difference must be between 0 and 2000 hundredths of a percent (0–20%).",
+        "saveFailed": "Could not save. Try again.",
+        "reasonRequired": "A written reason of at least 8 characters is required.",
+        "noAccount": "An office cannot go live without a public settlement account.",
+        "superadminOnly": "Acting as an office is open to the superadmin only."
+      },
+      "kyc": {
+        "verified": "Verified",
+        "pending": "Pending",
+        "rejected": "Rejected",
+        "unverified": "Unchecked"
+      },
+      "reasonHint": "The reason you write here is recorded in the audit log and cannot be erased.",
+      "spreadsHint": "This office's fee and the gap between its buy and sell rates. It changes the price the customer sees.",
+      "accountsHint": "The cards and IBANs customers pay into.",
+      "balancesHint": "What this office's ledger accounts hold.",
+      "openSettlement": "Open settlement",
+      "openLedger": "Open the ledger"
+    },
+    "wizard": {
+      "steps": {
+        "legal": {
+          "title": "Legal details",
+          "body": "Registered name, licence number and the office's unique handle."
+        },
+        "corridors": {
+          "title": "Corridors",
+          "body": "Which routes it takes and at what spread. Defaults come from the platform template."
+        },
+        "accounts": {
+          "title": "Settlement accounts",
+          "body": "The account customers pay Toman into, plus any foreign accounts."
+        },
+        "review": {
+          "title": "Review",
+          "body": "One transaction, once. Either all of it lands or none of it does."
+        },
+        "access": {
+          "title": "Office login",
+          "body": "The username and password for the panel, and where to text them."
+        }
+      },
+      "fields": {
+        "nameFa": "Registered name (Persian)",
+        "nameEn": "Registered name (English)",
+        "slug": "Handle",
+        "slugHint": "Lowercase letters, digits and hyphens; used in URLs.",
+        "licence": "Licence number",
+        "city": "City",
+        "reason": "Reason for provisioning",
+        "corridor": "Corridor",
+        "spread": "Spread",
+        "currency": "Currency",
+        "kind": "Account type",
+        "accountNumber": "Account number",
+        "displayName": "Display name",
+        "displayNameHint": "This is the name customers see.",
+        "ownerName": "Registered owner",
+        "ownerNameHint": "What settlement accounts are matched against.",
+        "nationalId": "Owner's national code",
+        "nationalIdHint": "The basis for checking card and IBAN ownership.",
+        "username": "Username",
+        "usernameHint": "Lowercase letters, digits, dots and dashes.",
+        "phone": "Destination phone",
+        "phoneHint": "They sign in with this number the first time.",
+        "ownPassword": "I will type the password",
+        "ownPasswordHint": "Otherwise a secure one is generated.",
+        "password": "Password",
+        "sendSms": "Text it to the destination number",
+        "sendSmsHint": "With this off, the details appear only on this screen."
+      },
+      "kinds": {
+        "card": "Card",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Cash"
+      },
+      "addCorridor": "Add corridor",
+      "addAccount": "Add account",
+      "remove": "Remove",
+      "spreadHint": "Spread is in basis points: 90 means 0.9%.",
+      "accountHint": "At least one Toman account is required; without it the office cannot go live.",
+      "back": "Back",
+      "next": "Continue",
+      "saveDraft": "Save without activating",
+      "activate": "Create and activate",
+      "working": "Creating…",
+      "failed": "Could not create the office. Try again.",
+      "errors": {
+        "slug": "The handle must be 3–40 lowercase letters, digits or hyphens.",
+        "slugTaken": "That handle is already taken.",
+        "names": "Both registered names are required.",
+        "licence": "A licence number is required.",
+        "forbidden": "Provisioning an office is open to platform administrators only.",
+        "noAccount": "The office was created but not activated: it has no public settlement account.",
+        "nationalId": "That national code is not valid.",
+        "usernameTaken": "That username is already taken.",
+        "inviteFailed": "The office was created but the login was not. Try again from the office page."
+      },
+      "accessNote": "You can leave this step empty and issue a login later. If you do not type a password, one is generated.",
+      "issued": {
+        "title": "The office has a login",
+        "body": "These details are shown once and only once.",
+        "warning": "The password cannot be recovered after this screen. If it is lost, issue a new login.",
+        "copy": "Copy username and password",
+        "copied": "Copied",
+        "done": "Go to the office",
+        "sms": {
+          "sent": "Texted to the destination number.",
+          "failed": "The message could not be sent. Pass the details on yourself.",
+          "skipped": "No message was sent."
+        }
+      }
+    },
+    "orders": {
+      "metaTitle": "All orders",
+      "title": "Orders",
+      "subtitle": "Every order, in every office. Forcing a transition takes a written reason.",
+      "all": "All",
+      "empty": "No orders match this filter.",
+      "unclaimed": "Unclaimed",
+      "onBehalf": "On behalf",
+      "force": "Force",
+      "forceTitle": "Force {ref} to a new state",
+      "forceBody": "This overrides the role matrix, not the ledger: a refund posts reversing entries rather than deleting rows.",
+      "targetState": "Target state",
+      "reason": "Reason (at least 8 characters)",
+      "confirmForce": "Apply",
+      "cancel": "Cancel",
+      "working": "Applying…",
+      "col": {
+        "ref": "Reference",
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "office": "Office",
+        "state": "State",
+        "action": "Action"
+      },
+      "errors": {
+        "reason": "A written reason of at least 8 characters is required.",
+        "terminal": "This order is already terminal; post a compensating action instead.",
+        "forbidden": "This action is open to platform administrators only.",
+        "failed": "Could not apply. Try again."
+      },
+      "clearFilter": "Clear this filter",
+      "unknownOffice": "Unknown office",
+      "narrow": {
+        "risk": "Less than a day to the deadline",
+        "corridor": "{corridor} corridor",
+        "unclaimed": "Unclaimed",
+        "office": "{office}"
+      },
+      "forceHint": "Move an order's state by hand when the normal flow is stuck. The reason you write is kept in the audit log and cannot be erased."
+    },
+    "audit": {
+      "metaTitle": "Audit log",
+      "title": "Audit log",
+      "subtitle": "Immutable and undeletable. Every configuration change and admin action, with its before and after.",
+      "searchPlaceholder": "Search actions",
+      "search": "Search",
+      "entity": "Entity",
+      "allEntities": "All entities",
+      "empty": "No records found.",
+      "before": "Before",
+      "after": "After",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "Exchange office",
+        "office_accounts": "Office account",
+        "office_account": "Office account",
+        "office_rate_config": "Office routes",
+        "settings": "Platform settings",
+        "feature_flags": "Feature switches",
+        "memberships": "User access",
+        "cms_content": "Site content",
+        "profiles": "Customer record",
+        "orders": "Order",
+        "kyc_submissions": "Identity submission",
+        "settlement_accounts": "Settlement account",
+        "coin_orders": "Coin order",
+        "support_tickets": "Support ticket",
+        "p2p_offers": "Peer offer",
+        "p2p_trades": "Peer trade",
+        "rate_sources": "Rate sources",
+        "office": "Exchange office",
+        "order": "Order",
+        "p2p": "Peer market"
+      },
+      "verb": {
+        "insert": "created",
+        "update": "changed",
+        "delete": "removed",
+        "retire": "retired",
+        "provision": "created",
+        "publish": "published"
+      },
+      "named": {
+        "office_provision": "A new exchange office was created",
+        "office_kyc": "An office's identity was reviewed",
+        "office_status": "An office's status changed",
+        "order_force_transition": "An order's state was changed by hand",
+        "impersonation_start": "Acting as an office started",
+        "impersonation_end": "Acting as an office ended",
+        "p2p_offer_publish": "An offer was published on the peer market",
+        "p2p_trade_take": "A peer trade was taken",
+        "kyc_decision": "An identity submission was decided"
+      },
+      "openRecord": "Open the record"
+    },
+    "settings": {
+      "metaTitle": "Platform settings",
+      "title": "Settings",
+      "subtitle": "Staff two-factor authentication, feature flags, and the default office template.",
+      "flags": "Feature flags",
+      "noFlags": "No flags defined.",
+      "saveFailed": "Could not save. Try again.",
+      "template": "Default office template",
+      "templateBody": "Every new office starts from these values; differences are shown on that office's own page.",
+      "flagsHint": "The switches that turn parts of the site on and off. Turning one off hides that section for everybody.",
+      "templateHint": "The values every new exchange office is created with. Each office can be changed individually afterwards."
+    },
+    "security": {
+      "title": "Staff two-factor authentication",
+      "body": "Every platform staff account can attach an authenticator app. While the requirement is off, not having one is only a warning; with it on, no staff account reaches the console or the database without a six-digit code.",
+      "selfMissing": "Your own account has no second factor yet. Turning the requirement on before you enrol would lock you out of the console.",
+      "selfMissingCta": "Set one up on your account page",
+      "require": "Require a second factor from all staff",
+      "requireReady": "Every staff account has a second factor; turning this on locks nobody out.",
+      "requireBlocked": "{count, plural, one {# staff account has} other {# staff accounts have}} no second factor yet. The switch stays off until they all do — otherwise every administrator, including whoever flipped it, is locked out that moment.",
+      "coverage": "{covered, number} of {total, number} staff accounts have a second factor.",
+      "empty": "No staff accounts are recorded.",
+      "unnamed": "Unnamed",
+      "enrolled": "Enrolled",
+      "notEnrolled": "No second factor",
+      "saveFailed": "The change was not saved.",
+      "role": {
+        "platform_support": "Support",
+        "platform_compliance": "Compliance",
+        "platform_admin": "Administrator",
+        "platform_superadmin": "Super administrator"
+      },
+      "sectionHint": "Whether platform staff must enter a one-time code to sign in, and where each account stands."
+    },
+    "support": {
+      "metaTitle": "Support inbox",
+      "title": "Support",
+      "subtitle": "Three separate queues: customers, P2P traders, exchange offices. Each with its own clock.",
+      "segment": {
+        "customer": "Customers",
+        "p2p": "P2P traders",
+        "office": "Exchange offices"
+      },
+      "status": {
+        "open": "Open",
+        "pending": "Pending",
+        "resolved": "Resolved",
+        "archived": "Archived"
+      },
+      "emptyQueue": "This queue is empty.",
+      "pickThread": "Pick a conversation from the list.",
+      "noMessages": "No messages",
+      "assignToMe": "Assign to me",
+      "assignedToYou": "Assigned to you",
+      "assigned": "Assigned",
+      "resolve": "Resolve"
+    },
+    "p2p": {
+      "metaTitle": "P2P",
+      "title": "P2P marketplace",
+      "subtitle": "Listing moderation and dispute resolution.",
+      "openOffers": "Open offers",
+      "liveTrades": "Trades in flight",
+      "disputes": "Open disputes",
+      "disputesTitle": "Disputes waiting on a decision",
+      "resolve": "Resolve",
+      "listings": "Listings",
+      "noListings": "No listings yet.",
+      "tradesOnOffer": "{count, number} trades",
+      "remove": "Remove",
+      "removeReason": "Reason for removal (at least 8 characters)",
+      "confirmRemove": "Remove listing",
+      "removeFailed": "Could not remove. Try again.",
+      "status": {
+        "open": "Open",
+        "paused": "Paused",
+        "filled": "Filled",
+        "cancelled": "Cancelled",
+        "removed": "Removed"
+      },
+      "disputesHint": "Peer-to-peer trades where the two sides did not agree, waiting on your ruling.",
+      "listingsHint": "The buy and sell listings users have posted on the peer-to-peer market."
+    },
+    "group": {
+      "overview": "Overview",
+      "operations": "Operations",
+      "people": "People & compliance",
+      "money": "Money",
+      "platform": "Platform"
+    },
+    "compliance": {
+      "metaTitle": "Compliance",
+      "title": "Compliance",
+      "subtitle": "Sanctions screening, flagged messages, AML thresholds, and how long data is kept.",
+      "sanctions": {
+        "title": "Sanctions screening",
+        "gapBadge": "Open gap",
+        "gapTitle": "Sanctions screening is not connected to any source yet",
+        "gapBody": "The sanctions_hits table exists, but no service writes to it. An empty list here means nobody has been screened, not that nobody matches a sanctions list. The gap is recorded in docs/security-review.md and has to close before real money moves.",
+        "col": {
+          "person": "Person",
+          "list": "List",
+          "score": "Match score",
+          "created": "When",
+          "resolution": "Resolution"
+        },
+        "unnamed": "No name",
+        "unresolved": "Not resolved",
+        "payload": "Raw match data",
+        "shown": "{count} hits; the list is capped at the 100 most recent.",
+        "hint": "Checks customer names against sanctions lists and holds every possible match for a person to decide."
+      },
+      "flags": {
+        "title": "Flagged messages",
+        "body": "These are signals, never a block: the message reached its reader exactly as it was written.",
+        "empty": "No flagged messages.",
+        "name": {
+          "off_platform": "Off platform",
+          "account_number": "Account number in text",
+          "contact": "Contact details"
+        },
+        "kind": {
+          "order": "Order thread",
+          "p2p": "P2P thread",
+          "support": "Support thread"
+        },
+        "open": "Open the thread",
+        "noBody": "No text",
+        "shown": "{count} messages; the list is capped at the 100 most recent.",
+        "hint": "Messages the system found suspicious, waiting on your decision."
+      },
+      "thresholds": {
+        "title": "Limits and tiers",
+        "body": "Both rows are read from the settings table and saved back to it. Save stays closed until the text parses as JSON.",
+        "keys": {
+          "p2p_limits": {
+            "label": "P2P limits",
+            "hint": "Open offers per maker, offers per hour, and the Toman ceiling on a single trade by risk tier."
+          },
+          "customer_tiers": {
+            "label": "Customer tiers",
+            "hint": "The volume threshold for each tier and the platform fee, in basis points, that comes with it."
+          }
+        },
+        "editorLabel": "Value of {key}",
+        "missing": "This key is not in the settings table.",
+        "invalid": "That is not valid JSON.",
+        "readOnly": "Editing these values belongs to the platform-admin role; here they are read-only.",
+        "save": "Save",
+        "saving": "One moment…",
+        "saved": "Saved.",
+        "saveFailed": "Not saved. Try again.",
+        "hint": "The amount each customer tier may send, and the peer-to-peer limits. Changing a number here applies to every new order immediately."
+      },
+      "retention": {
+        "title": "Retention",
+        "body": "What is kept, and for how long.",
+        "audit": "The audit log (audit_log) is permanent. Rows can be neither edited nor deleted; a database trigger refuses both.",
+        "ledger": "The ledger (ledger_entries) is permanent, under the same append-only rule. Every figure that moved stays.",
+        "kyc": "KYC documents live in the private kyc-documents bucket. They are never public and open only through a 60-second signed link.",
+        "gap": "There is no automatic purge job. Nothing ages out on its own, so a retention window is a decision still to be written down.",
+        "hint": "What is kept, for how long, and when it is deleted."
+      }
+    },
+    "content": {
+      "metaTitle": "Content",
+      "title": "Content and messages",
+      "subtitle": "Pages, FAQs, banners and announcements, and the SMS and email wording — each of them in Persian and English.",
+      "loadFailedTitle": "Content could not be read",
+      "loadFailedBody": "The read from the database did not complete, so we cannot say what is stored. Reload the page; if it keeps happening, tell the engineering team.",
+      "tab": {
+        "cms": "Site content",
+        "templates": "Message wording",
+        "cmsHint": "The site's pages and copy. Until a piece is published it is only visible here.",
+        "templatesHint": "The SMS and email wordings the system sends by itself. Every template needs writing in every language."
+      },
+      "locale": {
+        "fa": "Persian",
+        "en": "English"
+      },
+      "edit": "Edit",
+      "close": "Close",
+      "save": "Save",
+      "saved": "Saved.",
+      "create": "Create",
+      "cancel": "Cancel",
+      "working": "One moment…",
+      "errors": {
+        "keyRequired": "Write the key in Latin letters, digits, dots, hyphens or underscores.",
+        "titleRequired": "Write a title.",
+        "bodyRequired": "Write the body.",
+        "duplicate": "This key already exists in this language.",
+        "forbidden": "Not saved: writing content is open to platform administrators only.",
+        "saveFailed": "Not saved. Try again."
+      },
+      "cms": {
+        "noDelete": "Rows are never deleted; the database refuses it. Unpublishing is how content is retired — no page renders CMS content yet, so publishing marks a row ready rather than putting it on the site.",
+        "gapWarning": "{count, plural, one {One key is written in one language only.} other {# keys are written in one language only.}}",
+        "allTranslated": "Every key is written in both languages.",
+        "newKey": "New key",
+        "keyLabel": "Key",
+        "keyHint": "The name this content is filed under — faq.fees, legal.terms.",
+        "keyPlaceholder": "faq.fees",
+        "typeLabel": "Type",
+        "localeLabel": "Language",
+        "titleLabel": "Title",
+        "bodyLabel": "Body",
+        "bodyHint": "Plain text. What you write is what is stored.",
+        "draftNote": "New content is stored unpublished. Publishing is a separate act, and today it only marks the row ready.",
+        "missing": "No {locale}",
+        "addTranslation": "Add {locale}",
+        "published": "Published",
+        "draft": "Unpublished",
+        "publishedOn": "Published {date}",
+        "updatedOn": "Edited {date}",
+        "publish": "Publish",
+        "unpublish": "Unpublish",
+        "empty": "No content yet.",
+        "type": {
+          "page": "Page",
+          "faq": "FAQ",
+          "banner": "Banner",
+          "announcement": "Announcement"
+        }
+      },
+      "templates": {
+        "intro": "The wording for each message key and channel is stored here. No sender reads this table yet, so an edit changes the stored text, not a message a customer receives. New keys are not created from this screen.",
+        "gapWarning": "{count, plural, one {One message is written in one language only.} other {# messages are written in one language only.}}",
+        "allTranslated": "Every message is written in both languages.",
+        "subjectLabel": "Subject",
+        "subjectHint": "For email. SMS and in-app messages carry no subject.",
+        "noSubject": "No subject",
+        "bodyLabel": "Body",
+        "bodyHint": "Write variables with the names declared beside the body.",
+        "variablesTitle": "Declared variables",
+        "noVariables": "No variables declared.",
+        "previewTitle": "Preview",
+        "previewHint": "Each variable is shown as its own name. Nothing is sent from here.",
+        "undeclared": "These names appear in the body but are not declared: {names}",
+        "missing": "No {locale}",
+        "addTranslation": "Add {locale}",
+        "empty": "No wording yet.",
+        "channel": {
+          "inapp": "In-app",
+          "push": "Push",
+          "sms": "SMS",
+          "email": "Email"
+        }
+      }
+    },
+    "dashboard": {
+      "metaTitle": "Management reports",
+      "title": "Management reports",
+      "subtitle": "Settled volume, fee revenue and how each office is doing over the last twelve months. Every figure is counted from the orders, their events and the ledger.",
+      "toman": "Toman",
+      "vsLastMonth": "vs the same span last month",
+      "noBase": "Last month has no figure to compare against.",
+      "monthToDate": "{month}, month to date ({days, plural, one {# day} other {# days}}).",
+      "card": {
+        "volume": "Settled volume this month",
+        "settled": "Completed orders this month",
+        "fees": "Platform fee revenue this month",
+        "inFlight": "Orders in flight",
+        "atRisk": "At SLA risk",
+        "atRiskOf": "{counted} with under 24 hours left",
+        "noDeadlines": "No deadline is recorded on any open order"
+      },
+      "hint": {
+        "inFlight": "Open right now, with someone waiting on it.",
+        "atRisk": "Due in under 24 hours, or already past due.",
+        "noDeadlines": "No open order carries a deadline yet."
+      },
+      "volumeTitle": "Settled volume by month",
+      "volumeHint": "An order counts in the month it settled, not the month it was opened. The last column is the current month so far, and is not complete.",
+      "chartLabel": "Bar chart of settled volume from {from} to {to}. The highest month was {peak} at {max} Toman.",
+      "corridorTitle": "Corridor share of volume",
+      "corridorHint": "Share is by Toman volume of the orders settled in the last twelve months.",
+      "noVolume": "Nothing has settled in this period yet.",
+      "scoreTitle": "Office scorecards",
+      "scoreHint": "Active offices only, over the last twelve months, sorted by volume. Average completion is the gap between an order being opened and its completion event.",
+      "scoreEmpty": "No active offices.",
+      "col": {
+        "office": "Office",
+        "orders": "Orders",
+        "volume": "Volume (Toman)",
+        "completion": "Avg. completion",
+        "sla": "On time",
+        "disputes": "Dispute rate"
+      },
+      "hours": "{value} h",
+      "minutes": "{value} min",
+      "noData": "—",
+      "noOrders": "None",
+      "corridorOnly": "All settled volume came through one route: <corridor></corridor>, <amount></amount> Toman in total.",
+      "noComparison": "No figure from last month to compare against.",
+      "kpiLabel": "Key figures",
+      "sectionHint": {
+        "volume": "How much settled in each of the last twelve months. The current month is faded because it is not finished and is not comparable with the complete ones.",
+        "corridors": "Each corridor's share of settled volume. Tap a corridor to see its orders.",
+        "scores": "How each active office is doing: how many orders, how much money, how fast, how often on time, and how often it ended in a dispute."
+      },
+      "openLedger": "Open the ledger",
+      "openSettled": "See settled orders",
+      "openOffices": "Open the office list"
+    },
+    "finance": {
+      "metaTitle": "Ledger",
+      "title": "Ledger and reconciliation",
+      "subtitle": "The trial balance, fee revenue and the most recent ledger transactions. The ledger is append-only; nothing on this page edits it.",
+      "toman": "Toman",
+      "partialTitle": "The trial balance covers part of the ledger",
+      "partialBody": "This page read the {count} most recent entries; older ones are not in the sum. If the total is not zero, a transaction may have been cut in half at that boundary rather than the ledger being out.",
+      "failedTitle": "The ledger could not be read",
+      "failedBody": "Reading the ledger failed. What is shown below is incomplete and may be nothing at all; until the read succeeds this page says nothing about whether the ledger balances.",
+      "balance": {
+        "zeroTitle": "The ledger balances",
+        "zeroBody": "In every currency, debits equal credits. That is the only acceptable state for a double-entry ledger.",
+        "brokenTitle": "The ledger does not balance",
+        "brokenBody": "The difference below is real and needs chasing. It is neither rounded nor hidden; until it reaches zero the reconciliation is not closed.",
+        "unknownTitle": "This total is not a verdict",
+        "unknownBody": "The sum below covers only the entries this page could read. A figure other than zero here does not on its own mean the ledger is out; read it together with the note above.",
+        "emptyTitle": "Nothing to balance yet",
+        "zeroBadge": "Balanced",
+        "brokenBadge": "Out of balance",
+        "empty": "No ledger account has been opened yet.",
+        "hint": "The ledger's health check: in a correctly kept book, every currency totals exactly zero."
+      },
+      "escrow": {
+        "title": "Funded into holding",
+        "hint": "Money a customer has paid in that the platform holds until the currency is handed over.",
+        "empty": "Nothing has been funded into holding yet."
+      },
+      "trial": {
+        "title": "Trial balance",
+        "hint": "Debits and credits totalled across every account. A figure that is not zero means something was recorded wrongly.",
+        "col": {
+          "account": "Account",
+          "owner": "Owner",
+          "entries": "Entries",
+          "net": "Position"
+        },
+        "subtotal": "Group total",
+        "remainder": "{count} further accounts",
+        "noOwner": "—"
+      },
+      "owner": {
+        "platform": "Platform",
+        "office": "Offices",
+        "customer": "Customers",
+        "suspense": "Suspense"
+      },
+      "code": {
+        "irt_holding": "Toman holding",
+        "irt_payable": "Toman payable",
+        "irt_fees": "Toman fees",
+        "irt_settlement": "Office settlement"
+      },
+      "fees": {
+        "platformTitle": "Platform fee revenue",
+        "platformHint": "The fee income that reached the platform, month by month.",
+        "total": "Twelve-month total",
+        "empty": "No fee was posted in this window.",
+        "officeTitle": "Office fee revenue",
+        "officeHint": "Each office's share of the fees. Tap an office to open its file.",
+        "officeEmpty": "No office fee has been posted.",
+        "col": {
+          "office": "Office",
+          "fees": "Fees"
+        },
+        "unknownOffice": "Removed office"
+      },
+      "txn": {
+        "title": "Recent ledger transactions",
+        "hint": "The most recent ledger entries, newest first.",
+        "empty": "No ledger transaction has been posted yet.",
+        "reversal": "Reversal",
+        "reversalLine": "Reversal",
+        "noOrder": "No order",
+        "debit": "Debit",
+        "credit": "Credit",
+        "noMemo": "—",
+        "unknownOwner": "Unknown owner",
+        "shown": "Showing the {count} most recent transactions."
+      },
+      "openOffices": "Open the office list",
+      "ownerHint": {
+        "platform": "The platform's own accounts; the fees that reached us are here.",
+        "intermediate": "Money in transit that has not reached anyone yet — such as Toman held until the currency is handed over.",
+        "office": "Each office's account with the platform: what it is owed or owes for settlement and fees.",
+        "customer": "Each customer's account with the platform; in a correctly kept book it usually sits in debit until their order finishes."
+      }
+    },
+    "rates": {
+      "metaTitle": "Rates & spread",
+      "title": "Rates & spread",
+      "subtitle": "Where the rates come from, which sources are registered, and the floor and ceiling this console measures office spreads against.",
+      "snapshot": {
+        "title": "Current rate snapshot",
+        "degradedTitle": "This snapshot is not fresh",
+        "degradedBody": "The primary source did not answer, or its newest observation is older than the accepted window. Check the source and observation time below before pricing a customer or settling a dispute from these numbers.",
+        "staleBadge": "Stale rates",
+        "okTitle": "The snapshot is fresh",
+        "okBody": "The primary source answered and its newest observation is within the accepted window.",
+        "source": "Source",
+        "observed": "Observed at source",
+        "fetched": "Fetched by us",
+        "sourceName": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "demo": "Fallback source"
+        },
+        "col": {
+          "pair": "Pair",
+          "mid": "Mid (Toman)",
+          "change": "24h change",
+          "source": "Source",
+          "observed": "Observed"
+        },
+        "empty": "This snapshot carries no rates.",
+        "hint": "The rates customers are being shown right now, and when each was last updated."
+      },
+      "sources": {
+        "title": "Rate providers",
+        "hint": "Where the rates are read from, and whether each source is healthy.",
+        "readOnly": "A source cannot be switched on or off from this page: the database policy on the sources table grants read only, and has no policy for writes at all. The switches show the current state and are disabled; changing it today is a database migration. “Last success” and “Last error” are the stored columns, and no job writes them yet, so they stay empty even while a provider is answering — the freshness banner at the top of this page is what tells you whether the pipeline is working.",
+        "col": {
+          "name": "Name",
+          "kind": "Kind",
+          "state": "State",
+          "lastOk": "Last success",
+          "lastError": "Last error"
+        },
+        "active": "Active",
+        "inactive": "Inactive",
+        "empty": "No source has been registered yet.",
+        "kind": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "manual": "Manual",
+          "demo": "Fallback"
+        }
+      },
+      "bounds": {
+        "title": "Platform spread floor and ceiling",
+        "hint": "The narrowest and widest spread any office is allowed to set.",
+        "floor": "Floor",
+        "ceiling": "Ceiling",
+        "means": "{bps} hundredths of a percent means {pct}%",
+        "missing": "Nothing is stored yet. The numbers below are an opening suggestion; until they are saved, this page marks nothing as out of range.",
+        "unreadable": "A value is stored under this key, but it cannot be read as a floor and a ceiling, so no row is measured against it. The fields below show the opening suggestion rather than what is stored, and saving replaces the stored value.",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Saved.",
+        "saveFailed": "Not saved.",
+        "invalid": "The floor must be zero or more, the ceiling must be greater than the floor, and the ceiling cannot go above {max} bps — the office spread editors refuse anything higher. Both are whole numbers.",
+        "updated": "Last changed: {at}"
+      },
+      "spread": {
+        "title": "Spread across offices",
+        "hint": "The offices' spreads side by side, for finding one that is expensive or unusual.",
+        "notEnforced": "Until a floor and ceiling are saved, no row is marked as out of range.",
+        "col": {
+          "corridor": "Corridor",
+          "offices": "Offices",
+          "min": "Lowest",
+          "median": "Median",
+          "max": "Highest"
+        },
+        "empty": "No office has configured a corridor yet.",
+        "belowFloor": "Below floor",
+        "aboveCeiling": "Above ceiling"
+      },
+      "openOffices": "Open the office list"
+    },
+    "users": {
+      "metaTitle": "Customers",
+      "title": "Customers",
+      "subtitle": "Every customer on the platform. Search by name or phone.",
+      "searchLabel": "Search by name or phone",
+      "searchPlaceholder": "Name or phone",
+      "search": "Search",
+      "kycFilter": "KYC",
+      "kycAll": "All statuses",
+      "accessFilter": "Account access",
+      "accessAll": "All",
+      "accessFrozen": "Frozen",
+      "accessOpen": "Open",
+      "kyc": {
+        "unverified": "Unverified",
+        "pending": "In review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "more_info_needed": "More documents needed"
+      },
+      "col": {
+        "name": "Name",
+        "phone": "Phone",
+        "kyc": "KYC",
+        "risk": "Risk",
+        "access": "Access",
+        "orders": "Orders",
+        "volume": "Volume",
+        "joined": "Joined"
+      },
+      "unnamed": "No name",
+      "notSet": "Not set",
+      "risk": "Tier {tier}",
+      "frozenBadge": "Frozen",
+      "openBadge": "Open",
+      "toman": "Toman",
+      "empty": "No customers yet.",
+      "emptyFiltered": "No customer matches these filters.",
+      "shown": "{count} customers; the list is capped at the 200 most recent.",
+      "volumeHint": "Volume is the Toman leg of completed orders only.",
+      "totalsTruncated": "Not every order behind this list was read; the Orders and Volume columns are understated. Narrow the search to see them whole.",
+      "detailMetaTitle": "Customer file",
+      "identityTitle": "Identity",
+      "identity": {
+        "nameFa": "Name (Persian)",
+        "nameLatin": "Name (Latin)",
+        "phone": "Phone",
+        "email": "Email",
+        "nationalCode": "National code",
+        "dob": "Date of birth",
+        "nationality": "Nationality",
+        "kyc": "KYC",
+        "risk": "Risk tier",
+        "referralCode": "Referral code",
+        "joined": "Joined"
+      },
+      "phoneVerified": "Verified",
+      "phoneUnverified": "Not verified",
+      "tierTitle": "Customer tier",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum"
+      },
+      "tierFee": "At this level, {pct} percentage points come off the banded commission.",
+      "tierVolume": "Completed volume",
+      "tierToNext": "{amount} Toman to reach {tier}",
+      "tierTop": "Top tier; there is no next one.",
+      "tierUnavailable": "This customer's level could not be read; volume and discount are hidden until it answers.",
+      "ordersTitle": "Orders",
+      "orderCol": {
+        "ref": "Reference",
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "state": "State",
+        "created": "Date"
+      },
+      "noOrders": "No orders yet.",
+      "ordersCapped": "This list is capped at the {count} most recent orders; the volume above covers every completed one.",
+      "destinationsTitle": "Destination accounts",
+      "noDestinations": "No destination account saved.",
+      "kind": {
+        "sheba": "Sheba",
+        "card": "Card",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash_pickup": "Cash pickup"
+      },
+      "verification": {
+        "unverified": "Unchecked",
+        "pending": "Pending",
+        "verified": "Verified",
+        "rejected": "Rejected"
+      },
+      "thirdParty": "Third party",
+      "archived": "Archived",
+      "loginsTitle": "Sign-in history",
+      "loginKind": {
+        "sign_in": "Sign-in",
+        "sign_out": "Sign-out",
+        "revoked": "Session revoked"
+      },
+      "noLogins": "No sign-in events recorded.",
+      "loginsCapped": "This list is capped at the {count} most recent events.",
+      "unknownDevice": "Unknown",
+      "referralsTitle": "Referrals",
+      "invitedBy": "Invited by {name} with code {code}",
+      "invitedByNobody": "Did not join with anyone's referral code.",
+      "noReferrals": "Has not referred anyone.",
+      "rewarded": "Rewarded",
+      "rewardPending": "Waiting on their first completed order",
+      "freezeTitle": "Freeze account",
+      "freezeBody": "Freezing closes profile edits for this customer, and takes a written reason.",
+      "freezeReason": "Reason",
+      "freezeReasonPlaceholder": "Why is this account being frozen?",
+      "freeze": "Freeze",
+      "unfreeze": "Unfreeze",
+      "frozenSince": "This account has been frozen since {date}.",
+      "frozenReasonLabel": "Recorded reason",
+      "notFrozen": "This account is open.",
+      "identityHint": "This customer's name, number and identity-check status.",
+      "tierHint": "This customer's tier, and the limits that tier sets for them.",
+      "ordersHint": "Every order this customer has placed. Tap a row to open it.",
+      "destinationsHint": "The bank accounts this customer has saved to receive money into.",
+      "loginsHint": "The most recent sign-ins on this account, with time and device.",
+      "referralsHint": "People who signed up with this customer's code.",
+      "freezeHint": "Close the account. Until it is reopened this customer cannot place a new order.",
+      "freezeReasonRule": "At least 8 characters. This text stays in the audit log.",
+      "unfreezeReasonPlaceholder": "Why is this account being reopened?",
+      "freezeWorking": "Working…",
+      "freezeReasonTooShort": "The reason must be at least 8 characters.",
+      "freezeForbidden": "Only a platform administrator or a compliance officer can freeze an account.",
+      "freezeStaff": "Platform staff accounts are not frozen here; remove their access instead.",
+      "freezeStale": "This account changed while you were looking at it. Refresh the page.",
+      "freezeFailed": "That did not go through. Try again."
+    },
+    "hintLabel": "What is this section?",
+    "hint": {
+      "dashboard": "The platform at a glance: settled volume, fees, orders in flight and how each office is performing. The page to open first each day.",
+      "orders": "Every order on the platform. You can move a stuck one forward by hand, with a reason on the record.",
+      "exchanges": "Create an office, set its corridors and fees, and act on its behalf when it goes quiet.",
+      "p2p": "Peer-to-peer offers and trades, and arbitration of disputes.",
+      "support": "Support queues, split by the kind of conversation.",
+      "tickets": "Every ticket, including ones an office is sitting on. The platform is above the office and you can take any of them.",
+      "users": "Every customer. Opening a row shows their history, tier and sign-ins.",
+      "kyc": "The review queue for customer and office identity documents. Approval or refusal is yours.",
+      "compliance": "Sanctions matching, flagged messages, and the tier and P2P thresholds.",
+      "finance": "The ledger, account balances and reconciliation.",
+      "settlement": "Settlement cards and IBANs for every office, and where each stands against its ceiling.",
+      "rates": "Rate-source health and how office spreads compare with each other.",
+      "content": "The site's text: FAQ, announcements and the SMS and email templates, in both languages.",
+      "settings": "Feature switches, platform settings and the business calendar.",
+      "audit": "The audit log: every change anyone made, with who and when. Not editable."
+    },
+    "attention": {
+      "title": "Waiting for you",
+      "allClear": "No queue is waiting for you.",
+      "item": {
+        "atRisk": "orders close to their deadline",
+        "disputes": "orders in dispute",
+        "kyc": "identity submissions to review",
+        "tickets": "open tickets",
+        "coins": "coin requests to confirm",
+        "offices": "offices not yet active"
+      },
+      "hint": "The queues somebody is waiting on right now, most urgent first. When they are all empty, one line says so."
+    },
+    "openSection": "Open this section",
+    "sectionHint": {
+      "byState": "Platform orders, grouped by the state they are in. Tap a bar to see those orders.",
+      "feed": "The most recent things staff have done, read from the audit log. Tap a line to open the record it is about."
+    },
+    "builtBy": "Built by the Â Programming Group",
+    "staffFallback": "Platform staff"
+  },
+  "chat": {
+    "orderTitle": "Conversation with the office",
+    "orderBody": "Ask before you commit. You and the exchange office both see this conversation.",
+    "notYet": "Until an office picks the order up there is nobody on the other side.",
+    "unavailable": "This conversation is not available.",
+    "empty": "Nothing has been said yet.",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "sending": "Sending…",
+    "someone": "Someone",
+    "system": "System",
+    "internalNote": "Internal note — the customer does not see this",
+    "asInternalNote": "As an internal note",
+    "offPlatformWarning": "Settlement always happens inside the platform; paying outside it loses the ledger and the dispute process.",
+    "flag": {
+      "off_platform": "Suggests settling off-platform",
+      "account_number": "Account number in the text",
+      "contact": "Contact details in the text"
+    },
+    "errors": {
+      "tooLong": "That message is longer than allowed.",
+      "notParticipant": "You are not part of this conversation.",
+      "failed": "Could not send. Try again."
+    }
+  },
+  "support": {
+    "metaTitle": "Support",
+    "title": "Support",
+    "subtitle": "Your message goes straight to the support queue. We answer within one business day.",
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "backHome": "Back to home",
+    "howTitle": "How support works",
+    "howBody": "Your message reaches the support team and is answered right here; the conversation stays with you."
+  },
+  "p2p": {
+    "metaTitle": "P2P marketplace",
+    "title": "P2P marketplace",
+    "subtitle": "Trade directly with another person — with the Toman leg settled inside the platform, supervised by a licensed exchange office as a neutral confirmer.",
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "backHome": "Back to home",
+    "postOffer": "Post an offer",
+    "verifyToPost": "Verify to post",
+    "allPairs": "All",
+    "empty": "No open offers yet.",
+    "sells": "Sells {code}",
+    "buys": "Buys {code}",
+    "perUnit": " Toman per {code}",
+    "anonymousMaker": "Verified trader",
+    "newTrader": "New trader",
+    "tradesDone": "{count, number} trades done",
+    "yours": "Your offer",
+    "escrowNote": "The Toman leg settles inside the platform under an exchange office's supervision; nothing outside it is covered.",
+    "rateLabel": "Rate (Toman per {code})",
+    "minSliceLabel": "Minimum slice",
+    "makerLabel": "Maker",
+    "reputationLabel": "Track record",
+    "reputationValue": "{count, number} trades · {rate}% completed",
+    "status": {
+      "open": "Open",
+      "paused": "Paused",
+      "filled": "Filled",
+      "cancelled": "Cancelled",
+      "removed": "Removed"
+    },
+    "alreadyTaken": "You already have a trade on this offer.",
+    "openTrade": "Open the trade",
+    "yourOwnOffer": "This is your own offer.",
+    "verifyToTake": "Taking an offer needs a verified identity.",
+    "verifyCta": "Verify identity",
+    "signInCta": "Sign in",
+    "takeTitle": "Take this offer",
+    "sliceLabel": "Amount ({code})",
+    "takeSummary": "Toman leg: {toman} IRT, held by the exchange office until both sides confirm.",
+    "take": "Start the trade",
+    "taking": "Starting…",
+    "errors": {
+      "ownOffer": "You cannot take your own offer.",
+      "belowMin": "That is below this offer's minimum slice.",
+      "aboveMax": "That is above this offer's maximum slice.",
+      "notEnoughLeft": "There is not that much left on this offer.",
+      "noEscrow": "No active exchange office covers this corridor right now.",
+      "ceiling": "That is above the ceiling for your verification tier.",
+      "unverified": "Verify your identity first.",
+      "closed": "This offer is no longer open.",
+      "failed": "Could not complete. Try again.",
+      "outsideBand": "That price is more than 7% away from the market rate. Bring it back into range."
+    },
+    "compose": {
+      "metaTitle": "Post an offer",
+      "title": "Post an offer",
+      "subtitle": "One leg is always Toman. You set the rate; settlement is supervised by an exchange office.",
+      "verifyTitle": "Posting an offer needs a verified identity",
+      "verifyBody": "This is a requirement, not a preference: the other side has to know who they are trading with.",
+      "verifyCta": "Start verification",
+      "direction": "What are you doing?",
+      "sell": "I have {code}, I want Toman",
+      "buy": "I have Toman, I want {code}",
+      "currency": "Currency",
+      "amount": "Amount ({code})",
+      "rate": "Your rate (Toman per {code})",
+      "marketHint": "Market is {rate} Toman.",
+      "useMarket": "Use the market rate",
+      "minSlice": "Minimum per trade",
+      "terms": "Terms",
+      "termsPlaceholder": "e.g. SEPA transfer, same business day",
+      "summary": "Offering {have} for {want} at {rate} Toman.",
+      "escrowNote": "Once matched, the Toman is held by the exchange office and released when the foreign leg is confirmed.",
+      "publish": "Publish offer",
+      "publishing": "Publishing…",
+      "errors": {
+        "duplicate": "You already have an open offer for that pair; edit it instead.",
+        "tooMany": "You have reached the maximum number of open offers.",
+        "cooldown": "Too many offers in the last hour.",
+        "ceiling": "That is above the ceiling for your verification tier.",
+        "unverified": "Verify your identity first.",
+        "corridor": "One leg of an offer must be Toman.",
+        "failed": "Could not publish. Try again."
+      }
+    },
+    "trade": {
+      "metaTitle": "P2P trade",
+      "title": "P2P trade",
+      "youAreMaker": "You posted this offer.",
+      "youAreTaker": "You took this offer.",
+      "tomanLeg": "Toman leg",
+      "foreignLeg": "Foreign leg",
+      "agreedRate": "Agreed rate",
+      "escrowOffice": "Escrow office",
+      "noEscrow": "Not assigned yet",
+      "escrowExplainer": "The office is not a party to the trade; it confirms the Toman deposit and the foreign transfer, and takes an escrow fee.",
+      "openOrder": "Open the settlement",
+      "chatTitle": "Trade conversation",
+      "chatBody": "The counterparty and the escrow office see this, and it is retained as dispute evidence.",
+      "rateTitle": "Rate your counterparty",
+      "rateBody": "Your rating shows on their public track record.",
+      "stars": "{count, number} stars",
+      "alreadyRated": "You have already rated this trade.",
+      "disputeTitle": "Raise a dispute",
+      "disputeBody": "The trade freezes and platform compliance reviews both sides.",
+      "disputePlaceholder": "What happened? (at least 8 characters)",
+      "raiseDispute": "Raise a dispute",
+      "reasonRequired": "A written reason of at least 8 characters is required.",
+      "failed": "Could not complete. Try again."
+    },
+    "rateBadge": "{rate} per {code}",
+    "dial": {
+      "title": "Price and how fast you trade",
+      "bodySell": "You can sell up to {pct}% under the market rate. The cheaper you go, the higher your offer sits and the sooner a buyer finds it.",
+      "bodyBuy": "You can buy up to {pct}% over the market rate. The more you pay, the sooner sellers come to your offer.",
+      "atMarket": "Market rate",
+      "off": "{pct, number}%",
+      "marketNow": "Market now",
+      "yourPrice": "Your price",
+      "difference": "Difference",
+      "below": "below",
+      "above": "above",
+      "fasterSell": "At this price you sit ahead of offers priced at market.",
+      "fasterBuy": "At this price you are more attractive to sellers than the rest.",
+      "outside": "More than {pct, number}% away from the market is not accepted. Bring the price back into range."
+    },
+    "visibility": {
+      "title": "How do I get seen first?",
+      "subtitle": "The order of offers is not random. These four things decide where you sit in the list.",
+      "items": {
+        "price": {
+          "title": "A keener price",
+          "body": "The strongest lever. You have up to 7% of room either side of the market; every step toward the other party moves you up."
+        },
+        "reputation": {
+          "title": "A good rating",
+          "body": "Your rating is built from completed trades. A clean trade delivered on time lifts your next offer."
+        },
+        "speed": {
+          "title": "Quick replies",
+          "body": "Your average reply time is visible. People go to whoever answers soonest."
+        },
+        "clarity": {
+          "title": "Clear terms",
+          "body": "Say how and where you settle. An offer with plain conditions is far less likely to be ignored."
+        }
+      }
+    }
+  },
+  "track": {
+    "metaTitle": "Tracking {ref}",
+    "arriving": "Arriving for the recipient",
+    "milestone": {
+      "accepted": "The exchange office accepted it",
+      "funded": "Toman is held by the office",
+      "sent": "The foreign transfer was sent",
+      "done": "Receipt confirmed and settled"
+    },
+    "handledBy": "Handled by {office}.",
+    "dueBy": "Committed by {date}",
+    "privacyNote": "This page shows status only — no names, no account numbers, no fees.",
+    "cta": "Want to send one yourself?",
+    "ctaLink": "See Asaex",
+    "notFoundTitle": "No such transfer",
+    "notFoundBody": "Check the reference; it looks like ASA-XXXXXX.",
+    "throttledTitle": "Try again shortly",
+    "throttledBody": "There are a lot of tracking requests right now.",
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "backHome": "Back to home",
+    "share": {
+      "title": "Tracking for the recipient",
+      "body": "Send this link to whoever is receiving. They see the status without an account, and it carries nobody's name or account number.",
+      "copy": "Copy",
+      "copied": "Copied"
+    }
+  },
+  "officePanel": {
+    "metaTitle": "Today's work",
+    "title": "Today's work",
+    "subtitle": "One card, one job. Press the green button to do the next step.",
+    "navLabel": "Office sections",
+    "nav": {
+      "today": "Today",
+      "requests": "Requests",
+      "chat": "Messages",
+      "accounts": "Accounts",
+      "liquidity": "Balances",
+      "rates": "Rates",
+      "customers": "Customers",
+      "team": "Team",
+      "reports": "Reports",
+      "settings": "Settings",
+      "tickets": "Tickets",
+      "settlement": "Settlement",
+      "coins": "Coins"
+    },
+    "status": {
+      "draft": "Not live yet",
+      "active": "Active",
+      "suspended": "Suspended",
+      "archived": "Archived"
+    },
+    "unknownOffice": "Exchange office",
+    "allClear": "Nothing left to do",
+    "allClearBody": "Any new request will appear here.",
+    "aCustomer": "a customer",
+    "beat": "Step {n, number} of 4",
+    "working": "One moment…",
+    "sendTo": "Send this amount to",
+    "copy": "Copy",
+    "somethingWrong": "Something wrong?",
+    "whatIsWrong": "What has gone wrong?",
+    "notePlaceholder": "e.g. the payment receipt is not legible",
+    "askCustomer": "Ask the customer",
+    "pause": "Pause it for now",
+    "nevermind": "Never mind",
+    "waitingTitle": "Waiting on others — nothing to do",
+    "waiting": {
+      "recipient": "Waiting for the recipient to confirm",
+      "customer": "Waiting for the customer",
+      "platform": "With the platform"
+    },
+    "act": {
+      "claim": "I'll take this one",
+      "accept": "I accept",
+      "money_in": "The Toman arrived",
+      "sent": "I've sent the currency",
+      "settle": "Settled"
+    },
+    "line": {
+      "claim": "New request from {name}",
+      "accept": "{name} is waiting on your answer",
+      "money_in": "This should arrive in your account — from {name}",
+      "sent": "Send this to {name}",
+      "settle": "The recipient confirmed; close it out"
+    },
+    "errors": {
+      "alreadyClaimed": "Another office took this one first.",
+      "needNote": "Write a short note.",
+      "failed": "That did not go through. Press again."
+    },
+    "unavailableTitle": "Not available in this environment",
+    "unavailableBody": "The database is not reachable. Try again in a moment.",
+    "notAMemberTitle": "You are not part of an exchange office",
+    "notAMemberBody": "If you should have office access, contact support.",
+    "backHome": "Back to home",
+    "money": {
+      "accounts": {
+        "metaTitle": "Settlement accounts",
+        "title": "Settlement accounts",
+        "subtitle": "The accounts your customers pay into.",
+        "noPublicTitle": "No public account",
+        "noPublicBody": "Until at least one account — in any currency — is both public and active, the office cannot be set to active.",
+        "noIrtTitle": "No public IRT account",
+        "noIrtBody": "P2P escrow work is only routed to an office with a public, active IRT account. Other orders do not need one.",
+        "noDeleteNote": "Accounts are never deleted; the record of past payments has to stay. Deactivate an account you no longer want.",
+        "readOnly": "Changing accounts needs the finance or owner role at this office.",
+        "empty": "No account has been added yet.",
+        "listTitle": "Accounts on file",
+        "addTitle": "Add an account",
+        "currency": "Currency",
+        "kindLabel": "Account type",
+        "kind": {
+          "iban": "Sheba or IBAN",
+          "card": "Card",
+          "swift": "SWIFT",
+          "cash": "Cash"
+        },
+        "number": "Account number",
+        "placeholder": {
+          "iban": "IR06 0120 0000 0000 1234 5678 90",
+          "card": "6037 9911 2345 6789",
+          "swift": "BKMTIRTH",
+          "cash": "Counter or branch name"
+        },
+        "label": "Account name",
+        "labelPlaceholder": "e.g. Bank Mellat, central branch",
+        "publicLabel": "Show to customers",
+        "publicHint": "Makes this account visible to customers.",
+        "activeLabel": "Active",
+        "activeHint": "An inactive account is not used on new orders.",
+        "add": "Add account",
+        "save": "Save",
+        "saved": "Saved.",
+        "working": "One moment…",
+        "badge": {
+          "public": "Public",
+          "internal": "Internal",
+          "inactive": "Inactive"
+        },
+        "errors": {
+          "numberRequired": "Write the account number.",
+          "forbidden": "You may not change this account.",
+          "saveFailed": "Not saved. Try again."
+        },
+        "listHint": "The accounts customers pay into. Only active ones are shown to customers.",
+        "addHint": "Add another card or IBAN to receive money from customers."
+      },
+      "liquidity": {
+        "metaTitle": "Liquidity",
+        "title": "Liquidity",
+        "subtitle": "This office's ledger position, by currency.",
+        "holding": "Settlement money stays in platform holding until it is withdrawn. What you see here is your share of it, not money already sitting in the office's bank account.",
+        "readOnly": "This page is read-only; it reports what the ledger has recorded and changes nothing.",
+        "position": "Ledger position",
+        "positionHint": "Credits minus debits.",
+        "code": {
+          "irt_fees": "Fees",
+          "irt_settlement": "Settlement"
+        },
+        "noPosition": "Nothing recorded in the ledger.",
+        "ledgerHidden": "The ledger is visible to platform staff only.",
+        "truncated": "The ledger is larger than one read; these figures cover its most recent part.",
+        "empty": "No currency has been set up for this office yet.",
+        "noAccessTitle": "No access to the office's money",
+        "noAccessBody": "Seeing the office's money needs the finance, owner, or viewer role. If you need this page, ask the office owner to change your role.",
+        "currencyHint": "What the platform's ledger says this office holds in this currency. It is the sum of every entry, not a figure anyone typed in.",
+        "openSettlement": "Open settlement"
+      }
+    },
+    "config": {
+      "rates": {
+        "metaTitle": "Routes and rate difference",
+        "title": "Routes and rate difference",
+        "subtitle": "For each route you can quote a rate slightly away from the base rate. That difference is not an extra charge: it comes out of the banded commission above, so what the customer pays does not change and your share of the commission grows. Minimum and maximum amounts and a cut-off time are recorded too.",
+        "readOnly": "Changing corridors needs the owner role at this office. This page is read-only for you.",
+        "templateNote": "The platform has a default figure for each route. Wherever yours differs you see \\u201coverridden\\u201d — the same thing the platform sees.",
+        "listTitle": "This office's corridors",
+        "empty": "No corridor has been defined yet. Add one below.",
+        "spreadLabel": "Distance from the base rate",
+        "spreadMeans": "{bps} hundredths of a percent — {pct}% away from the base rate",
+        "spreadHint": "Write the number in hundredths of a percent; 100 is one percent. 150 means one and a half percent.",
+        "templateSpread": "Platform default: {bps}",
+        "minLabel": "Smallest amount",
+        "maxLabel": "Largest amount",
+        "amountHint": "In {code}. Empty means no limit.",
+        "onFile": "On file: {amount} {code}",
+        "noLimit": "On file: no limit",
+        "cutoffLabel": "Daily cut-off",
+        "cutoffHint": "The cut-off recorded for this corridor.",
+        "activeLabel": "Active",
+        "activeHint": "An inactive corridor is skipped when the platform picks an escrow office; open orders stay where they are.",
+        "badge": {
+          "same": "Same as default",
+          "overridden": "Overridden",
+          "custom": "Not in template",
+          "inactive": "Inactive"
+        },
+        "addTitle": "Add a corridor",
+        "addCurrency": "Currency",
+        "addHint": "Open a new corridor for this office.",
+        "add": "Add corridor",
+        "save": "Save",
+        "saved": "Saved.",
+        "working": "One moment…",
+        "errors": {
+          "spreadRange": "This has to be a whole number between 0 and 2000 (nought to twenty percent).",
+          "amountInvalid": "Write the amount in digits.",
+          "amountOrder": "The smallest amount cannot be larger than the largest.",
+          "duplicate": "That corridor is already defined.",
+          "forbidden": "Not saved: only the office owner may write corridors.",
+          "saveFailed": "Not saved. Try again."
+        },
+        "emptyReadOnly": "No corridor has been defined yet.",
+        "amountUnknownCurrency": "This corridor's currency is not in the platform list, so no amount can be written for it.",
+        "listHint": "The corridors this office works, and the rate on each."
+      },
+      "settings": {
+        "metaTitle": "Office settings",
+        "title": "Office settings",
+        "subtitle": "Working hours, auto-accept, and where notices are sent.",
+        "lockedTitle": "The office does not write these three settings",
+        "lockedBody": "Writes to the office record are accepted from the platform only. You can read the current values here and send the change you want to support.",
+        "supportCta": "Message support",
+        "hours": {
+          "title": "Working hours",
+          "body": "Times are in {tz}.",
+          "bodyUnknown": "No time zone is recorded on this office; times are read as local to the office.",
+          "open": "Opens",
+          "close": "Closes",
+          "closedLabel": "Closed",
+          "day": {
+            "sat": "Saturday",
+            "sun": "Sunday",
+            "mon": "Monday",
+            "tue": "Tuesday",
+            "wed": "Wednesday",
+            "thu": "Thursday",
+            "fri": "Friday"
+          },
+          "hint": "The hours this office accepts orders. Outside them, orders wait in the queue."
+        },
+        "auto": {
+          "title": "Auto-accept",
+          "body": "This is recorded; auto-accept is not applied to orders yet.",
+          "enabledLabel": "Auto-accept",
+          "maxLabel": "Auto-accept ceiling",
+          "maxHint": "In Toman. Empty means no ceiling is recorded.",
+          "onFile": "On file: {amount} IRT",
+          "noLimit": "On file: no ceiling",
+          "hint": "When on, orders up to the amount you set are accepted without anyone approving them."
+        },
+        "notify": {
+          "title": "Where notices go",
+          "body": "These are recorded on the office record; nothing is sent to them yet.",
+          "phone": "Phone",
+          "phonePlaceholder": "+982188001122",
+          "email": "Email",
+          "emailPlaceholder": "office@example.com",
+          "smsLabel": "SMS",
+          "smsHint": "The SMS preference, recorded on file.",
+          "emailLabel": "Email",
+          "emailHint": "The email preference, recorded on file.",
+          "hint": "How word of a new order reaches you."
+        },
+        "save": "Save",
+        "saved": "Saved.",
+        "working": "One moment…",
+        "errors": {
+          "timeOrder": "The closing time has to be after the opening time.",
+          "timeMissing": "Write both times for a day that is not closed.",
+          "amountInvalid": "Write the ceiling in digits.",
+          "forbidden": "Not saved: writes to the office record are accepted from the platform only. Send the change to support.",
+          "saveFailed": "Not saved. Try again."
+        }
+      }
+    },
+    "requests": {
+      "metaTitle": "Requests",
+      "title": "Requests",
+      "subtitle": "Unclaimed requests and this office's work in progress, in one list.",
+      "scopeLabel": "Which requests",
+      "scope": {
+        "all": "All",
+        "action": "Needs your action"
+      },
+      "corridorLabel": "Corridor",
+      "allCorridors": "All corridors",
+      "col": {
+        "corridor": "Corridor",
+        "amount": "Amount",
+        "customer": "Customer",
+        "waiting": "Waiting",
+        "action": "Action"
+      },
+      "unnamed": "No name",
+      "claim": "Claim",
+      "working": "One moment…",
+      "empty": "Nothing is in progress.",
+      "emptyFiltered": "Nothing matches these filters.",
+      "errors": {
+        "alreadyClaimed": "Another office claimed this one first. The list has been refreshed.",
+        "inactive": "This office is not active, so it cannot claim requests right now.",
+        "failed": "That did not go through. Try again.",
+        "gone": "This request is no longer available. The list has been refreshed.",
+        "network": "No connection. Check it and try again."
+      },
+      "poolClosed": "This office is not active, so no new requests are shown to claim. Its own work in progress is still listed here.",
+      "narrowCustomer": "History of customer {ref}",
+      "clearCustomer": "Back to the queue"
+    },
+    "customers": {
+      "metaTitle": "Customers",
+      "title": "Customers",
+      "subtitle": "People who have transacted with this office.",
+      "searchLabel": "Search customers",
+      "searchPlaceholder": "Customer name",
+      "col": {
+        "name": "Name",
+        "orders": "Orders",
+        "volume": "Total",
+        "last": "Last order",
+        "kyc": "Verification",
+        "ref": "Customer"
+      },
+      "toman": "Toman",
+      "unnamed": "No name",
+      "volumeHint": "The total counts completed orders only.",
+      "privacy": "An office sees a customer's name and verification state, nothing further.",
+      "empty": "No customers yet.",
+      "emptyFiltered": "No customer matches that name.",
+      "kyc": {
+        "unverified": "Unverified",
+        "pending": "In review",
+        "approved": "Verified",
+        "rejected": "Rejected",
+        "more_info_needed": "More information needed",
+        "unknown": "Unknown"
+      },
+      "search": {
+        "label": "Search by customer reference",
+        "placeholder": "Customer reference"
+      },
+      "identityNote": "A customer's name is not available to an office; each is identified by the same reference you see on the requests list.",
+      "truncated": "This office has a great many orders; the counts and totals cover the most recent {count}.",
+      "noMatch": "No customer matches that reference."
+    },
+    "team": {
+      "metaTitle": "Team",
+      "title": "Team",
+      "subtitle": "Access to this office's panel. Only your own seat is listed here; a colleague's seat is not readable from this page.",
+      "col": {
+        "person": "Person",
+        "role": "Role",
+        "since": "Since",
+        "action": "Action"
+      },
+      "role": {
+        "office_viewer": "Viewer",
+        "office_operator": "Operator",
+        "office_finance": "Finance",
+        "office_owner": "Owner"
+      },
+      "roleMeaning": {
+        "office_viewer": "Reads the panel and changes nothing.",
+        "office_operator": "Works the day's orders.",
+        "office_finance": "The day's orders, plus accounts and balances.",
+        "office_owner": "Everything, including this page."
+      },
+      "you": "You",
+      "unnamed": "No name",
+      "nameNote": "A name appears only where the platform lets you read that profile; everyone else is listed by user id.",
+      "empty": "No seats have been granted at this office yet.",
+      "readOnly": "Only the office owner can change who has access.",
+      "addTitle": "Add a colleague",
+      "addBody": "They must already have an Asaex account. Nothing is emailed from here — ask them for their user id and paste it in.",
+      "userIdLabel": "User id",
+      "roleLabel": "Role",
+      "grant": "Grant access",
+      "revoke": "Revoke access",
+      "revokeConfirm": "Revoke this access?",
+      "revokeYes": "Yes, revoke",
+      "cancel": "Never mind",
+      "working": "One moment…",
+      "granted": "Access granted.",
+      "revoked": "Access revoked.",
+      "errors": {
+        "badId": "That is not a user id. It has to be the whole id.",
+        "noSuchUser": "No Asaex account has that id.",
+        "forbidden": "Only the office owner can do this.",
+        "failed": "That did not go through. Try again."
+      },
+      "addHint": "Give a colleague access to the panel, and decide what they may do."
+    },
+    "reports": {
+      "metaTitle": "Reports",
+      "title": "Reports",
+      "subtitle": "This office's volume and performance over the last six months.",
+      "empty": "This office has no orders from the last six months.",
+      "stat": {
+        "orders": "Orders",
+        "volume": "Toman volume",
+        "completion": "Average completion time",
+        "sla": "Delivered before the deadline"
+      },
+      "toman": "Toman",
+      "hours": "{value} hours",
+      "minutes": "{value} minutes",
+      "noData": "No data yet",
+      "volumeTitle": "Monthly volume",
+      "volumeHint": "Volume counts completed orders only; the order count is every order raised that month. The last month is still running, so its bar is drawn faded.",
+      "chartLabel": "Bar chart of Toman volume by month, {from} to {to}. Highest month {peak} at {max} Toman.",
+      "monthOrders": "{count, number} orders",
+      "corridorTitle": "Corridors",
+      "corridorHint": "Each corridor's share of this period's orders.",
+      "completionHint": "From an order's first event to the moment it completed, across {count, number} completed orders.",
+      "slaHint": "The share of completed orders closed before their deadline, across {count, number} orders that had one.",
+      "noCompleted": "Nothing has completed yet.",
+      "noSla": "No deadline was recorded for this period's orders.",
+      "chartEmptyLabel": "Bar chart of Toman volume by month, {from} to {to}. Nothing has completed in this period.",
+      "volumeSectionHint": "How much this office moved in each month.",
+      "corridorSectionHint": "Each corridor's share of this office's work."
+    },
+    "chat": {
+      "metaTitle": "Messages",
+      "title": "Messages",
+      "subtitle": "The conversations on this office's orders, and your own threads with Asaex support.",
+      "sectionOrders": "Orders",
+      "sectionSupport": "Asaex support",
+      "supportThread": "Support thread",
+      "pickThread": "Pick a conversation from the list.",
+      "empty": "No conversations that include you yet. Only threads you were added to appear here.",
+      "noMessages": "No messages",
+      "unknownOrder": "Order",
+      "notesHint": "An internal note is never shown to the customer — only this office and the platform see it.",
+      "status": {
+        "open": "Open",
+        "pending": "Pending",
+        "resolved": "Closed",
+        "archived": "Archived"
+      }
+    },
+    "hintLabel": "What is this section?",
+    "hint": {
+      "today": "Today's work. Each card is one transfer and the green button does the next thing. If this is the only screen you open, that is enough.",
+      "requests": "Transfers no office has taken yet that you can claim, plus your own. For the full list and search.",
+      "tickets": "Customer complaints and questions whose first answer is yours. Go 24 hours without replying and the customer can escalate to the platform.",
+      "chat": "Every conversation in one place: messages about each transfer, and support messages.",
+      "accounts": "Your card and IBAN numbers that customers see when paying in. Public means the customer can see it.",
+      "liquidity": "Your balance in each currency, from the ledger. To see how much Toman and how much foreign currency you hold.",
+      "rates": "For each corridor, the rate difference (spread) and the smallest and largest amount you accept.",
+      "customers": "The customers who have dealt with you, and their identity-check status.",
+      "team": "Colleagues with access to this panel. You can grant access or take it away.",
+      "settlement": "When a card hits its ceiling, define a fresh card or IBAN here so payments keep coming in.",
+      "reports": "Volume and fees over six months, completion speed and how well deadlines were met.",
+      "settings": "Opening hours, auto-accept, and which number and email get the alerts.",
+      "coins": "Requests to buy gold coins. Take one, price it, hand it over."
+    },
+    "builtBy": "Built by the Â Programming Group",
+    "group": {
+      "today": "Today",
+      "work": "Waiting work",
+      "money": "Money",
+      "office": "The office"
+    },
+    "waitingHint": "Orders that ask nothing of you and are waiting on the customer or the platform. Tap a reference to see what it is waiting for."
+  },
+  "toast": {
+    "copied": "Copied",
+    "copyFailed": "Could not copy. Select the text instead.",
+    "saved": "Saved",
+    "sent": "Sent",
+    "failed": "That did not go through. Try again.",
+    "offline": "You are offline. Showing the last known data."
+  },
+  "about": {
+    "metaTitle": "About us",
+    "title": "Seventeen people, spread across the world, on one thing",
+    "lede": "We are a team of seventeen working fully remotely from corners of the world — Tehran and Dubai, Berlin and Toronto. None of us share an office, and all of us work on one thing: making it as simple for an Iranian family to send money as it is to send a message. With love for Iran, and for the Iran being built next.",
+    "map": {
+      "alt": "A world map with nine markers, all connected to Tehran, with work moving along the routes between them.",
+      "caption": "Nine points on a map, seventeen people behind it — and one shared route."
+    },
+    "crafts": {
+      "product": {
+        "title": "Product design",
+        "body": "Every screen you see was made here: from the transfer flow to a panel an exchange office finishes its work on in four presses."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "body": "Our job is to say what this is without overstating it. The number we promise is the number the recipient gets."
+      },
+      "bizdev": {
+        "title": "Business development",
+        "body": "We build the network of licensed exchange offices and open the corridors that come next."
+      },
+      "strategy": {
+        "title": "Strategy",
+        "body": "We decide which route opens next, and what we deliberately will not build."
+      },
+      "support": {
+        "title": "Support",
+        "body": "When a transfer gets stuck there is a person on the other side who answers — not a bot."
+      },
+      "people": {
+        "title": "People",
+        "body": "A team across eight time zones does not hold together on its own. That is somebody's work."
+      }
+    },
+    "mission": {
+      "title": "Why we do this",
+      "body": "For many Iranians, sending currency still means trusting an unknown number on Telegram and hoping for the best. We think the same job can be done, with the same real exchange offices, but with a rate you can see, a route you can follow, and a clear answer to who is responsible.",
+      "contact": "Talk to us",
+      "how": "How a transfer works"
+    },
+    "built": {
+      "title": "Built and maintained",
+      "name": "The Â Programming Group",
+      "body": "This product is built and maintained by the Â Programming Group: from the database and the security layer to every screen you see on this site and in the office and admin panels."
+    }
+  },
+  "contact": {
+    "metaTitle": "Contact us",
+    "title": "Something wrong? Tell us.",
+    "lede": "Write your message and send it. All we need to follow up is a verified phone number — no sign-up, no extra form. Every ticket gets a reference and stays trackable to the end.",
+    "categoryLabel": "What is this about?",
+    "categories": {
+      "order": "A transfer",
+      "payment": "Payment",
+      "kyc": "Identity check",
+      "p2p": "P2P market",
+      "account": "My account",
+      "office": "An exchange office",
+      "other": "Something else"
+    },
+    "subjectLabel": "In one line",
+    "subjectPlaceholder": "e.g. My Toman payment has not been registered",
+    "bodyLabel": "What happened",
+    "bodyPlaceholder": "The more you write, the faster the answer: order reference, date, amount.",
+    "bodyHint": "If you have an order reference, include it.",
+    "phoneLabel": "Phone number",
+    "phoneHint": "We send one code. Your message stays here and is filed once you confirm.",
+    "submit": "Send and get a code",
+    "submitSignedIn": "File the ticket",
+    "working": "Sending…",
+    "verify": {
+      "title": "Enter the code",
+      "body": "A six-digit code went to {phone}. Your message is written and ready to send.",
+      "codeLabel": "Verification code",
+      "cta": "Confirm and file",
+      "working": "Filing…",
+      "back": "Edit the message or number"
+    },
+    "done": {
+      "title": "Ticket filed",
+      "body": "This is your ticket reference. Every change of state is trackable against it.",
+      "cta": "Open the conversation"
+    },
+    "promises": {
+      "tracked": {
+        "title": "Everything trackable",
+        "body": "Every ticket has a reference, a state and a history. You can see who worked on it and when."
+      },
+      "answered": {
+        "title": "An answer within 24 hours",
+        "body": "The responsible exchange office has 24 hours. First-response time is recorded and measured."
+      },
+      "escalates": {
+        "title": "If nobody answers",
+        "body": "After 24 hours of silence you can escalate the ticket to the platform. The platform sits above the office."
+      }
+    },
+    "errors": {
+      "invalidPhone": "That phone number is not valid.",
+      "rateLimited": "Too many requests. Try again shortly.",
+      "sendFailed": "The code could not be sent.",
+      "invalidCode": "That code is not right.",
+      "cooldown": "You have filed too many tickets in the last hour.",
+      "failed": "The ticket could not be filed. Try again.",
+      "network": "Could not reach the server."
+    }
+  },
+  "tickets": {
+    "officeTitle": "Support tickets",
+    "officeSubtitle": "Tickets whose first answer is yours. If you do not reply within {hours, number} hours, the customer can escalate to the platform.",
+    "adminTitle": "Platform tickets",
+    "adminSubtitle": "Every ticket, including the ones an office is sitting on. The platform sits above the office and can take any of them. The office window is {hours, number} hours.",
+    "filterLabel": "Show",
+    "filters": {
+      "live": "Open",
+      "escalated": "Escalated",
+      "all": "All"
+    },
+    "empty": "No tickets in this view.",
+    "filedBy": "from {name}",
+    "someone": "a customer",
+    "awaitingFirstReply": "no first reply yet",
+    "overdue": "{hours, number} hours with no reply",
+    "state": {
+      "open": "Open",
+      "in_progress": "In progress",
+      "waiting_user": "Waiting on customer",
+      "escalated": "Escalated",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "priority": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "category": {
+      "order": "Transfer",
+      "payment": "Payment",
+      "kyc": "Identity",
+      "p2p": "P2P",
+      "account": "Account",
+      "office": "Exchange office",
+      "other": "Other"
+    },
+    "actions": {
+      "take": "Take it",
+      "resolve": "Resolve",
+      "reopen": "Reopen",
+      "handOver": "Hand to platform",
+      "pullUp": "Take from office"
+    },
+    "moved": {
+      "open": "Ticket reopened",
+      "in_progress": "You took the ticket",
+      "waiting_user": "Waiting on the customer",
+      "escalated": "Escalated to the platform",
+      "resolved": "Ticket resolved",
+      "closed": "Ticket closed"
+    },
+    "errors": {
+      "failed": "That did not go through. Try again.",
+      "alreadyEscalated": "This ticket is already with the platform."
+    },
+    "allAnswered": "Every ticket has been answered."
+  },
+  "banks": {
+    "melli": "Bank Melli",
+    "sepah": "Bank Sepah",
+    "mellat": "Bank Mellat",
+    "tejarat": "Bank Tejarat",
+    "saderat": "Bank Saderat",
+    "keshavarzi": "Bank Keshavarzi",
+    "maskan": "Bank Maskan",
+    "refah": "Bank Refah",
+    "parsian": "Parsian Bank",
+    "pasargad": "Pasargad Bank",
+    "saman": "Saman Bank",
+    "eghtesadNovin": "Eghtesad Novin Bank",
+    "ansar": "Ansar Bank",
+    "postbank": "Post Bank",
+    "ayandeh": "Ayandeh Bank",
+    "shahr": "Shahr Bank",
+    "day": "Day Bank",
+    "sina": "Sina Bank",
+    "sarmayeh": "Sarmayeh Bank",
+    "tosee": "Tosee Ta'avon Bank"
+  },
+  "settlement": {
+    "metaTitle": "Settlement — office panel",
+    "adminMetaTitle": "Settlement — admin console",
+    "title": "Settlement",
+    "subtitle": "The cards and IBANs you receive money into. When one fills up, add another here.",
+    "adminSubtitle": "Every office's settlement cards and IBANs, and how each one matched.",
+    "intro": "Every Iranian card has a daily and a monthly receiving ceiling. When one fills up, customer payments stop arriving and transfers stall. So you can add a new card or IBAN yourself, without waiting.",
+    "readOnly": "Adding or retiring an account needs finance access.",
+    "unavailableTitle": "Not available yet",
+    "unavailableBody": "The database connection is not configured.",
+    "forbiddenTitle": "You do not have access",
+    "forbiddenBody": "This section is for administrators who configure offices.",
+    "backHome": "Back home",
+    "bank": {
+      "label": "Bank",
+      "search": "Search banks",
+      "noMatch": "No bank matches that name.",
+      "detected": "Named from the IBAN",
+      "disagrees": "The IBAN you entered belongs to a different bank. One of the two is wrong — please check."
+    },
+    "add": {
+      "title": "Add an account",
+      "office": "Office",
+      "kind": "Account type",
+      "kind_card": "Bank card",
+      "kind_iban": "IBAN",
+      "number_card": "Card number (16 digits)",
+      "number_iban": "IBAN",
+      "holder": "Account holder's name",
+      "holderPlaceholder": "As registered with the bank",
+      "code": "Holder's national code",
+      "codeHint": "Checked against the office on file.",
+      "ceiling": "Daily ceiling (Toman)",
+      "ceilingHint": "Optional. So you know when it is full.",
+      "cta": "Add account",
+      "working": "Saving…",
+      "hint": "Add another card or IBAN. The number is checked as you type and the bank is recognised from it."
+    },
+    "list": {
+      "title": "Settlement accounts",
+      "empty": "No accounts yet.",
+      "noHolder": "No holder name",
+      "ceiling": "Daily ceiling {amount}",
+      "retire": "Ceiling full",
+      "retired": "Retired",
+      "hint": "The cards and IBANs settlement money is paid into. A retired account stops being offered but is never erased from the history.",
+      "openOffice": "Open the office file"
+    },
+    "match": {
+      "verified": "Matched",
+      "unverified": "Not checked",
+      "mismatch": "Responsibility accepted"
+    },
+    "mismatch": {
+      "title": "The name or national code does not match",
+      "reason": {
+        "noCode": "No national code was given for this account holder.",
+        "codeDiffers": "The holder's national code differs from the one on file for this office.",
+        "nameDiffers": "The holder's name differs from the office's registered name.",
+        "unknown": "This account's details do not match what is on file."
+      },
+      "body": "You may continue, but if you do, full responsibility for the transfer — any loss, delay, freeze or failure to return funds — is yours. This acceptance is recorded with your name, the time and the reason.",
+      "checkbox": "I accept that responsibility for this transfer is mine, under §7 of the",
+      "termsLink": "terms of use",
+      "cancel": "Cancel and correct",
+      "confirm": "I accept — continue"
+    },
+    "errors": {
+      "number_card": "That card number is not valid. Sixteen digits with a valid check digit.",
+      "number_iban": "That IBAN is not valid. IR followed by 24 digits.",
+      "code": "That national code is not valid.",
+      "saveFailed": "Could not save. Please try again.",
+      "forbidden": "You are not a member of that office.",
+      "holderRequired": "The account holder name is required.",
+      "numberRequired": "An account number is required."
+    }
+  },
+  "officeIdentity": {
+    "title": "Office details",
+    "displayName": "Display name",
+    "displayNameHint": "This is the name your customers see.",
+    "ownerName": "Registered owner",
+    "nationalId": "National code",
+    "licence": "Licence number",
+    "notSet": "Not set",
+    "lockedNote": "Once identity is verified, the registered owner, national code and licence number can only be changed by the platform. File a ticket to correct them.",
+    "addLogo": "Add a logo",
+    "changeLogo": "Change logo",
+    "logoHint": "PNG, JPG, WebP or SVG up to 512 kB.",
+    "logoSaved": "Logo saved.",
+    "saved": "Saved.",
+    "save": "Save",
+    "working": "Saving…",
+    "kyc": {
+      "verified": "Identity verified",
+      "pending": "Under review",
+      "rejected": "Not verified",
+      "unverified": "Not checked"
+    },
+    "status": {
+      "draft": "Incomplete",
+      "active": "Active",
+      "suspended": "Suspended",
+      "archived": "Archived"
+    },
+    "errors": {
+      "tooBig": "That file is larger than 512 kB.",
+      "uploadFailed": "The upload did not go through. Please try again.",
+      "saveFailed": "Could not save. Please try again."
+    },
+    "sectionHint": "The name, mark and details customers see for this office."
+  },
+  "adminOffice": {
+    "decided": "Recorded.",
+    "saved": "Saved.",
+    "kyc": {
+      "verified": "Identity verified",
+      "pending": "Under review",
+      "rejected": "Not verified",
+      "unverified": "Not checked"
+    },
+    "identity": {
+      "title": "Office identity",
+      "ownerName": "Registered owner",
+      "nationalId": "Owner's national code",
+      "nationalIdHint": "The basis for checking who owns a settlement card or IBAN.",
+      "reason": "Note",
+      "reasonPlaceholder": "A reason is required to reject.",
+      "save": "Save details",
+      "verify": "Verify identity",
+      "reject": "Reject",
+      "note": "Once verified, the office can no longer change its registered owner or national code itself. Settlement accounts are matched against these.",
+      "hint": "This office's identity documents and licence, and your decision on them."
+    },
+    "login": {
+      "title": "Office panel login",
+      "body": "Issue a fresh username and password and text them to the destination number. Any unclaimed earlier login is superseded.",
+      "username": "Username",
+      "password": "Password",
+      "phone": "Destination phone",
+      "sendSms": "Send by SMS",
+      "sendSmsHint": "With this off, the details appear only on this screen.",
+      "cta": "Issue login",
+      "working": "Issuing…",
+      "again": "Issue another",
+      "warning": "The password is shown once and cannot be recovered afterwards.",
+      "sms": {
+        "sent": "Text message sent.",
+        "failed": "The message could not be sent. Pass the details on yourself.",
+        "skipped": "No message was sent."
+      },
+      "hint": "The account the office signs into its own panel with."
+    },
+    "errors": {
+      "nationalId": "That national code is not valid.",
+      "reasonRequired": "Rejecting needs a written reason (at least 8 characters).",
+      "usernameTaken": "That username is already taken.",
+      "saveFailed": "That did not go through. Please try again."
+    }
+  },
+  "firstEntry": {
+    "claiming": "Setting up your access…",
+    "title": "Choose your own password",
+    "body": "You signed in with a password that was generated for you. Keep it, or set one of your own.",
+    "password": "New password",
+    "confirm": "Repeat the new password",
+    "cta": "Set password",
+    "skip": "Not now",
+    "skipHint": "Choose \"not now\" and you keep the password you were given. This message will not appear again.",
+    "working": "Saving…",
+    "errors": {
+      "tooShort": "A password needs at least {min, number} characters.",
+      "mismatch": "The two passwords do not match.",
+      "failed": "That did not save. Please try again."
+    },
+    "hint": "Set a new password for this account. The one the platform gave you is for a single use."
+  },
+  "coins": {
+    "metaTitle": "Buy gold coins — Asaex",
+    "title": "Gold coins",
+    "subtitle": "Live prices for Iranian gold coins and bullion. Ask, the office confirms, you collect it in person.",
+    "perUnit": "each",
+    "fine": "{grams} g fine gold",
+    "premium": "Premium {pct}%",
+    "buy": "Request",
+    "noPrice": "No price available.",
+    "staleNotice": "These prices have not refreshed; the market may be closed. Check with the office before acting on them.",
+    "demoNotice": "The coin price source is not connected yet, so requests cannot be placed from this page. Buying opens here the moment it is.",
+    "disclaimer": "The price shown follows the open market; the office states the final price when it confirms. The premium is how much more a coin costs than the gold inside it.",
+    "products": {
+      "EMAMI": "Emami coin (full)",
+      "BAHAR": "Bahar Azadi (old design)",
+      "NIM": "Half coin",
+      "ROB": "Quarter coin",
+      "GERAMI": "Gram coin",
+      "GERAM18": "One gram, 18 carat",
+      "MESGHAL": "Mesghal of gold"
+    },
+    "request": {
+      "title": "Request to buy",
+      "notPaidYet": "Nothing is charged yet. The office checks its stock, states a firm price, and payment happens after that.",
+      "quantity": "Quantity",
+      "fewer": "Fewer",
+      "more": "More",
+      "pickup": "Where to collect (optional)",
+      "pickupPlaceholder": "e.g. the Vanak branch",
+      "estimate": "Estimated total",
+      "cta": "Send request",
+      "working": "Sending…",
+      "placed": "Your request is in.",
+      "next": "The office will confirm stock and the firm price shortly. Follow it under your orders.",
+      "done": "Got it",
+      "failed": "That did not send. Please try again.",
+      "signInFirst": "You need to sign in before you can request coins.",
+      "signIn": "Sign in"
+    },
+    "state": {
+      "requested": "Waiting for an office",
+      "confirmed": "Confirmed — awaiting payment",
+      "paid": "Paid",
+      "ready": "Ready to collect",
+      "collected": "Collected",
+      "cancelled": "Cancelled"
+    }
+  },
+  "coinQueue": {
+    "metaTitle": "Gold coins — office panel",
+    "title": "Coin requests",
+    "subtitle": "Requests to buy gold. Take one, price it, hand it over.",
+    "intro": {
+      "office": "Requests with no office yet are yours to take. Once taken, enter the firm price and the customer sees it.",
+      "platform": "Every coin request on the platform."
+    },
+    "empty": "No requests yet.",
+    "quoted": "Quoted to the customer",
+    "total": "Total",
+    "pickup": "Collection",
+    "firmPrice": "Firm price each (Toman)",
+    "claim": "Take this request",
+    "confirm": "Confirm stock and price",
+    "cancel": "Cancel",
+    "cancelledByOffice": "The office cancelled this request.",
+    "advance": {
+      "paid": "I have the money",
+      "ready": "It is ready",
+      "collected": "Handed over"
+    },
+    "errors": {
+      "taken": "Another office has already taken this request.",
+      "failed": "That did not go through. Please try again."
+    },
+    "hint": {
+      "office": "Coin purchase requests that reached this office. Enter the unit price and move the step forward.",
+      "platform": "Every coin purchase request on the platform, including the ones no office has taken."
+    }
+  },
+  "twoFactor": {
+    "title": "Two-step sign-in",
+    "on": "On",
+    "off": "Off",
+    "body": "With this on, signing in needs a six-digit code from your authenticator app as well as your password.",
+    "bodyStaff": "Required for platform staff accounts. Until you enter the code, the database does not open your administrative access.",
+    "enable": "Turn on",
+    "scan": "Scan this with your authenticator app",
+    "qrAlt": "QR code for your authenticator app",
+    "orType": "Or enter this key by hand:",
+    "copy": "Copy key",
+    "copied": "Copied",
+    "codeLabel": "Six-digit code from the app",
+    "confirm": "Confirm and turn on",
+    "cancel": "Cancel",
+    "codeToDisable": "Enter a current code to turn it off",
+    "disable": "Turn off",
+    "working": "Please wait…",
+    "errors": {
+      "enrollFailed": "Could not start setup. Please try again.",
+      "verifyFailed": "That did not verify. Please try again.",
+      "wrongCode": "That code is not right. Check your device clock too.",
+      "disableFailed": "Could not turn it off. Please try again."
+    }
+  },
+  "alerts": {
+    "title": "{currency} price alert",
+    "body": "We tell you when the price crosses the number you name.",
+    "when": "When the price goes",
+    "direction": {
+      "above": "above",
+      "below": "below"
+    },
+    "threshold": "Price (Toman)",
+    "add": "Add alert",
+    "none": "No alerts for this currency yet.",
+    "fired": "Sent",
+    "remove": "Remove alert",
+    "summary": {
+      "above": "When it goes above {amount} Toman",
+      "below": "When it drops below {amount} Toman"
+    },
+    "deliveryNote": "Alerts are evaluated in the database against the latest recorded price and appear in this app. SMS delivery switches on once the gateway is connected.",
+    "signInFirst": "You need an account to set a price alert.",
+    "signIn": "Sign in",
+    "errors": {
+      "threshold": "That is not a valid number.",
+      "tooMany": "You can keep up to 20 alerts at a time.",
+      "signIn": "Please sign in first.",
+      "failed": "That did not save. Please try again."
+    },
+    "firedNote": "One of your alerts reached its target and the message went out."
+  },
+  "menu": {
+    "title": "Menu",
+    "alerts": "Rate alerts",
+    "appearance": "Language and appearance",
+    "version": "Version {version}",
+    "group": {
+      "account": "My account",
+      "staff": "Panels",
+      "company": "Help and contact",
+      "legal": "Terms and policies"
+    },
+    "hint": {
+      "accounts": "Destination accounts money arrives in",
+      "verify": "Finish your identity documents",
+      "alerts": "Be told when a price reaches your number",
+      "office": "For exchange-office staff",
+      "admin": "For platform administrators"
+    },
+    "more": "More",
+    "signedOutNote": "Sign in to send a transfer and see your orders."
+  },
+  "glossary": {
+    "open": "What this means: {term}",
+    "close": "Close",
+    "midRate": {
+      "title": "Market base rate",
+      "body": "The midpoint between what a currency is being bought and sold for on the open market, right now. It is neither your buying price nor your selling price — it is the middle, and every figure here starts from it so you can check ours against anyone else's."
+    },
+    "commission": {
+      "title": "Banded commission",
+      "body": "The only cost of a transfer. Banded means your amount is cut into slices and each slice has its own rate: the first is charged at 10%, higher ones down to 3%. The more you send, the lower the overall percentage — while the amount of commission never falls by sending more."
+    },
+    "commissionCeiling": {
+      "title": "Cost ceiling",
+      "body": "The percentage shown is everything you pay. If an office prices the rate a little away from the base, exactly that much comes off its commission; nothing is added on top of this figure."
+    },
+    "rateMarkup": {
+      "title": "Rate difference",
+      "body": "Some offices quote a rate slightly above or below the base rate instead of charging a separate fee. It is not an extra cost: it is deducted from the same banded commission."
+    },
+    "rateLock": {
+      "title": "Rate lock",
+      "body": "When you open a transfer, the rate is held for you for 15 minutes. Until the countdown ends, whatever the market does has nothing to do with your order. After that you see a fresh rate and confirm again."
+    },
+    "refresh": {
+      "title": "Price refresh",
+      "body": "Prices update on their own every 30 seconds, and if more than 20 seconds have passed since the last one they are fetched again the moment you come back to the page. The time of the last update is always written beside the price."
+    },
+    "identity": {
+      "title": "Identity check",
+      "body": "Confirming you are who you say: a mobile number, an ID document and a live photo. Anti-money-laundering law requires it for currency transfers, and without it we cannot hand your order to an exchange office."
+    },
+    "iban": {
+      "title": "IBAN (Sheba)",
+      "body": "The 24-character bank account identifier beginning with IR. Its characters carry an arithmetic check, so if you mistype one we tell you here rather than letting money go to the wrong account."
+    },
+    "destinationAccount": {
+      "title": "Destination account",
+      "body": "The account the money has to arrive in — yours, or the person you are sending to. Saved once, then simply picked next time."
+    },
+    "escrow": {
+      "title": "Funds held safely",
+      "body": "In a direct trade between two people, the money stays with the platform until both sides have done their part, and is released then. Neither hands over anything without the other."
+    },
+    "p2p": {
+      "title": "Peer market",
+      "body": "Where people trade directly with each other and the platform is only the safe middle. The two sides set the price themselves, within a permitted band around the market rate."
+    },
+    "settlement": {
+      "title": "Settlement",
+      "body": "The step where money actually moves between accounts. Every settlement has a receipt and is recorded on your order."
+    },
+    "twoFactor": {
+      "title": "Two-step sign-in",
+      "body": "Besides a password, a six-digit code that changes every half minute in an app on your phone. Even somebody who knows your password cannot get in without that phone."
+    },
+    "otp": {
+      "title": "One-time code",
+      "body": "A code sent by text that is valid for a few minutes only. It replaces a fixed password so that there is nothing left to steal."
+    },
+    "sla": {
+      "title": "Time commitment",
+      "body": "What we promise about timing: the same working day as the target, three working days as the contractual maximum. Past that, chasing starts automatically."
+    },
+    "corridor": {
+      "title": "Currency route",
+      "body": "A pair of source and destination currencies — Toman to Dirham, say. Each route has its own offices and terms."
+    },
+    "bubble": {
+      "title": "Coin premium",
+      "body": "The gap between a coin's price and the value of the gold inside it. When demand is high the gap widens; the figure shown is that gap."
+    },
+    "install": {
+      "title": "Install on your phone",
+      "body": "You can add this to your phone's home screen like an app, without going to an app store. After that it shows the last prices even offline."
+    },
+    "openMarket": {
+      "title": "Open market",
+      "body": "The price currencies actually change hands at in free trading, not the central bank's official rate. Every figure in this app is based on it."
+    }
+  },
+  "panel": {
+    "name": {
+      "admin": "Admin panel",
+      "office": "Office panel"
+    },
+    "viewSite": "View the site",
+    "signOut": "Sign out"
+  },
+  "pwa": {
+    "title": "Put Asa on your home screen",
+    "body": "It opens like an app, starts faster, and shows the last rates even offline.",
+    "cta": "Add to home screen",
+    "dismiss": "No thanks"
+  }
+}

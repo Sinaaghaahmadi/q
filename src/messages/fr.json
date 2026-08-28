@@ -1,0 +1,3217 @@
+{
+  "meta": {
+    "brand": "Asaex",
+    "title": "Asaex — Le transfert de devises, en simple",
+    "description": "Une place de marché de transfert entre bureaux de change agréés. Taux en direct, frais détaillés, règlement supervisé — généralement sous un jour ouvré."
+  },
+  "nav": {
+    "home": "Accueil",
+    "primary": "Navigation principale",
+    "rates": "Taux",
+    "transfer": "Transfert",
+    "orders": "Commandes",
+    "profile": "Profil",
+    "startTransfer": "Lancer un transfert",
+    "accounts": "Comptes",
+    "signin": "Se connecter",
+    "verify": "Vérification",
+    "office": "Bureau",
+    "admin": "Administration",
+    "support": "Assistance",
+    "p2p": "Marché P2P",
+    "how": "Comment ça marche",
+    "why": "Pourquoi Asa",
+    "about": "À propos",
+    "contact": "Nous contacter",
+    "coins": "Or et pièces"
+  },
+  "locale": {
+    "label": "Langue"
+  },
+  "theme": {
+    "label": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "notFound": {
+    "title": "Cette page n'existe pas",
+    "body": "Vérifiez l'adresse ou repartez de l'accueil. Si c'est l'application elle-même qui vous a amené ici, dites-le-nous via l'assistance.",
+    "cta": "Retour à l'accueil"
+  },
+  "offline": {
+    "metaTitle": "Hors ligne",
+    "title": "Vous êtes hors ligne",
+    "body": "La coque de l'application en cache est disponible et les derniers taux récupérés s'affichent avec leur horodatage. Tout se rafraîchit dès le retour de la connexion.",
+    "cta": "Réessayer"
+  },
+  "converter": {
+    "title": "Conversion rapide",
+    "youSend": "Vous envoyez",
+    "recipientGets": "Le destinataire reçoit",
+    "swap": "Inverser les devises",
+    "fromCurrency": "Devise de départ",
+    "toCurrency": "Devise d'arrivée",
+    "pickCurrency": "Choisir une devise",
+    "searchCurrency": "Rechercher un nom ou un code…",
+    "popular": "Les plus courantes",
+    "all": "Toutes les devises",
+    "noResults": "Aucune devise ne correspond à cette recherche.",
+    "unitRate": "1 {from} ≈ {rate} {toUnit}",
+    "toman": "toman",
+    "midRateNote": "Taux milieu de marché ; le taux final et les frais sont détaillés au moment de soumettre le transfert.",
+    "cta": "Continuer vers le transfert",
+    "tomanLegNote": "Dans une conversion rapide, un côté est toujours en tomans."
+  },
+  "home": {
+    "metaTitle": "Taux en direct et transferts",
+    "stripTitle": "Taux en direct sur les principaux corridors",
+    "allRates": "Tous les taux",
+    "hero": {
+      "title": "Le transfert de devises, en simple",
+      "ctaPrimary": "Lancer un transfert",
+      "ctaSecondary": "Voir les taux"
+    },
+    "how": {
+      "title": "Comment se déroule un transfert ?",
+      "subtitle": "Trois étapes claires ; à chacune, vous savez ce qui vient de se passer et ce qui suit.",
+      "steps": {
+        "1": {
+          "title": "Soumettre et bloquer le taux",
+          "body": "Vous indiquez le montant et le compte destinataire ; le taux est bloqué quinze minutes et les bureaux de change éligibles voient votre demande."
+        },
+        "2": {
+          "title": "Le bureau accepte, le toman est versé",
+          "body": "Un bureau prend la demande et la discussion s'ouvre. Le versement en toman se fait dans le circuit supervisé par la plateforme et est confirmé des deux côtés."
+        },
+        "3": {
+          "title": "Exécution en devise et libération",
+          "body": "Le bureau exécute le transfert en devise et téléverse la preuve ; une fois la réception confirmée, le toman est libéré et votre reçu est émis."
+        }
+      }
+    },
+    "trust": {
+      "title": "Pourquoi Asa ?",
+      "subtitle": "Aucun chiffre n'est caché : le taux de base, l'écart de taux et chaque frais sont détaillés avant votre confirmation.",
+      "counter": "{count} transferts terminés cette semaine",
+      "items": {
+        "licensed": {
+          "title": "Uniquement des bureaux agréés",
+          "body": "Chaque bureau affiche son numéro d'agrément et son profil public, avec une performance suivie — rapidité et évaluations."
+        },
+        "rateLock": {
+          "title": "Taux bloqué quinze minutes",
+          "body": "Un taux confirmé tient jusqu'à la fin du compte à rebours ; ensuite il ne change qu'avec votre nouvelle acceptation."
+        },
+        "sla": {
+          "title": "Un engagement de délai clair",
+          "body": "L'objectif est d'un jour ouvré, le plafond contractuel de trois ; les retards sont relancés automatiquement."
+        },
+        "chat": {
+          "title": "Parlez avant que ce soit ferme",
+          "body": "Échangez avec le bureau dès l'examen de la demande — avant que quoi que ce soit ne soit définitif."
+        }
+      }
+    },
+    "services": {
+      "title": "Autres services",
+      "coins": {
+        "title": "Pièces et or",
+        "body": "Achetez pièces et or au cours du jour"
+      },
+      "p2p": {
+        "title": "Marché entre particuliers",
+        "body": "Achat et vente directs entre utilisateurs"
+      },
+      "track": {
+        "title": "Suivre une commande",
+        "body": "Avec une référence, sans se connecter"
+      }
+    }
+  },
+  "currencies": {
+    "IRT": "Toman iranien",
+    "USD": "Dollar américain",
+    "EUR": "Euro",
+    "GBP": "Livre sterling",
+    "AED": "Dirham des Émirats",
+    "TRY": "Livre turque",
+    "IQD": "Dinar irakien",
+    "AZN": "Manat azerbaïdjanais",
+    "AMD": "Dram arménien",
+    "GEL": "Lari géorgien",
+    "RUB": "Rouble russe",
+    "AFN": "Afghani",
+    "PKR": "Roupie pakistanaise",
+    "TMT": "Manat turkmène",
+    "OMR": "Rial omanais",
+    "KWD": "Dinar koweïtien",
+    "QAR": "Riyal qatari",
+    "SAR": "Riyal saoudien",
+    "CAD": "Dollar canadien",
+    "CNY": "Yuan chinois"
+  },
+  "rates": {
+    "status": {
+      "loading": "Récupération des taux…",
+      "live": "Taux en direct",
+      "updated": "Mis à jour {ago}",
+      "degraded": "Mise à jour en retard",
+      "demo": "Prix de secours"
+    }
+  },
+  "ratesPage": {
+    "metaTitle": "Taux de change en direct",
+    "title": "Taux",
+    "subtitle": "Prix en direct en toman, variation sur 24 h et tendance sur 30 jours — source : marché libre (tgju).",
+    "search": "Rechercher une devise…",
+    "noResults": "Aucune devise ne correspond à cette recherche.",
+    "favorite": "Ajouter {currency} aux favoris",
+    "unfavorite": "Retirer {currency} des favoris",
+    "range30": "30 j",
+    "range90": "90 j",
+    "range180": "180 j",
+    "alertCta": "Alerte de prix",
+    "alertTitle": "Alertes de prix",
+    "alertBody": "Dès l'arrivée des comptes, vous pourrez fixer un seuil par devise et être averti par SMS, e-mail ou notification.",
+    "high24h": "Plus haut 24 h",
+    "low24h": "Plus bas 24 h",
+    "chartSummary": "{code} sur les {days} derniers jours, de {from} à {to} toman.",
+    "reorder": "Réorganiser",
+    "reorderDone": "Terminé",
+    "reorderReset": "Rétablir l'ordre",
+    "reorderHint": "Faites glisser une carte, ou utilisez les flèches haut et bas, pour classer les devises à votre convenance. L'ordre est conservé sur cet appareil.",
+    "moveUp": "Monter {currency}",
+    "moveDown": "Descendre {currency}",
+    "noHistory": "Aucun historique n'a encore été enregistré pour cette devise."
+  },
+  "footer": {
+    "brand": "Asaex",
+    "tagline": "Le transfert de devises, en simple. Vous soumettez une demande, un bureau de change agréé l'exécute, et chaque étape se déroule sous la supervision de la plateforme.",
+    "compliance": "Asa est une place de marché de transfert entre bureaux de change agréés. Ce n'est pas un portefeuille qui détient votre argent, ni un marché de titres, et elle ne conserve aucun dépôt.",
+    "legal": "Mentions légales",
+    "designSystem": "Système de design",
+    "copyright": "© 2026 Asaex — Tous droits réservés.",
+    "builtBy": "Réalisé par le groupe de programmation Â"
+  },
+  "track": {
+    "metaTitle": "Suivi de {ref}",
+    "arriving": "En route vers le destinataire",
+    "milestone": {
+      "accepted": "Le bureau de change a accepté",
+      "funded": "Le toman est détenu par le bureau",
+      "sent": "Le transfert en devise a été envoyé",
+      "done": "Réception confirmée et réglée"
+    },
+    "handledBy": "Pris en charge par {office}.",
+    "dueBy": "Engagé pour le {date}",
+    "privacyNote": "Cette page n'affiche que l'état — aucun nom, aucun numéro de compte, aucun frais.",
+    "cta": "Envie d'en envoyer un vous aussi ?",
+    "ctaLink": "Découvrir Asaex",
+    "notFoundTitle": "Aucun transfert de ce numéro",
+    "notFoundBody": "Vérifiez la référence ; elle ressemble à ASA-XXXXXX.",
+    "throttledTitle": "Réessayez dans un instant",
+    "throttledBody": "Il y a beaucoup de demandes de suivi en ce moment.",
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "Cet aperçu n'est pas relié à une base de données.",
+    "backHome": "Retour à l'accueil",
+    "share": {
+      "title": "Suivi pour le destinataire",
+      "body": "Envoyez ce lien à la personne qui reçoit. Elle voit l'état sans compte, et le lien ne porte le nom ni le numéro de compte de personne.",
+      "copy": "Copier",
+      "copied": "Copié"
+    }
+  },
+  "about": {
+    "metaTitle": "À propos",
+    "title": "Dix-sept personnes, partout dans le monde, sur une seule chose",
+    "lede": "Nous sommes une équipe de dix-sept personnes en télétravail complet, aux quatre coins du monde — de Téhéran et Dubaï à Berlin et Toronto. Aucun bureau ne nous réunit, mais une chose nous rassemble : rendre l'envoi d'argent pour une famille iranienne aussi simple que l'envoi d'un message. Avec amour pour l'Iran, et pour l'Iran qui se construit ensuite.",
+    "map": {
+      "alt": "Une carte du monde avec neuf marqueurs, tous reliés à Téhéran, et le travail circulant sur les trajets entre eux.",
+      "caption": "Neuf points sur une carte, dix-sept personnes derrière — et un trajet commun."
+    },
+    "crafts": {
+      "product": {
+        "title": "Design produit",
+        "body": "Chaque écran que vous voyez a été fait ici : du parcours de transfert au panneau où un bureau termine son travail en quatre appuis."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "body": "Notre travail est de dire ce qu'est ce produit sans en rajouter. Le chiffre promis est le chiffre que reçoit le destinataire."
+      },
+      "bizdev": {
+        "title": "Développement commercial",
+        "body": "Nous construisons le réseau de bureaux de change agréés et ouvrons les corridors suivants."
+      },
+      "strategy": {
+        "title": "Stratégie",
+        "body": "Nous décidons quel corridor ouvre ensuite, et ce que nous choisissons délibérément de ne pas construire."
+      },
+      "support": {
+        "title": "Assistance",
+        "body": "Quand un transfert se bloque, il y a une personne en face qui répond — pas un robot."
+      },
+      "people": {
+        "title": "Ressources humaines",
+        "body": "Une équipe répartie sur huit fuseaux horaires ne tient pas ensemble toute seule. C'est le travail de quelqu'un."
+      }
+    },
+    "mission": {
+      "title": "Pourquoi nous faisons cela",
+      "body": "Pour beaucoup d'Iraniens, envoyer des devises signifie encore faire confiance à un numéro inconnu sur Telegram et espérer que tout se passe bien. Nous pensons que le même travail peut se faire, avec les mêmes bureaux de change réels, mais avec un taux visible, un trajet suivable et une réponse claire à la question de savoir qui est responsable.",
+      "contact": "Parlez-nous",
+      "how": "Comment se déroule un transfert ?"
+    },
+    "built": {
+      "title": "Conception et maintenance",
+      "name": "Le groupe de programmation Â",
+      "body": "Ce produit est conçu et maintenu par le groupe de programmation Â : de la base de données et de la couche de sécurité à chaque écran que vous voyez sur ce site et dans les panneaux bureau et administration."
+    }
+  },
+  "contact": {
+    "metaTitle": "Nous contacter",
+    "title": "Un problème ? Dites-le-nous.",
+    "lede": "Écrivez votre message et envoyez-le. Pour assurer le suivi, il nous faut seulement un numéro de téléphone vérifié — pas d'inscription, pas de formulaire supplémentaire. Chaque ticket reçoit une référence et reste suivable jusqu'au bout.",
+    "categoryLabel": "De quoi s'agit-il ?",
+    "categories": {
+      "order": "Un transfert",
+      "payment": "Paiement",
+      "kyc": "Vérification d'identité",
+      "p2p": "Marché P2P",
+      "account": "Mon compte",
+      "office": "Un bureau de change",
+      "other": "Autre chose"
+    },
+    "subjectLabel": "En une ligne",
+    "subjectPlaceholder": "ex. : mon versement en toman n'a pas été enregistré",
+    "bodyLabel": "Ce qui s'est passé",
+    "bodyPlaceholder": "Plus vous écrivez, plus la réponse arrive vite : référence de commande, date, montant.",
+    "bodyHint": "Si vous avez une référence de commande, indiquez-la.",
+    "phoneLabel": "Numéro de téléphone",
+    "phoneHint": "Nous envoyons un seul code. Votre message reste ici et part une fois la confirmation faite.",
+    "submit": "Envoyer et recevoir un code",
+    "submitSignedIn": "Ouvrir le ticket",
+    "working": "Envoi…",
+    "verify": {
+      "title": "Saisissez le code",
+      "body": "Un code à six chiffres a été envoyé au {phone}. Votre message est écrit et prêt à partir.",
+      "codeLabel": "Code de vérification",
+      "cta": "Confirmer et ouvrir",
+      "working": "Ouverture…",
+      "back": "Modifier le message ou le numéro"
+    },
+    "done": {
+      "title": "Ticket ouvert",
+      "body": "Voici la référence de votre ticket. Chaque changement d'état se suit grâce à elle.",
+      "cta": "Ouvrir la conversation"
+    },
+    "promises": {
+      "tracked": {
+        "title": "Tout est suivable",
+        "body": "Chaque ticket a une référence, un état et un historique. Vous voyez qui y a travaillé et quand."
+      },
+      "answered": {
+        "title": "Une réponse sous 24 heures",
+        "body": "Le bureau de change responsable dispose de 24 heures. Le délai de première réponse est enregistré et mesuré."
+      },
+      "escalates": {
+        "title": "Si personne ne répond",
+        "body": "Après 24 heures de silence, vous pouvez escalader le ticket vers la plateforme. La plateforme est au-dessus du bureau."
+      }
+    },
+    "errors": {
+      "invalidPhone": "Ce numéro de téléphone n'est pas valide.",
+      "rateLimited": "Trop de demandes. Réessayez dans un instant.",
+      "sendFailed": "Le code n'a pas pu être envoyé.",
+      "invalidCode": "Ce code n'est pas le bon.",
+      "cooldown": "Vous avez ouvert trop de tickets dans la dernière heure.",
+      "failed": "Le ticket n'a pas pu être ouvert. Réessayez.",
+      "network": "Impossible de joindre le serveur."
+    }
+  },
+  "toast": {
+    "copied": "Copié",
+    "copyFailed": "Copie impossible. Sélectionnez le texte à la main.",
+    "saved": "Enregistré",
+    "sent": "Envoyé",
+    "failed": "Cela n'a pas abouti. Réessayez.",
+    "offline": "Vous êtes hors ligne. Dernières données connues affichées."
+  },
+  "auth": {
+    "legalNote": "Se connecter à ce panneau vaut acceptation pleine et entière des <terms>conditions d’utilisation</terms>, de la <privacy>politique de confidentialité</privacy> et de la <aml>politique de lutte contre le blanchiment</aml>.",
+    "metaTitle": "Connexion",
+    "title": "Connexion à Asaex",
+    "body": "Saisissez votre numéro de mobile et nous vous enverrons un code à usage unique par SMS. Si vous n'avez pas encore de compte, cela en crée un.",
+    "codeTitle": "Saisissez votre code à usage unique",
+    "codeBody": "Nous avons envoyé un code à six chiffres au {phone}. Il est valable deux minutes.",
+    "sentTitle": "Lien de connexion envoyé",
+    "sentBody": "Nous avons envoyé un lien de connexion à {email}. Ouvrez-le et vous y êtes.",
+    "doneTitle": "Bienvenue",
+    "doneBody": "Nous vous emmenons à l'étape suivante…",
+    "channel": {
+      "phone": "Mobile",
+      "email": "E-mail",
+      "staff": "Personnel"
+    },
+    "phoneLabel": "Numéro de mobile",
+    "phoneHint": "Commencez par 09, ou écrivez-le avec +98.",
+    "emailHint": "La connexion par e-mail est ouverte aux clients hors d'Iran.",
+    "emailLabel": "Adresse e-mail",
+    "sending": "Envoi…",
+    "cta": "Continuer",
+    "codeLabel": "Code à usage unique",
+    "verifying": "Vérification…",
+    "verifyCta": "Vérifier et se connecter",
+    "changeNumber": "Changer de numéro",
+    "resendIn": "Renvoyer dans {clock}",
+    "resend": "Envoyer un nouveau code",
+    "checkInbox": "Consultez votre boîte de réception",
+    "changeEmail": "Changer d'e-mail",
+    "scene": {
+      "otp": "Réception d'un code à usage unique",
+      "done": "Connecté"
+    },
+    "errors": {
+      "rateLimited": "Cela fait beaucoup de demandes. Réessayez dans environ {minutes, number} minutes.",
+      "smsUnavailable": "L'envoi de SMS n'est pas encore actif dans cet environnement. Connectez-vous par e-mail en attendant — la connexion par mobile s'active dès que la passerelle est raccordée.",
+      "invalidPhone": "Ce numéro de mobile ne semble pas correct — saisissez un numéro iranien à onze chiffres.",
+      "authUnavailable": "La connexion n'est pas configurée dans cet environnement.",
+      "sendFailed": "Le code n'est pas parti. Réessayez dans un instant.",
+      "network": "Connexion impossible. Vérifiez votre réseau et réessayez.",
+      "invalidCode": "Ce code est erroné ou a expiré — demandez-en un nouveau.",
+      "notStaff": "Ce compte n'a accès à aucun panneau.",
+      "invalidCredentials": "Cet e-mail et ce mot de passe ne correspondent pas."
+    },
+    "channelLabel": "Méthode de connexion",
+    "staffHint": "Les bureaux de change se connectent avec un identifiant, le personnel de la plateforme avec un e-mail.",
+    "passwordLabel": "Mot de passe",
+    "staffCta": "Ouvrir le panneau",
+    "staffIdLabel": "Identifiant ou e-mail",
+    "totpPrompt": "Saisissez le code à six chiffres de votre application d'authentification.",
+    "totpLabel": "Code de deuxième étape",
+    "totpCta": "Se connecter",
+    "totpLost": "Si vous ne pouvez pas accéder à votre application d'authentification, contactez l'administrateur de la plateforme.",
+    "legalRequired": "Vous devez accepter les conditions pour continuer."
+  },
+  "legal": {
+    "version": "Version {version}",
+    "updated": "Dernière mise à jour : {date}",
+    "titles": {
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "aml": "Politique anti-blanchiment",
+      "fees": "Grille tarifaire",
+      "sla": "Engagement de délai et remboursements",
+      "complaints": "Procédure de réclamation"
+    }
+  },
+  "pricing": {
+    "total": "Écart de taux total",
+    "layers": {
+      "platform_floor": "Plancher de la plateforme",
+      "corridor_default": "Écart de base du corridor",
+      "office_markup": "Marge du bureau de change",
+      "tier_discount": "Remise de palier",
+      "promo": "Code promo"
+    },
+    "bands": {
+      "intro": "Le montant est découpé en tranches et chaque tranche a son propre taux. Les tranches basses sont toujours facturées en entier : envoyer davantage fait baisser le pourcentage global sans jamais réduire la commission elle-même.",
+      "between": "De {from} à {to} tomans",
+      "above": "Au-delà de {from} tomans",
+      "notReached": "Non atteinte",
+      "toman": "tomans",
+      "total": "Commission totale"
+    },
+    "schedule": {
+      "title": "Commission par tranches",
+      "tryLabel": "Saisissez un montant pour voir sa commission",
+      "commission": "Commission",
+      "effective": "Taux global",
+      "marginal": "Tranche la plus haute atteinte",
+      "officeShare": "Part du bureau",
+      "ceilingNote": "Ce pourcentage est le plafond de tout ce que paie le client. Si le taux annoncé par un bureau s'écarte du taux de base, l'écart est retranché de la commission au lieu d'être ajouté à ce que paie le client.",
+      "splitNote": "La part de la plateforme est de {pct} % de la commission, le reste revient au bureau exécutant. Ce partage n'a aucun effet sur ce que paie le client."
+    }
+  },
+  "support": {
+    "metaTitle": "Assistance",
+    "title": "Assistance",
+    "subtitle": "Votre message arrive directement à l'équipe d'assistance. Nous répondons sous un jour ouvré.",
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "howTitle": "Comment fonctionne l'assistance",
+    "howBody": "Votre message parvient à l'équipe d'assistance et reçoit une réponse ici même ; la conversation vous reste acquise."
+  },
+  "menu": {
+    "title": "Menu",
+    "alerts": "Alertes de prix",
+    "appearance": "Langue et apparence",
+    "version": "Version {version}",
+    "group": {
+      "account": "Mon compte",
+      "staff": "Panneaux",
+      "company": "Aide et contact",
+      "legal": "Conditions et politiques"
+    },
+    "hint": {
+      "accounts": "Comptes de destination où l'argent arrive",
+      "verify": "Compléter vos pièces d'identité",
+      "alerts": "Être prévenu quand un prix atteint votre chiffre",
+      "office": "Pour le personnel des bureaux de change",
+      "admin": "Pour les administrateurs de la plateforme"
+    },
+    "more": "Plus",
+    "signedOutNote": "Connectez-vous pour envoyer un transfert et voir vos commandes."
+  },
+  "glossary": {
+    "open": "Ce que cela veut dire : {term}",
+    "close": "Fermer",
+    "midRate": {
+      "title": "Taux de base du marché",
+      "body": "Le point médian entre le prix auquel une devise s'achète et celui auquel elle se vend sur le marché libre, à l'instant même. Ce n'est ni votre prix d'achat ni votre prix de vente : c'est le milieu, et tous les chiffres ici en partent, pour que vous puissiez comparer le nôtre à n'importe quel autre."
+    },
+    "commission": {
+      "title": "Commission par tranches",
+      "body": "Le seul coût d'un transfert. Par tranches signifie que votre montant est découpé et que chaque tranche a son taux : la première à 10 %, les suivantes jusqu'à 3 %. Plus vous envoyez, plus le pourcentage global baisse — sans que le montant de la commission ne diminue jamais parce que vous envoyez plus."
+    },
+    "commissionCeiling": {
+      "title": "Plafond de coût",
+      "body": "Le pourcentage affiché est tout ce que vous payez. Si un bureau annonce un taux un peu écarté du taux de base, exactement autant est retranché de sa commission ; rien ne s'ajoute par-dessus ce chiffre."
+    },
+    "rateMarkup": {
+      "title": "Écart de taux",
+      "body": "Certains bureaux annoncent un taux légèrement au-dessus ou en dessous du taux de base plutôt qu'un frais séparé. Ce n'est pas un coût supplémentaire : c'est déduit de la même commission par tranches."
+    },
+    "rateLock": {
+      "title": "Taux verrouillé",
+      "body": "À l'ouverture d'un transfert, le taux vous est réservé quinze minutes. Jusqu'à la fin du compte à rebours, ce que fait le marché ne concerne pas votre commande. Ensuite, vous voyez un nouveau taux et confirmez à nouveau."
+    },
+    "refresh": {
+      "title": "Actualisation des prix",
+      "body": "Les prix se mettent à jour seuls toutes les 30 secondes, et si plus de 20 secondes se sont écoulées depuis le dernier, ils sont récupérés dès votre retour sur la page. L'heure de la dernière mise à jour est toujours écrite à côté du prix."
+    },
+    "identity": {
+      "title": "Vérification d'identité",
+      "body": "Confirmer que vous êtes bien qui vous dites : un numéro de mobile, une pièce d'identité et une photo en direct. La loi anti-blanchiment l'exige pour les transferts de devises, et sans cela nous ne pouvons pas confier votre commande à un bureau de change."
+    },
+    "iban": {
+      "title": "IBAN (Sheba)",
+      "body": "L'identifiant de compte bancaire de 24 caractères commençant par IR. Ses caractères portent un contrôle arithmétique : si vous en saisissez un de travers, nous vous le disons ici plutôt que de laisser l'argent partir sur le mauvais compte."
+    },
+    "destinationAccount": {
+      "title": "Compte de destination",
+      "body": "Le compte où l'argent doit arriver — le vôtre, ou celui de la personne à qui vous envoyez. Enregistré une fois, puis simplement choisi la fois suivante."
+    },
+    "escrow": {
+      "title": "Fonds conservés en sécurité",
+      "body": "Dans un échange direct entre deux personnes, l'argent reste chez la plateforme jusqu'à ce que les deux parties aient fait leur part, puis il est libéré. Aucune ne remet quoi que ce soit avant l'autre."
+    },
+    "p2p": {
+      "title": "Marché entre particuliers",
+      "body": "L'endroit où les gens échangent directement entre eux, la plateforme n'étant que l'intermédiaire sûr. Les deux parties fixent elles-mêmes le prix, dans une fourchette autorisée autour du taux du marché."
+    },
+    "settlement": {
+      "title": "Règlement",
+      "body": "L'étape où l'argent passe réellement d'un compte à l'autre. Chaque règlement a un justificatif et figure sur votre commande."
+    },
+    "twoFactor": {
+      "title": "Connexion en deux étapes",
+      "body": "En plus d'un mot de passe, un code à six chiffres qui change toutes les trente secondes dans une application sur votre téléphone. Même qui connaît votre mot de passe n'entre pas sans ce téléphone."
+    },
+    "otp": {
+      "title": "Code à usage unique",
+      "body": "Un code envoyé par SMS, valable quelques minutes seulement. Il remplace un mot de passe fixe, de sorte qu'il ne reste rien à voler."
+    },
+    "sla": {
+      "title": "Engagement de délai",
+      "body": "Ce que nous promettons sur les délais : le jour ouvré même comme objectif, trois jours ouvrés comme maximum contractuel. Au-delà, la relance démarre automatiquement."
+    },
+    "corridor": {
+      "title": "Corridor de devises",
+      "body": "Un couple de devise de départ et de devise d'arrivée — du toman au dirham, par exemple. Chaque corridor a ses bureaux et ses conditions."
+    },
+    "bubble": {
+      "title": "Prime de la pièce",
+      "body": "L'écart entre le prix d'une pièce et la valeur de l'or qu'elle contient. Quand la demande est forte, l'écart se creuse ; le chiffre affiché est cet écart."
+    },
+    "install": {
+      "title": "Installer sur votre téléphone",
+      "body": "Vous pouvez ajouter ceci à l'écran d'accueil de votre téléphone comme une application, sans passer par un magasin d'applications. Ensuite, les derniers prix restent visibles même hors connexion."
+    },
+    "openMarket": {
+      "title": "Marché libre",
+      "body": "Le prix auquel les devises changent réellement de mains dans les échanges libres, et non le taux officiel de la banque centrale. Tous les chiffres de cette application s'y appuient."
+    }
+  },
+  "transfer": {
+    "metaTitle": "Nouveau transfert",
+    "title": "Devis de transfert",
+    "subtitle": "Chaque composante du prix, avant de confirmer — aucun coût caché.",
+    "toman": "tomans",
+    "lockActive": "Votre taux est verrouillé",
+    "lockExpired": "Le verrouillage du taux a expiré",
+    "lockNote": "Un taux confirmé reste valable quinze minutes. S'il expire, un seul geste fournit un nouveau devis et affiche clairement l'écart.",
+    "requote": "Obtenir un nouveau taux",
+    "youSend": "Vous envoyez",
+    "rateUsed": "Taux appliqué",
+    "rateValue": "{rate} tomans pour 1 {code}",
+    "whyThisRate": "Pourquoi ce taux ?",
+    "recipientGets": "Le bénéficiaire reçoit",
+    "confirmCta": "Confirmer et continuer",
+    "back": "Retour",
+    "slaNote": "Délais : le transfert est généralement exécuté sous un jour ouvré ; le plafond contractuel est de trois jours ouvrés, comptés sur les calendriers ouvrés iranien et du pays de destination.",
+    "whyBody": "Le taux de base (le taux médian du marché) est de {rate} tomans pour 1 {code}. Les écarts suivants s'y appliquent :",
+    "creating": "Création de la commande…",
+    "destination": "Compte de destination",
+    "createErrors": {
+      "signedOut": "Votre session a pris fin. Reconnectez-vous.",
+      "failed": "La commande n'a pas pu être créée. Réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    },
+    "gate": {
+      "anonymous": {
+        "title": "Connectez-vous pour déposer la demande",
+        "body": "Connectez-vous par mobile ou par e-mail. Si vous n'avez pas encore de compte, le même parcours en crée un.",
+        "cta": "Se connecter"
+      },
+      "unverified": {
+        "title": "La vérification d'identité est requise d'abord",
+        "body": "La vérification se fait une seule fois et prend moins de cinq minutes. Ensuite, déposer un transfert se fait sans interruption.",
+        "cta": "Commencer la vérification"
+      },
+      "no_accounts": {
+        "title": "Aucun compte de destination pour l'instant",
+        "body": "Aucun compte enregistré pour cette devise. Ajoutez-en un et il suffira de le choisir au moment de déposer.",
+        "cta": "Ajouter un compte"
+      },
+      "ready": {
+        "title": "Prêt à déposer",
+        "body": "Tout est en place.",
+        "cta": "Continuer"
+      }
+    },
+    "commission": "Commission du bureau de change",
+    "commissionRate": "{pct} % du transfert",
+    "howCommission": "Comment ce chiffre est-il obtenu ?",
+    "nextBand": "Portez le montant à {amount} tomans et la commission descend à {pct} %.",
+    "edit": {
+      "title": "Montant et devise",
+      "recalculating": "Nouveau calcul en cours…",
+      "youSend": "Vous envoyez",
+      "recipientCurrency": "Le bénéficiaire reçoit",
+      "tomanLeg": "Un côté est toujours en tomans",
+      "fromCurrency": "Devise envoyée",
+      "toCurrency": "Devise reçue"
+    },
+    "requoting": "Nouveau taux en cours…",
+    "requoteFailed": "Impossible d'obtenir un nouveau taux. Vérifiez votre connexion et réessayez."
+  },
+  "orders": {
+    "metaTitle": "Commandes",
+    "emptyTitle": "Aucune commande pour l'instant",
+    "emptyBody": "Dès votre premier transfert, la chronologie en direct de chaque commande — avec le compte à rebours de l'engagement de délai et la discussion avec votre bureau — apparaît ici.",
+    "cta": "Démarrer un transfert",
+    "title": "Commandes",
+    "subtitle": "Chaque transfert avec sa propre référence, et la chronologie complète de chaque étape.",
+    "ref": "Référence",
+    "created": "Créée le",
+    "youSend": "Vous envoyez",
+    "recipientGets": "Le bénéficiaire reçoit",
+    "office": "Bureau de change",
+    "officeUnassigned": "Aucun bureau pour l'instant",
+    "timeline": "Chronologie",
+    "noEvents": "Rien ne s'est encore produit.",
+    "by": "par {role}",
+    "actorRole": {
+      "customer": "le client",
+      "office": "le bureau",
+      "platform": "la plateforme"
+    },
+    "detailTitle": "Commande {ref}",
+    "notFound": "Cette commande n'existe pas, ou vous n'y avez pas accès.",
+    "rateLocked": "Taux verrouillé",
+    "fees": "Frais",
+    "actions": "Ce que vous pouvez faire",
+    "noActions": "Rien n'est attendu de vous à cette étape.",
+    "reasonLabel": "Note (facultative)",
+    "reasonRequired": "Note (obligatoire)",
+    "working": "Enregistrement…",
+    "actionFailed": "Ce changement n'a pas pu être enregistré.",
+    "errors": {
+      "notVerified": "Votre identité doit être vérifiée avant de pouvoir déposer un transfert.",
+      "noDestination": "Aucun compte de destination n'est sélectionné.",
+      "rateExpired": "Le taux verrouillé a expiré — demandez-en un nouveau.",
+      "notPermitted": "Cette action ne vous revient pas à cette étape.",
+      "funded": "Une commande approvisionnée se rembourse, elle ne s'annule pas."
+    },
+    "state": {
+      "draft": "Non déposée",
+      "submitted": "Déposée",
+      "matching": "En attente d'un bureau",
+      "office_review": "En cours d'examen par le bureau",
+      "accepted": "Acceptée",
+      "awaiting_irt_funding": "En attente de vos tomans",
+      "irt_funded": "Tomans versés",
+      "foreign_leg_pending": "Volet en devise en cours",
+      "foreign_leg_sent": "Volet en devise envoyé",
+      "recipient_confirmed": "Réception confirmée",
+      "irt_released": "Tomans libérés",
+      "completed": "Terminée",
+      "on_hold": "Suspendue",
+      "info_needed": "Informations complémentaires requises",
+      "disputed": "En litige",
+      "cancelled": "Annulée",
+      "refunded": "Remboursée",
+      "expired": "Expirée",
+      "sla_breached": "Engagement de délai dépassé"
+    },
+    "stateBody": {
+      "draft": "Cette commande n'a pas encore été déposée.",
+      "submitted": "Déposée et mise en file pour atteindre les bureaux de change éligibles.",
+      "matching": "Les bureaux éligibles peuvent voir votre demande.",
+      "office_review": "Un bureau a pris la demande et l'examine.",
+      "accepted": "Le bureau a accepté. L'étape suivante est le versement des tomans.",
+      "awaiting_irt_funding": "Virez le montant en tomans et déposez le justificatif.",
+      "irt_funded": "Les tomans sont en garde supervisée ; le bureau n'a pas encore été payé.",
+      "foreign_leg_pending": "Le bureau exécute le transfert en devise.",
+      "foreign_leg_sent": "C'est en route. Confirmez dès réception.",
+      "recipient_confirmed": "La réception est confirmée ; l'étape suivante est la libération des tomans.",
+      "irt_released": "Les tomans ont été libérés au profit du bureau.",
+      "completed": "Ce transfert est clos.",
+      "on_hold": "En pause pour le moment ; la raison figure dans la chronologie.",
+      "info_needed": "Le bureau a demandé des informations complémentaires.",
+      "disputed": "En cours d'examen, et gelée jusqu'à résolution.",
+      "cancelled": "Cette commande a été annulée.",
+      "refunded": "Le montant en tomans a été restitué.",
+      "expired": "Cette commande a dépassé son délai.",
+      "sla_breached": "Au-delà du délai, et remontée en escalade."
+    },
+    "act": {
+      "submitted": "Déposer la demande",
+      "cancelled": "Annuler la commande",
+      "recipient_confirmed": "Je l'ai reçu",
+      "disputed": "Ouvrir un litige",
+      "office_review": "Prendre et examiner",
+      "accepted": "Accepter la demande",
+      "info_needed": "Demander des informations",
+      "awaiting_irt_funding": "Prêt pour les tomans",
+      "irt_funded": "Confirmer l'arrivée des tomans",
+      "foreign_leg_pending": "Lancer le volet en devise",
+      "foreign_leg_sent": "Marquer le volet en devise comme envoyé",
+      "irt_released": "Libérer les tomans",
+      "completed": "Clore la commande",
+      "on_hold": "Suspendre",
+      "refunded": "Rembourser",
+      "sla_breached": "Consigner un dépassement de délai"
+    },
+    "cost": {
+      "title": "Ce que ce transfert a coûté",
+      "body": "{toman} tomans ont été prélevés au total sur ce transfert — soit {pct} % de celui-ci.",
+      "basis": "Taux de base du marché au moment du verrouillage : {mid} tomans."
+    }
+  },
+  "kyc": {
+    "metaTitle": "Vérification",
+    "unavailableTitle": "La vérification n'est pas active dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "steps": {
+      "identity": {
+        "rail": "Identité",
+        "title": "Vos informations",
+        "body": "Nous les recueillons une seule fois. Après validation, vous ne gérez plus que vos comptes de destination."
+      },
+      "document": {
+        "rail": "Document",
+        "title": "Pièce d'identité",
+        "body": "Photographiez votre carte nationale ou votre passeport sous une lumière régulière, sans reflet. La qualité de l'image est vérifiée ici même."
+      },
+      "liveness": {
+        "rail": "Selfie",
+        "title": "Photo en direct",
+        "body": "Prenez un simple selfie pour que nous confirmions que le document est bien le vôtre."
+      },
+      "review": {
+        "rail": "Vérification",
+        "title": "Vérifier et envoyer",
+        "body": "Relisez le tout une fois avant l'envoi.",
+        "pending": "Vos documents sont arrivés et attendent l'examen. Cela prend en général moins d'un jour ouvré.",
+        "badge": "En cours d'examen",
+        "next": "Nous vous annoncerons le résultat par SMS et dans l'application. Si un document est illisible, nous dirons précisément lequel et pourquoi."
+      }
+    },
+    "fields": {
+      "nameFa": "Nom complet (en persan)",
+      "nameFaPlaceholder": "علی رضایی",
+      "nameLatin": "Nom en caractères latins",
+      "nationality": "Nationalité",
+      "iranian": "Iranienne",
+      "other": "Non iranienne",
+      "nationalCode": "Code national",
+      "nationalCodeHint": "10 chiffres, exactement comme sur votre carte nationale.",
+      "nationalCodeInvalid": "Code national invalide — le chiffre de contrôle ne correspond pas au reste.",
+      "dob": "Date de naissance",
+      "dobHint": "Saisissez-la dans le calendrier jalali ; la date grégorienne est également conservée.",
+      "year": "Année",
+      "month": "Mois",
+      "day": "Jour",
+      "city": "Ville",
+      "cityPlaceholder": "Téhéran",
+      "postalCode": "Code postal",
+      "address": "Adresse",
+      "addressPlaceholder": "Rue, ruelle, numéro, appartement"
+    },
+    "doc": {
+      "nationalId": "Carte nationale d'identité",
+      "passport": "Passeport",
+      "passportPage": "Page de données du passeport",
+      "front": "Recto",
+      "back": "Verso",
+      "label": "Type de document",
+      "hint": "Faites tenir tout le document dans le cadre, sans reflet ni doigt sur le texte.",
+      "privacy": "Les documents résident dans un stockage privé chiffré ; seule l'équipe conformité les consulte, par un lien de courte durée, et chaque consultation est écrite au journal d'audit."
+    },
+    "liveness": {
+      "label": "Selfie",
+      "hint": "Tout votre visage dans le cadre, face à la lumière.",
+      "tip1": "Retirez lunettes de soleil, masques et chapeaux.",
+      "tip2": "Gardez un fond neutre, sans lumière crue.",
+      "tip3": "Si vous tenez le document, laissez son texte lisible."
+    },
+    "upload": {
+      "choose": "Choisir ou prendre une photo",
+      "ok": "C'est bon",
+      "retake": "Reprendre",
+      "readFailed": "Ce fichier n'a pas pu être lu — choisissez une image JPG ou PNG.",
+      "verdict": {
+        "blurry": "La photo est floue. Tenez l'appareil immobile et réessayez.",
+        "glare": "Un reflet traverse le document. Changez légèrement l'angle.",
+        "dark": "La photo est trop sombre. Réessayez dans un endroit plus clair.",
+        "small": "La résolution est trop faible. Rapprochez-vous et prenez une photo de meilleure qualité."
+      }
+    },
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Envoyer pour examen",
+    "submitting": "Envoi…",
+    "errors": {
+      "signedOut": "Votre session a pris fin. Reconnectez-vous.",
+      "submitFailed": "Ce dépôt n'a pas pu être enregistré. Réessayez dans un instant.",
+      "uploadFailed": "L'envoi du document ne s'est pas terminé. Vérifiez votre connexion et réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    },
+    "ocr": {
+      "title": "Le lire depuis le document",
+      "body": "Si votre document comporte une zone lisible par machine — un passeport, ou une carte d'identité internationale — nous pouvons en lire les informations sur la photo que vous venez de prendre. La photo ne quitte jamais votre téléphone : la lecture se fait entièrement sur cet appareil.",
+      "read": "Lire",
+      "working": "Lecture…",
+      "verified": "Vérifié",
+      "verifiedBody": "Chaque chiffre de contrôle OACI de ces champs a été recalculé et concorde. Si quoi que ce soit avait été mal lu, rien ne serait affiché ici.",
+      "field": {
+        "name": "Nom",
+        "dob": "Date de naissance",
+        "nationality": "Nationalité",
+        "number": "Numéro du document"
+      },
+      "mismatch": "Ce qui a été lu diffère de ce que vous avez saisi (signalé en couleur). Si le document a raison, utilisez le bouton ci-dessous ; si vous avez volontairement saisi un autre nom, laissez tel quel.",
+      "expired": "Ce document a expiré le {date}.",
+      "apply": "Reporter dans le formulaire",
+      "appliedLabel": "Ajouté au formulaire",
+      "errors": {
+        "no-zone": "Aucune zone lisible par machine trouvée. Assurez-vous que toute la page du passeport est à plat dans le cadre et que les deux lignes du bas ne sont pas coupées.",
+        "failed": "La lecture ne s'est pas terminée. Vous pouvez saisir les informations à la main.",
+        "unsupported": "Ce navigateur ne le permet pas. Saisissez les informations à la main."
+      }
+    }
+  },
+  "profile": {
+    "metaTitle": "Profil",
+    "emptyTitle": "Votre compte",
+    "emptyBody": "Connectez-vous pour voir votre statut de vérification, vos comptes bancaires et vos réglages de sécurité.",
+    "cta": "Retour à l'accueil",
+    "title": "Votre compte",
+    "subtitle": "Statut de vérification, sécurité et vos appareils.",
+    "unnamed": "Sans nom",
+    "kyc": {
+      "unverified": "Non vérifié",
+      "pending": "En cours d'examen",
+      "approved": "Vérifié",
+      "rejected": "Refusé",
+      "more_info_needed": "Informations complémentaires requises"
+    },
+    "kycBody": {
+      "unverified": "Déposer un transfert demande une vérification unique. Elle prend moins de cinq minutes.",
+      "pending": "Vos documents attendent l'examen — en général moins d'un jour ouvré.",
+      "approved": "Votre identité est vérifiée. À partir d'ici, vous ne gérez plus que vos comptes de destination.",
+      "rejected": "Votre dossier a été refusé. La raison figure dans le message que nous vous avons envoyé ; vous pouvez recommencer.",
+      "more_info_needed": "Il nous faut un peu plus d'informations, ou un document plus net, pour terminer l'examen."
+    },
+    "startKyc": "Commencer la vérification",
+    "security": {
+      "title": "Sécurité du compte",
+      "body": "Votre connexion est protégée par un code à usage unique. La connexion en deux étapes est également disponible, et obligatoire pour le personnel des bureaux de change et de la plateforme.",
+      "otpOn": "Connexion par code à usage unique",
+      "totpSoon": "2FA bientôt"
+    },
+    "devices": {
+      "title": "Activité de connexion",
+      "body": "Les connexions et déconnexions les plus récentes sur votre compte.",
+      "none": "Aucune activité enregistrée pour l'instant.",
+      "kind": {
+        "sign_in": "Connexion",
+        "sign_out": "Déconnexion",
+        "revoked": "Session révoquée"
+      }
+    },
+    "signOut": "Se déconnecter",
+    "rewards": {
+      "tierTitle": "Votre palier",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Argent",
+        "gold": "Or",
+        "platinum": "Platine"
+      },
+      "feeIs": "{pct} points de pourcentage en moins sur la commission",
+      "toNext": "Encore {amount} tomans pour atteindre le palier {tier}",
+      "topTier": "Vous êtes au palier le plus élevé.",
+      "volume": "Volume abouti : {amount} tomans",
+      "referralTitle": "Invitez un proche",
+      "referralBody": "La récompense arrive quand le premier transfert de votre filleul aboutit — pas à son inscription.",
+      "copy": "Copier",
+      "copied": "Copié",
+      "invitedCount": "{invited, number} invités · {rewarded, number} récompensés",
+      "haveACode": "Vous avez un code ?",
+      "apply": "Appliquer",
+      "claimOk": "Code appliqué.",
+      "claimRefused": "Ce code n'a pas été accepté — vous en avez peut-être déjà un, ou vous avez déjà effectué un transfert."
+    }
+  },
+  "accounts": {
+    "metaTitle": "Mes comptes",
+    "title": "Comptes de départ et de destination",
+    "subtitle": "Les comptes avec lesquels vous envoyez et recevez. La validation ici est réelle, pas cosmétique.",
+    "add": "Ajouter un compte",
+    "addFirst": "Ajoutez votre premier compte",
+    "emptyTitle": "Aucun compte enregistré",
+    "emptyBody": "Ajoutez un Sheba, une carte ou un compte international, et il suffira de le choisir au moment de lancer un transfert.",
+    "unavailableTitle": "La gestion des comptes n'est pas active dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "thirdParty": "Tiers",
+    "ownAccount": "Le mien",
+    "archive": "Archiver",
+    "kind": {
+      "sheba": "Sheba",
+      "card": "Carte",
+      "iban": "IBAN",
+      "swift": "SWIFT",
+      "cash_pickup": "Retrait en espèces"
+    },
+    "addTitle": "Ajouter un compte",
+    "addBody": "Choisissez le type de compte et saisissez son identifiant — nous le vérifions à mesure que vous tapez.",
+    "identifier": {
+      "sheba": "Numéro Sheba",
+      "card": "Numéro de carte",
+      "iban": "IBAN",
+      "swift": "Code SWIFT / BIC"
+    },
+    "hint": {
+      "sheba": "IR suivi de 24 chiffres ; les espaces ne gênent pas.",
+      "card": "Les 16 chiffres de la carte ; la banque est détectée automatiquement.",
+      "iban": "L'IBAN du pays de destination, commençant par son code à deux lettres.",
+      "swift": "8 ou 11 caractères, par exemple BKMTIRTH."
+    },
+    "invalid": {
+      "sheba": "Sheba invalide — les chiffres de contrôle ne correspondent pas.",
+      "card": "Numéro de carte invalide — un chiffre est erroné.",
+      "iban": "IBAN invalide — la longueur ou les chiffres de contrôle sont incorrects.",
+      "swift": "Code SWIFT invalide — 8 ou 11 caractères latins sont requis."
+    },
+    "valid": "L'identifiant du compte est valide",
+    "validBank": "Valide — {bank}",
+    "bankName": "Nom de la banque",
+    "bankPlaceholder": "Banque de destination",
+    "nickname": "Libellé",
+    "nicknamePlaceholder": "par ex. Compte des frais de scolarité",
+    "holder": "Titulaire du compte",
+    "holderPlaceholder": "Exactement comme à la banque",
+    "currency": "Devise du compte",
+    "thirdPartyLabel": "Ce compte n'est pas le mien",
+    "thirdPartyHint": "Les transferts vers un tiers exigent une déclaration explicite et l'accord de la conformité.",
+    "save": "Enregistrer le compte",
+    "saving": "Enregistrement…",
+    "errors": {
+      "signedOut": "Votre session a pris fin. Reconnectez-vous.",
+      "saveFailed": "Ce compte n'a pas pu être enregistré. Réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    }
+  },
+  "alerts": {
+    "title": "Alerte de prix {currency}",
+    "body": "Nous vous prévenons quand le prix franchit le chiffre que vous indiquez.",
+    "when": "Quand le prix passe",
+    "direction": {
+      "above": "au-dessus de",
+      "below": "en dessous de"
+    },
+    "threshold": "Prix (tomans)",
+    "add": "Ajouter une alerte",
+    "none": "Aucune alerte pour cette devise.",
+    "fired": "Envoyée",
+    "remove": "Supprimer l'alerte",
+    "summary": {
+      "above": "Quand il dépasse {amount} tomans",
+      "below": "Quand il tombe sous {amount} tomans"
+    },
+    "deliveryNote": "Les alertes sont évaluées dans la base de données à partir du dernier prix enregistré et apparaissent dans cette application. L'envoi par SMS s'active dès que la passerelle est raccordée.",
+    "signInFirst": "Il faut un compte pour créer une alerte de prix.",
+    "signIn": "Se connecter",
+    "errors": {
+      "threshold": "Ce n'est pas un nombre valide.",
+      "tooMany": "Vous pouvez conserver 20 alertes à la fois.",
+      "signIn": "Connectez-vous d'abord.",
+      "failed": "L'enregistrement a échoué. Réessayez."
+    },
+    "firedNote": "Une de vos alertes a atteint son seuil et le message est parti."
+  },
+  "banks": {
+    "melli": "Banque Melli",
+    "sepah": "Banque Sepah",
+    "mellat": "Banque Mellat",
+    "tejarat": "Banque Tejarat",
+    "saderat": "Banque Saderat",
+    "keshavarzi": "Banque Keshavarzi",
+    "maskan": "Banque Maskan",
+    "refah": "Banque Refah",
+    "parsian": "Banque Parsian",
+    "pasargad": "Banque Pasargad",
+    "saman": "Banque Saman",
+    "eghtesadNovin": "Banque Eghtesad Novin",
+    "ansar": "Banque Ansar",
+    "postbank": "Banque postale",
+    "ayandeh": "Banque Ayandeh",
+    "shahr": "Banque Shahr",
+    "day": "Banque Day",
+    "sina": "Banque Sina",
+    "sarmayeh": "Banque Sarmayeh",
+    "tosee": "Banque Tosee Ta'avon"
+  },
+  "chat": {
+    "orderTitle": "Discussion avec le bureau de change",
+    "orderBody": "Posez vos questions avant de vous engager. Vous et le bureau voyez tous deux cette discussion.",
+    "notYet": "Tant qu'un bureau n'a pas pris la commande, il n'y a personne en face.",
+    "unavailable": "Cette discussion n'est pas disponible.",
+    "empty": "Rien n'a encore été dit.",
+    "placeholder": "Écrivez un message…",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "someone": "Quelqu'un",
+    "system": "Système",
+    "internalNote": "Note interne — le client ne la voit pas",
+    "asInternalNote": "En note interne",
+    "offPlatformWarning": "Le règlement se fait toujours dans la plateforme ; payer en dehors fait perdre le registre et la procédure de litige.",
+    "flag": {
+      "off_platform": "Propose un règlement hors plateforme",
+      "account_number": "Numéro de compte dans le texte",
+      "contact": "Coordonnées dans le texte"
+    },
+    "errors": {
+      "tooLong": "Ce message dépasse la longueur autorisée.",
+      "notParticipant": "Vous ne faites pas partie de cette discussion.",
+      "failed": "Envoi impossible. Réessayez."
+    }
+  },
+  "p2p": {
+    "metaTitle": "Marché entre particuliers",
+    "title": "Marché entre particuliers",
+    "subtitle": "Échangez directement avec quelqu'un — le volet en tomans étant réglé au sein de la plateforme, sous la supervision d'un bureau de change agréé jouant le rôle de tiers confirmateur.",
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "backHome": "Retour à l'accueil",
+    "postOffer": "Publier une offre",
+    "verifyToPost": "Vérifiez votre identité pour publier",
+    "allPairs": "Toutes",
+    "empty": "Aucune offre ouverte pour l'instant.",
+    "sells": "Vend {code}",
+    "buys": "Achète {code}",
+    "perUnit": " tomans par {code}",
+    "anonymousMaker": "Intervenant vérifié",
+    "newTrader": "Nouvel intervenant",
+    "tradesDone": "{count, number} échanges réalisés",
+    "yours": "Votre offre",
+    "escrowNote": "Le volet en tomans se règle dans la plateforme, sous la supervision d'un bureau de change ; rien de ce qui se passe en dehors n'est couvert.",
+    "rateLabel": "Taux (tomans par {code})",
+    "minSliceLabel": "Tranche minimale",
+    "makerLabel": "Émetteur",
+    "reputationLabel": "Historique",
+    "reputationValue": "{count, number} échanges · {rate} % menés à terme",
+    "status": {
+      "open": "Ouverte",
+      "paused": "En pause",
+      "filled": "Servie",
+      "cancelled": "Annulée",
+      "removed": "Retirée"
+    },
+    "alreadyTaken": "Vous avez déjà un échange en cours sur cette offre.",
+    "openTrade": "Ouvrir l'échange",
+    "yourOwnOffer": "C'est votre propre offre.",
+    "verifyToTake": "Prendre une offre demande une identité vérifiée.",
+    "verifyCta": "Vérifier l'identité",
+    "signInCta": "Se connecter",
+    "takeTitle": "Prendre cette offre",
+    "sliceLabel": "Montant ({code})",
+    "takeSummary": "Volet en tomans : {toman} IRT, conservés par le bureau de change jusqu'à confirmation des deux côtés.",
+    "take": "Démarrer l'échange",
+    "taking": "Démarrage…",
+    "errors": {
+      "ownOffer": "Vous ne pouvez pas prendre votre propre offre.",
+      "belowMin": "C'est en dessous de la tranche minimale de cette offre.",
+      "aboveMax": "C'est au-dessus de la tranche maximale de cette offre.",
+      "notEnoughLeft": "Il ne reste pas autant sur cette offre.",
+      "noEscrow": "Aucun bureau de change actif ne couvre ce corridor pour le moment.",
+      "ceiling": "C'est au-dessus du plafond de votre palier de vérification.",
+      "unverified": "Vérifiez d'abord votre identité.",
+      "closed": "Cette offre n'est plus ouverte.",
+      "failed": "Impossible d'aboutir. Réessayez.",
+      "outsideBand": "Ce prix s'écarte de plus de 7 % du taux du marché. Ramenez-le dans la fourchette."
+    },
+    "compose": {
+      "metaTitle": "Publier une offre",
+      "title": "Publier une offre",
+      "subtitle": "Un côté est toujours en tomans. Vous fixez le taux ; le règlement est supervisé par un bureau de change.",
+      "verifyTitle": "Publier une offre demande une identité vérifiée",
+      "verifyBody": "C'est une exigence, pas une préférence : l'autre partie doit savoir avec qui elle traite.",
+      "verifyCta": "Commencer la vérification",
+      "direction": "Que voulez-vous faire ?",
+      "sell": "J'ai des {code}, je veux des tomans",
+      "buy": "J'ai des tomans, je veux des {code}",
+      "currency": "Devise",
+      "amount": "Montant ({code})",
+      "rate": "Votre taux (tomans par {code})",
+      "marketHint": "Le marché est à {rate} tomans.",
+      "useMarket": "Prendre le taux du marché",
+      "minSlice": "Minimum par échange",
+      "terms": "Conditions",
+      "termsPlaceholder": "par ex. virement SEPA, le jour ouvré même",
+      "summary": "Vous proposez {have} contre {want} à {rate} tomans.",
+      "escrowNote": "Une fois l'offre appariée, les tomans sont conservés par le bureau de change et libérés à la confirmation du volet en devise.",
+      "publish": "Publier l'offre",
+      "publishing": "Publication…",
+      "errors": {
+        "duplicate": "Vous avez déjà une offre ouverte sur cette paire ; modifiez-la plutôt.",
+        "tooMany": "Vous avez atteint le nombre maximal d'offres ouvertes.",
+        "cooldown": "Trop d'offres au cours de la dernière heure.",
+        "ceiling": "C'est au-dessus du plafond de votre palier de vérification.",
+        "unverified": "Vérifiez d'abord votre identité.",
+        "corridor": "Un des deux côtés d'une offre doit être en tomans.",
+        "failed": "Publication impossible. Réessayez."
+      }
+    },
+    "trade": {
+      "metaTitle": "Échange entre particuliers",
+      "title": "Échange entre particuliers",
+      "youAreMaker": "Vous avez publié cette offre.",
+      "youAreTaker": "Vous avez pris cette offre.",
+      "tomanLeg": "Volet en tomans",
+      "foreignLeg": "Volet en devise",
+      "agreedRate": "Taux convenu",
+      "escrowOffice": "Bureau séquestre",
+      "noEscrow": "Pas encore attribué",
+      "escrowExplainer": "Le bureau n'est pas partie à l'échange ; il confirme le dépôt en tomans et le transfert en devise, et perçoit des frais de séquestre.",
+      "openOrder": "Ouvrir le règlement",
+      "chatTitle": "Discussion de l'échange",
+      "chatBody": "La contrepartie et le bureau séquestre la voient, et elle est conservée comme preuve en cas de litige.",
+      "rateTitle": "Notez votre contrepartie",
+      "rateBody": "Votre note figure dans son historique public.",
+      "stars": "{count, number} étoiles",
+      "alreadyRated": "Vous avez déjà noté cet échange.",
+      "disputeTitle": "Ouvrir un litige",
+      "disputeBody": "L'échange est gelé et la conformité de la plateforme examine les deux versions.",
+      "disputePlaceholder": "Que s'est-il passé ? (au moins 8 caractères)",
+      "raiseDispute": "Ouvrir un litige",
+      "reasonRequired": "Un motif écrit d'au moins 8 caractères est requis.",
+      "failed": "Impossible d'aboutir. Réessayez."
+    },
+    "rateBadge": "{rate} par {code}",
+    "dial": {
+      "title": "Le prix et la vitesse à laquelle vous traitez",
+      "bodySell": "Vous pouvez vendre jusqu'à {pct} % sous le taux du marché. Plus vous descendez, plus votre offre remonte et plus vite un acheteur la trouve.",
+      "bodyBuy": "Vous pouvez acheter jusqu'à {pct} % au-dessus du taux du marché. Plus vous payez, plus vite les vendeurs viennent à vous.",
+      "atMarket": "Taux du marché",
+      "off": "{pct, number} %",
+      "marketNow": "Marché actuel",
+      "yourPrice": "Votre prix",
+      "difference": "Écart",
+      "below": "en dessous",
+      "above": "au-dessus",
+      "fasterSell": "À ce prix, vous passez devant les offres alignées sur le marché.",
+      "fasterBuy": "À ce prix, vous êtes plus attirant pour les vendeurs que les autres.",
+      "outside": "S'écarter de plus de {pct, number} % du marché n'est pas accepté. Ramenez le prix dans la fourchette."
+    },
+    "visibility": {
+      "title": "Comment être vu en premier ?",
+      "subtitle": "L'ordre des offres n'est pas aléatoire. Ces quatre éléments décident de votre place dans la liste.",
+      "items": {
+        "price": {
+          "title": "Un prix plus serré",
+          "body": "Le levier le plus fort. Vous avez jusqu'à 7 % de marge de chaque côté du marché ; chaque pas vers l'autre partie vous fait remonter."
+        },
+        "reputation": {
+          "title": "Une bonne note",
+          "body": "Votre note se construit à partir des échanges menés à terme. Un échange propre livré à l'heure fait remonter le suivant."
+        },
+        "speed": {
+          "title": "Des réponses rapides",
+          "body": "Votre délai de réponse moyen est visible. Les gens vont vers qui répond le plus vite."
+        },
+        "clarity": {
+          "title": "Des conditions claires",
+          "body": "Dites comment et où vous réglez. Une offre aux conditions limpides est bien moins souvent ignorée."
+        }
+      }
+    }
+  },
+  "settlement": {
+    "metaTitle": "Règlement — panneau du bureau",
+    "adminMetaTitle": "Règlement — console d'administration",
+    "title": "Règlement",
+    "subtitle": "Les cartes et IBAN sur lesquels vous recevez l'argent. Quand l'un est plein, ajoutez-en un autre ici.",
+    "adminSubtitle": "Les cartes et IBAN de règlement de chaque bureau, et la concordance de chacun.",
+    "intro": "Chaque carte iranienne a un plafond de réception journalier et mensuel. Quand il est atteint, les paiements des clients n'arrivent plus et les transferts s'enlisent. Vous pouvez donc ajouter une carte ou un IBAN vous-même, sans attendre.",
+    "readOnly": "Ajouter ou retirer un compte demande un accès finance.",
+    "unavailableTitle": "Pas encore disponible",
+    "unavailableBody": "La connexion à la base de données n'est pas configurée.",
+    "forbiddenTitle": "Vous n'avez pas accès",
+    "forbiddenBody": "Cette section est réservée aux administrateurs qui configurent les bureaux.",
+    "backHome": "Retour à l'accueil",
+    "bank": {
+      "label": "Banque",
+      "search": "Rechercher une banque",
+      "noMatch": "Aucune banque ne correspond à ce nom.",
+      "detected": "Déduit de l'IBAN",
+      "disagrees": "L'IBAN saisi appartient à une autre banque. L'un des deux est faux — vérifiez, s'il vous plaît."
+    },
+    "add": {
+      "title": "Ajouter un compte",
+      "office": "Bureau",
+      "kind": "Type de compte",
+      "kind_card": "Carte bancaire",
+      "kind_iban": "IBAN",
+      "number_card": "Numéro de carte (16 chiffres)",
+      "number_iban": "IBAN",
+      "holder": "Nom du titulaire",
+      "holderPlaceholder": "Tel qu'enregistré à la banque",
+      "code": "Code national du titulaire",
+      "codeHint": "Comparé à celui enregistré pour le bureau.",
+      "ceiling": "Plafond journalier (tomans)",
+      "ceilingHint": "Facultatif. Pour savoir quand il est atteint.",
+      "cta": "Ajouter le compte",
+      "working": "Enregistrement…",
+      "hint": "Ajouter une carte ou un IBAN. Le numéro est vérifié à la saisie et la banque en est déduite."
+    },
+    "list": {
+      "title": "Comptes de règlement",
+      "empty": "Aucun compte pour l'instant.",
+      "noHolder": "Aucun nom de titulaire",
+      "ceiling": "Plafond journalier {amount}",
+      "retire": "Plafond atteint",
+      "retired": "Retiré",
+      "hint": "Les cartes et IBAN sur lesquels l'argent du règlement est versé. Un compte retiré cesse d'être proposé mais n'est jamais effacé de l'historique.",
+      "openOffice": "Ouvrir le dossier du bureau"
+    },
+    "match": {
+      "verified": "Concordant",
+      "unverified": "Non vérifié",
+      "mismatch": "Responsabilité acceptée"
+    },
+    "mismatch": {
+      "title": "Le nom ou le code national ne concorde pas",
+      "reason": {
+        "noCode": "Aucun code national n'a été fourni pour ce titulaire.",
+        "codeDiffers": "Le code national du titulaire diffère de celui enregistré pour ce bureau.",
+        "nameDiffers": "Le nom du titulaire diffère du nom enregistré du bureau.",
+        "unknown": "Les informations de ce compte ne correspondent pas à ce qui est enregistré."
+      },
+      "body": "Vous pouvez continuer, mais si vous le faites, l'entière responsabilité de ce transfert — toute perte, tout retard, tout gel ou toute non-restitution des fonds — vous incombe. Cette acceptation est consignée avec votre nom, l'heure et le motif.",
+      "checkbox": "J'accepte que la responsabilité de ce transfert m'incombe, au titre de l'article 7 des",
+      "termsLink": "conditions d'utilisation",
+      "cancel": "Annuler et corriger",
+      "confirm": "J'accepte — continuer"
+    },
+    "errors": {
+      "number_card": "Ce numéro de carte n'est pas valide. Seize chiffres avec un chiffre de contrôle correct.",
+      "number_iban": "Cet IBAN n'est pas valide. IR suivi de 24 chiffres.",
+      "code": "Ce code national n'est pas valide.",
+      "saveFailed": "Enregistrement impossible. Réessayez.",
+      "forbidden": "Vous n'êtes pas membre de ce bureau.",
+      "holderRequired": "Le nom du titulaire est obligatoire.",
+      "numberRequired": "Un numéro de compte est obligatoire."
+    }
+  },
+  "tickets": {
+    "officeTitle": "Tickets d'assistance",
+    "officeSubtitle": "Les tickets dont la première réponse vous revient. Sans réponse de votre part sous {hours, number} heures, le client peut les remonter à la plateforme.",
+    "adminTitle": "Tickets de la plateforme",
+    "adminSubtitle": "Tous les tickets, y compris ceux qu'un bureau laisse dormir. La plateforme est au-dessus du bureau et peut reprendre n'importe lequel. La fenêtre du bureau est de {hours, number} heures.",
+    "filterLabel": "Afficher",
+    "filters": {
+      "live": "Ouverts",
+      "escalated": "Remontés",
+      "all": "Tous"
+    },
+    "empty": "Aucun ticket dans cette vue.",
+    "filedBy": "de {name}",
+    "someone": "un client",
+    "awaitingFirstReply": "aucune première réponse",
+    "overdue": "{hours, number} heures sans réponse",
+    "state": {
+      "open": "Ouvert",
+      "in_progress": "En cours",
+      "waiting_user": "En attente du client",
+      "escalated": "Remonté",
+      "resolved": "Résolu",
+      "closed": "Clos"
+    },
+    "priority": {
+      "low": "Basse",
+      "normal": "Normale",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "category": {
+      "order": "Transfert",
+      "payment": "Paiement",
+      "kyc": "Identité",
+      "p2p": "Particuliers",
+      "account": "Compte",
+      "office": "Bureau de change",
+      "other": "Autre"
+    },
+    "actions": {
+      "take": "Le prendre",
+      "resolve": "Résoudre",
+      "reopen": "Rouvrir",
+      "handOver": "Passer à la plateforme",
+      "pullUp": "Reprendre au bureau"
+    },
+    "moved": {
+      "open": "Ticket rouvert",
+      "in_progress": "Vous avez pris le ticket",
+      "waiting_user": "En attente du client",
+      "escalated": "Remonté à la plateforme",
+      "resolved": "Ticket résolu",
+      "closed": "Ticket clos"
+    },
+    "errors": {
+      "failed": "Cela n'est pas passé. Réessayez.",
+      "alreadyEscalated": "Ce ticket est déjà chez la plateforme."
+    },
+    "allAnswered": "Tous les tickets ont reçu une réponse."
+  },
+  "coins": {
+    "metaTitle": "Acheter des pièces d'or — Asaex",
+    "title": "Pièces d'or",
+    "subtitle": "Prix en direct des pièces d'or iraniennes et des lingots. Vous demandez, le bureau confirme, vous retirez en personne.",
+    "perUnit": "l'unité",
+    "fine": "{grams} g d'or fin",
+    "premium": "Prime {pct} %",
+    "buy": "Demander",
+    "noPrice": "Aucun prix disponible.",
+    "staleNotice": "Ces prix ne se sont pas rafraîchis ; le marché est peut-être fermé. Vérifiez auprès du bureau avant d'agir.",
+    "demoNotice": "La source du prix des pièces n'est pas encore reliée, aucune demande ne peut donc être déposée depuis cette page. L'achat s'ouvrira ici dès qu'elle le sera.",
+    "disclaimer": "Le prix affiché suit le marché libre ; le bureau annonce le prix ferme au moment de confirmer. La prime est ce qu'une pièce coûte de plus que l'or qu'elle contient.",
+    "products": {
+      "EMAMI": "Pièce Emami (entière)",
+      "BAHAR": "Bahar Azadi (ancien modèle)",
+      "NIM": "Demi-pièce",
+      "ROB": "Quart de pièce",
+      "GERAMI": "Pièce d'un gramme",
+      "GERAM18": "Un gramme, 18 carats",
+      "MESGHAL": "Mesghal d'or"
+    },
+    "request": {
+      "title": "Demande d'achat",
+      "notPaidYet": "Rien n'est prélevé pour l'instant. Le bureau vérifie son stock, annonce un prix ferme, et le paiement vient ensuite.",
+      "quantity": "Quantité",
+      "fewer": "Moins",
+      "more": "Plus",
+      "pickup": "Lieu de retrait (facultatif)",
+      "pickupPlaceholder": "par ex. l'agence de Vanak",
+      "estimate": "Total estimé",
+      "cta": "Envoyer la demande",
+      "working": "Envoi…",
+      "placed": "Votre demande est enregistrée.",
+      "next": "Le bureau confirmera le stock et le prix ferme sous peu. Suivez cela dans vos commandes.",
+      "done": "Entendu",
+      "failed": "Cela n'est pas parti. Réessayez.",
+      "signInFirst": "Vous devez vous connecter avant de demander des pièces.",
+      "signIn": "Se connecter"
+    },
+    "state": {
+      "requested": "En attente d'un bureau",
+      "confirmed": "Confirmée — en attente de paiement",
+      "paid": "Payée",
+      "ready": "Prête au retrait",
+      "collected": "Retirée",
+      "cancelled": "Annulée"
+    }
+  },
+  "officeIdentity": {
+    "title": "Informations du bureau",
+    "displayName": "Nom affiché",
+    "displayNameHint": "C'est le nom que vos clients voient.",
+    "ownerName": "Propriétaire déclaré",
+    "nationalId": "Code national",
+    "licence": "Numéro d'agrément",
+    "notSet": "Non renseigné",
+    "lockedNote": "Une fois l'identité vérifiée, le propriétaire déclaré, le code national et le numéro d'agrément ne peuvent être modifiés que par la plateforme. Ouvrez un ticket pour les corriger.",
+    "addLogo": "Ajouter un logo",
+    "changeLogo": "Changer le logo",
+    "logoHint": "PNG, JPG, WebP ou SVG, jusqu'à 512 ko.",
+    "logoSaved": "Logo enregistré.",
+    "saved": "Enregistré.",
+    "save": "Enregistrer",
+    "working": "Enregistrement…",
+    "kyc": {
+      "verified": "Identité vérifiée",
+      "pending": "En cours d'examen",
+      "rejected": "Non vérifiée",
+      "unverified": "Non contrôlée"
+    },
+    "status": {
+      "draft": "Incomplet",
+      "active": "Actif",
+      "suspended": "Suspendu",
+      "archived": "Archivé"
+    },
+    "errors": {
+      "tooBig": "Ce fichier dépasse 512 ko.",
+      "uploadFailed": "L'envoi n'est pas passé. Réessayez.",
+      "saveFailed": "Enregistrement impossible. Réessayez."
+    },
+    "sectionHint": "Le nom, la marque et les informations que les clients voient de ce bureau."
+  },
+  "office": {
+    "metaTitle": "Panneau du bureau",
+    "title": "Panneau du bureau",
+    "subtitle": "{office} — les demandes ouvertes et les commandes que vous détenez.",
+    "pool": "Demandes non prises",
+    "poolEmpty": "Aucune demande ouverte pour l'instant.",
+    "mine": "Commandes de ce bureau",
+    "mineEmpty": "Vous n'avez encore rien pris.",
+    "claim": "Prendre",
+    "claiming": "Prise en cours…",
+    "unavailableTitle": "Le panneau du bureau n'est pas actif dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "notAMemberTitle": "Vous n'appartenez à aucun bureau",
+    "notAMemberBody": "Cette section est réservée au personnel des bureaux de change agréés. Si vous devriez y avoir accès, demandez au propriétaire du bureau de vous ajouter.",
+    "backHome": "Retour à l'accueil",
+    "errors": {
+      "alreadyClaimed": "Un autre bureau a pris cette demande avant vous.",
+      "officeInactive": "Ce bureau n'est pas actif.",
+      "claimFailed": "La demande n'a pas pu être prise.",
+      "network": "Connexion impossible. Réessayez."
+    },
+    "poolHint": "Des commandes qu'aucun bureau n'a encore prises. Prenez-en une et elle est à vous.",
+    "mineHint": "Les commandes que vous avez prises, encore en cours."
+  },
+  "twoFactor": {
+    "title": "Connexion en deux étapes",
+    "on": "Activée",
+    "off": "Désactivée",
+    "body": "Avec cette option, la connexion demande un code à six chiffres de votre application d'authentification en plus de votre mot de passe.",
+    "bodyStaff": "Obligatoire pour les comptes du personnel de la plateforme. Tant que vous n'avez pas saisi le code, la base de données n'ouvre pas vos accès d'administration.",
+    "enable": "Activer",
+    "scan": "Scannez ceci avec votre application d'authentification",
+    "qrAlt": "Code QR pour votre application d'authentification",
+    "orType": "Ou saisissez cette clé à la main :",
+    "copy": "Copier la clé",
+    "copied": "Copiée",
+    "codeLabel": "Code à six chiffres de l'application",
+    "confirm": "Confirmer et activer",
+    "cancel": "Annuler",
+    "codeToDisable": "Saisissez un code en cours pour désactiver",
+    "disable": "Désactiver",
+    "working": "Un instant…",
+    "errors": {
+      "enrollFailed": "La configuration n'a pas pu démarrer. Réessayez.",
+      "verifyFailed": "La vérification a échoué. Réessayez.",
+      "wrongCode": "Ce code n'est pas correct. Vérifiez aussi l'horloge de votre appareil.",
+      "disableFailed": "La désactivation a échoué. Réessayez."
+    }
+  },
+  "firstEntry": {
+    "claiming": "Préparation de votre accès…",
+    "title": "Choisissez votre mot de passe",
+    "body": "Vous vous êtes connecté avec un mot de passe généré pour vous. Gardez-le, ou choisissez le vôtre.",
+    "password": "Nouveau mot de passe",
+    "confirm": "Répétez le nouveau mot de passe",
+    "cta": "Définir le mot de passe",
+    "skip": "Pas maintenant",
+    "skipHint": "En choisissant « pas maintenant », vous gardez le mot de passe qui vous a été remis. Ce message ne reviendra pas.",
+    "working": "Enregistrement…",
+    "errors": {
+      "tooShort": "Un mot de passe demande au moins {min, number} caractères.",
+      "mismatch": "Les deux mots de passe ne correspondent pas.",
+      "failed": "L'enregistrement a échoué. Réessayez."
+    },
+    "hint": "Choisissez un nouveau mot de passe pour ce compte. Celui que la plateforme vous a donné ne sert qu'une fois."
+  },
+  "coinQueue": {
+    "metaTitle": "Pièces d'or — panneau du bureau",
+    "title": "Demandes de pièces",
+    "subtitle": "Demandes d'achat d'or. Prenez-en une, fixez le prix, remettez la marchandise.",
+    "intro": {
+      "office": "Les demandes sans bureau attribué sont à prendre. Une fois prise, saisissez le prix ferme et le client le voit.",
+      "platform": "Toutes les demandes de pièces de la plateforme."
+    },
+    "empty": "Aucune demande pour l'instant.",
+    "quoted": "Prix annoncé au client",
+    "total": "Total",
+    "pickup": "Retrait",
+    "firmPrice": "Prix ferme à l'unité (tomans)",
+    "claim": "Prendre cette demande",
+    "confirm": "Confirmer le stock et le prix",
+    "cancel": "Annuler",
+    "cancelledByOffice": "Le bureau a annulé cette demande.",
+    "advance": {
+      "paid": "J'ai reçu l'argent",
+      "ready": "C'est prêt",
+      "collected": "Remis"
+    },
+    "errors": {
+      "taken": "Un autre bureau a déjà pris cette demande.",
+      "failed": "Cela n'est pas passé. Réessayez."
+    },
+    "hint": {
+      "office": "Les demandes d'achat de pièces parvenues à ce bureau. Saisissez le prix unitaire et faites avancer l'étape.",
+      "platform": "Toutes les demandes d'achat de pièces de la plateforme, y compris celles qu'aucun bureau n'a prises."
+    }
+  },
+  "adminOffice": {
+    "decided": "Enregistré.",
+    "saved": "Enregistré.",
+    "kyc": {
+      "verified": "Identité vérifiée",
+      "pending": "En cours d'examen",
+      "rejected": "Non vérifiée",
+      "unverified": "Non contrôlée"
+    },
+    "identity": {
+      "title": "Identité du bureau",
+      "ownerName": "Propriétaire déclaré",
+      "nationalId": "Code national du propriétaire",
+      "nationalIdHint": "La base sur laquelle on vérifie à qui appartient une carte ou un IBAN de règlement.",
+      "reason": "Note",
+      "reasonPlaceholder": "Un motif est requis pour refuser.",
+      "save": "Enregistrer les informations",
+      "verify": "Vérifier l'identité",
+      "reject": "Refuser",
+      "note": "Une fois vérifié, le bureau ne peut plus modifier lui-même son propriétaire déclaré ni son code national. Les comptes de règlement sont rapprochés de ces informations.",
+      "hint": "Les pièces d'identité et la licence de ce bureau, et votre décision à leur sujet."
+    },
+    "login": {
+      "title": "Accès au panneau du bureau",
+      "body": "Émettez un nouvel identifiant et un nouveau mot de passe et envoyez-les par SMS au numéro voulu. Tout accès précédent non réclamé devient caduc.",
+      "username": "Identifiant",
+      "password": "Mot de passe",
+      "phone": "Numéro destinataire",
+      "sendSms": "Envoyer par SMS",
+      "sendSmsHint": "Si vous désactivez cela, les informations n'apparaissent que sur cet écran.",
+      "cta": "Émettre l'accès",
+      "working": "Émission…",
+      "again": "Émettre un autre accès",
+      "warning": "Le mot de passe s'affiche une seule fois et ne peut plus être récupéré ensuite.",
+      "sms": {
+        "sent": "SMS envoyé.",
+        "failed": "Le message n'a pas pu partir. Transmettez les informations vous-même.",
+        "skipped": "Aucun message n'a été envoyé."
+      },
+      "hint": "Le compte avec lequel le bureau se connecte à son propre panneau."
+    },
+    "errors": {
+      "nationalId": "Ce code national n'est pas valide.",
+      "reasonRequired": "Un refus demande un motif écrit d'au moins 8 caractères.",
+      "usernameTaken": "Cet identifiant est déjà pris.",
+      "saveFailed": "Cela n'est pas passé. Réessayez."
+    }
+  },
+  "adminKyc": {
+    "metaTitle": "Examen des dossiers d'identité",
+    "title": "File d'examen des identités",
+    "subtitle": "Chaque dossier demande deux signatures : un examinateur recommande, un second approuve. Personne ne peut approuver sa propre recommandation.",
+    "emptyTitle": "La file est vide",
+    "emptyBody": "Rien n'attend d'examen.",
+    "unavailableTitle": "Cette section n'est pas active dans l'environnement actuel",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "forbiddenTitle": "Vous n'avez pas accès",
+    "forbiddenBody": "L'examen des identités est réservé aux rôles conformité et administration de la plateforme.",
+    "backHome": "Retour à l'accueil",
+    "unnamed": "Sans nom",
+    "documentCount": "{count, number} documents",
+    "awaitingYou": "Attend votre approbation",
+    "awaitingOther": "Attend un second examinateur",
+    "needsFirst": "Demande un premier examen",
+    "review": "Examiner",
+    "documents": "Documents",
+    "documentsNote": "Chaque consultation passe par un lien signé de 60 secondes et est inscrite au journal d'audit ; votre identifiant d'examinateur est apposé sur l'image.",
+    "openDocument": "Ouvrir",
+    "docKind": {
+      "national_id": "Carte nationale",
+      "passport": "Passeport",
+      "selfie": "Selfie",
+      "proof_of_address": "Justificatif de domicile"
+    },
+    "checklist": "Liste de contrôle",
+    "checks": {
+      "legible": "Tout le texte du document est lisible.",
+      "nameMatch": "Le nom du document correspond au nom déclaré.",
+      "notExpired": "Le document est encore dans sa durée de validité.",
+      "selfieMatch": "Le selfie correspond à la photo du document.",
+      "noTamper": "Aucun signe d'altération ou de retouche."
+    },
+    "reason": "Note de décision",
+    "reasonPlaceholder": "Pour un refus ou une demande d'information, écrivez un motif clair — ce texte exact est montré au client.",
+    "fourEyesTitle": "Approbation à quatre yeux",
+    "fourEyesFirst": "Vous êtes le premier examinateur. Votre recommandation est consignée et le dossier passe à un autre examinateur pour la décision finale.",
+    "fourEyesSecond": "Le premier examinateur a consigné sa recommandation. La décision finale vous revient.",
+    "fourEyesOwn": "C'est vous qui avez recommandé sur ce dossier ; l'approbation finale doit venir d'un autre examinateur.",
+    "recommendApprove": "Recommander l'approbation",
+    "recommendMoreInfo": "Demander des informations",
+    "recommendReject": "Recommander le refus",
+    "approve": "Approuver",
+    "reject": "Refuser",
+    "fields": {
+      "nameLatin": "Nom en caractères latins",
+      "nationalCode": "Code national",
+      "dob": "Date de naissance",
+      "nationality": "Nationalité"
+    },
+    "errors": {
+      "documentDenied": "Vous n'êtes pas autorisé à consulter ce document.",
+      "fourEyes": "Quatre yeux : l'examinateur qui a recommandé ne peut pas approuver.",
+      "actionFailed": "Cette décision n'a pas pu être enregistrée. Réessayez.",
+      "network": "Connexion impossible. Réessayez."
+    },
+    "reviewTitle": "Examen des pièces",
+    "reviewHint": "Regardez les pièces de ce client et approuvez ou rejetez. Chaque décision demande deux personnes : la seconde ne peut pas être la première."
+  },
+  "officePanel": {
+    "metaTitle": "Le travail du jour",
+    "title": "Le travail du jour",
+    "subtitle": "Une carte, une tâche. Appuyez sur le bouton vert pour faire l'étape suivante.",
+    "navLabel": "Sections du bureau",
+    "nav": {
+      "today": "Aujourd'hui",
+      "requests": "Demandes",
+      "chat": "Messages",
+      "accounts": "Comptes",
+      "liquidity": "Soldes",
+      "rates": "Taux",
+      "customers": "Clients",
+      "team": "Équipe",
+      "reports": "Rapports",
+      "settings": "Réglages",
+      "tickets": "Tickets",
+      "settlement": "Règlement",
+      "coins": "Pièces"
+    },
+    "status": {
+      "draft": "Pas encore en service",
+      "active": "Actif",
+      "suspended": "Suspendu",
+      "archived": "Archivé"
+    },
+    "unknownOffice": "Bureau de change",
+    "allClear": "Plus rien à faire",
+    "allClearBody": "Toute nouvelle demande apparaîtra ici.",
+    "aCustomer": "un client",
+    "beat": "Étape {n, number} sur 4",
+    "working": "Un instant…",
+    "sendTo": "Envoyez ce montant à",
+    "copy": "Copier",
+    "somethingWrong": "Un souci ?",
+    "whatIsWrong": "Que s'est-il passé ?",
+    "notePlaceholder": "par ex. le justificatif de paiement est illisible",
+    "askCustomer": "Demander au client",
+    "pause": "Mettre en pause",
+    "nevermind": "Laisser tomber",
+    "waitingTitle": "En attente des autres — rien à faire",
+    "waiting": {
+      "recipient": "En attente de la confirmation du bénéficiaire",
+      "customer": "En attente du client",
+      "platform": "Chez la plateforme"
+    },
+    "act": {
+      "claim": "Je prends celle-ci",
+      "accept": "J'accepte",
+      "money_in": "Les tomans sont arrivés",
+      "sent": "J'ai envoyé la devise",
+      "settle": "Réglé"
+    },
+    "line": {
+      "claim": "Nouvelle demande de {name}",
+      "accept": "{name} attend votre réponse",
+      "money_in": "Cela devrait arriver sur votre compte — de la part de {name}",
+      "sent": "Envoyez ceci à {name}",
+      "settle": "Le bénéficiaire a confirmé ; clôturez"
+    },
+    "errors": {
+      "alreadyClaimed": "Un autre bureau a pris celle-ci avant vous.",
+      "needNote": "Écrivez une courte note.",
+      "failed": "Cela n'est pas passé. Appuyez à nouveau."
+    },
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "notAMemberTitle": "Vous n'appartenez pas à un bureau de change",
+    "notAMemberBody": "Si vous devriez avoir accès à un bureau, contactez l'assistance.",
+    "backHome": "Retour à l'accueil",
+    "hintLabel": "À quoi sert cette section ?",
+    "hint": {
+      "today": "Le travail du jour. Chaque carte est un transfert et le bouton vert fait la chose suivante. Si vous n'ouvrez que cet écran, cela suffit.",
+      "requests": "Les transferts qu'aucun bureau n'a pris et que vous pouvez prendre, plus les vôtres. Pour la liste complète et la recherche.",
+      "tickets": "Les réclamations et questions des clients dont la première réponse vous revient. Passé 24 heures sans réponse, le client peut remonter à la plateforme.",
+      "chat": "Toutes les conversations au même endroit : les messages sur chaque transfert et ceux de l'assistance.",
+      "accounts": "Vos numéros de carte et d'IBAN que les clients voient au moment de payer. « Public » signifie que le client peut le voir.",
+      "liquidity": "Votre solde dans chaque devise, d'après le registre. Pour voir combien de tomans et combien de devises vous détenez.",
+      "rates": "Pour chaque corridor : l'écart de taux et les montants minimum et maximum que vous acceptez.",
+      "customers": "Les clients qui ont traité avec vous, et l'état de leur vérification d'identité.",
+      "team": "Les collègues qui accèdent à ce panneau. Vous pouvez donner l'accès ou le retirer.",
+      "settlement": "Quand une carte atteint son plafond, définissez ici une nouvelle carte ou un nouvel IBAN pour que les paiements continuent d'arriver.",
+      "reports": "Volume et commissions sur six mois, rapidité d'exécution et respect des délais.",
+      "settings": "Horaires d'ouverture, acceptation automatique, et le numéro et l'e-mail qui reçoivent les alertes.",
+      "coins": "Les demandes d'achat de pièces d'or. Prenez-en une, fixez le prix, remettez la marchandise."
+    },
+    "money": {
+      "accounts": {
+        "metaTitle": "Comptes de règlement",
+        "title": "Comptes de règlement",
+        "subtitle": "Les comptes sur lesquels vos clients paient.",
+        "noPublicTitle": "Aucun compte public",
+        "noPublicBody": "Tant qu'au moins un compte — dans n'importe quelle devise — n'est pas à la fois public et actif, le bureau ne peut pas passer en actif.",
+        "noIrtTitle": "Aucun compte IRT public",
+        "noIrtBody": "Le rôle de séquestre pour le marché entre particuliers n'est confié qu'à un bureau disposant d'un compte IRT public et actif. Les autres commandes n'en ont pas besoin.",
+        "noDeleteNote": "Les comptes ne sont jamais supprimés ; l'historique des paiements doit rester. Désactivez un compte dont vous ne voulez plus.",
+        "readOnly": "Modifier les comptes demande le rôle finance ou propriétaire dans ce bureau.",
+        "empty": "Aucun compte n'a encore été ajouté.",
+        "listTitle": "Comptes enregistrés",
+        "addTitle": "Ajouter un compte",
+        "currency": "Devise",
+        "kindLabel": "Type de compte",
+        "kind": {
+          "iban": "Sheba ou IBAN",
+          "card": "Carte",
+          "swift": "SWIFT",
+          "cash": "Espèces"
+        },
+        "number": "Numéro de compte",
+        "placeholder": {
+          "iban": "IR06 0120 0000 0000 1234 5678 90",
+          "card": "6037 9911 2345 6789",
+          "swift": "BKMTIRTH",
+          "cash": "Nom du guichet ou de l'agence"
+        },
+        "label": "Nom du compte",
+        "labelPlaceholder": "par ex. Banque Mellat, agence centrale",
+        "publicLabel": "Montrer aux clients",
+        "publicHint": "Rend ce compte visible aux clients.",
+        "activeLabel": "Actif",
+        "activeHint": "Un compte inactif n'est pas utilisé sur les nouvelles commandes.",
+        "add": "Ajouter le compte",
+        "save": "Enregistrer",
+        "saved": "Enregistré.",
+        "working": "Un instant…",
+        "badge": {
+          "public": "Public",
+          "internal": "Interne",
+          "inactive": "Inactif"
+        },
+        "errors": {
+          "numberRequired": "Écrivez le numéro de compte.",
+          "forbidden": "Vous n'avez pas le droit de modifier ce compte.",
+          "saveFailed": "Non enregistré. Réessayez."
+        },
+        "listHint": "Les comptes sur lesquels les clients versent. Seuls les comptes actifs leur sont montrés.",
+        "addHint": "Ajouter une carte ou un IBAN pour recevoir l'argent des clients."
+      },
+      "liquidity": {
+        "metaTitle": "Liquidité",
+        "title": "Liquidité",
+        "subtitle": "La position de ce bureau au registre, par devise.",
+        "holding": "L'argent du règlement reste en dépôt sur la plateforme jusqu'à son retrait. Ce que vous voyez ici est votre part de ce dépôt, pas de l'argent déjà présent sur le compte bancaire du bureau.",
+        "readOnly": "Cette page est en lecture seule ; elle rapporte ce que le registre a consigné et ne change rien.",
+        "position": "Position au registre",
+        "positionHint": "Crédits moins débits.",
+        "code": {
+          "irt_fees": "Commissions",
+          "irt_settlement": "Règlement"
+        },
+        "noPosition": "Rien de consigné au registre.",
+        "ledgerHidden": "Le registre n'est visible que par le personnel de la plateforme.",
+        "truncated": "Le registre dépasse une seule lecture ; ces chiffres couvrent sa partie la plus récente.",
+        "empty": "Aucune devise n'a encore été configurée pour ce bureau.",
+        "noAccessTitle": "Aucun accès à l'argent du bureau",
+        "noAccessBody": "Voir l'argent du bureau demande le rôle finance, propriétaire ou observateur. Si cette page vous est nécessaire, demandez au propriétaire du bureau de changer votre rôle.",
+        "currencyHint": "Ce que le grand livre de la plateforme dit que ce bureau détient dans cette devise. C'est la somme de toutes les écritures, pas un chiffre saisi.",
+        "openSettlement": "Ouvrir le règlement"
+      }
+    },
+    "requests": {
+      "metaTitle": "Demandes",
+      "title": "Demandes",
+      "subtitle": "Les demandes non prises et le travail en cours de ce bureau, dans une seule liste.",
+      "scopeLabel": "Quelles demandes",
+      "scope": {
+        "all": "Toutes",
+        "action": "Demandent votre intervention"
+      },
+      "corridorLabel": "Corridor",
+      "allCorridors": "Tous les corridors",
+      "col": {
+        "corridor": "Corridor",
+        "amount": "Montant",
+        "customer": "Client",
+        "waiting": "Attente",
+        "action": "Action"
+      },
+      "unnamed": "Sans nom",
+      "claim": "Prendre",
+      "working": "Un instant…",
+      "empty": "Rien en cours.",
+      "emptyFiltered": "Rien ne correspond à ces filtres.",
+      "errors": {
+        "alreadyClaimed": "Un autre bureau a pris celle-ci avant vous. La liste a été rafraîchie.",
+        "inactive": "Ce bureau n'est pas actif : il ne peut pas prendre de demandes pour l'instant.",
+        "failed": "Cela n'est pas passé. Réessayez.",
+        "gone": "Cette demande n'est plus disponible. La liste a été rafraîchie.",
+        "network": "Pas de connexion. Vérifiez-la et réessayez."
+      },
+      "poolClosed": "Ce bureau n'est pas actif : aucune nouvelle demande n'est proposée. Son travail en cours reste néanmoins listé ici.",
+      "narrowCustomer": "Historique du client {ref}",
+      "clearCustomer": "Retour à la file"
+    },
+    "chat": {
+      "metaTitle": "Messages",
+      "title": "Messages",
+      "subtitle": "Les conversations sur les commandes de ce bureau, et vos propres fils avec l'assistance Asaex.",
+      "sectionOrders": "Commandes",
+      "sectionSupport": "Assistance Asaex",
+      "supportThread": "Fil d'assistance",
+      "pickThread": "Choisissez une conversation dans la liste.",
+      "empty": "Aucune conversation vous incluant pour l'instant. Seuls les fils auxquels vous avez été ajouté apparaissent ici.",
+      "noMessages": "Aucun message",
+      "unknownOrder": "Commande",
+      "notesHint": "Une note interne n'est jamais montrée au client — seuls ce bureau et la plateforme la voient.",
+      "status": {
+        "open": "Ouverte",
+        "pending": "En attente",
+        "resolved": "Close",
+        "archived": "Archivée"
+      }
+    },
+    "customers": {
+      "metaTitle": "Clients",
+      "title": "Clients",
+      "subtitle": "Les personnes ayant traité avec ce bureau.",
+      "searchLabel": "Rechercher un client",
+      "searchPlaceholder": "Nom du client",
+      "col": {
+        "name": "Nom",
+        "orders": "Commandes",
+        "volume": "Total",
+        "last": "Dernière commande",
+        "kyc": "Vérification",
+        "ref": "Client"
+      },
+      "toman": "tomans",
+      "unnamed": "Sans nom",
+      "volumeHint": "Le total ne compte que les commandes abouties.",
+      "privacy": "Un bureau voit le nom d'un client et son état de vérification, rien de plus.",
+      "empty": "Aucun client pour l'instant.",
+      "emptyFiltered": "Aucun client ne correspond à ce nom.",
+      "kyc": {
+        "unverified": "Non vérifié",
+        "pending": "En cours d'examen",
+        "approved": "Vérifié",
+        "rejected": "Refusé",
+        "more_info_needed": "Informations complémentaires requises",
+        "unknown": "Inconnu"
+      },
+      "search": {
+        "label": "Rechercher par référence client",
+        "placeholder": "Référence client"
+      },
+      "identityNote": "Le nom d'un client n'est pas accessible au bureau ; chacun est identifié par la même référence que celle de la liste des demandes.",
+      "truncated": "Ce bureau a un très grand nombre de commandes ; les comptages et totaux couvrent les {count} plus récentes.",
+      "noMatch": "Aucun client ne correspond à cette référence."
+    },
+    "team": {
+      "metaTitle": "Équipe",
+      "title": "Équipe",
+      "subtitle": "L'accès au panneau de ce bureau. Seul votre propre siège est listé ici ; celui d'un collègue n'est pas lisible depuis cette page.",
+      "col": {
+        "person": "Personne",
+        "role": "Rôle",
+        "since": "Depuis",
+        "action": "Action"
+      },
+      "role": {
+        "office_viewer": "Observateur",
+        "office_operator": "Opérateur",
+        "office_finance": "Finance",
+        "office_owner": "Propriétaire"
+      },
+      "roleMeaning": {
+        "office_viewer": "Consulte le panneau et ne modifie rien.",
+        "office_operator": "Traite les commandes du jour.",
+        "office_finance": "Les commandes du jour, plus les comptes et les soldes.",
+        "office_owner": "Tout, y compris cette page."
+      },
+      "you": "Vous",
+      "unnamed": "Sans nom",
+      "nameNote": "Un nom n'apparaît que là où la plateforme vous laisse lire ce profil ; les autres sont listés par identifiant.",
+      "empty": "Aucun siège n'a encore été accordé dans ce bureau.",
+      "readOnly": "Seul le propriétaire du bureau peut modifier les accès.",
+      "addTitle": "Ajouter un collègue",
+      "addBody": "Il doit déjà avoir un compte Asaex. Rien n'est envoyé par e-mail d'ici — demandez-lui son identifiant et collez-le.",
+      "userIdLabel": "Identifiant utilisateur",
+      "roleLabel": "Rôle",
+      "grant": "Accorder l'accès",
+      "revoke": "Retirer l'accès",
+      "revokeConfirm": "Retirer cet accès ?",
+      "revokeYes": "Oui, retirer",
+      "cancel": "Laisser tomber",
+      "working": "Un instant…",
+      "granted": "Accès accordé.",
+      "revoked": "Accès retiré.",
+      "errors": {
+        "badId": "Ce n'est pas un identifiant utilisateur. Il doit être complet.",
+        "noSuchUser": "Aucun compte Asaex n'a cet identifiant.",
+        "forbidden": "Seul le propriétaire du bureau peut le faire.",
+        "failed": "Cela n'est pas passé. Réessayez."
+      },
+      "addHint": "Donner à un collègue l'accès au panneau, et décider de ce qu'il peut faire."
+    },
+    "reports": {
+      "metaTitle": "Rapports",
+      "title": "Rapports",
+      "subtitle": "Le volume et la performance de ce bureau sur les six derniers mois.",
+      "empty": "Ce bureau n'a aucune commande sur les six derniers mois.",
+      "stat": {
+        "orders": "Commandes",
+        "volume": "Volume en tomans",
+        "completion": "Temps moyen d'exécution",
+        "sla": "Livrées avant l'échéance"
+      },
+      "toman": "tomans",
+      "hours": "{value} heures",
+      "minutes": "{value} minutes",
+      "noData": "Pas encore de données",
+      "volumeTitle": "Volume mensuel",
+      "volumeHint": "Le volume ne compte que les commandes abouties ; le nombre de commandes couvre tout ce qui a été déposé ce mois-là. Le dernier mois est encore en cours, sa barre est donc estompée.",
+      "chartLabel": "Diagramme en barres du volume en tomans par mois, de {from} à {to}. Mois le plus élevé : {peak}, à {max} tomans.",
+      "monthOrders": "{count, number} commandes",
+      "corridorTitle": "Corridors",
+      "corridorHint": "La part de chaque corridor dans les commandes de la période.",
+      "completionHint": "Du premier événement d'une commande jusqu'à son aboutissement, sur {count, number} commandes abouties.",
+      "slaHint": "La part des commandes abouties closes avant leur échéance, sur {count, number} commandes qui en avaient une.",
+      "noCompleted": "Rien n'a encore abouti.",
+      "noSla": "Aucune échéance n'a été consignée pour les commandes de cette période.",
+      "chartEmptyLabel": "Diagramme en barres du volume en tomans par mois, de {from} à {to}. Rien n'a abouti sur cette période.",
+      "volumeSectionHint": "Ce que ce bureau a déplacé chaque mois.",
+      "corridorSectionHint": "La part de chaque corridor dans l'activité de ce bureau."
+    },
+    "config": {
+      "rates": {
+        "metaTitle": "Corridors et écart de taux",
+        "title": "Corridors et écart de taux",
+        "subtitle": "Pour chaque corridor, vous pouvez annoncer un taux légèrement écarté du taux de base. Cet écart n'est pas un supplément : il sort de la commission par tranches ci-dessus, de sorte que ce que paie le client ne change pas et que votre part de la commission augmente. Les montants minimum et maximum et une heure de clôture sont également enregistrés.",
+        "readOnly": "Modifier les corridors demande le rôle propriétaire dans ce bureau. Cette page est en lecture seule pour vous.",
+        "templateNote": "La plateforme a un chiffre par défaut pour chaque corridor. Là où le vôtre diffère, vous voyez « modifié » — la même chose que voit la plateforme.",
+        "listTitle": "Les corridors de ce bureau",
+        "empty": "Aucun corridor n'a encore été défini. Ajoutez-en un ci-dessous.",
+        "spreadLabel": "Écart par rapport au taux de base",
+        "spreadMeans": "{bps} centièmes de pour cent — soit {pct} % d'écart avec le taux de base",
+        "spreadHint": "Écrivez le nombre en centièmes de pour cent ; 100 vaut un pour cent. 150 signifie un et demi pour cent.",
+        "templateSpread": "Valeur par défaut de la plateforme : {bps}",
+        "minLabel": "Montant minimum",
+        "maxLabel": "Montant maximum",
+        "amountHint": "En {code}. Vide signifie aucune limite.",
+        "onFile": "Enregistré : {amount} {code}",
+        "noLimit": "Enregistré : aucune limite",
+        "cutoffLabel": "Heure de clôture",
+        "cutoffHint": "L'heure de clôture enregistrée pour ce corridor.",
+        "activeLabel": "Actif",
+        "activeHint": "Un corridor inactif est écarté quand la plateforme choisit un bureau séquestre ; les commandes ouvertes restent en place.",
+        "badge": {
+          "same": "Identique au défaut",
+          "overridden": "Modifié",
+          "custom": "Hors modèle",
+          "inactive": "Inactif"
+        },
+        "addTitle": "Ajouter un corridor",
+        "addCurrency": "Devise",
+        "addHint": "Ouvrir un nouveau corridor pour ce bureau.",
+        "add": "Ajouter le corridor",
+        "save": "Enregistrer",
+        "saved": "Enregistré.",
+        "working": "Un instant…",
+        "errors": {
+          "spreadRange": "Ce doit être un nombre entier entre 0 et 2000 (de zéro à vingt pour cent).",
+          "amountInvalid": "Écrivez le montant en chiffres.",
+          "amountOrder": "Le montant minimum ne peut pas dépasser le maximum.",
+          "duplicate": "Ce corridor est déjà défini.",
+          "forbidden": "Non enregistré : seul le propriétaire du bureau peut écrire les corridors.",
+          "saveFailed": "Non enregistré. Réessayez."
+        },
+        "emptyReadOnly": "Aucun corridor n'a encore été défini.",
+        "amountUnknownCurrency": "La devise de ce corridor ne figure pas dans la liste de la plateforme ; aucun montant ne peut donc y être inscrit.",
+        "listHint": "Les corridors sur lesquels ce bureau travaille, et le cours de chacun."
+      },
+      "settings": {
+        "metaTitle": "Réglages du bureau",
+        "title": "Réglages du bureau",
+        "subtitle": "Horaires, acceptation automatique et destination des avis.",
+        "lockedTitle": "Ces trois réglages ne sont pas écrits par le bureau",
+        "lockedBody": "Les écritures sur la fiche du bureau ne sont acceptées que de la plateforme. Vous pouvez lire les valeurs actuelles ici et envoyer le changement souhaité à l'assistance.",
+        "supportCta": "Écrire à l'assistance",
+        "hours": {
+          "title": "Horaires d'ouverture",
+          "body": "Les heures sont en {tz}.",
+          "bodyUnknown": "Aucun fuseau horaire n'est enregistré pour ce bureau ; les heures se lisent à l'heure locale du bureau.",
+          "open": "Ouvre",
+          "close": "Ferme",
+          "closedLabel": "Fermé",
+          "day": {
+            "sat": "Samedi",
+            "sun": "Dimanche",
+            "mon": "Lundi",
+            "tue": "Mardi",
+            "wed": "Mercredi",
+            "thu": "Jeudi",
+            "fri": "Vendredi"
+          },
+          "hint": "Les heures où ce bureau accepte des commandes. En dehors, les commandes attendent dans la file."
+        },
+        "auto": {
+          "title": "Acceptation automatique",
+          "body": "Ceci est enregistré ; l'acceptation automatique n'est pas encore appliquée aux commandes.",
+          "enabledLabel": "Acceptation automatique",
+          "maxLabel": "Plafond d'acceptation automatique",
+          "maxHint": "En tomans. Vide signifie qu'aucun plafond n'est enregistré.",
+          "onFile": "Enregistré : {amount} IRT",
+          "noLimit": "Enregistré : aucun plafond",
+          "hint": "Une fois activé, les commandes jusqu'au montant fixé sont acceptées sans validation."
+        },
+        "notify": {
+          "title": "Où vont les avis",
+          "body": "Ces coordonnées sont enregistrées sur la fiche du bureau ; rien ne leur est encore envoyé.",
+          "phone": "Téléphone",
+          "phonePlaceholder": "+982188001122",
+          "email": "E-mail",
+          "emailPlaceholder": "office@example.com",
+          "smsLabel": "SMS",
+          "smsHint": "La préférence SMS, enregistrée au dossier.",
+          "emailLabel": "E-mail",
+          "emailHint": "La préférence e-mail, enregistrée au dossier.",
+          "hint": "Par quel moyen une nouvelle commande vous est signalée."
+        },
+        "save": "Enregistrer",
+        "saved": "Enregistré.",
+        "working": "Un instant…",
+        "errors": {
+          "timeOrder": "L'heure de fermeture doit être postérieure à l'heure d'ouverture.",
+          "timeMissing": "Écrivez les deux heures pour un jour qui n'est pas fermé.",
+          "amountInvalid": "Écrivez le plafond en chiffres.",
+          "forbidden": "Non enregistré : les écritures sur la fiche du bureau ne sont acceptées que de la plateforme. Envoyez le changement à l'assistance.",
+          "saveFailed": "Non enregistré. Réessayez."
+        }
+      }
+    },
+    "builtBy": "Réalisé par le groupe de programmation Â",
+    "group": {
+      "today": "Aujourd'hui",
+      "work": "Travail en attente",
+      "money": "Finances",
+      "office": "Le bureau"
+    },
+    "waitingHint": "Des commandes qui ne demandent rien de vous et attendent le client ou la plateforme. Touchez une référence pour voir ce qu'elle attend."
+  },
+  "admin": {
+    "metaTitle": "Administration",
+    "title": "Vue d'ensemble de la plateforme",
+    "subtitle": "Chaque commande, chaque bureau et chaque changement consigné.",
+    "navLabel": "Sections d'administration",
+    "nav": {
+      "dashboard": "Vue d'ensemble",
+      "exchanges": "Bureaux",
+      "orders": "Commandes",
+      "kyc": "Identité",
+      "settings": "Réglages",
+      "audit": "Audit",
+      "support": "Assistance",
+      "p2p": "Particuliers",
+      "users": "Clients",
+      "compliance": "Conformité",
+      "finance": "Finance",
+      "rates": "Taux",
+      "content": "Contenu",
+      "tickets": "Tickets",
+      "settlement": "Règlement"
+    },
+    "unavailableTitle": "Indisponible dans cet environnement",
+    "unavailableBody": "La base de données est injoignable. Réessayez dans un instant.",
+    "forbiddenTitle": "Vous n'avez pas accès",
+    "forbiddenBody": "Le panneau d'administration est réservé aux rôles de la plateforme.",
+    "backHome": "Retour à l'accueil",
+    "byState": "Commandes par état",
+    "noOrders": "Aucune commande pour l'instant.",
+    "feed": "Activité en direct",
+    "noActivity": "Rien de consigné pour l'instant.",
+    "officeCount": "{active} bureaux actifs sur {total}.",
+    "stats": {
+      "gmv": "Volume réglé",
+      "settled": "Commandes abouties",
+      "live": "Commandes en cours",
+      "atRisk": "Échéance menacée"
+    },
+    "impersonation": {
+      "actingAs": "Vous agissez au nom de {office}.",
+      "actingAsUnknown": "Vous agissez au nom d'un bureau de change.",
+      "reason": "Motif : {reason}",
+      "endsIn": "Se termine automatiquement dans {time}",
+      "expired": "Cette session a expiré.",
+      "end": "Terminer la session"
+    },
+    "group": {
+      "overview": "Vue d'ensemble",
+      "operations": "Opérations",
+      "people": "Personnes et conformité",
+      "money": "Argent",
+      "platform": "Plateforme"
+    },
+    "hintLabel": "À quoi sert cette section ?",
+    "hint": {
+      "dashboard": "La plateforme d'un coup d'œil : volume réglé, commissions, commandes en cours et performance de chaque bureau. La page à ouvrir en premier chaque jour.",
+      "orders": "Toutes les commandes de la plateforme. Vous pouvez faire avancer à la main celle qui bloque, avec un motif au dossier.",
+      "exchanges": "Créer un bureau, définir ses corridors et ses commissions, et agir en son nom lorsqu'il ne répond plus.",
+      "p2p": "Les offres et échanges entre particuliers, et l'arbitrage des litiges.",
+      "support": "Les files d'assistance, séparées par type de conversation.",
+      "tickets": "Tous les tickets, y compris ceux qu'un bureau laisse dormir. La plateforme est au-dessus du bureau et vous pouvez reprendre n'importe lequel.",
+      "users": "Tous les clients. Ouvrir une ligne montre l'historique, le palier et les connexions.",
+      "kyc": "La file d'examen des pièces d'identité des clients et des bureaux. L'approbation ou le refus vous revient.",
+      "compliance": "Rapprochement avec les listes de sanctions, messages signalés, et seuils des paliers et du marché entre particuliers.",
+      "finance": "Le registre, les soldes des comptes et le rapprochement.",
+      "settlement": "Les cartes et IBAN de règlement de chaque bureau, et leur position par rapport au plafond.",
+      "rates": "La santé des sources de taux et la comparaison des écarts pratiqués par les bureaux.",
+      "content": "Les textes du site : FAQ, annonces et modèles de SMS et d'e-mails, dans les deux langues.",
+      "settings": "Interrupteurs de fonctionnalités, réglages de la plateforme et calendrier ouvré.",
+      "audit": "Le journal d'audit : chaque changement, par qui et quand. Non modifiable."
+    },
+    "orders": {
+      "metaTitle": "Toutes les commandes",
+      "title": "Commandes",
+      "subtitle": "Chaque commande, dans chaque bureau. Forcer une transition demande un motif écrit.",
+      "all": "Toutes",
+      "empty": "Aucune commande ne correspond à ce filtre.",
+      "unclaimed": "Non prise",
+      "onBehalf": "Au nom de",
+      "force": "Forcer",
+      "forceTitle": "Forcer {ref} vers un nouvel état",
+      "forceBody": "Cela outrepasse la matrice des rôles, pas le registre : un remboursement passe des écritures d'annulation plutôt que de supprimer des lignes.",
+      "targetState": "État visé",
+      "reason": "Motif (au moins 8 caractères)",
+      "confirmForce": "Appliquer",
+      "cancel": "Annuler",
+      "working": "Application…",
+      "col": {
+        "ref": "Référence",
+        "corridor": "Corridor",
+        "amount": "Montant",
+        "office": "Bureau",
+        "state": "État",
+        "action": "Action"
+      },
+      "errors": {
+        "reason": "Un motif écrit d'au moins 8 caractères est requis.",
+        "terminal": "Cette commande est déjà dans un état terminal ; passez plutôt une action compensatoire.",
+        "forbidden": "Cette action est réservée aux administrateurs de la plateforme.",
+        "failed": "Application impossible. Réessayez."
+      },
+      "clearFilter": "Retirer ce filtre",
+      "unknownOffice": "Bureau inconnu",
+      "narrow": {
+        "risk": "Moins d'un jour avant l'échéance",
+        "corridor": "Corridor {corridor}",
+        "unclaimed": "Non attribuée",
+        "office": "{office}"
+      },
+      "forceHint": "Déplacer l'état d'une commande à la main quand le flux normal est bloqué. Le motif que vous écrivez reste au journal d'audit et ne peut être effacé."
+    },
+    "audit": {
+      "metaTitle": "Journal d'audit",
+      "title": "Journal d'audit",
+      "subtitle": "Immuable et indélébile. Chaque changement de configuration et chaque action d'administration, avec l'avant et l'après.",
+      "searchPlaceholder": "Rechercher des actions",
+      "search": "Rechercher",
+      "entity": "Entité",
+      "allEntities": "Toutes les entités",
+      "empty": "Aucun enregistrement trouvé.",
+      "before": "Avant",
+      "after": "Après",
+      "pattern": "{subject} — {verb}",
+      "subject": {
+        "exchange_offices": "Bureau de change",
+        "office_accounts": "Compte du bureau",
+        "office_account": "Compte du bureau",
+        "office_rate_config": "Corridors du bureau",
+        "settings": "Paramètres de la plateforme",
+        "feature_flags": "Interrupteurs de fonctionnalités",
+        "memberships": "Accès des utilisateurs",
+        "cms_content": "Contenu du site",
+        "profiles": "Fiche client",
+        "orders": "Commande",
+        "kyc_submissions": "Dossier d'identité",
+        "settlement_accounts": "Compte de règlement",
+        "coin_orders": "Commande de pièces",
+        "support_tickets": "Ticket d'assistance",
+        "p2p_offers": "Offre entre particuliers",
+        "p2p_trades": "Échange entre particuliers",
+        "rate_sources": "Sources de taux",
+        "office": "Bureau de change",
+        "order": "Commande",
+        "p2p": "Marché entre particuliers"
+      },
+      "verb": {
+        "insert": "créé",
+        "update": "modifié",
+        "delete": "supprimé",
+        "retire": "retiré",
+        "provision": "créé",
+        "publish": "publié"
+      },
+      "named": {
+        "office_provision": "Un nouveau bureau de change a été créé",
+        "office_kyc": "L'identité d'un bureau a été examinée",
+        "office_status": "Le statut d'un bureau a changé",
+        "order_force_transition": "L'état d'une commande a été modifié à la main",
+        "impersonation_start": "Agir au nom d'un bureau a commencé",
+        "impersonation_end": "Agir au nom d'un bureau a pris fin",
+        "p2p_offer_publish": "Une offre a été publiée sur le marché entre particuliers",
+        "p2p_trade_take": "Un échange entre particuliers a été pris",
+        "kyc_decision": "Une décision a été rendue sur un dossier d'identité"
+      },
+      "openRecord": "Ouvrir l'enregistrement"
+    },
+    "settings": {
+      "metaTitle": "Réglages de la plateforme",
+      "title": "Réglages",
+      "subtitle": "Double authentification du personnel, interrupteurs de fonctionnalités et modèle de bureau par défaut.",
+      "flags": "Interrupteurs de fonctionnalités",
+      "noFlags": "Aucun interrupteur défini.",
+      "saveFailed": "Enregistrement impossible. Réessayez.",
+      "template": "Modèle de bureau par défaut",
+      "templateBody": "Chaque nouveau bureau part de ces valeurs ; les écarts apparaissent sur la page du bureau concerné.",
+      "flagsHint": "Les interrupteurs qui activent et désactivent des parties du site. En désactiver un masque cette section pour tout le monde.",
+      "templateHint": "Les valeurs avec lesquelles chaque nouveau bureau est créé. Chaque bureau reste modifiable individuellement ensuite."
+    },
+    "security": {
+      "title": "Double authentification du personnel",
+      "body": "Chaque compte du personnel de la plateforme peut rattacher une application d'authentification. Tant que l'obligation est désactivée, ne pas en avoir n'est qu'un avertissement ; une fois activée, aucun compte du personnel n'atteint la console ni la base de données sans un code à six chiffres.",
+      "selfMissing": "Votre propre compte n'a pas encore de second facteur. Activer l'obligation avant de vous inscrire vous fermerait la console.",
+      "selfMissingCta": "Configurez-le depuis la page de votre compte",
+      "require": "Exiger un second facteur de tout le personnel",
+      "requireReady": "Tous les comptes du personnel ont un second facteur ; l'activer n'exclut personne.",
+      "requireBlocked": "{count, plural, one {# compte du personnel n'a} other {# comptes du personnel n'ont}} pas encore de second facteur. L'interrupteur reste éteint jusqu'à ce que tous en aient un — sinon tous les administrateurs, y compris celui qui l'a activé, sont exclus à l'instant même.",
+      "coverage": "{covered, number} comptes du personnel sur {total, number} ont un second facteur.",
+      "empty": "Aucun compte du personnel n'est enregistré.",
+      "unnamed": "Sans nom",
+      "enrolled": "Inscrit",
+      "notEnrolled": "Aucun second facteur",
+      "saveFailed": "Le changement n'a pas été enregistré.",
+      "role": {
+        "platform_support": "Assistance",
+        "platform_compliance": "Conformité",
+        "platform_admin": "Administrateur",
+        "platform_superadmin": "Super-administrateur"
+      },
+      "sectionHint": "Si le personnel de la plateforme doit saisir un code à usage unique pour se connecter, et où en est chaque compte."
+    },
+    "support": {
+      "metaTitle": "Boîte d'assistance",
+      "title": "Assistance",
+      "subtitle": "Trois files distinctes : clients, intervenants du marché entre particuliers, bureaux de change. Chacune avec sa propre horloge.",
+      "segment": {
+        "customer": "Clients",
+        "p2p": "Marché entre particuliers",
+        "office": "Bureaux de change"
+      },
+      "status": {
+        "open": "Ouverte",
+        "pending": "En attente",
+        "resolved": "Résolue",
+        "archived": "Archivée"
+      },
+      "emptyQueue": "Cette file est vide.",
+      "pickThread": "Choisissez une conversation dans la liste.",
+      "noMessages": "Aucun message",
+      "assignToMe": "Me l'attribuer",
+      "assignedToYou": "Vous est attribuée",
+      "assigned": "Attribuée",
+      "resolve": "Résoudre"
+    },
+    "p2p": {
+      "metaTitle": "Marché entre particuliers",
+      "title": "Marché entre particuliers",
+      "subtitle": "Modération des annonces et règlement des litiges.",
+      "openOffers": "Offres ouvertes",
+      "liveTrades": "Échanges en cours",
+      "disputes": "Litiges ouverts",
+      "disputesTitle": "Litiges en attente de décision",
+      "resolve": "Trancher",
+      "listings": "Annonces",
+      "noListings": "Aucune annonce pour l'instant.",
+      "tradesOnOffer": "{count, number} échanges",
+      "remove": "Retirer",
+      "removeReason": "Motif du retrait (au moins 8 caractères)",
+      "confirmRemove": "Retirer l'annonce",
+      "removeFailed": "Retrait impossible. Réessayez.",
+      "status": {
+        "open": "Ouverte",
+        "paused": "En pause",
+        "filled": "Servie",
+        "cancelled": "Annulée",
+        "removed": "Retirée"
+      },
+      "disputesHint": "Les échanges entre particuliers dont les deux parties ne se sont pas entendues, en attente de votre arbitrage.",
+      "listingsHint": "Les annonces d'achat et de vente publiées par les utilisateurs sur le marché entre particuliers."
+    },
+    "exchanges": {
+      "metaTitle": "Bureaux de change",
+      "title": "Bureaux de change",
+      "subtitle": "Créer, configurer et suspendre des bureaux. Chaque changement est consigné avec son motif.",
+      "provision": "Créer un bureau",
+      "empty": "Aucun bureau de change pour l'instant.",
+      "liveOrders": "{count, number} commandes en cours",
+      "status": {
+        "draft": "Incomplet",
+        "active": "Actif",
+        "suspended": "Suspendu",
+        "archived": "Archivé"
+      },
+      "kind": {
+        "card": "Carte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Espèces"
+      },
+      "reasonTitle": "Motif de cette action",
+      "reasonBody": "Suspendre un bureau et agir en son nom demandent tous deux un motif écrit ; le même texte se retrouve au journal d'audit.",
+      "reasonPlaceholder": "par ex. examen d'une réclamation client sur un retard de règlement",
+      "activate": "Activer",
+      "suspend": "Suspendre",
+      "impersonate": "Agir au nom de ce bureau",
+      "alreadyImpersonating": "Vous agissez déjà au nom de ce bureau",
+      "spreads": "Commissions et écart de taux",
+      "spreadBps": "Écart de taux, en centièmes de pour cent",
+      "noCorridors": "Aucun corridor configuré.",
+      "save": "Enregistrer",
+      "saved": "Enregistré.",
+      "overridden": "Modifié (défaut {base, number})",
+      "fromTemplate": "Du modèle",
+      "accounts": "Comptes de règlement",
+      "noAccounts": "Aucun compte enregistré.",
+      "publicAccount": "Montré aux clients",
+      "balances": "Soldes",
+      "noBalances": "Aucun solde enregistré.",
+      "errors": {
+        "spreadRange": "L'écart de taux doit être compris entre 0 et 2000 centièmes de pour cent (0–20 %).",
+        "saveFailed": "Enregistrement impossible. Réessayez.",
+        "reasonRequired": "Un motif écrit d'au moins 8 caractères est requis.",
+        "noAccount": "Un bureau ne peut pas passer en service sans compte de règlement public.",
+        "superadminOnly": "Agir au nom d'un bureau est réservé au super-administrateur."
+      },
+      "kyc": {
+        "verified": "Vérifié",
+        "pending": "En attente",
+        "rejected": "Refusé",
+        "unverified": "Non contrôlé"
+      },
+      "reasonHint": "Le motif que vous écrivez ici est consigné dans le journal d'audit et ne peut être effacé.",
+      "spreadsHint": "La commission de ce bureau et l'écart entre ses cours d'achat et de vente. Cela change le prix que voit le client.",
+      "accountsHint": "Les cartes et IBAN sur lesquels les clients versent.",
+      "balancesHint": "Ce que détiennent les comptes de ce bureau au grand livre.",
+      "openSettlement": "Ouvrir le règlement",
+      "openLedger": "Ouvrir le grand livre"
+    },
+    "wizard": {
+      "steps": {
+        "legal": {
+          "title": "Informations légales",
+          "body": "Raison sociale, numéro d'agrément et identifiant unique du bureau."
+        },
+        "corridors": {
+          "title": "Corridors",
+          "body": "Quels corridors il traite et à quel écart. Les valeurs par défaut viennent du modèle de la plateforme."
+        },
+        "accounts": {
+          "title": "Comptes de règlement",
+          "body": "Le compte sur lequel les clients versent les tomans, plus les éventuels comptes en devises."
+        },
+        "review": {
+          "title": "Vérification",
+          "body": "Une transaction, une seule fois. Soit tout aboutit, soit rien."
+        },
+        "access": {
+          "title": "Accès au bureau",
+          "body": "L'identifiant et le mot de passe du panneau, et le numéro auquel les envoyer."
+        }
+      },
+      "fields": {
+        "nameFa": "Raison sociale (en persan)",
+        "nameEn": "Raison sociale (en anglais)",
+        "slug": "Identifiant",
+        "slugHint": "Minuscules, chiffres et tirets ; utilisé dans les adresses.",
+        "licence": "Numéro d'agrément",
+        "city": "Ville",
+        "reason": "Motif de la création",
+        "corridor": "Corridor",
+        "spread": "Écart",
+        "currency": "Devise",
+        "kind": "Type de compte",
+        "accountNumber": "Numéro de compte",
+        "displayName": "Nom affiché",
+        "displayNameHint": "C'est le nom que voient les clients.",
+        "ownerName": "Propriétaire déclaré",
+        "ownerNameHint": "Ce à quoi les comptes de règlement sont rapprochés.",
+        "nationalId": "Code national du propriétaire",
+        "nationalIdHint": "La base pour vérifier à qui appartiennent cartes et IBAN.",
+        "username": "Identifiant",
+        "usernameHint": "Minuscules, chiffres, points et tirets.",
+        "phone": "Numéro destinataire",
+        "phoneHint": "Il se connecte avec ce numéro la première fois.",
+        "ownPassword": "Je saisirai le mot de passe",
+        "ownPasswordHint": "Sinon, un mot de passe sûr est généré.",
+        "password": "Mot de passe",
+        "sendSms": "L'envoyer par SMS au numéro destinataire",
+        "sendSmsHint": "Si vous désactivez cela, les informations n'apparaissent que sur cet écran."
+      },
+      "kinds": {
+        "card": "Carte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash": "Espèces"
+      },
+      "addCorridor": "Ajouter un corridor",
+      "addAccount": "Ajouter un compte",
+      "remove": "Retirer",
+      "spreadHint": "L'écart est en centièmes de pour cent : 90 signifie 0,9 %.",
+      "accountHint": "Au moins un compte en tomans est requis ; sans lui, le bureau ne peut pas entrer en service.",
+      "back": "Retour",
+      "next": "Continuer",
+      "saveDraft": "Enregistrer sans activer",
+      "activate": "Créer et activer",
+      "working": "Création…",
+      "failed": "Le bureau n'a pas pu être créé. Réessayez.",
+      "errors": {
+        "slug": "L'identifiant doit compter de 3 à 40 minuscules, chiffres ou tirets.",
+        "slugTaken": "Cet identifiant est déjà pris.",
+        "names": "Les deux raisons sociales sont requises.",
+        "licence": "Un numéro d'agrément est requis.",
+        "forbidden": "Créer un bureau est réservé aux administrateurs de la plateforme.",
+        "noAccount": "Le bureau a été créé mais non activé : il n'a pas de compte de règlement public.",
+        "nationalId": "Ce code national n'est pas valide.",
+        "usernameTaken": "Cet identifiant est déjà pris.",
+        "inviteFailed": "Le bureau a été créé mais pas l'accès. Réessayez depuis la page du bureau."
+      },
+      "accessNote": "Vous pouvez laisser cette étape vide et émettre un accès plus tard. Si vous ne saisissez pas de mot de passe, un mot de passe est généré.",
+      "issued": {
+        "title": "Le bureau dispose d'un accès",
+        "body": "Ces informations sont montrées une fois et une seule.",
+        "warning": "Le mot de passe ne peut plus être récupéré après cet écran. S'il est perdu, émettez un nouvel accès.",
+        "copy": "Copier l'identifiant et le mot de passe",
+        "copied": "Copiés",
+        "done": "Aller au bureau",
+        "sms": {
+          "sent": "Envoyé par SMS au numéro destinataire.",
+          "failed": "Le message n'a pas pu partir. Transmettez les informations vous-même.",
+          "skipped": "Aucun message n'a été envoyé."
+        }
+      }
+    },
+    "dashboard": {
+      "metaTitle": "Rapports de gestion",
+      "title": "Rapports de gestion",
+      "subtitle": "Volume réglé, revenus de commission et performance de chaque bureau sur les douze derniers mois. Chaque chiffre est compté à partir des commandes, de leurs événements et du registre.",
+      "toman": "tomans",
+      "vsLastMonth": "par rapport à la même période le mois dernier",
+      "noBase": "Le mois dernier n'a pas de chiffre de comparaison.",
+      "monthToDate": "{month}, depuis le début du mois ({days, plural, one {# jour} other {# jours}}).",
+      "card": {
+        "volume": "Volume réglé ce mois-ci",
+        "settled": "Commandes abouties ce mois-ci",
+        "fees": "Revenus de commission de la plateforme ce mois-ci",
+        "inFlight": "Commandes en cours",
+        "atRisk": "Échéance menacée",
+        "atRiskOf": "{counted} à moins de 24 heures de l'échéance",
+        "noDeadlines": "Aucune échéance enregistrée sur une commande ouverte"
+      },
+      "hint": {
+        "inFlight": "Ouvertes en ce moment, avec quelqu'un qui attend.",
+        "atRisk": "À échéance sous 24 heures, ou déjà dépassées.",
+        "noDeadlines": "Aucune commande ouverte ne porte encore d'échéance."
+      },
+      "volumeTitle": "Volume réglé par mois",
+      "volumeHint": "Une commande compte dans le mois où elle a été réglée, pas celui où elle a été ouverte. La dernière colonne est le mois en cours et n'est pas complète.",
+      "chartLabel": "Diagramme en barres du volume réglé de {from} à {to}. Le mois le plus élevé a été {peak}, à {max} tomans.",
+      "corridorTitle": "Part de chaque corridor dans le volume",
+      "corridorHint": "La part est calculée sur le volume en tomans des commandes réglées ces douze derniers mois.",
+      "noVolume": "Rien n'a encore été réglé sur cette période.",
+      "scoreTitle": "Fiches de performance des bureaux",
+      "scoreHint": "Bureaux actifs uniquement, sur les douze derniers mois, triés par volume. Le délai moyen est l'écart entre l'ouverture d'une commande et son événement d'aboutissement.",
+      "scoreEmpty": "Aucun bureau actif.",
+      "col": {
+        "office": "Bureau",
+        "orders": "Commandes",
+        "volume": "Volume (tomans)",
+        "completion": "Délai moyen",
+        "sla": "Dans les temps",
+        "disputes": "Taux de litiges"
+      },
+      "hours": "{value} h",
+      "minutes": "{value} min",
+      "noData": "—",
+      "noOrders": "Aucune",
+      "corridorOnly": "Tout le volume réglé est passé par un seul corridor : <corridor></corridor>, soit <amount></amount> tomans au total.",
+      "noComparison": "Aucun chiffre du mois dernier pour comparer.",
+      "kpiLabel": "Chiffres clés",
+      "sectionHint": {
+        "volume": "Le montant réglé chaque mois sur les douze derniers mois. Le mois en cours est estompé car il n'est pas terminé et n'est pas comparable aux mois complets.",
+        "corridors": "La part de chaque corridor dans le volume réglé. Touchez un corridor pour voir ses commandes.",
+        "scores": "Le bilan de chaque bureau actif : combien de commandes, quel montant, à quelle vitesse, dans quels délais, et combien ont fini en litige."
+      },
+      "openLedger": "Ouvrir le grand livre",
+      "openSettled": "Voir les commandes réglées",
+      "openOffices": "Ouvrir la liste des bureaux"
+    },
+    "compliance": {
+      "metaTitle": "Conformité",
+      "title": "Conformité",
+      "subtitle": "Filtrage des sanctions, messages signalés, seuils anti-blanchiment et durées de conservation.",
+      "sanctions": {
+        "title": "Filtrage des sanctions",
+        "gapBadge": "Lacune ouverte",
+        "gapTitle": "Le filtrage des sanctions n'est encore relié à aucune source",
+        "gapBody": "La table sanctions_hits existe, mais aucun service n'y écrit. Une liste vide ici signifie que personne n'a été filtré, pas que personne ne correspond à une liste de sanctions. La lacune est consignée dans docs/security-review.md et doit être comblée avant tout mouvement d'argent réel.",
+        "col": {
+          "person": "Personne",
+          "list": "Liste",
+          "score": "Score de correspondance",
+          "created": "Quand",
+          "resolution": "Décision"
+        },
+        "unnamed": "Sans nom",
+        "unresolved": "Non tranché",
+        "payload": "Données brutes de correspondance",
+        "shown": "{count} correspondances ; la liste est limitée aux 100 plus récentes.",
+        "hint": "Compare les noms des clients aux listes de sanctions et retient chaque correspondance possible pour qu'une personne tranche."
+      },
+      "flags": {
+        "title": "Messages signalés",
+        "body": "Ce sont des signaux, jamais un blocage : le message est parvenu à son destinataire exactement tel qu'il était écrit.",
+        "empty": "Aucun message signalé.",
+        "name": {
+          "off_platform": "Hors plateforme",
+          "account_number": "Numéro de compte dans le texte",
+          "contact": "Coordonnées"
+        },
+        "kind": {
+          "order": "Fil de commande",
+          "p2p": "Fil entre particuliers",
+          "support": "Fil d'assistance"
+        },
+        "open": "Ouvrir le fil",
+        "noBody": "Aucun texte",
+        "shown": "{count} messages ; la liste est limitée aux 100 plus récents.",
+        "hint": "Les messages que le système a jugés suspects, en attente de votre décision."
+      },
+      "thresholds": {
+        "title": "Limites et paliers",
+        "body": "Les deux lignes sont lues dans la table des réglages et y sont réécrites. L'enregistrement reste fermé tant que le texte n'est pas un JSON valide.",
+        "keys": {
+          "p2p_limits": {
+            "label": "Limites du marché entre particuliers",
+            "hint": "Offres ouvertes par intervenant, offres par heure, et plafond en tomans d'un échange selon le palier de risque."
+          },
+          "customer_tiers": {
+            "label": "Paliers clients",
+            "hint": "Le seuil de volume de chaque palier et la remise de commission qui l'accompagne."
+          }
+        },
+        "editorLabel": "Valeur de {key}",
+        "missing": "Cette clé n'est pas dans la table des réglages.",
+        "invalid": "Ce n'est pas du JSON valide.",
+        "readOnly": "Modifier ces valeurs relève du rôle administrateur de la plateforme ; ici, elles sont en lecture seule.",
+        "save": "Enregistrer",
+        "saving": "Un instant…",
+        "saved": "Enregistré.",
+        "saveFailed": "Non enregistré. Réessayez.",
+        "hint": "Le montant autorisé pour chaque niveau de client et les limites du marché entre particuliers. Un chiffre modifié ici s'applique aussitôt à toute nouvelle commande."
+      },
+      "retention": {
+        "title": "Conservation",
+        "body": "Ce qui est gardé, et pour combien de temps.",
+        "audit": "Le journal d'audit (audit_log) est permanent. Ses lignes ne peuvent être ni modifiées ni supprimées ; un déclencheur de base de données refuse les deux.",
+        "ledger": "Le registre (ledger_entries) est permanent, sous la même règle d'ajout seul. Chaque chiffre qui a bougé reste.",
+        "kyc": "Les documents d'identité vivent dans le bucket privé kyc-documents. Ils ne sont jamais publics et ne s'ouvrent que par un lien signé de 60 secondes.",
+        "gap": "Il n'y a pas de tâche de purge automatique. Rien ne s'efface tout seul, et une durée de conservation reste donc une décision à écrire.",
+        "hint": "Ce qui est conservé, pendant combien de temps, et quand cela est supprimé."
+      }
+    },
+    "rates": {
+      "metaTitle": "Taux et écart",
+      "title": "Taux et écart",
+      "subtitle": "D'où viennent les taux, quelles sources sont enregistrées, et le plancher et le plafond auxquels cette console compare les écarts des bureaux.",
+      "snapshot": {
+        "title": "Instantané des taux",
+        "degradedTitle": "Cet instantané n'est pas frais",
+        "degradedBody": "La source primaire n'a pas répondu, ou sa dernière observation est plus ancienne que la fenêtre acceptée. Vérifiez la source et l'heure d'observation ci-dessous avant de tarifer un client ou de trancher un litige sur ces chiffres.",
+        "staleBadge": "Taux périmés",
+        "okTitle": "L'instantané est frais",
+        "okBody": "La source primaire a répondu et sa dernière observation est dans la fenêtre acceptée.",
+        "source": "Source",
+        "observed": "Observé à la source",
+        "fetched": "Récupéré par nous",
+        "sourceName": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "demo": "Source de secours"
+        },
+        "col": {
+          "pair": "Paire",
+          "mid": "Médian (tomans)",
+          "change": "Variation 24 h",
+          "source": "Source",
+          "observed": "Observé"
+        },
+        "empty": "Cet instantané ne porte aucun taux.",
+        "hint": "Les cours actuellement montrés aux clients, et la dernière mise à jour de chacun."
+      },
+      "sources": {
+        "title": "Fournisseurs de taux",
+        "hint": "D'où les cours sont lus, et si chaque source se porte bien.",
+        "readOnly": "Une source ne peut être activée ni désactivée depuis cette page : la politique de la base sur la table des sources n'accorde que la lecture et n'a aucune politique d'écriture. Les interrupteurs montrent l'état actuel et sont désactivés ; le changer aujourd'hui passe par une migration. « Dernier succès » et « Dernière erreur » sont des colonnes stockées qu'aucune tâche n'écrit encore : elles restent vides même quand un fournisseur répond — c'est le bandeau de fraîcheur en haut de cette page qui vous dit si la chaîne fonctionne.",
+        "col": {
+          "name": "Nom",
+          "kind": "Type",
+          "state": "État",
+          "lastOk": "Dernier succès",
+          "lastError": "Dernière erreur"
+        },
+        "active": "Active",
+        "inactive": "Inactive",
+        "empty": "Aucune source n'a encore été enregistrée.",
+        "kind": {
+          "tgju": "TGJU",
+          "frankfurter": "Frankfurter",
+          "manual": "Manuelle",
+          "demo": "Secours"
+        }
+      },
+      "bounds": {
+        "title": "Plancher et plafond d'écart de la plateforme",
+        "hint": "L'écart le plus étroit et le plus large qu'un bureau a le droit de fixer.",
+        "floor": "Plancher",
+        "ceiling": "Plafond",
+        "means": "{bps} centièmes de pour cent, soit {pct} %",
+        "missing": "Rien n'est encore stocké. Les nombres ci-dessous sont une proposition de départ ; tant qu'ils ne sont pas enregistrés, cette page ne signale rien comme hors limites.",
+        "unreadable": "Une valeur est stockée sous cette clé, mais elle ne se lit pas comme un plancher et un plafond : aucune ligne n'y est donc comparée. Les champs ci-dessous montrent la proposition de départ et non ce qui est stocké, et l'enregistrement remplace la valeur stockée.",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "saved": "Enregistré.",
+        "saveFailed": "Non enregistré.",
+        "invalid": "Le plancher doit être supérieur ou égal à zéro, le plafond doit dépasser le plancher, et le plafond ne peut aller au-delà de {max} centièmes de pour cent — les éditeurs d'écart des bureaux refusent au-delà. Les deux sont des entiers.",
+        "updated": "Dernière modification : {at}"
+      },
+      "spread": {
+        "title": "Écarts d'un bureau à l'autre",
+        "hint": "Les écarts des bureaux côte à côte, pour repérer celui qui est cher ou inhabituel.",
+        "notEnforced": "Tant qu'un plancher et un plafond ne sont pas enregistrés, aucune ligne n'est signalée hors limites.",
+        "col": {
+          "corridor": "Corridor",
+          "offices": "Bureaux",
+          "min": "Le plus bas",
+          "median": "Médian",
+          "max": "Le plus haut"
+        },
+        "empty": "Aucun bureau n'a encore configuré de corridor.",
+        "belowFloor": "Sous le plancher",
+        "aboveCeiling": "Au-dessus du plafond"
+      },
+      "openOffices": "Ouvrir la liste des bureaux"
+    },
+    "finance": {
+      "metaTitle": "Registre",
+      "title": "Registre et rapprochement",
+      "subtitle": "La balance de vérification, les revenus de commission et les transactions les plus récentes. Le registre est en ajout seul ; rien sur cette page ne le modifie.",
+      "toman": "tomans",
+      "partialTitle": "La balance ne couvre qu'une partie du registre",
+      "partialBody": "Cette page a lu les {count} écritures les plus récentes ; les plus anciennes ne sont pas dans la somme. Si le total n'est pas nul, une transaction a peut-être été coupée en deux à cette limite, plutôt que le registre d'être en déséquilibre.",
+      "failedTitle": "Le registre n'a pas pu être lu",
+      "failedBody": "La lecture du registre a échoué. Ce qui est montré ci-dessous est incomplet, voire vide ; tant que la lecture n'aboutit pas, cette page ne dit rien de l'équilibre du registre.",
+      "balance": {
+        "zeroTitle": "Le registre est équilibré",
+        "zeroBody": "Dans chaque devise, les débits égalent les crédits. C'est le seul état acceptable pour une comptabilité en partie double.",
+        "brokenTitle": "Le registre n'est pas équilibré",
+        "brokenBody": "L'écart ci-dessous est réel et doit être poursuivi. Il n'est ni arrondi ni masqué ; tant qu'il n'atteint pas zéro, le rapprochement n'est pas clos.",
+        "unknownTitle": "Ce total n'est pas un verdict",
+        "unknownBody": "La somme ci-dessous ne couvre que les écritures que cette page a pu lire. Un chiffre non nul ici ne signifie pas à lui seul que le registre est en déséquilibre ; lisez-le avec la note ci-dessus.",
+        "emptyTitle": "Rien à équilibrer pour l'instant",
+        "zeroBadge": "Équilibré",
+        "brokenBadge": "En déséquilibre",
+        "empty": "Aucun compte du registre n'a encore été ouvert.",
+        "hint": "Le contrôle de santé du grand livre : dans une comptabilité juste, chaque devise totalise exactement zéro."
+      },
+      "escrow": {
+        "title": "Versé en dépôt",
+        "hint": "L'argent versé par un client que la plateforme conserve jusqu'à la remise de la devise.",
+        "empty": "Rien n'a encore été versé en dépôt."
+      },
+      "trial": {
+        "title": "Balance de vérification",
+        "hint": "Les débits et crédits totalisés sur tous les comptes. Un chiffre non nul signale une écriture erronée.",
+        "col": {
+          "account": "Compte",
+          "owner": "Titulaire",
+          "entries": "Écritures",
+          "net": "Position"
+        },
+        "subtotal": "Total du groupe",
+        "remainder": "{count} autres comptes",
+        "noOwner": "—"
+      },
+      "owner": {
+        "platform": "Plateforme",
+        "office": "Bureaux",
+        "customer": "Clients",
+        "suspense": "Compte d'attente"
+      },
+      "code": {
+        "irt_holding": "Dépôt en tomans",
+        "irt_payable": "Tomans à payer",
+        "irt_fees": "Commissions en tomans",
+        "irt_settlement": "Règlement des bureaux"
+      },
+      "fees": {
+        "platformTitle": "Revenus de commission de la plateforme",
+        "platformHint": "Les commissions parvenues à la plateforme, mois par mois.",
+        "total": "Total sur douze mois",
+        "empty": "Aucune commission n'a été passée sur cette période.",
+        "officeTitle": "Revenus de commission des bureaux",
+        "officeHint": "La part de commissions de chaque bureau. Touchez un bureau pour ouvrir son dossier.",
+        "officeEmpty": "Aucune commission de bureau n'a été passée.",
+        "col": {
+          "office": "Bureau",
+          "fees": "Commissions"
+        },
+        "unknownOffice": "Bureau supprimé"
+      },
+      "txn": {
+        "title": "Transactions récentes du registre",
+        "hint": "Les dernières écritures du grand livre, les plus récentes d'abord.",
+        "empty": "Aucune transaction n'a encore été passée.",
+        "reversal": "Annulation",
+        "reversalLine": "Annulation",
+        "noOrder": "Aucune commande",
+        "debit": "Débit",
+        "credit": "Crédit",
+        "noMemo": "—",
+        "unknownOwner": "Titulaire inconnu",
+        "shown": "Affichage des {count} transactions les plus récentes."
+      },
+      "openOffices": "Ouvrir la liste des bureaux",
+      "ownerHint": {
+        "platform": "Les comptes propres à la plateforme ; les commissions qui nous sont parvenues sont ici.",
+        "intermediate": "De l'argent en transit qui n'est encore parvenu à personne — par exemple des tomans retenus jusqu'à la remise de la devise.",
+        "office": "Le compte de chaque bureau auprès de la plateforme : ce qui lui est dû ou ce qu'il doit au titre du règlement et des commissions.",
+        "customer": "Le compte de chaque client auprès de la plateforme ; dans une comptabilité juste il reste généralement débiteur jusqu'à la fin de sa commande."
+      }
+    },
+    "content": {
+      "metaTitle": "Contenu",
+      "title": "Contenu et messages",
+      "subtitle": "Pages, FAQ, bandeaux et annonces, ainsi que les formulations des SMS et des e-mails — chacun en persan et en anglais.",
+      "loadFailedTitle": "Le contenu n'a pas pu être lu",
+      "loadFailedBody": "La lecture en base ne s'est pas terminée : nous ne pouvons donc pas dire ce qui est stocké. Rechargez la page ; si cela persiste, prévenez l'équipe technique.",
+      "tab": {
+        "cms": "Contenu du site",
+        "templates": "Formulations des messages",
+        "cmsHint": "Les pages et les textes du site. Tant qu'un texte n'est pas publié, il n'est visible qu'ici.",
+        "templatesHint": "Les formulations SMS et e-mail que le système envoie de lui-même. Chaque modèle doit être écrit dans chaque langue."
+      },
+      "locale": {
+        "fa": "Persan",
+        "en": "Anglais"
+      },
+      "edit": "Modifier",
+      "close": "Fermer",
+      "save": "Enregistrer",
+      "saved": "Enregistré.",
+      "create": "Créer",
+      "cancel": "Annuler",
+      "working": "Un instant…",
+      "errors": {
+        "keyRequired": "Écrivez la clé en lettres latines, chiffres, points, tirets ou tirets bas.",
+        "titleRequired": "Écrivez un titre.",
+        "bodyRequired": "Écrivez le corps.",
+        "duplicate": "Cette clé existe déjà dans cette langue.",
+        "forbidden": "Non enregistré : écrire du contenu est réservé aux administrateurs de la plateforme.",
+        "saveFailed": "Non enregistré. Réessayez."
+      },
+      "cms": {
+        "noDelete": "Les lignes ne sont jamais supprimées ; la base le refuse. Dépublier est la façon de retirer un contenu — aucune page n'affiche encore le contenu du CMS, donc publier marque une ligne comme prête plutôt que de la mettre en ligne.",
+        "gapWarning": "{count, plural, one {Une clé n'est écrite que dans une seule langue.} other {# clés ne sont écrites que dans une seule langue.}}",
+        "allTranslated": "Chaque clé est écrite dans les deux langues.",
+        "newKey": "Nouvelle clé",
+        "keyLabel": "Clé",
+        "keyHint": "Le nom sous lequel ce contenu est classé — faq.fees, legal.terms.",
+        "keyPlaceholder": "faq.fees",
+        "typeLabel": "Type",
+        "localeLabel": "Langue",
+        "titleLabel": "Titre",
+        "bodyLabel": "Corps",
+        "bodyHint": "Texte simple. Ce que vous écrivez est ce qui est stocké.",
+        "draftNote": "Un contenu neuf est stocké non publié. Publier est un acte distinct, et cela ne fait aujourd'hui que marquer la ligne comme prête.",
+        "missing": "Pas de {locale}",
+        "addTranslation": "Ajouter {locale}",
+        "published": "Publié",
+        "draft": "Non publié",
+        "publishedOn": "Publié le {date}",
+        "updatedOn": "Modifié le {date}",
+        "publish": "Publier",
+        "unpublish": "Dépublier",
+        "empty": "Aucun contenu pour l'instant.",
+        "type": {
+          "page": "Page",
+          "faq": "FAQ",
+          "banner": "Bandeau",
+          "announcement": "Annonce"
+        }
+      },
+      "templates": {
+        "intro": "La formulation de chaque clé de message et de chaque canal est stockée ici. Aucun émetteur ne lit encore cette table : une modification change le texte stocké, pas un message reçu par un client. Les nouvelles clés ne se créent pas depuis cet écran.",
+        "gapWarning": "{count, plural, one {Un message n'est écrit que dans une seule langue.} other {# messages ne sont écrits que dans une seule langue.}}",
+        "allTranslated": "Chaque message est écrit dans les deux langues.",
+        "subjectLabel": "Objet",
+        "subjectHint": "Pour l'e-mail. Les SMS et messages in-app n'ont pas d'objet.",
+        "noSubject": "Aucun objet",
+        "bodyLabel": "Corps",
+        "bodyHint": "Écrivez les variables avec les noms déclarés à côté du corps.",
+        "variablesTitle": "Variables déclarées",
+        "noVariables": "Aucune variable déclarée.",
+        "previewTitle": "Aperçu",
+        "previewHint": "Chaque variable apparaît sous son propre nom. Rien n'est envoyé d'ici.",
+        "undeclared": "Ces noms figurent dans le corps sans être déclarés : {names}",
+        "missing": "Pas de {locale}",
+        "addTranslation": "Ajouter {locale}",
+        "empty": "Aucune formulation pour l'instant.",
+        "channel": {
+          "inapp": "In-app",
+          "push": "Notification",
+          "sms": "SMS",
+          "email": "E-mail"
+        }
+      }
+    },
+    "users": {
+      "metaTitle": "Clients",
+      "title": "Clients",
+      "subtitle": "Tous les clients de la plateforme. Recherchez par nom ou par téléphone.",
+      "searchLabel": "Rechercher par nom ou téléphone",
+      "searchPlaceholder": "Nom ou téléphone",
+      "search": "Rechercher",
+      "kycFilter": "Vérification",
+      "kycAll": "Tous les statuts",
+      "accessFilter": "Accès au compte",
+      "accessAll": "Tous",
+      "accessFrozen": "Gelé",
+      "accessOpen": "Ouvert",
+      "kyc": {
+        "unverified": "Non vérifié",
+        "pending": "En cours d'examen",
+        "approved": "Approuvé",
+        "rejected": "Refusé",
+        "more_info_needed": "Documents complémentaires requis"
+      },
+      "col": {
+        "name": "Nom",
+        "phone": "Téléphone",
+        "kyc": "Vérification",
+        "risk": "Risque",
+        "access": "Accès",
+        "orders": "Commandes",
+        "volume": "Volume",
+        "joined": "Inscrit le"
+      },
+      "unnamed": "Sans nom",
+      "notSet": "Non renseigné",
+      "risk": "Niveau {tier}",
+      "frozenBadge": "Gelé",
+      "openBadge": "Ouvert",
+      "toman": "tomans",
+      "empty": "Aucun client pour l'instant.",
+      "emptyFiltered": "Aucun client ne correspond à ces filtres.",
+      "shown": "{count} clients ; la liste est limitée aux 200 plus récents.",
+      "volumeHint": "Le volume est le volet en tomans des commandes abouties uniquement.",
+      "totalsTruncated": "Toutes les commandes derrière cette liste n'ont pas été lues ; les colonnes Commandes et Volume sont sous-évaluées. Affinez la recherche pour les voir entières.",
+      "detailMetaTitle": "Dossier client",
+      "identityTitle": "Identité",
+      "identity": {
+        "nameFa": "Nom (en persan)",
+        "nameLatin": "Nom (en caractères latins)",
+        "phone": "Téléphone",
+        "email": "E-mail",
+        "nationalCode": "Code national",
+        "dob": "Date de naissance",
+        "nationality": "Nationalité",
+        "kyc": "Vérification",
+        "risk": "Niveau de risque",
+        "referralCode": "Code de parrainage",
+        "joined": "Inscrit le"
+      },
+      "phoneVerified": "Vérifié",
+      "phoneUnverified": "Non vérifié",
+      "tierTitle": "Palier du client",
+      "tier": {
+        "standard": "Standard",
+        "silver": "Argent",
+        "gold": "Or",
+        "platinum": "Platine"
+      },
+      "tierFee": "À ce niveau, {pct} points de pourcentage sont retranchés de la commission par tranches.",
+      "tierVolume": "Volume abouti",
+      "tierToNext": "{amount} tomans pour atteindre le palier {tier}",
+      "tierTop": "Palier le plus élevé ; il n'y en a pas d'autre.",
+      "tierUnavailable": "Le palier de ce client n'a pas pu être lu ; le volume et la remise restent masqués tant qu'il ne répond pas.",
+      "ordersTitle": "Commandes",
+      "orderCol": {
+        "ref": "Référence",
+        "corridor": "Corridor",
+        "amount": "Montant",
+        "state": "État",
+        "created": "Date"
+      },
+      "noOrders": "Aucune commande pour l'instant.",
+      "ordersCapped": "Cette liste est limitée aux {count} commandes les plus récentes ; le volume ci-dessus couvre toutes celles qui ont abouti.",
+      "destinationsTitle": "Comptes de destination",
+      "noDestinations": "Aucun compte de destination enregistré.",
+      "kind": {
+        "sheba": "Sheba",
+        "card": "Carte",
+        "iban": "IBAN",
+        "swift": "SWIFT",
+        "cash_pickup": "Retrait en espèces"
+      },
+      "verification": {
+        "unverified": "Non contrôlé",
+        "pending": "En attente",
+        "verified": "Vérifié",
+        "rejected": "Refusé"
+      },
+      "thirdParty": "Tiers",
+      "archived": "Archivé",
+      "loginsTitle": "Historique de connexion",
+      "loginKind": {
+        "sign_in": "Connexion",
+        "sign_out": "Déconnexion",
+        "revoked": "Session révoquée"
+      },
+      "noLogins": "Aucun événement de connexion enregistré.",
+      "loginsCapped": "Cette liste est limitée aux {count} événements les plus récents.",
+      "unknownDevice": "Inconnu",
+      "referralsTitle": "Parrainages",
+      "invitedBy": "Invité par {name} avec le code {code}",
+      "invitedByNobody": "N'a pas rejoint avec le code de parrainage de quelqu'un.",
+      "noReferrals": "N'a parrainé personne.",
+      "rewarded": "Récompensé",
+      "rewardPending": "En attente de sa première commande aboutie",
+      "freezeTitle": "Geler le compte",
+      "freezeBody": "Le gel ferme la modification du profil pour ce client et demande un motif écrit.",
+      "freezeReason": "Motif",
+      "freezeReasonPlaceholder": "Pourquoi ce compte est-il gelé ?",
+      "freeze": "Geler",
+      "unfreeze": "Dégeler",
+      "frozenSince": "Ce compte est gelé depuis le {date}.",
+      "frozenReasonLabel": "Motif consigné",
+      "notFrozen": "Ce compte est ouvert.",
+      "identityHint": "Le nom, le numéro et l'état de vérification d'identité de ce client.",
+      "tierHint": "Le niveau de ce client et les plafonds que ce niveau lui impose.",
+      "ordersHint": "Toutes les commandes passées par ce client. Touchez une ligne pour l'ouvrir.",
+      "destinationsHint": "Les comptes bancaires que ce client a enregistrés pour recevoir de l'argent.",
+      "loginsHint": "Les dernières connexions à ce compte, avec l'heure et l'appareil.",
+      "referralsHint": "Les personnes inscrites avec le code de ce client.",
+      "freezeHint": "Fermer le compte. Tant qu'il n'est pas rouvert, ce client ne peut pas passer de nouvelle commande.",
+      "freezeReasonRule": "8 caractères au minimum. Ce texte reste au journal d'audit.",
+      "unfreezeReasonPlaceholder": "Pourquoi ce compte est-il rouvert ?",
+      "freezeWorking": "En cours…",
+      "freezeReasonTooShort": "Le motif doit faire au moins 8 caractères.",
+      "freezeForbidden": "Seul un administrateur de la plateforme ou un responsable conformité peut geler un compte.",
+      "freezeStaff": "Les comptes du personnel ne se gèlent pas ici ; retirez plutôt leurs accès.",
+      "freezeStale": "Ce compte a changé pendant que vous le regardiez. Actualisez la page.",
+      "freezeFailed": "L'opération n'a pas abouti. Réessayez."
+    },
+    "attention": {
+      "title": "En attente de vous",
+      "allClear": "Aucune file ne vous attend.",
+      "item": {
+        "atRisk": "commandes proches de leur échéance",
+        "disputes": "commandes en litige",
+        "kyc": "dossiers d'identité à examiner",
+        "tickets": "tickets ouverts",
+        "coins": "demandes de pièces à confirmer",
+        "offices": "bureaux pas encore actifs"
+      },
+      "hint": "Les files sur lesquelles quelqu'un attend en ce moment, les plus urgentes d'abord. Quand elles sont toutes vides, une ligne le dit."
+    },
+    "openSection": "Ouvrir cette section",
+    "sectionHint": {
+      "byState": "Les commandes de la plateforme, par état. Touchez une barre pour voir ces commandes.",
+      "feed": "Les dernières actions du personnel, lues dans le journal d'audit. Touchez une ligne pour ouvrir l'enregistrement concerné."
+    },
+    "builtBy": "Réalisé par le groupe de programmation Â",
+    "staffFallback": "Personnel de la plateforme"
+  },
+  "design": {
+    "metaTitle": "Système de design",
+    "badge": "Fondation",
+    "title": "Le système de design d'Asaex",
+    "intro": "Chaque jeton, composant et mouvement renvoie à cette page — dans les deux langues et les deux thèmes. C'est ce qui maintient la cohérence des trois surfaces du produit (application client, panneau du bureau, panneau d'administration).",
+    "tocLabel": "Sections",
+    "sections": {
+      "brand": "Marque et logo",
+      "colors": "Couleurs",
+      "type": "Typographie",
+      "layout": "Espacements, rayons, élévation",
+      "components": "Composants",
+      "validation": "Validation financière",
+      "coins": "Icônes de devises en 3D",
+      "charts": "Graphiques",
+      "motion": "Mouvement",
+      "scenes": "Illustration animée",
+      "tiles": "Tuiles d'icônes"
+    },
+    "brand": {
+      "description": "La marque Asaex forme la lettre A à partir de deux flux de devises qui se croisent — se lisant à la fois comme un A, comme la paire de flèches du change (⇄) et comme de l'eau qui coule.",
+      "markSizes": "Lisible d'une favicon de 16 px jusqu'à une enseigne de bâtiment",
+      "lockup": "Logotype avec le nom — en persan, la marque se place à droite",
+      "mono": "Version monochrome pour tampons, reçus et supports de marque",
+      "rules": {
+        "clearspace": "Espace de respiration : la hauteur du contrepoinçon de la marque, sur les quatre côtés",
+        "minsize": "Taille minimale : 16 px en numérique / 8 mm en impression",
+        "never": "Jamais : étirer, faire pivoter, ajouter des ombres portées ou recolorer hors de la palette",
+        "rtl": "Non miroitée en écriture de droite à gauche ; c'est l'ordre du logotype qui place la marque"
+      }
+    },
+    "colors": {
+      "description": "Un seul accent vert profond — la confiance et l'héritage visuel persan, délibérément à l'écart du bleu de toutes les fintechs.",
+      "note": "La couleur de hausse et de baisse n'est jamais le seul signal ; une flèche et un + ou − explicite l'accompagnent toujours (une exigence d'accessibilité pour la vision des couleurs).",
+      "use": {
+        "brand600": "Accent principal, boutons d'action, états actifs",
+        "brand700": "Survol / appui",
+        "brand50": "Surfaces teintées, lignes sélectionnées",
+        "ink900": "Texte principal",
+        "ink600": "Texte secondaire",
+        "ink300": "Bordures, séparateurs",
+        "surface": "Cartes",
+        "canvas": "Fond de page",
+        "up": "Hausse du taux",
+        "down": "Baisse du taux",
+        "warn": "En attente / attention",
+        "info": "Information"
+      }
+    },
+    "type": {
+      "description": "Le persan en Vazirmatn (interligne 1,75), l'anglais en Inter (1,6). Les chiffres affichés sont persans en persan ; les champs et identifiants restent en latin, et chaque chiffre est tabulaire.",
+      "sample": "La devise, en toute simplicité — آسا",
+      "numeralsFa": "Chiffres persans à l'affichage + chiffres tabulaires",
+      "numeralsEn": "Chiffres latins dans les contextes anglais"
+    },
+    "layout": {
+      "description": "Espacements uniquement sur l'échelle 4/8/12/16/24/32/48/64 ; rayons 8/12/16/24 ; exactement trois niveaux d'élévation douce.",
+      "spacing": "Échelle d'espacement (px)",
+      "radius": "Rayons d'angle (px)",
+      "elevation": "Trois niveaux d'élévation"
+    },
+    "components": {
+      "description": "Les primitives d'interface : boutons, badges d'état, champs et squelettes de chargement — avec des cibles tactiles d'au moins 44 px.",
+      "primary": "Principal",
+      "secondary": "Secondaire",
+      "soft": "Doux",
+      "ghost": "Fantôme",
+      "destructive": "Destructif",
+      "disabled": "Désactivé",
+      "badgeBrand": "Marque",
+      "badgeUp": "▲ +0,42 %",
+      "badgeDown": "▼ −0,85 %",
+      "badgeWarn": "En attente",
+      "badgeInfo": "Info",
+      "badgeNeutral": "Neutre",
+      "inputPlaceholder": "Un champ ordinaire…",
+      "inputInvalid": "Saisie invalide"
+    },
+    "validation": {
+      "description": "La validation est réelle, pas cosmétique : le Sheba par mod-97, les cartes par Luhn avec identification de la banque d'après le BIN, et le code national par son chiffre de contrôle.",
+      "sheba": {
+        "label": "Sheba (IBAN)",
+        "hint": "IR + 24 chiffres ; espaces autorisés",
+        "ok": "Sheba valide",
+        "err": {
+          "format": "Ce n'est pas un format Sheba — il commence par IR suivi de chiffres uniquement.",
+          "length": "Un Sheba demande exactement 24 chiffres après IR.",
+          "checksum": "Les chiffres de contrôle du Sheba ne correspondent pas — revérifiez le numéro."
+        }
+      },
+      "card": {
+        "label": "Numéro de carte",
+        "hint": "16 chiffres ; la banque est déduite des six premiers",
+        "ok": "Numéro de carte valide",
+        "okBank": "Carte valide — {bank}",
+        "err": {
+          "format": "Un numéro de carte compte exactement 16 chiffres.",
+          "checksum": "La somme de contrôle échoue — un chiffre est erroné."
+        }
+      },
+      "nid": {
+        "label": "Code national",
+        "hint": "10 chiffres avec un chiffre de contrôle",
+        "ok": "Code national valide",
+        "err": "Code national invalide — revérifiez les chiffres."
+      },
+      "banks": {
+        "melli": "Banque Melli",
+        "sepah": "Banque Sepah",
+        "mellat": "Banque Mellat",
+        "tejarat": "Banque Tejarat",
+        "saderat": "Banque Saderat",
+        "keshavarzi": "Banque Keshavarzi",
+        "maskan": "Banque Maskan",
+        "refah": "Banque Refah",
+        "parsian": "Banque Parsian",
+        "pasargad": "Banque Pasargad",
+        "saman": "Banque Saman",
+        "eghtesadNovin": "Banque EN",
+        "ansar": "Banque Ansar",
+        "postbank": "Banque postale",
+        "ayandeh": "Banque Ayandeh",
+        "shahr": "Banque Shahr",
+        "day": "Banque Day",
+        "sina": "Banque Sina",
+        "sarmayeh": "Banque Sarmayeh",
+        "tosee": "Banque Tose'e Ta'avon"
+      }
+    },
+    "coins": {
+      "description": "Vingt devises, un seul dispositif d'éclairage : caméra à 45°, lumière principale en haut à gauche, ombre de contact douce, et le symbole de la devise gravé sur la face.",
+      "rule": "La règle de frontière : les icônes 3D sont pour les devises et les concepts produit ; la micro-interface fonctionnelle (chevrons, fermer, rechercher) reste un jeu de traits nets de 2 px — de la 3D à 16 px, c'est du bruit, pas du raffinement."
+    },
+    "charts": {
+      "description": "Une seule série, trait de 2 px, grille discrète, réticule avec infobulle. Le texte des valeurs porte toujours les jetons d'encre, jamais la couleur de la série ; l'axe du temps reste de gauche à droite dans les deux langues.",
+      "history": "Historique de 90 jours avec réticule",
+      "sparkUp": "Sparkline, tendance positive",
+      "sparkDown": "Sparkline, tendance négative",
+      "note": "La direction s'accompagne toujours d'une flèche et d'un signe, de sorte que la couleur n'est jamais le seul signal."
+    },
+    "motion": {
+      "description": "Le mouvement est ici une fonctionnalité du produit, pas une décoration : 150–350 ms pour le retour, 600–1200 ms pour les moments narratifs ; transformations et opacité uniquement.",
+      "rules": "Sous le réglage « réduire les animations » du système, tout devient statique, et aucune animation ne bloque jamais une interaction ni ne retarde une action monétaire.",
+      "logoDraw": "Tracé du logo au lancement (700 ms)",
+      "replay": "Rejouer",
+      "swap": "Échange à ressort du convertisseur",
+      "digitRoll": "Défilement des chiffres au tic du taux",
+      "tick": "Simuler un tic de taux",
+      "countdown": "Anneau du compte à rebours du taux",
+      "countdownNote": "Sous 60 s, il passe à l'ambre et pulse",
+      "skeleton": "Squelette de chargement (miroitement de 1,6 s)",
+      "skeletonNote": "Calqué sur la mise en page finale, pour que le décalage reste nul"
+    },
+    "scenes": {
+      "description": "Chaque scène repose sur un même dispositif : le disque teinté de la marque, l'ombre de contact, et la même épaisseur de trait et silhouette de pièce que le logo et les icônes de devises. SVG + Framer Motion, quelques ko chacune, entièrement statiques sous le réglage de réduction des animations.",
+      "replay": "Tout rejouer",
+      "count": "{count} scènes",
+      "groups": {
+        "onboarding": {
+          "title": "Connexion et vérification d'identité",
+          "body": "Du code à usage unique au verdict qui revient : accepté, complément demandé, ou refusé."
+        },
+        "order": {
+          "title": "Le cycle du transfert",
+          "body": "Chaque état que traverse un transfert — du devis au paiement du bénéficiaire, et les trajets qui finissent mal."
+        },
+        "banking": {
+          "title": "Comptes et rails bancaires",
+          "body": "Un numéro vérifié, une carte conservée, et le plafond que l'identité relève."
+        },
+        "market": {
+          "title": "Le marché",
+          "body": "Le tableau des taux, l'alerte de prix, l'or, et le marché entre particuliers."
+        },
+        "rewards": {
+          "title": "Niveau et récompenses",
+          "body": "Les deux endroits où ce produit paie le client, et non l'inverse."
+        },
+        "support": {
+          "title": "Conversation et aide",
+          "body": "Chaque transfert porte un fil de discussion ; voici les formes qu'il prend."
+        },
+        "staff": {
+          "title": "Panneaux bureau et plateforme",
+          "body": "De l'autre côté du guichet : la boîte de réception, les taux du jour, la trésorerie, le règlement et la piste d'audit."
+        },
+        "states": {
+          "title": "États vides et erreurs",
+          "body": "Une liste vide, une porte qui n'est pas la vôtre, une mauvaise adresse, et plus de réseau — quatre messages, quatre dessins."
+        }
+      }
+    },
+    "tiles": {
+      "description": "L'éclairage de la pièce appliqué à un carré arrondi : lumière du dessus, filet clair sur l'arête haute, reflet sur la moitié supérieure et ombre teintée de la couleur de la tuile.",
+      "hueTitle": "Sept teintes, sept sens",
+      "sizeTitle": "Trois tailles",
+      "sizeBody": "md à côté d'une ligne de liste, lg sur une carte ou un titre de page, xl seule sur un écran vide.",
+      "usageTitle": "Trois formes d'usage",
+      "rule": "Règle de couleur : la teinte porte un sens, pas un goût — sept suffisent à tout le produit, et une huitième signale un sens que personne n'a encore nommé. L'icône arrive déjà rendue (icon={<Wallet />}) : un composant lucide passé en prop ne franchit pas la frontière serveur-client et fait tomber la page en 500.",
+      "hue": {
+        "brand": "Argent",
+        "indigo": "Autorité",
+        "sky": "Personnes",
+        "teal": "Aide",
+        "amber": "Vigilance",
+        "slate": "Documents",
+        "rose": "Litige"
+      },
+      "navTitle": "Lignes de liste",
+      "navAccounts": "Mes comptes",
+      "navAccountsHint": "IBAN et cartes enregistrés",
+      "navAlerts": "Alertes de prix",
+      "navAlertsHint": "Prévenez-moi au bon prix",
+      "headingTitle": "Sécurité du compte",
+      "headingBody": "Connexion en deux étapes et appareils actifs."
+    }
+  },
+  "panel": {
+    "name": {
+      "admin": "Console d'administration",
+      "office": "Panneau du bureau"
+    },
+    "viewSite": "Voir le site",
+    "signOut": "Se déconnecter"
+  },
+  "pwa": {
+    "title": "Ajoutez Asa à votre écran d'accueil",
+    "body": "Elle s'ouvre comme une application, démarre plus vite et affiche les derniers taux même hors ligne.",
+    "cta": "Ajouter à l'écran d'accueil",
+    "dismiss": "Non merci"
+  }
+}

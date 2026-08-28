@@ -1,0 +1,81 @@
+{
+	email {$ACME_EMAIL}
+	# Caddy phones home for version checks by default. An Iranian server should
+	# make no outbound request nobody asked for.
+	admin off
+	# How certificates are obtained, as one expandable placeholder.
+	#
+	# Empty — the normal case — leaves Caddy's default: get a real certificate
+	# from Let's Encrypt and renew it forever, with no configuration at all.
+	# Set TLS_LOCAL_CERTS=local_certs when the site sits behind a CDN that
+	# terminates TLS itself, or when testing without a public domain. It is not
+	# `auto_https`: that option takes `off`/`disable_redirects` and refuses
+	# anything else, which is a crash loop at boot rather than a warning.
+	{$TLS_LOCAL_CERTS}
+	servers {
+		# Trust no forwarded headers by default: behind a CDN this is overridden
+		# in Caddyfile.cdn, and everywhere else a client must not be able to
+		# claim its own address.
+		trusted_proxies static private_ranges
+	}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# ── The Supabase API, on the same origin as the site ──────────────────────
+	#
+	# This is the job Supabase's own compose file hands to Kong. Each service
+	# serves at its own root and the client library calls it under a prefix, so
+	# the prefix is stripped here and the rest is passed through. `handle_path`
+	# strips; `handle` would not, and every request would 404 with a URL that
+	# looks perfectly correct in the browser's network tab — which is the exact
+	# shape of bug that costs an afternoon.
+
+	handle_path /auth/v1/* {
+		reverse_proxy auth:9999
+	}
+
+	handle_path /rest/v1/* {
+		reverse_proxy rest:3000
+	}
+
+	handle_path /storage/v1/* {
+		reverse_proxy storage:5000
+	}
+
+	# Realtime is the exception: it does not serve at its root. The client opens
+	# `/realtime/v1/websocket` and the server listens on `/socket/websocket`, so
+	# the path is rewritten rather than merely stripped.
+	handle_path /realtime/v1/* {
+		rewrite * /socket{uri}
+		reverse_proxy realtime:4000
+	}
+
+	# ── Everything else is the application ───────────────────────────────────
+	handle {
+		reverse_proxy app:3000
+	}
+
+	# Security headers come from the application itself (next.config.ts), and
+	# they must not be set twice: a browser given two Content-Security-Policy
+	# headers enforces the *intersection* of them, which silently blocked
+	# WebAssembly the last time this project set a header in two places. The one
+	# header added here is the one Next cannot set, because it is only true once
+	# TLS is actually terminated.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		-Server
+	}
+
+	log {
+		output file /data/access.log {
+			roll_size 20mb
+			roll_keep 10
+		}
+		# Query strings can carry an order reference or a phone number. The log
+		# is for "was the site up and who hit it", not for reconstructing what
+		# somebody typed.
+		format json
+	}
+}
