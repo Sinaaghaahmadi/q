@@ -263,3 +263,114 @@ export function BlockedScene({ size, className, label }: SceneProps) {
     </Scene>
   );
 }
+
+/**
+ * How to install on an iPhone — the gesture, performed.
+ *
+ * Safari has no install prompt and never will, so the only thing that helps an
+ * iPhone user is being shown where to press. That makes this the first scene in
+ * the set with a job beyond recognition: it is an instruction, and it loops
+ * because an instruction that plays once is an instruction you missed.
+ *
+ * Two beats, in the order the hand moves: a tap on the share glyph in Safari's
+ * toolbar, then the sheet rising with the "add to home screen" row in it. Under
+ * reduced motion both beats are simply *there* — the sheet open, the row shown —
+ * because a static instruction still has to teach the same two steps.
+ */
+export function IosInstallScene({ size, className, label }: SceneProps) {
+  const reduce = useReducedMotion();
+  const loop = { duration: 4.4, repeat: Infinity, times: [0, 0.12, 0.34, 0.5, 0.86, 1] };
+
+  return (
+    <Scene size={size} className={className} label={label}>
+      <Rise delay={0.05}>
+        <Phone x={34} y={16} w={52} h={88} />
+      </Rise>
+
+      {/* Safari's toolbar, and the share glyph in it: a box with an arrow
+          leaving through the top. */}
+      <Rise delay={0.25}>
+        <path d="M38 86h44" stroke={LINE} strokeWidth="2.5" strokeLinecap="round" />
+        <path
+          d="M55 99v-8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8"
+          stroke={BRAND}
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path d="M60 94V83" stroke={BRAND} strokeWidth="2.6" strokeLinecap="round" />
+        <path
+          d="M56.5 86.5 60 83l3.5 3.5"
+          stroke={BRAND}
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </Rise>
+
+      {/* Beat one: the tap on the share glyph. Rendered either way — under
+          reduced motion it rests at full size as a mark saying "press here",
+          which is what a still instruction needs. Conditionally *removing* it
+          would also be a hydration mismatch the day this scene is ever server
+          rendered. */}
+      <motion.circle
+        cx="60"
+        cy="90"
+        r="9"
+        fill="none"
+        stroke={BRAND}
+        strokeWidth="2.5"
+        initial={reduce ? { opacity: 0.45 } : { opacity: 0, scale: 0.5 }}
+        animate={
+          reduce
+            ? undefined
+            : { opacity: [0, 0.9, 0, 0, 0, 0], scale: [0.5, 1.35, 1.6, 1.6, 1.6, 0.5] }
+        }
+        transition={reduce ? undefined : loop}
+        style={{ transformOrigin: "60px 90px" }}
+      />
+
+      {/* Beat two: the sheet, with the row you are looking for inside it. */}
+      <motion.g
+        initial={reduce ? false : { y: 46, opacity: 0 }}
+        animate={reduce ? undefined : { y: [46, 46, 0, 0, 0, 46], opacity: [0, 0, 1, 1, 1, 0] }}
+        transition={reduce ? undefined : loop}
+      >
+        <rect
+          x="38"
+          y="54"
+          width="44"
+          height="34"
+          rx="7"
+          fill={SURFACE}
+          stroke={LINE}
+          strokeWidth="2.5"
+        />
+        <rect x="55" y="57" width="10" height="2.5" rx="1.25" fill={LINE} />
+        <rect x="43" y="65" width="13" height="13" rx="3.5" fill={BRAND} />
+        <path d="M49.5 68.5v6M46.5 71.5h6" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" />
+        <rect x="60" y="67" width="17" height="2.6" rx="1.3" fill={INK} opacity="0.5" />
+        <rect x="60" y="73" width="12" height="2.6" rx="1.3" fill={LINE} />
+      </motion.g>
+
+      {/* And the tap that finishes it. */}
+      <motion.circle
+        cx="49.5"
+        cy="71.5"
+        r="10"
+        fill="none"
+        stroke={BRAND}
+        strokeWidth="2.5"
+        initial={reduce ? { opacity: 0.45 } : { opacity: 0, scale: 0.5 }}
+        animate={
+          reduce
+            ? undefined
+            : { opacity: [0, 0, 0, 0.9, 0, 0], scale: [0.5, 0.5, 0.5, 1.4, 1.7, 0.5] }
+        }
+        transition={reduce ? undefined : loop}
+        style={{ transformOrigin: "49.5px 71.5px" }}
+      />
+    </Scene>
+  );
+}

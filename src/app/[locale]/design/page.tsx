@@ -314,7 +314,7 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
                   <span className="text-[0.6875rem] leading-tight font-medium text-ink-600">
                     {t(`tiles.hue.${hue}`)}
                   </span>
-                  <span className="font-mono text-[0.625rem] text-ink-600/70" dir="ltr">
+                  <span className="font-mono text-[0.6875rem] text-ink-600" dir="ltr">
                     {hue}
                   </span>
                 </div>

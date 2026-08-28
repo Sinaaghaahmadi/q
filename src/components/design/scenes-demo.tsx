@@ -128,6 +128,7 @@ const GROUPS: Group[] = [
       ["FrozenScene", S.FrozenScene],
       ["BlockedScene", S.BlockedScene],
       ["InstallScene", S.InstallScene],
+      ["IosInstallScene", S.IosInstallScene],
     ],
   },
 ];

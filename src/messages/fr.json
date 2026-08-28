@@ -3173,7 +3173,8 @@
           "title": "États vides et erreurs",
           "body": "Une liste vide, une porte qui n'est pas la vôtre, une mauvaise adresse, et plus de réseau — quatre messages, quatre dessins."
         }
-      }
+      },
+      "items": {}
     },
     "tiles": {
       "description": "L'éclairage de la pièce appliqué à un carré arrondi : lumière du dessus, filet clair sur l'arête haute, reflet sur la moitié supérieure et ombre teintée de la couleur de la tuile.",
@@ -3212,6 +3213,15 @@
     "title": "Ajoutez Asa à votre écran d'accueil",
     "body": "Elle s'ouvre comme une application, démarre plus vite et affiche les derniers taux même hors ligne.",
     "cta": "Ajouter à l'écran d'accueil",
-    "dismiss": "Non merci"
+    "dismiss": "Non merci",
+    "ios": {
+      "title": "Ajoutez Asa à votre écran d'accueil",
+      "body": "Elle s'ouvre comme une application, démarre plus vite et affiche les derniers taux même hors ligne.",
+      "step": {
+        "share": "Touchez le bouton Partager dans la barre du bas de Safari.",
+        "add": "Faites défiler un peu et choisissez « <ios>Add to Home Screen</ios> »."
+      },
+      "done": "J'ai compris"
+    }
   }
 }

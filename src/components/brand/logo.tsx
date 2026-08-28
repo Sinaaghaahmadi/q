@@ -15,7 +15,19 @@ interface LogoMarkProps {
 
 export function LogoMark({ size = 28, className, animated = false }: LogoMarkProps) {
   const reduce = useReducedMotion();
-  const draw = animated && !reduce;
+  /*
+   * `initial` must not depend on the motion preference.
+   *
+   * The server renders with `useReducedMotion()` false and framer writes the
+   * starting `pathLength`/`opacity` into the SVG; a client that prefers reduced
+   * motion took the other branch, wrote no such attributes, and React threw the
+   * whole tree away and re-rendered it — a hydration mismatch on *every* page,
+   * because this mark is in the header, for exactly the readers least able to
+   * absorb a flash of re-rendered UI. The preference belongs on the duration
+   * instead: same DOM either way, and a reader who asked for less motion gets
+   * the finished mark on the first frame.
+   */
+  const draw = animated;
 
   return (
     <svg
@@ -37,7 +49,11 @@ export function LogoMark({ size = 28, className, animated = false }: LogoMarkPro
           initial={draw ? { pathLength: 0, opacity: 0 } : false}
           animate={draw ? { pathLength: 1, opacity: 1 } : undefined}
           transition={
-            draw ? { duration: 0.45, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] } : undefined
+            draw
+              ? reduce
+                ? { duration: 0 }
+                : { duration: 0.45, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }
+              : undefined
           }
         />
       ))}
