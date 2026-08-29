@@ -46,7 +46,7 @@ self.addEventListener("fetch", (e) => {
           caches.open(CACHE).then((c) => c.put(e.request, copy));
           return res;
         })
-        .catch(() => caches.match(e.request).then((r) => r || caches.match("index.html")))
+        .catch(() => caches.match(e.request).then((r) => r || caches.match("/betasa/index.html")))
     );
     return;
   }
