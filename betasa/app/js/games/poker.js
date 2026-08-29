@@ -5,7 +5,7 @@
    بازگشت به بازیکن (RTP) — اندازه‌گیری‌شده، نه تخمینی:
    شبیه‌سازی مونت‌کارلوی ۲۰٬۰۰۰٬۰۰۰ دست با استراتژی بهینهٔ استاندارد
    «۹/۶ Jacks or Better» روی همین جدول جایزه (رویال ۲۵۰×) نتیجه داد:
-       RTP = ۹۸٫۱۹٪  (0.98186 ± 0.00098)
+       RTP = ۹۸٫۱۱٪  (0.98112، بازهٔ اطمینان ۹۵٪: ±0.0019)
    ضریب‌ها «بازگشت کل» هستند: جفت سرباز به بالا ۱× یعنی شرط برمی‌گردد. */
 
 import { betControls } from "../ui.js";
@@ -147,6 +147,7 @@ export default {
   id: "poker",
   name: "پوکر",
   desc: "پنج کارت بگیر، بهترین‌ها را نگه دار و بقیه را عوض کن.",
+  tags: ["card"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <rect x="6" y="12" width="20" height="28" rx="3"/>
     <rect x="20" y="8" width="20" height="28" rx="3"/>
@@ -170,7 +171,7 @@ export default {
       <style>${CSS}</style>
       <p class="muted" style="text-align:center;margin:0">
         پنج کارت می‌گیری، هرکدام را خواستی نگه می‌داری و بقیه یک‌بار عوض می‌شوند.
-        جدول جایزه پایین‌تر است — بازگشت نظری این جدول <b class="mono">۹۸٫۱۹٪</b> است.
+        جدول جایزه پایین‌تر است — بازگشت اندازه‌گیری‌شدهٔ این جدول <b class="mono">۹۸٫۱۱٪</b> است.
       </p>
       <div class="pk-stage" role="status" aria-live="polite">
         <span data-st="bet">۱ شرط</span>
@@ -221,13 +222,54 @@ export default {
     };
 
     /* --- کارت‌ها --- */
+    /* چیدمان خال‌ها مثل ورق واقعی: تعداد خال با رتبه می‌خواند و نیمهٔ پایینی
+       وارونه است. برای تصویری‌ها (سرباز/بی‌بی/شاه) قاب و حرف، و برای آس یک خال بزرگ. */
+    const PIPS = {
+      2:  [[50, 36], [50, 104]],
+      3:  [[50, 36], [50, 70], [50, 104]],
+      4:  [[32, 36], [68, 36], [32, 104], [68, 104]],
+      5:  [[32, 36], [68, 36], [50, 70], [32, 104], [68, 104]],
+      6:  [[32, 36], [68, 36], [32, 70], [68, 70], [32, 104], [68, 104]],
+      7:  [[32, 36], [68, 36], [50, 53], [32, 70], [68, 70], [32, 104], [68, 104]],
+      8:  [[32, 36], [68, 36], [50, 53], [32, 70], [68, 70], [50, 87], [32, 104], [68, 104]],
+      9:  [[32, 36], [68, 36], [32, 59], [68, 59], [50, 70], [32, 81], [68, 81], [32, 104], [68, 104]],
+      10: [[32, 36], [68, 36], [50, 47], [32, 59], [68, 59], [32, 81], [68, 81], [50, 93], [32, 104], [68, 104]],
+    };
+    const pip = (x, y, s, size = 15) => {
+      const flip = y > 70 ? ` rotate(180 ${x} ${y})` : "";
+      const k = size / 100;
+      return `<g transform="translate(${x - size / 2} ${y - size / 2}) scale(${k})${flip}">${SUIT_ART[s]}</g>`;
+    };
+
     const cardSvg = (c) => {
       const color = RED.includes(c.s) ? "var(--danger)" : "var(--ink)";
+      const n = c.r + 2;                    // ۰ → ۲ … ۸ → ۱۰
+      let body;
+      if (n <= 10) {
+        body = PIPS[n].map(([x, y]) => pip(x, y, c.s)).join("");
+      } else if (c.r === 12) {              // آس
+        body = `<g transform="translate(25 45) scale(.5)" fill="${color}">${SUIT_ART[c.s]}</g>`;
+      } else {                              // سرباز / بی‌بی / شاه
+        body = `
+          <rect x="24" y="34" width="52" height="72" rx="8" fill="none"
+                stroke="${color}" stroke-width="1.5" opacity=".45"/>
+          <text x="50" y="80" font-size="30" font-weight="900" fill="${color}"
+                text-anchor="middle" style="direction:ltr">${RANK_SHORT[c.r]}</text>
+          <g transform="translate(43 88) scale(.14)" fill="${color}">${SUIT_ART[c.s]}</g>`;
+      }
+      /* گوشه‌ها: رتبه و خال کوچک، پایین‌راست وارونه — دقیقاً مثل ورق چاپی.
+         direction:ltr لازم است وگرنه در سند راست‌به‌چپ، لنگرِ متن برعکس می‌نشیند
+         و رقم از لبهٔ کارت بیرون می‌زند. */
+      const wide = RANK_SHORT[c.r].length > 1;   // «۱۰» دو نویسه است و باید کوچک‌تر بنشیند
+      const corner = `
+        <text x="${wide ? 13 : 11}" y="26" font-size="${wide ? 14 : 19}" font-weight="900" fill="${color}"
+              text-anchor="middle" style="direction:ltr">${RANK_SHORT[c.r]}</text>
+        <g transform="translate(${wide ? 8.5 : 6.5} 29) scale(.09)" fill="${color}">${SUIT_ART[c.s]}</g>`;
       return `<svg viewBox="0 0 100 140" role="img" aria-label="${RANK_FA[c.r]} ${["پیک", "دل", "خشت", "گشنیز"][c.s]}">
         <rect x="2" y="2" width="96" height="136" rx="10" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2"/>
-        <text x="12" y="30" font-size="24" font-weight="900" fill="${color}" text-anchor="start">${RANK_SHORT[c.r]}</text>
-        <g transform="translate(38 46) scale(.24)" fill="${color}">${SUIT_ART[c.s]}</g>
-        <g transform="translate(50 82) scale(.44)" fill="${color}">${SUIT_ART[c.s]}</g>
+        <g fill="${color}">${body}</g>
+        ${corner}
+        <g transform="rotate(180 50 70)">${corner}</g>
       </svg>`;
     };
     const backSvg = `<svg viewBox="0 0 100 140" aria-hidden="true">
@@ -338,7 +380,7 @@ export default {
         if (!held[i]) { hand[i] = deck.pop(); slots[i].dataset.face = "down"; swap.push(i); }
       }
       const step = reduced ? 0 : 130;
-      const finishAt = swap.length ? step * swap.length + 220 : 0;
+      const finishAt = step && swap.length ? step * swap.length + 220 : 0;
       swap.forEach((i, k) => {
         const put = () => showCard(i, true, true);
         if (step) later(put, step * (k + 1));

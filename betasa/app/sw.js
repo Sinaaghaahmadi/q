@@ -19,6 +19,8 @@ const ASSETS = [
   "js/games/crash.js",
   "js/games/limbo.js",
   "js/games/plinko.js",
+  "js/games/poker.js",
+  "js/games/backgammon.js",
   "manifest.webmanifest",
   "icons/icon.svg",
 ];
