@@ -18,6 +18,7 @@ export default {
   id: "wheel",
   name: "گردونه شانس",
   desc: "گردونه را بچرخان؛ تا ۵ برابر ببر.",
+  tags: ["fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <circle cx="24" cy="26" r="16"/>
     <path d="M24 10 v32 M8 26 h32 M13 15 l22 22 M35 15 l-22 22" opacity=".6"/>

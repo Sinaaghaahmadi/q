@@ -1,4 +1,4 @@
-/* بتاسا — هستهٔ اپ: کیف سکه، تم، روتر و لابی */
+/* بت آسا — هستهٔ اپ: کیف سکه، تم، روتر و لابی */
 import { games } from "./games/index.js";
 import { fmt, betControls } from "./ui.js";
 export { fmt, betControls };
@@ -34,17 +34,54 @@ export const ctx = {
     wallet.balance -= amount;
     saveWallet(); renderBalance();
     trackRound();
+    ledger("bet", -amount, currentGameName || "بازی");
+    addXp(Math.max(1, Math.round(amount / 100)));
     return true;
   },
   credit(amount) {
     amount = Math.max(0, Math.floor(amount));
     wallet.balance += amount;
     saveWallet(); renderBalance();
-    if (amount > 0) trackWin(amount);
+    if (amount > 0) { trackWin(amount); ledger("win", amount, currentGameName || "بازی"); }
   },
   fmt,
   toast,
 };
+
+/* ---------- دفتر تراکنش سکه ----------
+   هر جابه‌جایی سکه یک سطر می‌شود تا کاربر بتواند بپرسد «سکه‌ام کجا رفت؟».
+   واحد همیشه سکهٔ مجازی است؛ هیچ مسیر واریز یا برداشت پول واقعی وجود ندارد. */
+const LEDGER_KEY = "betasa-ledger";
+const LEDGER_MAX = 60;
+function loadLedger() {
+  try { const l = JSON.parse(localStorage.getItem(LEDGER_KEY)); if (Array.isArray(l)) return l; } catch (e) {}
+  return [];
+}
+let ledgerRows = loadLedger();
+function ledger(kind, amount, label) {
+  ledgerRows.unshift({ kind, amount, label, at: Date.now() });
+  ledgerRows = ledgerRows.slice(0, LEDGER_MAX);
+  try { localStorage.setItem(LEDGER_KEY, JSON.stringify(ledgerRows)); } catch (e) {}
+}
+
+/* ---------- سطح و تجربه ----------
+   XP فقط از بازی‌کردن می‌آید، نه از برنده‌شدن — تا پیشرفت به شانس گره نخورد. */
+const LEVEL_STEP = 120;
+function levelOf(xp) { return Math.floor(Math.sqrt(xp / LEVEL_STEP)) + 1; }
+function xpForLevel(lv) { return Math.pow(lv - 1, 2) * LEVEL_STEP; }
+function addXp(n) {
+  const before = levelOf(wallet.xp || 0);
+  wallet.xp = (wallet.xp || 0) + n;
+  const after = levelOf(wallet.xp);
+  saveWallet();
+  if (after > before) {
+    const reward = after * 250;
+    grant(reward);
+    ledger("level", reward, `رسیدن به سطح ${fmt(after)}`);
+    toast(`سطح ${fmt(after)}! جایزه: ${fmt(reward)} سکه ⭐`);
+  }
+  renderBalance();
+}
 
 /* ---------- آمار، رکوردها و ماموریت‌ها ---------- */
 const STATS_KEY = "betasa-stats";
@@ -95,14 +132,25 @@ function grant(amount) {
   saveWallet(); renderBalance();
 }
 
-/* جایزه روزانه */
+/* جایزه روزانه با استریک — هر روز پیاپی جایزه را بزرگ‌تر می‌کند، تا سقف هفتم */
+function yesterdayKey() {
+  const d = new Date(); d.setDate(d.getDate() - 1);
+  return d.toISOString().slice(0, 10);
+}
 function dailyBonus() {
   const t = todayKey();
   if (!wallet.fresh && wallet.lastBonus !== t) {
+    wallet.streak = wallet.lastBonus === yesterdayKey() ? Math.min((wallet.streak || 1) + 1, 7) : 1;
     wallet.lastBonus = t;
-    wallet.balance += DAILY_BONUS;
+    const reward = DAILY_BONUS * wallet.streak;
+    wallet.balance += reward;
     saveWallet();
-    toast(`جایزه روزانه: ${fmt(DAILY_BONUS)} سکه 🎁`);
+    ledger("daily", reward, `جایزهٔ ورود — روز ${fmt(wallet.streak)}`);
+    toast(`جایزه روزانه: ${fmt(reward)} سکه 🎁 (روز ${fmt(wallet.streak)})`);
+  }
+  if (wallet.fresh) {
+    wallet.streak = 1;
+    ledger("daily", START_COINS, "هدیهٔ خوش‌آمد");
   }
   delete wallet.fresh;
   saveWallet();
@@ -147,13 +195,185 @@ function route() {
   }
   if (hash === "#/leaderboard") { renderLeaderboard(); view.focus(); return; }
   if (hash === "#/rewards") { renderRewards(); view.focus(); return; }
+  if (hash === "#/wallet") { renderWallet(); view.focus(); return; }
+  if (hash.startsWith("#/games")) { renderGames(hash); view.focus(); return; }
   renderLobby();
   view.focus();
 }
 
+/* ---------- کیف سکه ----------
+   عمداً هیچ مسیر «افزایش موجودی با پول» ندارد: سکه فقط از بازی، جایزهٔ
+   روزانه، ماموریت‌ها و بالا رفتن سطح می‌آید. */
+const LEDGER_LABEL = { bet: "شرط", win: "برد", daily: "جایزهٔ ورود", mission: "ماموریت", level: "سطح جدید" };
+
+function renderWallet() {
+  document.title = "بت آسا — کیف سکه";
+  resetDayIfNeeded();
+  const xp = wallet.xp || 0;
+  const lv = levelOf(xp);
+  const base = xpForLevel(lv), next = xpForLevel(lv + 1);
+  const pct = Math.round(((xp - base) / (next - base)) * 100);
+
+  const page = document.createElement("div");
+  page.className = "game-page";
+  page.innerHTML = `
+    <div class="game-head">
+      <button class="back" type="button">→ خانه</button>
+      <h1>کیف سکه</h1>
+    </div>
+
+    <div class="game-board" style="text-align:center">
+      <div class="muted" style="font-size:var(--fs-sm)">موجودی</div>
+      <div class="mono" style="font-size:clamp(2rem,7vw,3rem);font-weight:900;color:var(--gold-ink);line-height:1.2">
+        ${fmt(wallet.balance)}
+      </div>
+      <div class="muted">سکهٔ مجازی</div>
+
+      <div style="margin-top:var(--sp-6);text-align:right">
+        <div style="display:flex;justify-content:space-between;font-size:var(--fs-sm);font-weight:700">
+          <span>سطح ${fmt(lv)}</span>
+          <span class="mono muted">${fmt(xp - base)} / ${fmt(next - base)} XP</span>
+        </div>
+        <div style="height:10px;border-radius:var(--r-pill);background:var(--surface-2);
+                    border:1px solid var(--line);overflow:hidden;margin-top:var(--sp-2)">
+          <div style="height:100%;width:${pct}%;background:var(--gold-grad);
+                      transition:width var(--dur-slow) var(--ease-out)"></div>
+        </div>
+        <p class="muted" style="margin:var(--sp-2) 0 0;font-size:var(--fs-caption)">
+          هر دست بازی XP می‌دهد — چه ببری چه نبری. هر سطح، جایزهٔ سکه‌ای دارد.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="section-title">راه‌های گرفتن سکه</h2>
+    <div class="ways"></div>
+
+    <h2 class="section-title">تراکنش‌های اخیر</h2>
+    <div class="game-board" style="padding:0;overflow:hidden"><div class="ledger"></div></div>
+
+    <p class="muted" style="text-align:center;margin-top:var(--sp-5);font-size:var(--fs-caption)">
+      بت آسا فروشگاه سکه ندارد و سکه با پول واقعی خرید و فروش نمی‌شود.
+    </p>`;
+  page.querySelector(".back").addEventListener("click", () => { location.hash = "#/"; });
+
+  const ways = page.querySelector(".ways");
+  ways.style.cssText = "display:grid;gap:var(--sp-3);grid-template-columns:repeat(auto-fit,minmax(210px,1fr))";
+  const streak = wallet.streak || 1;
+  [
+    ["🎁", "جایزهٔ ورود روزانه", `امروز گرفتی — روز ${fmt(streak)} پیاپی. هر روز پشت‌سرهم جایزه را بزرگ‌تر می‌کند تا روز هفتم.`, null],
+    ["🎯", "ماموریت‌های روزانه", "سه ماموریت هر روز نو می‌شود؛ هر کدام سکهٔ جداگانه دارد.", "#/rewards"],
+    ["⭐", "بالا رفتن سطح", `الان سطح ${fmt(lv)}. جایزهٔ سطح بعدی: ${fmt((lv + 1) * 250)} سکه.`, null],
+    ["🎮", "خودِ بازی", "برد در هر بازی مستقیم به موجودی اضافه می‌شود.", "#/games"],
+  ].forEach(([icon, title, body, href]) => {
+    const el = document.createElement(href ? "a" : "div");
+    if (href) el.href = href;
+    el.style.cssText = "border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:var(--sp-4);box-shadow:var(--shadow);display:block";
+    el.innerHTML = `<div style="font-size:1.5rem">${icon}</div>
+      <div style="font-weight:900;margin-top:var(--sp-1)">${title}</div>
+      <p class="muted" style="margin:var(--sp-1) 0 0;font-size:var(--fs-caption)">${body}</p>`;
+    ways.appendChild(el);
+  });
+
+  const led = page.querySelector(".ledger");
+  if (!ledgerRows.length) {
+    led.innerHTML = `<p class="muted" style="text-align:center;padding:var(--sp-6)">هنوز تراکنشی نداری.</p>`;
+  } else {
+    for (const r of ledgerRows.slice(0, 25)) {
+      const pos = r.amount >= 0;
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border-bottom:1px solid var(--line)";
+      row.innerHTML = `
+        <div>
+          <div style="font-weight:700;font-size:var(--fs-sm)">${LEDGER_LABEL[r.kind] || r.kind} · ${r.label}</div>
+          <div class="muted mono" style="font-size:var(--fs-caption)">${timeAgo(r.at)}</div>
+        </div>
+        <div class="mono" style="font-weight:900;color:${pos ? "var(--win)" : "var(--ink-2)"}">
+          ${pos ? "+" : "−"}${fmt(Math.abs(r.amount))}
+        </div>`;
+      led.appendChild(row);
+    }
+  }
+  view.appendChild(page);
+}
+
+function timeAgo(ts) {
+  const s = Math.max(0, Math.round((Date.now() - ts) / 1000));
+  if (s < 60) return "چند لحظه پیش";
+  if (s < 3600) return `${fmt(Math.floor(s / 60))} دقیقه پیش`;
+  if (s < 86400) return `${fmt(Math.floor(s / 3600))} ساعت پیش`;
+  return `${fmt(Math.floor(s / 86400))} روز پیش`;
+}
+
+/* ---------- صفحهٔ بازی‌ها ---------- */
+const CATEGORIES = [
+  { id: "all", label: "همه" },
+  { id: "fast", label: "سریع" },
+  { id: "card", label: "کارتی" },
+  { id: "board", label: "تخته‌ای" },
+  { id: "number", label: "عددی" },
+];
+
+function renderGames(hash) {
+  document.title = "بت آسا — بازی‌ها";
+  const cat = (hash.split("cat=")[1] || "all").replace(/[^a-z]/g, "") || "all";
+
+  const page = document.createElement("div");
+  page.innerHTML = `
+    <div class="games-hero">
+      <h1>بازی‌ها</h1>
+      <p>${fmt(games.length)} بازی، همه با سکهٔ مجازی. یکی را انتخاب کن و شروع کن.</p>
+    </div>
+    <div class="games-toolbar">
+      <div class="cat-row" role="tablist" aria-label="دسته‌بندی"></div>
+      <input class="game-search" type="search" placeholder="جست‌وجوی بازی…" aria-label="جست‌وجوی بازی">
+    </div>
+    <div class="game-grid"></div>
+    <p class="empty muted" hidden style="text-align:center;padding:var(--sp-8)">بازی‌ای با این نام پیدا نشد.</p>`;
+
+  const catRow = page.querySelector(".cat-row");
+  for (const c of CATEGORIES) {
+    const a = document.createElement("a");
+    a.className = "cat-chip" + (c.id === cat ? " is-on" : "");
+    a.href = `#/games?cat=${c.id}`;
+    a.textContent = c.label;
+    a.setAttribute("role", "tab");
+    a.setAttribute("aria-selected", String(c.id === cat));
+    catRow.appendChild(a);
+  }
+
+  const grid = page.querySelector(".game-grid");
+  const empty = page.querySelector(".empty");
+  const search = page.querySelector(".game-search");
+
+  const draw = () => {
+    const q = search.value.trim();
+    grid.innerHTML = "";
+    const list = games.filter(
+      (g) => (cat === "all" || (g.tags || []).includes(cat)) && (!q || g.name.includes(q) || g.desc.includes(q))
+    );
+    for (const g of list) grid.appendChild(gameCard(g));
+    empty.hidden = list.length > 0;
+  };
+  search.addEventListener("input", draw);
+  draw();
+  view.appendChild(page);
+  return () => {};
+}
+
+function gameCard(g) {
+  const card = document.createElement("a");
+  card.className = "game-card";
+  card.href = `#/game/${g.id}`;
+  card.innerHTML = `
+    <span class="g-icon" aria-hidden="true">${g.icon}</span>
+    <span class="g-name">${g.name}</span>
+    <span class="g-desc">${g.desc}</span>`;
+  return card;
+}
+
 /* ---------- جدول امتیازات ---------- */
 function renderLeaderboard() {
-  document.title = "بتاسا — جدول امتیازات";
+  document.title = "بت آسا — جدول امتیازات";
   resetDayIfNeeded();
   const page = document.createElement("div");
   page.className = "game-page";
@@ -168,7 +388,7 @@ function renderLeaderboard() {
     : `<tr><td colspan="4" class="muted" style="text-align:center;padding:24px">هنوز بردی ثبت نشده — برو بازی کن!</td></tr>`;
   page.innerHTML = `
     <div class="game-head">
-      <button class="back" type="button">→ لابی</button>
+      <button class="back" type="button">→ خانه</button>
       <h1>بزرگ‌ترین بردهای تو</h1>
     </div>
     <div class="game-board" style="overflow-x:auto">
@@ -186,13 +406,13 @@ function renderLeaderboard() {
 
 /* ---------- ماموریت‌های روزانه ---------- */
 function renderRewards() {
-  document.title = "بتاسا — جوایز و ماموریت‌ها";
+  document.title = "بت آسا — جوایز و ماموریت‌ها";
   resetDayIfNeeded();
   const page = document.createElement("div");
   page.className = "game-page";
   page.innerHTML = `
     <div class="game-head">
-      <button class="back" type="button">→ لابی</button>
+      <button class="back" type="button">→ خانه</button>
       <h1>ماموریت‌های امروز</h1>
     </div>
     <div class="game-board"><div id="mission-list" style="display:grid;gap:12px"></div>
@@ -222,6 +442,7 @@ function renderRewards() {
         stats.claimed.push(ms.id);
         saveStats();
         grant(ms.reward);
+        ledger("mission", ms.reward, ms.title);
         toast(`جایزه ماموریت: ${fmt(ms.reward)} سکه 🎉`);
         draw();
       });
@@ -235,7 +456,8 @@ function renderRewards() {
 
 /* ---------- لابی ---------- */
 function renderLobby() {
-  document.title = "بتاسا — بازی رایگان با سکه";
+  document.title = "بت آسا — بازی رایگان با سکه";
+  const lv = levelOf(wallet.xp || 0);
   const hero = document.createElement("section");
   hero.className = "lobby-hero";
   hero.innerHTML = `
@@ -247,41 +469,42 @@ function renderLobby() {
       </g>
     </svg>
     <h1>شب‌خوش! آماده‌ای؟</h1>
-    <p>ده بازی سریع با سکهٔ مجازی — رایگان و تفریحی، بدون پول واقعی. هر روز جایزهٔ ورود بگیر و رکوردت را بالا ببر.</p>
+    <p>${fmt(games.length)} بازی با سکهٔ مجازی — رایگان و تفریحی، بدون پول واقعی.
+       سطح ${fmt(lv)}، روز ${fmt(wallet.streak || 1)} پیاپی.</p>
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
-      <a class="btn" href="#/leaderboard">🏆 جدول امتیازات</a>
-      <a class="btn btn-gold" href="#/rewards">🎁 ماموریت‌های امروز</a>
+      <a class="btn btn-gold" href="#/games">🎮 همهٔ بازی‌ها</a>
+      <a class="btn" href="#/rewards">🎁 ماموریت‌ها</a>
+      <a class="btn" href="#/wallet">👛 کیف سکه</a>
+      <a class="btn" href="#/leaderboard">🏆 رکوردها</a>
     </div>`;
   view.appendChild(hero);
 
-  const title = document.createElement("h2");
-  title.className = "section-title";
-  title.textContent = "بازی‌ها";
-  view.appendChild(title);
-
-  const grid = document.createElement("div");
-  grid.className = "game-grid";
-  for (const g of games) {
-    const card = document.createElement("a");
-    card.className = "game-card";
-    card.href = `#/game/${g.id}`;
-    card.innerHTML = `
-      <span class="g-icon" aria-hidden="true">${g.icon}</span>
-      <span class="g-name">${g.name}</span>
-      <span class="g-desc">${g.desc}</span>`;
-    grid.appendChild(card);
+  const sections = [
+    ["پیشنهاد امروز", games.slice(0, 4)],
+    ["تخته‌ای و کارتی", games.filter((g) => (g.tags || []).some((t) => t === "board" || t === "card"))],
+    ["سریع", games.filter((g) => (g.tags || []).includes("fast"))],
+  ];
+  for (const [label, list] of sections) {
+    if (!list.length) continue;
+    const h = document.createElement("h2");
+    h.className = "section-title";
+    h.textContent = label;
+    view.appendChild(h);
+    const grid = document.createElement("div");
+    grid.className = "game-grid";
+    for (const g of list) grid.appendChild(gameCard(g));
+    view.appendChild(grid);
   }
-  view.appendChild(grid);
 }
 
 /* ---------- صفحه بازی ---------- */
 function renderGamePage(game) {
-  document.title = `بتاسا — ${game.name}`;
+  document.title = `بت آسا — ${game.name}`;
   const page = document.createElement("div");
   page.className = "game-page";
   page.innerHTML = `
     <div class="game-head">
-      <button class="back" type="button">→ لابی</button>
+      <button class="back" type="button">→ خانه</button>
       <h1>${game.name}</h1>
     </div>
     <div class="game-board"></div>
@@ -320,8 +543,5 @@ initTheme();
 initPWA();
 dailyBonus();
 renderBalance();
-document.getElementById("coin-chip").addEventListener("click", () =>
-  toast(`موجودی: ${fmt(wallet.balance)} سکه`)
-);
 window.addEventListener("hashchange", route);
 route();

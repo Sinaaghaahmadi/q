@@ -1,4 +1,4 @@
-/* بتاسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
+/* بت آسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
 const CACHE = "betasa-v3";
 const ASSETS = [
   "./",
@@ -19,6 +19,8 @@ const ASSETS = [
   "js/games/crash.js",
   "js/games/limbo.js",
   "js/games/plinko.js",
+  "js/games/poker.js",
+  "js/games/backgammon.js",
   "manifest.webmanifest",
   "icons/icon.svg",
 ];

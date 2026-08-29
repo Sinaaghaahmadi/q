@@ -5,6 +5,7 @@ export default {
   id: "coinflip",
   name: "شیر یا خط",
   desc: "سکه بینداز؛ حدس درست، دوبرابر می‌گیری.",
+  tags: ["fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <circle cx="24" cy="24" r="16"/>
     <path d="M24 14 v20 M17 20 c0 -4 14 -4 14 0 c0 4 -14 4 -14 8 c0 4 14 4 14 0" opacity=".6"/>

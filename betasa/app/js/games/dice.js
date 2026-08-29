@@ -8,6 +8,7 @@ export default {
   id: "dice",
   name: "تاس",
   desc: "هدف را انتخاب کن؛ عدد زیر هدف یعنی برد.",
+  tags: ["fast", "number"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <rect x="9" y="9" width="30" height="30" rx="6"/>
     <circle cx="17" cy="17" r="2" fill="currentColor"/>

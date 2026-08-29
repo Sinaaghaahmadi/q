@@ -9,6 +9,7 @@ export default {
   id: "tower",
   name: "برج",
   desc: "طبقه‌به‌طبقه بالا برو؛ هر طبقه یک بمب دارد.",
+  tags: ["fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <path d="M16 42 h16 M18 42 V14 h12 v28 M14 14 h20 M24 6 l-6 8 h12 Z"/>
     <path d="M18 22 h12 M18 30 h12 M18 38 h12" opacity=".6"/>

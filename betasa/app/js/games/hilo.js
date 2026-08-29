@@ -10,6 +10,7 @@ export default {
   id: "hilo",
   name: "بالا/پایین",
   desc: "کارت بعدی بالاتر یا پایین‌تر؟ زنجیره بساز و بردار.",
+  tags: ["card", "fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <rect x="14" y="8" width="20" height="28" rx="3"/>
     <path d="M24 40 l-5 -5 M24 40 l5 -5 M24 40 v-8" opacity=".6"/>

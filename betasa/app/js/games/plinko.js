@@ -20,6 +20,7 @@ export default {
   id: "plinko",
   name: "پلینکو",
   desc: "توپ را رها کن؛ خانهٔ فرود ضریبت را می‌دهد.",
+  tags: ["fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <circle cx="24" cy="8" r="3.5"/>
     <g opacity=".6">

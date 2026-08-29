@@ -15,6 +15,7 @@ export default {
   id: "crash",
   name: "کرش",
   desc: "ضریب بالا می‌رود؛ قبل از کرش برداشت کن.",
+  tags: ["fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <path d="M6 40 L6 8 M6 40 L42 40"/>
     <path d="M8 38 C 20 36, 28 28, 36 12" opacity=".8"/>

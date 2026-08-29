@@ -15,6 +15,7 @@ export default {
   id: "limbo",
   name: "لیمبو",
   desc: "ضریب هدف بگذار؛ نتیجه بالاتر بیاید، بردی.",
+  tags: ["fast", "number"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <path d="M8 34 L40 34"/>
     <path d="M10 34 L24 10 L38 34" opacity=".7"/>
