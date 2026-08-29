@@ -137,10 +137,12 @@ body{
 }
 .mono{font-family:ui-monospace,"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
 /* جداسازی دوسویه: رشتهٔ لاتین داخل متن فارسی نباید وارونه دیده شود */
-.ltr,code{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.ltr,code{direction:ltr;unicode-bidi:isolate;overflow-wrap:anywhere}
 a{color:inherit;text-decoration:none}
 svg{max-width:100%}
 button{font-family:inherit}
+/* هر کنترل فرمی رنگ تأکیدش را از برند می‌گیرد، نه از پیش‌فرض مرورگر */
+input,select,textarea{accent-color:var(--turq)}
 
 /* ---------- هدر ---------- */
 .app-header{

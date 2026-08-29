@@ -189,8 +189,8 @@ const acts = [
       {
         file: "desk-l-dice.jpg",
         path: "betasa.app/#/game/dice",
-        title: "تاس — تنها جایی که پالت می‌شکند",
-        note: "اسلایدر هدف با رنگ پیش‌فرض مرورگر رندر می‌شود؛ روی این ورودی accent-color ست نشده و آبی از پالت بیرون می‌زند.",
+        title: "تاس، اسلایدری که رنگ برند دارد",
+        note: "همین صفحه بود که نشان داد اسلایدر با آبیِ پیش‌فرض مرورگر رندر می‌شود؛ حالا accent-color روی همهٔ کنترل‌های فرم به --turq بسته شده.",
       },
       {
         file: "desk-l-wheel.jpg",
@@ -284,7 +284,7 @@ const acts = [
         file: "desk-d-dice.jpg",
         path: "betasa.app/#/game/dice",
         title: "همان اسلایدر، همان عیب",
-        note: "آبی پیش‌فرض مرورگر در تم تاریک بیشتر توی چشم می‌زند — عیبی که با یک خط accent-color حل می‌شود و هنوز نشده.",
+        note: "در تاریکی فیروزه‌ای اسلایدر روی سرمه‌ای می‌نشیند؛ همان توکنی که آیکون کارت‌های لابی از آن رنگ می‌گیرد.",
       },
       {
         file: "desk-d-wheel.jpg",
@@ -572,7 +572,13 @@ const actsHtml = acts
 
 const heroGame = games[0]; // کرش — اولین کارت لابی
 
-const html = `<title>بتاسا — نمایش محصول</title>
+const html = `<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بتاسا — نمایش محصول</title>
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="روایت تصویری محصول بتاسا: توکن‌ها، آیکون‌ها، حرکت و ۴۰ فریم واقعی از اپ در حال اجرا.">
 <style>
@@ -614,9 +620,10 @@ ${[...scale.entries()].map(([k, v]) => "  " + k + ":" + v + ";").join("\n")}
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;direction:rtl}
 body{
   margin:0;
+  direction:rtl;
   background:var(--bg);
   color:var(--ink);
   font-family:"Vazirmatn",system-ui,sans-serif;
@@ -624,7 +631,7 @@ body{
   overflow-x:hidden;
 }
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-.ltr,code{direction:ltr;unicode-bidi:isolate}
+.ltr,code{direction:ltr;unicode-bidi:isolate;overflow-wrap:anywhere}
 code{font-family:var(--mono);font-size:.82em}
 .dim{color:var(--ink-3)}
 h1,h2,h3,h4{text-wrap:balance;line-height:var(--lh-tight);margin:0}
@@ -633,6 +640,7 @@ img{display:block;max-width:100%;height:auto}
 :where(a,button):focus-visible{outline:var(--focus-ring);outline-offset:var(--focus-offset)}
 
 .wrap{width:100%;max-width:1120px;margin-inline:auto;padding-inline:var(--sp-4)}
+.sec,.act,.shot{scroll-margin-top:72px}
 .sec{padding-block:var(--sp-12);border-top:1px solid var(--line)}
 .sec:first-of-type{border-top:0}
 .sec-head{margin-bottom:var(--sp-6)}
@@ -675,11 +683,12 @@ img{display:block;max-width:100%;height:auto}
   margin-top:var(--sp-6);display:flex;flex-wrap:wrap;gap:var(--sp-2);
   font-size:var(--fs-caption);
 }
+/* بدون مونو روی متن فارسی — مونو حروف فارسی را از هم می‌گسلد */
 .hero .meta span{
   border:1px solid var(--line);border-radius:var(--r-pill);
-  background:var(--chip-bg);padding:4px 12px;
-  font-family:var(--mono);color:var(--ink-2);
+  background:var(--chip-bg);padding:4px 12px;color:var(--ink-2);
 }
+.hero .meta .mono{font-family:var(--mono)}
 .hero .meta span b{color:var(--ink);font-weight:var(--fw-bold)}
 
 /* کارت بازی — بازسازی‌شده با CSS، نه اسکرین‌شات */
@@ -690,7 +699,7 @@ img{display:block;max-width:100%;height:auto}
 .hero-stage::after{
   content:"بازسازی‌شده با CSS";
   position:absolute;inset-inline-start:var(--sp-3);bottom:var(--sp-2);
-  font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  font-size:.68rem;color:var(--ink-3);
 }
 .game-card{
   position:relative;width:190px;
@@ -704,8 +713,9 @@ img{display:block;max-width:100%;height:auto}
   content:"";position:absolute;top:0;left:12px;right:12px;height:5px;
   border-radius:0 0 12px 12px;background:var(--gold-grad);opacity:.85;
 }
-.game-card .g-icon{color:var(--turq);width:52px;height:52px}
-.game-card .g-icon svg{width:100%;height:100%}
+.g-icon{display:block;margin-inline:auto;color:var(--turq)}
+.g-icon svg{display:block;width:100%;height:100%}
+.game-card .g-icon{width:52px;height:52px}
 .game-card .g-name{font-weight:var(--fw-black)}
 .game-card .g-desc{font-size:var(--fs-caption);color:var(--ink-2);line-height:1.6}
 
@@ -742,11 +752,12 @@ img{display:block;max-width:100%;height:auto}
   border:2px solid var(--gold);background:var(--gold-soft);
   padding:var(--sp-4) var(--sp-5);display:grid;gap:2px;justify-items:center;font-size:.7rem;
 }
-.ty{display:grid;gap:4px;padding-block:var(--sp-3);border-bottom:1px solid var(--line)}
+.ty{display:grid;gap:4px;padding-block:var(--sp-3);border-bottom:1px solid var(--line);min-width:0}
+.ty > *{min-width:0}
 .ty:last-child{border-bottom:0}
-.ty-meta{display:flex;gap:var(--sp-3);flex-wrap:wrap;font-size:.72rem;align-items:baseline}
+.ty-meta{display:flex;gap:var(--sp-3);flex-wrap:wrap;font-size:.72rem;align-items:baseline;min-width:0;overflow-wrap:anywhere}
 .ty-meta code{color:var(--gold-ink)}
-.ty-sample{line-height:var(--lh-tight);font-weight:var(--fw-medium)}
+.ty-sample{line-height:var(--lh-tight);font-weight:var(--fw-medium);min-width:0;overflow-wrap:anywhere}
 .motion-list{margin:var(--sp-4) 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:var(--sp-2)}
 .motion-list li{
   border:1px solid var(--line);border-radius:var(--r-pill);
@@ -790,7 +801,7 @@ img{display:block;max-width:100%;height:auto}
 .mark-plate svg{display:block}
 
 /* ---------- ۵. حرکت ---------- */
-.scenes{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.scenes{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(196px,1fr))}
 .scene{
   border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);
   box-shadow:var(--shadow);padding:var(--sp-5);display:grid;gap:var(--sp-3);
@@ -814,8 +825,7 @@ img{display:block;max-width:100%;height:auto}
   content:"";position:absolute;top:0;left:12px;right:12px;height:5px;
   border-radius:0 0 12px 12px;background:var(--gold-grad);opacity:.85;
 }
-.lift-card .g-icon{color:var(--turq);width:40px;height:40px;margin-inline:auto}
-.lift-card .g-icon svg{width:100%;height:100%}
+.lift-card .g-icon{width:40px;height:40px}
 .lift-card b{display:block;margin-top:6px;font-size:var(--fs-sm)}
 @media (hover:hover) and (pointer:fine){
   .lift-card:hover{transform:translateY(-3px);border-color:var(--gold)}
@@ -845,7 +855,7 @@ img{display:block;max-width:100%;height:auto}
 }
 .crash-mult{font-family:var(--mono);font-weight:var(--fw-black);color:var(--ink);font-size:var(--fs-lg)}
 
-.xfade{position:relative;width:150px;height:112px}
+.xfade{position:relative;width:150px;height:126px}
 .xfade .lift-card{position:absolute;inset:0;width:auto;transition:none}
 .xfade .b{animation:fadeb 5200ms var(--ease-out) infinite}
 @keyframes fadeb{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
@@ -922,7 +932,7 @@ img{display:block;max-width:100%;height:auto}
   padding-block:var(--sp-8);margin-top:var(--sp-12);
 }
 .foot p{color:var(--ink-2);font-size:var(--fs-sm);max-width:var(--measure)}
-.foot .sig{margin-top:var(--sp-3);font-family:var(--mono);font-size:.72rem;color:var(--ink-3)}
+.foot .sig{margin-top:var(--sp-3);font-size:.78rem;color:var(--ink-3)}
 
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;gap:var(--sp-6)}
@@ -936,6 +946,8 @@ img{display:block;max-width:100%;height:auto}
   html{scroll-behavior:auto}
 }
 </style>
+</head>
+<body>
 
 <header class="top">
   <span class="top-brand">
@@ -1173,7 +1185,7 @@ img{display:block;max-width:100%;height:auto}
       بتاسا یک پلتفرم تفریحی رایگان است — تمام بازی‌ها با سکهٔ مجازی انجام می‌شود
       و هیچ پول واقعی، واریز، برداشت یا جایزهٔ نقدی در کار نیست.
     </p>
-    <p class="sig">بتاسا · PWA v1 · کانسپت «لوکس ایرانی» · کامیت ${esc(commit)}</p>
+    <p class="sig">بتاسا · ${ltr("PWA v1")} · کانسپت «لوکس ایرانی» · کامیت ${ltr(commit)}</p>
   </div>
 </footer>
 
@@ -1269,6 +1281,8 @@ img{display:block;max-width:100%;height:auto}
   window.__betasaViz = { countUp: countUp, reduced: reduced };
 })();
 </script>
+</body>
+</html>
 `;
 
 fs.writeFileSync(OUT, html, "utf8");
