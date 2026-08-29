@@ -1,5 +1,5 @@
 /* کِنو — عدد انتخاب کن و منتظر قرعه باش */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faNum = (s) => String(s).replace(/[0-9]/g, (d) => FA[+d]);

@@ -1,5 +1,5 @@
 /* برج — طبقه به طبقه بالا برو، به بمب نخور */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faNum = (s) => String(s).replace(/[0-9]/g, (d) => FA[+d]);

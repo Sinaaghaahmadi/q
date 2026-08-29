@@ -1,5 +1,13 @@
 /* بتاسا — دیزاین‌سیستم «لوکس ایرانی» (کانسپت ۲) */
 
+/* فونت self-host — بدون وابستگی به CDN بیرونی (شبکهٔ داخلی، آفلاین، حریم خصوصی) */
+@font-face{
+  font-family:"Vazirmatn";
+  src:url("../fonts/Vazirmatn-Variable.woff2") format("woff2-variations");
+  font-weight:100 900;
+  font-display:swap;
+}
+
 :root{
   color-scheme: light dark;
   --bg:#f6f1e7;
@@ -79,14 +87,46 @@
   --gold-grad:linear-gradient(135deg,#e8c878,#d4af57 60%,#b98f34);
 }
 
+/* ---------- توکن‌های غیررنگی (مشترک بین دو تم) ---------- */
+:root{
+  /* مقیاس فاصله — پایهٔ ۴ پیکسل */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+
+  /* گردی گوشه — از چیپ تا قاب */
+  --r-pill:999px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:22px;
+
+  /* مقیاس تایپ — نسبت ۱٫۲۵، ریشه ۱۶px */
+  --fs-caption:.78rem; --fs-sm:.88rem; --fs-body:1rem;
+  --fs-lg:1.15rem; --fs-h3:1.3rem; --fs-h2:1.6rem;
+  --fs-h1:clamp(1.4rem, 4vw, 2rem);
+  --lh-tight:1.35; --lh-body:1.8;
+  --fw-regular:400; --fw-medium:600; --fw-bold:700; --fw-black:900;
+
+  /* حرکت — سه سرعت، دو منحنی */
+  --dur-fast:150ms; --dur-base:200ms; --dur-slow:600ms;
+  --ease-out:cubic-bezier(.2,.8,.3,1);
+  --ease-spring:cubic-bezier(.3,.7,.4,1.2);
+
+  /* حلقهٔ فوکوس */
+  --focus-ring:2px solid var(--gold);
+  --focus-offset:2px;
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+
+/* فوکوس قابل‌دیدن برای همهٔ عناصر تعاملی — الزام دسترسی‌پذیری */
+:where(a,button,input,select,[tabindex]):focus-visible{
+  outline:var(--focus-ring);
+  outline-offset:var(--focus-offset);
+}
 body{
   margin:0;
   font-family:"Vazirmatn",system-ui,sans-serif;
   background:var(--bg);
   color:var(--ink);
-  line-height:1.8;
+  line-height:var(--lh-body);
   min-height:100dvh;
   display:flex;
   flex-direction:column;
@@ -111,7 +151,7 @@ button{font-family:inherit}
 .header-tools{display:flex;align-items:center;gap:10px}
 .coin-chip{
   display:inline-flex;align-items:center;gap:6px;
-  border:1px solid var(--line-strong);border-radius:999px;
+  border:1px solid var(--line-strong);border-radius:var(--r-pill);
   background:var(--chip-bg);color:var(--ink);
   padding:6px 14px;font-weight:700;cursor:pointer;font-size:.95rem;
 }
@@ -120,20 +160,20 @@ button{font-family:inherit}
 .theme-btn{
   border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
   width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;
-  display:grid;place-items:center;transition:transform .2s;flex:none;
+  display:grid;place-items:center;transition:transform var(--dur-base) var(--ease-out);flex:none;
 }
 @media (hover:hover) and (pointer:fine){ .theme-btn:hover{transform:rotate(20deg)} }
 
 /* ---------- بدنه ---------- */
-.view{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:20px 16px 40px;outline:none}
+.view{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:var(--sp-5) var(--sp-4) var(--sp-10);outline:none}
 
 /* ---------- لابی ---------- */
 .lobby-hero{
-  position:relative;border:1px solid var(--line);border-radius:22px;
+  position:relative;border:1px solid var(--line);border-radius:var(--r-xl);
   background:var(--hero-grad);box-shadow:var(--shadow);
   padding:28px 22px;margin-bottom:26px;overflow:hidden;
 }
-.lobby-hero h1{margin:0 0 6px;font-size:clamp(1.4rem,4vw,2rem);text-wrap:balance}
+.lobby-hero h1{margin:0 0 6px;font-size:var(--fs-h1);line-height:var(--lh-tight);text-wrap:balance}
 .lobby-hero p{margin:0;color:var(--ink-2);max-width:60ch}
 .lobby-hero .girih{position:absolute;inset-inline-start:auto;inset-inline-end:-40px;top:-40px;opacity:.5;pointer-events:none;color:var(--girih)}
 .section-title{
@@ -149,11 +189,11 @@ button{font-family:inherit}
 .game-card{
   position:relative;
   display:flex;flex-direction:column;align-items:center;gap:8px;
-  border:1px solid var(--line);border-radius:18px 18px 14px 14px;
+  border:1px solid var(--line);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);
   background:var(--surface);box-shadow:var(--shadow);
   padding:top 0;padding:22px 12px 14px;
   cursor:pointer;text-align:center;
-  transition:transform .18s ease, border-color .18s ease;
+  transition:transform var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
 }
 .game-card::before{ /* قوس ایوان */
   content:"";position:absolute;top:0;left:12px;right:12px;height:5px;
@@ -164,7 +204,7 @@ button{font-family:inherit}
 }
 .game-card .g-icon{color:var(--turq);width:52px;height:52px}
 .game-card .g-name{font-weight:900}
-.game-card .g-desc{font-size:.78rem;color:var(--ink-2);line-height:1.6;min-height:2.6em}
+.game-card .g-desc{font-size:var(--fs-caption);color:var(--ink-2);line-height:1.6;min-height:2.6em}
 
 /* ---------- صفحه بازی ---------- */
 .game-page{max-width:720px;margin:0 auto}
@@ -175,7 +215,7 @@ button{font-family:inherit}
 }
 .game-head h1{margin:0;font-size:1.3rem}
 .game-board{
-  border:1px solid var(--line);border-radius:20px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-xl);background:var(--surface);
   box-shadow:var(--shadow);padding:20px;
 }
 
@@ -183,24 +223,24 @@ button{font-family:inherit}
 .bet-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-block:14px}
 .bet-input{
   flex:1;min-width:120px;
-  border:1px solid var(--line-strong);border-radius:12px;
+  border:1px solid var(--line-strong);border-radius:var(--r-sm);
   background:var(--surface-2);color:var(--ink);
   padding:10px 14px;font-size:1rem;font-weight:700;text-align:center;
   font-variant-numeric:tabular-nums;
 }
-.bet-input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.bet-input:focus-visible{outline:var(--focus-ring);outline-offset:var(--focus-offset)}
 .chip-btns{display:flex;gap:6px;flex-wrap:wrap}
 .chip-btn{
-  border:1px solid var(--line);border-radius:999px;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:var(--r-pill);background:var(--surface-2);
   color:var(--ink-2);padding:5px 12px;cursor:pointer;font-size:.8rem;font-weight:700;
 }
 .chip-btn:active{background:var(--gold-soft)}
 
 .btn{
-  border:1px solid var(--line-strong);border-radius:14px;cursor:pointer;
-  padding:11px 22px;font-size:1rem;font-weight:900;
+  border:1px solid var(--line-strong);border-radius:var(--r-md);cursor:pointer;
+  padding:11px 22px;font-size:var(--fs-body);font-weight:var(--fw-black);
   background:var(--surface);color:var(--ink);
-  transition:transform .15s ease, filter .15s ease;
+  transition:transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out);
 }
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn:not(:disabled):active{transform:scale(.97)}
@@ -212,7 +252,7 @@ button{font-family:inherit}
 .result-line{min-height:1.9em;font-weight:900;text-align:center;margin-top:10px}
 .result-line.win{color:var(--win)}
 .result-line.lose{color:var(--danger)}
-.muted{color:var(--ink-2);font-size:.85rem}
+.muted{color:var(--ink-2);font-size:var(--fs-sm)}
 
 /* ---------- نصب و توست ---------- */
 .install-strip{

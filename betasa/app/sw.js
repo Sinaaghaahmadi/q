@@ -1,10 +1,13 @@
 /* بتاسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
-const CACHE = "betasa-v2";
+const CACHE = "betasa-v3";
 const ASSETS = [
   "./",
   "index.html",
+  "design-system.html",
   "css/betasa.css",
+  "fonts/Vazirmatn-Variable.woff2",
   "js/app.js",
+  "js/ui.js",
   "js/games/index.js",
   "js/games/coinflip.js",
   "js/games/dice.js",

@@ -1,5 +1,5 @@
 /* کرش — ضریب بالا می‌رود؛ قبل از کرش برداشت کن */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faDec = (n, d = 2) =>

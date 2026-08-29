@@ -1,5 +1,5 @@
 /* ماین‌ها — جواهر پیدا کن، از بمب دور بمان */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faNum = (s) => String(s).replace(/[0-9]/g, (d) => FA[+d]);

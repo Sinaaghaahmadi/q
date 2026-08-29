@@ -1,5 +1,5 @@
 /* لیمبو — ضریب هدف تعیین کن؛ اگر نتیجه بالاتر آمد، بردی */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faDec = (n, d = 2) =>

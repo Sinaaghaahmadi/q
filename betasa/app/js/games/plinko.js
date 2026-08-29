@@ -1,5 +1,5 @@
 /* پلینکو — توپ از میان میخ‌ها پایین می‌افتد؛ خانهٔ آخر ضریبت را تعیین می‌کند */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faDec = (n) => {

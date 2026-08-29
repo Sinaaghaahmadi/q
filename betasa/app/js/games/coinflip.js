@@ -1,5 +1,5 @@
 /* شیر یا خط — نمونهٔ مرجع رابط ماژول بازی */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 export default {
   id: "coinflip",

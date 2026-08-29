@@ -1,5 +1,5 @@
 /* تاس — عدد زیر هدف بیاید، برنده‌ای */
-import { betControls } from "../app.js";
+import { betControls } from "../ui.js";
 
 const FA = "۰۱۲۳۴۵۶۷۸۹";
 const faDigits = (s) => String(s).replace(/[0-9]/g, (d) => FA[+d]);

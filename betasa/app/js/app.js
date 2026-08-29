@@ -1,12 +1,7 @@
 /* بتاسا — هستهٔ اپ: کیف سکه، تم، روتر و لابی */
 import { games } from "./games/index.js";
-
-/* ---------- ابزار عدد فارسی ---------- */
-const FA = "۰۱۲۳۴۵۶۷۸۹";
-export function fmt(n) {
-  const s = Math.round(n).toLocaleString("en-US").replace(/,/g, "٬");
-  return s.replace(/[0-9]/g, (d) => FA[+d]);
-}
+import { fmt, betControls } from "./ui.js";
+export { fmt, betControls };
 
 /* ---------- کیف سکه ---------- */
 const WALLET_KEY = "betasa-wallet";
@@ -295,33 +290,6 @@ function renderGamePage(game) {
   view.appendChild(page);
   currentGameName = game.name;
   cleanup = game.render(page.querySelector(".game-board"), ctx) || null;
-}
-
-/* ---------- کنترل شرط مشترک (برای استفادهٔ بازی‌ها) ---------- */
-export function betControls(defaultBet = 100) {
-  const el = document.createElement("div");
-  el.className = "bet-row";
-  el.innerHTML = `
-    <input class="bet-input mono" inputmode="numeric" value="${defaultBet}" aria-label="مبلغ سکه">
-    <span class="chip-btns">
-      <button class="chip-btn" type="button" data-v="100">۱۰۰</button>
-      <button class="chip-btn" type="button" data-v="500">۵۰۰</button>
-      <button class="chip-btn" type="button" data-v="1000">۱٬۰۰۰</button>
-      <button class="chip-btn" type="button" data-mul="2">×۲</button>
-      <button class="chip-btn" type="button" data-mul="0.5">½</button>
-    </span>`;
-  const input = el.querySelector(".bet-input");
-  el.querySelectorAll(".chip-btn").forEach((b) =>
-    b.addEventListener("click", () => {
-      if (b.dataset.v) input.value = b.dataset.v;
-      else input.value = Math.max(1, Math.floor((+input.value || 0) * +b.dataset.mul));
-    })
-  );
-  return {
-    el,
-    amount: () => Math.floor(+input.value || 0),
-    setDisabled(d) { el.querySelectorAll("input,button").forEach((n) => (n.disabled = d)); },
-  };
 }
 
 /* ---------- PWA: نصب و سرویس‌ورکر ---------- */
