@@ -133,7 +133,9 @@ try{ var t=localStorage.getItem("betasa-theme"); if(t==="dark"||t==="light") doc
   <!-- ۳ کنتراست -->
   <section class="ds-sec" id="contrast">
     <h2>۳. کنتراست — سنجیده، نه حدسی</h2>
-    <p class="note">نسبت‌ها همین حالا در مرورگر شما و برای تم فعال محاسبه می‌شوند. آستانهٔ متن عادی ۴٫۵ و متن درشت ۳ است (WCAG 2.1 AA).</p>
+    <p class="note">نسبت‌ها همین حالا در مرورگر شما و برای تم فعال محاسبه می‌شوند. آستانهٔ متن عادی ۴٫۵ و متن درشت ۳ است (WCAG 2.1 AA).
+      نتیجهٔ همین جدول باعث شد پالت دو طلایی داشته باشد: <code class="mono">--gold</code> برای خط و نوار و گرادیان می‌ماند،
+      و هرجا طلایی <em>متن</em> است <code class="mono">--gold-ink</code> به کار می‌رود که آستانه را رد می‌کند.</p>
     <div class="scroll-x"><table class="ds" id="contrast-table">
       <thead><tr><th>ترکیب</th><th>نسبت</th><th>متن عادی</th><th>متن درشت</th></tr></thead>
       <tbody></tbody>
@@ -198,7 +200,7 @@ try{ var t=localStorage.getItem("betasa-theme"); if(t==="dark"||t==="light") doc
         <p class="muted" style="margin:2px 0 0;font-size:var(--fs-caption)"><code class="mono">translateY(-3px)</code> در ۲۰۰ms</p>
       </div>
       <div class="panel" style="text-align:center">
-        <div class="mono" id="m-count" style="font-size:var(--fs-h2);font-weight:900;color:var(--gold)">۰</div>
+        <div class="mono" id="m-count" style="font-size:var(--fs-h2);font-weight:900;color:var(--gold-ink)">۰</div>
         <b style="font-size:var(--fs-sm)">شمارندهٔ موجودی</b>
         <p class="muted" style="margin:2px 0 0;font-size:var(--fs-caption)">درون‌یابی عددی، نه انیمیشن CSS</p>
       </div>
@@ -325,10 +327,20 @@ document.getElementById("theme-toggle").addEventListener("click",()=>{
 const TOKENS=[
   ["--bg","زمینهٔ صفحه"],["--bg-2","زمینهٔ دوم"],["--surface","سطح کارت"],["--surface-2","سطح فرورفته"],
   ["--ink","متن اصلی"],["--ink-2","متن ثانویه"],["--ink-3","متن کم‌رنگ"],
-  ["--gold","طلایی برند"],["--gold-strong","طلایی پررنگ"],["--turq","فیروزه‌ای"],["--turq-strong","فیروزه‌ای پررنگ"],
+  ["--gold","طلایی تزئینی"],["--gold-ink","طلایی متن‌خوان"],["--gold-strong","طلایی پررنگ"],["--turq","فیروزه‌ای"],["--turq-strong","فیروزه‌ای پررنگ"],
   ["--win","برد"],["--danger","باخت/خطا"],["--line","خط جداکننده"],["--line-strong","خط پررنگ"],["--cta-ink","متن روی طلایی"],
 ];
-function cssVal(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function cssVal(name){
+  if(name==="--grad-worst"){
+    /* بدترین حالتِ دکمهٔ طلایی = روشن‌ترین استاپ گرادیان، از خود مقدار توکن استخراج می‌شود */
+    const g=getComputedStyle(document.documentElement).getPropertyValue("--gold-grad");
+    const stops=g.match(/#[0-9a-f]{6}/gi)||[];
+    let best=stops[0], bl=-1;
+    for(const c of stops){ const l=lum(toRgb(c)); if(l>bl){bl=l;best=c;} }
+    return best;
+  }
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
 
 /* ---- محاسبهٔ کنتراست ---- */
 function toRgb(c){
@@ -347,11 +359,13 @@ const PAIRS=[
   ["متن ثانویه روی زمینه","--ink-2","--bg"],
   ["متن اصلی روی کارت","--ink","--surface"],
   ["متن ثانویه روی کارت","--ink-2","--surface"],
-  ["طلایی روی کارت","--gold","--surface"],
+  ["طلایی متن‌خوان روی کارت","--gold-ink","--surface"],
+  ["طلایی متن‌خوان روی زمینه","--gold-ink","--bg"],
+  ["طلایی تزئینی روی کارت (فقط غیرمتنی)","--gold","--surface"],
   ["فیروزه‌ای روی کارت","--turq","--surface"],
   ["سبز برد روی کارت","--win","--surface"],
   ["قرمز باخت روی کارت","--danger","--surface"],
-  ["متن روی دکمهٔ طلایی","--cta-ink","--gold"],
+  ["متن روی دکمهٔ طلایی (روشن‌ترین استاپ گرادیان)","--cta-ink","--grad-worst"],
 ];
 
 function paint(){
@@ -362,7 +376,7 @@ function paint(){
     const el=document.createElement("div"); el.className="swatch";
     el.innerHTML=`<div class="chip" style="background:${v}"></div>
       <div class="meta"><span class="tok">${label}</span>
-      <span class="val mono">${tok}</span><span class="val mono">${v}</span></div>`;
+      <span class="val mono ltr">${tok}</span><span class="val mono ltr">${v}</span></div>`;
     pal.appendChild(el);
   }
   /* کنتراست */

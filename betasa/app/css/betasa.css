@@ -17,7 +17,8 @@
   --ink:#20261f;
   --ink-2:#5a6156;
   --ink-3:#8a9184;
-  --gold:#a07b1e;
+  --gold:#a07b1e;          /* تزئینی: خط، نوار، گرادیان */
+  --gold-ink:#856418;      /* متن‌خوان: کنتراست ≥۴٫۵ روی سطح و زمینه */
   --gold-strong:#7d5f12;
   --gold-soft:rgba(160,123,30,.14);
   --turq:#0e7d78;
@@ -32,7 +33,7 @@
   --shadow:0 10px 30px rgba(70,55,10,.10);
   --girih:rgba(160,123,30,.20);
   --cta-ink:#fffdf4;
-  --gold-grad:linear-gradient(135deg,#c39a37,#a07b1e 60%,#8a681a);
+  --gold-grad:linear-gradient(135deg,#8f6d18,#856418 60%,#77590f);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -44,6 +45,7 @@
     --ink-2:#b9b29c;
     --ink-3:#7f8577;
     --gold:#d4af57;
+    --gold-ink:#e8c878;
     --gold-strong:#e8c878;
     --gold-soft:rgba(212,175,87,.14);
     --turq:#3fc1b6;
@@ -70,6 +72,7 @@
   --ink-2:#b9b29c;
   --ink-3:#7f8577;
   --gold:#d4af57;
+  --gold-ink:#e8c878;
   --gold-strong:#e8c878;
   --gold-soft:rgba(212,175,87,.14);
   --turq:#3fc1b6;
@@ -133,6 +136,8 @@ body{
   overflow-x:hidden;
 }
 .mono{font-family:ui-monospace,"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+/* جداسازی دوسویه: رشتهٔ لاتین داخل متن فارسی نباید وارونه دیده شود */
+.ltr,code{direction:ltr;unicode-bidi:isolate;display:inline-block}
 a{color:inherit;text-decoration:none}
 svg{max-width:100%}
 button{font-family:inherit}
