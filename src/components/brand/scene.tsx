@@ -81,11 +81,14 @@ export function DrawPath({
       strokeLinejoin="round"
       fill="none"
       opacity={opacity}
-      initial={reduce ? false : { pathLength: 0 }}
-      animate={reduce ? undefined : { pathLength: 1 }}
+      initial={{ pathLength: 0 }}
+      animate={{ pathLength: 1 }}
       transition={
+        // The preference lives here and only here: `initial` decides what the
+        // server writes into the SVG, so branching it on a preference the
+        // server cannot know was a hydration mismatch in every scene.
         reduce
-          ? undefined
+          ? { duration: 0 }
           : loop
             ? {
                 duration,
@@ -116,9 +119,9 @@ export function Rise({
   const reduce = useReducedMotion();
   return (
     <motion.g
-      initial={reduce ? false : { opacity: 0, y }}
-      animate={reduce ? undefined : { opacity: 1, y: 0 }}
-      transition={reduce ? undefined : { duration, delay, ease: EASE_IN }}
+      initial={{ opacity: 0, y }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={reduce ? { duration: 0 } : { duration, delay, ease: EASE_IN }}
     >
       {children}
     </motion.g>

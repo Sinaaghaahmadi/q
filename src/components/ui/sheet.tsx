@@ -82,7 +82,7 @@ export function Sheet({
             aria-label={title}
             tabIndex={-1}
             className="absolute inset-0 cursor-default bg-ink-900/40 backdrop-blur-[2px]"
-            initial={reduce ? false : { opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={reduce ? INSTANT : { duration: 0.2, ease: EASE_OUT }}
@@ -101,7 +101,7 @@ export function Sheet({
               "sm:max-w-lg sm:rounded-3xl",
               className,
             )}
-            initial={reduce ? false : { y: "100%" }}
+            initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={reduce ? { opacity: 0 } : { y: "100%" }}
             transition={reduce ? INSTANT : SHEET}

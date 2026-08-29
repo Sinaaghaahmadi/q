@@ -53,7 +53,7 @@ export function ProgressRail({
               <span className="relative mb-5 h-0.5 flex-1 overflow-hidden rounded-full bg-ink-300/60">
                 <motion.span
                   className="absolute inset-y-0 start-0 bg-brand-600"
-                  initial={reduce ? false : { width: 0 }}
+                  initial={{ width: 0 }}
                   animate={{ width: done ? "100%" : "0%" }}
                   transition={reduce ? { duration: 0 } : { duration: 0.45, ease: EASE_IN }}
                 />

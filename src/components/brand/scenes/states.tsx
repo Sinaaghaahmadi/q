@@ -94,9 +94,9 @@ export function OfflineScene({ size, className, label }: SceneProps) {
           strokeWidth="3"
           strokeLinecap="round"
           fill="none"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: i === 0 ? 1 : 0.35 }}
-          transition={reduce ? undefined : { duration: 0.5, delay: 0.3 + i * 0.12 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: i === 0 ? 1 : 0.35 }}
+          transition={reduce ? { duration: 0 } : { duration: 0.5, delay: 0.3 + i * 0.12 }}
         />
       ))}
       <DrawPath d="M34 24l52 68" delay={0.8} width={3.4} color={INK} />
@@ -202,11 +202,11 @@ export function InstallScene({ size, className, label }: SceneProps) {
         <Phone x={40} y={30} w={40} h={62} />
       </Rise>
       <motion.g
-        initial={reduce ? false : { y: -14, opacity: 0 }}
-        animate={reduce ? undefined : { y: 0, opacity: 1 }}
+        initial={{ y: -14, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={
           reduce
-            ? undefined
+            ? { duration: 0 }
             : { duration: 0.7, delay: 0.4, repeat: Infinity, repeatDelay: 1.8, ease: "easeOut" }
         }
       >
@@ -241,10 +241,10 @@ export function WaitingScene({ size, className, label }: SceneProps) {
           cy={56}
           r="4.5"
           fill={BRAND}
-          initial={reduce ? false : { opacity: 0.25 }}
-          animate={reduce ? undefined : { opacity: [0.25, 1, 0.25] }}
+          initial={{ opacity: 0.25 }}
+          animate={reduce ? { opacity: 1 } : { opacity: [0.25, 1, 0.25] }}
           transition={
-            reduce ? undefined : { duration: 1.2, repeat: Infinity, delay: 0.3 + i * 0.18 }
+            reduce ? { duration: 0 } : { duration: 1.2, repeat: Infinity, delay: 0.3 + i * 0.18 }
           }
         />
       ))}
@@ -321,21 +321,23 @@ export function IosInstallScene({ size, className, label }: SceneProps) {
         fill="none"
         stroke={BRAND}
         strokeWidth="2.5"
-        initial={reduce ? { opacity: 0.45 } : { opacity: 0, scale: 0.5 }}
+        initial={{ opacity: 0, scale: 0.5 }}
         animate={
           reduce
-            ? undefined
+            ? { opacity: 0.45, scale: 1 }
             : { opacity: [0, 0.9, 0, 0, 0, 0], scale: [0.5, 1.35, 1.6, 1.6, 1.6, 0.5] }
         }
-        transition={reduce ? undefined : loop}
+        transition={reduce ? { duration: 0 } : loop}
         style={{ transformOrigin: "60px 90px" }}
       />
 
       {/* Beat two: the sheet, with the row you are looking for inside it. */}
       <motion.g
-        initial={reduce ? false : { y: 46, opacity: 0 }}
-        animate={reduce ? undefined : { y: [46, 46, 0, 0, 0, 46], opacity: [0, 0, 1, 1, 1, 0] }}
-        transition={reduce ? undefined : loop}
+        initial={{ y: 46, opacity: 0 }}
+        animate={
+          reduce ? { y: 0, opacity: 1 } : { y: [46, 46, 0, 0, 0, 46], opacity: [0, 0, 1, 1, 1, 0] }
+        }
+        transition={reduce ? { duration: 0 } : loop}
       >
         <rect
           x="38"
@@ -362,13 +364,13 @@ export function IosInstallScene({ size, className, label }: SceneProps) {
         fill="none"
         stroke={BRAND}
         strokeWidth="2.5"
-        initial={reduce ? { opacity: 0.45 } : { opacity: 0, scale: 0.5 }}
+        initial={{ opacity: 0, scale: 0.5 }}
         animate={
           reduce
-            ? undefined
+            ? { opacity: 0.45, scale: 1 }
             : { opacity: [0, 0, 0, 0.9, 0, 0], scale: [0.5, 0.5, 0.5, 1.4, 1.7, 0.5] }
         }
-        transition={reduce ? undefined : loop}
+        transition={reduce ? { duration: 0 } : loop}
         style={{ transformOrigin: "49.5px 71.5px" }}
       />
     </Scene>

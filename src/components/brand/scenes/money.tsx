@@ -105,9 +105,11 @@ export function AwaitingDepositScene({ size, className, label }: SceneProps) {
         <Counter y={70} />
       </Rise>
       <motion.g
-        initial={reduce ? false : { y: -18, opacity: 0 }}
-        animate={reduce ? undefined : { y: 0, opacity: 1 }}
-        transition={reduce ? undefined : { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ y: -18, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={
+          reduce ? { duration: 0 } : { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }
+        }
       >
         <SceneCoin cx={60} cy={44} r={14} tone="brand" glyph="ت" />
       </motion.g>
@@ -164,10 +166,12 @@ export function ForeignLegSentScene({ size, className, label }: SceneProps) {
         <circle cx="94" cy="74" r="5" fill="none" stroke={BRAND} strokeWidth="3" />
       </Rise>
       <motion.g
-        initial={reduce ? false : { offsetDistance: "0%" }}
-        animate={reduce ? undefined : { offsetDistance: "100%" }}
+        initial={{ offsetDistance: "0%" }}
+        animate={reduce ? { offsetDistance: "0%" } : { offsetDistance: "100%" }}
         transition={
-          reduce ? undefined : { duration: 2.6, delay: 0.6, repeat: Infinity, ease: "easeInOut" }
+          reduce
+            ? { duration: 0 }
+            : { duration: 2.6, delay: 0.6, repeat: Infinity, ease: "easeInOut" }
         }
         style={{ offsetPath: 'path("M26 78C40 40 80 40 94 74")', offsetRotate: "0deg" }}
       >
@@ -244,10 +248,12 @@ export function RefundScene({ size, className, label }: SceneProps) {
     <Scene size={size} className={className} label={label}>
       <DrawPath d="M94 74C80 40 40 40 26 78" delay={0.15} width={3} color={LINE} />
       <motion.g
-        initial={reduce ? false : { offsetDistance: "0%" }}
-        animate={reduce ? undefined : { offsetDistance: "100%" }}
+        initial={{ offsetDistance: "0%" }}
+        animate={reduce ? { offsetDistance: "0%" } : { offsetDistance: "100%" }}
         transition={
-          reduce ? undefined : { duration: 2.4, delay: 0.5, repeat: Infinity, ease: "easeInOut" }
+          reduce
+            ? { duration: 0 }
+            : { duration: 2.4, delay: 0.5, repeat: Infinity, ease: "easeInOut" }
         }
         style={{ offsetPath: 'path("M94 74C80 40 40 40 26 78")', offsetRotate: "0deg" }}
       >

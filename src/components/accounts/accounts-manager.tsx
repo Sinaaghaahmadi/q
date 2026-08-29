@@ -93,10 +93,10 @@ export function AccountsManager({ initial }: { initial: BeneficiaryAccount[] }) 
               <motion.div
                 key={account.id}
                 layout
-                initial={reduce ? false : { opacity: 0, y: 8 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={reduce ? undefined : { opacity: 0, scale: 0.97 }}
-                transition={reduce ? undefined : { duration: 0.28, ease: EASE_IN }}
+                transition={reduce ? { duration: 0 } : { duration: 0.28, ease: EASE_IN }}
               >
                 <Card className="flex h-full flex-col gap-3 p-4">
                   <div className="flex items-start gap-3">

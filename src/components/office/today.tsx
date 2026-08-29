@@ -140,10 +140,10 @@ export function Today({ officeId, jobs }: { officeId: string; jobs: TodayJob[] }
             <motion.div
               key={job.order.id}
               layout={!reduce}
-              initial={reduce ? false : { opacity: 0, y: 8 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={reduce ? undefined : { opacity: 0, scale: 0.98 }}
-              transition={reduce ? undefined : { duration: 0.25, ease: EASE_IN }}
+              transition={reduce ? { duration: 0 } : { duration: 0.25, ease: EASE_IN }}
             >
               <Card className="glass overflow-hidden [--glass-tint:var(--brand-600)]">
                 <div className="flex flex-wrap items-center gap-4 p-5 sm:p-6">

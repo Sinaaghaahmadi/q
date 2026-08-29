@@ -25,14 +25,6 @@ export function RollingNumber({ value, className, direction }: RollingNumberProp
     prevRef.current = chars;
   }, [chars]);
 
-  if (reduce) {
-    return (
-      <span className={cn("num", className)} dir="ltr">
-        {value}
-      </span>
-    );
-  }
-
   return (
     <span className={cn("num inline-flex overflow-hidden", className)} dir="ltr">
       {/* A screen reader should hear the figure once, not a stream of digits.
@@ -50,7 +42,12 @@ export function RollingNumber({ value, className, direction }: RollingNumberProp
                 initial={{ y: "0.8em", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "-0.8em", opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                transition={
+                  // Snap rather than roll under reduced motion. The tree stays
+                  // the same either way — a separate plain-text branch was a
+                  // hydration mismatch on every page with a live figure.
+                  reduce ? { duration: 0 } : { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                }
                 className={cn(
                   "inline-block",
                   changed && direction === "up" && "text-up",

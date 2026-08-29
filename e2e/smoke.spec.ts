@@ -38,17 +38,17 @@ test("/_design rewrite serves the design system (§17.20)", async ({ page }) => 
 });
 
 test("the quote states one commission, and the bands behind it", async ({ page }) => {
-  // Under demo rates the dollar is a fixed 189,400 Toman, so the Toman leg of a
-  // 100,000 Toman inbound transfer is a figure the test can name: the first
-  // band, at 15%, and nothing above it. Asserting the arithmetic rather than
-  // just the label is the point — a fee line that renders is not a fee line
-  // that is right.
+  // Asserting the arithmetic rather than just the label is the point — a fee
+  // line that renders is not a fee line that is right. The figures follow
+  // COMMISSION_BANDS (src/lib/rates/commission.ts); this test went stale once
+  // already when the schedule dropped two rungs, so if it fails on a round
+  // number, check the schedule before suspecting the calculator.
   await page.goto("/transfer/new?from=IRT&to=USD&amount=100000000");
 
   await expect(page.getByText("کارمزد صرافی")).toBeVisible();
-  // 20M at 15% + 80M at 12% = 12,600,000. Persian digits, Persian grouping.
-  await expect(page.getByText("۱۲٬۶۰۰٬۰۰۰", { exact: false })).toBeVisible();
-  await expect(page.getByText("۱۲٫۶٪ از مبلغ حواله")).toBeVisible();
+  // 20M at 10% + 80M at 8% = 8,400,000. Persian digits, Persian grouping.
+  await expect(page.getByText("۸٬۴۰۰٬۰۰۰", { exact: false })).toBeVisible();
+  await expect(page.getByText("۸٫۴٪ از مبلغ حواله")).toBeVisible();
 
   // The two-line receipt is gone: what the office keeps and what the platform
   // keeps is a split of the figure above, not a second charge.
@@ -56,8 +56,8 @@ test("the quote states one commission, and the bands behind it", async ({ page }
 
   await page.getByText("این درصد چطور حساب شد؟").click();
   const sheet = page.getByRole("dialog");
-  // Exact: "۵٪" is a substring of both "۱۵٪" and "۶٫۵٪".
-  await expect(sheet.getByText("۱۵٪", { exact: true })).toBeVisible();
+  // Exact: "۵٪" is a substring of "۶٫۵٪".
+  await expect(sheet.getByText("۱۰٪", { exact: true })).toBeVisible();
   await expect(sheet.getByText("۵٪", { exact: true })).toBeVisible();
   await expect(sheet.getByText("کارمزد کل")).toBeVisible();
 });
@@ -68,7 +68,8 @@ test("the quote can be edited where it is shown", async ({ page }) => {
   // The edit rewrites the query string, which is what the server component
   // reads — the browser never computes a price of its own.
   await expect(page).toHaveURL(/amount=500000000/, { timeout: 10_000 });
-  await expect(page.getByText("۹٫۷۲٪ از مبلغ حواله")).toBeVisible();
+  // 20M@10% + 80M@8% + 200M@6.5% + 200M@5% = 31.4M of 500M.
+  await expect(page.getByText("۶٫۲۸٪ از مبلغ حواله")).toBeVisible();
 });
 
 test("rates API returns a snapshot", async ({ request }) => {

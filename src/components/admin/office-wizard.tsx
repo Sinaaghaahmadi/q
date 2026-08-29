@@ -270,10 +270,10 @@ export function OfficeWizard({ defaults }: { defaults: Json | null }) {
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={stepKey}
-            initial={reduce ? false : { opacity: 0, y: 8 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={reduce ? undefined : { opacity: 0, y: -8 }}
-            transition={reduce ? undefined : { duration: 0.25, ease: EASE_IN }}
+            transition={reduce ? { duration: 0 } : { duration: 0.25, ease: EASE_IN }}
             className="space-y-5 p-6"
           >
             {stepKey === "legal" ? (

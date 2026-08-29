@@ -243,10 +243,10 @@ export function SignInForm({ nextPath = "/verify" }: { nextPath?: string }) {
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={step === "done" ? "done" : "otp"}
-            initial={reduce ? false : { opacity: 0, scale: 0.94 }}
-            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={reduce ? undefined : { opacity: 0, scale: 0.96 }}
-            transition={reduce ? undefined : { duration: 0.35, ease: EASE_IN }}
+            transition={reduce ? { duration: 0 } : { duration: 0.35, ease: EASE_IN }}
           >
             {step === "done" ? (
               <SuccessScene size={128} label={t("scene.done")} />

@@ -57,9 +57,11 @@ export function OtpScene({ size, className, label }: SceneProps) {
       {[0, 1, 2, 3].map((i) => (
         <motion.g
           key={i}
-          initial={reduce ? false : { opacity: 0, y: 10, scale: 0.8 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
-          transition={reduce ? undefined : { delay: 0.45 + i * 0.13, duration: 0.4, ease: EASE_IN }}
+          initial={{ opacity: 0, y: 10, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={
+            reduce ? { duration: 0 } : { delay: 0.45 + i * 0.13, duration: 0.4, ease: EASE_IN }
+          }
         >
           <rect x={45 + i * 8.4} y="52" width="6.4" height="9" rx="2" fill={BRAND} opacity="0.9" />
         </motion.g>
@@ -67,9 +69,9 @@ export function OtpScene({ size, className, label }: SceneProps) {
 
       {/* message bubble arriving from the top-left */}
       <motion.g
-        initial={reduce ? false : { opacity: 0, x: -10, y: -6 }}
-        animate={reduce ? undefined : { opacity: 1, x: 0, y: 0 }}
-        transition={reduce ? undefined : { delay: 0.25, duration: 0.5, ease: EASE_IN }}
+        initial={{ opacity: 0, x: -10, y: -6 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={reduce ? { duration: 0 } : { delay: 0.25, duration: 0.5, ease: EASE_IN }}
       >
         <path
           d="M18 30h26a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H30l-7 6v-6h-5a6 6 0 0 1-6-6V36a6 6 0 0 1 6-6Z"
@@ -149,28 +151,27 @@ export function DocumentScene({ size, className, label }: SceneProps) {
       <DrawPath d="M43 70h24" delay={0.42} width={3} color={LINE} />
       <DrawPath d="M43 78h30" delay={0.54} width={3} color={LINE} />
 
-      {/* scan-line sweep */}
-      {!reduce ? (
-        <motion.g
-          initial={{ y: -34, opacity: 0 }}
-          animate={{ y: [-34, 34, -34], opacity: [0, 1, 1, 0] }}
-          transition={{
-            duration: 2.6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            times: [0, 0.45, 0.55, 1],
-          }}
-        >
-          <rect x="34" y="58" width="52" height="2.5" rx="1.25" fill={BRAND} />
-          <rect x="34" y="52" width="52" height="8" fill={BRAND} opacity="0.12" />
-        </motion.g>
-      ) : null}
+      {/* scan-line sweep — in the tree under reduced motion too (its resting
+          state is invisible); conditionally omitting it desynced the sibling
+          list between server and a reduced-motion client. */}
+      <motion.g
+        initial={{ y: -34, opacity: 0 }}
+        animate={reduce ? { y: -34, opacity: 0 } : { y: [-34, 34, -34], opacity: [0, 1, 1, 0] }}
+        transition={
+          reduce
+            ? { duration: 0 }
+            : { duration: 2.6, repeat: Infinity, ease: "easeInOut", times: [0, 0.45, 0.55, 1] }
+        }
+      >
+        <rect x="34" y="58" width="52" height="2.5" rx="1.25" fill={BRAND} />
+        <rect x="34" y="52" width="52" height="8" fill={BRAND} opacity="0.12" />
+      </motion.g>
 
       {/* verified stamp settles in */}
       <motion.g
-        initial={reduce ? false : { opacity: 0, scale: 1.5, rotate: -18 }}
-        animate={reduce ? undefined : { opacity: 1, scale: 1, rotate: -12 }}
-        transition={reduce ? undefined : { delay: 1.1, duration: 0.55, ease: EASE_IN }}
+        initial={{ opacity: 0, scale: 1.5, rotate: -18 }}
+        animate={{ opacity: 1, scale: 1, rotate: -12 }}
+        transition={reduce ? { duration: 0 } : { delay: 1.1, duration: 0.55, ease: EASE_IN }}
         style={{ transformOrigin: "80px 84px" }}
       >
         <circle cx="80" cy="84" r="14" fill="var(--surface)" stroke={BRAND} strokeWidth="2.5" />
@@ -213,26 +214,15 @@ export function LivenessScene({ size, className, label }: SceneProps) {
         />
       </Rise>
 
-      {/* tracking ring sweeping around the face */}
-      {!reduce ? (
-        <motion.g
-          animate={{ rotate: 360 }}
-          transition={{ duration: 3.4, repeat: Infinity, ease: "linear" }}
-          style={{ transformOrigin: "60px 56px" }}
-        >
-          <ellipse
-            cx="60"
-            cy="56"
-            rx="31"
-            ry="37"
-            fill="none"
-            stroke={BRAND}
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeDasharray="30 180"
-          />
-        </motion.g>
-      ) : (
+      {/* tracking ring sweeping around the face. One ellipse either way —
+          swapping the dashed sweep for a separate full ring under reduced
+          motion was a structural hydration mismatch; parked, the arc reads as
+          a compass tick, which is enough. */}
+      <motion.g
+        animate={reduce ? { rotate: 0 } : { rotate: 360 }}
+        transition={reduce ? { duration: 0 } : { duration: 3.4, repeat: Infinity, ease: "linear" }}
+        style={{ transformOrigin: "60px 56px" }}
+      >
         <ellipse
           cx="60"
           cy="56"
@@ -241,32 +231,10 @@ export function LivenessScene({ size, className, label }: SceneProps) {
           fill="none"
           stroke={BRAND}
           strokeWidth="3"
+          strokeLinecap="round"
           strokeDasharray="30 180"
         />
-      )}
-
-      <ellipse
-        cx="60"
-        cy="56"
-        rx="31"
-        ry="37"
-        fill="none"
-        stroke={LINE}
-        strokeWidth="2"
-        strokeDasharray="4 7"
-      />
-
-      {/* head-turn hint */}
-      <Rise delay={0.7}>
-        <path
-          d="M88 100h-14M78 96l-4 4 4 4"
-          stroke={BRAND}
-          strokeWidth="2.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </Rise>
+      </motion.g>
     </Scene>
   );
 }
@@ -317,20 +285,23 @@ export function SuccessScene({ size, className, label }: SceneProps) {
         width={5}
         color="#ffffff"
       />
-      {sparks.map((s, i) =>
-        reduce ? null : (
-          <motion.circle
-            key={i}
-            cx={s.x}
-            cy={s.y}
-            r="2.6"
-            fill={BRAND}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: [0, 1, 0], scale: [0, 1.2, 0.6] }}
-            transition={{ delay: 0.7 + i * 0.06, duration: 0.9, ease: "easeOut" }}
-          />
-        ),
-      )}
+      {/* Rendered under reduced motion too — conditionally omitting them made
+          the server and a reduced-motion client disagree about the tree. Their
+          resting state is invisible, so they simply stay at opacity 0. */}
+      {sparks.map((s, i) => (
+        <motion.circle
+          key={i}
+          cx={s.x}
+          cy={s.y}
+          r="2.6"
+          fill={BRAND}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={reduce ? { opacity: 0, scale: 0 } : { opacity: [0, 1, 0], scale: [0, 1.2, 0.6] }}
+          transition={
+            reduce ? { duration: 0 } : { delay: 0.7 + i * 0.06, duration: 0.9, ease: "easeOut" }
+          }
+        />
+      ))}
     </Scene>
   );
 }

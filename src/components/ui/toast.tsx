@@ -50,7 +50,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             <motion.div
               key={toast.id}
               layout
-              initial={reduce ? false : { opacity: 0, y: 12, scale: 0.96 }}
+              initial={{ opacity: 0, y: 12, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduce ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
               transition={reduce ? INSTANT : SHEET}

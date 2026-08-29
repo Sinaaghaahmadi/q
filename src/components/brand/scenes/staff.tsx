@@ -48,11 +48,11 @@ export function InboxScene({ size, className, label }: SceneProps) {
         />
       </Rise>
       <motion.g
-        initial={reduce ? false : { y: -20, opacity: 0 }}
-        animate={reduce ? undefined : { y: 0, opacity: 1 }}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={
           reduce
-            ? undefined
+            ? { duration: 0 }
             : { duration: 0.8, delay: 0.4, repeat: Infinity, repeatDelay: 1.6, ease: "easeOut" }
         }
       >

@@ -84,28 +84,37 @@ export function TeamMap() {
               strokeWidth="1.6"
               strokeOpacity="0.55"
               strokeLinecap="round"
-              initial={reduce ? false : { pathLength: 0 }}
+              initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={reduce ? INSTANT : { duration: 0.9, delay: 0.15 * i, ease: EASE_IN }}
             />
             {/* A parcel travelling the route. Staggered so the field never
                 pulses in unison, which would read as a loading state. */}
-            {reduce ? null : (
-              <motion.circle
-                r="3.2"
-                fill="var(--brand-600)"
-                initial={{ offsetDistance: "0%", opacity: 0 }}
-                animate={{ offsetDistance: "100%", opacity: [0, 1, 1, 0] }}
-                transition={{
-                  duration: 2.6,
-                  delay: 1.2 + 0.35 * i,
-                  repeat: Infinity,
-                  repeatDelay: 1.8,
-                  ease: "linear",
-                }}
-                style={{ offsetPath: `path("${d}")` }}
-              />
-            )}
+            {/* Rendered under reduced motion too: omitting it made the server
+                and a reduced-motion client disagree about the tree. Its
+                resting state is invisible. */}
+            <motion.circle
+              r="3.2"
+              fill="var(--brand-600)"
+              initial={{ offsetDistance: "0%", opacity: 0 }}
+              animate={
+                reduce
+                  ? { offsetDistance: "0%", opacity: 0 }
+                  : { offsetDistance: "100%", opacity: [0, 1, 1, 0] }
+              }
+              transition={
+                reduce
+                  ? { duration: 0 }
+                  : {
+                      duration: 2.6,
+                      delay: 1.2 + 0.35 * i,
+                      repeat: Infinity,
+                      repeatDelay: 1.8,
+                      ease: "linear",
+                    }
+              }
+              style={{ offsetPath: `path("${d}")`, offsetRotate: "0deg" }}
+            />
           </g>
         ))}
 
@@ -119,7 +128,7 @@ export function TeamMap() {
               fill="var(--brand-600)"
               stroke="var(--surface)"
               strokeWidth="2"
-              initial={reduce ? false : { scale: 0 }}
+              initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={reduce ? INSTANT : { ...PIN, delay: 0.1 * i }}
               style={{ transformOrigin: `${node.x}px ${node.y}px` }}
