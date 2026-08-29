@@ -1,5 +1,5 @@
 /* بتاسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
-const CACHE = "betasa-v1";
+const CACHE = "betasa-v2";
 const ASSETS = [
   "./",
   "index.html",
