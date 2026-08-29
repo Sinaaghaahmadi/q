@@ -1,0 +1,176 @@
+/* بت آسا — لندینگ. روی توکن‌های betasa.css سوار است و هیچ رنگ ثابتی نمی‌سازد. */
+
+.lp-header{
+  position:sticky;top:0;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-4);
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.lp-nav{display:none;gap:var(--sp-5);font-size:var(--fs-sm);color:var(--ink-2);font-weight:var(--fw-medium)}
+.lp-nav a:hover{color:var(--ink)}
+@media(min-width:860px){.lp-nav{display:flex}}
+.lp-actions{display:flex;align-items:center;gap:var(--sp-2)}
+
+.lp-wrap{max-width:1120px;margin:0 auto;padding-inline:var(--sp-4)}
+.lp-section{padding-block:var(--sp-12)}
+.lp-eyebrow{
+  display:inline-block;font-size:var(--fs-caption);font-weight:var(--fw-bold);
+  color:var(--turq-strong);letter-spacing:.08em;margin-bottom:var(--sp-2);
+}
+.lp-h2{font-size:var(--fs-h2);font-weight:var(--fw-black);margin:0 0 var(--sp-2);line-height:var(--lh-tight);text-wrap:balance}
+.lp-lede{color:var(--ink-2);max-width:60ch;margin:0 0 var(--sp-6)}
+
+/* ── قهرمان ─────────────────────────────────────────────── */
+.lp-hero{position:relative;overflow:hidden;background:var(--hero-grad);border-bottom:1px solid var(--line)}
+.lp-hero-grid{
+  display:grid;gap:var(--sp-8);align-items:center;
+  max-width:1120px;margin:0 auto;padding:var(--sp-12) var(--sp-4);
+}
+@media(min-width:900px){.lp-hero-grid{grid-template-columns:1.05fr .95fr}}
+.lp-hero h1{
+  font-size:clamp(2rem,6vw,3.2rem);font-weight:var(--fw-black);
+  line-height:1.25;margin:0 0 var(--sp-3);text-wrap:balance;
+}
+.lp-hero h1 .accent{
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.lp-hero p{color:var(--ink-2);max-width:52ch;margin:0 0 var(--sp-6);font-size:var(--fs-lg)}
+.lp-cta{display:flex;flex-wrap:wrap;gap:var(--sp-3);align-items:center}
+.lp-note{margin:var(--sp-5) 0 0;font-size:var(--fs-caption);color:var(--ink-3)}
+
+/* نقش گره متحرک پشت قهرمان */
+.lp-girih{position:absolute;inset:0;pointer-events:none;color:var(--girih);opacity:.5;overflow:hidden}
+.lp-girih svg{position:absolute;inset-inline-end:-90px;top:-70px;width:min(58vw,520px);height:auto;
+  animation:lp-spin 90s linear infinite;transform-origin:50% 50%}
+.lp-girih svg + svg{inset-inline-end:auto;inset-inline-start:-140px;top:auto;bottom:-150px;
+  width:min(44vw,380px);animation-duration:130s;animation-direction:reverse}
+@keyframes lp-spin{to{transform:rotate(360deg)}}
+
+/* کارت شناور قهرمان — همان جنس کارت بازی محصول، زنده */
+.lp-showcase{position:relative;display:grid;place-items:center;min-height:300px}
+.lp-float{
+  position:relative;width:min(100%,340px);
+  border:1px solid var(--line);border-radius:var(--r-xl) var(--r-xl) var(--r-md) var(--r-md);
+  background:var(--surface);box-shadow:var(--shadow);padding:var(--sp-6) var(--sp-5) var(--sp-5);
+  text-align:center;animation:lp-bob 6s ease-in-out infinite;
+}
+.lp-float::before{content:"";position:absolute;top:0;left:16px;right:16px;height:5px;
+  border-radius:0 0 12px 12px;background:var(--gold-grad)}
+@keyframes lp-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.lp-float .coin{
+  width:76px;height:76px;margin:0 auto var(--sp-3);color:var(--gold);
+  animation:lp-flip 7s var(--ease-spring) infinite;
+}
+@keyframes lp-flip{0%,72%{transform:rotateY(0)}86%,100%{transform:rotateY(360deg)}}
+.lp-float .amount{font-size:2rem;font-weight:var(--fw-black);color:var(--gold-ink)}
+.lp-float .label{color:var(--ink-2);font-size:var(--fs-sm)}
+.lp-chiprow{display:flex;justify-content:center;gap:var(--sp-2);margin-top:var(--sp-4);flex-wrap:wrap}
+.lp-chip{
+  border:1px solid var(--line);border-radius:var(--r-pill);background:var(--surface-2);
+  padding:3px 12px;font-size:var(--fs-caption);color:var(--ink-2);font-weight:var(--fw-bold);
+}
+
+/* ── ارزش‌های بنیادی ────────────────────────────────────── */
+.lp-values{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.lp-value{
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);
+  padding:var(--sp-5);box-shadow:var(--shadow);
+  transition:transform var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){
+  .lp-value:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .lp-value:hover .lp-value-icon{color:var(--gold);transform:scale(1.08)}
+}
+.lp-value-icon{
+  width:44px;height:44px;color:var(--turq);margin-bottom:var(--sp-3);
+  transition:transform var(--dur-base) var(--ease-spring),color var(--dur-base) var(--ease-out);
+}
+.lp-value h3{margin:0 0 var(--sp-1);font-size:var(--fs-lg);font-weight:var(--fw-black)}
+.lp-value p{margin:0;color:var(--ink-2);font-size:var(--fs-sm);line-height:1.75}
+
+/* ── اسلایدرها ─────────────────────────────────────────── */
+.lp-track{
+  display:flex;gap:var(--sp-4);overflow-x:auto;scroll-snap-type:x mandatory;
+  padding-block:var(--sp-2) var(--sp-4);scrollbar-width:none;scroll-behavior:smooth;
+}
+.lp-track::-webkit-scrollbar{display:none}
+.lp-track > *{scroll-snap-align:start;flex:0 0 auto}
+.lp-arrows{display:flex;gap:var(--sp-2);margin-top:var(--sp-2)}
+.lp-arrow{
+  width:38px;height:38px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  display:grid;place-items:center;font-size:1rem;
+  transition:transform var(--dur-fast) var(--ease-out);
+}
+.lp-arrow:disabled{opacity:.4;cursor:not-allowed}
+.lp-arrow:not(:disabled):active{transform:scale(.94)}
+
+.lp-game{
+  width:172px;text-align:center;
+  border:1px solid var(--line);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);
+  background:var(--surface);box-shadow:var(--shadow);padding:var(--sp-6) var(--sp-3) var(--sp-4);
+  position:relative;display:block;
+  transition:transform var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);
+}
+.lp-game::before{content:"";position:absolute;top:0;left:12px;right:12px;height:4px;
+  border-radius:0 0 10px 10px;background:var(--gold-grad);opacity:.85}
+.lp-game svg{width:48px;height:48px;color:var(--turq);
+  transition:transform var(--dur-base) var(--ease-spring),color var(--dur-base) var(--ease-out)}
+.lp-game .name{display:block;font-weight:var(--fw-black);margin-top:var(--sp-2)}
+.lp-game .desc{display:block;font-size:var(--fs-caption);color:var(--ink-2);line-height:1.6;margin-top:2px}
+@media (hover:hover) and (pointer:fine){
+  .lp-game:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .lp-game:hover svg{transform:translateY(-2px) scale(1.1);color:var(--gold)}
+}
+
+.lp-quote{
+  /* figure حاشیهٔ پیش‌فرض «1em 40px» دارد؛ بدون صفرکردنش هر کارت ۸۰ پیکسل
+     پهن‌تر می‌شود و ریل در بارگذاری ۴۰ پیکسل جابه‌جا می‌ماند. */
+  margin:0;
+  width:min(84vw,340px);
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);
+  padding:var(--sp-5);box-shadow:var(--shadow);
+}
+.lp-quote p{margin:0 0 var(--sp-4);line-height:1.85}
+.lp-quote footer{display:flex;align-items:center;gap:var(--sp-3)}
+.lp-avatar{
+  width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--gold-grad);color:var(--cta-ink);font-weight:var(--fw-black);
+}
+.lp-quote .who{font-weight:var(--fw-bold);font-size:var(--fs-sm)}
+.lp-quote .where{color:var(--ink-2);font-size:var(--fs-caption)}
+
+/* ── چطور شروع کنم ─────────────────────────────────────── */
+.lp-steps{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.lp-step{
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface-2);
+  padding:var(--sp-5);
+}
+.lp-step .num{
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+  background:var(--gold-grad);color:var(--cta-ink);font-weight:var(--fw-black);
+  margin-bottom:var(--sp-3);
+}
+.lp-step h3{margin:0 0 var(--sp-1);font-size:var(--fs-lg)}
+.lp-step p{margin:0;color:var(--ink-2);font-size:var(--fs-sm);line-height:1.75}
+
+/* ── فراخوان پایانی ────────────────────────────────────── */
+.lp-final{
+  border:1px solid var(--line);border-radius:var(--r-xl);background:var(--hero-grad);
+  box-shadow:var(--shadow);padding:var(--sp-10) var(--sp-6);text-align:center;
+}
+.lp-final h2{font-size:var(--fs-h2);margin:0 0 var(--sp-2);font-weight:var(--fw-black);text-wrap:balance}
+.lp-final p{color:var(--ink-2);margin:0 auto var(--sp-6);max-width:52ch}
+
+/* ── ظاهرشدن هنگام اسکرول ──────────────────────────────── */
+.lp-reveal{opacity:0;transform:translateY(18px);
+  transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out)}
+.lp-reveal.is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .lp-girih svg,.lp-float,.lp-float .coin{animation:none}
+  .lp-reveal{opacity:1;transform:none;transition:none}
+  .lp-track{scroll-behavior:auto}
+}
