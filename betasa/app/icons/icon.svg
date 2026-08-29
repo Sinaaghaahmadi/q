@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="بت آسا">
   <rect width="512" height="512" rx="112" fill="#0b1520"/>
-  <g fill="none" stroke="#d4af57" stroke-width="22">
-    <path d="M256 64 L400 148 L400 364 L256 448 L112 364 L112 148 Z"/>
-    <path d="M256 160 L332 204 L332 308 L256 352 L180 308 L180 204 Z" opacity=".55" stroke="#3fc1b6"/>
+  <!-- نشانِ آسا، نسخهٔ تو‌پُر — سیلوئتش در فاوآیکون هم باز می‌ماند -->
+  <g transform="translate(96 96) scale(2.667)" fill="#d4af57">
+    <path fill-rule="evenodd"
+          d="M26 98 L26 60 Q26 26 60 10 Q94 26 94 60 L94 98 Z
+             M60 30 L73 45 L60 60 L47 45 Z"/>
+    <rect x="16" y="104" width="88" height="10" rx="5"/>
   </g>
-  <circle cx="256" cy="256" r="34" fill="#d4af57"/>
 </svg>

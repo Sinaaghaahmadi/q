@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="asa-t asa-d">
+  <title id="asa-t">آسا</title>
+  <desc id="asa-d">طاقی تیزه‌دار با سنگِ کلیدِ لوزی و خطِ زمین — نشانِ چترِ خانوادهٔ آسا.</desc>
+  <!--
+    نشانِ آسا — نسخهٔ خطی (اصلی).
+
+    طاق تنها بنایی است که با فشار پابرجا می‌ماند: هر سنگ به سنگِ کنارش تکیه
+    می‌دهد و همه به سنگِ کلیدِ تاج. هر محصول یک طاق است؛ آسا سنگی است که در
+    تاجِ همه می‌نشیند، و خطِ پایین زمینِ مشترکی است که همه رویش ایستاده‌اند.
+
+    برای اندازه‌های ریز (فاوآیکون، آیکون اپ) از asa-mark-solid.svg استفاده شود.
+  -->
+  <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 100 L30 62 Q30 33 60 18 Q90 33 90 62 L90 100"/>
+    <path d="M18 106 H102"/>
+  </g>
+  <path d="M60 19 L71.5 32 L60 45 L48.5 32 Z" fill="currentColor"/>
+</svg>
