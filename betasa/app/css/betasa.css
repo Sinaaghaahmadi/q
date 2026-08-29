@@ -1,0 +1,287 @@
+/* بتاسا — دیزاین‌سیستم «لوکس ایرانی» (کانسپت ۲) */
+
+/* فونت self-host — بدون وابستگی به CDN بیرونی (شبکهٔ داخلی، آفلاین، حریم خصوصی) */
+@font-face{
+  font-family:"Vazirmatn";
+  src:url("../fonts/Vazirmatn-Variable.woff2") format("woff2-variations");
+  font-weight:100 900;
+  font-display:swap;
+}
+
+:root{
+  color-scheme: light dark;
+  --bg:#f6f1e7;
+  --bg-2:#efe7d7;
+  --surface:#fffdf8;
+  --surface-2:#f9f4ea;
+  --ink:#20261f;
+  --ink-2:#5a6156;
+  --ink-3:#8a9184;
+  --gold:#a07b1e;          /* تزئینی: خط، نوار، گرادیان */
+  --gold-ink:#856418;      /* متن‌خوان: کنتراست ≥۴٫۵ روی سطح و زمینه */
+  --gold-strong:#7d5f12;
+  --gold-soft:rgba(160,123,30,.14);
+  --turq:#0e7d78;
+  --turq-strong:#0a5f5b;
+  --turq-soft:rgba(14,125,120,.12);
+  --line:rgba(60,52,20,.16);
+  --line-strong:rgba(60,52,20,.28);
+  --danger:#a03a2e;
+  --win:#2e7d4f;
+  --hero-grad:linear-gradient(160deg,#fbf6ec 0%,#f1e9d6 55%,#e8ecdf 100%);
+  --chip-bg:#fffdf8;
+  --shadow:0 10px 30px rgba(70,55,10,.10);
+  --girih:rgba(160,123,30,.20);
+  --cta-ink:#fffdf4;
+  --gold-grad:linear-gradient(135deg,#8f6d18,#856418 60%,#77590f);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1520;
+    --bg-2:#0e1b28;
+    --surface:#122130;
+    --surface-2:#16283a;
+    --ink:#eee6d2;
+    --ink-2:#b9b29c;
+    --ink-3:#7f8577;
+    --gold:#d4af57;
+    --gold-ink:#e8c878;
+    --gold-strong:#e8c878;
+    --gold-soft:rgba(212,175,87,.14);
+    --turq:#3fc1b6;
+    --turq-strong:#6fdcd2;
+    --turq-soft:rgba(63,193,182,.13);
+    --line:rgba(212,175,87,.18);
+    --line-strong:rgba(212,175,87,.36);
+    --danger:#e07b6d;
+    --win:#63c98f;
+    --hero-grad:linear-gradient(160deg,#0d1a28 0%,#0f2233 55%,#0d2626 100%);
+    --chip-bg:#16283a;
+    --shadow:0 14px 40px rgba(0,0,0,.45);
+    --girih:rgba(212,175,87,.22);
+    --cta-ink:#1b1503;
+    --gold-grad:linear-gradient(135deg,#e8c878,#d4af57 60%,#b98f34);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1520;
+  --bg-2:#0e1b28;
+  --surface:#122130;
+  --surface-2:#16283a;
+  --ink:#eee6d2;
+  --ink-2:#b9b29c;
+  --ink-3:#7f8577;
+  --gold:#d4af57;
+  --gold-ink:#e8c878;
+  --gold-strong:#e8c878;
+  --gold-soft:rgba(212,175,87,.14);
+  --turq:#3fc1b6;
+  --turq-strong:#6fdcd2;
+  --turq-soft:rgba(63,193,182,.13);
+  --line:rgba(212,175,87,.18);
+  --line-strong:rgba(212,175,87,.36);
+  --danger:#e07b6d;
+  --win:#63c98f;
+  --hero-grad:linear-gradient(160deg,#0d1a28 0%,#0f2233 55%,#0d2626 100%);
+  --chip-bg:#16283a;
+  --shadow:0 14px 40px rgba(0,0,0,.45);
+  --girih:rgba(212,175,87,.22);
+  --cta-ink:#1b1503;
+  --gold-grad:linear-gradient(135deg,#e8c878,#d4af57 60%,#b98f34);
+}
+
+/* ---------- توکن‌های غیررنگی (مشترک بین دو تم) ---------- */
+:root{
+  /* مقیاس فاصله — پایهٔ ۴ پیکسل */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+
+  /* گردی گوشه — از چیپ تا قاب */
+  --r-pill:999px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:22px;
+
+  /* مقیاس تایپ — نسبت ۱٫۲۵، ریشه ۱۶px */
+  --fs-caption:.78rem; --fs-sm:.88rem; --fs-body:1rem;
+  --fs-lg:1.15rem; --fs-h3:1.3rem; --fs-h2:1.6rem;
+  --fs-h1:clamp(1.4rem, 4vw, 2rem);
+  --lh-tight:1.35; --lh-body:1.8;
+  --fw-regular:400; --fw-medium:600; --fw-bold:700; --fw-black:900;
+
+  /* حرکت — سه سرعت، دو منحنی */
+  --dur-fast:150ms; --dur-base:200ms; --dur-slow:600ms;
+  --ease-out:cubic-bezier(.2,.8,.3,1);
+  --ease-spring:cubic-bezier(.3,.7,.4,1.2);
+
+  /* حلقهٔ فوکوس */
+  --focus-ring:2px solid var(--gold);
+  --focus-offset:2px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* فوکوس قابل‌دیدن برای همهٔ عناصر تعاملی — الزام دسترسی‌پذیری */
+:where(a,button,input,select,[tabindex]):focus-visible{
+  outline:var(--focus-ring);
+  outline-offset:var(--focus-offset);
+}
+body{
+  margin:0;
+  font-family:"Vazirmatn",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:var(--lh-body);
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow-x:hidden;
+}
+.mono{font-family:ui-monospace,"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+/* جداسازی دوسویه: رشتهٔ لاتین داخل متن فارسی نباید وارونه دیده شود */
+.ltr,code{direction:ltr;unicode-bidi:isolate;overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none}
+svg{max-width:100%}
+button{font-family:inherit}
+/* هر کنترل فرمی رنگ تأکیدش را از برند می‌گیرد، نه از پیش‌فرض مرورگر */
+input,select,textarea{accent-color:var(--turq)}
+
+/* ---------- هدر ---------- */
+.app-header{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 16px;
+  background:color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem}
+.brand-mark{color:var(--gold);display:grid;place-items:center}
+.header-tools{display:flex;align-items:center;gap:10px}
+.coin-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line-strong);border-radius:var(--r-pill);
+  background:var(--chip-bg);color:var(--ink);
+  padding:6px 14px;font-weight:700;cursor:pointer;font-size:.95rem;
+}
+.coin-chip svg{color:var(--gold)}
+.coin-word{color:var(--ink-2);font-size:.8rem}
+.theme-btn{
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;
+  display:grid;place-items:center;transition:transform var(--dur-base) var(--ease-out);flex:none;
+}
+@media (hover:hover) and (pointer:fine){ .theme-btn:hover{transform:rotate(20deg)} }
+
+/* ---------- بدنه ---------- */
+.view{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:var(--sp-5) var(--sp-4) var(--sp-10);outline:none}
+
+/* ---------- لابی ---------- */
+.lobby-hero{
+  position:relative;border:1px solid var(--line);border-radius:var(--r-xl);
+  background:var(--hero-grad);box-shadow:var(--shadow);
+  padding:28px 22px;margin-bottom:26px;overflow:hidden;
+}
+.lobby-hero h1{margin:0 0 6px;font-size:var(--fs-h1);line-height:var(--lh-tight);text-wrap:balance}
+.lobby-hero p{margin:0;color:var(--ink-2);max-width:60ch}
+.lobby-hero .girih{position:absolute;inset-inline-start:auto;inset-inline-end:-40px;top:-40px;opacity:.5;pointer-events:none;color:var(--girih)}
+.section-title{
+  display:flex;align-items:center;gap:10px;margin:26px 0 14px;
+  font-size:1.05rem;font-weight:900;
+}
+.section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.game-grid{
+  display:grid;gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+}
+.game-card{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  border:1px solid var(--line);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);
+  background:var(--surface);box-shadow:var(--shadow);
+  padding:top 0;padding:22px 12px 14px;
+  cursor:pointer;text-align:center;
+  transition:transform var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+.game-card::before{ /* قوس ایوان */
+  content:"";position:absolute;top:0;left:12px;right:12px;height:5px;
+  border-radius:0 0 12px 12px;background:var(--gold-grad);opacity:.85;
+}
+@media (hover:hover) and (pointer:fine){
+  .game-card:hover{transform:translateY(-3px);border-color:var(--gold)}
+}
+.game-card .g-icon{color:var(--turq);width:52px;height:52px}
+.game-card .g-name{font-weight:900}
+.game-card .g-desc{font-size:var(--fs-caption);color:var(--ink-2);line-height:1.6;min-height:2.6em}
+
+/* ---------- صفحه بازی ---------- */
+.game-page{max-width:720px;margin:0 auto}
+.game-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.game-head .back{
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  border-radius:12px;padding:8px 14px;cursor:pointer;font-weight:700;
+}
+.game-head h1{margin:0;font-size:1.3rem}
+.game-board{
+  border:1px solid var(--line);border-radius:var(--r-xl);background:var(--surface);
+  box-shadow:var(--shadow);padding:20px;
+}
+
+/* کنترل‌های شرط سکه‌ای */
+.bet-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-block:14px}
+.bet-input{
+  flex:1;min-width:120px;
+  border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  background:var(--surface-2);color:var(--ink);
+  padding:10px 14px;font-size:1rem;font-weight:700;text-align:center;
+  font-variant-numeric:tabular-nums;
+}
+.bet-input:focus-visible{outline:var(--focus-ring);outline-offset:var(--focus-offset)}
+.chip-btns{display:flex;gap:6px;flex-wrap:wrap}
+.chip-btn{
+  border:1px solid var(--line);border-radius:var(--r-pill);background:var(--surface-2);
+  color:var(--ink-2);padding:5px 12px;cursor:pointer;font-size:.8rem;font-weight:700;
+}
+.chip-btn:active{background:var(--gold-soft)}
+
+.btn{
+  border:1px solid var(--line-strong);border-radius:var(--r-md);cursor:pointer;
+  padding:11px 22px;font-size:var(--fs-body);font-weight:var(--fw-black);
+  background:var(--surface);color:var(--ink);
+  transition:transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out);
+}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:not(:disabled):active{transform:scale(.97)}
+.btn-gold{background:var(--gold-grad);border-color:transparent;color:var(--cta-ink)}
+.btn-turq{background:var(--turq);border-color:transparent;color:#fff}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--ink-2)}
+.btn-block{width:100%}
+
+.result-line{min-height:1.9em;font-weight:900;text-align:center;margin-top:10px}
+.result-line.win{color:var(--win)}
+.result-line.lose{color:var(--danger)}
+.muted{color:var(--ink-2);font-size:var(--fs-sm)}
+
+/* ---------- نصب و توست ---------- */
+.install-strip{
+  position:sticky;bottom:0;z-index:15;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--surface-2);border-top:1px solid var(--line);
+  padding:10px 16px;font-size:.9rem;
+}
+.install-strip span{flex:1;min-width:200px}
+.toast{
+  position:fixed;bottom:76px;inset-inline:0;margin-inline:auto;width:fit-content;max-width:88vw;
+  background:var(--ink);color:var(--bg);border-radius:12px;
+  padding:9px 18px;font-weight:700;z-index:40;box-shadow:var(--shadow);
+}
+.app-footer{
+  border-top:1px solid var(--line);background:var(--bg-2);
+  padding:14px 16px;text-align:center;font-size:.8rem;color:var(--ink-2);
+}
+.app-footer p{margin:0;max-width:64ch;margin-inline:auto}
+
+/* ---------- حرکت ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
