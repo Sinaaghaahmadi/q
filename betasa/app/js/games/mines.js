@@ -8,6 +8,7 @@ export default {
   id: "mines",
   name: "ماین‌ها",
   desc: "جواهر جمع کن؛ به بمب نخور و به‌موقع برداشت کن.",
+  tags: ["fast"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <circle cx="20" cy="28" r="11"/>
     <path d="M28 20 L36 12 M33 9 l6 6 M20 22 v12 M14 28 h12" opacity=".6"/>

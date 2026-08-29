@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>بتاسا — بازی رایگان با سکه</title>
-<meta name="description" content="بتاسا — پلتفرم بازی و سرگرمی رایگان با سکه مجازی. بدون پول واقعی.">
+<title>بت آسا — بازی رایگان با سکه</title>
+<meta name="description" content="بت آسا — پلتفرم بازی و سرگرمی رایگان با سکه مجازی. بدون پول واقعی.">
 <meta name="theme-color" content="#0b1520">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -21,7 +21,7 @@ try{
 </head>
 <body>
 <header class="app-header">
-  <a class="brand" href="#/" aria-label="بتاسا — صفحه اصلی">
+  <a class="brand" href="#/" aria-label="بت آسا — صفحه اصلی">
     <span class="brand-mark" aria-hidden="true">
       <svg viewBox="0 0 40 40" width="30" height="30">
         <g fill="none" stroke="currentColor" stroke-width="2">
@@ -31,14 +31,14 @@ try{
         <circle cx="20" cy="20" r="3.2" fill="currentColor"/>
       </svg>
     </span>
-    <span class="brand-name">بتاسا</span>
+    <span class="brand-name">بت آسا</span>
   </a>
   <div class="header-tools">
-    <button id="coin-chip" class="coin-chip" type="button" title="کیف سکه">
+    <a id="coin-chip" class="coin-chip" href="#/wallet" title="کیف سکه">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor">س</text></svg>
       <span id="coin-balance" class="mono">۰</span>
       <span class="coin-word">سکه</span>
-    </button>
+    </a>
     <button id="theme-toggle" class="theme-btn" type="button" aria-label="تغییر تم روشن/تاریک">◐</button>
   </div>
 </header>
@@ -46,14 +46,14 @@ try{
 <main id="view" class="view" tabindex="-1"></main>
 
 <div id="install-strip" class="install-strip" hidden>
-  <span>بتاسا را روی دستگاه خود نصب کنید — سریع‌تر و آفلاین.</span>
+  <span>بت آسا را روی دستگاه خود نصب کنید — سریع‌تر و آفلاین.</span>
   <button id="install-btn" class="btn btn-gold" type="button">نصب</button>
   <button id="install-dismiss" class="btn btn-ghost" type="button" aria-label="بستن">✕</button>
 </div>
 
 <footer class="app-footer">
-  <p>بتاسا یک پلتفرم <strong>تفریحی رایگان</strong> است — تمام بازی‌ها با سکهٔ مجازی انجام می‌شود و هیچ پول واقعی، واریز، برداشت یا جایزهٔ نقدی در کار نیست.</p>
-  <p style="margin-top:8px"><a href="design-system.html" style="text-decoration:underline">دیزاین‌سیستم بتاسا</a></p>
+  <p>بت آسا یک پلتفرم <strong>تفریحی رایگان</strong> است — تمام بازی‌ها با سکهٔ مجازی انجام می‌شود و هیچ پول واقعی، واریز، برداشت یا جایزهٔ نقدی در کار نیست.</p>
+  <p style="margin-top:8px"><a href="design-system.html" style="text-decoration:underline">دیزاین‌سیستم بت آسا</a></p>
 </footer>
 
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>

@@ -1,4 +1,4 @@
-/* رجیستری بازی‌های بتاسا — ترتیب، ترتیب نمایش لابی است */
+/* رجیستری بازی‌های بت آسا — ترتیب، ترتیب نمایش لابی است */
 import coinflip from "./coinflip.js";
 import dice from "./dice.js";
 import hilo from "./hilo.js";

@@ -21,6 +21,7 @@ export default {
   id: "keno",
   name: "کِنو",
   desc: "تا ۱۰ عدد انتخاب کن؛ هرچه بیشتر بخوانند، بیشتر می‌بری.",
+  tags: ["number"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <rect x="8" y="8" width="32" height="32" rx="6"/>
     <circle cx="18" cy="18" r="3" opacity=".6"/><circle cx="30" cy="18" r="3"/>

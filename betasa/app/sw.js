@@ -1,4 +1,4 @@
-/* بتاسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
+/* بت آسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
 const CACHE = "betasa-v3";
 const ASSETS = [
   "./",
