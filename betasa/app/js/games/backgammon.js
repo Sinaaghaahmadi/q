@@ -200,10 +200,10 @@ export const rules = {
 };
 
 /* ---------- هندسهٔ تخته (SVG) ---------- */
-const PW = 46, BARW = 32, PLEN = 150, TOPY = 18, VH = 400, VBW = 670;
+const PW = 46, BARW = 32, PLEN = 148, TOPY = 26, VH = 400, VBW = 670;
 const BOTY = VH - TOPY;                 // ۳۸۲ — لبهٔ پایینی مثلث‌های پایین
 const TRAYX = 610, TRAYW = 50;
-const R = 18, GAPY = 36, MAXSTACK = 5;
+const R = 18, GAPY = 32, MAXSTACK = 5;
 
 const colX = (c) => 18 + c * PW + (c >= 6 ? BARW : 0);
 function geom(p) {
@@ -221,6 +221,7 @@ export default {
   id: "backgammon",
   name: "تخته نرد",
   desc: "با ربات تخته بزن؛ مارس کنی، بیشتر می‌بری.",
+  tags: ["board"],
   icon: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
     <rect x="5" y="8" width="38" height="32" rx="4"/>
     <path d="M24 8 v32" opacity=".6"/>
@@ -249,7 +250,8 @@ export default {
         <br>برد ساده ۲×، مارس ۳×، مارس ترکی ۴× شرط.
       </p>
       <div id="bg-boardwrap" style="margin:var(--sp-3) 0"></div>
-      <div id="bg-status" class="mono" style="text-align:center;min-height:1.9em;color:var(--gold-ink);font-weight:700"></div>
+      <!-- بدون .mono: فونت مونواسپیس اتصال حروف فارسی را می‌شکند و «نوبت» را «ن و ب ت» نشان می‌دهد -->
+      <div id="bg-status" style="text-align:center;min-height:1.9em;color:var(--gold-ink);font-weight:700"></div>
       <div id="bg-dice" style="display:flex;gap:var(--sp-2);justify-content:center;align-items:center;flex-wrap:wrap;margin:var(--sp-2) 0;min-height:52px"></div>`;
 
     const bet = betControls(200);
@@ -304,14 +306,20 @@ export default {
 
       // قاب و زمین
       s += `<rect x="4" y="4" width="${VBW - 8}" height="${VH - 8}" rx="16"
-              fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2"/>`;
+              fill="var(--bg-2)" stroke="var(--line-strong)" stroke-width="2"/>`;
+      // نوار میانی (بار) — با نقش گره‌چینی
       s += `<rect x="${BARCX - BARW / 2}" y="10" width="${BARW}" height="${VH - 20}" rx="6"
-              fill="var(--surface)" stroke="var(--line)"/>`;
-      // سینی خروج
+              fill="var(--surface)" stroke="var(--line-strong)"/>`;
+      s += `<g stroke="var(--girih)" fill="none" stroke-width="1.2">
+              <path d="M${BARCX} ${VH / 2 - 22} L${BARCX + 10} ${VH / 2} L${BARCX} ${VH / 2 + 22} L${BARCX - 10} ${VH / 2} Z"/>
+              <path d="M${BARCX} ${VH / 2 - 12} L${BARCX + 5} ${VH / 2} L${BARCX} ${VH / 2 + 12} L${BARCX - 5} ${VH / 2} Z"/>
+            </g>`;
+      // سینی خروج — بالا برای ربات، پایین برای بازیکن
       s += `<rect x="${TRAYX}" y="10" width="${TRAYW}" height="${VH / 2 - 14}" rx="8"
-              fill="var(--surface-2)" stroke="var(--line)"/>`;
+              fill="var(--surface)" stroke="var(--line-strong)"/>`;
       s += `<rect x="${TRAYX}" y="${VH / 2 + 4}" width="${TRAYW}" height="${VH / 2 - 14}" rx="8"
-              fill="var(--surface-2)" stroke="${destSet.has(0) ? "var(--turq)" : "var(--line)"}"
+              fill="var(--surface)"
+              stroke="${destSet.has(0) ? "var(--turq)" : "var(--line-strong)"}"
               stroke-width="${destSet.has(0) ? 3 : 1}"
               ${destSet.has(0) ? 'stroke-dasharray="6 4"' : ""}/>`;
 
@@ -328,9 +336,9 @@ export default {
                   stroke-width="2.5" stroke-dasharray="7 5"/>`;
         if (selected === p)
           s += `<polygon points="${pts}" fill="none" stroke="var(--gold)" stroke-width="3.5"/>`;
-        const ty = g.top ? TOPY - 5 : BOTY + 13;
-        s += `<text x="${g.cx}" y="${ty}" text-anchor="middle" font-size="11"
-                fill="var(--ink-3)">${faNum(p)}</text>`;
+        const ty = g.top ? TOPY - 4 : BOTY + 14;
+        s += `<text x="${g.cx}" y="${ty}" text-anchor="middle" font-size="13" font-weight="700"
+                fill="var(--ink-2)">${faNum(p)}</text>`;
       }
 
       // مهره‌ها
