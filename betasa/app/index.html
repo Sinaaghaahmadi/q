@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بت آسا — سالنِ طلا</title>
+<meta name="description" content="بت آسا: سالن بازی رایگان با سکهٔ مجازی. دوازده میز، ده هزار سکهٔ خوش‌آمد، صفر ریال.">
+<meta name="theme-color" content="#04060a">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/betasa.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body class="lp">
+<div class="lp-grain" aria-hidden="true"></div>
+<a class="lp-skip" href="#floor">پرش به بازی‌ها</a>
+
+<!-- ================= نوار بالا ================= -->
+<header class="lp-nav">
+  <div class="lp-wrap lp-nav__in">
+    <a class="lp-brand" href="#top">
+      <svg viewBox="0 0 120 120" role="img" aria-label="آسا">
+        <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30 100 L30 62 Q30 33 60 18 Q90 33 90 62 L90 100"/>
+          <path d="M18 106 H102"/>
+        </g>
+        <path d="M60 19 L71.5 32 L60 45 L48.5 32 Z" fill="currentColor"/>
+      </svg>
+      <span>بت آسا</span>
+    </a>
+
+    <nav class="lp-menu" id="menu" aria-label="بخش‌های صفحه">
+      <a href="#floor">کفِ سالن</a>
+      <a href="#vault">گاوصندوق سکه</a>
+      <a href="#ladder">نردبان ژتون</a>
+      <a href="#start">شروع بازی</a>
+      <a href="#faq">پرسش‌ها</a>
+    </nav>
+
+    <a class="lp-nav__cta" href="app.html#/signin">ورود به سالن</a>
+
+    <button class="lp-burger" id="burger" aria-expanded="false" aria-controls="panel" aria-label="منو">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="lp-panel-menu" id="panel" aria-label="منوی موبایل" hidden>
+  <a href="#floor">کفِ سالن</a>
+  <a href="#vault">گاوصندوق سکه</a>
+  <a href="#ladder">نردبان ژتون</a>
+  <a href="#start">شروع بازی</a>
+  <a href="#faq">پرسش‌ها</a>
+  <a href="app.html#/signin">ورود به سالن</a>
+</nav>
+
+<main id="top">
+
+<!-- ================= قهرمان ================= -->
+<section class="lp-hero">
+  <div class="lp-hero__light" aria-hidden="true"></div>
+  <div class="lp-hero__beams" aria-hidden="true"></div>
+  <canvas class="lp-coins" id="coins" aria-hidden="true"></canvas>
+
+  <div class="lp-wrap lp-hero__in">
+    <div>
+      <p class="lp-kicker">سکهٔ مجازی — <b>صفر ریال، همیشه</b></p>
+      <h1 class="lp-h1">چرخ را بچرخان.<br><em>سکه‌ها واقعی نیستند،</em><br>هیجان هست.</h1>
+      <p class="lp-lead">
+        دوازده میز؛ از کرش و پلینکو تا تخته و پوکر. با ده هزار سکهٔ خوش‌آمد وارد می‌شوی،
+        هر روز سکه می‌گیری، و هر دست که می‌بری بالاتر می‌روی. هیچ کیف پولی باز نمی‌شود،
+        هیچ کارتی خوانده نمی‌شود.
+      </p>
+      <div class="lp-actions">
+        <a class="lp-btn" href="app.html">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          ده هزار سکه بگیر و شروع کن
+        </a>
+        <a class="lp-btn lp-btn--ghost" href="#floor">میزها را ببین</a>
+      </div>
+      <p class="lp-note">بدون واریز، بدون برداشت، بدون جایزهٔ نقدی. سکه‌ها فقط داخل بازی معنا دارند.</p>
+    </div>
+
+    <!-- دستگاه اسلات -->
+    <div class="lp-slot">
+      <div class="lp-bulbs" id="bulbs" aria-hidden="true"></div>
+      <div class="lp-slot__cab">
+        <div class="lp-slot__top">
+          <span class="lp-slot__label">سکهٔ خوش‌آمد</span>
+          <span class="lp-slot__jack" id="jack">۱۰٬۰۰۰</span>
+        </div>
+        <div class="lp-reels" id="reels" role="img" aria-label="سه قرقرهٔ نمایشی دستگاه سکه">
+          <div class="lp-reel"><div class="lp-reel__strip"></div><div class="lp-slot__glass"></div></div>
+          <div class="lp-reel"><div class="lp-reel__strip"></div><div class="lp-slot__glass"></div></div>
+          <div class="lp-reel"><div class="lp-reel__strip"></div><div class="lp-slot__glass"></div></div>
+          <div class="lp-slot__payline" aria-hidden="true"></div>
+        </div>
+        <div class="lp-slot__foot">
+          <button class="lp-spin" id="spin" type="button">بچرخان</button>
+          <span class="lp-slot__msg" id="slotmsg" role="status">نمایشی</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= نوار حقایق ================= -->
+<section class="lp-facts">
+  <div class="lp-wrap lp-facts__in">
+    <div class="lp-fact"><b data-count="12">۰</b><span>میزِ قابل بازی</span></div>
+    <div class="lp-fact"><b data-count="10000">۰</b><span>سکهٔ خوش‌آمد</span></div>
+    <div class="lp-fact"><b>۰</b><span>ریال، در تمام مسیر</span></div>
+    <div class="lp-fact"><b>۲۴/۷</b><span>سالن باز است</span></div>
+  </div>
+</section>
+
+<!-- ================= کفِ سالن ================= -->
+<section class="lp-sec lp-sec--felt" id="floor">
+  <div class="lp-wrap">
+    <div class="lp-head lp-rise">
+      <span class="lp-eyebrow">کفِ سالن</span>
+      <h2 class="lp-h2">دوازده میز، هر کدام یک حال‌وهوا</h2>
+      <p class="lp-sub">از میزهای تندِ چند ثانیه‌ای تا میزهایی که باید سرشان فکر کنی. هر میز قواعد شفاف و بازدهٔ اعلام‌شده دارد.</p>
+    </div>
+    <div class="lp-floor lp-rise" id="tables"></div>
+  </div>
+</section>
+
+<!-- ================= گاوصندوق ================= -->
+<section class="lp-sec" id="vault">
+  <div class="lp-wrap">
+    <div class="lp-head lp-rise">
+      <span class="lp-eyebrow">گاوصندوق سکه</span>
+      <h2 class="lp-h2">سکه‌ات از کجا می‌آید؟</h2>
+      <p class="lp-sub">چهار شیرِ همیشه‌باز. هیچ‌کدام از جیب تو پر نمی‌شود.</p>
+    </div>
+
+    <div class="lp-vault lp-rise">
+      <div class="lp-vault__art">
+        <svg viewBox="0 0 400 400" role="img" aria-label="گاوصندوقی با چرخِ چرخان و سکه‌های ریخته">
+          <defs>
+            <linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#1b2836"/><stop offset="1" stop-color="#0a121b"/>
+            </linearGradient>
+            <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fff0b8"/><stop offset=".5" stop-color="#e9c66a"/><stop offset="1" stop-color="#b8871f"/>
+            </linearGradient>
+          </defs>
+          <rect x="40" y="40" width="320" height="320" rx="34" fill="url(#vg)" stroke="#e9c66a" stroke-opacity=".35" stroke-width="3"/>
+          <rect x="66" y="66" width="268" height="268" rx="22" fill="none" stroke="#e9c66a" stroke-opacity=".18" stroke-width="2"/>
+          <circle cx="200" cy="200" r="96" fill="#060b12" stroke="#e9c66a" stroke-opacity=".45" stroke-width="3"/>
+          <g class="lp-vault__door" stroke="url(#cg)" stroke-width="9" stroke-linecap="round" fill="none">
+            <path d="M200 128 V166"/><path d="M200 234 V272"/><path d="M128 200 H166"/><path d="M234 200 H272"/>
+            <path d="M149 149 L176 176"/><path d="M251 149 L224 176"/><path d="M149 251 L176 224"/><path d="M251 251 L224 224"/>
+          </g>
+          <circle cx="200" cy="200" r="26" fill="url(#cg)"/>
+          <circle cx="200" cy="200" r="10" fill="#0a121b"/>
+          <g>
+            <circle cx="96" cy="330" r="26" fill="url(#cg)"/><circle cx="96" cy="330" r="16" fill="none" stroke="#7a5a12" stroke-width="3"/>
+            <circle cx="142" cy="348" r="20" fill="url(#cg)"/><circle cx="142" cy="348" r="12" fill="none" stroke="#7a5a12" stroke-width="2.5"/>
+            <circle cx="300" cy="344" r="23" fill="url(#cg)"/><circle cx="300" cy="344" r="14" fill="none" stroke="#7a5a12" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="lp-ways">
+        <div class="lp-way">
+          <span class="lp-way__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+          <div><h3>جایزهٔ ورود روزانه</h3><p>هر روز که سر بزنی سکه می‌گیری؛ روزهای پشت‌سرهم جایزه را بزرگ‌تر می‌کند.</p></div>
+        </div>
+        <div class="lp-way">
+          <span class="lp-way__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 9l7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg></span>
+          <div><h3>مأموریت‌ها</h3><p>کارهای کوچک هر روز — یک دست تخته، پنج دور کرش — و سکه‌ای که پایش بسته است.</p></div>
+        </div>
+        <div class="lp-way">
+          <span class="lp-way__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+          <div><h3>بالا رفتن از سطح</h3><p>هر دست که بازی می‌کنی تجربه می‌گیری. هر سطح تازه، یک کیسه سکه باز می‌کند.</p></div>
+        </div>
+        <div class="lp-way">
+          <span class="lp-way__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/><path d="M12 13v4M9 21h6"/></svg></span>
+          <div><h3>صدرِ جدول</h3><p>رکوردهایت ثبت می‌شود و جدول هفتگی، بالانشین‌ها را با سکه بدرقه می‌کند.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= نردبان ژتون ================= -->
+<section class="lp-sec lp-sec--felt" id="ladder">
+  <div class="lp-wrap">
+    <div class="lp-head lp-rise">
+      <span class="lp-eyebrow">نردبان ژتون</span>
+      <h2 class="lp-h2">هر چه بالاتر، ژتونِ سنگین‌تر</h2>
+      <p class="lp-sub">سطح‌ها با تجربهٔ بازی باز می‌شوند، نه با پرداخت. ژتون رنگ عوض می‌کند، جیب تو نه.</p>
+    </div>
+    <div class="lp-ladder lp-rise" id="ladder-grid"></div>
+  </div>
+</section>
+
+<!-- ================= شروع ================= -->
+<section class="lp-sec" id="start">
+  <div class="lp-wrap">
+    <div class="lp-head lp-rise">
+      <span class="lp-eyebrow">شروع بازی</span>
+      <h2 class="lp-h2">سه چرخش تا اولین دست</h2>
+    </div>
+
+    <div class="lp-start lp-rise">
+      <div class="lp-wheel">
+        <svg viewBox="0 0 320 320" role="img" aria-label="چرخ رولتِ چرخان">
+          <defs>
+            <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff0b8"/><stop offset="1" stop-color="#b8871f"/>
+            </linearGradient>
+          </defs>
+          <circle cx="160" cy="160" r="150" fill="#060b12" stroke="url(#wg)" stroke-width="5"/>
+          <g class="lp-wheel__disc">
+            <circle cx="160" cy="160" r="128" fill="#0a1a15"/>
+            <g id="slices"></g>
+            <circle cx="160" cy="160" r="54" fill="#0a121b" stroke="url(#wg)" stroke-width="3"/>
+            <path d="M160 118 L172 160 L160 202 L148 160 Z" fill="url(#wg)"/>
+          </g>
+          <circle cx="160" cy="160" r="14" fill="url(#wg)"/>
+          <path d="M160 4 L172 30 H148 Z" fill="#ff4d6a"/>
+        </svg>
+      </div>
+
+      <ol class="lp-steps">
+        <li class="lp-step">
+          <span class="lp-step__n"></span>
+          <div><h3>در را باز کن</h3><p>هیچ فرمی، هیچ کارتی. صفحهٔ سالن که باز شود، ده هزار سکه در کیف توست.</p></div>
+        </li>
+        <li class="lp-step">
+          <span class="lp-step__n"></span>
+          <div><h3>میزت را انتخاب کن</h3><p>تندش را می‌خواهی یا آرامش را؟ هر میز قاعده و بازدهٔ خودش را همان اول می‌گوید.</p></div>
+        </li>
+        <li class="lp-step">
+          <span class="lp-step__n"></span>
+          <div><h3>بچرخان و بالا برو</h3><p>هر دست تجربه می‌آورد، هر سطح سکه. جایزهٔ روزانه هم هر روز سر جایش است.</p></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= پرسش‌ها ================= -->
+<section class="lp-sec lp-sec--felt" id="faq">
+  <div class="lp-wrap">
+    <div class="lp-head lp-rise">
+      <span class="lp-eyebrow">پرسش‌ها</span>
+      <h2 class="lp-h2">آنچه معمولاً می‌پرسند</h2>
+    </div>
+    <div class="lp-faq lp-rise">
+      <details>
+        <summary>می‌شود سکه‌ها را به پول تبدیل کرد؟</summary>
+        <p>نه. سکهٔ بت آسا واحد شمارشِ داخل بازی است و مسیری برای تبدیلش به پول وجود ندارد — نه واریز، نه برداشت، نه جایزهٔ نقدی. این یک محدودیت موقت نیست؛ پایهٔ محصول است.</p>
+      </details>
+      <details>
+        <summary>پس درآمد بت آسا از کجاست؟</summary>
+        <p>فعلاً از هیچ‌جا. این نسخه رایگان است و چیزی برای فروش ندارد. اگر روزی مسیر درآمدی اضافه شود، از جنس اقلام تزئینی یا اشتراک بدون تبلیغ خواهد بود، نه فروش شانس.</p>
+      </details>
+      <details>
+        <summary>بازی‌ها منصف‌اند؟</summary>
+        <p>هر میز با مولد عدد تصادفی کار می‌کند و بازدهٔ نظری‌اش (حدود ۹۷ تا ۹۹ درصد) در فرمول‌های همان بازی مستند است. قواعد پیش از شروع هر دست روی میز نوشته شده.</p>
+      </details>
+      <details>
+        <summary>باید حساب بسازم؟</summary>
+        <p>نه. کیف سکه روی همین مرورگر ذخیره می‌شود. سالن را که باز کنی، بازی شروع است.</p>
+      </details>
+      <details>
+        <summary>روی موبایل هم کار می‌کند؟</summary>
+        <p>بله، و می‌توانی نصبش کنی. بت آسا یک PWA است: بعد از نصب، بخش زیادی از سالن آفلاین هم باز می‌شود.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= فراخوان پایانی ================= -->
+<section class="lp-final">
+  <div class="lp-wrap lp-rise">
+    <h2 class="lp-h2">سالن باز است. صندلی‌ات خالی.</h2>
+    <p class="lp-sub" style="margin-bottom:var(--sp-8)">ده هزار سکه پشت در منتظر توست — بدون اینکه ریالی جابه‌جا شود.</p>
+    <a class="lp-btn" href="app.html">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      ورود به سالن
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="lp-foot">
+  <div class="lp-wrap lp-foot__in">
+    <p>بت آسا — سالن بازی رایگان با سکهٔ مجازی. بدون پول واقعی، بدون شرط‌بندی نقدی.</p>
+    <nav aria-label="پیوندهای پاصفحه">
+      <a href="app.html">سالن</a>
+      <a href="design-system.html">دیزاین‌سیستم</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="js/landing.js"></script>
+</body>
+</html>

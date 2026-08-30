@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" role="img" aria-label="آسا">
+  <title>آسا — نشان و نام</title>
+  <!-- قفلِ افقی: نشان در راست (شروعِ خطِ فارسی)، نام در چپ.
+       فاصلهٔ نشان تا نام برابرِ نصفِ عرضِ نشان است و هرگز کمتر نمی‌شود. -->
+  <g transform="translate(200 0)">
+    <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30 100 L30 62 Q30 33 60 18 Q90 33 90 62 L90 100"/>
+      <path d="M18 106 H102"/>
+    </g>
+    <path d="M60 19 L71.5 32 L60 45 L48.5 32 Z" fill="currentColor"/>
+  </g>
+  <text x="170" y="78" text-anchor="end" fill="currentColor"
+        font-family="Vazirmatn, system-ui, sans-serif" font-size="62" font-weight="900">آسا</text>
+</svg>

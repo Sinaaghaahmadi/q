@@ -1,0 +1,424 @@
+/* ============================================================================
+   بت آسا — «سالنِ طلا»
+   لندینگ سینمایی و شب‌محور. این صفحه عمداً به یک لوکِ واحد متعهد است:
+   سالن بازی در شب. پس به‌جای دو تم، یک پالت شبانهٔ صریح دارد که مستقیم
+   روی زمینه و متن نقاشی می‌شود و به تم سیستم واگذار نمی‌شود.
+   توکن‌های غیررنگی (فاصله، شعاع، تایپ، حرکت) از دیزاین‌سیستم می‌آیند.
+   ========================================================================== */
+
+:root {
+  /* ــ پالت سالن ــ */
+  --lp-void: #04060a;         /* سیاهیِ کفِ سالن */
+  --lp-deep: #070d16;         /* پس‌زمینهٔ بخش‌ها */
+  --lp-felt: #06231c;         /* چوخهٔ میز */
+  --lp-felt-2: #0a3328;
+  --lp-felt-3: #04140f;       /* گوشهٔ تاریک میز */
+  --lp-panel: rgba(255, 246, 226, .045);
+  --lp-panel-2: rgba(255, 246, 226, .075);
+
+  --lp-ink: #f7f0de;
+  --lp-ink-2: #b6ac93;
+  --lp-ink-3: #7d7565;
+
+  --lp-gold: #e9c66a;
+  --lp-gold-hi: #fff0b8;
+  --lp-gold-deep: #b8871f;
+  --lp-neon: #35e0d0;
+  --lp-ruby: #ff4d6a;
+  --lp-violet: #8a6bff;
+
+  --lp-hair: rgba(233, 198, 106, .22);
+  --lp-hair-2: rgba(233, 198, 106, .45);
+  --lp-glow-gold: 0 0 0 1px rgba(233,198,106,.25), 0 18px 60px -20px rgba(233,198,106,.55);
+  --lp-glow-neon: 0 0 0 1px rgba(53,224,208,.28), 0 18px 60px -22px rgba(53,224,208,.55);
+
+  --lp-gold-face: linear-gradient(145deg, #fff0b8 0%, #e9c66a 32%, #b8871f 66%, #e9c66a 100%);
+  --lp-on-gold: #14100a;      /* متن روی سطح طلایی */
+  --lp-cab: #16202c;          /* بدنهٔ دستگاه */
+  --lp-cab-2: #0a121b;
+  --lp-slot-well: #060a10;    /* داخل قرقره */
+  --lp-slot-well-2: #0d1620;
+  --lp-sky: #0a1119;          /* بالای آسمان سالن */
+  --lp-shade: rgba(0, 0, 0, .9);
+  --lp-shade-2: rgba(0, 0, 0, .7);
+  --lp-max: 1180px;
+}
+
+/* ــ پایه ــ */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body.lp {
+  margin: 0;
+  background: var(--lp-void);
+  color: var(--lp-ink);
+  font-family: "Vazirmatn", system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lp ::selection { background: var(--lp-gold); color: var(--lp-on-gold); }
+
+.lp :where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--lp-neon);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+.lp-wrap { width: min(100% - var(--sp-8), var(--lp-max)); margin-inline: auto; }
+.lp-skip {
+  position: absolute; inset-inline-start: var(--sp-4); top: -100px;
+  background: var(--lp-gold); color: var(--lp-on-gold); padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-pill); font-weight: 700; z-index: 100; transition: top var(--dur-base) var(--ease-out);
+}
+.lp-skip:focus { top: var(--sp-4); }
+
+/* دانه‌بندی نور سالن: یک لایهٔ نویز بسیار ملایم روی کل صفحه */
+.lp-grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 3; opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ============================ نوار بالا ============================ */
+.lp-nav {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--lp-void) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--lp-hair);
+}
+.lp-nav__in { display: flex; align-items: center; gap: var(--sp-5); height: 66px; }
+.lp-brand { display: flex; align-items: center; gap: var(--sp-3); color: var(--lp-gold); text-decoration: none; font-weight: 800; }
+.lp-brand svg { width: 30px; height: 30px; filter: drop-shadow(0 0 10px rgba(233,198,106,.5)); }
+.lp-brand span { font-size: var(--fs-body); letter-spacing: .01em; color: var(--lp-ink); }
+
+.lp-menu { display: flex; gap: var(--sp-1); margin-inline-start: auto; }
+.lp-menu a {
+  color: var(--lp-ink-2); text-decoration: none; font-size: var(--fs-sm); font-weight: 600;
+  padding: var(--sp-2) var(--sp-3); border-radius: var(--r-pill);
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.lp-menu a:hover { color: var(--lp-ink); background: var(--lp-panel); }
+.lp-menu a[aria-current="true"] { color: var(--lp-gold); background: rgba(233,198,106,.1); }
+
+.lp-nav__cta {
+  background: var(--lp-gold-face); color: var(--lp-on-gold); text-decoration: none; font-weight: 800;
+  padding: var(--sp-2) var(--sp-5); border-radius: var(--r-pill); font-size: var(--fs-sm);
+  box-shadow: 0 8px 24px -10px rgba(233,198,106,.9);
+  transition: transform var(--dur-fast) var(--ease-spring), filter var(--dur-fast) var(--ease-out);
+}
+.lp-nav__cta:hover { transform: translateY(-2px); filter: brightness(1.06); }
+
+.lp-burger {
+  display: none; margin-inline-start: auto; background: transparent; border: 1px solid var(--lp-hair);
+  color: var(--lp-ink); width: 42px; height: 42px; border-radius: var(--r-md); cursor: pointer;
+}
+.lp-burger span, .lp-burger span::before, .lp-burger span::after {
+  display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; margin-inline: auto; position: relative;
+}
+.lp-burger span::before { content: ""; position: absolute; top: -6px; }
+.lp-burger span::after { content: ""; position: absolute; top: 6px; }
+
+.lp-panel-menu[hidden] { display: none; }
+.lp-panel-menu {
+  position: fixed; inset: 66px 0 auto; z-index: 39; background: var(--lp-deep);
+  border-bottom: 1px solid var(--lp-hair); padding: var(--sp-4); display: grid; gap: var(--sp-1);
+}
+.lp-panel-menu a {
+  color: var(--lp-ink); text-decoration: none; padding: var(--sp-4);
+  border-radius: var(--r-md); font-weight: 600; border: 1px solid transparent;
+}
+.lp-panel-menu a:hover { background: var(--lp-panel); border-color: var(--lp-hair); }
+
+@media (max-width: 900px) {
+  .lp-menu, .lp-nav__cta { display: none; }
+  .lp-burger { display: block; }
+}
+
+/* نوار دعوت: تنها چیزی که بالای قهرمان می‌نشیند، پس باید کوتاه بماند */
+.lp-invite{
+  display:flex;flex-wrap:wrap;gap:var(--sp-3);align-items:center;justify-content:center;
+  padding:var(--sp-3) var(--sp-5);font-size:var(--fs-sm);
+  background:rgba(53,224,208,.1);border-bottom:1px solid rgba(53,224,208,.3);color:var(--lp-ink);
+}
+.lp-invite b{color:var(--lp-neon)}
+.lp-invite a{color:var(--lp-gold);font-weight:700}
+
+/* ============================ قهرمان ============================ */
+.lp-hero { position: relative; overflow: hidden; padding-block: clamp(var(--sp-10), 7vw, 96px) clamp(var(--sp-10), 6vw, 80px); }
+
+/* پرتوهای نور سقف سالن + هالهٔ طلایی */
+.lp-hero__light {
+  position: absolute; inset: -20% -10% auto; height: 130%; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(60% 46% at 50% 6%, rgba(233,198,106,.20), transparent 68%),
+    radial-gradient(38% 34% at 14% 30%, rgba(53,224,208,.14), transparent 70%),
+    radial-gradient(42% 38% at 86% 26%, rgba(138,107,255,.14), transparent 72%),
+    linear-gradient(180deg, var(--lp-sky) 0%, var(--lp-void) 76%);
+}
+.lp-hero__beams {
+  position: absolute; inset: -30% 0 auto; height: 120%; pointer-events: none; z-index: 0;
+  background: conic-gradient(from 200deg at 50% 0%,
+    transparent 0deg, rgba(233,198,106,.10) 8deg, transparent 16deg,
+    transparent 30deg, rgba(233,198,106,.07) 38deg, transparent 46deg,
+    transparent 60deg, rgba(53,224,208,.07) 68deg, transparent 76deg);
+  /* ماسک است نه رنگ: فقط شفافیت پرتوها را محو می‌کند */
+  mask-image: linear-gradient(180deg, #000 0%, transparent 72%);
+  animation: lp-sweep 26s linear infinite;
+  transform-origin: 50% 0%;
+}
+@keyframes lp-sweep { to { transform: rotate(6deg); } }
+
+.lp-coins { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+.lp-hero__in { position: relative; z-index: 2; display: grid; gap: clamp(var(--sp-8), 5vw, 64px); grid-template-columns: 1.05fr .95fr; align-items: center; }
+@media (max-width: 940px) { .lp-hero__in { grid-template-columns: 1fr; } }
+
+.lp-kicker {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  border: 1px solid var(--lp-hair-2); border-radius: var(--r-pill);
+  padding: var(--sp-2) var(--sp-4); font-size: var(--fs-caption); font-weight: 700;
+  color: var(--lp-gold); background: rgba(233,198,106,.07);
+}
+.lp-kicker b { color: var(--lp-neon); font-weight: 800; }
+
+.lp-h1 {
+  font-size: clamp(2.1rem, 6.2vw, 4rem); line-height: 1.12; margin: var(--sp-5) 0 var(--sp-4);
+  font-weight: 900; letter-spacing: -.01em;
+}
+.lp-h1 em {
+  font-style: normal; background: var(--lp-gold-face); -webkit-background-clip: text; background-clip: text;
+  color: transparent; filter: drop-shadow(0 6px 26px rgba(233,198,106,.35));
+}
+.lp-lead { color: var(--lp-ink-2); font-size: clamp(1rem, 2.2vw, 1.15rem); line-height: 2; max-width: 46ch; margin: 0 0 var(--sp-8); }
+
+.lp-actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+.lp-btn {
+  --btn-bg: var(--lp-gold-face); --btn-ink: var(--lp-on-gold);
+  display: inline-flex; align-items: center; gap: var(--sp-3); text-decoration: none;
+  background: var(--btn-bg); color: var(--btn-ink); font-weight: 800; font-size: var(--fs-body);
+  padding: var(--sp-4) var(--sp-8); border-radius: var(--r-pill); border: 0; cursor: pointer;
+  box-shadow: 0 10px 26px -14px rgba(233,198,106,.7);
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out), filter var(--dur-fast) var(--ease-out);
+}
+.lp-btn:hover { transform: translateY(-3px); filter: brightness(1.05); box-shadow: 0 16px 38px -16px rgba(233,198,106,.85); }
+.lp-btn--ghost {
+  --btn-bg: var(--lp-panel); --btn-ink: var(--lp-ink);
+  border: 1px solid var(--lp-hair-2); box-shadow: none;
+}
+.lp-btn--ghost:hover { background: var(--lp-panel); box-shadow: none; }
+@media (max-width: 520px) {
+  .lp-actions { display: grid; }
+  .lp-btn { justify-content: center; }
+}
+.lp-note { color: var(--lp-ink-3); font-size: var(--fs-caption); margin-top: var(--sp-5); }
+
+/* ــ دستگاه اسلات: قلبِ قهرمان ــ */
+.lp-slot { position: relative; justify-self: center; width: min(100%, 420px); }
+.lp-slot__cab {
+  position: relative; border-radius: 28px; padding: var(--sp-6);
+  background: linear-gradient(180deg, var(--lp-cab), var(--lp-cab-2) 70%);
+  border: 1px solid var(--lp-hair-2);
+  box-shadow: 0 40px 90px -30px var(--lp-shade), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.lp-slot__cab::before {
+  content: ""; position: absolute; inset: -2px; border-radius: 30px; z-index: -1;
+  background: conic-gradient(from 0deg, var(--lp-gold-deep), var(--lp-gold-hi), var(--lp-gold-deep), var(--lp-gold), var(--lp-gold-deep));
+  opacity: .55; filter: blur(6px);
+}
+.lp-slot__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-5); }
+.lp-slot__label { font-size: var(--fs-caption); color: var(--lp-ink-3); font-weight: 700; }
+.lp-slot__jack {
+  font-weight: 900; font-size: 1.4rem; color: var(--lp-gold-hi);
+  font-variant-numeric: tabular-nums; text-shadow: 0 0 22px rgba(233,198,106,.6);
+}
+
+.lp-reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+.lp-reel {
+  position: relative; overflow: hidden; height: 132px; border-radius: var(--r-lg);
+  background: linear-gradient(180deg, var(--lp-slot-well), var(--lp-slot-well-2) 50%, var(--lp-slot-well));
+  border: 1px solid var(--lp-hair);
+  box-shadow: inset 0 14px 22px -14px var(--lp-shade), inset 0 -14px 22px -14px var(--lp-shade);
+}
+.lp-reel__strip { display: grid; will-change: transform; }
+.lp-reel__cell { height: 132px; display: grid; place-items: center; font-size: 3rem; line-height: 1; }
+.lp-slot__glass {
+  position: absolute; inset: 0; pointer-events: none; border-radius: var(--r-lg);
+  background: linear-gradient(105deg, rgba(255,255,255,.13) 0%, transparent 40%);
+}
+.lp-slot__payline { position: absolute; inset-inline: -4px; top: 50%; height: 2px; background: linear-gradient(90deg, transparent, var(--lp-ruby), transparent); opacity: .8; }
+
+.lp-slot__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); margin-top: var(--sp-5); }
+.lp-spin {
+  flex: 1; background: var(--lp-gold-face); color: var(--lp-on-gold); border: 0; cursor: pointer;
+  font-family: inherit; font-weight: 800; font-size: var(--fs-body); padding: var(--sp-4);
+  border-radius: var(--r-pill); box-shadow: 0 12px 30px -12px rgba(233,198,106,.9);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+.lp-spin:hover { transform: translateY(-2px); }
+.lp-spin[disabled] { opacity: .55; cursor: progress; transform: none; }
+.lp-slot__msg { font-size: var(--fs-caption); color: var(--lp-neon); font-weight: 700; min-width: 8ch; text-align: center; }
+
+/* لامپ‌های دور قاب */
+.lp-bulbs { position: absolute; inset: -14px; border-radius: 34px; pointer-events: none; }
+.lp-bulbs i {
+  position: absolute; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lp-gold-hi); box-shadow: 0 0 10px 2px rgba(233,198,106,.75);
+  animation: lp-bulb 1.6s steps(1) infinite;
+}
+@keyframes lp-bulb { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .22; } }
+
+/* ============================ نوار حقایق ============================ */
+.lp-facts {
+  border-block: 1px solid var(--lp-hair);
+  background: linear-gradient(180deg, rgba(233,198,106,.05), transparent);
+}
+.lp-facts__in { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-6); padding-block: var(--sp-8); text-align: center; }
+@media (max-width: 780px) { .lp-facts__in { grid-template-columns: repeat(2, 1fr); } }
+.lp-fact b { display: block; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; color: var(--lp-gold); font-variant-numeric: tabular-nums; }
+.lp-fact span { display: block; margin-top: var(--sp-2); font-size: var(--fs-caption); color: var(--lp-ink-3); }
+
+/* ============================ عنوان بخش ============================ */
+.lp-sec { position: relative; padding-block: clamp(64px, 8vw, 110px); }
+.lp-sec--felt {
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(53,224,208,.06), transparent 60%),
+    linear-gradient(180deg, var(--lp-deep), var(--lp-void));
+}
+.lp-head { text-align: center; margin-bottom: clamp(var(--sp-8), 5vw, 60px); }
+.lp-eyebrow {
+  display: inline-block; color: var(--lp-neon); font-size: var(--fs-caption); font-weight: 800;
+  letter-spacing: .08em; margin-bottom: var(--sp-3);
+}
+.lp-h2 { font-size: clamp(1.6rem, 4.2vw, 2.6rem); font-weight: 900; margin: 0 0 var(--sp-4); line-height: 1.25; }
+.lp-sub { color: var(--lp-ink-2); max-width: 58ch; margin-inline: auto; line-height: 2; }
+
+/* ============================ کفِ سالن (بازی‌ها) ============================ */
+.lp-floor { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--sp-5); }
+/* تک‌ستونه که شد، ارتفاع ثابت فقط جای خالی می‌سازد */
+@media (max-width: 560px) { .lp-table { min-height: 0; } }
+.lp-table {
+  position: relative; display: block; text-decoration: none; color: inherit; overflow: hidden;
+  border-radius: var(--r-xl); padding: var(--sp-6); min-height: 190px;
+  background: linear-gradient(160deg, var(--lp-felt-2), var(--lp-felt) 60%, var(--lp-felt-3));
+  border: 1px solid var(--lp-hair);
+  transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+.lp-table::after {
+  content: ""; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: radial-gradient(200px 140px at var(--px, 50%) var(--py, 50%), rgba(233,198,106,.22), transparent 70%);
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.lp-table:hover { transform: translateY(-6px); border-color: var(--lp-hair-2); box-shadow: var(--lp-glow-gold); }
+.lp-table:hover::after { opacity: 1; }
+.lp-table__ico { display: block; width: 54px; height: 54px; color: var(--lp-gold); margin-bottom: var(--sp-4); }
+.lp-table__ico svg { width: 100%; height: 100%; }
+.lp-table h3 { margin: 0 0 var(--sp-2); font-size: var(--fs-h3, 1.05rem); font-weight: 800; }
+.lp-table p { margin: 0; color: var(--lp-ink-2); font-size: var(--fs-sm); line-height: 1.9; }
+.lp-table__chip {
+  position: absolute; inset-block-start: var(--sp-5); inset-inline-end: var(--sp-5);
+  font-size: var(--fs-caption); font-weight: 700; color: var(--lp-neon);
+  border: 1px solid rgba(53,224,208,.3); border-radius: var(--r-pill); padding: 2px var(--sp-3);
+}
+
+/* ============================ گاوصندوق: راه‌های سکه ============================ */
+.lp-vault { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: clamp(var(--sp-8), 5vw, 64px); align-items: center; }
+@media (max-width: 940px) { .lp-vault { grid-template-columns: 1fr; } }
+.lp-vault__art { position: relative; justify-self: center; width: min(100%, 380px); }
+.lp-vault__art svg { width: 100%; height: auto; filter: drop-shadow(0 30px 60px var(--lp-shade-2)); }
+.lp-vault__door { transform-origin: 200px 200px; animation: lp-vault-spin 18s linear infinite; }
+@keyframes lp-vault-spin { to { transform: rotate(360deg); } }
+
+.lp-ways { display: grid; gap: var(--sp-4); }
+.lp-way {
+  display: grid; grid-template-columns: 52px 1fr; gap: var(--sp-5); align-items: start;
+  padding: var(--sp-5); border-radius: var(--r-lg);
+  background: var(--lp-panel); border: 1px solid var(--lp-hair);
+  transition: background var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.lp-way:hover { background: var(--lp-panel-2); transform: translateX(-4px); }
+.lp-way__ico { width: 52px; height: 52px; display: grid; place-items: center; border-radius: var(--r-md); background: rgba(233,198,106,.1); color: var(--lp-gold); }
+.lp-way__ico svg { width: 28px; height: 28px; }
+.lp-way h3 { margin: 0 0 var(--sp-2); font-size: 1rem; font-weight: 800; }
+.lp-way p { margin: 0; color: var(--lp-ink-2); font-size: var(--fs-sm); line-height: 1.9; }
+
+/* ============================ نردبان ژتون‌ها ============================ */
+.lp-ladder { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--sp-5); align-items: end; }
+.lp-tier {
+  position: relative; text-align: center;
+  /* هر پله بلندتر از قبلی: استعارهٔ نردبان در خودِ ارتفاع */
+  padding: calc(var(--sp-8) + var(--rise, 0px)) var(--sp-5) var(--sp-8);
+  border-radius: var(--r-xl); border: 1px solid var(--lp-hair);
+  background: linear-gradient(180deg, var(--lp-panel), transparent);
+  transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out);
+}
+.lp-tier:hover { transform: translateY(-6px); box-shadow: var(--lp-glow-neon); }
+.lp-tier__chip { width: 74px; height: 74px; margin: 0 auto var(--sp-4); }
+.lp-tier__chip svg { width: 100%; height: 100%; }
+.lp-tier b { display: block; font-size: 1.05rem; font-weight: 800; }
+.lp-tier span { display: block; margin-top: var(--sp-2); color: var(--lp-ink-3); font-size: var(--fs-caption); }
+.lp-tier--now { border-color: var(--lp-hair-2); background: linear-gradient(180deg, rgba(233,198,106,.12), transparent); }
+
+/* ============================ چرخ: چطور شروع کنم ============================ */
+.lp-start { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(var(--sp-8), 5vw, 64px); align-items: center; }
+@media (max-width: 940px) { .lp-start { grid-template-columns: 1fr; } }
+.lp-wheel { justify-self: center; width: min(100%, 340px); }
+.lp-wheel svg { width: 100%; height: auto; }
+.lp-wheel__disc { transform-origin: 160px 160px; animation: lp-wheel-spin 22s linear infinite; }
+@keyframes lp-wheel-spin { to { transform: rotate(-360deg); } }
+
+.lp-steps { counter-reset: s; display: grid; gap: var(--sp-6); }
+.lp-step { display: grid; grid-template-columns: 46px 1fr; gap: var(--sp-5); align-items: start; }
+.lp-step__n {
+  counter-increment: s; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--lp-gold-face); color: var(--lp-on-gold); font-weight: 900; font-size: 1.05rem;
+}
+.lp-step__n::before { content: counter(s, persian); }
+.lp-step h3 { margin: 0 0 var(--sp-2); font-size: 1.05rem; font-weight: 800; }
+.lp-step p { margin: 0; color: var(--lp-ink-2); font-size: var(--fs-sm); line-height: 1.95; }
+
+/* ============================ پرسش‌ها ============================ */
+.lp-faq { max-width: 780px; margin-inline: auto; display: grid; gap: var(--sp-3); }
+.lp-faq details {
+  border: 1px solid var(--lp-hair); border-radius: var(--r-lg); background: var(--lp-panel);
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+.lp-faq details[open] { border-color: var(--lp-hair-2); }
+.lp-faq summary {
+  cursor: pointer; padding: var(--sp-5) var(--sp-6); font-weight: 700; list-style: none;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
+}
+.lp-faq summary::-webkit-details-marker { display: none; }
+.lp-faq summary::after {
+  content: "+"; color: var(--lp-gold); font-size: 1.3rem; font-weight: 700; line-height: 1;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.lp-faq details[open] summary::after { transform: rotate(45deg); }
+.lp-faq p { margin: 0; padding: 0 var(--sp-6) var(--sp-6); color: var(--lp-ink-2); line-height: 2; font-size: var(--fs-sm); }
+
+/* ============================ فراخوان پایانی ============================ */
+.lp-final { position: relative; overflow: hidden; text-align: center; padding-block: clamp(72px, 9vw, 130px); }
+.lp-final::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(60% 70% at 50% 50%, rgba(233,198,106,.16), transparent 70%);
+}
+.lp-final > * { position: relative; z-index: 1; }
+
+/* ============================ پاصفحه ============================ */
+.lp-foot { border-top: 1px solid var(--lp-hair); padding-block: var(--sp-8); }
+.lp-foot__in { display: flex; flex-wrap: wrap; gap: var(--sp-5); align-items: center; justify-content: space-between; }
+.lp-foot p { margin: 0; color: var(--lp-ink-3); font-size: var(--fs-caption); line-height: 1.9; }
+.lp-foot nav { display: flex; gap: var(--sp-5); }
+.lp-foot a { color: var(--lp-ink-2); text-decoration: none; font-size: var(--fs-caption); }
+.lp-foot a:hover { color: var(--lp-gold); }
+
+/* ============================ ورود صحنه‌ها ============================ */
+.lp-rise { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.lp-rise.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero__beams, .lp-bulbs i, .lp-vault__door, .lp-wheel__disc { animation: none !important; }
+  .lp-rise { opacity: 1; transform: none; transition: none; }
+  .lp-table:hover, .lp-tier:hover, .lp-way:hover, .lp-btn:hover, .lp-spin:hover { transform: none; }
+  .lp-coins { display: none; }
+}
