@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asa — گروه برنامه‌نویسی آ</title>
+<meta name="description" content="گروه برنامه‌نویسی آ: محصول نرم‌افزاری، هوش مصنوعی، داده، محتوا، بیزنس‌پلن و استقرار OKR. سی‌وهفت همکار، از چهار قاره، برای یک هدف.">
+<meta name="theme-color" content="#06080b">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/asa.css">
+<meta property="og:title" content="Asa — گروه برنامه‌نویسی آ">
+<meta property="og:description" content="می‌سازیم، تحلیل می‌کنیم، همراه می‌مانیم.">
+<meta property="og:type" content="website">
+</head>
+<body>
+
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<div class="field" aria-hidden="true">
+  <div class="grid-lines"></div>
+  <div class="aurora" style="inset-block-start:-24%;inset-inline-end:-12%"></div>
+  <div class="aurora b"></div>
+  <canvas id="field"></canvas>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="آسا — صفحهٔ اصلی">
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true">
+        <path class="arch" d="M30 100 L30 62 Q30 33 60 18 Q90 33 90 62 L90 100"/>
+        <path class="arch" d="M18 106 H102"/>
+        <path class="key" d="M60 19 L71.5 32 L60 45 L48.5 32 Z"/>
+      </svg>
+      <b>آسا</b>
+      <span>گروه برنامه‌نویسی</span>
+    </a>
+    <nav>
+      <a href="#codewall">تختهٔ کد</a>
+      <a href="#growth">رشد</a>
+      <a href="#team">تیم</a>
+      <a href="#work">پروژه‌ها</a>
+      <a href="#how">مسیر کار</a>
+    </nav>
+    <a class="btn" href="/tickets">ثبت تیکت</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- قهرمان -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="chip reveal"><i class="pulse"></i>۳۷ همکار · ۴ قاره · همین حالا در حال کد زدن</span>
+        <h1 class="reveal">چیزی می‌سازیم که<br><span class="grad rotator">بماند</span></h1>
+        <p class="lede reveal">
+          گروه برنامه‌نویسی آ محصول نرم‌افزاری می‌سازد، داده را به تصمیم تبدیل می‌کند،
+          و تا روزی که کار سرِ پا بماند کنارش می‌ایستد.
+        </p>
+        <div class="actions reveal">
+          <a class="btn" href="/tickets">شروع همکاری</a>
+          <a class="btn ghost" href="#codewall">تختهٔ کد زنده</a>
+        </div>
+
+        <div class="figures reveal">
+          <div><b data-to="37">۰</b><span>همکار</span></div>
+          <div><b data-to="4">۰</b><span>قاره</span></div>
+          <div><b data-to="6">۰</b><span>حوزهٔ کاری</span></div>
+          <div><b data-to="1">۰</b><span>هدف مشترک</span></div>
+        </div>
+      </div>
+
+      <div class="editor reveal">
+        <div class="bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="tabs">
+            <button class="tab on mono" type="button">asa.ts</button>
+            <button class="tab mono" type="button">model.py</button>
+            <button class="tab mono" type="button">growth.sql</button>
+          </div>
+        </div>
+        <div class="code mono" id="hero-code"></div>
+        <div class="term mono" id="hero-term"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- نوار تکنولوژی -->
+  <div class="ribbon" aria-hidden="true">
+    <div class="track">
+      <i>TypeScript</i><i>Next.js</i><i>React</i><i>Python</i><i>PyTorch</i><i>Postgres</i>
+      <i>Supabase</i><i>Tailwind</i><i>Playwright</i><i>Docker</i><i>Vercel</i><i>OKR</i>
+      <i>TypeScript</i><i>Next.js</i><i>React</i><i>Python</i><i>PyTorch</i><i>Postgres</i>
+      <i>Supabase</i><i>Tailwind</i><i>Playwright</i><i>Docker</i><i>Vercel</i><i>OKR</i>
+    </div>
+  </div>
+
+  <!-- تختهٔ کد زنده — امضای سایت -->
+  <section id="codewall">
+    <div class="wrap wall-top reveal">
+      <div class="head">
+        <div class="tag">THE CODE WALL</div>
+        <h2>تختهٔ کد زنده</h2>
+        <p>
+          شش کاری که بلدیم را با حرف توضیح نمی‌دهیم. موس را روی هر کارت ببرید:
+          همان کد جلوی چشمتان نوشته می‌شود و خروجی‌اش پایین می‌آید.
+        </p>
+      </div>
+      <div class="wall-nav">
+        <button id="wall-prev" type="button" aria-label="کارت قبلی">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button id="wall-next" type="button" aria-label="کارت بعدی">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="wall-outer">
+      <div class="wall" id="wall"></div>
+      <div class="rail" id="rail"><i></i></div>
+    </div>
+  </section>
+
+  <!-- رشد -->
+  <section id="growth">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="tag">GROWTH</div>
+        <h2>عددها را هم نشان می‌دهیم</h2>
+        <p>آنچه در یک فصل از تیم بیرون می‌آید — نه وعده، خروجی.</p>
+      </div>
+
+      <!-- عددهای این بخش جای‌نگه‌دارند و باید با آمار واقعی گروه جایگزین شوند:
+           هر عدد در data-to همین‌جا نوشته شده و جای دیگری تکرار نمی‌شود. -->
+      <div class="growth">
+        <div class="panel reveal">
+          <div class="ttl">
+            <span>تحویل ماهانه — دوازده ماه گذشته</span>
+            <span class="chip"><i class="pulse"></i>زنده</span>
+          </div>
+          <div class="big"><span data-to="248">۰</span></div>
+          <div class="sub">نسخهٔ منتشرشده روی محصولات فعال</div>
+          <div class="bars" id="bars"></div>
+        </div>
+
+        <div class="mini">
+          <div class="panel reveal">
+            <div class="ttl">دسترس‌پذیری</div>
+            <div class="big"><span data-to="99" data-suffix="٪">۰</span></div>
+            <div class="sub">میانگین سرویس‌های در حال اجرا</div>
+          </div>
+          <div class="panel reveal">
+            <div class="ttl">میانگین پاسخ تیکت</div>
+            <div class="big"><span data-to="41">۰</span></div>
+            <div class="sub">دقیقه — زیر تعهد یک‌ساعته</div>
+          </div>
+          <div class="panel reveal">
+            <div class="ttl">پروژهٔ فعال</div>
+            <div class="big"><span data-to="12">۰</span></div>
+            <div class="sub">هم‌زمان، در شش حوزه</div>
+          </div>
+          <div class="panel reveal">
+            <div class="ttl">سال کار مشترک</div>
+            <div class="big"><span data-to="9">۰</span></div>
+            <div class="sub">از اولین خط کد این تیم</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- تیم -->
+  <section id="team">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="tag">THE CREW</div>
+        <h2>سی‌وهفت نفر، از چهار قاره، برای یک ایران آباد</h2>
+        <p>
+          تیمی توزیع‌شده که ساعتِ کارش هیچ‌وقت تمام نمی‌شود: وقتی یکی می‌خوابد،
+          دیگری کامیت می‌زند. به هوش مصنوعی باور داریم و هر روز با آن کار می‌کنیم.
+        </p>
+      </div>
+
+      <div class="scenes reveal">
+        <figure class="scene-card">
+          <img src="img/team-01-shab-e-code.jpg" alt="میز کار توسعه‌دهنده در شب با دو نمایشگر کد" loading="lazy">
+          <figcaption><b>شبِ کد</b><span>بخش توسعه</span></figcaption>
+        </figure>
+        <figure class="scene-card">
+          <img src="img/team-02-hamkari.jpg" alt="جلسهٔ هم‌زمان تیم روی تختهٔ کار" loading="lazy">
+          <figcaption><b>ایستگاه روزانه</b><span>بخش محصول</span></figcaption>
+        </figure>
+        <figure class="scene-card">
+          <img src="img/team-03-azmayeshgah.jpg" alt="آزمایشگاه داده و آموزش مدل" loading="lazy">
+          <figcaption><b>آزمایشگاه مدل</b><span>بخش هوش مصنوعی</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="crew reveal" id="crew" aria-label="سی‌وهفت همکار"></div>
+    </div>
+  </section>
+
+  <!-- پروژه‌ها -->
+  <section id="work">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="tag">SELECTED WORK</div>
+        <h2>چند نمونه از کارهای اجراشده</h2>
+        <p>نام کارفرمایان‌مان را نمی‌نویسیم؛ محرمانگی بخشی از کار است. آنچه می‌ماند، خودِ محصول است.</p>
+      </div>
+
+      <article class="project reveal">
+        <div class="p-head">
+          <div>
+            <h3>قیمت آنلاین</h3>
+            <div class="client">برای آقای الف. — qeymat.online</div>
+          </div>
+          <div class="pills">
+            <span class="pill gold">بخش توسعه</span>
+            <span class="pill">داده و تحلیل</span>
+            <span class="pill">هوش مصنوعی</span>
+          </div>
+        </div>
+        <div class="shots">
+          <figure class="shot">
+            <img src="img/qeymat-01-tablou-nerkh.jpg" alt="تابلوی نرخ لحظه‌ای قیمت آنلاین" loading="lazy">
+            <figcaption><b>تابلوی نرخ</b><span>بخش توسعه</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="img/qeymat-02-tahlil-dade.jpg" alt="نمای تحلیل روند قیمت آنلاین" loading="lazy">
+            <figcaption><b>تحلیل روند</b><span>بخش داده</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="img/qeymat-03-hoosh-masnooei.jpg" alt="موتور هشدار هوشمند قیمت آنلاین" loading="lazy">
+            <figcaption><b>هشدار هوشمند</b><span>هوش مصنوعی</span></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="p-head">
+          <div>
+            <h3>دلبر</h3>
+            <div class="client">برای آقای م. — delbarapp.online</div>
+          </div>
+          <div class="pills">
+            <span class="pill gold">بخش توسعه</span>
+            <span class="pill">محصول</span>
+            <span class="pill">پشتیبانی</span>
+          </div>
+        </div>
+        <div class="shots">
+          <figure class="shot">
+            <img src="img/delbar-01-goftogoo.jpg" alt="نمای گفت‌وگوی اپلیکیشن دلبر" loading="lazy">
+            <figcaption><b>گفت‌وگوی بی‌درنگ</b><span>بخش توسعه</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="img/delbar-02-mahsool.jpg" alt="نمای کشف کاربران نزدیک در دلبر" loading="lazy">
+            <figcaption><b>کشف نزدیک‌ترین‌ها</b><span>بخش محصول</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="img/delbar-03-pashtibani.jpg" alt="میز پشتیبانی دلبر" loading="lazy">
+            <figcaption><b>میز پشتیبانی</b><span>پشتیبانی</span></figcaption>
+          </figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- مسیر کار -->
+  <section id="how">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="tag">HOW WE WORK</div>
+        <h2>چهار قدم، بدون رفت‌وبرگشت اداری</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="step"><h4>گفت‌وگو</h4><p>یک تیکت باز می‌کنید و می‌گویید چه می‌خواهید. همان روز پاسخ می‌گیرید.</p></div>
+        <div class="step"><h4>طرح و برآورد</h4><p>دامنهٔ کار، زمان و هزینه را روشن می‌نویسیم. چیزی پشت پرده نمی‌ماند.</p></div>
+        <div class="step"><h4>ساخت</h4><p>هر هفته نسخه‌ای قابل دیدن. وضعیت کار همیشه در همان تیکت پیداست.</p></div>
+        <div class="step"><h4>همراهی</h4><p>تحویل، پایان کار نیست. تا وقتی محصول زنده است، ما هم هستیم.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- تیکت -->
+  <section id="ticket">
+    <div class="wrap">
+      <div class="ticket">
+        <div class="reveal">
+          <div class="tag">COLLABORATION</div>
+          <div class="head">
+            <h2>همکاری از یک تیکت شروع می‌شود</h2>
+            <p>فرم بلند و ثبت‌نام و رمز عبور نداریم. شمارهٔ تلفن کافی است؛ هر بار که برگردید، وضعیت کارتان همان‌جاست.</p>
+          </div>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#d4af5a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>ورود فقط با شمارهٔ تلفن</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#d4af5a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>وضعیت هر درخواست، هر لحظه قابل دیدن</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#d4af5a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>یک نفر پاسخ‌گو، از ابتدا تا انتها</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="/tickets">ثبت تیکت</a>
+            <a class="btn ghost" href="/tickets">پیگیری درخواست</a>
+          </div>
+          <p style="margin-top:26px;color:var(--gold);font-size:15.5px">
+            برای مجموعه‌هایی که تفاوت را در جزئیات می‌بینند، مسیر اختصاصی‌تری هم داریم؛
+            در تیکت بنویسید «همکاری ویژه».
+          </p>
+        </div>
+
+        <div class="mock reveal">
+          <div class="row"><b>راه‌اندازی داشبورد فروش</b><span class="state work">در حال انجام</span></div>
+          <div class="row"><b>بازطراحی هویت بصری</b><span class="state open">ثبت شد</span></div>
+          <div class="row"><b>استقرار OKR — فصل جاری</b><span class="state done">تحویل شد</span></div>
+          <div class="row" style="color:var(--ink-3);font-size:14px">نمونه‌ای از آنچه پس از ورود می‌بینید.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© آسا · گروه برنامه‌نویسی — ساخته‌شده با دقت.</p>
+    <div class="links">
+      <a href="#codewall">تختهٔ کد</a>
+      <a href="#work">پروژه‌ها</a>
+      <a href="/tickets">تیکت</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/code.js" defer></script>
+<script src="js/asa.js" defer></script>
+</body>
+</html>

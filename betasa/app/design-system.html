@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بت آسا — دیزاین‌سیستم</title>
+<meta name="description" content="دیزاین‌سیستم زندهٔ بت آسا: توکن‌ها، مقیاس‌ها، کامپوننت‌ها و قواعد دسترسی‌پذیری.">
+<meta name="theme-color" content="#0b1520">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/betasa.css">
+<script>
+try{ var t=localStorage.getItem("betasa-theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch(e){}
+</script>
+<style>
+  .ds-view{max-width:1120px;margin:0 auto;padding:var(--sp-6) var(--sp-4) var(--sp-12);flex:1;width:100%}
+  .ds-lede{max-width:64ch;color:var(--ink-2);margin:0 0 var(--sp-6)}
+  .ds-sec{margin-block:var(--sp-12) var(--sp-6)}
+  .ds-sec h2{font-size:var(--fs-h2);margin:0 0 var(--sp-2);line-height:var(--lh-tight);text-wrap:balance}
+  .ds-sec .note{max-width:64ch;color:var(--ink-2);margin:0 0 var(--sp-5);font-size:var(--fs-sm)}
+  .ds-grid{display:grid;gap:var(--sp-3)}
+  .cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .cols-3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .cols-4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .panel{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:var(--sp-4);box-shadow:var(--shadow)}
+
+  /* پالت */
+  .swatch{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
+  .swatch .chip{height:64px}
+  .swatch .meta{padding:var(--sp-2) var(--sp-3);display:grid;gap:2px}
+  .swatch .tok{font-size:var(--fs-caption);font-weight:var(--fw-bold)}
+  .swatch .val{font-size:var(--fs-caption);color:var(--ink-2)}
+  .ratio{display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-caption);
+    border-radius:var(--r-pill);padding:1px 8px;border:1px solid var(--line-strong)}
+  .ratio.pass{color:var(--win)} .ratio.fail{color:var(--danger)}
+
+  /* تایپ */
+  .type-row{display:flex;align-items:baseline;gap:var(--sp-4);flex-wrap:wrap;
+    border-bottom:1px dashed var(--line);padding-block:var(--sp-3)}
+  .type-row .label{min-width:190px;color:var(--ink-2);font-size:var(--fs-caption)}
+
+  /* فاصله و شعاع */
+  .sp-bar{background:var(--gold-grad);height:14px;border-radius:var(--r-pill)}
+  .radius-demo{height:76px;border:2px solid var(--gold);background:var(--gold-soft);display:grid;place-items:center;font-size:var(--fs-caption);font-weight:var(--fw-bold)}
+
+  /* ارتفاع */
+  .elev{height:88px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-size:var(--fs-caption)}
+
+  /* آیکون‌ها */
+  .icon-tile{display:grid;gap:var(--sp-2);place-items:center;padding:var(--sp-4) var(--sp-2);
+    border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
+    transition:transform var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+  .icon-tile svg{width:36px;height:36px;color:var(--turq)}
+  .icon-tile span{font-size:var(--fs-caption);color:var(--ink-2)}
+  @media (hover:hover) and (pointer:fine){
+    .icon-tile:hover{transform:translateY(-3px);border-color:var(--gold)}
+    .icon-tile:hover svg{color:var(--gold)}
+  }
+
+  /* جدول قواعد */
+  table.ds{width:100%;border-collapse:collapse;text-align:right;font-size:var(--fs-sm)}
+  table.ds th,table.ds td{padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--line);vertical-align:top}
+  table.ds th{color:var(--ink-2);font-weight:var(--fw-bold)}
+  .scroll-x{overflow-x:auto}
+
+  .do-dont{display:grid;gap:var(--sp-3);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .do-dont > div{border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4);border:1px solid var(--line)}
+  .do{background:color-mix(in srgb,var(--win) 10%,transparent);border-color:color-mix(in srgb,var(--win) 40%,transparent)}
+  .dont{background:color-mix(in srgb,var(--danger) 10%,transparent);border-color:color-mix(in srgb,var(--danger) 40%,transparent)}
+  .do-dont b{display:block;margin-bottom:2px}
+
+  .toc{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-6)}
+  .toc a{border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:4px 14px;font-size:var(--fs-sm);background:var(--surface-2)}
+</style>
+</head>
+<body>
+<header class="app-header">
+  <a class="brand" href="index.html" aria-label="بت آسا">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 120 120" width="30" height="30">
+        <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30 100 L30 62 Q30 33 60 18 Q90 33 90 62 L90 100"/>
+          <path d="M18 106 H102"/>
+        </g>
+        <path d="M60 19 L71.5 32 L60 45 L48.5 32 Z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="brand-name">بت آسا</span>
+  </a>
+  <div class="header-tools">
+    <a class="btn" href="index.html" style="padding:7px 16px;font-size:var(--fs-sm)">→ اپ</a>
+    <button id="theme-toggle" class="theme-btn" type="button" aria-label="تغییر تم روشن/تاریک">◐</button>
+  </div>
+</header>
+
+<main class="ds-view">
+  <h1 style="font-size:var(--fs-h1);line-height:var(--lh-tight);margin:0 0 var(--sp-2);text-wrap:balance">دیزاین‌سیستم بت آسا</h1>
+  <p class="ds-lede">
+    این صفحه از همان فایل توکن محصول (<code class="mono">css/betasa.css</code>) تغذیه می‌شود؛
+    هر رنگ، فاصله و کامپوننتی که این‌جا می‌بینید همان چیزی است که در اپ رندر می‌شود —
+    نه یک اسناد جدا که از محصول عقب می‌افتد. تم را از دکمهٔ بالا عوض کنید تا کل صفحه با آن بچرخد.
+  </p>
+
+  <nav class="toc" aria-label="فهرست">
+    <a href="#principles">اصول</a><a href="#color">رنگ</a><a href="#contrast">کنتراست</a>
+    <a href="#type">تایپوگرافی</a><a href="#space">فاصله و شبکه</a><a href="#radius">گردی و ارتفاع</a>
+    <a href="#motion">حرکت</a><a href="#icons">آیکون</a><a href="#components">کامپوننت‌ها</a>
+    <a href="#a11y">دسترسی‌پذیری و RTL</a><a href="#content">لحن محتوا</a>
+  </nav>
+
+  <!-- ۱ اصول -->
+  <section class="ds-sec" id="principles">
+    <h2>۱. اصول طراحی</h2>
+    <p class="note">چهار تصمیمی که وقتی سر یک جزئیات گیر کردیم، تکلیف را روشن می‌کنند.</p>
+    <div class="ds-grid cols-2">
+      <div class="panel"><b>اصالت، نه تقلید.</b><p class="muted" style="margin:6px 0 0">هویت از هندسهٔ ایرانی می‌آید — قوس ایوان روی کارت‌ها، ستارهٔ گره در نشان. طلایی و فیروزه‌ای لهجهٔ برندند، نه تزئین تصادفی.</p></div>
+      <div class="panel"><b>عدد، قهرمانِ صفحه است.</b><p class="muted" style="margin:6px 0 0">موجودی، ضریب و امتیاز همیشه با ارقام فارسی و فونت tabular نمایش داده می‌شوند تا هنگام تغییر نپرند.</p></div>
+      <div class="panel"><b>صراحت دربارهٔ ماهیت بازی.</b><p class="muted" style="margin:6px 0 0">هیچ‌جا واژه‌ای که بوی پول واقعی بدهد به کار نمی‌رود. واحد همیشه «سکه» است و پانوشت رایگان‌بودن در فوتر ثابت می‌ماند.</p></div>
+      <div class="panel"><b>سبک برای شبکهٔ ضعیف.</b><p class="muted" style="margin:6px 0 0">بدون فریم‌ورک و بدون تصویر بیت‌مپ؛ همهٔ آیکون‌ها SVG درون‌خط‌اند و اپ آفلاین هم بالا می‌آید.</p></div>
+    </div>
+  </section>
+
+  <!-- ۲ رنگ -->
+  <section class="ds-sec" id="color">
+    <h2>۲. پالت رنگ</h2>
+    <p class="note">
+      رنگ‌ها معنایی نام‌گذاری شده‌اند نه ظاهری: <code class="mono">--ink</code> یعنی «متن اصلی»، نه «مشکی».
+      به همین دلیل هر دو تم بدون تغییر کامپوننت‌ها کار می‌کنند. مقادیر زیر از خود فایل توکن در زمان اجرا خوانده می‌شوند.
+    </p>
+    <div class="ds-grid cols-4" id="palette"></div>
+  </section>
+
+  <!-- ۳ کنتراست -->
+  <section class="ds-sec" id="contrast">
+    <h2>۳. کنتراست — سنجیده، نه حدسی</h2>
+    <p class="note">نسبت‌ها همین حالا در مرورگر شما و برای تم فعال محاسبه می‌شوند. آستانهٔ متن عادی ۴٫۵ و متن درشت ۳ است (WCAG 2.1 AA).
+      نتیجهٔ همین جدول باعث شد پالت دو طلایی داشته باشد: <code class="mono">--gold</code> برای خط و نوار و گرادیان می‌ماند،
+      و هرجا طلایی <em>متن</em> است <code class="mono">--gold-ink</code> به کار می‌رود که آستانه را رد می‌کند.</p>
+    <div class="scroll-x"><table class="ds" id="contrast-table">
+      <thead><tr><th>ترکیب</th><th>نسبت</th><th>متن عادی</th><th>متن درشت</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <!-- ۴ تایپ -->
+  <section class="ds-sec" id="type">
+    <h2>۴. تایپوگرافی</h2>
+    <p class="note">
+      وزیرمتن برای رابط، و یک فونت مونواسپیس فقط برای اعداد و کپشن فنی.
+      مقیاس با نسبت ۱٫۲۵ از ریشهٔ ۱۶ پیکسل ساخته شده؛ تیتر اصلی با <code class="mono">clamp()</code> با عرض صفحه نفس می‌کشد.
+    </p>
+    <div class="panel">
+      <div class="type-row"><span class="label mono">--fs-h1 · ۹۰۰</span><span style="font-size:var(--fs-h1);font-weight:900;line-height:var(--lh-tight)">شب‌خوش! آماده‌ای؟</span></div>
+      <div class="type-row"><span class="label mono">--fs-h2 · ۹۰۰</span><span style="font-size:var(--fs-h2);font-weight:900">بازی‌های محبوب</span></div>
+      <div class="type-row"><span class="label mono">--fs-h3 · ۷۰۰</span><span style="font-size:var(--fs-h3);font-weight:700">گردونهٔ شانس</span></div>
+      <div class="type-row"><span class="label mono">--fs-body · ۴۰۰</span><span style="font-size:var(--fs-body)">ده بازی سریع با سکهٔ مجازی، رایگان و تفریحی.</span></div>
+      <div class="type-row"><span class="label mono">--fs-sm · ۴۰۰</span><span style="font-size:var(--fs-sm);color:var(--ink-2)">هر روز جایزهٔ ورود بگیر و رکوردت را بالا ببر.</span></div>
+      <div class="type-row"><span class="label mono">--fs-caption · ۴۰۰</span><span style="font-size:var(--fs-caption);color:var(--ink-2)">بازی تفریحی با سکهٔ مجازی — بدون پول واقعی.</span></div>
+      <div class="type-row"><span class="label mono">اعداد · tabular</span><span class="mono" style="font-size:var(--fs-h3);font-weight:700">۱۲٬۵۰۰ سکه · ۲٫۴۵×</span></div>
+    </div>
+  </section>
+
+  <!-- ۵ فاصله -->
+  <section class="ds-sec" id="space">
+    <h2>۵. فاصله و شبکه</h2>
+    <p class="note">همهٔ فاصله‌ها مضربی از ۴ پیکسل‌اند. شبکهٔ لابی <code class="mono">auto-fill</code> با حداقل ۱۵۰ پیکسل است: در موبایل دو ستون، در دسکتاپ تا شش ستون، بدون نقطهٔ شکست دستی.</p>
+    <div class="panel ds-grid" style="gap:var(--sp-2)" id="spacing"></div>
+  </section>
+
+  <!-- ۶ گردی و ارتفاع -->
+  <section class="ds-sec" id="radius">
+    <h2>۶. گردی گوشه و ارتفاع</h2>
+    <p class="note">گردی با اندازهٔ عنصر بزرگ می‌شود: چیپ کاملاً گرد، دکمه متوسط، قاب بازی بزرگ‌ترین. سایه فقط یک لایه دارد — عمق از رنگ سطح می‌آید نه از انباشتن سایه.</p>
+    <div class="ds-grid cols-3" style="margin-bottom:var(--sp-4)">
+      <div><div class="radius-demo" style="border-radius:var(--r-sm)">--r-sm · ۱۰</div></div>
+      <div><div class="radius-demo" style="border-radius:var(--r-md)">--r-md · ۱۴</div></div>
+      <div><div class="radius-demo" style="border-radius:var(--r-lg)">--r-lg · ۱۸</div></div>
+      <div><div class="radius-demo" style="border-radius:var(--r-xl)">--r-xl · ۲۲</div></div>
+      <div><div class="radius-demo" style="border-radius:var(--r-pill)">--r-pill</div></div>
+    </div>
+    <div class="ds-grid cols-3">
+      <div class="elev">سطح پایه — <code class="mono">--surface</code></div>
+      <div class="elev" style="background:var(--surface-2)">سطح فرورفته — <code class="mono">--surface-2</code></div>
+      <div class="elev" style="box-shadow:var(--shadow)">شناور — <code class="mono">--shadow</code></div>
+    </div>
+  </section>
+
+  <!-- ۷ حرکت -->
+  <section class="ds-sec" id="motion">
+    <h2>۷. حرکت</h2>
+    <p class="note">
+      سه سرعت و دو منحنی، بس. حرکتْ بازخورد است نه جلوه: کارت کمی بالا می‌آید تا بگوید کلیک‌شدنی است.
+      همهٔ صحنه‌ها زیر <code class="mono">prefers-reduced-motion</code> خاموش می‌شوند.
+    </p>
+    <div class="ds-grid cols-3">
+      <div class="panel" style="text-align:center">
+        <div id="m-card" style="height:70px;border-radius:var(--r-md);background:var(--gold-grad);margin-bottom:var(--sp-2);
+          transition:transform var(--dur-base) var(--ease-out)"></div>
+        <b style="font-size:var(--fs-sm)">بالا آمدن کارت</b>
+        <p class="muted" style="margin:2px 0 0;font-size:var(--fs-caption)"><code class="mono">translateY(-3px)</code> در ۲۰۰ms</p>
+      </div>
+      <div class="panel" style="text-align:center">
+        <div class="mono" id="m-count" style="font-size:var(--fs-h2);font-weight:900;color:var(--gold-ink)">۰</div>
+        <b style="font-size:var(--fs-sm)">شمارندهٔ موجودی</b>
+        <p class="muted" style="margin:2px 0 0;font-size:var(--fs-caption)">درون‌یابی عددی، نه انیمیشن CSS</p>
+      </div>
+      <div class="panel" style="text-align:center">
+        <div style="height:70px;display:grid;place-items:center;margin-bottom:var(--sp-2)">
+          <span id="m-coin" style="font-size:2.4rem;display:inline-block">🪙</span>
+        </div>
+        <b style="font-size:var(--fs-sm)">چرخش سکه</b>
+        <p class="muted" style="margin:2px 0 0;font-size:var(--fs-caption)"><code class="mono">rotateX(1080deg)</code> در ۹۵۰ms</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ۸ آیکون -->
+  <section class="ds-sec" id="icons">
+    <h2>۸. آیکون‌ها</h2>
+    <p class="note">هر بازی یک آیکون اختصاصی دارد که در همان ماژول بازی زندگی می‌کند. همه با <code class="mono">stroke</code> ۲٫۵، کادر ۴۸، و رنگ ارثی از <code class="mono">currentColor</code> — تا در هر دو تم و هر زمینه‌ای درست بنشینند.</p>
+    <div class="ds-grid cols-4" id="icons-grid"></div>
+  </section>
+
+  <!-- ۹ کامپوننت‌ها -->
+  <section class="ds-sec" id="components">
+    <h2>۹. کامپوننت‌ها و حالت‌ها</h2>
+    <p class="note">هر کامپوننت با همهٔ حالت‌هایش تعریف می‌شود؛ حالت «غیرفعال» و «فوکوس» به اندازهٔ حالت عادی بخشی از طراحی‌اند.</p>
+
+    <h3 style="font-size:var(--fs-h3);margin:var(--sp-6) 0 var(--sp-3)">دکمه</h3>
+    <div class="panel" style="display:flex;gap:var(--sp-3);flex-wrap:wrap;align-items:center">
+      <button class="btn btn-gold" type="button">کنش اصلی</button>
+      <button class="btn btn-turq" type="button">کنش دوم</button>
+      <button class="btn" type="button">خنثی</button>
+      <button class="btn" type="button" disabled>غیرفعال</button>
+      <span class="muted" style="font-size:var(--fs-caption)">↹ با Tab حلقهٔ فوکوس طلایی را ببینید</span>
+    </div>
+
+    <h3 style="font-size:var(--fs-h3);margin:var(--sp-6) 0 var(--sp-3)">چیپ سکه و کنترل شرط</h3>
+    <div class="panel">
+      <button class="coin-chip" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="mono">۱۲٬۵۰۰</span><span class="coin-word">سکه</span>
+      </button>
+      <div class="bet-row" style="margin-bottom:0">
+        <input class="bet-input mono" value="۱۰۰" aria-label="مبلغ سکه">
+        <span class="chip-btns">
+          <button class="chip-btn" type="button">۱۰۰</button>
+          <button class="chip-btn" type="button">۵۰۰</button>
+          <button class="chip-btn" type="button">×۲</button>
+          <button class="chip-btn" type="button">½</button>
+        </span>
+      </div>
+    </div>
+
+    <h3 style="font-size:var(--fs-h3);margin:var(--sp-6) 0 var(--sp-3)">کارت بازی</h3>
+    <p class="note">امضای بصری محصول: نوار طلایی بالای کارت، بازسازی قوس ایوان است. همین یک عنصر، لابی را از هر لابی عمومی دیگری جدا می‌کند.</p>
+    <div class="game-grid" style="max-width:640px">
+      <div class="game-card">
+        <span class="g-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="24" cy="24" r="16"/><path d="M24 14v20M17 20c0-4 14-4 14 0s-14 4-14 8 14 4 14 0" opacity=".6"/></svg></span>
+        <span class="g-name">شیر یا خط</span>
+        <span class="g-desc">سکه بینداز؛ حدس درست، دوبرابر می‌گیری.</span>
+      </div>
+      <div class="game-card">
+        <span class="g-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="30" height="30" rx="7"/><circle cx="18" cy="18" r="2.5" fill="currentColor"/><circle cx="30" cy="30" r="2.5" fill="currentColor"/><circle cx="24" cy="24" r="2.5" fill="currentColor"/></svg></span>
+        <span class="g-name">تاس</span>
+        <span class="g-desc">حدس بزن بالاتر یا پایین‌تر از عدد می‌افتد.</span>
+      </div>
+    </div>
+
+    <h3 style="font-size:var(--fs-h3);margin:var(--sp-6) 0 var(--sp-3)">پیام نتیجه</h3>
+    <div class="panel">
+      <div class="result-line win">بردی! +۱۹۸ سکه</div>
+      <div class="result-line lose">این بار نشد.</div>
+    </div>
+  </section>
+
+  <!-- ۱۰ دسترسی‌پذیری -->
+  <section class="ds-sec" id="a11y">
+    <h2>۱۰. دسترسی‌پذیری و راست‌به‌چپ</h2>
+    <p class="note">این‌ها قواعد قابل‌بررسی‌اند، نه آرزو؛ هرکدام در کد اعمال شده و در تست مرورگری چک می‌شود.</p>
+    <div class="scroll-x"><table class="ds">
+      <thead><tr><th>قاعده</th><th>چرا</th><th>در کد کجاست</th></tr></thead>
+      <tbody>
+        <tr><td>حلقهٔ فوکوس روی همهٔ عناصر تعاملی</td><td>ناوبری با کیبورد نباید کور باشد</td><td class="mono">:focus-visible + --focus-ring</td></tr>
+        <tr><td>هدف لمسی حداقل ۳۸×۳۸</td><td>انگشت دقت موس را ندارد</td><td class="mono">.theme-btn, .btn</td></tr>
+        <tr><td>hover فقط با pointer دقیق</td><td>روی لمسی، hover چسبنده می‌شود</td><td class="mono">@media (hover:hover)</td></tr>
+        <tr><td>احترام به کاهش حرکت</td><td>حرکت برای بعضی کاربران آزارنده یا خطرناک است</td><td class="mono">prefers-reduced-motion</td></tr>
+        <tr><td>ارقام فارسی با جداکنندهٔ ٬</td><td>خواندن عدد بومی سریع‌تر است</td><td class="mono">fmt() در app.js</td></tr>
+        <tr><td>بدون سرریز افقی در هیچ عرضی</td><td>اسکرول جانبی در RTL دوبرابر گیج‌کننده است</td><td class="mono">overflow-x:hidden + .scroll-x</td></tr>
+        <tr><td>خواص منطقی به‌جای چپ/راست</td><td>چیدمان باید با جهت زبان بچرخد</td><td class="mono">inset-inline-*, margin-inline</td></tr>
+        <tr><td>اعلام زندهٔ نتیجه</td><td>کاربر اسکرین‌ریدر باید نتیجهٔ دست را بشنود</td><td class="mono">role="status" aria-live</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ۱۱ محتوا -->
+  <section class="ds-sec" id="content">
+    <h2>۱۱. لحن محتوا</h2>
+    <p class="note">دیزاین‌سیستم فقط رنگ و فاصله نیست؛ واژه‌ها هم توکن دارند. این‌جا مرز محصول است.</p>
+    <div class="do-dont">
+      <div class="do"><b>✓ بگو</b>سکه · موجودی · دست · جایزه · بازی رایگان · «بدون پول واقعی»</div>
+      <div class="dont"><b>✗ نگو</b>شرط · برد نقدی · واریز · برداشت · موجودی ریالی · جایزهٔ نقدی</div>
+      <div class="do"><b>✓ لحن</b>کوتاه، گرم، دوم‌شخص مفرد: «سکه کافی نداری!»</div>
+      <div class="dont"><b>✗ لحن</b>رسمی و اداری، یا هیجان اغراق‌شده و وعده‌دار</div>
+    </div>
+  </section>
+</main>
+
+<footer class="app-footer">
+  <p>بت آسا یک پلتفرم <strong>تفریحی رایگان</strong> است — تمام بازی‌ها با سکهٔ مجازی انجام می‌شود و هیچ پول واقعی، واریز، برداشت یا جایزهٔ نقدی در کار نیست.</p>
+</footer>
+
+<script type="module">
+const FA="۰۱۲۳۴۵۶۷۸۹";
+const fa = (s)=>String(s).replace(/[0-9]/g,d=>FA[+d]);
+
+/* تم */
+document.getElementById("theme-toggle").addEventListener("click",()=>{
+  const r=document.documentElement;
+  const dark = r.dataset.theme==="dark" || (!r.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
+  r.dataset.theme = dark ? "light" : "dark";
+  try{ localStorage.setItem("betasa-theme", r.dataset.theme); }catch(e){}
+  paint();
+});
+
+/* ---- پالت زنده از توکن‌های واقعی ---- */
+const TOKENS=[
+  ["--bg","زمینهٔ صفحه"],["--bg-2","زمینهٔ دوم"],["--surface","سطح کارت"],["--surface-2","سطح فرورفته"],
+  ["--ink","متن اصلی"],["--ink-2","متن ثانویه"],["--ink-3","متن کم‌رنگ"],
+  ["--gold","طلایی تزئینی"],["--gold-ink","طلایی متن‌خوان"],["--gold-strong","طلایی پررنگ"],["--turq","فیروزه‌ای"],["--turq-strong","فیروزه‌ای پررنگ"],
+  ["--win","برد"],["--danger","باخت/خطا"],["--line","خط جداکننده"],["--line-strong","خط پررنگ"],["--cta-ink","متن روی طلایی"],
+];
+function cssVal(name){
+  if(name==="--grad-worst"){
+    /* بدترین حالتِ دکمهٔ طلایی = روشن‌ترین استاپ گرادیان، از خود مقدار توکن استخراج می‌شود */
+    const g=getComputedStyle(document.documentElement).getPropertyValue("--gold-grad");
+    const stops=g.match(/#[0-9a-f]{6}/gi)||[];
+    let best=stops[0], bl=-1;
+    for(const c of stops){ const l=lum(toRgb(c)); if(l>bl){bl=l;best=c;} }
+    return best;
+  }
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+/* ---- محاسبهٔ کنتراست ---- */
+function toRgb(c){
+  const d=document.createElement("div"); d.style.color=c; document.body.appendChild(d);
+  const m=getComputedStyle(d).color.match(/[\d.]+/g); d.remove();
+  return m ? m.slice(0,3).map(Number) : [0,0,0];
+}
+function lum([r,g,b]){
+  const f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};
+  return .2126*f(r)+.7152*f(g)+.0722*f(b);
+}
+function ratio(a,b){ const l1=lum(toRgb(a)),l2=lum(toRgb(b)); const [hi,lo]=l1>l2?[l1,l2]:[l2,l1]; return (hi+.05)/(lo+.05); }
+
+const PAIRS=[
+  ["متن اصلی روی زمینه","--ink","--bg"],
+  ["متن ثانویه روی زمینه","--ink-2","--bg"],
+  ["متن اصلی روی کارت","--ink","--surface"],
+  ["متن ثانویه روی کارت","--ink-2","--surface"],
+  ["طلایی متن‌خوان روی کارت","--gold-ink","--surface"],
+  ["طلایی متن‌خوان روی زمینه","--gold-ink","--bg"],
+  ["طلایی تزئینی روی کارت (فقط غیرمتنی)","--gold","--surface"],
+  ["فیروزه‌ای روی کارت","--turq","--surface"],
+  ["سبز برد روی کارت","--win","--surface"],
+  ["قرمز باخت روی کارت","--danger","--surface"],
+  ["متن روی دکمهٔ طلایی (روشن‌ترین استاپ گرادیان)","--cta-ink","--grad-worst"],
+];
+
+function paint(){
+  /* پالت */
+  const pal=document.getElementById("palette"); pal.innerHTML="";
+  for(const [tok,label] of TOKENS){
+    const v=cssVal(tok);
+    const el=document.createElement("div"); el.className="swatch";
+    el.innerHTML=`<div class="chip" style="background:${v}"></div>
+      <div class="meta"><span class="tok">${label}</span>
+      <span class="val mono ltr">${tok}</span><span class="val mono ltr">${v}</span></div>`;
+    pal.appendChild(el);
+  }
+  /* کنتراست */
+  const tb=document.querySelector("#contrast-table tbody"); tb.innerHTML="";
+  for(const [label,fg,bg] of PAIRS){
+    const r=ratio(cssVal(fg),cssVal(bg));
+    const normal=r>=4.5, large=r>=3;
+    tb.insertAdjacentHTML("beforeend",
+      `<tr><td>${label}</td><td class="mono">${fa(r.toFixed(2))}</td>
+       <td><span class="ratio ${normal?"pass":"fail"}">${normal?"قبول":"فقط درشت"}</span></td>
+       <td><span class="ratio ${large?"pass":"fail"}">${large?"قبول":"رد"}</span></td></tr>`);
+  }
+}
+
+/* فاصله‌ها */
+const sp=document.getElementById("spacing");
+for(const n of [1,2,3,4,5,6,8,10,12]){
+  const v=cssVal(`--sp-${n}`);
+  sp.insertAdjacentHTML("beforeend",
+    `<div style="display:flex;align-items:center;gap:var(--sp-3)">
+       <span class="mono" style="min-width:96px;font-size:var(--fs-caption);color:var(--ink-2)">--sp-${fa(n)} · ${fa(v)}</span>
+       <span class="sp-bar" style="width:${v}"></span></div>`);
+}
+
+/* آیکون‌ها — از خود ماژول‌های بازی */
+const { games } = await import("./js/games/index.js");
+const ig=document.getElementById("icons-grid");
+for(const g of games){
+  ig.insertAdjacentHTML("beforeend",
+    `<div class="icon-tile">${g.icon}<span>${g.name}</span></div>`);
+}
+
+/* صحنه‌های حرکت */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const card=document.getElementById("m-card");
+if(matchMedia("(hover:hover) and (pointer:fine)").matches){
+  card.parentElement.addEventListener("pointerenter",()=>{ card.style.transform="translateY(-3px)"; });
+  card.parentElement.addEventListener("pointerleave",()=>{ card.style.transform="none"; });
+}
+const cnt=document.getElementById("m-count");
+let target=12500, shown=0;
+if(reduce){ cnt.textContent=fa(target.toLocaleString("en-US").replace(/,/g,"٬")); }
+else{
+  const step=()=>{ shown+=Math.max(1,(target-shown)*0.08);
+    if(shown>=target-1){ shown=target; }
+    cnt.textContent=fa(Math.round(shown).toLocaleString("en-US").replace(/,/g,"٬"));
+    if(shown<target) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const coin=document.getElementById("m-coin");
+if(!reduce){
+  setInterval(()=>{
+    coin.style.transition="transform 950ms var(--ease-spring)";
+    coin.style.transform="rotateX(1080deg)";
+    setTimeout(()=>{ coin.style.transition="none"; coin.style.transform="none"; },1000);
+  },2600);
+}
+
+paint();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="asas-t asas-d">
+  <title id="asas-t">آسا</title>
+  <desc id="asas-d">نسخهٔ تو‌پُرِ نشانِ آسا برای اندازه‌های ریز.</desc>
+  <!--
+    همان طاق، تو‌پُر، با سنگِ کلید به‌صورت فضای منفی. سیلوئت در ۱۶ پیکسل هم
+    باز می‌ماند، جایی که نسخهٔ خطی به هم می‌چسبد.
+  -->
+  <path fill="currentColor" fill-rule="evenodd"
+        d="M26 98 L26 60 Q26 26 60 10 Q94 26 94 60 L94 98 Z
+           M60 30 L73 45 L60 60 L47 45 Z"/>
+  <rect x="16" y="104" width="88" height="10" rx="5" fill="currentColor"/>
+</svg>
