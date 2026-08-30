@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>تیکت — Asa</title>
 <meta name="description" content="ثبت و پیگیری تیکت در گروه برنامه‌نویسی آ. ورود فقط با شمارهٔ تلفن.">
-<meta name="theme-color" content="#faf8f4">
+<meta name="theme-color" content="#06080b">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/asa.css">
@@ -15,13 +15,13 @@
 <header class="nav is-scrolled" id="nav">
   <div class="wrap">
     <a class="brand" href="/">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M5 19.5 12 4.5l7 15" stroke="#0d1117" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M7.6 14h9.6" stroke="#a2864f" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M8.8 10.6h6" stroke="#a2864f" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true" style="width:30px;height:30px">
+        <path class="arch" d="M30 100 L30 62 Q30 33 60 18 Q90 33 90 62 L90 100"/>
+        <path class="arch" d="M18 106 H102"/>
+        <path class="key" d="M60 19 L71.5 32 L60 45 L48.5 32 Z"/>
       </svg>
-      <span class="en">Asa</span>
-      <span class="fa">گروه برنامه‌نویسی آ</span>
+      <b>آسا</b>
+      <span>گروه برنامه‌نویسی</span>
     </a>
     <nav><a href="/">بازگشت به صفحهٔ اصلی</a></nav>
   </div>
@@ -31,10 +31,10 @@
   <div class="wrap">
 
     <!-- ۱. شماره -->
-    <section class="panel" id="step-phone">
+    <section class="sheet" id="step-phone">
       <h2>ورود با شمارهٔ تلفن</h2>
       <p class="sub">همین یک قدم. نه رمز عبوری، نه فرم بلندی.</p>
-      <div class="field">
+      <div class="fld">
         <label for="phone">شمارهٔ موبایل</label>
         <input id="phone" dir="ltr" inputmode="numeric" autocomplete="tel" placeholder="09xxxxxxxxx" maxlength="11">
       </div>
@@ -44,10 +44,10 @@
     </section>
 
     <!-- ۲. کد -->
-    <section class="panel" id="step-code" hidden>
+    <section class="sheet" id="step-code" hidden>
       <h2>کد را وارد کنید</h2>
       <p class="sub">کد شش‌رقمی به <b id="phone-echo" dir="ltr"></b> فرستاده شد.</p>
-      <div class="field">
+      <div class="fld">
         <label for="code">کد تأیید</label>
         <input id="code" dir="ltr" inputmode="numeric" autocomplete="one-time-code" placeholder="······" maxlength="6">
       </div>
@@ -60,7 +60,7 @@
     </section>
 
     <!-- ۳. تیکت‌ها -->
-    <section class="panel wide" id="step-list" hidden>
+    <section class="sheet wide" id="step-list" hidden>
       <div class="row-between">
         <div>
           <h2>درخواست‌های شما</h2>
@@ -75,11 +75,11 @@
       <hr class="hairline" style="margin:30px 0 6px">
 
       <h2 style="font-size:21px;margin-top:22px">درخواست تازه</h2>
-      <div class="field">
+      <div class="fld">
         <label for="subject">موضوع</label>
         <input id="subject" placeholder="مثلاً: ساخت اپلیکیشن فروشگاهی">
       </div>
-      <div class="field">
+      <div class="fld">
         <label for="area">حوزه</label>
         <select id="area">
           <option>محصول نرم‌افزاری</option>
@@ -91,7 +91,7 @@
           <option>همکاری ویژه</option>
         </select>
       </div>
-      <div class="field">
+      <div class="fld">
         <label for="body">توضیح کوتاه</label>
         <textarea id="body" placeholder="در چند خط بنویسید چه می‌خواهید."></textarea>
       </div>
@@ -104,7 +104,7 @@
 
 <footer>
   <div class="wrap foot">
-    <p>© Asa · گروه برنامه‌نویسی آ</p>
+    <p>© آسا · گروه برنامه‌نویسی</p>
     <div class="links"><a href="/">صفحهٔ اصلی</a></div>
   </div>
 </footer>
