@@ -2,6 +2,8 @@
 import { games } from "./games/index.js";
 import { fmt, betControls } from "./ui.js";
 export { fmt, betControls };
+import * as A from "./account.js";
+import { renderSignIn, renderProfile, setRouteRefresher } from "./pages/auth.js";
 
 /* ---------- کیف سکه ---------- */
 const WALLET_KEY = "betasa-wallet";
@@ -196,6 +198,11 @@ function route() {
   if (hash === "#/leaderboard") { renderLeaderboard(); view.focus(); return; }
   if (hash === "#/rewards") { renderRewards(); view.focus(); return; }
   if (hash === "#/wallet") { renderWallet(); view.focus(); return; }
+  if (hash === "#/signin") { renderSignIn(view, { toast, fmt }); view.focus(); return; }
+  if (hash === "#/profile") {
+    renderProfile(view, { toast, fmt, credit: (n) => { grant(n); ledger("invite", n, "کد دعوت"); } });
+    view.focus(); return;
+  }
   if (hash.startsWith("#/games")) { renderGames(hash); view.focus(); return; }
   renderLobby();
   view.focus();
@@ -204,7 +211,7 @@ function route() {
 /* ---------- کیف سکه ----------
    عمداً هیچ مسیر «افزایش موجودی با پول» ندارد: سکه فقط از بازی، جایزهٔ
    روزانه، ماموریت‌ها و بالا رفتن سطح می‌آید. */
-const LEDGER_LABEL = { bet: "شرط", win: "برد", daily: "جایزهٔ ورود", mission: "ماموریت", level: "سطح جدید" };
+const LEDGER_LABEL = { bet: "شرط", win: "برد", daily: "جایزهٔ ورود", mission: "ماموریت", level: "سطح جدید", invite: "کد دعوت" };
 
 function renderWallet() {
   document.title = "بت آسا — کیف سکه";
@@ -372,6 +379,14 @@ function gameCard(g) {
 }
 
 /* ---------- جدول امتیازات ---------- */
+/* نامی که روی رکوردها می‌نشیند: یوزرنیم، بعد نام نمایشی، وگرنه «تو» */
+function leaderboardName() {
+  const acc = A.account();
+  const name = acc?.profile.username || acc?.profile.displayName;
+  const safe = String(name || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  return safe ? `<span class="ltr">${safe}</span>` : "تو";
+}
+
 function renderLeaderboard() {
   document.title = "بت آسا — جدول امتیازات";
   resetDayIfNeeded();
@@ -389,7 +404,7 @@ function renderLeaderboard() {
   page.innerHTML = `
     <div class="game-head">
       <button class="back" type="button">→ خانه</button>
-      <h1>بزرگ‌ترین بردهای تو</h1>
+      <h1>بزرگ‌ترین بردهای ${leaderboardName()}</h1>
     </div>
     <div class="game-board" style="overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;text-align:right">
@@ -538,10 +553,31 @@ function initPWA() {
   });
 }
 
+/* ---------- تراشهٔ حساب در هدر ---------- */
+function renderAccountChip() {
+  const chip = document.getElementById("account-chip");
+  if (!chip) return;
+  const acc = A.account();
+  const label = chip.querySelector(".account-label");
+  if (acc) {
+    chip.href = "#/profile";
+    chip.title = "پروفایل";
+    label.textContent = acc.profile.username || acc.profile.displayName || "پروفایل";
+  } else {
+    chip.href = "#/signin";
+    chip.title = "ورود";
+    label.textContent = "ورود";
+  }
+}
+
 /* ---------- شروع ---------- */
+A.carryInviteFromUrl();
+A.onAccountChange(renderAccountChip);
+setRouteRefresher(route);
 initTheme();
 initPWA();
 dailyBonus();
 renderBalance();
+renderAccountChip();
 window.addEventListener("hashchange", route);
 route();

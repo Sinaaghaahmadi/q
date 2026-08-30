@@ -135,6 +135,15 @@ body.lp {
   .lp-burger { display: block; }
 }
 
+/* نوار دعوت: تنها چیزی که بالای قهرمان می‌نشیند، پس باید کوتاه بماند */
+.lp-invite{
+  display:flex;flex-wrap:wrap;gap:var(--sp-3);align-items:center;justify-content:center;
+  padding:var(--sp-3) var(--sp-5);font-size:var(--fs-sm);
+  background:rgba(53,224,208,.1);border-bottom:1px solid rgba(53,224,208,.3);color:var(--lp-ink);
+}
+.lp-invite b{color:var(--lp-neon)}
+.lp-invite a{color:var(--lp-gold);font-weight:700}
+
 /* ============================ قهرمان ============================ */
 .lp-hero { position: relative; overflow: hidden; padding-block: clamp(var(--sp-10), 7vw, 96px) clamp(var(--sp-10), 6vw, 80px); }
 

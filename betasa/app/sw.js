@@ -1,5 +1,5 @@
 /* بت آسا — سرویس‌ورکر: کش آفلاین ساده (cache-first برای دارایی‌ها، network-first برای ناوبری) */
-const CACHE = "betasa-v6";
+const CACHE = "betasa-v7";
 const ASSETS = [
   "./",
   "index.html",
@@ -11,6 +11,8 @@ const ASSETS = [
   "js/app.js",
   "js/landing.js",
   "js/ui.js",
+  "js/account.js",
+  "js/pages/auth.js",
   "js/games/index.js",
   "js/games/coinflip.js",
   "js/games/dice.js",

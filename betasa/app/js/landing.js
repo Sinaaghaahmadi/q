@@ -4,6 +4,7 @@
    و زیر prefers-reduced-motion همه‌چیز ساکن اما کامل خوانده می‌شود.
    ========================================================================== */
 import { games } from "./games/index.js";
+import { carryInviteFromUrl, INVITE_GUEST_BONUS } from "./account.js";
 
 const calm = matchMedia("(prefers-reduced-motion: reduce)");
 const $ = (s, r = document) => r.querySelector(s);
@@ -281,7 +282,20 @@ const fa = (n) =>
   });
 })();
 
-/* ============================ ۱۰. سرویس‌ورکر ============================ */
+/* ============================ ۱۰. کد دعوت در آدرس ============================
+   کسی که با لینک دعوت آمده باید همان اول بداند چه چیزی انتظارش را می‌کشد؛
+   کد تا لحظهٔ ثبت در پروفایل نگه داشته می‌شود. */
+(function invite() {
+  const code = carryInviteFromUrl();
+  if (!code) return;
+  const bar = document.createElement("div");
+  bar.className = "lp-invite";
+  bar.innerHTML = `با کد <b class="ltr">${code}</b> دعوت شده‌ای — ${INVITE_GUEST_BONUS.toLocaleString("fa-IR")} سکهٔ هدیه در پروفایل ثبت می‌شود.
+    <a href="app.html#/signin">ورود و ثبت کد</a>`;
+  document.querySelector(".lp-nav").insertAdjacentElement("afterend", bar);
+})();
+
+/* ============================ ۱۱. سرویس‌ورکر ============================ */
 if ("serviceWorker" in navigator) {
   addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 }
