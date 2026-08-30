@@ -10,7 +10,7 @@
  * Keep it in step with `package.json` — `scripts/check-version.mjs` fails the
  * build if the two drift.
  */
-export const APP_VERSION = "1.0.0";
+export const APP_VERSION = "1.1.0";
 
 /**
  * The commit this build came from, when the platform supplies it.

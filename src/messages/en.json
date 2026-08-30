@@ -654,7 +654,8 @@
           "title": "Empty and error states",
           "body": "An empty list, a door that is not yours, a wrong address, and no network — four different messages, four different drawings."
         }
-      }
+      },
+      "items": {}
     },
     "tiles": {
       "description": "The coin's lighting rig on a rounded square: light from above, a hairline along the top edge, a gloss over the upper half, and a shadow cast in the tile's own colour.",
@@ -3212,6 +3213,15 @@
     "title": "Put Asa on your home screen",
     "body": "It opens like an app, starts faster, and shows the last rates even offline.",
     "cta": "Add to home screen",
-    "dismiss": "No thanks"
+    "dismiss": "No thanks",
+    "ios": {
+      "title": "Put Asa on your home screen",
+      "body": "It opens like an app, starts faster, and shows the last rates even offline.",
+      "step": {
+        "share": "Tap the share button in Safari's bottom bar.",
+        "add": "Scroll down a little and choose “<ios>Add to Home Screen</ios>”."
+      },
+      "done": "Got it"
+    }
   }
 }

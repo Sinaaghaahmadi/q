@@ -114,9 +114,9 @@ export function Conversation({
               <motion.li
                 key={message.id}
                 layout={!reduce}
-                initial={reduce ? false : { opacity: 0, y: 6 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.2, ease: EASE_IN }}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={reduce ? { duration: 0 } : { duration: 0.2, ease: EASE_IN }}
                 className={`flex ${mine ? "justify-end" : "justify-start"}`}
               >
                 <div

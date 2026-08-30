@@ -1,0 +1,68 @@
+# Cuts a GitHub Release for the version in package.json, with the matching
+# CHANGELOG.md section as its notes.
+#
+# Runs on GitHub's side because it has to: pushes of tag refs do not survive
+# this project's egress path, so the tag is created here, by the runner,
+# with the workflow's own scoped token. Fires when a push to the working
+# branch changes the version (guarded below so re-pushes of the same version
+# do nothing), and can also be run by hand from the Actions tab.
+name: release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/happy-bohr-4ibs9c", "main"]
+    paths: ["package.json", "CHANGELOG.md"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide whether this push is a release
+        id: gate
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          TAG="v${VERSION}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "· ${TAG} already exists — nothing to do."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "· ${TAG} is new — releasing."
+          fi
+
+      - name: Extract this version's notes from CHANGELOG.md
+        if: steps.gate.outputs.exists == 'false'
+        run: |
+          node - <<'EOF'
+          const { readFileSync, writeFileSync } = require("node:fs");
+          const version = require("./package.json").version;
+          const log = readFileSync("CHANGELOG.md", "utf8");
+          const lines = log.split("\n");
+          const start = lines.findIndex((l) => l.startsWith(`## ${version}`));
+          if (start === -1) {
+            console.error(`CHANGELOG.md has no "## ${version}" section — refusing a notes-less release.`);
+            process.exit(1);
+          }
+          let end = lines.length;
+          for (let i = start + 1; i < lines.length; i++) {
+            if (lines[i].startsWith("## ")) { end = i; break; }
+          }
+          writeFileSync("RELEASE_NOTES.md", lines.slice(start + 1, end).join("\n").trim() + "\n");
+          EOF
+          echo "── notes ──"; cat RELEASE_NOTES.md
+
+      - name: Create the tag and the Release
+        if: steps.gate.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.gate.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: "صرافی آسا ${{ steps.gate.outputs.tag }}"
+          body_path: RELEASE_NOTES.md

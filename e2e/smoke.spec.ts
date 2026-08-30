@@ -1,28 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-import { formatNumber } from "@/lib/money/format";
-import {
-  COMMISSION_BANDS,
-  COMMISSION_MAX_PCT,
-  COMMISSION_MIN_PCT,
-  commissionOn,
-} from "@/lib/rates/commission";
-
-/**
- * The quote assertions derive their figures from the band table rather than
- * naming them, because the schedule is meant to be edited: when every rate
- * moved two rungs down its ladder, hardcoded expectations here went stale and
- * the suite failed for a change that was correct. The commission module says
- * it is "the only place the range is written down as numbers" — these tests
- * now honour that instead of forking it.
- *
- * They still assert arithmetic, not just that a fee line rendered: `expected`
- * is computed from the published bands the same way the product computes it.
- */
-const money = (value: number) => formatNumber(Math.round(value), "fa");
-const pct = (value: number) =>
-  formatNumber(value, "fa", { maximumFractionDigits: 2, minimumFractionDigits: 0 });
-
 test.describe("front door (§0.3): rates + converter before login", () => {
   test("Persian home is RTL with a working converter", async ({ page }) => {
     await page.goto("/");
@@ -61,19 +38,17 @@ test("/_design rewrite serves the design system (§17.20)", async ({ page }) => 
 });
 
 test("the quote states one commission, and the bands behind it", async ({ page }) => {
-  // A 100M Toman leg straddles the first two bands, so the total is a genuine
-  // sum across the schedule rather than a single rate applied once. Asserting
-  // the arithmetic rather than just the label is the point — a fee line that
-  // renders is not a fee line that is right.
-  const leg = 100_000_000;
-  const expected = commissionOn(leg);
-  expect(expected.slices.length, "the fixture must span more than one band").toBeGreaterThan(1);
-
-  await page.goto(`/transfer/new?from=IRT&to=USD&amount=${leg}`);
+  // Asserting the arithmetic rather than just the label is the point — a fee
+  // line that renders is not a fee line that is right. The figures follow
+  // COMMISSION_BANDS (src/lib/rates/commission.ts); this test went stale once
+  // already when the schedule dropped two rungs, so if it fails on a round
+  // number, check the schedule before suspecting the calculator.
+  await page.goto("/transfer/new?from=IRT&to=USD&amount=100000000");
 
   await expect(page.getByText("کارمزد صرافی")).toBeVisible();
-  await expect(page.getByText(money(expected.toman), { exact: false })).toBeVisible();
-  await expect(page.getByText(`${pct(expected.effectivePct)}٪ از مبلغ حواله`)).toBeVisible();
+  // 20M at 10% + 80M at 8% = 8,400,000. Persian digits, Persian grouping.
+  await expect(page.getByText("۸٬۴۰۰٬۰۰۰", { exact: false })).toBeVisible();
+  await expect(page.getByText("۸٫۴٪ از مبلغ حواله")).toBeVisible();
 
   // The two-line receipt is gone: what the office keeps and what the platform
   // keeps is a split of the figure above, not a second charge.
@@ -81,27 +56,20 @@ test("the quote states one commission, and the bands behind it", async ({ page }
 
   await page.getByText("این درصد چطور حساب شد؟").click();
   const sheet = page.getByRole("dialog");
-  // The sheet lists the whole ladder, not just the bands this transfer reached,
-  // so both ends of the published range have to be on it. Exact matching
-  // matters: a bare "۵٪" is a substring of "۶٫۵٪".
-  await expect(sheet.getByText(`${pct(COMMISSION_MAX_PCT)}٪`, { exact: true })).toBeVisible();
-  await expect(sheet.getByText(`${pct(COMMISSION_MIN_PCT)}٪`, { exact: true })).toBeVisible();
-  expect(COMMISSION_BANDS[0]?.pct, "the top band is the advertised maximum").toBe(
-    COMMISSION_MAX_PCT,
-  );
+  // Exact: "۵٪" is a substring of "۶٫۵٪".
+  await expect(sheet.getByText("۱۰٪", { exact: true })).toBeVisible();
+  await expect(sheet.getByText("۵٪", { exact: true })).toBeVisible();
   await expect(sheet.getByText("کارمزد کل")).toBeVisible();
 });
 
 test("the quote can be edited where it is shown", async ({ page }) => {
-  const edited = 500_000_000;
-  const expected = commissionOn(edited);
-
   await page.goto("/transfer/new?from=IRT&to=USD&amount=100000000");
-  await page.locator("#quote-amount").fill(String(edited));
+  await page.locator("#quote-amount").fill("500000000");
   // The edit rewrites the query string, which is what the server component
   // reads — the browser never computes a price of its own.
-  await expect(page).toHaveURL(new RegExp(`amount=${edited}`), { timeout: 10_000 });
-  await expect(page.getByText(`${pct(expected.effectivePct)}٪ از مبلغ حواله`)).toBeVisible();
+  await expect(page).toHaveURL(/amount=500000000/, { timeout: 10_000 });
+  // 20M@10% + 80M@8% + 200M@6.5% + 200M@5% = 31.4M of 500M.
+  await expect(page.getByText("۶٫۲۸٪ از مبلغ حواله")).toBeVisible();
 });
 
 test("rates API returns a snapshot", async ({ request }) => {

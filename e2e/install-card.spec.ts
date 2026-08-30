@@ -74,6 +74,36 @@ test.describe("install offer (§14)", () => {
     await expect(page.getByText(CARD)).toHaveCount(0);
   });
 
+  test("an iPhone is shown the gesture instead, and it can be dismissed", async ({ browser }) => {
+    // Safari has no `beforeinstallprompt`, so the card has to recognise the
+    // device rather than wait for an event that will never arrive.
+    const context = await browser.newContext({
+      userAgent:
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+      viewport: { width: 390, height: 844 },
+      isMobile: true,
+      hasTouch: true,
+    });
+    try {
+      const page = await context.newPage();
+      await page.goto("/");
+
+      const guide = page.getByTestId("install-ios");
+      await expect(guide).toBeVisible();
+      // Both steps, in order, and no Android button anywhere near it.
+      await expect(guide.getByRole("listitem")).toHaveCount(2);
+      await expect(page.getByTestId("install-prompt")).toHaveCount(0);
+
+      await guide.getByRole("button").click();
+      await expect(guide).toHaveCount(0);
+
+      await page.goto("/");
+      await expect(page.getByTestId("install-ios")).toHaveCount(0);
+    } finally {
+      await context.close();
+    }
+  });
+
   test("declining never reaches the browser prompt", async ({ page }) => {
     await page.goto("/");
     await offerInstall(page);

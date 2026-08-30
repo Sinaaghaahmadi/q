@@ -88,7 +88,9 @@ export function UploadTile({
 
         {/* scan-line sweep while the image is being graded (§13) */}
         <AnimatePresence>
-          {busy && !reduce ? (
+          {/* Shown under reduced motion too — "your document is being read"
+              is information, not decoration; only the sweep stops moving. */}
+          {busy ? (
             <motion.div
               className="absolute inset-0 bg-ink-900/20"
               initial={{ opacity: 0 }}
@@ -98,8 +100,10 @@ export function UploadTile({
               <motion.div
                 className="absolute inset-x-0 h-1 bg-brand-600"
                 initial={{ top: "0%" }}
-                animate={{ top: ["0%", "100%", "0%"] }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                animate={reduce ? { top: "0%" } : { top: ["0%", "100%", "0%"] }}
+                transition={
+                  reduce ? { duration: 0 } : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+                }
               />
             </motion.div>
           ) : null}
@@ -108,9 +112,9 @@ export function UploadTile({
         {value && !bad ? (
           <motion.span
             className="absolute end-2 top-2"
-            initial={reduce ? false : { opacity: 0, scale: 1.4 }}
-            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
-            transition={reduce ? undefined : { duration: 0.4, ease: EASE_IN }}
+            initial={{ opacity: 0, scale: 1.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.4, ease: EASE_IN }}
           >
             <Badge variant="up">{t("ok")}</Badge>
           </motion.span>

@@ -87,6 +87,16 @@ tokens, never the series color.
   - `OrderStateScene` maps all 18 order states to a scene, exhaustively, so a
     state added to the machine without a drawing fails the build rather than
     rendering a blank card at somebody whose money is mid-transfer.
+- **Instructional scenes:** a scene may also _perform_ an action rather than
+  name a moment — `IosInstallScene` taps Safari's share glyph and opens the
+  sheet, on a loop, because Safari has no install prompt and the only thing a
+  website can do for an iPhone user is show where to press. Three rules make
+  one of these honest: it loops (an instruction that plays once is one you
+  missed), it shows the real control in the real place (Safari's toolbar, at
+  the bottom), and under `prefers-reduced-motion` it settles into the _final_
+  state with every step still visible — a static instruction has to teach the
+  same thing. Reach for this only where the product cannot do the action for
+  the reader; anywhere it can, a button beats a drawing of a button.
 - **The boundary:** 3D is for currencies, product concepts, and spot
   illustrations. Functional micro-UI (chevrons, close, search, form
   affordances) stays a 2 px line set (lucide) — 3D at 16 px is noise, not

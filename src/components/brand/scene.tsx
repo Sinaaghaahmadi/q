@@ -81,11 +81,14 @@ export function DrawPath({
       strokeLinejoin="round"
       fill="none"
       opacity={opacity}
-      initial={reduce ? false : { pathLength: 0 }}
-      animate={reduce ? undefined : { pathLength: 1 }}
+      initial={{ pathLength: 0 }}
+      animate={{ pathLength: 1 }}
       transition={
+        // The preference lives here and only here: `initial` decides what the
+        // server writes into the SVG, so branching it on a preference the
+        // server cannot know was a hydration mismatch in every scene.
         reduce
-          ? undefined
+          ? { duration: 0 }
           : loop
             ? {
                 duration,
@@ -116,9 +119,9 @@ export function Rise({
   const reduce = useReducedMotion();
   return (
     <motion.g
-      initial={reduce ? false : { opacity: 0, y }}
-      animate={reduce ? undefined : { opacity: 1, y: 0 }}
-      transition={reduce ? undefined : { duration, delay, ease: EASE_IN }}
+      initial={{ opacity: 0, y }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={reduce ? { duration: 0 } : { duration, delay, ease: EASE_IN }}
     >
       {children}
     </motion.g>
@@ -138,12 +141,15 @@ export function Orbit({
   origin?: string;
 }) {
   const reduce = useReducedMotion();
-  if (reduce) return <g>{children}</g>;
+  // One element either way. Returning a plain `<g>` under reduced motion made
+  // the server and the client disagree about the tag and its style attribute —
+  // see the note in `logo.tsx`; this is the same defect wherever a scene is
+  // rendered on the server.
   return (
     <motion.g
       style={{ transformOrigin: `${origin.split(" ")[0]}px ${origin.split(" ")[1]}px` }}
-      animate={{ rotate: reverse ? -360 : 360 }}
-      transition={{ duration: seconds, repeat: Infinity, ease: "linear" }}
+      animate={reduce ? undefined : { rotate: reverse ? -360 : 360 }}
+      transition={reduce ? undefined : { duration: seconds, repeat: Infinity, ease: "linear" }}
     >
       {children}
     </motion.g>
@@ -163,13 +169,12 @@ export function Breathe({
   origin?: string;
 }) {
   const reduce = useReducedMotion();
-  if (reduce) return <g>{children}</g>;
   const [ox, oy] = origin.split(" ");
   return (
     <motion.g
       style={{ transformOrigin: `${ox}px ${oy}px` }}
-      animate={{ scale: [1, scale, 1] }}
-      transition={{ duration: seconds, repeat: Infinity, ease: "easeInOut" }}
+      animate={reduce ? undefined : { scale: [1, scale, 1] }}
+      transition={reduce ? undefined : { duration: seconds, repeat: Infinity, ease: "easeInOut" }}
     >
       {children}
     </motion.g>

@@ -314,12 +314,7 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
                   <span className="text-[0.6875rem] leading-tight font-medium text-ink-600">
                     {t(`tiles.hue.${hue}`)}
                   </span>
-                  {/* Solid ink-600, not a faded one: at 10px this is normal-size
-                      text, and ink-600/70 measured 3.59:1 on the light surface —
-                      under the 4.5:1 AA floor. The hierarchy against the label
-                      above comes from the mono face and the smaller size, which
-                      cost nothing in contrast. */}
-                  <span className="font-mono text-[0.625rem] text-ink-600" dir="ltr">
+                  <span className="font-mono text-[0.6875rem] text-ink-600" dir="ltr">
                     {hue}
                   </span>
                 </div>

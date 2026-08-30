@@ -3173,7 +3173,8 @@
           "title": "Leere Zustände und Fehler",
           "body": "Eine leere Liste, eine Tür, die nicht deine ist, eine falsche Adresse, und kein Netz — vier Meldungen, vier Zeichnungen."
         }
-      }
+      },
+      "items": {}
     },
     "tiles": {
       "description": "Dieselbe Lichtführung wie bei der Münze, auf einem abgerundeten Quadrat: Licht von oben, eine Haarlinie an der Oberkante, Glanz über der oberen Hälfte und ein Schatten in der Farbe der Kachel selbst.",
@@ -3212,6 +3213,15 @@
     "title": "Asa auf den Startbildschirm legen",
     "body": "Öffnet sich wie eine App, startet schneller und zeigt die letzten Kurse auch offline.",
     "cta": "Zum Startbildschirm hinzufügen",
-    "dismiss": "Nein danke"
+    "dismiss": "Nein danke",
+    "ios": {
+      "title": "Asa auf den Startbildschirm legen",
+      "body": "Öffnet sich wie eine App, startet schneller und zeigt die letzten Kurse auch offline.",
+      "step": {
+        "share": "Tippen Sie in Safaris unterer Leiste auf „Teilen“.",
+        "add": "Scrollen Sie etwas nach unten und wählen Sie „<ios>Add to Home Screen</ios>“."
+      },
+      "done": "Verstanden"
+    }
   }
 }
